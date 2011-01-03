@@ -151,76 +151,76 @@
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) GlobalConfig_HOEHENREGELUNG{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_HOEHENREGELUNG)==CFG_HOEHENREGELUNG)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_HOEHENREGELUNG)==CFG_HOEHENREGELUNG)];
 }
 - (void) setGlobalConfig_HOEHENREGELUNG:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_HOEHENREGELUNG;
+     _parameter.GlobalConfig |= CFG_HOEHENREGELUNG;
   else
-     _parameter.BitConfig &= ~CFG_HOEHENREGELUNG;
+     _parameter.GlobalConfig &= ~CFG_HOEHENREGELUNG;
 }
 - (NSNumber*) GlobalConfig_HOEHEN_SCHALTER{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_HOEHEN_SCHALTER)==CFG_HOEHEN_SCHALTER)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_HOEHEN_SCHALTER)==CFG_HOEHEN_SCHALTER)];
 }
 - (void) setGlobalConfig_HOEHEN_SCHALTER:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_HOEHEN_SCHALTER;
+     _parameter.GlobalConfig |= CFG_HOEHEN_SCHALTER;
   else
-     _parameter.BitConfig &= ~CFG_HOEHEN_SCHALTER;
+     _parameter.GlobalConfig &= ~CFG_HOEHEN_SCHALTER;
 }
 - (NSNumber*) GlobalConfig_HEADING_HOLD{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_HEADING_HOLD)==CFG_HEADING_HOLD)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_HEADING_HOLD)==CFG_HEADING_HOLD)];
 }
 - (void) setGlobalConfig_HEADING_HOLD:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_HEADING_HOLD;
+     _parameter.GlobalConfig |= CFG_HEADING_HOLD;
   else
-     _parameter.BitConfig &= ~CFG_HEADING_HOLD;
+     _parameter.GlobalConfig &= ~CFG_HEADING_HOLD;
 }
 - (NSNumber*) GlobalConfig_KOMPASS_AKTIV{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_KOMPASS_AKTIV)==CFG_KOMPASS_AKTIV)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_KOMPASS_AKTIV)==CFG_KOMPASS_AKTIV)];
 }
 - (void) setGlobalConfig_KOMPASS_AKTIV:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_KOMPASS_AKTIV;
+     _parameter.GlobalConfig |= CFG_KOMPASS_AKTIV;
   else
-     _parameter.BitConfig &= ~CFG_KOMPASS_AKTIV;
+     _parameter.GlobalConfig &= ~CFG_KOMPASS_AKTIV;
 }
 - (NSNumber*) GlobalConfig_KOMPASS_FIX{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_KOMPASS_FIX)==CFG_KOMPASS_FIX)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_KOMPASS_FIX)==CFG_KOMPASS_FIX)];
 }
 - (void) setGlobalConfig_KOMPASS_FIX:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_KOMPASS_FIX;
+     _parameter.GlobalConfig |= CFG_KOMPASS_FIX;
   else
-     _parameter.BitConfig &= ~CFG_KOMPASS_FIX;
+     _parameter.GlobalConfig &= ~CFG_KOMPASS_FIX;
 }
 - (NSNumber*) GlobalConfig_GPS_AKTIV{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_GPS_AKTIV)==CFG_GPS_AKTIV)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_GPS_AKTIV)==CFG_GPS_AKTIV)];
 }
 - (void) setGlobalConfig_GPS_AKTIV:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_GPS_AKTIV;
+     _parameter.GlobalConfig |= CFG_GPS_AKTIV;
   else
-     _parameter.BitConfig &= ~CFG_GPS_AKTIV;
+     _parameter.GlobalConfig &= ~CFG_GPS_AKTIV;
 }
 - (NSNumber*) GlobalConfig_ACHSENKOPPLUNG_AKTIV{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_ACHSENKOPPLUNG_AKTIV)==CFG_ACHSENKOPPLUNG_AKTIV)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_ACHSENKOPPLUNG_AKTIV)==CFG_ACHSENKOPPLUNG_AKTIV)];
 }
 - (void) setGlobalConfig_ACHSENKOPPLUNG_AKTIV:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_ACHSENKOPPLUNG_AKTIV;
+     _parameter.GlobalConfig |= CFG_ACHSENKOPPLUNG_AKTIV;
   else
-     _parameter.BitConfig &= ~CFG_ACHSENKOPPLUNG_AKTIV;
+     _parameter.GlobalConfig &= ~CFG_ACHSENKOPPLUNG_AKTIV;
 }
 - (NSNumber*) GlobalConfig_DREHRATEN_BEGRENZER{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_DREHRATEN_BEGRENZER)==CFG_DREHRATEN_BEGRENZER)];
+  return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_DREHRATEN_BEGRENZER)==CFG_DREHRATEN_BEGRENZER)];
 }
 - (void) setGlobalConfig_DREHRATEN_BEGRENZER:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_DREHRATEN_BEGRENZER;
+     _parameter.GlobalConfig |= CFG_DREHRATEN_BEGRENZER;
   else
-     _parameter.BitConfig &= ~CFG_DREHRATEN_BEGRENZER;
+     _parameter.GlobalConfig &= ~CFG_DREHRATEN_BEGRENZER;
 }
 
 //---------------------------------------------------
@@ -838,40 +838,40 @@
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) ExtraConfig_HEIGHT_LIMIT{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG2_HEIGHT_LIMIT)==CFG2_HEIGHT_LIMIT)];
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG2_HEIGHT_LIMIT)==CFG2_HEIGHT_LIMIT)];
 }
 - (void) setExtraConfig_HEIGHT_LIMIT:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG2_HEIGHT_LIMIT;
+     _parameter.ExtraConfig |= CFG2_HEIGHT_LIMIT;
   else
-     _parameter.BitConfig &= ~CFG2_HEIGHT_LIMIT;
+     _parameter.ExtraConfig &= ~CFG2_HEIGHT_LIMIT;
 }
 - (NSNumber*) ExtraConfig_VARIO_BEEP{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG2_VARIO_BEEP)==CFG2_VARIO_BEEP)];
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG2_VARIO_BEEP)==CFG2_VARIO_BEEP)];
 }
 - (void) setExtraConfig_VARIO_BEEP:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG2_VARIO_BEEP;
+     _parameter.ExtraConfig |= CFG2_VARIO_BEEP;
   else
-     _parameter.BitConfig &= ~CFG2_VARIO_BEEP;
+     _parameter.ExtraConfig &= ~CFG2_VARIO_BEEP;
 }
 - (NSNumber*) ExtraConfig_SENSITIVE_RC{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_SENSITIVE_RC)==CFG_SENSITIVE_RC)];
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG_SENSITIVE_RC)==CFG_SENSITIVE_RC)];
 }
 - (void) setExtraConfig_SENSITIVE_RC:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_SENSITIVE_RC;
+     _parameter.ExtraConfig |= CFG_SENSITIVE_RC;
   else
-     _parameter.BitConfig &= ~CFG_SENSITIVE_RC;
+     _parameter.ExtraConfig &= ~CFG_SENSITIVE_RC;
 }
 - (NSNumber*) ExtraConfig_3_3V_REFERENCE{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_3_3V_REFERENCE)==CFG_3_3V_REFERENCE)];
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG_3_3V_REFERENCE)==CFG_3_3V_REFERENCE)];
 }
 - (void) setExtraConfig_3_3V_REFERENCE:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_3_3V_REFERENCE;
+     _parameter.ExtraConfig |= CFG_3_3V_REFERENCE;
   else
-     _parameter.BitConfig &= ~CFG_3_3V_REFERENCE;
+     _parameter.ExtraConfig &= ~CFG_3_3V_REFERENCE;
 }
 
 //---------------------------------------------------
