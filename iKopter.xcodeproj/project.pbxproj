@@ -100,6 +100,7 @@
 		BA71D0C512D267270029C5F7 /* MixerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BC12D267270029C5F7 /* MixerTableViewCell.m */; };
 		BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */; };
 		BA71D0C712D267270029C5F7 /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BF12D267270029C5F7 /* MixerViewController.m */; };
+		BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -272,6 +273,7 @@
 		BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MixerTableViewCell.xib; sourceTree = "<group>"; };
 		BA71D0BE12D267270029C5F7 /* MixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixerViewController.h; sourceTree = "<group>"; };
 		BA71D0BF12D267270029C5F7 /* MixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerViewController.m; sourceTree = "<group>"; };
+		BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AllSettings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +343,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */,
 				BA71CE0A12D0C3840029C5F7 /* InAppSettings.bundle */,
 				BA71CE0B12D0C3840029C5F7 /* Settings.bundle */,
 				BA71CCD112CFF1730029C5F7 /* images */,
@@ -728,6 +731,7 @@
 				BA71CEAC12D0D43F0029C5F7 /* rightTriangle.png in Resources */,
 				BA71CEAD12D0D43F0029C5F7 /* star.png in Resources */,
 				BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */,
+				BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,13 +7,13 @@
 		<integer>90</integer>
 		<key>AchsKopplung2</key>
 		<integer>80</integer>
-		<key>BitConfig_LOOP_DOWN</key>
+		<key>BitConfig_LOOP_UNTEN</key>
 		<integer>0</integer>
-		<key>BitConfig_LOOP_LEFT</key>
+		<key>BitConfig_LOOP_LINKS</key>
 		<integer>0</integer>
-		<key>BitConfig_LOOP_RIGHT</key>
+		<key>BitConfig_LOOP_RECHTS</key>
 		<integer>0</integer>
-		<key>BitConfig_LOOP_UP</key>
+		<key>BitConfig_LOOP_OBEN</key>
 		<integer>0</integer>
 		<key>BitConfig_MOTOR_BLINK</key>
 		<integer>0</integer>
@@ -95,29 +95,29 @@
 		<integer>243</integer>
 		<key>J17Timing</key>
 		<integer>15</integer>
-		<key>Kanalbelegung00</key>
+		<key>Kanalbelegung_00</key>
 		<integer>3</integer>
-		<key>Kanalbelegung01</key>
+		<key>Kanalbelegung_01</key>
 		<integer>2</integer>
-		<key>Kanalbelegung02</key>
+		<key>Kanalbelegung_02</key>
 		<integer>1</integer>
-		<key>Kanalbelegung03</key>
+		<key>Kanalbelegung_03</key>
 		<integer>4</integer>
-		<key>Kanalbelegung04</key>
+		<key>Kanalbelegung_04</key>
 		<integer>5</integer>
-		<key>Kanalbelegung05</key>
+		<key>Kanalbelegung_05</key>
 		<integer>6</integer>
-		<key>Kanalbelegung06</key>
+		<key>Kanalbelegung_06</key>
 		<integer>7</integer>
-		<key>Kanalbelegung07</key>
+		<key>Kanalbelegung_07</key>
 		<integer>8</integer>
-		<key>Kanalbelegung08</key>
+		<key>Kanalbelegung_08</key>
 		<integer>9</integer>
-		<key>Kanalbelegung09</key>
+		<key>Kanalbelegung_09</key>
 		<integer>10</integer>
-		<key>Kanalbelegung10</key>
+		<key>Kanalbelegung_10</key>
 		<integer>11</integer>
-		<key>Kanalbelegung11</key>
+		<key>Kanalbelegung_11</key>
 		<integer>12</integer>
 		<key>KompassWirkung</key>
 		<integer>128</integer>
@@ -177,7 +177,7 @@
 		<integer>125</integer>
 		<key>Servo5</key>
 		<integer>125</integer>
-		<key>ServoCompInvert_Nick</key>
+		<key>ServoCompInvert_NICK</key>
 		<integer>0</integer>
 		<key>ServoCompInvert_ROLL</key>
 		<integer>0</integer>
@@ -231,7 +231,7 @@
 		<integer>78</integer>
 		<key>index</key>
 		<integer>1</integer>
-		<key>version</key>
+		<key>Revision</key>
 		<integer>82</integer>
 	</dict>
 	<dict>
@@ -327,29 +327,29 @@
 		<integer>243</integer>
 		<key>J17Timing</key>
 		<integer>20</integer>
-		<key>Kanalbelegung00</key>
+		<key>Kanalbelegung_00</key>
 		<integer>3</integer>
-		<key>Kanalbelegung01</key>
+		<key>Kanalbelegung_01</key>
 		<integer>2</integer>
-		<key>Kanalbelegung02</key>
+		<key>Kanalbelegung_02</key>
 		<integer>1</integer>
-		<key>Kanalbelegung03</key>
+		<key>Kanalbelegung_03</key>
 		<integer>4</integer>
-		<key>Kanalbelegung04</key>
+		<key>Kanalbelegung_04</key>
 		<integer>5</integer>
-		<key>Kanalbelegung05</key>
+		<key>Kanalbelegung_05</key>
 		<integer>6</integer>
-		<key>Kanalbelegung06</key>
+		<key>Kanalbelegung_06</key>
 		<integer>7</integer>
-		<key>Kanalbelegung07</key>
+		<key>Kanalbelegung_07</key>
 		<integer>8</integer>
-		<key>Kanalbelegung08</key>
+		<key>Kanalbelegung_08</key>
 		<integer>9</integer>
-		<key>Kanalbelegung09</key>
+		<key>Kanalbelegung_09</key>
 		<integer>10</integer>
-		<key>Kanalbelegung10</key>
+		<key>Kanalbelegung_10</key>
 		<integer>11</integer>
-		<key>Kanalbelegung11</key>
+		<key>Kanalbelegung_11</key>
 		<integer>12</integer>
 		<key>KompassWirkung</key>
 		<integer>128</integer>
@@ -409,7 +409,7 @@
 		<integer>125</integer>
 		<key>Servo5</key>
 		<integer>125</integer>
-		<key>ServoCompInvert_Nick</key>
+		<key>ServoCompInvert_NICK</key>
 		<integer>0</integer>
 		<key>ServoCompInvert_ROLL</key>
 		<integer>0</integer>
@@ -463,7 +463,7 @@
 		<integer>78</integer>
 		<key>index</key>
 		<integer>2</integer>
-		<key>version</key>
+		<key>Revision</key>
 		<integer>82</integer>
 	</dict>
 	<dict>
@@ -471,13 +471,13 @@
 		<integer>90</integer>
 		<key>AchsKopplung2</key>
 		<integer>80</integer>
-		<key>BitConfig_LOOP_DOWN</key>
+		<key>BitConfig_LOOP_UNTEN</key>
 		<integer>0</integer>
-		<key>BitConfig_LOOP_LEFT</key>
+		<key>BitConfig_LOOP_LINKS</key>
 		<integer>0</integer>
-		<key>BitConfig_LOOP_RIGHT</key>
+		<key>BitConfig_LOOP_RECHTS</key>
 		<integer>0</integer>
-		<key>BitConfig_LOOP_UP</key>
+		<key>BitConfig_LOOP_OBEN</key>
 		<integer>0</integer>
 		<key>BitConfig_MOTOR_BLINK</key>
 		<integer>0</integer>
@@ -559,29 +559,29 @@
 		<integer>243</integer>
 		<key>J17Timing</key>
 		<integer>30</integer>
-		<key>Kanalbelegung00</key>
+		<key>Kanalbelegung_00</key>
 		<integer>3</integer>
-		<key>Kanalbelegung01</key>
+		<key>Kanalbelegung_01</key>
 		<integer>2</integer>
-		<key>Kanalbelegung02</key>
+		<key>Kanalbelegung_02</key>
 		<integer>1</integer>
-		<key>Kanalbelegung03</key>
+		<key>Kanalbelegung_03</key>
 		<integer>4</integer>
-		<key>Kanalbelegung04</key>
+		<key>Kanalbelegung_04</key>
 		<integer>5</integer>
-		<key>Kanalbelegung05</key>
+		<key>Kanalbelegung_05</key>
 		<integer>6</integer>
-		<key>Kanalbelegung06</key>
+		<key>Kanalbelegung_06</key>
 		<integer>7</integer>
-		<key>Kanalbelegung07</key>
+		<key>Kanalbelegung_07</key>
 		<integer>8</integer>
-		<key>Kanalbelegung08</key>
+		<key>Kanalbelegung_08</key>
 		<integer>9</integer>
-		<key>Kanalbelegung09</key>
+		<key>Kanalbelegung_09</key>
 		<integer>10</integer>
-		<key>Kanalbelegung10</key>
+		<key>Kanalbelegung_10</key>
 		<integer>11</integer>
-		<key>Kanalbelegung11</key>
+		<key>Kanalbelegung_11</key>
 		<integer>12</integer>
 		<key>KompassWirkung</key>
 		<integer>128</integer>
@@ -641,7 +641,7 @@
 		<integer>125</integer>
 		<key>Servo5</key>
 		<integer>125</integer>
-		<key>ServoCompInvert_Nick</key>
+		<key>ServoCompInvert_NICK</key>
 		<integer>0</integer>
 		<key>ServoCompInvert_ROLL</key>
 		<integer>0</integer>
@@ -695,7 +695,7 @@
 		<integer>78</integer>
 		<key>index</key>
 		<integer>3</integer>
-		<key>version</key>
+		<key>Revision</key>
 		<integer>82</integer>
 	</dict>
 	<dict>
@@ -791,29 +791,29 @@
 		<integer>243</integer>
 		<key>J17Timing</key>
 		<integer>20</integer>
-		<key>Kanalbelegung00</key>
+		<key>Kanalbelegung_00</key>
 		<integer>3</integer>
-		<key>Kanalbelegung01</key>
+		<key>Kanalbelegung_01</key>
 		<integer>2</integer>
-		<key>Kanalbelegung02</key>
+		<key>Kanalbelegung_02</key>
 		<integer>1</integer>
-		<key>Kanalbelegung03</key>
+		<key>Kanalbelegung_03</key>
 		<integer>4</integer>
-		<key>Kanalbelegung04</key>
+		<key>Kanalbelegung_04</key>
 		<integer>5</integer>
-		<key>Kanalbelegung05</key>
+		<key>Kanalbelegung_05</key>
 		<integer>6</integer>
-		<key>Kanalbelegung06</key>
+		<key>Kanalbelegung_06</key>
 		<integer>7</integer>
-		<key>Kanalbelegung07</key>
+		<key>Kanalbelegung_07</key>
 		<integer>8</integer>
-		<key>Kanalbelegung08</key>
+		<key>Kanalbelegung_08</key>
 		<integer>9</integer>
-		<key>Kanalbelegung09</key>
+		<key>Kanalbelegung_09</key>
 		<integer>10</integer>
-		<key>Kanalbelegung10</key>
+		<key>Kanalbelegung_10</key>
 		<integer>11</integer>
-		<key>Kanalbelegung11</key>
+		<key>Kanalbelegung_11</key>
 		<integer>12</integer>
 		<key>KompassWirkung</key>
 		<integer>128</integer>
@@ -873,7 +873,7 @@
 		<integer>125</integer>
 		<key>Servo5</key>
 		<integer>125</integer>
-		<key>ServoCompInvert_Nick</key>
+		<key>ServoCompInvert_NICK</key>
 		<integer>0</integer>
 		<key>ServoCompInvert_ROLL</key>
 		<integer>0</integer>
@@ -927,7 +927,7 @@
 		<integer>78</integer>
 		<key>index</key>
 		<integer>4</integer>
-		<key>version</key>
+		<key>Revision</key>
 		<integer>82</integer>
 	</dict>
 	<dict>
@@ -1023,29 +1023,29 @@
 		<integer>243</integer>
 		<key>J17Timing</key>
 		<integer>20</integer>
-		<key>Kanalbelegung00</key>
+		<key>Kanalbelegung_00</key>
 		<integer>3</integer>
-		<key>Kanalbelegung01</key>
+		<key>Kanalbelegung_01</key>
 		<integer>2</integer>
-		<key>Kanalbelegung02</key>
+		<key>Kanalbelegung_02</key>
 		<integer>1</integer>
-		<key>Kanalbelegung03</key>
+		<key>Kanalbelegung_03</key>
 		<integer>4</integer>
-		<key>Kanalbelegung04</key>
+		<key>Kanalbelegung_04</key>
 		<integer>5</integer>
-		<key>Kanalbelegung05</key>
+		<key>Kanalbelegung_05</key>
 		<integer>6</integer>
-		<key>Kanalbelegung06</key>
+		<key>Kanalbelegung_06</key>
 		<integer>7</integer>
-		<key>Kanalbelegung07</key>
+		<key>Kanalbelegung_07</key>
 		<integer>8</integer>
-		<key>Kanalbelegung08</key>
+		<key>Kanalbelegung_08</key>
 		<integer>9</integer>
-		<key>Kanalbelegung09</key>
+		<key>Kanalbelegung_09</key>
 		<integer>10</integer>
-		<key>Kanalbelegung10</key>
+		<key>Kanalbelegung_10</key>
 		<integer>11</integer>
-		<key>Kanalbelegung11</key>
+		<key>Kanalbelegung_11</key>
 		<integer>12</integer>
 		<key>KompassWirkung</key>
 		<integer>254</integer>
@@ -1105,7 +1105,7 @@
 		<integer>125</integer>
 		<key>Servo5</key>
 		<integer>125</integer>
-		<key>ServoCompInvert_Nick</key>
+		<key>Revision</key>
 		<integer>0</integer>
 		<key>ServoCompInvert_ROLL</key>
 		<integer>0</integer>
@@ -1159,7 +1159,7 @@
 		<integer>78</integer>
 		<key>index</key>
 		<integer>5</integer>
-		<key>version</key>
+		<key>Revision</key>
 		<integer>82</integer>
 	</dict>
 </array>

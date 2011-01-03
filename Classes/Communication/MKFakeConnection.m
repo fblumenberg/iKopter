@@ -30,6 +30,8 @@
 #import "NSData+MKPayloadEncode.h"
 
 #import "MKDataConstants.h"
+#import "IKParamSet.h"
+
 
 static NSString * const MKDummyConnectionException = @"MKDummyConnectionException";
 
@@ -237,8 +239,21 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   NSDictionary* d = [settings objectAtIndex:index];
   
   DLog(@"%@",d);
+  
+  IKParamSet* p=[[IKParamSet alloc]init];
+
+  for (NSString* key in d) {
+    id value = [d objectForKey:key];
+    DLog(@"%@ -> %@",key,value);
+    @try {
+      [p setValue:value forKey:key];
+    }
+    @catch (NSException * e) {
+      DLog(@"%@",e);
+    }
+  }
     
-  NSData * newPayload = [NSData payloadForWriteSettingRequest:d];
+  NSData * newPayload = [p data]; //[NSData payloadForWriteSettingRequest:d];
   
   return newPayload;
 }

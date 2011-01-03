@@ -355,20 +355,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
         d = [payload decodeChannelsDataResponse];
         break;
       case MKCommandReadSettingsResponse:
-      {
-        IKParamSet* dv=[IKParamSet settingWithData:payload];
-        DLog(@"Paramset %d",dv.Revision);
-        
-        size_t st=sizeof(MkParamset);
-        st=sizeof(MKSetting);
-        NSData* da=[dv data];
-        dv=[IKParamSet settingWithData:da];
-        NSData* db=[dv data];
-        
-        
-        BOOL b=[da isEqualToData:db];
-        DLog(@"Paramset %d",b);
-      }
+//      {
+//        IKParamSet* dv=[IKParamSet settingWithData:payload];
+//        DLog(@"Paramset %d",dv.Revision);
+//        
+//        size_t st=sizeof(MkParamset);
+//        st=sizeof(MKSetting);
+//        NSData* da=[dv data];
+//        dv=[IKParamSet settingWithData:da];
+//        NSData* db=[dv data];
+//        
+//        
+//        BOOL b=[da isEqualToData:db];
+//        DLog(@"Paramset %d",b);
+//      }
         n = MKReadSettingNotification;
         d = [payload decodeReadSettingResponse];
         break;
