@@ -90,6 +90,16 @@
 		BA71CEAB12D0D43F0029C5F7 /* leftTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CEA812D0D43F0029C5F7 /* leftTriangle.png */; };
 		BA71CEAC12D0D43F0029C5F7 /* rightTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CEA912D0D43F0029C5F7 /* rightTriangle.png */; };
 		BA71CEAD12D0D43F0029C5F7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CEAA12D0D43F0029C5F7 /* star.png */; };
+		BA71D0A812D266AF0029C5F7 /* SettingsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0A512D266AF0029C5F7 /* SettingsSelectionViewController.m */; };
+		BA71D0A912D266AF0029C5F7 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0A712D266AF0029C5F7 /* SettingViewController.m */; };
+		BA71D0C012D267270029C5F7 /* ChannelsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B012D267270029C5F7 /* ChannelsViewCell.m */; };
+		BA71D0C112D267270029C5F7 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B212D267270029C5F7 /* ChannelsViewController.m */; };
+		BA71D0C212D267270029C5F7 /* EngineTestSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B512D267270029C5F7 /* EngineTestSliderCell.m */; };
+		BA71D0C312D267270029C5F7 /* EngineTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B712D267270029C5F7 /* EngineTestViewController.m */; };
+		BA71D0C412D267270029C5F7 /* EngineValues.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B912D267270029C5F7 /* EngineValues.m */; };
+		BA71D0C512D267270029C5F7 /* MixerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BC12D267270029C5F7 /* MixerTableViewCell.m */; };
+		BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */; };
+		BA71D0C712D267270029C5F7 /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BF12D267270029C5F7 /* MixerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,6 +253,25 @@
 		BA71CEA812D0D43F0029C5F7 /* leftTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftTriangle.png; sourceTree = "<group>"; };
 		BA71CEA912D0D43F0029C5F7 /* rightTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightTriangle.png; sourceTree = "<group>"; };
 		BA71CEAA12D0D43F0029C5F7 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		BA71D0A412D266AF0029C5F7 /* SettingsSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSelectionViewController.h; sourceTree = "<group>"; };
+		BA71D0A512D266AF0029C5F7 /* SettingsSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSelectionViewController.m; sourceTree = "<group>"; };
+		BA71D0A612D266AF0029C5F7 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		BA71D0A712D266AF0029C5F7 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		BA71D0AF12D267270029C5F7 /* ChannelsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsViewCell.h; sourceTree = "<group>"; };
+		BA71D0B012D267270029C5F7 /* ChannelsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewCell.m; sourceTree = "<group>"; };
+		BA71D0B112D267270029C5F7 /* ChannelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsViewController.h; sourceTree = "<group>"; };
+		BA71D0B212D267270029C5F7 /* ChannelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewController.m; sourceTree = "<group>"; };
+		BA71D0B412D267270029C5F7 /* EngineTestSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineTestSliderCell.h; sourceTree = "<group>"; };
+		BA71D0B512D267270029C5F7 /* EngineTestSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineTestSliderCell.m; sourceTree = "<group>"; };
+		BA71D0B612D267270029C5F7 /* EngineTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineTestViewController.h; sourceTree = "<group>"; };
+		BA71D0B712D267270029C5F7 /* EngineTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineTestViewController.m; sourceTree = "<group>"; };
+		BA71D0B812D267270029C5F7 /* EngineValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineValues.h; sourceTree = "<group>"; };
+		BA71D0B912D267270029C5F7 /* EngineValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngineValues.m; sourceTree = "<group>"; };
+		BA71D0BB12D267270029C5F7 /* MixerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixerTableViewCell.h; sourceTree = "<group>"; };
+		BA71D0BC12D267270029C5F7 /* MixerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerTableViewCell.m; sourceTree = "<group>"; };
+		BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MixerTableViewCell.xib; sourceTree = "<group>"; };
+		BA71D0BE12D267270029C5F7 /* MixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixerViewController.h; sourceTree = "<group>"; };
+		BA71D0BF12D267270029C5F7 /* MixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +293,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BA71D0AE12D267270029C5F7 /* Channels */,
+				BA71D0B312D267270029C5F7 /* EngineTest */,
+				BA71D0BA12D267270029C5F7 /* Mixer */,
+				BA71D0A312D266AF0029C5F7 /* Settings */,
 				BA71CE9A12D0D2D40029C5F7 /* Lcd */,
 				BA71CDA812D0C2660029C5F7 /* Communication */,
 				BA71CD9612D0C15D0029C5F7 /* three20 */,
@@ -577,6 +610,53 @@
 			path = Lcd;
 			sourceTree = "<group>";
 		};
+		BA71D0A312D266AF0029C5F7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BA71D0A412D266AF0029C5F7 /* SettingsSelectionViewController.h */,
+				BA71D0A512D266AF0029C5F7 /* SettingsSelectionViewController.m */,
+				BA71D0A612D266AF0029C5F7 /* SettingViewController.h */,
+				BA71D0A712D266AF0029C5F7 /* SettingViewController.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BA71D0AE12D267270029C5F7 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				BA71D0AF12D267270029C5F7 /* ChannelsViewCell.h */,
+				BA71D0B012D267270029C5F7 /* ChannelsViewCell.m */,
+				BA71D0B112D267270029C5F7 /* ChannelsViewController.h */,
+				BA71D0B212D267270029C5F7 /* ChannelsViewController.m */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		BA71D0B312D267270029C5F7 /* EngineTest */ = {
+			isa = PBXGroup;
+			children = (
+				BA71D0B412D267270029C5F7 /* EngineTestSliderCell.h */,
+				BA71D0B512D267270029C5F7 /* EngineTestSliderCell.m */,
+				BA71D0B612D267270029C5F7 /* EngineTestViewController.h */,
+				BA71D0B712D267270029C5F7 /* EngineTestViewController.m */,
+				BA71D0B812D267270029C5F7 /* EngineValues.h */,
+				BA71D0B912D267270029C5F7 /* EngineValues.m */,
+			);
+			path = EngineTest;
+			sourceTree = "<group>";
+		};
+		BA71D0BA12D267270029C5F7 /* Mixer */ = {
+			isa = PBXGroup;
+			children = (
+				BA71D0BB12D267270029C5F7 /* MixerTableViewCell.h */,
+				BA71D0BC12D267270029C5F7 /* MixerTableViewCell.m */,
+				BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */,
+				BA71D0BE12D267270029C5F7 /* MixerViewController.h */,
+				BA71D0BF12D267270029C5F7 /* MixerViewController.m */,
+			);
+			path = Mixer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -647,6 +727,7 @@
 				BA71CEAB12D0D43F0029C5F7 /* leftTriangle.png in Resources */,
 				BA71CEAC12D0D43F0029C5F7 /* rightTriangle.png in Resources */,
 				BA71CEAD12D0D43F0029C5F7 /* star.png in Resources */,
+				BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +797,15 @@
 				BA71CDDF12D0C2660029C5F7 /* NSData+MKPayloadEncode.m in Sources */,
 				BA71CDE012D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m in Sources */,
 				BA71CE9E12D0D2D40029C5F7 /* LcdViewController.m in Sources */,
+				BA71D0A812D266AF0029C5F7 /* SettingsSelectionViewController.m in Sources */,
+				BA71D0A912D266AF0029C5F7 /* SettingViewController.m in Sources */,
+				BA71D0C012D267270029C5F7 /* ChannelsViewCell.m in Sources */,
+				BA71D0C112D267270029C5F7 /* ChannelsViewController.m in Sources */,
+				BA71D0C212D267270029C5F7 /* EngineTestSliderCell.m in Sources */,
+				BA71D0C312D267270029C5F7 /* EngineTestViewController.m in Sources */,
+				BA71D0C412D267270029C5F7 /* EngineValues.m in Sources */,
+				BA71D0C512D267270029C5F7 /* MixerTableViewCell.m in Sources */,
+				BA71D0C712D267270029C5F7 /* MixerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

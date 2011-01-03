@@ -1,0 +1,183 @@
+// ///////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2010, Frank Blumenberg
+//
+// See License.txt for complete licensing and attribution information.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+// ///////////////////////////////////////////////////////////////////////////////
+
+#import "SettingViewController.h"
+#import "InAppSettings.h"
+#import "MKConnectionController.h"
+#import "NSData+MKCommandEncode.h"
+#import "NSData+MKPayloadEncode.h"
+#import "MKDatatypes.h"
+#import "MKDataConstants.h"
+
+@implementation SettingViewController
+
+@synthesize setting=_setting;
+
+#pragma mark -
+
+- (id)initWithSettingDatasource:(NSMutableDictionary*)aSetting {
+
+  if ((self = [super initWithFile:@"Setting"])) {
+    self.setting = aSetting;
+    super.dataSource = self;
+  }
+ 
+  return self;
+}
+
+- (void)dealloc {
+  
+  self.setting=nil;
+  [_setting release];
+  [super dealloc];
+}
+
+#pragma mark -
+#pragma mark View lifecycle
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  
+  UIBarButtonItem* renameButton;
+  renameButton =  [[[UIBarButtonItem alloc]
+                    initWithTitle:NSLocalizedString(@"Save",@"Save toolbar item")
+                            style:UIBarButtonItemStyleDone
+                            target:self
+                            action:@selector(saveSetting:)] autorelease];
+  
+
+  UIBarButtonItem* spacer;
+  spacer =  [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                    target:nil
+                    action:nil] autorelease];
+  
+  UIBarButtonItem* reloadButton;
+  reloadButton =  [[[UIBarButtonItem alloc]
+                    initWithTitle:NSLocalizedString(@"Reload", @"Reload toolbar item")
+                            style:UIBarButtonItemStyleBordered
+                            target:self
+                            action:@selector(reloadSetting:)] autorelease];
+  
+ 	[self setToolbarItems:[NSArray arrayWithObjects:renameButton,spacer,reloadButton,nil]];
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  [nc removeObserver:self];
+  DLog(@"unload");  
+}
+
+#pragma mark -
+
+// called after this controller's view will appear
+- (void)viewWillAppear:(BOOL)animated
+{	
+  [self.navigationController setToolbarHidden:NO animated:NO];
+  
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  [nc addObserver:self
+         selector:@selector(readSettingNotification:)
+             name:MKReadSettingNotification
+           object:nil];
+  
+  [nc addObserver:self
+         selector:@selector(writeSettingNotification:)
+             name:MKWriteSettingNotification
+           object:nil];
+}
+
+// called after this controller's view will appear
+- (void)viewWillDisappear:(BOOL)animated {
+  
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  [nc removeObserver:self];
+}
+
+
+#pragma mark -
+#pragma mark Save Setting
+
+- (void)saveSetting:(id)sender {
+  
+  DLog(@"save setting");
+  
+  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
+
+  NSData * payload = [NSData payloadForWriteSettingRequest:self.setting];
+  
+  NSData * data = [payload dataWithCommand:MKCommandWriteSettingsRequest
+                                forAddress:MKAddressFC];
+  
+  [cCtrl sendRequest:data];
+}
+
+- (void) writeSettingNotification:(NSNotification *)aNotification {
+    
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Setting" message:@"Setting saved"
+                                                 delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	[alert show];	
+	[alert release];
+}
+
+#pragma mark -
+#pragma mark Reload Setting
+
+- (void)reloadSetting:(id)sender {
+  
+  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
+  
+  NSNumber* theIndex = [self.setting objectForKey:kMKDataKeyIndex]; 
+  uint8_t index = [theIndex unsignedCharValue];
+  
+  NSData * data = [NSData dataWithCommand:MKCommandReadSettingsRequest
+                               forAddress:MKAddressFC
+                         payloadWithBytes:&index
+                                   length:1];
+  
+  [cCtrl sendRequest:data];
+}
+
+- (void) readSettingNotification:(NSNotification *)aNotification {
+  
+  NSDictionary* d=[aNotification userInfo];
+  self.setting = [d mutableCopy];
+  [super.settingsTableView reloadData];
+}
+
+#pragma mark -
+#pragma mark InAppSettingsDatasource
+
+- (id) objectForKey:(id)aKey {
+  return [self.setting objectForKey:aKey];
+}
+
+- (void) setObject:(id)anObject forKey:(id)aKey {
+  [self.setting setObject:anObject forKey:aKey];
+}
+
+
+@end
