@@ -37,17 +37,17 @@
 @end
 
 
-@interface IASKAppSettingsViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate> {
+@interface IASKAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate> {
 	id<IASKSettingsDelegate>  _delegate;
   IBOutlet UITableView    *_tableView;
   
   NSMutableArray          *_viewList;
   NSIndexPath             *_currentIndexPath;
-	NSIndexPath				*_topmostRowBeforeKeyboardWasShown;
+	NSIndexPath             *_topmostRowBeforeKeyboardWasShown;
 	
-	IASKSettingsReader		*_settingsReader;
-  id<IASKSettingsStore>  _settingsStore;
-	NSString				*_file;
+	IASKSettingsReader      *_settingsReader;
+  id<IASKSettingsStore>   _settingsStore;
+	NSString                *_file;
 	
 	id                      _currentFirstResponder;
   

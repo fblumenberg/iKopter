@@ -23,7 +23,8 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-#import "InAppSettings.h"
+#import "IASKAppSettingsViewController.h"
+#import "IASKSettingsStore.h"
 
 typedef enum{
   MKConnectionStateDisconnected,
@@ -33,7 +34,7 @@ typedef enum{
 
 @class MKHost;
 
-@interface MainViewController : InAppSettingsViewController {
+@interface MainViewController : IASKAppSettingsViewController {
   
   MKConnectionState connectionState;
   MKHost* _host;

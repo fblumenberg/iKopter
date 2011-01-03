@@ -25,6 +25,7 @@
 #import "MainViewController.h"
 #import "MKHost.h"
 #import "GradientButton.h"
+#import "IASKSettingsStoreObject.h"
 
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
@@ -38,10 +39,15 @@
 
 - (id)initWithHost:(MKHost*)theHost {
   
-  if ((self = [super initWithFile:@"Main"])) {
+  if (self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil]) {
+    self.file = @"Main";
+    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:nil];
+    
+    self.showCreditsFooter=NO;
+    self.showDoneButton=NO;
+    
     self.title = theHost.name;
     self.host = theHost;
-    super.dataSource = nil;
 
     connectionState=MKConnectionStateDisconnected;
   }
@@ -82,6 +88,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {	
+  [super viewWillAppear:animated];
 
   NSNotificationCenter* nc=[NSNotificationCenter defaultCenter];
   [nc addObserver:self 
@@ -108,9 +115,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+
   if( ![[MKConnectionController sharedMKConnectionController] isRunning]) {
     
-    self.settingsTableView.userInteractionEnabled=NO;
+    _tableView.userInteractionEnabled=NO;
     [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView startAnimating];
     [[MKConnectionController sharedMKConnectionController] start:self.host];
     
@@ -119,16 +128,18 @@
     [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
   }
   
-  [self.settingsTableView deselectRowAtIndexPath:[self.settingsTableView indexPathForSelectedRow] animated:YES];
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
   NSNotificationCenter* nc=[NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
+  [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload {
   [[MKConnectionController sharedMKConnectionController] stop];
+  [super viewDidUnload];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -197,7 +208,7 @@
 {
   [[MKConnectionController sharedMKConnectionController] stop];
   connectionState=MKConnectionStateDisconnected;
-  [self.settingsTableView reloadData];
+  [_tableView reloadData];
 }
 
 - (void)connectionRequestDidFail:(NSNotification *)aNotification;
@@ -220,13 +231,13 @@
 - (void)connectionRequestDidSucceed:(NSNotification *)aNotification;
 {
   DLog(@"Got connected");
-  self.settingsTableView.userInteractionEnabled=YES;
+  _tableView.userInteractionEnabled=YES;
 
   connectionState=MKConnectionStateConnected;
 
-  [self.settingsTableView beginUpdates]; 
-  [self.settingsTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade]; 
-  [self.settingsTableView endUpdates];
+  [_tableView beginUpdates]; 
+  [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade]; 
+  [_tableView endUpdates];
   
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];
   

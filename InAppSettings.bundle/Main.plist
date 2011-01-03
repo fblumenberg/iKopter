@@ -19,9 +19,9 @@
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
 			<string>LCD</string>
-			<key>File</key>
-			<string>Dummy</string>
-			<key>InAppChildPaneClass</key>
+			<key>IASKViewControllerSelector</key>
+			<string>init</string>
+			<key>IASKViewControllerClass</key>
 			<string>LcdViewController</string>
 		</dict>
 		<dict>
@@ -29,9 +29,9 @@
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
 			<string>Debug</string>
-			<key>File</key>
-			<string>Dummy</string>
-			<key>InAppChildPaneClass</key>
+			<key>IASKViewControllerSelector</key>
+			<string>init</string>
+			<key>IASKViewControllerClass</key>
 			<string>AnalogViewController</string>
 		</dict>
 		<dict>
@@ -39,9 +39,9 @@
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
 			<string>Settings</string>
-			<key>File</key>
-			<string>Dummy</string>
-			<key>InAppChildPaneClass</key>
+			<key>IASKViewControllerSelector</key>
+			<string>init</string>
+			<key>IASKViewControllerClass</key>
 			<string>SettingsSelectionViewController</string>
 		</dict>
 		<dict>
@@ -49,9 +49,9 @@
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
 			<string>OSD</string>
-			<key>File</key>
-			<string>Dummy</string>
-			<key>InAppChildPaneClass</key>
+			<key>IASKViewControllerSelector</key>
+			<string>init</string>
+			<key>IASKViewControllerClass</key>
 			<string>OsdViewController</string>
 		</dict>
 	</array>
