@@ -1,0 +1,157 @@
+/* MKHost */
+"HOST_TITLE"="MK-Host"
+"HOST_NAME"="Name";
+"HOST_ADDRESS"="Address";
+"HOST_PORT"="Port";
+"HOST_CONNECTION"="Connection type";
+
+
+/* Altitude */
+AltitudeTITLE=Altitude
+GlobalConfig_HOEHENREGELUNG=Enable altitude control
+ExtraConfig_HEIGHT_LIMIT=Mode
+ExtraConfig_HEIGHT_LIMIT_0=Height limitation control
+ExtraConfig_HEIGHT_LIMIT_1=Vario altitude control
+GlobalConfig_HOEHEN_SCHALTER=Switch for setpoint
+ExtraConfig_VARIO_BEEP=Acoustic vario
+MaxHoehe=Setpoint
+Hoehe_Verstaerkung=Gain/Rate
+Hoehe_MinGas=Min. Gas
+Hoehe_HoverBand=Hover variation
+Hoehe_P=Altitude-P
+Hoehe_GPS_Z=GPS-Z
+Luftdruck_D=Barometric-D
+Hoehe_ACC_Wirkung=Z-ACC
+Hoehe_StickNeutralPoint=Stick neutral point
+Hoehe_StickNeutralPoint_FOOTER=0 - automatic&#xA; 120 - middle position
+
+/* Channels */
+ChannelsTITLE=Channels
+Receiver=Receiver
+ExtraConfig_SENSITIVE_RC=Sensitive receiver signal validation
+ChannelsTest=Channels Test
+MotorSafetySwitch=Motor Safety Switch
+RC_Channel_OFF=OFF
+RC_Channel_1=RC Channel 1
+RC_Channel_2=RC Channel 2
+RC_Channel_3=RC Channel 3
+RC_Channel_4=RC Channel 4
+RC_Channel_5=RC Channel 5
+RC_Channel_6=RC Channel 6
+RC_Channel_7=RC Channel 7
+RC_Channel_8=RC Channel 8
+RC_Channel_9=RC Channel 9
+RC_Channel_10=RC Channel 10
+RC_Channel_11=RC Channel 11
+RC_Channel_11=RC Channel 12
+RC_SerChannel_1=RC Serial Channel 1
+RC_SerChannel_2=RC Serial Channel 2
+RC_SerChannel_3=RC Serial Channel 3
+RC_SerChannel_4=RC Serial Channel 4
+RC_SerChannel_5=RC Serial Channel 5
+RC_SerChannel_6=RC Serial Channel 6
+RC_SerChannel_7=RC Serial Channel 7
+RC_SerChannel_8=RC Serial Channel 8
+RC_SerChannel_9=RC Serial Channel 9
+RC_SerChannel_10=RC Serial Channel 10
+RC_SerChannel_11=RC Serial Channel 11
+RC_SerChannel_11=RC Serial Channel 12
+Kanalbelegung00=Gas
+Kanalbelegung01=Yaw
+Kanalbelegung02=Nick
+Kanalbelegung03=Roll
+Kanalbelegung04=Poti1
+Kanalbelegung05=Poti2
+Kanalbelegung06=Poti3
+Kanalbelegung07=Poti4
+Kanalbelegung08=Poti5
+Kanalbelegung09=Poti6
+Kanalbelegung10=Poti7
+Kanalbelegung11=Poti8
+
+/* Stick */
+StickTITLE=Stick
+Stick_P=Nick-/Roll-P
+Stick_D=Nick-/Roll-D
+Gier_P=Yaw-P
+ExternalControl=External Control
+
+/* Navi Control */
+NaviControlTITLE=Navi Control
+GlobalConfig_GPS_AKTIV=Enable GPS
+NaviGpsModeControl=GPS-Mode Control
+NaviGpsGain=GPS-Gain
+NaviStickThreshold=GPS-Stick Threshold
+NaviGpsMinSat=Min. Sat
+NaviGpsP=GPS-P
+NaviGpsPLimit=GPS-P Limit
+NaviGpsI=GPS-I
+NaviGpsILimit=GPS-I Limit
+NaviGpsD=GPS-D
+NaviGpsDLimit=GPS-D Limit
+NaviGpsACC=GPS-Acc.
+NaviWindCorrection=GPS-Wind Correction
+NaviSpeedCompensation=Speed Compensation
+NaviOperatingRadius=GPS Max. Radius
+NaviAngleLimitation=GPS Angle Limit
+NaviPH_LoginTime=PH Login Time
+
+/* Compass */ 
+CompassTITLE=Compass
+GlobalConfig_KOMPASS_AKTIV=Use Compass
+GlobalConfig_KOMPASS_FIX=Orientation fixed
+KompassWirkung=Compass effect
+
+/* Coupling */
+CouplingTITLE=Coupling
+GlobalConfig_ACHSENKOPPLUNG_AKTIV=Axis coupling
+AchsKopplung1=Yaw pos. feedback
+AchsKopplung2=Nick/Roll feedback
+CouplingYawCorrection=Yaw correction
+
+
+/* Looping */
+LoopingTITLE=Looping
+LoopGasLimit=Gas Limit
+LoopThreshold=Response Threshold
+LoopHysterese=Hysteresis
+WinkelUmschlagNick=Turn over Nick
+WinkelUmschlagRoll=Turn over Roll
+LoopStickTITLE=Loop while stick is
+BitConfig_LOOP_UP=Up
+BitConfig_LOOP_DOWN=Down
+BitConfig_LOOP_LEFT=Left
+BitConfig_LOOP_RICHT=Right
+
+/* Misc */
+MiscTITLE=Misc
+Gas_Min=Min. Gas
+Gas_Max=Max. Gas
+ExtraConfig_3_3V_REFERENCE=Spannungsreferenz
+ExtraConfig_3_3V_REFERENCE_0=3,0 V
+ExtraConfig_3_3V_REFERENCE_1=3,3 V
+
+OrientationModeControl=Carefree control
+UnterspannungsWarnung=Low voltage level
+NotGasZeit=Emergency time [0.1s]
+NotGas=Emergency-Gas
+
+/* Camera */
+CameraTITLE=Camera
+CameraNickTITLE=Nick
+CameraRollTITLE=Roll
+ServoNickControl=Servo control
+ServoNickComp=Compensation
+ServoCompInvert_Nick=Invert direction
+ServoNickMin=Min
+ServoNickMax=Max
+ServoRollControl=Servo control
+ServoRollComp=Compensation
+ServoCompInvert_ROLL=Invert direction
+ServoRollMin=Min
+ServoRollMax=Max
+ServoNickRefresh=Servo refresh rate
+ServoManualControlSpeed=Manual control speed
+Servo3=Servo3
+Servo4=Servo4
+Servo5=Servo5

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Title</key>
+	<string>Main</string>
+	<key>StringsTable</key>
+	<string>Main</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>LCD</string>
+			<key>File</key>
+			<string>Dummy</string>
+			<key>InAppChildPaneClass</key>
+			<string>LcdViewController</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Debug</string>
+			<key>File</key>
+			<string>Dummy</string>
+			<key>InAppChildPaneClass</key>
+			<string>AnalogViewController</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Settings</string>
+			<key>File</key>
+			<string>Dummy</string>
+			<key>InAppChildPaneClass</key>
+			<string>SettingsSelectionViewController</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>OSD</string>
+			<key>File</key>
+			<string>Dummy</string>
+			<key>InAppChildPaneClass</key>
+			<string>OsdViewController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

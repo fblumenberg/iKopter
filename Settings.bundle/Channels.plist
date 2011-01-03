@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Channels</string>
+	<key>Title</key>
+	<string>Channels</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Receiver</string>
+			<key>Key</key>
+			<string>Receiver</string>
+			<key>Titles</key>
+			<array>
+				<string>Multisignal(PPM)</string>
+				<string>Spectrum</string>
+				<string>Spectrum (HighRes)</string>
+				<string>Spectrum (LowRes)</string>
+				<string>Jeti Sattelite</string>
+				<string>ACT DSL</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Sensitive receiver signal validation</string>
+			<key>Key</key>
+			<string>ExtraConfig_SENSITIVE_RC</string>
+			<key>DefaultValue</key>
+			<string>NO</string>
+			<key>TrueValue</key>
+			<string>YES</string>
+			<key>FalseValue</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Chanels Test</string>
+			<key>File</key>
+			<string>Dummy</string>
+			<key>InAppChildPaneClass</key>
+			<string>ChannelsViewController</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Gas</string>
+			<key>Key</key>
+			<string>Kanalbelegung00</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Yaw</string>
+			<key>Key</key>
+			<string>Kanalbelegung01</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Nick</string>
+			<key>Key</key>
+			<string>Kanalbelegung02</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Roll</string>
+			<key>Key</key>
+			<string>Kanalbelegung03</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti1</string>
+			<key>Key</key>
+			<string>Kanalbelegung04</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti2</string>
+			<key>Key</key>
+			<string>Kanalbelegung05</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti3</string>
+			<key>Key</key>
+			<string>Kanalbelegung06</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti4</string>
+			<key>Key</key>
+			<string>Kanalbelegung07</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti5</string>
+			<key>Key</key>
+			<string>Kanalbelegung08</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti6</string>
+			<key>Key</key>
+			<string>Kanalbelegung09</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti7</string>
+			<key>Key</key>
+			<string>Kanalbelegung10</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Poti8</string>
+			<key>Key</key>
+			<string>Kanalbelegung11</string>
+			<key>Titles</key>
+			<array>
+				<string>RC Channel 1</string>
+				<string>RC Channel 2</string>
+				<string>RC Channel 3</string>
+				<string>RC Channel 4</string>
+				<string>RC Channel 5</string>
+				<string>RC Channel 6</string>
+				<string>RC Channel 7</string>
+				<string>RC Channel 8</string>
+				<string>RC Channel 9</string>
+				<string>RC Channel 10</string>
+				<string>RC Channel 11</string>
+				<string>RC Channel 12</string>
+				<string>Serial Channel 1</string>
+				<string>Serial Channel 2</string>
+				<string>Serial Channel 3</string>
+				<string>Serial Channel 4</string>
+				<string>Serial Channel 5</string>
+				<string>Serial Channel 6</string>
+				<string>Serial Channel 7</string>
+				<string>Serial Channel 8</string>
+				<string>Serial Channel 9</string>
+				<string>Serial Channel 10</string>
+				<string>Serial Channel 11</string>
+				<string>Serial Channel 12</string>
+			</array>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+				<integer>7</integer>
+				<integer>8</integer>
+				<integer>9</integer>
+				<integer>10</integer>
+				<integer>11</integer>
+				<integer>12</integer>
+				<integer>13</integer>
+				<integer>14</integer>
+				<integer>15</integer>
+				<integer>16</integer>
+				<integer>17</integer>
+				<integer>18</integer>
+				<integer>19</integer>
+				<integer>20</integer>
+				<integer>21</integer>
+				<integer>22</integer>
+				<integer>23</integer>
+				<integer>24</integer>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

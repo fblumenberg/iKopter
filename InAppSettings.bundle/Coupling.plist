@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Title</key>
+	<string>CouplingTITLE</string>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>GlobalConfig_ACHSENKOPPLUNG_AKTIV</string>
+			<key>Key</key>
+			<string>GlobalConfig_ACHSENKOPPLUNG_AKTIV</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string></string>
+		</dict>
+ 		<dict>
+			<key>Type</key>
+			<string>IASKPotiTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>AchsKopplung1</string>
+			<key>Key</key>
+			<string>AchsKopplung1</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+		</dict>
+ 		<dict>
+			<key>Type</key>
+			<string>IASKPotiTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>AchsKopplung2</string>
+			<key>Key</key>
+			<string>AchsKopplung2</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+		</dict>
+ 		<dict>
+			<key>Type</key>
+			<string>IASKPotiTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>CouplingYawCorrection</string>
+			<key>Key</key>
+			<string>CouplingYawCorrection</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
