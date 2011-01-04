@@ -23,16 +23,17 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-#import "InAppSettings.h"
+#import "IASKAppSettingsViewController.h"
+#import "IKParamSet.h"
 
-@interface SettingViewController : InAppSettingsViewController<InAppSettingsDatasource> {
+@interface SettingViewController : IASKAppSettingsViewController {
 
-  NSMutableDictionary* _setting;
+  IKParamSet* _setting;
 }
 
-@property(nonatomic,retain) NSMutableDictionary* setting;
+@property(nonatomic,retain) IKParamSet* setting;
 
-- (id)initWithSettingDatasource:(NSMutableDictionary*)aSetting;
+- (id)initWithSetting:(IKParamSet*)aSetting;
 
 - (void)saveSetting:(id)sender;
 - (void)reloadSetting:(id)sender;

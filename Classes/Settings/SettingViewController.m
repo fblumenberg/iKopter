@@ -23,11 +23,13 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "SettingViewController.h"
-#import "InAppSettings.h"
+
 #import "MKConnectionController.h"
 #import "NSData+MKCommandEncode.h"
 #import "NSData+MKPayloadEncode.h"
-#import "MKDatatypes.h"
+
+#import "IASKSettingsStoreObject.h"
+#import "IKMkDataTypes.h"
 #import "MKDataConstants.h"
 
 @implementation SettingViewController
@@ -36,11 +38,14 @@
 
 #pragma mark -
 
-- (id)initWithSettingDatasource:(NSMutableDictionary*)aSetting {
+- (id)initWithSetting:(IKParamSet*)aSetting {
 
-  if ((self = [super initWithFile:@"Setting"])) {
-    self.setting = aSetting;
-    super.dataSource = self;
+  if (self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil]) {
+    self.file = @"Setting";
+    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:aSetting];
+    
+    self.showCreditsFooter=NO;
+    self.showDoneButton=NO;
   }
  
   return self;
@@ -96,6 +101,7 @@
 // called after this controller's view will appear
 - (void)viewWillAppear:(BOOL)animated
 {	
+  [super viewWillAppear:animated];
   [self.navigationController setToolbarHidden:NO animated:NO];
   
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
@@ -113,6 +119,7 @@
 // called after this controller's view will appear
 - (void)viewWillDisappear:(BOOL)animated {
   
+  [super viewWillDisappear:animated];
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
 }
@@ -127,7 +134,7 @@
   
   MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
 
-  NSData * payload = [NSData payloadForWriteSettingRequest:self.setting];
+  NSData * payload = [self.setting data];
   
   NSData * data = [payload dataWithCommand:MKCommandWriteSettingsRequest
                                 forAddress:MKAddressFC];
@@ -150,8 +157,7 @@
   
   MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
   
-  NSNumber* theIndex = [self.setting objectForKey:kMKDataKeyIndex]; 
-  uint8_t index = [theIndex unsignedCharValue];
+  uint8_t index = [self.setting.Index unsignedCharValue];
   
   NSData * data = [NSData dataWithCommand:MKCommandReadSettingsRequest
                                forAddress:MKAddressFC
@@ -165,19 +171,7 @@
   
   NSDictionary* d=[aNotification userInfo];
   self.setting = [d mutableCopy];
-  [super.settingsTableView reloadData];
+  [_tableView reloadData];
 }
-
-#pragma mark -
-#pragma mark InAppSettingsDatasource
-
-- (id) objectForKey:(id)aKey {
-  return [self.setting objectForKey:aKey];
-}
-
-- (void) setObject:(id)anObject forKey:(id)aKey {
-  [self.setting setObject:anObject forKey:aKey];
-}
-
 
 @end

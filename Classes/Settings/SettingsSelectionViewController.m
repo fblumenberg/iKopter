@@ -25,16 +25,21 @@
 #import "SettingsSelectionViewController.h"
 #import "SettingViewController.h"
 #import "MKConnectionController.h"
+
 #import "NSData+MKCommandEncode.h"
 #import "NSData+MKPayloadEncode.h"
+
 #import "MKDatatypes.h"
 #import "MKDataConstants.h"
 #import "InAppSettings.h"
+
+#import "IKParamSet.h"
+
 #import "MixerViewController.h"
 #import "ChannelsViewController.h"
 #import "EngineTestViewController.h"
 
-static NSUInteger kNumberOfPages = 5;
+static NSUInteger kNumberOfSettings = 5;
 
 @interface SettingsSelectionViewController (Private)
 
@@ -107,11 +112,13 @@ static NSUInteger kNumberOfPages = 5;
 // ////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 - (void) viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   [self.navigationController setToolbarHidden:NO animated:NO];
   [[MKConnectionController sharedMKConnectionController] activateFlightCtrl];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   [self cancelEditActiveSetting:self]; 
   [self reloadAllSettings];
   
@@ -134,7 +141,7 @@ static NSUInteger kNumberOfPages = 5;
 - (IBAction) reloadAllSettings {
 
   NSMutableArray * settings = [[NSMutableArray alloc] init];
-  for (unsigned i = 0; i < kNumberOfPages; i++) {
+  for (unsigned i = 0; i < kNumberOfSettings; i++) {
     [settings addObject:[NSNull null]];
   }
   self.settings = settings;
@@ -162,17 +169,16 @@ static NSUInteger kNumberOfPages = 5;
 
 - (void) readSettingNotification:(NSNotification *)aNotification {
 
-  NSDictionary* d=[aNotification userInfo];
-
-  NSInteger index = [[d objectForKey:kMKDataKeyIndex] integerValue]-1;
+  IKParamSet* paramSet=[[aNotification userInfo] objectForKey:kIKParamSet];
+  NSUInteger index = [[paramSet Index]unsignedIntValue]-1;
   
   if (activeSetting==0xFF) {
     activeSetting=index;
   }
   
-  [self.settings replaceObjectAtIndex:index withObject:d];
+  [self.settings replaceObjectAtIndex:index withObject:paramSet];
   
-  for (int i=0; i<kNumberOfPages; i++) {
+  for (int i=0; i<kNumberOfSettings; i++) {
     if ([self.settings objectAtIndex:i] == [NSNull null]) {
       [self requestSettingForIndex:i+1];
       break;
@@ -209,7 +215,7 @@ static NSUInteger kNumberOfPages = 5;
   }
 
   NSUInteger row = [indexPath row];
-  NSDictionary* setting=[self.settings objectAtIndex:row]; 
+  IKParamSet* setting=[self.settings objectAtIndex:row]; 
 
   if ((NSNull *)setting == [NSNull null]) {
     cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Setting #%d",@"Setting i"), row];
@@ -222,7 +228,7 @@ static NSUInteger kNumberOfPages = 5;
   } 
   else {
 
-    cell.textLabel.text = [setting objectForKey:kKeyName];
+    cell.textLabel.text = [setting Name];
     cell.accessoryView = nil;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
@@ -258,7 +264,7 @@ static NSUInteger kNumberOfPages = 5;
       cell.textLabel.text = NSLocalizedString(@"Mixer",@"Mixer cell");
       break;
     case 1:
-      cell.textLabel.text = NSLocalizedString(@"Motor test",@"Motor test cell");
+      cell.textLabel.text = NSLocalizedString(@"Engine test",@"Motor test cell");
       break;
     case 2:
       cell.textLabel.text = NSLocalizedString(@"Channels",@"Channels cell");
@@ -416,8 +422,8 @@ static NSUInteger kNumberOfPages = 5;
   }
   else {
     if( indexPath.section==0 ) {
-      NSMutableDictionary* setting=[self.settings objectAtIndex:row]; 
-      SettingViewController* settingView = [[SettingViewController alloc] initWithSettingDatasource:setting];
+      IKParamSet* setting=[self.settings objectAtIndex:row]; 
+      SettingViewController* settingView = [[SettingViewController alloc] initWithSetting:setting];
       
       [self.navigationController setToolbarHidden:NO animated:NO];
       
