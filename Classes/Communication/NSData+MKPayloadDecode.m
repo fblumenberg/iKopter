@@ -24,6 +24,8 @@
 
 #import "NSData+MKPayloadDecode.h"
 #import "MKDataConstants.h"
+
+#import "IKParamSet.h"
 #import "IKLcdDisplay.h"
 
 static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"MK3Mag" };
@@ -151,3 +153,29 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
 }
 
 @end
+
+/////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+/////////////////////////////////////////////////////////////////////////////////
+
+@implementation NSData (MKPayloadDecodeSetting)
+
+- (NSDictionary *) decodeReadSettingResponse {
+  IKParamSet* paramSet=[IKParamSet settingWithData:self];
+  return [NSDictionary dictionaryWithObjectsAndKeys:paramSet, kIKParamSet, nil];
+}
+
+- (NSDictionary *) decodeWriteSettingResponse {
+  const char * bytes = [self bytes];
+  NSNumber * theIndex = [NSNumber numberWithChar:bytes[0]];
+  return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex, nil];
+}
+
+- (NSDictionary *) decodeChangeSettingResponse {
+  const char * bytes = [self bytes];
+  NSNumber * theIndex = [NSNumber numberWithChar:bytes[0]];
+  return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex, nil];
+}
+
+@end
+

@@ -253,6 +253,8 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
     }
   }
     
+  p.Revision=[NSNumber numberWithInt:85];
+  
   NSData * newPayload = [p data]; //[NSData payloadForWriteSettingRequest:d];
   
   return newPayload;

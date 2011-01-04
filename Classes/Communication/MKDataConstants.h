@@ -44,6 +44,7 @@
 #define kMKDataKeyAddress      @"address"
 
 #define kIKLcdDisplay          @"IKLcdDisplay"
+#define kIKParamSet            @"IKParamSet"
 
 
 //   unsigned char Kanalbelegung[12];
