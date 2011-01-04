@@ -40,9 +40,9 @@
                 <key>Type</key>
                 <string>PSToggleSwitchSpecifier</string>
                 <key>Title</key>
-                <string>ServoCompInvert_Nick</string>
+                <string>ServoCompInvert_NICK</string>
                 <key>Key</key>
-                <string>ServoCompInvert_Nick</string>
+                <string>ServoCompInvert_NICK</string>
                 <key>DefaultValue</key>
                 <true/>
             </dict>

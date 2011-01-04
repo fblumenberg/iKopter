@@ -76,9 +76,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>BitConfig_LOOP_UP</string>
+			<string>BitConfig_LOOP_OBEN</string>
 			<key>Key</key>
-			<string>BitConfig_LOOP_UP</string>
+			<string>BitConfig_LOOP_OBEN</string>
 			<key>DefaultValue</key>
 			<string>NO</string>
 			<key>TrueValue</key>
@@ -90,9 +90,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>BitConfig_LOOP_DOWN</string>
+			<string>BitConfig_LOOP_UNTEN</string>
 			<key>Key</key>
-			<string>BitConfig_LOOP_DOWN</string>
+			<string>BitConfig_LOOP_UNTEN</string>
 			<key>DefaultValue</key>
 			<string>NO</string>
 			<key>TrueValue</key>
@@ -104,9 +104,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>BitConfig_LOOP_LEFT</string>
+			<string>BitConfig_LOOP_LINKS</string>
 			<key>Key</key>
-			<string>BitConfig_LOOP_LEFT</string>
+			<string>BitConfig_LOOP_LINKS</string>
 			<key>DefaultValue</key>
 			<string>NO</string>
 			<key>TrueValue</key>
@@ -118,9 +118,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>BitConfig_LOOP_RIGHT</string>
+			<string>BitConfig_LOOP_RECHTS</string>
 			<key>Key</key>
-			<string>BitConfig_LOOP_RIGHT</string>
+			<string>BitConfig_LOOP_RECHTS</string>
 			<key>DefaultValue</key>
 			<string>NO</string>
 			<key>TrueValue</key>

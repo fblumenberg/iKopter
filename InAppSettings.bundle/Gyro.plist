@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Title</key>
-	<string>Altitude</string>
+	<string>GyroTITLE</string>
 	<key>StringsTable</key>
 	<string>Altitude</string>
 	<key>PreferenceSpecifiers</key>
@@ -12,93 +12,63 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Gyro</string>
+			<string>GyroTITLE</string>
 		</dict>
  		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Gyro-P</string>
+			<string>Gyro_P</string>
 			<key>Key</key>
 			<string>Gyro_P</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
-			<key>InAppCellClass</key>
-			<string>InAppSettingsPotiValueSpecifierCell</string>
-			<key>InAppChildPaneClass</key>
-			<string>InAppSettingsPotiValueController</string>
-			<key>File</key>
-			<string>Dummy</string>
 		</dict>    
  		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Gyro-I</string>
+			<string>Gyro_I</string>
 			<key>Key</key>
 			<string>Gyro_I</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
-			<key>InAppCellClass</key>
-			<string>InAppSettingsPotiValueSpecifierCell</string>
-			<key>InAppChildPaneClass</key>
-			<string>InAppSettingsPotiValueController</string>
-			<key>File</key>
-			<string>Dummy</string>
 		</dict>     		
-    <dict>
+    	<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Gyro-D</string>
+			<string>Gyro_D</string>
 			<key>Key</key>
 			<string>Gyro_D</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
-			<key>InAppCellClass</key>
-			<string>InAppSettingsPotiValueSpecifierCell</string>
-			<key>InAppChildPaneClass</key>
-			<string>InAppSettingsPotiValueController</string>
-			<key>File</key>
-			<string>Dummy</string>
 		</dict>    
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Yaw</string>
+			<string>YawTITLE</string>
 		</dict>
  		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Yaw-P</string>
+			<string>Gyro_Gier_P</string>
 			<key>Key</key>
 			<string>Gyro_Gier_P</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
-			<key>InAppCellClass</key>
-			<string>InAppSettingsPotiValueSpecifierCell</string>
-			<key>InAppChildPaneClass</key>
-			<string>InAppSettingsPotiValueController</string>
-			<key>File</key>
-			<string>Dummy</string>
 		</dict>    
  		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Yaw-I</string>
+			<string>Gyro_Gier_P</string>
 			<key>Key</key>
-			<string>Gyro_Gier_I</string>
+			<string>Gyro_Gier_P</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
-			<key>InAppCellClass</key>
-			<string>InAppSettingsPotiValueSpecifierCell</string>
-			<key>InAppChildPaneClass</key>
-			<string>InAppSettingsPotiValueController</string>
-			<key>File</key>
-			<string>Dummy</string>
 		</dict>    
 		<dict>
 			<key>Type</key>
@@ -108,33 +78,27 @@
 		</dict>
  		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Dynamic stability</string>
+			<string>DynamicStability</string>
 			<key>Key</key>
 			<string>DynamicStability</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
-			<key>InAppCellClass</key>
-			<string>InAppSettingsPotiValueSpecifierCell</string>
-			<key>InAppChildPaneClass</key>
-			<string>InAppSettingsPotiValueController</string>
-			<key>File</key>
-			<string>Dummy</string>
 		</dict> 
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Driftcomp.</string>
+			<string>Driftcomp</string>
 			<key>Key</key>
-      <string>Driftkomp</string>
+      		<string>Driftkomp</string>
 			<key>KeyboardType</key>
 			<string>NumberPad</string>
-			<key>InAppNumtype</key>
+			<key>IASKIsNumber</key>
 			<true/>
 		</dict>
-    <dict>
+    	<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
@@ -144,41 +108,35 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>ACC/Gyro-Factor</string>
+			<string>GyroAccFaktor</string>
 			<key>Key</key>
-      <string>GyroAccFaktor</string>
+      		<string>GyroAccFaktor</string>
 			<key>KeyboardType</key>
 			<string>NumberPad</string>
-			<key>InAppNumtype</key>
+			<key>IASKIsNumber</key>
 			<true/>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>ACC/Gyro-Comp</string>
+			<string>GyroAccAbgleich</string>
 			<key>Key</key>
-      <string>GyroAccAbgleich</string>
+      		<string>GyroAccAbgleich</string>
 			<key>KeyboardType</key>
 			<string>NumberPad</string>
-			<key>InAppNumtype</key>
+			<key>IASKIsNumber</key>
 			<true/>
 		</dict>
  		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Main I</string>
+			<string>I_Faktor</string>
 			<key>Key</key>
 			<string>I_Faktor</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
-			<key>InAppCellClass</key>
-			<string>InAppSettingsPotiValueSpecifierCell</string>
-			<key>InAppChildPaneClass</key>
-			<string>InAppSettingsPotiValueController</string>
-			<key>File</key>
-			<string>Dummy</string>
 		</dict> 
 	</array>
 </dict>
