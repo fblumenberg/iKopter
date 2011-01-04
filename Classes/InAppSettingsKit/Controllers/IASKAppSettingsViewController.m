@@ -777,6 +777,10 @@ CGRect IASKCGRectSwap(CGRect rect);
   if ([spec isNumber]) {
     value=[NSNumber numberWithInt:[text.text intValue]];
   }
+  else if([[spec type] isEqualToString:kIASKPotiTextFieldSpecifier]){
+    IASKPotiTextField* potiText = (IASKPotiTextField*)sender;
+    value=[NSNumber numberWithUnsignedInt:potiText.value]; 
+  }
   else {
     value=text.text;
   }

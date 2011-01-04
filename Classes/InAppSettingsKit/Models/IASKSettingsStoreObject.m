@@ -21,15 +21,15 @@
 @implementation IASKSettingsStoreObject
 
 - (id)initWithObject:(id)theObject {
-    if([super init]) {
-        _object = [theObject retain];
-    }
-    return self;
+  if([super init]) {
+    _object = [theObject retain];
+  }
+  return self;
 }
 
 - (void)dealloc {
-    [_object release];
-    [super dealloc];
+  [_object release];
+  [super dealloc];
 }
 
 
@@ -39,11 +39,12 @@
 }
 
 - (id)objectForKey:(NSString *)key {
-      return [_object valueForKey:key];
+  DLog(@"Get object for key %@",key);
+  return [_object valueForKey:key];
 }
 
 - (BOOL)synchronize {
-    return YES;
+  return YES;
 }
 
 @end

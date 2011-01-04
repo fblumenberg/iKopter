@@ -20,8 +20,21 @@ const int kCountryPickerTag = 3002;
 
 @implementation IASKPotiTextField
 
+- (NSString *)titleForValue:(NSInteger)value  {
+  if( value <= 245 )
+    return [NSString stringWithFormat:@"%d",value];
+  
+  return [NSString stringWithFormat:NSLocalizedString(@"Poti%d",@"Potiname"),256-value];
+}
+
 @synthesize key=_key;
 @synthesize value=_value;
+
+- (void)setValue:(NSInteger)newValue {
+  _value=newValue;
+  self.text = [self titleForValue:newValue];
+  [_valuePicker selectRow:_value inComponent:0 animated:NO];
+}                                 
 
 - (void)awakeFromNib {
   [super awakeFromNib];
@@ -40,18 +53,11 @@ const int kCountryPickerTag = 3002;
   [super dealloc];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
   [_valuePicker selectRow:self.value inComponent:0 animated:NO];
 }
 
 #pragma mark UIPickerViewDelegate
-
-- (NSString *)titleForValue:(NSInteger)value  {
-    if( value <= 245 )
-        return [NSString stringWithFormat:@"%@",value];
-      
-  return [NSString stringWithFormat:NSLocalizedString(@"Poti%d",@"Potiname"),256-value];
-}
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
