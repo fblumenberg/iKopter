@@ -134,7 +134,8 @@
   
   MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
 
-  IKParamSet* s=self.setting;
+  IASKSettingsStoreObject* store=(IASKSettingsStoreObject*)self.settingsStore;
+  IKParamSet* s=store.object;
   NSData * payload = [s data];
   
   NSData * data = [payload dataWithCommand:MKCommandWriteSettingsRequest

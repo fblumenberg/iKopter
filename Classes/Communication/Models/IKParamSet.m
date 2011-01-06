@@ -150,6 +150,12 @@
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
+- (NSNumber*) GlobalConfig{
+  return [NSNumber numberWithUnsignedChar:_parameter.GlobalConfig];
+}
+- (void) setGlobalConfig:(NSNumber*) value {
+  _parameter.GlobalConfig = [value unsignedCharValue];
+}
 - (NSNumber*) GlobalConfig_HOEHENREGELUNG{
   return [NSNumber numberWithBool:((_parameter.GlobalConfig&CFG_HOEHENREGELUNG)==CFG_HOEHENREGELUNG)];
 }
@@ -748,6 +754,12 @@
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
+- (NSNumber*) BitConfig{
+  return [NSNumber numberWithUnsignedChar:_parameter.BitConfig];
+}
+- (void) setBitConfig:(NSNumber*) value {
+  _parameter.BitConfig = [value unsignedCharValue];
+}
 - (NSNumber*) BitConfig_LOOP_OBEN{
   return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_LOOP_OBEN)==CFG_LOOP_OBEN)];
 }
@@ -815,28 +827,40 @@
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
+- (NSNumber*) ServoCompInvert{
+  return [NSNumber numberWithUnsignedChar:_parameter.ServoCompInvert];
+}
+- (void) setServoCompInvert:(NSNumber*) value {
+  _parameter.ServoCompInvert = [value unsignedCharValue];
+}
 - (NSNumber*) ServoCompInvert_NICK{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_SERVOCOMPINVERT_NICK)==CFG_SERVOCOMPINVERT_NICK)];
+  return [NSNumber numberWithBool:((_parameter.ServoCompInvert&CFG_SERVOCOMPINVERT_NICK)==CFG_SERVOCOMPINVERT_NICK)];
 }
 - (void) setServoCompInvert_NICK:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_SERVOCOMPINVERT_NICK;
+     _parameter.ServoCompInvert |= CFG_SERVOCOMPINVERT_NICK;
   else
-     _parameter.BitConfig &= ~CFG_SERVOCOMPINVERT_NICK;
+     _parameter.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_NICK;
 }
 - (NSNumber*) ServoCompInvert_ROLL{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_SERVOCOMPINVERT_ROLL)==CFG_SERVOCOMPINVERT_ROLL)];
+  return [NSNumber numberWithBool:((_parameter.ServoCompInvert&CFG_SERVOCOMPINVERT_ROLL)==CFG_SERVOCOMPINVERT_ROLL)];
 }
 - (void) setServoCompInvert_ROLL:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_SERVOCOMPINVERT_ROLL;
+     _parameter.ServoCompInvert |= CFG_SERVOCOMPINVERT_ROLL;
   else
-     _parameter.BitConfig &= ~CFG_SERVOCOMPINVERT_ROLL;
+     _parameter.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_ROLL;
 }
 
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
+- (NSNumber*) ExtraConfig{
+  return [NSNumber numberWithUnsignedChar:_parameter.ExtraConfig];
+}
+- (void) setExtraConfig:(NSNumber*) value {
+  _parameter.ExtraConfig = [value unsignedCharValue];
+}
 - (NSNumber*) ExtraConfig_HEIGHT_LIMIT{
   return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG2_HEIGHT_LIMIT)==CFG2_HEIGHT_LIMIT)];
 }

@@ -23,11 +23,16 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "EngineTestSliderCell.h"
-#import "InAppSettingsConstants.h"
 
 
 #define kUISliderWidth	160.0
 #define kUISliderHeight	 24.0
+
+#define InAppSettingsScreenWidth                  320
+#define InAppSettingsTotalCellPadding             InAppSettingsCellPadding * 2
+#define InAppSettingsTotalTablePadding            InAppSettingsTablePadding * 2
+#define InAppSettingsCellPadding                  9.0f
+#define InAppSettingsTablePadding                 10.0f
 
 @implementation EngineTestSliderCell
 

@@ -24,4 +24,5 @@
 
 - (id)initWithObject:(id)theObject;
 
+@property(readonly) id object;
 @end

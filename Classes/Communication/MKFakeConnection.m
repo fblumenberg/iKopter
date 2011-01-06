@@ -33,10 +33,180 @@
 #import "IKParamSet.h"
 
 
+/***************************************************/
+/*    Default Values for parameter set 1           */
+/***************************************************/
+void CommonDefaults(IKParamSet* EE_Parameter)
+{
+	EE_Parameter.Revision = [NSNumber numberWithUnsignedChar:85];
+  
+  EE_Parameter.Gyro_D = [NSNumber numberWithUnsignedChar:10];
+  EE_Parameter.Driftkomp = [NSNumber numberWithUnsignedChar:0];
+  EE_Parameter.GyroAccFaktor = [NSNumber numberWithUnsignedChar:27];
+  EE_Parameter.WinkelUmschlagNick = [NSNumber numberWithUnsignedChar:78];
+  EE_Parameter.WinkelUmschlagRoll = [NSNumber numberWithUnsignedChar:78];
+  EE_Parameter.Gyro_D = [NSNumber numberWithUnsignedChar:3];
+  EE_Parameter.Driftkomp = [NSNumber numberWithUnsignedChar:32];
+  EE_Parameter.GyroAccFaktor = [NSNumber numberWithUnsignedChar:30];
+  EE_Parameter.WinkelUmschlagNick = [NSNumber numberWithUnsignedChar:85];
+  EE_Parameter.WinkelUmschlagRoll = [NSNumber numberWithUnsignedChar:85];
+	EE_Parameter.GlobalConfig = [NSNumber numberWithUnsignedChar:CFG_ACHSENKOPPLUNG_AKTIV | CFG_KOMPASS_AKTIV | CFG_GPS_AKTIV | CFG_HOEHEN_SCHALTER];
+	EE_Parameter.ExtraConfig = [NSNumber numberWithUnsignedChar:CFG2_HEIGHT_LIMIT | CFG2_VARIO_BEEP];
+	EE_Parameter.Receiver = [NSNumber numberWithUnsignedChar:RECEIVER_SPEKTRUM];
+	EE_Parameter.MotorSafetySwitch = [NSNumber numberWithUnsignedChar:0]; 
+	EE_Parameter.ExternalControl = [NSNumber numberWithUnsignedChar:0];
+  
+	EE_Parameter.Gas_Min = [NSNumber numberWithUnsignedChar:8];             // Wert : 0-32
+	EE_Parameter.Gas_Max = [NSNumber numberWithUnsignedChar:230];           // Wert : 33-247
+	EE_Parameter.KompassWirkung = [NSNumber numberWithUnsignedChar:128];    // Wert : 0-247
+  
+	EE_Parameter.Hoehe_MinGas = [NSNumber numberWithUnsignedChar:30];
+	EE_Parameter.MaxHoehe     = [NSNumber numberWithUnsignedChar:255];         // Wert : 0-247   255 -> Poti1
+	EE_Parameter.Hoehe_P      = [NSNumber numberWithUnsignedChar:15];          // Wert : 0-32
+	EE_Parameter.Luftdruck_D  = [NSNumber numberWithUnsignedChar:30];          // Wert : 0-247
+	EE_Parameter.Hoehe_ACC_Wirkung = [NSNumber numberWithUnsignedChar:0];     // Wert : 0-247
+	EE_Parameter.Hoehe_HoverBand = [NSNumber numberWithUnsignedChar:8];     	  // Wert : 0-247
+	EE_Parameter.Hoehe_GPS_Z = [NSNumber numberWithUnsignedChar:64];           // Wert : 0-247
+	EE_Parameter.Hoehe_StickNeutralPoint = [NSNumber numberWithUnsignedChar:0];// Wert : 0-247 (0 = Hover-Estimation)
+	EE_Parameter.Hoehe_Verstaerkung = [NSNumber numberWithUnsignedChar:15];    // Wert : 0-50
+  
+	EE_Parameter.UserParam1 = [NSNumber numberWithUnsignedChar:  0];           // zur freien Verwendung
+	EE_Parameter.UserParam2 = [NSNumber numberWithUnsignedChar:  0];           // zur freien Verwendung
+	EE_Parameter.UserParam3 = [NSNumber numberWithUnsignedChar:  0];           // zur freien Verwendung
+	EE_Parameter.UserParam4 = [NSNumber numberWithUnsignedChar:  0];           // zur freien Verwendung
+	EE_Parameter.UserParam5 = [NSNumber numberWithUnsignedChar:  0];           // zur freien Verwendung
+	EE_Parameter.UserParam6 = [NSNumber numberWithUnsignedChar:  0];           // zur freien Verwendung
+	EE_Parameter.UserParam7 = [NSNumber numberWithUnsignedChar:0];             // zur freien Verwendung
+	EE_Parameter.UserParam8 = [NSNumber numberWithUnsignedChar:0];             // zur freien Verwendung
+  
+	EE_Parameter.ServoNickControl = [NSNumber numberWithUnsignedChar:120];     // Wert : 0-247     // Stellung des Servos
+	EE_Parameter.ServoNickComp = [NSNumber numberWithUnsignedChar:40];         // Wert : 0-247     // Einfluss Gyro/Servo
+	EE_Parameter.ServoCompInvert = [NSNumber numberWithUnsignedChar:2];        // Wert : 0-247     // Richtung Einfluss Gyro/Servo
+	EE_Parameter.ServoNickMin = [NSNumber numberWithUnsignedChar:15];          // Wert : 0-247     // Anschlag
+	EE_Parameter.ServoNickMax = [NSNumber numberWithUnsignedChar:247];         // Wert : 0-247     // Anschlag
+	EE_Parameter.ServoNickRefresh = [NSNumber numberWithUnsignedChar:5];
+	EE_Parameter.Servo3 = [NSNumber numberWithUnsignedChar:125];
+	EE_Parameter.Servo4 = [NSNumber numberWithUnsignedChar:125];
+	EE_Parameter.Servo5 = [NSNumber numberWithUnsignedChar:125];
+	EE_Parameter.ServoRollControl = [NSNumber numberWithUnsignedChar:120];     // Wert : 0-247     // Stellung des Servos
+	EE_Parameter.ServoRollComp = [NSNumber numberWithUnsignedChar:90];         // Wert : 0-247     // Einfluss Gyro/Servo
+	EE_Parameter.ServoRollMin = [NSNumber numberWithUnsignedChar:0];           // Wert : 0-247     // Anschlag
+	EE_Parameter.ServoRollMax = [NSNumber numberWithUnsignedChar:247];         // Wert : 0-247     // Anschlag
+	EE_Parameter.ServoManualControlSpeed = [NSNumber numberWithUnsignedChar:40];
+	EE_Parameter.CamOrientation = [NSNumber numberWithUnsignedChar:0];
+  
+	EE_Parameter.J16Bitmask = [NSNumber numberWithUnsignedChar:95];
+	EE_Parameter.J17Bitmask = [NSNumber numberWithUnsignedChar:243];
+	EE_Parameter.WARN_J16_Bitmask = [NSNumber numberWithUnsignedChar:0xAA];
+	EE_Parameter.WARN_J17_Bitmask = [NSNumber numberWithUnsignedChar:0xAA];
+	EE_Parameter.J16Timing = [NSNumber numberWithUnsignedChar:20];
+	EE_Parameter.J17Timing = [NSNumber numberWithUnsignedChar:20];
+  
+	EE_Parameter.LoopGasLimit = [NSNumber numberWithUnsignedChar:50];
+	EE_Parameter.LoopThreshold = [NSNumber numberWithUnsignedChar:90];         // Wert: 0-247  Schwelle f¸r Stickausschlag
+	EE_Parameter.LoopHysterese = [NSNumber numberWithUnsignedChar:50];
+	EE_Parameter.BitConfig = [NSNumber numberWithUnsignedChar:0];              // Bitcodiert: 0x01=oben, 0x02=unten, 0x04=links, 0x08=rechts / wird getrennt behandelt
+  
+	EE_Parameter.NaviGpsModeControl = [NSNumber numberWithUnsignedChar:254]; // 254 -> Poti 2
+	EE_Parameter.NaviGpsGain = [NSNumber numberWithUnsignedChar:100];
+	EE_Parameter.NaviGpsP = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.NaviGpsI = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.NaviGpsD = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.NaviGpsPLimit = [NSNumber numberWithUnsignedChar:75];
+	EE_Parameter.NaviGpsILimit = [NSNumber numberWithUnsignedChar:75];
+	EE_Parameter.NaviGpsDLimit = [NSNumber numberWithUnsignedChar:75];
+	EE_Parameter.NaviGpsACC = [NSNumber numberWithUnsignedChar:0];
+	EE_Parameter.NaviGpsMinSat = [NSNumber numberWithUnsignedChar:6];
+	EE_Parameter.NaviStickThreshold = [NSNumber numberWithUnsignedChar:8];
+	EE_Parameter.NaviWindCorrection = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.NaviSpeedCompensation = [NSNumber numberWithUnsignedChar:30];
+	EE_Parameter.NaviOperatingRadius = [NSNumber numberWithUnsignedChar:100];
+	EE_Parameter.NaviAngleLimitation = [NSNumber numberWithUnsignedChar:100];
+	EE_Parameter.NaviPH_LoginTime = [NSNumber numberWithUnsignedChar:2];
+	EE_Parameter.OrientationAngle = [NSNumber numberWithUnsignedChar:0];
+	EE_Parameter.OrientationModeControl = [NSNumber numberWithUnsignedChar:0];
+	EE_Parameter.UnterspannungsWarnung = [NSNumber numberWithUnsignedChar:33]; // Wert : 0-247 ( Automatische Zellenerkennung bei < 50)
+	EE_Parameter.NotGas = [NSNumber numberWithUnsignedChar:45];                // Wert : 0-247     // Gaswert bei Empangsverlust
+	EE_Parameter.NotGasZeit = [NSNumber numberWithUnsignedChar:90];            // Wert : 0-247     // Zeit bis auf NotGas geschaltet wird, wg. Rx-Problemen
+}
+
+void ParamSet_DefaultSet1(IKParamSet* EE_Parameter) // sport
+{
+	CommonDefaults(EE_Parameter);
+	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:14];            // Wert : 1-20
+	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];            // Wert : 0-20
+	EE_Parameter.Gier_P = [NSNumber numberWithUnsignedChar:12];             // Wert : 1-20
+	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:80];             // Wert : 0-247
+	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:150];            // Wert : 0-247
+	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:80];        // Wert : 0-247
+	EE_Parameter.Gyro_Gier_I = [NSNumber numberWithUnsignedChar:150];       // Wert : 0-247
+	EE_Parameter.Gyro_Stability = [NSNumber numberWithUnsignedChar:6]; 	  // Wert : 1-8
+	EE_Parameter.I_Faktor = [NSNumber numberWithUnsignedChar:32];
+	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:80];
+	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:1];
+	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:16];        // 1/k];
+	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:100];
+	EE_Parameter.Name=@"Sport";
+}
+
+
+/***************************************************/
+/*    Default Values for parameter set 2           */
+/***************************************************/
+void ParamSet_DefaultSet2(IKParamSet* EE_Parameter) // normal
+{
+	CommonDefaults(EE_Parameter);
+	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:10];               // Wert : 1-20
+	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];               // Wert : 0-20
+	EE_Parameter.Gier_P = [NSNumber numberWithUnsignedChar:6];                 // Wert : 1-20
+	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:90];                // Wert : 0-247
+	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:120];               // Wert : 0-247
+	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:90];           // Wert : 0-247
+	EE_Parameter.Gyro_Gier_I = [NSNumber numberWithUnsignedChar:120];          // Wert : 0-247
+	EE_Parameter.Gyro_Stability = [NSNumber numberWithUnsignedChar:6]; 	  	  // Wert : 1-8
+	EE_Parameter.I_Faktor = [NSNumber numberWithUnsignedChar:32];
+	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:80];
+	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:60];
+	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:32];        // 1/k
+	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:75];
+  EE_Parameter.Name=@"Normal";
+
+}
+
+
+/***************************************************/
+/*    Default Values for parameter set 3           */
+/***************************************************/
+void ParamSet_DefaultSet3(IKParamSet* EE_Parameter) // beginner
+{
+	CommonDefaults(EE_Parameter);
+	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:8];                // Wert : 1-20
+	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];               // Wert : 0-20
+	EE_Parameter.Gier_P  = [NSNumber numberWithUnsignedChar:6];                // Wert : 1-20
+	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:100];               // Wert : 0-247
+	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:120];               // Wert : 0-247
+	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:100];          // Wert : 0-247
+	EE_Parameter.Gyro_Gier_I = [NSNumber numberWithUnsignedChar:120];          // Wert : 0-247
+	EE_Parameter.Gyro_Stability = [NSNumber numberWithUnsignedChar:6]; 	  	  // Wert : 1-8
+	EE_Parameter.I_Faktor = [NSNumber numberWithUnsignedChar:16];
+	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:80];
+	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:70];
+	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:32];        // 1/k
+	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:70];
+	EE_Parameter.Name=@"Beginner";
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
 static NSString * const MKDummyConnectionException = @"MKDummyConnectionException";
 
 @interface MKFakeConnection (Private)
- 
+
 - (void) doConnect;
 - (void) doDisconnect;
 - (void) doResponseMkData:(NSData*)data;
@@ -60,10 +230,23 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   if (self = [super init]) {
     self.delegate = theDelegate;
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"AllSettings" 
-                                                     ofType:@"plist"];
-    
-    settings = [[NSMutableArray arrayWithContentsOfFile:path] retain];
+    settings = [[NSMutableArray array] retain];
+      
+    IKParamSet* p=[[IKParamSet alloc]init];
+    ParamSet_DefaultSet1(p);
+    [settings addObject:p];
+    p=[[IKParamSet alloc]init];
+    ParamSet_DefaultSet2(p);
+    [settings addObject:p];
+    p=[[IKParamSet alloc]init];
+    ParamSet_DefaultSet3(p);
+    [settings addObject:p];
+    p=[[IKParamSet alloc]init];
+    ParamSet_DefaultSet3(p);
+    [settings addObject:p];
+    p=[[IKParamSet alloc]init];
+    ParamSet_DefaultSet3(p);
+    [settings addObject:p];
     
     activeSetting = 3;
   }
@@ -84,19 +267,19 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
     [NSException raise:MKDummyConnectionException
                 format:@"Attempting to connect without a delegate. Set a delegate first."];
   }
-
+  
   NSArray * hostItems = [hostOrDevice componentsSeparatedByString:@":"];
   if ( [hostItems count] != 2 ) {
     [NSException raise:MKDummyConnectionException
                 format:@"Attempting to connect without a port. Set a port first."];
-
+    
   }
-
+  
   int port = [[hostItems objectAtIndex:1] intValue];
   NSString * host = [hostItems objectAtIndex:0];
-
+  
   DLog(@"Try to connect to %@ on port %d", host, port);
-
+  
   [self performSelector:@selector(doConnect) withObject:nil afterDelay:0.5];
   return YES;
 }
@@ -153,11 +336,11 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 
 
 - (NSData*) menuResponse:(NSData*)payload {
-
+  
   const char * bytes = [payload bytes];
   
   uint8_t key=(uint8_t)bytes[0];
-//  uint8_t interval=(uint8_t)bytes[1];
+  //  uint8_t interval=(uint8_t)bytes[1];
   
   if (key==0xFD) {
     menuPage++;
@@ -170,16 +353,16 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   
   NSString* screen=[NSString stringWithFormat:@"Page %02d (%d)------->>12345678901234567890abcdefghijklmnopqrst++++++++++++++++++>>",
                     menuPage,menuCounter];
-
+  
   NSData * newPayload = [screen dataUsingEncoding:NSASCIIStringEncoding];
-
+  
   [self performSelector:@selector(resendMenuResponse) withObject:nil afterDelay:0.5];
- 
+  
   return newPayload;
 }
 
 - (void) resendMenuResponse {
-
+  
   NSString* screen=[NSString stringWithFormat:@"Page %02d (%d)-------<<12345678901234567890abcdefghijklmnopqrst++++++++++++++++++<<",
                     menuPage,menuCounter];
   
@@ -212,13 +395,14 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 }
 
 - (NSData*) writeSettingResponse:(NSData*)payload {
-
+  
   NSDictionary* d = [payload decodeReadSettingResponse];
   
-  NSNumber* theIndex = [d objectForKey:kMKDataKeyIndex]; 
-  uint8_t index = [theIndex unsignedCharValue];
+  IKParamSet* p= [d objectForKey:kIKParamSet]; 
   
-  [settings replaceObjectAtIndex:index-1 withObject:d];
+  NSUInteger index = [[p Index] unsignedIntValue];
+  
+  [settings replaceObjectAtIndex:index-1 withObject:p];
   
   NSData * newPayload = [NSData dataWithBytes:(void*)&index length:sizeof(index)];
   return newPayload;
@@ -236,24 +420,10 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   
   index--;
   
-  NSDictionary* d = [settings objectAtIndex:index];
+  IKParamSet* p = [settings objectAtIndex:index];
+  p.Index = [NSNumber numberWithInt:index+1];
   
-  DLog(@"%@",d);
-  
-  IKParamSet* p=[[IKParamSet alloc]init];
-
-  for (NSString* key in d) {
-    id value = [d objectForKey:key];
-    DLog(@"%@ -> %@",key,value);
-    @try {
-      [p setValue:value forKey:key];
-    }
-    @catch (NSException * e) {
-      DLog(@"%@",e);
-    }
-  }
-    
-  p.Revision=[NSNumber numberWithInt:85];
+  DLog(@"%@",p);
   
   NSData * newPayload = [p data]; //[NSData payloadForWriteSettingRequest:d];
   
@@ -263,17 +433,17 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 #pragma mark -
 
 - (void) doConnect {
-
+  
   isConnected=YES;
   if ( [delegate respondsToSelector:@selector(didConnectTo:)] ) {
     [delegate didConnectTo:@"Dummy"];
   }
-
+  
   NSData * data = [NSData dataWithCommand:MKCommandVersionRequest
                                forAddress:MKAddressAll
                          payloadWithBytes:NULL
                                    length:0];
-
+  
   [self writeMkData:data];
 }
 
@@ -286,32 +456,32 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 }
 
 - (void) doResponseMkData:(NSData*)data {
-
+  
   if ([data isCrcOk]) {
-
+    
     NSData * payload = [data payload];
-//    MKAddress address = [data address];
-
+    //    MKAddress address = [data address];
+    
     NSData * rspPayload;
     MKCommandId rspCommand;  
     
     DLog(@"Need responde for command %c",[data command]);
-
+    
     switch ([data command]) {
-/*
-      case MKCommandLcdMenuResponse:
-        n = MKLcdMenuNotification;
-        d = [payload decodeLcdMenuResponse];
-        break;
-      case MKCommandLcdResponse:
-        n = MKLcdNotification;
-        d = [payload decodeLcdResponse];
-        break;
-      case MKCommandDebugLabelResponse:
-        n = MKDebugLabelNotification;
-        d = [payload decodeAnalogLabelResponse];
-        break;
-*/
+        /*
+         case MKCommandLcdMenuResponse:
+         n = MKLcdMenuNotification;
+         d = [payload decodeLcdMenuResponse];
+         break;
+         case MKCommandLcdResponse:
+         n = MKLcdNotification;
+         d = [payload decodeLcdResponse];
+         break;
+         case MKCommandDebugLabelResponse:
+         n = MKDebugLabelNotification;
+         d = [payload decodeAnalogLabelResponse];
+         break;
+         */
       case MKCommandLcdRequest:
         rspPayload = [self menuResponse:payload];
         rspCommand = MKCommandLcdResponse;
@@ -349,15 +519,15 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
         [data release];
         return;
     }
-
+    
     NSData * rspData = [rspPayload dataWithCommand:rspCommand forAddress:MKAddressFC];
     
     if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
       [delegate didReadMkData:rspData];
     } 
-  
+    
   }  
-
+  
   [data release];
 }
 

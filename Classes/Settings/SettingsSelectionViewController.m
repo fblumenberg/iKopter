@@ -31,7 +31,6 @@
 
 #import "MKDatatypes.h"
 #import "MKDataConstants.h"
-#import "InAppSettings.h"
 
 #import "IKParamSet.h"
 
@@ -135,6 +134,10 @@ static NSUInteger kNumberOfSettings = 5;
   //[actionButton release];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
+}
 // ////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 

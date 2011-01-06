@@ -20,6 +20,8 @@
 
 @implementation IASKSettingsStoreObject
 
+@synthesize object=_object;
+
 - (id)initWithObject:(id)theObject {
   if([super init]) {
     _object = [theObject retain];

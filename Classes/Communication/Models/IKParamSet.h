@@ -49,6 +49,7 @@
 @property(assign) NSNumber* Kanalbelegung_09;
 @property(assign) NSNumber* Kanalbelegung_10;
 @property(assign) NSNumber* Kanalbelegung_11;
+@property(assign) NSNumber* GlobalConfig;
 @property(assign) NSNumber* GlobalConfig_HOEHENREGELUNG;
 @property(assign) NSNumber* GlobalConfig_HOEHEN_SCHALTER;
 @property(assign) NSNumber* GlobalConfig_HEADING_HOLD;
@@ -143,6 +144,7 @@
 @property(assign) NSNumber* OrientationAngle;
 @property(assign) NSNumber* OrientationModeControl;
 @property(assign) NSNumber* MotorSafetySwitch;
+@property(assign) NSNumber* BitConfig;
 @property(assign) NSNumber* BitConfig_LOOP_OBEN;
 @property(assign) NSNumber* BitConfig_LOOP_UNTEN;
 @property(assign) NSNumber* BitConfig_LOOP_LINKS;
@@ -150,8 +152,10 @@
 @property(assign) NSNumber* BitConfig_MOTOR_BLINK;
 @property(assign) NSNumber* BitConfig_MOTOR_OFF_LED1;
 @property(assign) NSNumber* BitConfig_MOTOR_OFF_LED2;
+@property(assign) NSNumber* ServoCompInvert;
 @property(assign) NSNumber* ServoCompInvert_NICK;
 @property(assign) NSNumber* ServoCompInvert_ROLL;
+@property(assign) NSNumber* ExtraConfig;
 @property(assign) NSNumber* ExtraConfig_HEIGHT_LIMIT;
 @property(assign) NSNumber* ExtraConfig_VARIO_BEEP;
 @property(assign) NSNumber* ExtraConfig_SENSITIVE_RC;
