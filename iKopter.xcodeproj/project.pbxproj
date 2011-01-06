@@ -13,9 +13,9 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		BA7018DD12D63A120048790A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DB12D63A120048790A /* Icon.png */; };
+		BA7018DE12D63A120048790A /* Icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DC12D63A120048790A /* Icon@2.png */; };
 		BA71CC7512CFDA920029C5F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA71CC7412CFDA920029C5F7 /* Localizable.strings */; };
-		BA71CCD412CFF1730029C5F7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CCD212CFF1730029C5F7 /* Icon.png */; };
-		BA71CCD512CFF1730029C5F7 /* Icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CCD312CFF1730029C5F7 /* Icon@2.png */; };
 		BA71CD0012D0BFC80029C5F7 /* iKopterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFD12D0BFC80029C5F7 /* iKopterAppDelegate.m */; };
 		BA71CD0112D0BFC80029C5F7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFF12D0BFC80029C5F7 /* MainViewController.m */; };
 		BA71CD1612D0C04A0029C5F7 /* MKHost.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD1112D0C04A0029C5F7 /* MKHost.m */; };
@@ -113,10 +113,10 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iKopter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iKopter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BA7018DB12D63A120048790A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		BA7018DC12D63A120048790A /* Icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2.png"; sourceTree = "<group>"; };
 		BA71CC7612CFDA9B0029C5F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA71CC7712CFDA9F0029C5F7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BA71CCD212CFF1730029C5F7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		BA71CCD312CFF1730029C5F7 /* Icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2.png"; sourceTree = "<group>"; };
 		BA71CCFC12D0BFC80029C5F7 /* iKopterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iKopterAppDelegate.h; sourceTree = "<group>"; };
 		BA71CCFD12D0BFC80029C5F7 /* iKopterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iKopterAppDelegate.m; sourceTree = "<group>"; };
 		BA71CCFE12D0BFC80029C5F7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -344,6 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */,
+				BA7018DB12D63A120048790A /* Icon.png */,
+				BA7018DC12D63A120048790A /* Icon@2.png */,
 				BA71CE0A12D0C3840029C5F7 /* InAppSettings.bundle */,
 				BA71CE0B12D0C3840029C5F7 /* Settings.bundle */,
 				BA71CCD112CFF1730029C5F7 /* images */,
@@ -372,8 +374,6 @@
 				BA71CEA812D0D43F0029C5F7 /* leftTriangle.png */,
 				BA71CEA912D0D43F0029C5F7 /* rightTriangle.png */,
 				BA71CEAA12D0D43F0029C5F7 /* star.png */,
-				BA71CCD212CFF1730029C5F7 /* Icon.png */,
-				BA71CCD312CFF1730029C5F7 /* Icon@2.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -714,8 +714,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				BA71CC7512CFDA920029C5F7 /* Localizable.strings in Resources */,
-				BA71CCD412CFF1730029C5F7 /* Icon.png in Resources */,
-				BA71CCD512CFF1730029C5F7 /* Icon@2.png in Resources */,
 				BA71CD5B12D0C0600029C5F7 /* IASKAppSettingsView.xib in Resources */,
 				BA71CD5C12D0C0600029C5F7 /* IASKAppSettingsWebView.xib in Resources */,
 				BA71CD5D12D0C0600029C5F7 /* IASKPotiTextFieldSpecifierViewCell.xib in Resources */,
@@ -732,6 +730,8 @@
 				BA71CEAD12D0D43F0029C5F7 /* star.png in Resources */,
 				BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */,
 				BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */,
+				BA7018DD12D63A120048790A /* Icon.png in Resources */,
+				BA7018DE12D63A120048790A /* Icon@2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
