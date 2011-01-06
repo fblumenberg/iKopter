@@ -39,15 +39,15 @@
 #pragma mark -
 
 - (id)initWithSetting:(IKParamSet*)aSetting {
-
+  
   if (self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil]) {
     self.file = @"Setting";
     self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:aSetting];
-    
+    self.setting = aSetting;
     self.showCreditsFooter=NO;
     self.showDoneButton=NO;
   }
- 
+  
   return self;
 }
 
@@ -134,7 +134,8 @@
   
   MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
 
-  NSData * payload = [self.setting data];
+  IKParamSet* s=self.setting;
+  NSData * payload = [s data];
   
   NSData * data = [payload dataWithCommand:MKCommandWriteSettingsRequest
                                 forAddress:MKAddressFC];

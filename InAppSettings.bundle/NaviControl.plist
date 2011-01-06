@@ -5,7 +5,7 @@
 	<key>Title</key>
 	<string>NaviControlTITLE</string>
 	<key>StringsTable</key>
-	<string>Root</string>
+	<string> Root</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
@@ -32,7 +32,7 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-            <string>IASKPotiTextFieldSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
 			<string>NaviGpsModeControl</string>
 			<key>Key</key>
@@ -42,7 +42,7 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-            <string>IASKPotiTextFieldSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
 			<string>NaviGpsGain</string>
 			<key>Key</key>
@@ -76,7 +76,7 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-            <string>IASKPotiTextFieldSpecifier</string>
+			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
 			<string>NaviGpsP</string>
 			<key>Key</key>
@@ -177,7 +177,6 @@
 			<string>NaviOperatingRadius</string>
 			<key>Key</key>
 			<string>NaviOperatingRadius</string>
-			<key>DefaultValue</key>
 		</dict>
 		<dict>
 			<key>Type</key>
