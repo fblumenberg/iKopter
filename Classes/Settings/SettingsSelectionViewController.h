@@ -34,10 +34,7 @@
 
 @property (nonatomic, retain) NSMutableArray* settings;
 
-- (void) requestSettingForIndex:(NSInteger)theIndex;
-
 - (IBAction) reloadAllSettings;
-
 
 - (void)saveActiveSetting:(id)sender;
 - (void)editActiveSetting:(id)sender;

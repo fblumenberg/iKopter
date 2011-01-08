@@ -102,7 +102,7 @@
   
   MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
   NSData * data = [NSData dataWithCommand:MKCommandChannelsValueRequest
-                               forAddress:MKAddressFC
+                               forAddress:kIKMkAddressFC
                          payloadWithBytes:NULL
                                    length:0];
 

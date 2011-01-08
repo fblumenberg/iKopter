@@ -27,100 +27,81 @@
 
 #import "IKParamSet.h"
 #import "IKLcdDisplay.h"
-
+#import "IKDebugData.h"
+#import "IKDebugLabel.h"
+ 
 static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"MK3Mag" };
 
 @implementation NSData (MKPayloadDecode)
 
 //-------------------------------------------------------------------------------------------
-- (NSString *) debugLabelWithIndex:(int *)theIndex {
-  const char * bytes = [self bytes];
-  
-  *theIndex = (int)bytes[0];
-  
-  int dataLength = [self length] < 16 ? [self length] : 16;
-  
-  NSData * strData = [NSData dataWithBytesNoCopy:(void*)(++bytes) length:dataLength freeWhenDone:NO];
-  NSString * label = [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease];
-  
-  return [label stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-}
+//- (NSString *) debugLabelWithIndex:(int *)theIndex {
+//  const char * bytes = [self bytes];
+//  
+//  *theIndex = (int)bytes[0];
+//  
+//  int dataLength = [self length] < 16 ? [self length] : 16;
+//  
+//  NSData * strData = [NSData dataWithBytesNoCopy:(void*)(++bytes) length:dataLength freeWhenDone:NO];
+//  NSString * label = [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease];
+//  
+//  return [label stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//}
 
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(MKAddress)address;
+- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
 {
-  int index;
-  NSString * label = [self debugLabelWithIndex:&index];
-  
-  return [NSDictionary dictionaryWithObjectsAndKeys:label, kMKDataKeyLabel, [NSNumber numberWithInt:index], kMKDataKeyIndex, nil];
+  IKDebugLabel* label = [IKDebugLabel labelWithData:self forAddress:address];
+  return [NSDictionary dictionaryWithObjectsAndKeys:label, kIKDataKeyDebugLabel, nil];
 }
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeDebugDataResponseForAddress:(MKAddress)address;
+- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
 {
-  DebugOut * debugData = (DebugOut *)[self bytes];
-  
-  NSNumber* theAddress=[NSNumber numberWithInt:address];
-  
-  NSMutableArray * targetArray = [[NSMutableArray alloc] initWithCapacity:32];
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  
-  for (int i = 0; i < 32; i++) 
-  {
-    NSNumber *number = [NSNumber numberWithShort:debugData->Analog[i]];
-    [targetArray addObject:number];
-  }
-  
-  [pool drain];
-  
-  NSDictionary* responseDictionary=[NSDictionary dictionaryWithObjectsAndKeys:targetArray, kMKDataKeyDebugData, 
-                                    theAddress, kMKDataKeyAddress, nil];
-  
-  [targetArray release];
-  
-  return responseDictionary;
+  IKDebugData* debugData = [IKDebugData dataWithData:self forAddress:address];
+  return [NSDictionary dictionaryWithObjectsAndKeys:debugData,kIKDataKeyDebugData, nil];
 }
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeLcdMenuResponseForAddress:(MKAddress)address;
-{
-  const char * bytes = [self bytes];
-  
-  NSNumber* theAddress=[NSNumber numberWithInt:address];
-  NSNumber * menuItem = [NSNumber numberWithChar:bytes[0]];
-  NSNumber * maxMenuItem = [NSNumber numberWithChar:bytes[1]];
-  
-  NSData * strData = [NSData dataWithBytesNoCopy:(char *)(bytes + 2) length:[self length] - 2 freeWhenDone:NO];
-  NSString * label = [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease];
-  
-  NSMutableArray * menuRows = [[NSMutableArray alloc] init];
-  
-  [menuRows addObject:[label substringWithRange:NSMakeRange(0, 20)]];
-  [menuRows addObject:[label substringWithRange:NSMakeRange(20, 20)]];
-  [menuRows addObject:[label substringWithRange:NSMakeRange(40, 20)]];
-  [menuRows addObject:[label substringWithRange:NSMakeRange(60, 20)]];
-  
-  NSDictionary* d =[NSDictionary dictionaryWithObjectsAndKeys:menuItem, kMKDataKeyMenuItem, 
-                    maxMenuItem, kMKDataKeyMaxMenuItem, 
-                    menuRows, kMKDataKeyMenuRows, theAddress, kMKDataKeyAddress, nil];
-
-  [menuRows autorelease];
-  
-  return d;
-}
+//- (NSDictionary *) decodeLcdMenuResponseForAddress:(IKMkAddress)address;
+//{
+//  const char * bytes = [self bytes];
+//  
+//  NSNumber* theAddress=[NSNumber numberWithInt:address];
+//  NSNumber * menuItem = [NSNumber numberWithChar:bytes[0]];
+//  NSNumber * maxMenuItem = [NSNumber numberWithChar:bytes[1]];
+//  
+//  NSData * strData = [NSData dataWithBytesNoCopy:(char *)(bytes + 2) length:[self length] - 2 freeWhenDone:NO];
+//  NSString * label = [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease];
+//  
+//  NSMutableArray * menuRows = [[NSMutableArray alloc] init];
+//  
+//  [menuRows addObject:[label substringWithRange:NSMakeRange(0, 20)]];
+//  [menuRows addObject:[label substringWithRange:NSMakeRange(20, 20)]];
+//  [menuRows addObject:[label substringWithRange:NSMakeRange(40, 20)]];
+//  [menuRows addObject:[label substringWithRange:NSMakeRange(60, 20)]];
+//  
+//  NSDictionary* d =[NSDictionary dictionaryWithObjectsAndKeys:menuItem, kMKDataKeyMenuItem, 
+//                    maxMenuItem, kMKDataKeyMaxMenuItem, 
+//                    menuRows, kMKDataKeyMenuRows, theAddress, kMKDataKeyAddress, nil];
+//
+//  [menuRows autorelease];
+//  
+//  return d;
+//}
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeLcdResponseForAddress:(MKAddress)address;
+- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
 {
   IKLcdDisplay* lcdData=[IKLcdDisplay menuWithData:self forAddress:address];
-  NSDictionary* d=[NSDictionary dictionaryWithObjectsAndKeys:lcdData, kIKLcdDisplay, nil];
+  NSDictionary* d=[NSDictionary dictionaryWithObjectsAndKeys:lcdData, kIKDataKeyLcdDisplay, nil];
   
   return d; 
 }
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeVersionResponseForAddress:(MKAddress)address;
+- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)address;
 {
-  const VersionInfo * version = [self bytes];
+  const IKMkVersionInfo * version = [self bytes];
   NSNumber* theAddress=[NSNumber numberWithInt:address];
   
   NSString * versionStr = [NSString stringWithFormat:@"%@ %d.%d %c", 
@@ -162,7 +143,7 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
 
 - (NSDictionary *) decodeReadSettingResponse {
   IKParamSet* paramSet=[IKParamSet settingWithData:self];
-  return [NSDictionary dictionaryWithObjectsAndKeys:paramSet, kIKParamSet, nil];
+  return [NSDictionary dictionaryWithObjectsAndKeys:paramSet, kIKDataKeyParamSet, nil];
 }
 
 - (NSDictionary *) decodeWriteSettingResponse {

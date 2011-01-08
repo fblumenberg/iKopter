@@ -151,28 +151,14 @@ static NSUInteger kNumberOfSettings = 5;
   [settings release];
   
   activeSetting=0xFF;
-  [self requestSettingForIndex:0xFF];
+  [[MKConnectionController sharedMKConnectionController] requestSettingForIndex:0xFF];
   
-}
-
-
-// theIndex 1-5 or 0xFF
-- (void) requestSettingForIndex:(NSInteger)theIndex {
-  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
-  uint8_t index = theIndex;
-  
-  NSData * data = [NSData dataWithCommand:MKCommandReadSettingsRequest
-                               forAddress:MKAddressFC
-                         payloadWithBytes:&index
-                                   length:1];
-  
-  [cCtrl sendRequest:data];
 }
 
 
 - (void) readSettingNotification:(NSNotification *)aNotification {
 
-  IKParamSet* paramSet=[[aNotification userInfo] objectForKey:kIKParamSet];
+  IKParamSet* paramSet=[[aNotification userInfo] objectForKey:kIKDataKeyParamSet];
   NSUInteger index = [[paramSet Index]unsignedIntValue]-1;
   
   if (activeSetting==0xFF) {
@@ -183,7 +169,7 @@ static NSUInteger kNumberOfSettings = 5;
   
   for (int i=0; i<kNumberOfSettings; i++) {
     if ([self.settings objectAtIndex:i] == [NSNull null]) {
-      [self requestSettingForIndex:i+1];
+      [[MKConnectionController sharedMKConnectionController] requestSettingForIndex:i+1];
       break;
     }   
   }
@@ -337,6 +323,9 @@ static NSUInteger kNumberOfSettings = 5;
 }
 */
 
+#pragma mark -
+#pragma mark Actions
+
 - (void) changeSettingNotification:(NSNotification *)aNotification {
   
   NSDictionary* d=[aNotification userInfo];
@@ -350,15 +339,7 @@ static NSUInteger kNumberOfSettings = 5;
 
 - (void)saveActiveSetting:(id)sender
 {
-  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
-  uint8_t index = newActiveSetting+1;
-  
-  NSData * data = [NSData dataWithCommand:MKCommandChangeSettingsRequest
-                               forAddress:MKAddressFC
-                         payloadWithBytes:&index
-                                   length:1];
-  
-  [cCtrl sendRequest:data];
+  [[MKConnectionController sharedMKConnectionController] setActiveSetting:newActiveSetting+1];
 }
 
 - (void)editActiveSetting:(id)sender
@@ -387,8 +368,6 @@ static NSUInteger kNumberOfSettings = 5;
   
   [self.navigationItem setRightBarButtonItem:editButton animated:NO];
   [self.tableView setEditing:NO animated:YES];
-  
-  //[self.tableView insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:YES];
   
   [self.tableView reloadData];
 }

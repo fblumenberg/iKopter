@@ -29,7 +29,7 @@
 @interface IKDeviceVersion : NSObject {
 
   IKMkAddress address;
-  MkVersionInfo _version;
+  IKMkVersionInfo _version;
   NSString* versionString;
   NSString* versionStringShort;
 }

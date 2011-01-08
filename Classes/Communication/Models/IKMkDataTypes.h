@@ -22,17 +22,43 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-/*typedef enum {
-  MKAddressAll   =0,
-  MKAddressFC    =1,
-  MKAddressNC    =2,
-  MKAddressMK3MAg=3,
-  MKAddressMKGPS =0XFE
+typedef enum {
+  kIKMkAddressAll   =0,
+  kIKMkAddressFC    =1,
+  kIKMkAddressNC    =2,
+  kIKMkAddressMK3MAg=3,
+  kIKMkAddressMKGPS =0XFE
 } IKMkAddress;
-*/
 
-#import "MKDatatypes.h"
-typedef MKAddress IKMkAddress;
+//////////////////////////////////////////////////////////////////////////////////
+typedef enum {
+  MKCommandDebugValueRequest='d',
+  MKCommandDebugValueResponse='D',
+  MKCommandDebugLabelRequest='a',
+  MKCommandDebugLabelResponse='A',
+  MKCommandVersionRequest='v',
+  MKCommandVersionResponse='V',
+  MKCommandLcdMenuRequest='l',
+  MKCommandLcdMenuResponse='L',
+  MKCommandLcdRequest='h',
+  MKCommandLcdResponse='H',
+  MKCommandReadSettingsRequest='q',
+  MKCommandReadSettingsResponse='Q',
+  MKCommandWriteSettingsRequest='s',
+  MKCommandWriteSettingsResponse='S',
+  MKCommandChangeSettingsRequest='f',
+  MKCommandChangeSettingsResponse='F',
+  MKCommandChannelsValueRequest='p',
+  MKCommandChannelsValueResponse='P',
+  MKCommandMixerReadRequest='n',
+  MKCommandMixerReadResponse='N',
+  MKCommandMixerWriteRequest='m',
+  MKCommandMixerWriteResponse='M',
+  MKCommandRedirectRequest='u',
+  MKCommandEngineTestRequest='t',
+  MKCommandOsdRequest='o',
+  MKCommandOsdResponse='O',
+} MKCommandId;
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -73,7 +99,7 @@ typedef struct
   uint8_t ProtoMinor;
   uint8_t SWPatch;
   uint8_t HardwareError[5];
-} MkVersionInfo;
+} IKMkVersionInfo;
 
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -81,7 +107,7 @@ typedef struct
 {
   uint8_t Digital[2];
   uint16_t Analog[32];    // Debugvalues
-} MkDebugOut;
+} IKMkDebugOut;
 
 static const int kMaxDebugDataDigital = 2;
 static const int kMaxDebugDataAnalog = 32;
@@ -100,7 +126,7 @@ typedef struct
     int8_t Name[12];
     int8_t Motor[16][4];
     uint8_t crc;
-} MkMixerTable;
+} IKMkMixerTable;
 
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -282,7 +308,84 @@ typedef struct
     unsigned char ExtraConfig;        // bitcodiert
     char Name[12];
     //unsigned char crc;                // must be the last byte!
-} MkParamset;
+} IKMkParamset;
+
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+typedef struct
+{
+	uint8_t	Digital[2];
+	uint8_t	RemoteButtons;
+	int8_t	Nick;
+	int8_t	Roll;
+	int8_t	Yaw;
+	uint8_t	Gas;
+	int8_t	Height;
+	uint8_t	free;
+	uint8_t	Frame;
+	uint8_t	Config;
+} __attribute__((packed)) IKMkExternControl;
+
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+typedef struct
+{
+ 	int16_t Nick;
+	int16_t Roll;
+	int16_t Compass;					// angle between north and head of the MK
+} __attribute__((packed)) Attitude_t;
 
 
+typedef struct
+{
+  int32_t Longitude;      // in 1E-7 deg
+  int32_t Latitude;       // in 1E-7 deg
+  int32_t Altitude;       // in mm
+  uint8_t Status;         // validity of data
+} __attribute__((packed)) IKMkGPSPos;
+
+
+typedef struct
+{
+	uint16_t Distance;			// distance to target in dm
+	int16_t Bearing;				// course to target in deg
+} __attribute__((packed)) IKMkGPSPosDev;
+
+#define NAVIDATA_VERSION 4
+
+typedef struct
+{
+	uint8_t       Version;						// version of the data structure
+	IKMkGPSPos    CurrentPosition;		// see ubx.h for details
+	IKMkGPSPos    TargetPosition;
+	IKMkGPSPosDev TargetPositionDeviation;
+	IKMkGPSPos    HomePosition;
+	IKMkGPSPosDev HomePositionDeviation;
+	uint8_t       WaypointIndex;				// index of current waypoints running from 0 to WaypointNumber-1
+	uint8_t       WaypointNumber;				// number of stored waypoints
+	uint8_t       SatsInUse;					// number of satellites used for position solution
+	int16_t       Altimeter; 					// hight according to air pressure
+	int16_t       Variometer;					// climb(+) and sink(-) rate
+	uint16_t      FlyingTime;					// in seconds
+	uint8_t       UBat;						// Battery Voltage in 0.1 Volts
+	uint16_t      GroundSpeed;				// speed over ground in cm/s (2D)
+	int16_t       Heading;					// current flight direction in ° as angle to north
+	int16_t       CompassHeading;				// current compass value in °
+	int8_t        AngleNick;					// current Nick angle in 1°
+	int8_t        AngleRoll;					// current Rick angle in 1°
+	uint8_t       RC_Quality;					// RC_Quality
+	uint8_t       FCStatusFlags;				// Flags from FC
+	uint8_t       NCFlags;					// Flags from NC
+	uint8_t       Errorcode;					// 0 --> okay
+	uint8_t       OperatingRadius;			// current operation radius around the Home Position in m
+	int16_t       TopSpeed;					// velocity in vertical direction in cm/s
+	uint8_t       TargetHoldTime;				// time in s to stay at the given target, counts down to 0 if target has been reached
+	uint8_t       RC_RSSI;					// Receiver signal strength (since version 2 added)
+	int16_t       SetpointAltitude;			// setpoint for altitude
+	uint8_t       Gas;						// for future use
+	uint16_t      Current;					// actual current in 0.1A steps
+	uint16_t      UsedCapacity;				// used capacity in mAh
+} IKMkNaviData;
 

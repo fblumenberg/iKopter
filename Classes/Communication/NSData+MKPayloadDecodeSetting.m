@@ -30,7 +30,7 @@
 //
 //- (NSDictionary *) decodeReadSettingResponse {
 //  IKParamSet* paramSet=[IKParamSet settingWithData:self];
-//  return [NSDictionary dictionaryWithObjectsAndKeys:paramSet, kIKParamSet, nil];
+//  return [NSDictionary dictionaryWithObjectsAndKeys:paramSet, kIKDataKeyParamSet, nil];
 //}
 //
 //- (NSDictionary *) decodeWriteSettingResponse {

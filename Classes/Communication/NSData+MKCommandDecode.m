@@ -125,14 +125,14 @@ static NSData * decode64(const char * inBuffer, int length)
   return NO;
 }
 
-- (MKAddress) address 
+- (IKMkAddress) address 
 {
   if (![self isCrcOk])
     [NSException raise:kInvalidMKCommand format:@"cannot get the address from a invalid MK frame"];
   
   const char * frameBytes = [self bytes];
   
-  return (MKAddress)(frameBytes[1] - 'a');
+  return (IKMkAddress)(frameBytes[1] - 'a');
 }
 
 - (MKCommandId) command 

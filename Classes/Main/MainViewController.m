@@ -252,7 +252,7 @@
 
 - (void)versionResponse:(NSNotification *)aNotification;
 {
-//  self.versionString = [[MKConnectionController sharedMKConnectionController]longVersionForAddress:MKAddressFC]; 
+//  self.versionString = [[MKConnectionController sharedMKConnectionController]longVersionForAddress:kIKMkAddressFC]; 
 //  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:CONNECT_SECTIONID]  withRowAnimation:UITableViewRowAnimationNone];
 }
 

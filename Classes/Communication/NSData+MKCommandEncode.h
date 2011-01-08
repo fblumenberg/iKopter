@@ -23,18 +23,18 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
-#import "MKDatatypes.h"
+#import "IKMkDatatypes.h"
 
 @interface NSData (MKCommandEncode)
 
-- (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(MKAddress)aAddress;
+- (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(IKMkAddress)aAddress;
 
 + (NSData *) dataWithCommand:(MKCommandId)aCommand
-                  forAddress:(MKAddress)aAddress
+                  forAddress:(IKMkAddress)aAddress
               payloadForByte:(uint8_t)byte;
 
 + (NSData *) dataWithCommand:(MKCommandId)aCommand
-                  forAddress:(MKAddress)aAddress
+                  forAddress:(IKMkAddress)aAddress
             payloadWithBytes:(const void *)bytes
                       length:(NSUInteger)length; 
 @end

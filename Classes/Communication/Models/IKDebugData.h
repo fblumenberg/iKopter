@@ -29,7 +29,7 @@
 @interface IKDebugData : NSObject {
 
   IKMkAddress address;
-  MkDebugOut _data;
+  IKMkDebugOut _data;
 }
 
 @property(assign,readonly) IKMkAddress address;

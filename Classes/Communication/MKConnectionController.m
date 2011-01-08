@@ -68,13 +68,13 @@ NSString * const MKOsdNotification = @"MKOsdNotification";
 @synthesize primaryDevice;
 @synthesize currentDevice;
 
--(void) setCurrentDevice:(MKAddress)theAddress {
+-(void) setCurrentDevice:(IKMkAddress)theAddress {
   
-//  if(primaryDevice==MKAddressNC) {
+//  if(primaryDevice==kIKMkAddressNC) {
     if(theAddress != currentDevice) {
       currentDevice=theAddress;
       
-      if(currentDevice==MKAddressNC)
+      if(currentDevice==kIKMkAddressNC)
       {
         uint8_t bytes[5];
         bytes[0] = 0x1B;
@@ -93,16 +93,16 @@ NSString * const MKOsdNotification = @"MKOsdNotification";
         uint8_t byte=0;
 
         switch (currentDevice) {
-          case MKAddressFC:
+          case kIKMkAddressFC:
             byte=0;
             break;
-          case MKAddressMK3MAg:
+          case kIKMkAddressMK3MAg:
             byte=1;
             break;
         }
 
         NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
-                                     forAddress:MKAddressNC
+                                     forAddress:kIKMkAddressNC
                                  payloadForByte:byte];
         
         [self sendRequest:data];
@@ -119,12 +119,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 - (void) dealloc {
   [hostOrDevice release];
   [inputController release];
-  [shortVersions[MKAddressFC] release];
-  [shortVersions[MKAddressNC] release];
-  [shortVersions[MKAddressMK3MAg] release];
-  [longVersions[MKAddressMK3MAg] release];
-  [longVersions[MKAddressNC] release];
-  [longVersions[MKAddressMK3MAg] release];
+  [shortVersions[kIKMkAddressFC] release];
+  [shortVersions[kIKMkAddressNC] release];
+  [shortVersions[kIKMkAddressMK3MAg] release];
+  [longVersions[kIKMkAddressMK3MAg] release];
+  [longVersions[kIKMkAddressNC] release];
+  [longVersions[kIKMkAddressMK3MAg] release];
   [super dealloc];
 }
 
@@ -148,8 +148,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     
     didPostConnectNotification = NO;
     
-    currentDevice=MKAddressAll;
-    primaryDevice=MKAddressAll;
+    currentDevice=kIKMkAddressAll;
+    primaryDevice=kIKMkAddressAll;
     
     NSError * err = nil;
     if (![inputController connectTo:hostOrDevice error:&err]) {
@@ -182,16 +182,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   [inputController writeMkData:data];
 }
 
-- (NSString *) shortVersionForAddress:(MKAddress)theAddress;
+- (NSString *) shortVersionForAddress:(IKMkAddress)theAddress;
 {
-  if (theAddress <= MKAddressAll || theAddress > MKAddressMK3MAg)
+  if (theAddress <= kIKMkAddressAll || theAddress > kIKMkAddressMK3MAg)
     return nil;
   return shortVersions[theAddress];
 }
 
-- (NSString *) longVersionForAddress:(MKAddress)theAddress;
+- (NSString *) longVersionForAddress:(IKMkAddress)theAddress;
 {
-  if (theAddress <= MKAddressAll || theAddress > MKAddressMK3MAg)
+  if (theAddress <= kIKMkAddressAll || theAddress > kIKMkAddressMK3MAg)
     return nil;
   return longVersions[theAddress];
 }
@@ -201,13 +201,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL) hasNaviCtrl {
-  return primaryDevice==MKAddressNC;
+  return primaryDevice==kIKMkAddressNC;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) activateNaviCtrl {
   
-  if(primaryDevice!=MKAddressAll && ![self hasNaviCtrl])
+  if(primaryDevice!=kIKMkAddressAll && ![self hasNaviCtrl])
     return;
     
   uint8_t bytes[5];
@@ -221,7 +221,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   NSData * data = [NSData dataWithBytes:&bytes length:6];
   [self sendRequest:data];
   
-  currentDevice=MKAddressNC;
+  currentDevice=kIKMkAddressNC;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,11 +232,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
   uint8_t byte=0;
   NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
-                               forAddress:MKAddressNC
+                               forAddress:kIKMkAddressNC
                            payloadForByte:byte];
   
   [self sendRequest:data];
-  currentDevice=MKAddressFC;
+  currentDevice=kIKMkAddressFC;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -247,11 +247,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
   uint8_t byte=1;
   NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
-                               forAddress:MKAddressNC
+                               forAddress:kIKMkAddressNC
                            payloadForByte:byte];
   
   [self sendRequest:data];
-  currentDevice=MKAddressMK3MAg;
+  currentDevice=kIKMkAddressMK3MAg;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -262,14 +262,45 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
   uint8_t byte=3;
   NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
-                               forAddress:MKAddressNC
+                               forAddress:kIKMkAddressNC
                            payloadForByte:byte];
   
   [self sendRequest:data];
-  currentDevice=MKAddressMKGPS;
+  currentDevice=kIKMkAddressMKGPS;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) requestSettingForIndex:(NSInteger)theIndex {
+  uint8_t index = theIndex;
+  
+  NSData * data = [NSData dataWithCommand:MKCommandReadSettingsRequest
+                               forAddress:kIKMkAddressFC
+                         payloadWithBytes:&index
+                                   length:1];
+  
+  [self sendRequest:data];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setActiveSetting:(NSUInteger)newActiveSetting
+{
+  uint8_t index = newActiveSetting;
+  NSData * data = [NSData dataWithCommand:MKCommandChangeSettingsRequest
+                               forAddress:kIKMkAddressFC
+                         payloadWithBytes:&index
+                                   length:1];
+  
+  [self sendRequest:data];
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) saveSetting:(IKParamSet*)setting {
+
+  NSData * payload = [setting data];
+  NSData * data = [payload dataWithCommand:MKCommandWriteSettingsRequest
+                                forAddress:kIKMkAddressFC];
+  [self sendRequest:data];
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark MKInputDelegate
@@ -277,7 +308,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 - (void) requestPrimaryDeviceVersion {
   NSData * data = [NSData dataWithCommand:MKCommandVersionRequest
-                               forAddress:MKAddressAll
+                               forAddress:kIKMkAddressAll
                          payloadWithBytes:NULL
                                    length:0];
   
@@ -307,8 +338,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 }
 
-- (void) setVersionsFrom:(NSDictionary *)d forAddress:(MKAddress)address  {
-  if (address != MKAddressAll) {
+- (void) setVersionsFrom:(NSDictionary *)d forAddress:(IKMkAddress)address  {
+  if (address != kIKMkAddressAll) {
     
     [shortVersions[address] release];
     shortVersions[address] = [[d objectForKey:kMKDataKeyVersion] retain];
@@ -329,7 +360,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     //    DLog(@"Data length %d",[strData length]);
     
     NSData * payload = [strData payload];
-    MKAddress address = [strData address];
+    IKMkAddress address = [strData address];
     NSDictionary * d = nil;
     NSString * n = nil;
     
@@ -381,10 +412,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
         break;
       case MKCommandVersionResponse:
       {
-        
         IKDeviceVersion* dv=[IKDeviceVersion versionWithData:payload forAddress:(IKMkAddress)address];
-        NSArray* err=[dv errorDescriptions];
-//        [dv release];
         n = MKVersionNotification;
         d = [payload decodeVersionResponseForAddress:address];
         [self setVersionsFrom:d forAddress:address];

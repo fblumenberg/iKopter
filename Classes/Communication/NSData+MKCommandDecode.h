@@ -24,13 +24,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MKDatatypes.h"
+#import "IKMkDatatypes.h"
 
 @interface NSData (MKCommandDecode)
 
 - (BOOL) isMkData;
 - (BOOL) isCrcOk;
-- (MKAddress) address;
+- (IKMkAddress) address;
 - (MKCommandId) command;
 
 - (NSData *) payload;

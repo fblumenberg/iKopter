@@ -68,15 +68,15 @@
     [segment setEnabled:NO forSegmentAtIndex:2];
   }
 
-  MKAddress currentDevice=[MKConnectionController sharedMKConnectionController].currentDevice;
+  IKMkAddress currentDevice=[MKConnectionController sharedMKConnectionController].currentDevice;
   switch (currentDevice) {
-    case MKAddressNC:
+    case kIKMkAddressNC:
       segment.selectedSegmentIndex=0;
       break;
-    case MKAddressFC:
+    case kIKMkAddressFC:
       segment.selectedSegmentIndex=1;
       break;
-    case MKAddressMK3MAg:
+    case kIKMkAddressMK3MAg:
       segment.selectedSegmentIndex=2;
       break;
     default:
@@ -152,7 +152,7 @@
   lcdReq[1] = 50;
 
   NSData * data = [NSData dataWithCommand:MKCommandLcdRequest
-                               forAddress:MKAddressFC
+                               forAddress:kIKMkAddressFC
                          payloadWithBytes:lcdReq
                                    length:2];
 
@@ -165,7 +165,7 @@
 
 - (void) lcdNotification:(NSNotification *)aNotification {
 
-  IKLcdDisplay* lcdDisplay=[[aNotification userInfo] objectForKey:kIKLcdDisplay];
+  IKLcdDisplay* lcdDisplay=[[aNotification userInfo] objectForKey:kIKDataKeyLcdDisplay];
   
   label.text = [lcdDisplay screenTextJoinedByString:@"\r\n"];
   

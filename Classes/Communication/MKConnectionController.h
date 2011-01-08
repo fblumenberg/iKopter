@@ -24,7 +24,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MKConnection.h"
-#import "MKDatatypes.h"
+#import "IKMkDatatypes.h"
+
 
 extern NSString * const MKConnectedNotification;
 extern NSString * const MKDisconnectedNotification;
@@ -49,6 +50,7 @@ extern NSString * const MKOsdNotification;
 
 
 @class MKHost;
+@class IKParamSet;
 
 @interface MKConnectionController : NSObject<MKConnectionDelegate> {
 
@@ -56,15 +58,15 @@ extern NSString * const MKOsdNotification;
   NSString * hostOrDevice;
   BOOL didPostConnectNotification;
 
-  MKAddress primaryDevice;
-  MKAddress currentDevice;
+  IKMkAddress primaryDevice;
+  IKMkAddress currentDevice;
   
   NSString * shortVersions[3];
   NSString * longVersions[3];
 }
 
-@property(readonly) MKAddress primaryDevice;
-@property(assign,readonly) MKAddress currentDevice;
+@property(readonly) IKMkAddress primaryDevice;
+@property(assign,readonly) IKMkAddress currentDevice;
 
 + (MKConnectionController *) sharedMKConnectionController;
 
@@ -81,9 +83,13 @@ extern NSString * const MKOsdNotification;
 - (void) activateMK3MAG;
 - (void) activateMKGPS;
 
+- (void) requestSettingForIndex:(NSInteger)theIndex;
+- (void) setActiveSetting:(NSUInteger)newActiveSetting;
+- (void) saveSetting:(IKParamSet*)setting;
 
-- (NSString *) shortVersionForAddress:(MKAddress)theAddress;
-- (NSString *) longVersionForAddress:(MKAddress)theAddress;
+
+- (NSString *) shortVersionForAddress:(IKMkAddress)theAddress;
+- (NSString *) longVersionForAddress:(IKMkAddress)theAddress;
 
 
 @end

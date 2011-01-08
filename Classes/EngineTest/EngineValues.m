@@ -103,7 +103,7 @@
   DLog("values e[0] = %d",values[0]);
   
   NSData * data = [NSData dataWithCommand:MKCommandEngineTestRequest
-                               forAddress:MKAddressAll
+                               forAddress:kIKMkAddressAll
                          payloadWithBytes:values
                                    length:16];
   

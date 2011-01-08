@@ -304,7 +304,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 
 - (NSData*) versionResponse;
 {
-  VersionInfo v;
+  IKMkVersionInfo v;
   v.SWMajor = 0;
   v.SWMinor = 78;
   v.ProtoMajor = 3; 
@@ -316,7 +316,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 
 - (NSData*) debugResponse;
 {
-  DebugOut d;
+  IKMkDebugOut d;
   NSData * payload = [NSData dataWithBytes:(void*)&d length:sizeof(d)];
   return payload;
 }
@@ -368,7 +368,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   
   NSData * newPayload = [screen dataUsingEncoding:NSASCIIStringEncoding];
   
-  NSData * rspData = [newPayload dataWithCommand:MKCommandLcdResponse forAddress:MKAddressFC];
+  NSData * rspData = [newPayload dataWithCommand:MKCommandLcdResponse forAddress:kIKMkAddressFC];
   
   if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
     [delegate didReadMkData:rspData];
@@ -398,7 +398,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   
   NSDictionary* d = [payload decodeReadSettingResponse];
   
-  IKParamSet* p= [d objectForKey:kIKParamSet]; 
+  IKParamSet* p= [d objectForKey:kIKDataKeyParamSet]; 
   
   NSUInteger index = [[p Index] unsignedIntValue];
   
@@ -440,7 +440,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   }
   
   NSData * data = [NSData dataWithCommand:MKCommandVersionRequest
-                               forAddress:MKAddressAll
+                               forAddress:kIKMkAddressAll
                          payloadWithBytes:NULL
                                    length:0];
   
@@ -460,7 +460,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   if ([data isCrcOk]) {
     
     NSData * payload = [data payload];
-    //    MKAddress address = [data address];
+    //    IKMkAddress address = [data address];
     
     NSData * rspPayload;
     MKCommandId rspCommand;  
@@ -520,7 +520,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
         return;
     }
     
-    NSData * rspData = [rspPayload dataWithCommand:rspCommand forAddress:MKAddressFC];
+    NSData * rspData = [rspPayload dataWithCommand:rspCommand forAddress:kIKMkAddressFC];
     
     if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
       [delegate didReadMkData:rspData];

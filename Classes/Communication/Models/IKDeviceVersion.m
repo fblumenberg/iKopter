@@ -88,7 +88,7 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
 - (NSArray*) errorDescriptions{
   NSMutableArray* a = [NSMutableArray arrayWithCapacity:0];
 
-  if(address==MKAddressFC){
+  if(address==kIKMkAddressFC){
     if((_version.HardwareError[0]&FC_ERROR0_GYRO_NICK)==FC_ERROR0_GYRO_NICK){
       [a addObject:NSLocalizedString(@"Hardware: Gyro NICK error",@"")];
     }
@@ -129,7 +129,7 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
       [a addObject:NSLocalizedString(@"Mixer setup error (check mixervalues)",@"")];
     }
   }
-  else if(address==MKAddressNC){
+  else if(address==kIKMkAddressNC){
     if((_version.HardwareError[0]&NC_ERROR0_SPI_RX)==NC_ERROR0_SPI_RX){
       [a addObject:NSLocalizedString(@"SPI: no data from Flight-Ctrl",@"")];
     }

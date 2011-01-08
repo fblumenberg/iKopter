@@ -22,46 +22,46 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-typedef enum {
-  MKAddressAll   =0,
-  MKAddressFC    =1,
-  MKAddressNC    =2,
-  MKAddressMK3MAg=3,
-  MKAddressMKGPS =0XFE
-} MKAddress;
+//typedef enum {
+//  kIKMkAddressAll   =0,
+//  kIKMkAddressFC    =1,
+//  kIKMkAddressNC    =2,
+//  kIKMkAddressMK3MAg=3,
+//  kIKMkAddressMKGPS =0XFE
+//} IKMkAddress;
+//
+//static const int kMaxDebugData = 32;
 
-static const int kMaxDebugData = 32;
+//typedef enum {
+//  MKCommandDebugValueRequest='d',
+//  MKCommandDebugValueResponse='D',
+//  MKCommandDebugLabelRequest='a',
+//  MKCommandDebugLabelResponse='A',
+//  MKCommandVersionRequest='v',
+//  MKCommandVersionResponse='V',
+//  MKCommandLcdMenuRequest='l',
+//  MKCommandLcdMenuResponse='L',
+//  MKCommandLcdRequest='h',
+//  MKCommandLcdResponse='H',
+//  MKCommandReadSettingsRequest='q',
+//  MKCommandReadSettingsResponse='Q',
+//  MKCommandWriteSettingsRequest='s',
+//  MKCommandWriteSettingsResponse='S',
+//  MKCommandChangeSettingsRequest='f',
+//  MKCommandChangeSettingsResponse='F',
+//  MKCommandChannelsValueRequest='p',
+//  MKCommandChannelsValueResponse='P',
+//  MKCommandMixerReadRequest='n',
+//  MKCommandMixerReadResponse='N',
+//  MKCommandMixerWriteRequest='m',
+//  MKCommandMixerWriteResponse='M',
+//  MKCommandRedirectRequest='u',
+//  MKCommandEngineTestRequest='t',
+//  MKCommandOsdRequest='o',
+//  MKCommandOsdResponse='O',
+//} MKCommandId;
 
-typedef enum {
-  MKCommandDebugValueRequest='d',
-  MKCommandDebugValueResponse='D',
-  MKCommandDebugLabelRequest='a',
-  MKCommandDebugLabelResponse='A',
-  MKCommandVersionRequest='v',
-  MKCommandVersionResponse='V',
-  MKCommandLcdMenuRequest='l',
-  MKCommandLcdMenuResponse='L',
-  MKCommandLcdRequest='h',
-  MKCommandLcdResponse='H',
-  MKCommandReadSettingsRequest='q',
-  MKCommandReadSettingsResponse='Q',
-  MKCommandWriteSettingsRequest='s',
-  MKCommandWriteSettingsResponse='S',
-  MKCommandChangeSettingsRequest='f',
-  MKCommandChangeSettingsResponse='F',
-  MKCommandChannelsValueRequest='p',
-  MKCommandChannelsValueResponse='P',
-  MKCommandMixerReadRequest='n',
-  MKCommandMixerReadResponse='N',
-  MKCommandMixerWriteRequest='m',
-  MKCommandMixerWriteResponse='M',
-  MKCommandRedirectRequest='u',
-  MKCommandEngineTestRequest='t',
-  MKCommandOsdRequest='o',
-  MKCommandOsdResponse='O',
-} MKCommandId;
-
-
+/*
 typedef struct
 {
   uint8_t SWMajor;
@@ -292,3 +292,4 @@ typedef struct
 #define FCFLAG_SPI_RX_ERR       0x40
 #define FCFLAG_I2CERR           0x80
 
+ */

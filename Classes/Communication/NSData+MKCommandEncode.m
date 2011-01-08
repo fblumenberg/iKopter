@@ -72,7 +72,7 @@ static NSData * encode64(NSData * inData){
 
 @implementation NSData (MKCommandEncode)
 
-- (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(MKAddress)aAddress;
+- (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(IKMkAddress)aAddress;
 {
   NSMutableData * frameData = [NSMutableData dataWithLength:3];
   
@@ -103,13 +103,13 @@ static NSData * encode64(NSData * inData){
   return frameData;
 }
 
-+ (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(MKAddress)aAddress payloadForByte:(uint8_t)byte {
++ (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(IKMkAddress)aAddress payloadForByte:(uint8_t)byte {
   NSData * payload = [NSData dataWithBytes:&byte length:1];
   return [payload dataWithCommand:aCommand forAddress:aAddress];
 }
 
 + (NSData *) dataWithCommand:(MKCommandId)aCommand
-                  forAddress:(MKAddress)aAddress
+                  forAddress:(IKMkAddress)aAddress
             payloadWithBytes:(const void *)bytes
                       length:(NSUInteger)length {
   NSData * payload = [NSData dataWithBytes:bytes length:length];

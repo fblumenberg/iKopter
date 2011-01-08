@@ -23,15 +23,15 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
-#import "MKDatatypes.h"
+#import "IKMkDatatypes.h"
 
 @interface NSData (MKPayloadDecode)
 
-- (NSDictionary *) decodeLcdMenuResponseForAddress:(MKAddress)address;
-- (NSDictionary *) decodeLcdResponseForAddress:(MKAddress)address;
-- (NSDictionary *) decodeVersionResponseForAddress:(MKAddress)theAddress;
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(MKAddress)address;
-- (NSDictionary *) decodeDebugDataResponseForAddress:(MKAddress)address;
+//- (NSDictionary *) decodeLcdMenuResponseForAddress:(IKMkAddress)address;
+- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
+- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)theAddress;
+- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
+- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
 - (NSDictionary *) decodeChannelsDataResponse;
 - (NSDictionary *) decodeOsdResponse;
 

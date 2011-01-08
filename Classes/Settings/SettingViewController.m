@@ -131,17 +131,10 @@
 - (void)saveSetting:(id)sender {
   
   DLog(@"save setting");
-  
-  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
 
   IASKSettingsStoreObject* store=(IASKSettingsStoreObject*)self.settingsStore;
-  IKParamSet* s=store.object;
-  NSData * payload = [s data];
-  
-  NSData * data = [payload dataWithCommand:MKCommandWriteSettingsRequest
-                                forAddress:MKAddressFC];
-  
-  [cCtrl sendRequest:data];
+  IKParamSet* setting=store.object;
+  [[MKConnectionController sharedMKConnectionController]saveSetting:setting];
 }
 
 - (void) writeSettingNotification:(NSNotification *)aNotification {
@@ -162,7 +155,7 @@
   uint8_t index = [self.setting.Index unsignedCharValue];
   
   NSData * data = [NSData dataWithCommand:MKCommandReadSettingsRequest
-                               forAddress:MKAddressFC
+                               forAddress:kIKMkAddressFC
                          payloadWithBytes:&index
                                    length:1];
   

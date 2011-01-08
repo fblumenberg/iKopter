@@ -28,7 +28,7 @@
 
 @interface IKParamSet: NSObject {
 
-  MkParamset _parameter;
+  IKMkParamset _parameter;
 }
 
 + (id)settingWithData:(NSData *)data;
