@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010-2011, Frank Blumenberg
+// Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,22 +22,14 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "AnalogValues.h"
 
-#import "IKMkDataTypes.h"
-
-@interface IKDebugData : NSObject {
-
-  IKMkAddress address;
-  IKMkDebugOut _data;
+@interface AnalogViewController : UITableViewController<AnalogValuesDelegate> {
+  
+  AnalogValues* values;
+  UISegmentedControl* segment;
 }
-
-@property(assign,readonly) IKMkAddress address;
-
-+ (id)dataWithData:(NSData *)data forAddress:(IKMkAddress)address;
-- (id)initWithData:(NSData*)data forAddress:(IKMkAddress)address;
-
-- (NSNumber*) analogValueAtIndex:(NSUInteger)index;
-- (BOOL) digitalValueAtIndex:(NSUInteger)index;
+- (IBAction) changeDevice;
 
 @end

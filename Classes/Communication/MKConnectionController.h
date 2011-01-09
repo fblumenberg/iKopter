@@ -26,7 +26,8 @@
 #import "MKConnection.h"
 #import "IKMkDatatypes.h"
 
-
+extern NSString * const MKFoundDeviceNotification;
+extern NSString * const MKDeviceChangedNotification;
 extern NSString * const MKConnectedNotification;
 extern NSString * const MKDisconnectedNotification;
 extern NSString * const MKDisconnectErrorNotification;
@@ -51,18 +52,21 @@ extern NSString * const MKOsdNotification;
 
 @class MKHost;
 @class IKParamSet;
+@class IKDeviceVersion;
 
 @interface MKConnectionController : NSObject<MKConnectionDelegate> {
 
   NSObject<MKConnection> * inputController;
   NSString * hostOrDevice;
+  
+  NSInteger connectionState;
+  NSInteger retryCount;
   BOOL didPostConnectNotification;
 
   IKMkAddress primaryDevice;
   IKMkAddress currentDevice;
   
-  NSString * shortVersions[3];
-  NSString * longVersions[3];
+  IKDeviceVersion * versions[3];
 }
 
 @property(readonly) IKMkAddress primaryDevice;
@@ -87,9 +91,6 @@ extern NSString * const MKOsdNotification;
 - (void) setActiveSetting:(NSUInteger)newActiveSetting;
 - (void) saveSetting:(IKParamSet*)setting;
 
-
-- (NSString *) shortVersionForAddress:(IKMkAddress)theAddress;
-- (NSString *) longVersionForAddress:(IKMkAddress)theAddress;
-
+- (IKDeviceVersion*) versionForAddress:(IKMkAddress)theAddress;
 
 @end

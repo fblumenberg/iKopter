@@ -86,6 +86,7 @@
                             action:@selector(reloadSetting:)] autorelease];
   
  	[self setToolbarItems:[NSArray arrayWithObjects:renameButton,spacer,reloadButton,nil]];
+
 }
 
 - (void)viewDidUnload {

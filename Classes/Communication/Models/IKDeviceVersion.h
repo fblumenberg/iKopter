@@ -38,11 +38,13 @@
 
 @property(assign,readonly) NSString* versionString;
 @property(assign,readonly) NSString* versionStringShort;
+@property(assign,readonly) NSString* deviceName;
 
 @property(readonly) BOOL hasError;
 
 
 + (id)versionWithData:(NSData *)data forAddress:(IKMkAddress)address;
 - (id)initWithData:(NSData*)data forAddress:(IKMkAddress)address;
-- (NSArray*) errorDescriptions;                         
+- (NSArray*) errorDescriptions;   
+- (NSString*) description;
 @end

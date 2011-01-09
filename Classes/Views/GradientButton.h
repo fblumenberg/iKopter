@@ -25,6 +25,9 @@
     // This defines the corner radius of the button
     CGFloat         cornerRadius;
     
+    // This defines the size and color of the stroke
+    CGFloat         strokeWeight;
+    UIColor         *strokeColor;
     
 @private
     CGGradientRef   normalGradient;
@@ -35,10 +38,15 @@
 @property (nonatomic, retain) NSArray *highlightGradientColors;
 @property (nonatomic, retain) NSArray *highlightGradientLocations;
 @property (nonatomic) CGFloat cornerRadius;
-
+@property (nonatomic) CGFloat strokeWeight;
+@property (nonatomic, retain) UIColor *strokeColor;
 - (void)useAlertStyle;
 - (void)useRedDeleteStyle;
 - (void)useWhiteStyle;
 - (void)useBlackStyle;
+- (void)useWhiteActionSheetStyle;
+- (void)useBlackActionSheetStyle;
 - (void)useSimpleOrangeStyle;
+- (void)useGreenConfirmStyle;
+
 @end

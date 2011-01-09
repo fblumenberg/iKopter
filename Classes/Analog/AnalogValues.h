@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010-2011, Frank Blumenberg
+// Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,23 +21,31 @@
 // THE SOFTWARE.
 //
 // ///////////////////////////////////////////////////////////////////////////////
-
 #import <Foundation/Foundation.h>
 
-#import "IKMkDataTypes.h"
+@protocol AnalogValuesDelegate
 
-@interface IKDebugData : NSObject {
+- (void) didReceiveValues;
+- (void) didReceiveLabelForIndexPath:(NSIndexPath *)indexPath;
+- (void) changed;
 
-  IKMkAddress address;
-  IKMkDebugOut _data;
+@end
+
+@interface AnalogValues : NSObject {
+
+  NSMutableArray * analogLabels;
+  NSMutableArray * debugData;
+  
+  int debugResponseCounter;
+  
+  id<AnalogValuesDelegate> _delegate;
 }
 
-@property(assign,readonly) IKMkAddress address;
+@property(assign) id<AnalogValuesDelegate> delegate;
 
-+ (id)dataWithData:(NSData *)data forAddress:(IKMkAddress)address;
-- (id)initWithData:(NSData*)data forAddress:(IKMkAddress)address;
-
-- (NSNumber*) analogValueAtIndex:(NSUInteger)index;
-- (BOOL) digitalValueAtIndex:(NSUInteger)index;
+-(NSUInteger) count;
+-(NSString*) labelAtIndexPath:(NSIndexPath *)indexPath;
+-(NSString*) valueAtIndexPath:(NSIndexPath *)indexPath;
+-(void) reloadAll;
 
 @end

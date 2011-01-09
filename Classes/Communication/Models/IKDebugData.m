@@ -54,12 +54,12 @@
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSUInteger) analogValueAtIndex:(NSUInteger)index {
+- (NSNumber*) analogValueAtIndex:(NSUInteger)index {
   if( index > kMaxDebugDataAnalog ) {
     NSLog(@"index %u out of bounds (%u) of %@", index, self);
     [NSException raise:NSRangeException format:@"analogValueAtIndex: Index out of bounds"];
   }
-  return _data.Analog[index];
+  return [NSNumber numberWithShort:_data.Analog[index]];
 }
 
 - (BOOL) digitalValueAtIndex:(NSUInteger)index {

@@ -15,6 +15,11 @@
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		BA7018DD12D63A120048790A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DB12D63A120048790A /* Icon.png */; };
 		BA7018DE12D63A120048790A /* Icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DC12D63A120048790A /* Icon@2.png */; };
+		BA701AA612D8C3EE0048790A /* AnalogValues.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA312D8C3EE0048790A /* AnalogValues.m */; };
+		BA701AA712D8C3EE0048790A /* AnalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA512D8C3EE0048790A /* AnalogViewController.m */; };
+		BA701C0812DA148D0048790A /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701C0712DA148D0048790A /* GradientButton.m */; };
+		BA701E3812DA5BB90048790A /* DeviceInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701E3612DA5BB90048790A /* DeviceInfoController.m */; };
+		BA701E3912DA5BB90048790A /* DeviceInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA701E3712DA5BB90048790A /* DeviceInfoController.xib */; };
 		BA71CC7512CFDA920029C5F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA71CC7412CFDA920029C5F7 /* Localizable.strings */; };
 		BA71CD0012D0BFC80029C5F7 /* iKopterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFD12D0BFC80029C5F7 /* iKopterAppDelegate.m */; };
 		BA71CD0112D0BFC80029C5F7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFF12D0BFC80029C5F7 /* MainViewController.m */; };
@@ -46,7 +51,6 @@
 		BA71CD5F12D0C0600029C5F7 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4612D0C0600029C5F7 /* IASKPSTextFieldSpecifierViewCell.xib */; };
 		BA71CD6012D0C0600029C5F7 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4712D0C0600029C5F7 /* IASKPSToggleSwitchSpecifierViewCell.xib */; };
 		BA71CD6112D0C0600029C5F7 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4812D0C0600029C5F7 /* IASKSpecifierValuesView.xib */; };
-		BA71CD6612D0C0740029C5F7 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD6312D0C0740029C5F7 /* GradientButton.m */; };
 		BA71CD6712D0C0740029C5F7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD6512D0C0740029C5F7 /* RootViewController.m */; };
 		BA71CD9F12D0C15D0029C5F7 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD9B12D0C15D0029C5F7 /* TTGlobalCore.m */; };
 		BA71CDA012D0C15D0029C5F7 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD9D12D0C15D0029C5F7 /* TTGlobalCorePaths.m */; };
@@ -101,6 +105,15 @@
 		8D1107310486CEB800E47090 /* iKopter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iKopter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BA7018DB12D63A120048790A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BA7018DC12D63A120048790A /* Icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2.png"; sourceTree = "<group>"; };
+		BA701AA212D8C3EE0048790A /* AnalogValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogValues.h; sourceTree = "<group>"; };
+		BA701AA312D8C3EE0048790A /* AnalogValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalogValues.m; sourceTree = "<group>"; };
+		BA701AA412D8C3EE0048790A /* AnalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogViewController.h; sourceTree = "<group>"; };
+		BA701AA512D8C3EE0048790A /* AnalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalogViewController.m; sourceTree = "<group>"; };
+		BA701C0612DA148D0048790A /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
+		BA701C0712DA148D0048790A /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientButton.m; sourceTree = "<group>"; };
+		BA701E3512DA5BB90048790A /* DeviceInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoController.h; sourceTree = "<group>"; };
+		BA701E3612DA5BB90048790A /* DeviceInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoController.m; sourceTree = "<group>"; };
+		BA701E3712DA5BB90048790A /* DeviceInfoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceInfoController.xib; sourceTree = "<group>"; };
 		BA71CC7612CFDA9B0029C5F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA71CC7712CFDA9F0029C5F7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA71CCFC12D0BFC80029C5F7 /* iKopterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iKopterAppDelegate.h; sourceTree = "<group>"; };
@@ -156,8 +169,6 @@
 		BA71CD4612D0C0600029C5F7 /* IASKPSTextFieldSpecifierViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IASKPSTextFieldSpecifierViewCell.xib; sourceTree = "<group>"; };
 		BA71CD4712D0C0600029C5F7 /* IASKPSToggleSwitchSpecifierViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IASKPSToggleSwitchSpecifierViewCell.xib; sourceTree = "<group>"; };
 		BA71CD4812D0C0600029C5F7 /* IASKSpecifierValuesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IASKSpecifierValuesView.xib; sourceTree = "<group>"; };
-		BA71CD6212D0C0740029C5F7 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
-		BA71CD6312D0C0740029C5F7 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientButton.m; sourceTree = "<group>"; };
 		BA71CD6412D0C0740029C5F7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		BA71CD6512D0C0740029C5F7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		BA71CD9912D0C15D0029C5F7 /* TTCorePreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCorePreprocessorMacros.h; sourceTree = "<group>"; };
@@ -253,6 +264,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BA701C0512DA148D0048790A /* Views */,
+				BA701AA112D8C3EE0048790A /* Analog */,
 				BA71D0AE12D267270029C5F7 /* Channels */,
 				BA71D0B312D267270029C5F7 /* EngineTest */,
 				BA71D0BA12D267270029C5F7 /* Mixer */,
@@ -325,6 +338,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BA701A9812D8C24D0048790A /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				BA71CDAC12D0C2660029C5F7 /* MKConnection.h */,
+				BA71CDB112D0C2660029C5F7 /* MKFakeConnection.h */,
+				BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */,
+				BA71CDB312D0C2660029C5F7 /* MKIpConnection.h */,
+				BA71CDB412D0C2660029C5F7 /* MKIpConnection.m */,
+				BA71CDB512D0C2660029C5F7 /* MKQmkIpConnection.h */,
+				BA71CDB612D0C2660029C5F7 /* MKQmkIpConnection.m */,
+			);
+			name = Connections;
+			sourceTree = "<group>";
+		};
+		BA701AA112D8C3EE0048790A /* Analog */ = {
+			isa = PBXGroup;
+			children = (
+				BA701AA212D8C3EE0048790A /* AnalogValues.h */,
+				BA701AA312D8C3EE0048790A /* AnalogValues.m */,
+				BA701AA412D8C3EE0048790A /* AnalogViewController.h */,
+				BA701AA512D8C3EE0048790A /* AnalogViewController.m */,
+			);
+			path = Analog;
+			sourceTree = "<group>";
+		};
+		BA701C0512DA148D0048790A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BA701C0612DA148D0048790A /* GradientButton.h */,
+				BA701C0712DA148D0048790A /* GradientButton.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BA71CCD112CFF1730029C5F7 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,14 +385,15 @@
 		BA71CCFB12D0BFC80029C5F7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				BA71CD6212D0C0740029C5F7 /* GradientButton.h */,
-				BA71CD6312D0C0740029C5F7 /* GradientButton.m */,
 				BA71CD6412D0C0740029C5F7 /* RootViewController.h */,
 				BA71CD6512D0C0740029C5F7 /* RootViewController.m */,
 				BA71CCFC12D0BFC80029C5F7 /* iKopterAppDelegate.h */,
 				BA71CCFD12D0BFC80029C5F7 /* iKopterAppDelegate.m */,
 				BA71CCFE12D0BFC80029C5F7 /* MainViewController.h */,
 				BA71CCFF12D0BFC80029C5F7 /* MainViewController.m */,
+				BA701E3512DA5BB90048790A /* DeviceInfoController.h */,
+				BA701E3612DA5BB90048790A /* DeviceInfoController.m */,
+				BA701E3712DA5BB90048790A /* DeviceInfoController.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -460,18 +508,12 @@
 		BA71CDA812D0C2660029C5F7 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
+				BA701A9812D8C24D0048790A /* Connections */,
 				BA71CDA912D0C2660029C5F7 /* Lowlevel */,
-				BA71CDAC12D0C2660029C5F7 /* MKConnection.h */,
 				BA71CDAD12D0C2660029C5F7 /* MKConnectionController.h */,
 				BA71CDAE12D0C2660029C5F7 /* MKConnectionController.m */,
 				BA71CDAF12D0C2660029C5F7 /* MKDataConstants.h */,
 				BA71CDB012D0C2660029C5F7 /* MKDatatypes.h */,
-				BA71CDB112D0C2660029C5F7 /* MKFakeConnection.h */,
-				BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */,
-				BA71CDB312D0C2660029C5F7 /* MKIpConnection.h */,
-				BA71CDB412D0C2660029C5F7 /* MKIpConnection.m */,
-				BA71CDB512D0C2660029C5F7 /* MKQmkIpConnection.h */,
-				BA71CDB612D0C2660029C5F7 /* MKQmkIpConnection.m */,
 				BA71CDB712D0C2660029C5F7 /* Models */,
 				BA71CDC512D0C2660029C5F7 /* NSData+MKCommandDecode.h */,
 				BA71CDC612D0C2660029C5F7 /* NSData+MKCommandDecode.m */,
@@ -645,6 +687,7 @@
 				BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */,
 				BA7018DD12D63A120048790A /* Icon.png in Resources */,
 				BA7018DE12D63A120048790A /* Icon@2.png in Resources */,
+				BA701E3912DA5BB90048790A /* DeviceInfoController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +722,6 @@
 				BA71CD5812D0C0600029C5F7 /* IASKSlider.m in Sources */,
 				BA71CD5912D0C0600029C5F7 /* IASKSwitch.m in Sources */,
 				BA71CD5A12D0C0600029C5F7 /* IASKTextField.m in Sources */,
-				BA71CD6612D0C0740029C5F7 /* GradientButton.m in Sources */,
 				BA71CD6712D0C0740029C5F7 /* RootViewController.m in Sources */,
 				BA71CD9F12D0C15D0029C5F7 /* TTGlobalCore.m in Sources */,
 				BA71CDA012D0C15D0029C5F7 /* TTGlobalCorePaths.m in Sources */,
@@ -710,6 +752,10 @@
 				BA71D0C412D267270029C5F7 /* EngineValues.m in Sources */,
 				BA71D0C512D267270029C5F7 /* MixerTableViewCell.m in Sources */,
 				BA71D0C712D267270029C5F7 /* MixerViewController.m in Sources */,
+				BA701AA612D8C3EE0048790A /* AnalogValues.m in Sources */,
+				BA701AA712D8C3EE0048790A /* AnalogViewController.m in Sources */,
+				BA701C0812DA148D0048790A /* GradientButton.m in Sources */,
+				BA701E3812DA5BB90048790A /* DeviceInfoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

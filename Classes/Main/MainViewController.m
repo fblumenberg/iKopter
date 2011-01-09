@@ -29,7 +29,7 @@
 
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
-
+#import "IKDeviceVersion.h"
 
 @implementation MainViewController
 
@@ -149,6 +149,79 @@
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (void) deviceInfoControllerDidFinish:(DeviceInfoController*)controller{
+  [self dismissModalViewControllerAnimated:YES];
+}
+- (void)showInfoForDevice:(id)sender {
+  GradientButton* btn=(GradientButton*)sender;
+  IKMkAddress address=(IKMkAddress)btn.tag;
+  IKDeviceVersion* v=[[MKConnectionController sharedMKConnectionController] versionForAddress:address];
+
+  if(v){
+    NSString *msg;
+    
+    if([v hasError])
+      msg = [[v errorDescriptions] componentsJoinedByString:@"\n"];
+    else 
+      msg = NSLocalizedString(@"No Errors",@"");
+    
+    UIAlertView *alert = [[UIAlertView alloc] 
+                          initWithTitle:v.versionString 
+                          message:msg 
+                          delegate:self 
+                          cancelButtonTitle:NSLocalizedString(@"OK",@"") 
+                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+//    [msg release];
+  }
+  
+//  DeviceInfoController* devInfoController = [[DeviceInfoController alloc] initWithNibName:@"DeviceInfoController" bundle:nil];
+//  devInfoController.delegate=self;
+//  [self presentModalViewController:devInfoController animated:YES];
+//  [devInfoController release];
+  
+  
+}
+
+-(IBAction)dismissDeviceView:(id)sender {
+  [self dismissModalViewControllerAnimated:YES];
+}
+
+- (UIBarButtonItem*) toolbarItemForDevice:(IKMkAddress)address{
+  
+  IKDeviceVersion* v = [[MKConnectionController sharedMKConnectionController] versionForAddress:address];
+  if(!v)
+    return [[[UIBarButtonItem alloc]
+             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+             target:nil
+             action:nil] autorelease];
+  
+  GradientButton* btn=[[GradientButton  alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 33.0)];
+  if ([v hasError])
+    [btn useRedDeleteStyle];
+  else
+    [btn useGreenConfirmStyle];
+  
+  [btn setTitle:v.deviceName forState:UIControlStateNormal];
+  btn.titleLabel.font = [UIFont  boldSystemFontOfSize:12];
+  btn.tag=address;
+  [btn addTarget:self action:@selector(showInfoForDevice:) forControlEvents:UIControlEventTouchUpInside];
+  
+  return [[[UIBarButtonItem alloc] initWithCustomView:btn] autorelease];
+}
+
+- (void) initToolbar {
+
+  NSMutableArray* items=[NSMutableArray array];
+  
+  [items addObject:[self toolbarItemForDevice:kIKMkAddressNC]];
+  [items addObject:[self toolbarItemForDevice:kIKMkAddressFC]];
+  [items addObject:[self toolbarItemForDevice:kIKMkAddressMK3MAg]];
+ 
+  
+  [self setToolbarItems:items];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -201,6 +274,7 @@
 
 - (void)userDidDisconnect;
 {
+  [self setToolbarItems:[NSArray array]];
   [[MKConnectionController sharedMKConnectionController] stop];
 }
 
@@ -242,6 +316,9 @@
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];
   
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
+
+  
+  [self initToolbar];
 }
 
 - (void)disconnected:(NSNotification *)aNotification;

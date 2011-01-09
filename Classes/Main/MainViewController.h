@@ -25,6 +25,7 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStore.h"
+#import "DeviceInfoController.h"
 
 typedef enum{
   MKConnectionStateDisconnected,
@@ -34,7 +35,7 @@ typedef enum{
 
 @class MKHost;
 
-@interface MainViewController : IASKAppSettingsViewController {
+@interface MainViewController : IASKAppSettingsViewController<DeviceInfoControllerDelegate> {
   
   MKConnectionState connectionState;
   MKHost* _host;
@@ -43,6 +44,9 @@ typedef enum{
 @property(nonatomic,retain) MKHost* host;
 
 - (id)initWithHost:(MKHost*)theHost;
+
+-(IBAction)dismissDeviceView:(id)sender;
+
 
 - (void)userDidDisconnect;
 - (void)userDidCancelLastConnectRequest;

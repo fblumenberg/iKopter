@@ -42,6 +42,10 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
   return (_version.HardwareError[0]>0||_version.HardwareError[1]>0);
 }
 
+- (NSString*) deviceName {
+  return HardwareType[address];
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,16 +63,16 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
     memcpy(&_version,[data bytes],sizeof(_version));
     
     versionString = [[NSString stringWithFormat:@"%@ %d.%d %c", 
-                             HardwareType[address], 
-                             _version.SWMajor, 
-                             _version.SWMinor, 
-                             (_version.SWPatch + 'a')] retain];
+                      HardwareType[address], 
+                      _version.SWMajor, 
+                      _version.SWMinor, 
+                      (_version.SWPatch + 'a')] retain];
     
     
     versionStringShort = [[NSString stringWithFormat:@"%d.%d%c", 
-                              _version.SWMajor, 
-                              _version.SWMinor, 
-                              (_version.SWPatch + 'a')] retain];
+                           _version.SWMajor, 
+                           _version.SWMinor, 
+                           (_version.SWPatch + 'a')] retain];
     
   }
   return self;
@@ -81,13 +85,27 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
 	[super dealloc];
 }
 
+- (NSString*) description {
+  return versionString;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray*) errorDescriptions{
   NSMutableArray* a = [NSMutableArray arrayWithCapacity:0];
-
+  
+  if([self hasError]){
+    
+    [a addObject:  [NSString stringWithFormat:@"%02x %02x %02x %02x %02x", 
+                    _version.HardwareError[0],
+                    _version.HardwareError[1],
+                    _version.HardwareError[2],
+                    _version.HardwareError[3],
+                    _version.HardwareError[4]]];
+  }
+  
   if(address==kIKMkAddressFC){
     if((_version.HardwareError[0]&FC_ERROR0_GYRO_NICK)==FC_ERROR0_GYRO_NICK){
       [a addObject:NSLocalizedString(@"Hardware: Gyro NICK error",@"")];
@@ -129,17 +147,17 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
       [a addObject:NSLocalizedString(@"Mixer setup error (check mixervalues)",@"")];
     }
   }
-  else if(address==kIKMkAddressNC){
+  if(address==kIKMkAddressNC){
     if((_version.HardwareError[0]&NC_ERROR0_SPI_RX)==NC_ERROR0_SPI_RX){
       [a addObject:NSLocalizedString(@"SPI: no data from Flight-Ctrl",@"")];
     }
     if((_version.HardwareError[0]&NC_ERROR0_COMPASS_RX)==NC_ERROR0_COMPASS_RX){
       [a addObject:NSLocalizedString(@"no data from MK3Mag",@"")];
     }
-    if((_version.HardwareError[0]&NC_ERROR0_GPS_RX)==NC_ERROR0_GPS_RX){
+    if((_version.HardwareError[0]&NC_ERROR0_FC_INCOMPATIBLE)==NC_ERROR0_FC_INCOMPATIBLE){
       [a addObject:NSLocalizedString(@"Flight-Ctrl software incompatible",@"")];
     }
-    if((_version.HardwareError[0]&NC_ERROR0_GPS_RX)==NC_ERROR0_GPS_RX){
+    if((_version.HardwareError[0]&NC_ERROR0_COMPASS_INCOMPATIBLE)==NC_ERROR0_COMPASS_INCOMPATIBLE){
       [a addObject:NSLocalizedString(@"MK3Mag software incompatible",@"")];
     }
     if((_version.HardwareError[0]&NC_ERROR0_GPS_RX)==NC_ERROR0_GPS_RX){
@@ -149,7 +167,7 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
       [a addObject:NSLocalizedString(@"invalid compass value (MK3Mag not calibrated ?)",@"")];
     }
   }
-
+  
   return a;
 }
 

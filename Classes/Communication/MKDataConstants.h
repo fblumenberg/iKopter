@@ -22,19 +22,12 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-//#define kHostnameKey @"hostname" 
-//#define kHostportKey @"hostport" 
-//#define kUseDummyConnKey @"usedummy" 
-//#define kUseConnClassKey @"useconnclass" 
-
-
 #define kMKDataKeyVersion      @"version"
 #define kMKDataKeyVersionShort @"versionShort"
 #define kMKDataKeyMenuItem     @"menuItem"
 #define kMKDataKeyMaxMenuItem  @"maxMenuItem"
 #define kMKDataKeyMenuRows     @"menuRows"
 
-#define kMKDataKeyDebugData    @"debugData"
 #define kMKDataKeyIndex        @"index"
 #define kMKDataKeyChannels     @"channels"
 
@@ -43,6 +36,7 @@
 
 #define kMKDataKeyAddress      @"address"
 
+#define kIKDataKeyVersion      @"IKVersion"
 #define kIKDataKeyDebugLabel   @"IKDebugLabel"
 #define kIKDataKeyLcdDisplay   @"IKLcdDisplay"
 #define kIKDataKeyParamSet     @"IKParamSet"

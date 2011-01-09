@@ -29,9 +29,8 @@
 #import "IKLcdDisplay.h"
 #import "IKDebugData.h"
 #import "IKDebugLabel.h"
+#import "IKDeviceVersion.h"
  
-static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"MK3Mag" };
-
 @implementation NSData (MKPayloadDecode)
 
 //-------------------------------------------------------------------------------------------
@@ -101,22 +100,8 @@ static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl
 //-------------------------------------------------------------------------------------------
 - (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)address;
 {
-  const IKMkVersionInfo * version = [self bytes];
-  NSNumber* theAddress=[NSNumber numberWithInt:address];
-  
-  NSString * versionStr = [NSString stringWithFormat:@"%@ %d.%d %c", 
-                           HardwareType[address], 
-                           version->SWMajor, 
-                           version->SWMinor, 
-                           (version->SWPatch + 'a')];
-  
-  NSString * versionStrShort = [NSString stringWithFormat:@"%d.%d%c", 
-                                version->SWMajor, 
-                                version->SWMinor, 
-                                (version->SWPatch + 'a')];
-  
-  return [NSDictionary dictionaryWithObjectsAndKeys:versionStr, kMKDataKeyVersion, 
-          versionStrShort, kMKDataKeyVersionShort, theAddress, kMKDataKeyAddress, nil];
+  IKDeviceVersion* dv=[IKDeviceVersion versionWithData:self forAddress:(IKMkAddress)address];
+  return [NSDictionary dictionaryWithObjectsAndKeys:dv, kIKDataKeyVersion, nil];
 }
 
 - (NSDictionary *) decodeChannelsDataResponse {

@@ -35,7 +35,8 @@
 #import "IKParamSet.h"
 
 // ///////////////////////////////////////////////////////////////////////////////
-
+NSString * const MKFoundDeviceNotification = @"MKFoundDeviceNotification";
+NSString * const MKDeviceChangedNotification = @"MKDeviceChangedNotification";
 NSString * const MKConnectedNotification = @"MKConnectedNotification";
 NSString * const MKDisconnectedNotification = @"MKDisconnectedNotification";
 NSString * const MKDisconnectErrorNotification = @"MKDisconnectErrorNotification";
@@ -56,6 +57,33 @@ NSString * const MKWriteMixerNotification = @"MKWriteMixerNotification";
 
 NSString * const MKOsdNotification = @"MKOsdNotification";
 
+
+// ///////////////////////////////////////////////////////////////////////////////
+
+#define kConnectionStateIdle 0
+#define kConnectionStateWaitNC 1
+#define kConnectionStateWaitFC 2
+#define kConnectionStateWaitNC_2 3
+#define kConnectionStateWaitMK3MAG 4
+#define kConnectionDeviceChecked 5
+
+// ///////////////////////////////////////////////////////////////////////////////
+@interface MKConnectionController (private)
+- (void)handleMkResponse:(MKCommandId) command 
+             withPayload:(NSData*)payload 
+              forAddress:(IKMkAddress)address;
+
+- (void)handleMkResponseForDeviceCheck:(MKCommandId) command 
+                           withPayload:(NSData*)payload 
+                            forAddress:(IKMkAddress)address;
+
+- (void) clearVersions;
+- (void) setVersion:(IKDeviceVersion*)v;
+- (void) requestDeviceVersion;
+- (void) nextConnectAction;
+
+@end
+
 // ///////////////////////////////////////////////////////////////////////////////
 
 @implementation MKConnectionController
@@ -68,48 +96,6 @@ NSString * const MKOsdNotification = @"MKOsdNotification";
 @synthesize primaryDevice;
 @synthesize currentDevice;
 
--(void) setCurrentDevice:(IKMkAddress)theAddress {
-  
-//  if(primaryDevice==kIKMkAddressNC) {
-    if(theAddress != currentDevice) {
-      currentDevice=theAddress;
-      
-      if(currentDevice==kIKMkAddressNC)
-      {
-        uint8_t bytes[5];
-        bytes[0] = 0x1B;
-        bytes[1] = 0x1B;
-        bytes[2] = 0x55;
-        bytes[3] = 0xAA;
-        bytes[4] = 0x00;
-        bytes[5] = '\r';
-        
-        NSData * data = [NSData dataWithBytes:&bytes length:6];
-        
-        [self sendRequest:data];
-        
-      }
-      else {
-        uint8_t byte=0;
-
-        switch (currentDevice) {
-          case kIKMkAddressFC:
-            byte=0;
-            break;
-          case kIKMkAddressMK3MAg:
-            byte=1;
-            break;
-        }
-
-        NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
-                                     forAddress:kIKMkAddressNC
-                                 payloadForByte:byte];
-        
-        [self sendRequest:data];
-      }
-    }
- // }
-}
 
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
@@ -118,13 +104,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 - (void) dealloc {
   [hostOrDevice release];
+  
+  [self clearVersions];
   [inputController release];
-  [shortVersions[kIKMkAddressFC] release];
-  [shortVersions[kIKMkAddressNC] release];
-  [shortVersions[kIKMkAddressMK3MAg] release];
-  [longVersions[kIKMkAddressMK3MAg] release];
-  [longVersions[kIKMkAddressNC] release];
-  [longVersions[kIKMkAddressMK3MAg] release];
   [super dealloc];
 }
 
@@ -141,7 +123,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     
     [inputController release];
     inputController = [[nsclass alloc] initWithDelegate:self];
-
+    
     [hostOrDevice release];
     hostOrDevice = [NSString stringWithFormat:@"%@:%d",host.address,host.port];
     [hostOrDevice retain];
@@ -150,6 +132,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     
     currentDevice=kIKMkAddressAll;
     primaryDevice=kIKMkAddressAll;
+    connectionState=kConnectionStateIdle;
     
     NSError * err = nil;
     if (![inputController connectTo:hostOrDevice error:&err]) {
@@ -164,8 +147,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     [inputController disconnect];
   }
   
-//  self.inputController=nil;
-
+  //  self.inputController=nil;
+  
 }
 
 - (BOOL) isRunning;
@@ -178,38 +161,33 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   DLog(@"%@",data);
   NSString * msg = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
   DLog(@"%@", msg);
-
+  
   [inputController writeMkData:data];
 }
 
-- (NSString *) shortVersionForAddress:(IKMkAddress)theAddress;
+- (IKDeviceVersion *) versionForAddress:(IKMkAddress)theAddress;
 {
   if (theAddress <= kIKMkAddressAll || theAddress > kIKMkAddressMK3MAg)
     return nil;
-  return shortVersions[theAddress];
+  return versions[theAddress];
 }
 
-- (NSString *) longVersionForAddress:(IKMkAddress)theAddress;
-{
-  if (theAddress <= kIKMkAddressAll || theAddress > kIKMkAddressMK3MAg)
-    return nil;
-  return longVersions[theAddress];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL) hasNaviCtrl {
-  return primaryDevice==kIKMkAddressNC;
+  return versions[kIKMkAddressNC]!=nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) activateNaviCtrl {
   
-  if(primaryDevice!=kIKMkAddressAll && ![self hasNaviCtrl])
-    return;
-    
+  //  if(primaryDevice!=kIKMkAddressAll && ![self hasNaviCtrl])
+  //    return;
+  
+  DLog("Activate the NaviControl");
   uint8_t bytes[5];
   bytes[0] = 0x1B;
   bytes[1] = 0x1B;
@@ -226,10 +204,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) activateFlightCtrl {
-
-  if(![self hasNaviCtrl])
-    return;
-
+  
+  //  if(![self hasNaviCtrl])
+  //    return;
+  
+  DLog("Activate the FlightCtrl");
+  
   uint8_t byte=0;
   NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
                                forAddress:kIKMkAddressNC
@@ -241,10 +221,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) activateMK3MAG {
-
-  if(![self hasNaviCtrl])
-    return;
-
+  
+  //  if(![self hasNaviCtrl])
+  //    return;
+  
+  DLog("Activate the MK3MAG");
+  
   uint8_t byte=1;
   NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
                                forAddress:kIKMkAddressNC
@@ -256,10 +238,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) activateMKGPS {
-
+  
   if(![self hasNaviCtrl])
     return;
-
+  
   uint8_t byte=3;
   NSData * data = [NSData dataWithCommand:MKCommandRedirectRequest
                                forAddress:kIKMkAddressNC
@@ -295,7 +277,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) saveSetting:(IKParamSet*)setting {
-
+  
   NSData * payload = [setting data];
   NSData * data = [payload dataWithCommand:MKCommandWriteSettingsRequest
                                 forAddress:kIKMkAddressFC];
@@ -306,47 +288,24 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 #pragma mark MKInputDelegate
 
 
-- (void) requestPrimaryDeviceVersion {
-  NSData * data = [NSData dataWithCommand:MKCommandVersionRequest
-                               forAddress:kIKMkAddressAll
-                         payloadWithBytes:NULL
-                                   length:0];
-  
-  [self sendRequest:data];
-}
-
 - (void) didConnectTo:(NSString *)hostOrDevice {
-  
-  [self activateNaviCtrl];
-  [self performSelector:@selector(requestPrimaryDeviceVersion) withObject:self afterDelay:0.1];
+  [self nextConnectAction];
 }
 
 - (void) willDisconnectWithError:(NSError *)err {
   NSDictionary * d = [NSDictionary dictionaryWithObjectsAndKeys:err, @"error", nil];
-
+  
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-
+  
   [nc postNotificationName:MKDisconnectErrorNotification object:self userInfo:d];
 }
 
 - (void) didDisconnect {
-  NSDictionary * d = nil;
-
+  [self clearVersions];
+  
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-
-  [nc postNotificationName:MKDisconnectedNotification object:self userInfo:d];
-
-}
-
-- (void) setVersionsFrom:(NSDictionary *)d forAddress:(IKMkAddress)address  {
-  if (address != kIKMkAddressAll) {
-    
-    [shortVersions[address] release];
-    shortVersions[address] = [[d objectForKey:kMKDataKeyVersion] retain];
-    
-    [longVersions[address] release];
-    longVersions[address] = [[d objectForKey:kMKDataKeyVersionShort] retain];
-  }
+  [nc postNotificationName:MKDisconnectedNotification object:self userInfo:nil];
+  
 }
 
 - (void) didReadMkData:(NSData *)data {
@@ -361,84 +320,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     
     NSData * payload = [strData payload];
     IKMkAddress address = [strData address];
-    NSDictionary * d = nil;
-    NSString * n = nil;
-    
-    switch ([strData command]) {
-      case MKCommandLcdMenuResponse:
-        n = MKLcdMenuNotification;
-        d = [payload decodeLcdMenuResponseForAddress:address];
-        break;
-      case MKCommandLcdResponse:
-        n = MKLcdNotification;
-        d = [payload decodeLcdResponseForAddress:address];
-        break;
-      case MKCommandDebugLabelResponse:
-        n = MKDebugLabelNotification;
-        d = [payload decodeAnalogLabelResponseForAddress:address];
-        break;
-      case MKCommandDebugValueResponse:
-        n = MKDebugDataNotification;
-        d = [payload decodeDebugDataResponseForAddress:address];
-        break;
-      case MKCommandChannelsValueResponse:
-        n = MKChannelValuesNotification;
-        d = [payload decodeChannelsDataResponse];
-        break;
-      case MKCommandReadSettingsResponse:
-        n = MKReadSettingNotification;
-        d = [payload decodeReadSettingResponse];
-        break;
-      case MKCommandWriteSettingsResponse:
-        n = MKWriteSettingNotification;
-        d = [payload decodeWriteSettingResponse];
-        break;
-      case MKCommandMixerReadResponse:
-        n = MKReadMixerNotification;
-        d = [payload decodeMixerReadResponse];
-        break;
-      case MKCommandMixerWriteResponse:
-        n = MKWriteMixerNotification;
-        d = [payload decodeMixerWriteResponse];
-        break;
-        
-      case MKCommandChangeSettingsResponse:
-        n = MKChangeSettingNotification;
-        d = [payload decodeChangeSettingResponse];
-        break;
-      case MKCommandOsdResponse:
-        n = MKOsdNotification;
-        d = [payload decodeOsdResponse];
-        break;
-      case MKCommandVersionResponse:
-      {
-        IKDeviceVersion* dv=[IKDeviceVersion versionWithData:payload forAddress:(IKMkAddress)address];
-        n = MKVersionNotification;
-        d = [payload decodeVersionResponseForAddress:address];
-        [self setVersionsFrom:d forAddress:address];
-        if (!didPostConnectNotification) {
-          
-          currentDevice=address;
-          primaryDevice=address;
-          DLog(@"Connected to primaryDevice %d, currentDevice %d",primaryDevice,currentDevice);
-          
-          NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-          [nc postNotificationName:MKConnectedNotification object:self userInfo:nil];
-        }
-      }
-        break;
-      default:
-        break;
+    if (address!=currentDevice) {
+      currentDevice=address;
+      [[NSNotificationCenter defaultCenter] postNotificationName:MKDeviceChangedNotification 
+                                                          object:self 
+                                                        userInfo:nil];
     }
     
-    if (d)
-      DLog(@"(%d) %@", [d retainCount],d );
-    
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName:n object:self userInfo:d];
-    
-    //    if (d)
-    //      DLog(@"(%d)", [d retainCount] );
+    if (connectionState==kConnectionDeviceChecked)
+      [self handleMkResponse:[data command] withPayload:payload forAddress:address];
+    else
+      [self handleMkResponseForDeviceCheck:[data command] withPayload:payload forAddress:address];
     
   } else {
     NSString * msg = [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease];
@@ -448,4 +340,194 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 @end
 
+//////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+@implementation MKConnectionController (private)
+
+- (void) clearVersions {
+  
+  [versions[kIKMkAddressFC] release];
+  [versions[kIKMkAddressNC] release];
+  [versions[kIKMkAddressMK3MAg] release];
+  
+  versions[kIKMkAddressFC]=nil;
+  versions[kIKMkAddressNC]=nil;
+  versions[kIKMkAddressMK3MAg]=nil;
+}
+
+- (void) setVersion:(IKDeviceVersion*)v {
+  
+  if (v.address > kIKMkAddressAll || v.address <= kIKMkAddressMK3MAg){
+    [versions[v.address] release];  
+    versions[v.address]=[v retain];
+  }
+}
+
+- (void) requestDeviceVersion {
+  NSData * data = [NSData dataWithCommand:MKCommandVersionRequest
+                               forAddress:kIKMkAddressAll
+                         payloadWithBytes:NULL
+                                   length:0];
+  
+  [self sendRequest:data];
+}
+
+
+- (void) nextConnectAction {
+  DLog(@"Next connection action, current state is %d",connectionState);
+  switch (connectionState) {
+    case kConnectionStateIdle:
+      retryCount=0;
+      connectionState=kConnectionStateWaitNC;
+      [self activateNaviCtrl];
+      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
+      [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:6.0];
+      break;
+    case kConnectionStateWaitNC:
+      connectionState=kConnectionStateWaitFC;
+      [self activateFlightCtrl];
+      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+      [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+      break;
+    case kConnectionStateWaitFC:
+      connectionState=kConnectionStateWaitNC_2;
+      [self activateNaviCtrl];
+      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+      [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+      break;
+    case kConnectionStateWaitNC_2:
+      connectionState=kConnectionStateWaitMK3MAG;
+      [self activateMK3MAG];
+      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+      [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+      break;
+    case kConnectionStateWaitMK3MAG:
+      connectionState=kConnectionDeviceChecked;
+      NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+      [nc postNotificationName:MKConnectedNotification object:self userInfo:nil];
+      break;
+    default:
+      break;
+  }
+  DLog(@"Next connection action done, current state is %d",connectionState);
+}
+
+- (void) connectionTimeout {
+  DLog(@"connection timeout, retry count %d",retryCount);
+  if (++retryCount>3) {
+    [self stop];
+  }
+  else {
+    switch (connectionState) {
+      case kConnectionStateWaitNC:
+        connectionState=kConnectionStateWaitNC;
+        [self activateNaviCtrl];
+        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
+        [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:6.0];
+        break;
+      case kConnectionStateWaitFC:
+        connectionState=kConnectionStateWaitFC;
+        [self activateFlightCtrl];
+        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+        [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+        break;
+      case kConnectionStateWaitNC_2:
+        connectionState=kConnectionStateWaitNC_2;
+        [self activateNaviCtrl];
+        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+        [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+        break;
+      case kConnectionStateWaitMK3MAG:
+        connectionState=kConnectionStateWaitMK3MAG;
+        [self activateMK3MAG];
+        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+        [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+        break;
+    }
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)handleMkResponse:(MKCommandId) command withPayload:(NSData*)payload forAddress:(IKMkAddress)address {
+  NSDictionary * d = nil;
+  NSString * n = nil;
+  
+  switch (command) {
+    case MKCommandLcdMenuResponse:
+      n = MKLcdMenuNotification;
+      d = [payload decodeLcdMenuResponseForAddress:address];
+      break;
+    case MKCommandLcdResponse:
+      n = MKLcdNotification;
+      d = [payload decodeLcdResponseForAddress:address];
+      break;
+    case MKCommandDebugLabelResponse:
+      n = MKDebugLabelNotification;
+      d = [payload decodeAnalogLabelResponseForAddress:address];
+      break;
+    case MKCommandDebugValueResponse:
+      n = MKDebugDataNotification;
+      d = [payload decodeDebugDataResponseForAddress:address];
+      break;
+    case MKCommandChannelsValueResponse:
+      n = MKChannelValuesNotification;
+      d = [payload decodeChannelsDataResponse];
+      break;
+    case MKCommandReadSettingsResponse:
+      n = MKReadSettingNotification;
+      d = [payload decodeReadSettingResponse];
+      break;
+    case MKCommandWriteSettingsResponse:
+      n = MKWriteSettingNotification;
+      d = [payload decodeWriteSettingResponse];
+      break;
+    case MKCommandMixerReadResponse:
+      n = MKReadMixerNotification;
+      d = [payload decodeMixerReadResponse];
+      break;
+    case MKCommandMixerWriteResponse:
+      n = MKWriteMixerNotification;
+      d = [payload decodeMixerWriteResponse];
+      break;
+    case MKCommandChangeSettingsResponse:
+      n = MKChangeSettingNotification;
+      d = [payload decodeChangeSettingResponse];
+      break;
+    case MKCommandOsdResponse:
+      n = MKOsdNotification;
+      d = [payload decodeOsdResponse];
+      break;
+    case MKCommandVersionResponse:
+      n = MKVersionNotification;
+      d = [payload decodeVersionResponseForAddress:address];
+      break;
+    default:
+      break;
+  }
+  
+  if (d)
+    DLog(@"(%d) %@", [d retainCount],d );
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:n object:self userInfo:d];
+}
+
+- (void)handleMkResponseForDeviceCheck:(MKCommandId) command 
+                           withPayload:(NSData*)payload 
+                            forAddress:(IKMkAddress)address {
+  
+  switch (command) {
+      
+    case MKCommandVersionResponse:
+      [NSObject cancelPreviousPerformRequestsWithTarget:self];
+      [self setVersion:[IKDeviceVersion versionWithData:payload forAddress:(IKMkAddress)address]];
+      DLog(@"Got a device version %@",[self versionForAddress:address]);
+      [self nextConnectAction];
+      break;
+    default:
+      DLog(@"Ignore the command '%c' from address %d",command,address);
+      break;
+  }
+}
+
+@end
 
