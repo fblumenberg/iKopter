@@ -453,10 +453,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   NSString * n = nil;
   
   switch (command) {
-    case MKCommandLcdMenuResponse:
-      n = MKLcdMenuNotification;
-      d = [payload decodeLcdMenuResponseForAddress:address];
-      break;
+//    case MKCommandLcdMenuResponse:
+//      n = MKLcdMenuNotification;
+//      d = [payload decodeLcdMenuResponseForAddress:address];
+//      break;
     case MKCommandLcdResponse:
       n = MKLcdNotification;
       d = [payload decodeLcdResponseForAddress:address];
@@ -521,6 +521,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       [NSObject cancelPreviousPerformRequestsWithTarget:self];
       [self setVersion:[IKDeviceVersion versionWithData:payload forAddress:(IKMkAddress)address]];
       DLog(@"Got a device version %@",[self versionForAddress:address]);
+      
+      NSDictionary* d=[NSDictionary dictionaryWithObject:[self versionForAddress:address] forKey:kIKDataKeyVersion];
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:MKFoundDeviceNotification 
+                                                          object:self 
+                                                        userInfo:d];
+      
       [self nextConnectAction];
       break;
     default:

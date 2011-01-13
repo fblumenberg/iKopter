@@ -14,7 +14,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		BA7018DD12D63A120048790A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DB12D63A120048790A /* Icon.png */; };
-		BA7018DE12D63A120048790A /* Icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DC12D63A120048790A /* Icon@2.png */; };
+		BA7018DE12D63A120048790A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DC12D63A120048790A /* Icon@2x.png */; };
 		BA701AA612D8C3EE0048790A /* AnalogValues.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA312D8C3EE0048790A /* AnalogValues.m */; };
 		BA701AA712D8C3EE0048790A /* AnalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA512D8C3EE0048790A /* AnalogViewController.m */; };
 		BA701C0812DA148D0048790A /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701C0712DA148D0048790A /* GradientButton.m */; };
@@ -91,6 +91,7 @@
 		BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */; };
 		BA71D0C712D267270029C5F7 /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BF12D267270029C5F7 /* MixerViewController.m */; };
 		BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */; };
+		BA9C01C412DF927900A3A706 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C01C312DF927900A3A706 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,7 +105,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iKopter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iKopter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BA7018DB12D63A120048790A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		BA7018DC12D63A120048790A /* Icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2.png"; sourceTree = "<group>"; };
+		BA7018DC12D63A120048790A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BA701AA212D8C3EE0048790A /* AnalogValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogValues.h; sourceTree = "<group>"; };
 		BA701AA312D8C3EE0048790A /* AnalogValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalogValues.m; sourceTree = "<group>"; };
 		BA701AA412D8C3EE0048790A /* AnalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogViewController.h; sourceTree = "<group>"; };
@@ -243,6 +244,8 @@
 		BA71D0BE12D267270029C5F7 /* MixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixerViewController.h; sourceTree = "<group>"; };
 		BA71D0BF12D267270029C5F7 /* MixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerViewController.m; sourceTree = "<group>"; };
 		BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AllSettings.plist; sourceTree = "<group>"; };
+		BA9C01C212DF927900A3A706 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		BA9C01C312DF927900A3A706 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +267,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BA9C01C112DF927900A3A706 /* External */,
 				BA701C0512DA148D0048790A /* Views */,
 				BA701AA112D8C3EE0048790A /* Analog */,
 				BA71D0AE12D267270029C5F7 /* Channels */,
@@ -315,7 +319,7 @@
 			children = (
 				BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */,
 				BA7018DB12D63A120048790A /* Icon.png */,
-				BA7018DC12D63A120048790A /* Icon@2.png */,
+				BA7018DC12D63A120048790A /* Icon@2x.png */,
 				BA71CE0A12D0C3840029C5F7 /* InAppSettings.bundle */,
 				BA71CE0B12D0C3840029C5F7 /* Settings.bundle */,
 				BA71CCD112CFF1730029C5F7 /* images */,
@@ -616,6 +620,15 @@
 			path = Mixer;
 			sourceTree = "<group>";
 		};
+		BA9C01C112DF927900A3A706 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				BA9C01C212DF927900A3A706 /* MBProgressHUD.h */,
+				BA9C01C312DF927900A3A706 /* MBProgressHUD.m */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -686,7 +699,7 @@
 				BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */,
 				BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */,
 				BA7018DD12D63A120048790A /* Icon.png in Resources */,
-				BA7018DE12D63A120048790A /* Icon@2.png in Resources */,
+				BA7018DE12D63A120048790A /* Icon@2x.png in Resources */,
 				BA701E3912DA5BB90048790A /* DeviceInfoController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,6 +769,7 @@
 				BA701AA712D8C3EE0048790A /* AnalogViewController.m in Sources */,
 				BA701C0812DA148D0048790A /* GradientButton.m in Sources */,
 				BA701E3812DA5BB90048790A /* DeviceInfoController.m in Sources */,
+				BA9C01C412DF927900A3A706 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

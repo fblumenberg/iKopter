@@ -26,6 +26,8 @@
 #import "MKHost.h"
 #import "GradientButton.h"
 #import "IASKSettingsStoreObject.h"
+#import "MBProgressHUD.h"
+ 
 
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
@@ -108,9 +110,9 @@
   
   [nc addObserver:self 
          selector:@selector(versionResponse:) 
-             name:MKVersionNotification
+             name:MKFoundDeviceNotification
            object:nil];
-  
+
   [self.navigationController setToolbarHidden:NO animated:NO];
 }
 
@@ -118,6 +120,12 @@
   [super viewDidAppear:animated];
 
   if( ![[MKConnectionController sharedMKConnectionController] isRunning]) {
+    
+    _hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:_hud];
+    _hud.delegate = self;
+    _hud.labelText=NSLocalizedString(@"Connecting",@"HUD connecting");
+    [_hud show:YES];
     
     _tableView.userInteractionEnabled=NO;
     [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView startAnimating];
@@ -132,6 +140,7 @@
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
+  [_hud hide:NO];
   NSNotificationCenter* nc=[NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
   [super viewWillDisappear:animated];
@@ -288,6 +297,7 @@
 - (void)connectionRequestDidFail:(NSNotification *)aNotification;
 {
   NSError* err = [[aNotification userInfo] objectForKey:@"error"];
+  [_hud hide:YES];
   
   UIAlertView *alert = [[UIAlertView alloc] 
                         initWithTitle:NSLocalizedString(@"Server error", @"Server error")
@@ -317,23 +327,35 @@
   
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
 
+  [_hud hide:YES];
   
   [self initToolbar];
 }
 
 - (void)disconnected:(NSNotification *)aNotification;
 {
+  [_hud hide:YES];
   connectionState=MKConnectionStateDisconnected;
   [self.navigationController popToRootViewControllerAnimated:YES]; 
 }
 
 - (void)versionResponse:(NSNotification *)aNotification;
 {
-//  self.versionString = [[MKConnectionController sharedMKConnectionController]longVersionForAddress:kIKMkAddressFC]; 
-//  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:CONNECT_SECTIONID]  withRowAnimation:UITableViewRowAnimationNone];
+  IKDeviceVersion* version = [[aNotification userInfo] objectForKey:kIKDataKeyVersion];
+  _hud.labelText=[NSString stringWithFormat:NSLocalizedString(@"Found %@",@"HUD device"),version.deviceName];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	NSLog(@"Hud: %@", hud);
+  // Remove HUD from screen when the HUD was hidded
+  [_hud removeFromSuperview];
+  [_hud release];
+  _hud=nil;
+}
+
 
 @end
