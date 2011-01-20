@@ -48,6 +48,7 @@ extern NSString * const MKReadMixerNotification;
 extern NSString * const MKWriteMixerNotification;
 
 extern NSString * const MKOsdNotification;
+extern NSString * const MKData3DNotification;
 
 
 @class MKHost;
@@ -93,4 +94,8 @@ extern NSString * const MKOsdNotification;
 
 - (IKDeviceVersion*) versionForAddress:(IKMkAddress)theAddress;
 
+- (void) requestData3DForInterval:(NSUInteger)interval;
+- (void) requestDebugValueForInterval:(NSUInteger)interval;
+- (void) requestOsdDataForInterval:(NSUInteger)interval;
+  
 @end

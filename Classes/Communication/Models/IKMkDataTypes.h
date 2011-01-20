@@ -58,6 +58,8 @@ typedef enum {
   MKCommandEngineTestRequest='t',
   MKCommandOsdRequest='o',
   MKCommandOsdResponse='O',
+  MKCommandData3DRequest='c',
+  MKCommandData3DResponse='C',
 } MKCommandId;
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -313,18 +315,28 @@ typedef struct
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
+typedef struct 
+{
+  int16_t  Winkel[3]; // nick, roll, compass in 0,1¡
+  int8_t   Centroid[3];
+  int8_t   reserve[5];
+} IKMkData3D;
+
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
 typedef struct
 {
-	uint8_t	Digital[2];
-	uint8_t	RemoteButtons;
-	int8_t	Nick;
-	int8_t	Roll;
-	int8_t	Yaw;
-	uint8_t	Gas;
-	int8_t	Height;
-	uint8_t	free;
-	uint8_t	Frame;
-	uint8_t	Config;
+  uint8_t Digital[2];
+  uint8_t RemoteButtons;
+  int8_t  Nick;
+  int8_t  Roll;
+  int8_t  Yaw;
+  uint8_t Gas;
+  int8_t  Height;
+  uint8_t free;
+  uint8_t Frame;
+  uint8_t Config;
 } __attribute__((packed)) IKMkExternControl;
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -332,9 +344,9 @@ typedef struct
 
 typedef struct
 {
- 	int16_t Nick;
-	int16_t Roll;
-	int16_t Compass;					// angle between north and head of the MK
+  int16_t Nick;
+  int16_t Roll;
+  int16_t Compass;          // angle between north and head of the MK
 } __attribute__((packed)) Attitude_t;
 
 
@@ -349,43 +361,61 @@ typedef struct
 
 typedef struct
 {
-	uint16_t Distance;			// distance to target in dm
-	int16_t Bearing;				// course to target in deg
+  uint16_t Distance;      // distance to target in dm
+  int16_t Bearing;        // course to target in deg
 } __attribute__((packed)) IKMkGPSPosDev;
 
 #define NAVIDATA_VERSION 4
 
 typedef struct
 {
-	uint8_t       Version;						// version of the data structure
-	IKMkGPSPos    CurrentPosition;		// see ubx.h for details
-	IKMkGPSPos    TargetPosition;
-	IKMkGPSPosDev TargetPositionDeviation;
-	IKMkGPSPos    HomePosition;
-	IKMkGPSPosDev HomePositionDeviation;
-	uint8_t       WaypointIndex;				// index of current waypoints running from 0 to WaypointNumber-1
-	uint8_t       WaypointNumber;				// number of stored waypoints
-	uint8_t       SatsInUse;					// number of satellites used for position solution
-	int16_t       Altimeter; 					// hight according to air pressure
-	int16_t       Variometer;					// climb(+) and sink(-) rate
-	uint16_t      FlyingTime;					// in seconds
-	uint8_t       UBat;						// Battery Voltage in 0.1 Volts
-	uint16_t      GroundSpeed;				// speed over ground in cm/s (2D)
-	int16_t       Heading;					// current flight direction in ° as angle to north
-	int16_t       CompassHeading;				// current compass value in °
-	int8_t        AngleNick;					// current Nick angle in 1°
-	int8_t        AngleRoll;					// current Rick angle in 1°
-	uint8_t       RC_Quality;					// RC_Quality
-	uint8_t       FCStatusFlags;				// Flags from FC
-	uint8_t       NCFlags;					// Flags from NC
-	uint8_t       Errorcode;					// 0 --> okay
-	uint8_t       OperatingRadius;			// current operation radius around the Home Position in m
-	int16_t       TopSpeed;					// velocity in vertical direction in cm/s
-	uint8_t       TargetHoldTime;				// time in s to stay at the given target, counts down to 0 if target has been reached
-	uint8_t       RC_RSSI;					// Receiver signal strength (since version 2 added)
-	int16_t       SetpointAltitude;			// setpoint for altitude
-	uint8_t       Gas;						// for future use
-	uint16_t      Current;					// actual current in 0.1A steps
-	uint16_t      UsedCapacity;				// used capacity in mAh
-} IKMkNaviData;
+  uint8_t       Version;            // version of the data structure
+  IKMkGPSPos    CurrentPosition;    // see ubx.h for details
+  IKMkGPSPos    TargetPosition;
+  IKMkGPSPosDev TargetPositionDeviation;
+  IKMkGPSPos    HomePosition;
+  IKMkGPSPosDev HomePositionDeviation;
+  uint8_t       WaypointIndex;        // index of current waypoints running from 0 to WaypointNumber-1
+  uint8_t       WaypointNumber;       // number of stored waypoints
+  uint8_t       SatsInUse;          // number of satellites used for position solution
+  int16_t       Altimeter;          // hight according to air pressure
+  int16_t       Variometer;         // climb(+) and sink(-) rate
+  uint16_t      FlyingTime;         // in seconds
+  uint8_t       UBat;           // Battery Voltage in 0.1 Volts
+  uint16_t      GroundSpeed;        // speed over ground in cm/s (2D)
+  int16_t       Heading;          // current flight direction in ° as angle to north
+  int16_t       CompassHeading;       // current compass value in °
+  int8_t        AngleNick;          // current Nick angle in 1°
+  int8_t        AngleRoll;          // current Rick angle in 1°
+  uint8_t       RC_Quality;         // RC_Quality
+  uint8_t       FCStatusFlags;        // Flags from FC
+  uint8_t       NCFlags;          // Flags from NC
+  uint8_t       Errorcode;          // 0 --> okay
+  uint8_t       OperatingRadius;      // current operation radius around the Home Position in m
+  int16_t       TopSpeed;         // velocity in vertical direction in cm/s
+  uint8_t       TargetHoldTime;       // time in s to stay at the given target, counts down to 0 if target has been reached
+  uint8_t       RC_RSSI;          // Receiver signal strength (since version 2 added)
+  int16_t       SetpointAltitude;     // setpoint for altitude
+  uint8_t       Gas;            // for future use
+  uint16_t      Current;          // actual current in 0.1A steps
+  uint16_t      UsedCapacity;       // used capacity in mAh
+} __attribute__((packed)) IKMkNaviData;
 
+#define NC_FLAG_FREE            0x01
+#define NC_FLAG_PH              0x02
+#define NC_FLAG_CH              0x04
+#define NC_FLAG_RANGE_LIMIT     0x08
+#define NC_FLAG_NOSERIALLINK    0x10
+#define NC_FLAG_TARGET_REACHED  0x20
+#define NC_FLAG_MANUAL_CONTROL  0x40
+#define NC_FLAG_GPS_OK          0x80
+
+// FC STATUS FLAGS
+#define FC_STATUS_MOTOR_RUN           0x01
+#define FC_STATUS_FLY                 0x02
+#define FC_STATUS_CALIBRATE           0x04
+#define FC_STATUS_START               0x08
+#define FC_STATUS_EMERGENCY_LANDING   0x10
+#define FC_STATUS_LOWBAT              0x20
+#define FC_STATUS_VARIO_TRIM_UP       0x40
+#define FC_STATUS_VARIO_TRIM_DOWN     0x80

@@ -92,6 +92,16 @@
 		BA71D0C712D267270029C5F7 /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BF12D267270029C5F7 /* MixerViewController.m */; };
 		BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */; };
 		BA9C01C412DF927900A3A706 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C01C312DF927900A3A706 /* MBProgressHUD.m */; };
+		BA9C023812E1BEB900A3A706 /* OsdValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C023712E1BEB900A3A706 /* OsdValue.m */; };
+		BA9C024012E1BFF000A3A706 /* IKData3D.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C023F12E1BFF000A3A706 /* IKData3D.m */; };
+		BA9C025312E1C59900A3A706 /* Data3DValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C025212E1C59900A3A706 /* Data3DValue.m */; };
+		BA9C074A12E623D600A3A706 /* HorizonOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C074812E623D600A3A706 /* HorizonOsdViewController.m */; };
+		BA9C074B12E623D600A3A706 /* HorizonOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA9C074912E623D600A3A706 /* HorizonOsdViewController.xib */; };
+		BA9C078F12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA9C078E12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib */; };
+		BA9C07A112E62B7200A3A706 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C079E12E62B7200A3A706 /* Common.m */; };
+		BA9C07A212E62B7200A3A706 /* IKAttitudeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C07A012E62B7200A3A706 /* IKAttitudeIndicator.m */; };
+		BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */; };
+		BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C081712E7796600A3A706 /* IKNaviData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -246,6 +256,23 @@
 		BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AllSettings.plist; sourceTree = "<group>"; };
 		BA9C01C212DF927900A3A706 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		BA9C01C312DF927900A3A706 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		BA9C023612E1BEB900A3A706 /* OsdValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdValue.h; sourceTree = "<group>"; };
+		BA9C023712E1BEB900A3A706 /* OsdValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdValue.m; sourceTree = "<group>"; };
+		BA9C023E12E1BFF000A3A706 /* IKData3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKData3D.h; sourceTree = "<group>"; };
+		BA9C023F12E1BFF000A3A706 /* IKData3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKData3D.m; sourceTree = "<group>"; };
+		BA9C025112E1C59900A3A706 /* Data3DValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data3DValue.h; sourceTree = "<group>"; };
+		BA9C025212E1C59900A3A706 /* Data3DValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data3DValue.m; sourceTree = "<group>"; };
+		BA9C074712E623D600A3A706 /* HorizonOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizonOsdViewController.h; sourceTree = "<group>"; };
+		BA9C074812E623D600A3A706 /* HorizonOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizonOsdViewController.m; sourceTree = "<group>"; };
+		BA9C074912E623D600A3A706 /* HorizonOsdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizonOsdViewController.xib; sourceTree = "<group>"; };
+		BA9C078E12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizonOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
+		BA9C079D12E62B7200A3A706 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		BA9C079E12E62B7200A3A706 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		BA9C079F12E62B7200A3A706 /* IKAttitudeIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKAttitudeIndicator.h; sourceTree = "<group>"; };
+		BA9C07A012E62B7200A3A706 /* IKAttitudeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKAttitudeIndicator.m; sourceTree = "<group>"; };
+		BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BA9C081612E7796600A3A706 /* IKNaviData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKNaviData.h; sourceTree = "<group>"; };
+		BA9C081712E7796600A3A706 /* IKNaviData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKNaviData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +285,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				BA71CDE412D0C2830029C5F7 /* CFNetwork.framework in Frameworks */,
 				BA71CDE612D0C2910029C5F7 /* MessageUI.framework in Frameworks */,
+				BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +295,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BA9C023512E1BEB900A3A706 /* Osd */,
 				BA9C01C112DF927900A3A706 /* External */,
 				BA701C0512DA148D0048790A /* Views */,
 				BA701AA112D8C3EE0048790A /* Analog */,
@@ -300,7 +329,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				BA71CDE312D0C2830029C5F7 /* CFNetwork.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -334,6 +362,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA71CDE312D0C2830029C5F7 /* CFNetwork.framework */,
+				BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -370,6 +400,10 @@
 		BA701C0512DA148D0048790A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA9C079D12E62B7200A3A706 /* Common.h */,
+				BA9C079E12E62B7200A3A706 /* Common.m */,
+				BA9C079F12E62B7200A3A706 /* IKAttitudeIndicator.h */,
+				BA9C07A012E62B7200A3A706 /* IKAttitudeIndicator.m */,
 				BA701C0612DA148D0048790A /* GradientButton.h */,
 				BA701C0712DA148D0048790A /* GradientButton.m */,
 			);
@@ -546,6 +580,10 @@
 		BA71CDB712D0C2660029C5F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BA9C081612E7796600A3A706 /* IKNaviData.h */,
+				BA9C081712E7796600A3A706 /* IKNaviData.m */,
+				BA9C023E12E1BFF000A3A706 /* IKData3D.h */,
+				BA9C023F12E1BFF000A3A706 /* IKData3D.m */,
 				BA71CDB812D0C2660029C5F7 /* IKDebugData.h */,
 				BA71CDB912D0C2660029C5F7 /* IKDebugData.m */,
 				BA71CDBA12D0C2660029C5F7 /* IKDebugLabel.h */,
@@ -629,6 +667,21 @@
 			path = External;
 			sourceTree = "<group>";
 		};
+		BA9C023512E1BEB900A3A706 /* Osd */ = {
+			isa = PBXGroup;
+			children = (
+				BA9C025112E1C59900A3A706 /* Data3DValue.h */,
+				BA9C025212E1C59900A3A706 /* Data3DValue.m */,
+				BA9C023612E1BEB900A3A706 /* OsdValue.h */,
+				BA9C023712E1BEB900A3A706 /* OsdValue.m */,
+				BA9C074712E623D600A3A706 /* HorizonOsdViewController.h */,
+				BA9C074812E623D600A3A706 /* HorizonOsdViewController.m */,
+				BA9C074912E623D600A3A706 /* HorizonOsdViewController.xib */,
+				BA9C078E12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib */,
+			);
+			path = Osd;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -701,6 +754,8 @@
 				BA7018DD12D63A120048790A /* Icon.png in Resources */,
 				BA7018DE12D63A120048790A /* Icon@2x.png in Resources */,
 				BA701E3912DA5BB90048790A /* DeviceInfoController.xib in Resources */,
+				BA9C074B12E623D600A3A706 /* HorizonOsdViewController.xib in Resources */,
+				BA9C078F12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +825,13 @@
 				BA701C0812DA148D0048790A /* GradientButton.m in Sources */,
 				BA701E3812DA5BB90048790A /* DeviceInfoController.m in Sources */,
 				BA9C01C412DF927900A3A706 /* MBProgressHUD.m in Sources */,
+				BA9C023812E1BEB900A3A706 /* OsdValue.m in Sources */,
+				BA9C024012E1BFF000A3A706 /* IKData3D.m in Sources */,
+				BA9C025312E1C59900A3A706 /* Data3DValue.m in Sources */,
+				BA9C074A12E623D600A3A706 /* HorizonOsdViewController.m in Sources */,
+				BA9C07A112E62B7200A3A706 /* Common.m in Sources */,
+				BA9C07A212E62B7200A3A706 /* IKAttitudeIndicator.m in Sources */,
+				BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

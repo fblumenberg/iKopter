@@ -22,28 +22,17 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import "IKMkDatatypes.h"
 
-@interface NSData (MKPayloadDecode)
+#import <UIKit/UIKit.h>
+#import "IKAttitudeIndicator.h"
+#import "OsdValue.h"
 
-//- (NSDictionary *) decodeLcdMenuResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)theAddress;
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeChannelsDataResponse;
-- (NSDictionary *) decodeOsdResponse;
-- (NSDictionary *) decodeData3DResponse;
-- (NSDictionary *) decodeMixerReadResponse;
-- (NSDictionary *) decodeMixerWriteResponse;
+@interface HorizonOsdViewController : UIViewController<OsdValueDelegate> {
 
+  IKAttitudeIndicator* indicator;
+  OsdValue* osdValue;
+}
 
+@property(retain) IBOutlet IKAttitudeIndicator* indicator;
 
-@end
-
-@interface NSData (MKPayloadDecodeSetting)
-- (NSDictionary *) decodeReadSettingResponse;
-- (NSDictionary *) decodeWriteSettingResponse;
-- (NSDictionary *) decodeChangeSettingResponse;
 @end

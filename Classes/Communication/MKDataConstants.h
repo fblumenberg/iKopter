@@ -41,7 +41,8 @@
 #define kIKDataKeyLcdDisplay   @"IKLcdDisplay"
 #define kIKDataKeyParamSet     @"IKParamSet"
 #define kIKDataKeyDebugData    @"IKDebugData"
-
+#define kIKDataKeyData3D       @"IKData3D"
+#define kIKDataKeyOsd          @"IKOsdData"
 
 
 

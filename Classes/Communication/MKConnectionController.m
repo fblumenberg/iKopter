@@ -56,6 +56,7 @@ NSString * const MKReadMixerNotification = @"MKReadMixerNotification";
 NSString * const MKWriteMixerNotification = @"MKWriteMixerNotification";
 
 NSString * const MKOsdNotification = @"MKOsdNotification";
+NSString * const MKData3DNotification = @"MKData3DNotification";
 
 
 // ///////////////////////////////////////////////////////////////////////////////
@@ -283,6 +284,40 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
                                 forAddress:kIKMkAddressFC];
   [self sendRequest:data];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) requestData3DForInterval:(NSUInteger)interval {
+  uint8_t iv = interval;
+  NSData * data = [NSData dataWithCommand:MKCommandData3DRequest
+                               forAddress:kIKMkAddressAll
+                         payloadWithBytes:&iv
+                                   length:1];
+  
+  [self sendRequest:data];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) requestDebugValueForInterval:(NSUInteger)interval {
+  uint8_t iv = interval;
+  NSData * data = [NSData dataWithCommand:MKCommandDebugValueRequest
+                               forAddress:kIKMkAddressAll
+                         payloadWithBytes:&iv
+                                   length:1];
+  
+  [self sendRequest:data];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) requestOsdDataForInterval:(NSUInteger)interval {
+  uint8_t iv = interval;
+  NSData * data = [NSData dataWithCommand:MKCommandOsdRequest
+                               forAddress:kIKMkAddressAll
+                         payloadWithBytes:&iv
+                                   length:1];
+  
+  [self sendRequest:data];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark MKInputDelegate
@@ -496,6 +531,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     case MKCommandOsdResponse:
       n = MKOsdNotification;
       d = [payload decodeOsdResponse];
+      break;
+    case MKCommandData3DResponse:
+      n = MKData3DNotification;
+      d = [payload decodeData3DResponse];
       break;
     case MKCommandVersionResponse:
       n = MKVersionNotification;

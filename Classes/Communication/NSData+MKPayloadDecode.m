@@ -30,6 +30,8 @@
 #import "IKDebugData.h"
 #import "IKDebugLabel.h"
 #import "IKDeviceVersion.h"
+#import "IKData3D.h"
+#import "IKNaviData.h"
  
 @implementation NSData (MKPayloadDecode)
 
@@ -107,15 +109,25 @@
 - (NSDictionary *) decodeChannelsDataResponse {
 
   return [NSDictionary dictionaryWithObjectsAndKeys:self, kMKDataKeyChannels, nil];
-
 }
 
 
-- (NSDictionary *) decodeOsdResponse {
-//  NSValue* value = [NSValue valueWithBytes:[self bytes] 
-//                                  objCType:@encode(NaviData_t)];
+//-------------------------------------------------------------------------------------------
+- (NSDictionary *) decodeData3DResponse;
+{
+  IKData3D* data3D=[IKData3D dataWithData:self];
+  NSDictionary* d=[NSDictionary dictionaryWithObjectsAndKeys:data3D, kIKDataKeyData3D, nil];
+  
+  return d; 
+}
 
-  return [NSDictionary dictionaryWithObjectsAndKeys:self, kMKDataKeyRawValue, nil];
+//-------------------------------------------------------------------------------------------
+
+- (NSDictionary *) decodeOsdResponse {
+  IKNaviData* data3D=[IKNaviData dataWithData:self];
+  NSDictionary* d=[NSDictionary dictionaryWithObjectsAndKeys:data3D, kIKDataKeyOsd, nil];
+  
+  return d; 
 }
 
 @end

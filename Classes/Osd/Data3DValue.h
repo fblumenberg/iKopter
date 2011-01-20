@@ -1,4 +1,4 @@
-// ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
@@ -20,30 +20,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-// ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
 #import "IKMkDatatypes.h"
+#import "IKData3D.h"
 
-@interface NSData (MKPayloadDecode)
+@protocol Data3DValueDelegate
 
-//- (NSDictionary *) decodeLcdMenuResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)theAddress;
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeChannelsDataResponse;
-- (NSDictionary *) decodeOsdResponse;
-- (NSDictionary *) decodeData3DResponse;
-- (NSDictionary *) decodeMixerReadResponse;
-- (NSDictionary *) decodeMixerWriteResponse;
-
-
+- (void) newValue:(IKData3D*)data;
 
 @end
 
-@interface NSData (MKPayloadDecodeSetting)
-- (NSDictionary *) decodeReadSettingResponse;
-- (NSDictionary *) decodeWriteSettingResponse;
-- (NSDictionary *) decodeChangeSettingResponse;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface Data3DValue : NSObject {
+
+  int lcdCount;
+   
+  id<Data3DValueDelegate> _delegate;
+  IKData3D* _data;
+}
+
+@property(assign) id<Data3DValueDelegate> delegate;
+@property(readonly,retain) IKData3D* data;
+
 @end

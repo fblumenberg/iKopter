@@ -1,4 +1,4 @@
-// ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
@@ -20,30 +20,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-// ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
 #import "IKMkDatatypes.h"
+#import "IKNaviData.h"
 
-@interface NSData (MKPayloadDecode)
+@protocol OsdValueDelegate
 
-//- (NSDictionary *) decodeLcdMenuResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)theAddress;
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeChannelsDataResponse;
-- (NSDictionary *) decodeOsdResponse;
-- (NSDictionary *) decodeData3DResponse;
-- (NSDictionary *) decodeMixerReadResponse;
-- (NSDictionary *) decodeMixerWriteResponse;
-
-
+- (void) newValue:(IKNaviData*)data;
 
 @end
 
-@interface NSData (MKPayloadDecodeSetting)
-- (NSDictionary *) decodeReadSettingResponse;
-- (NSDictionary *) decodeWriteSettingResponse;
-- (NSDictionary *) decodeChangeSettingResponse;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface OsdValue : NSObject {
+
+  int requestCount;
+   
+  id<OsdValueDelegate> _delegate;
+  IKNaviData* _data;
+}
+
+@property(assign) id<OsdValueDelegate> delegate;
+@property(readonly,retain) IKNaviData* data;
+
 @end

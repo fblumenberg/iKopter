@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2010-2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,28 +22,35 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import "IKMkDatatypes.h"
 
-@interface NSData (MKPayloadDecode)
+#import "IKData3D.h"
 
-//- (NSDictionary *) decodeLcdMenuResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)theAddress;
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeChannelsDataResponse;
-- (NSDictionary *) decodeOsdResponse;
-- (NSDictionary *) decodeData3DResponse;
-- (NSDictionary *) decodeMixerReadResponse;
-- (NSDictionary *) decodeMixerWriteResponse;
+@implementation IKData3D
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//@synthesize address;
 
-@end
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface NSData (MKPayloadDecodeSetting)
-- (NSDictionary *) decodeReadSettingResponse;
-- (NSDictionary *) decodeWriteSettingResponse;
-- (NSDictionary *) decodeChangeSettingResponse;
++ (id)dataWithData:(NSData *)data {
+  return [[IKData3D alloc] initWithData:data];
+}
+
+- (id)initWithData:(NSData*)data {
+  self = [super init];
+  if (self != nil) {
+    memcpy(&_data,[data bytes],sizeof(_data));
+  }
+  return self;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @end
