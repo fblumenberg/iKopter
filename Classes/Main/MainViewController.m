@@ -206,7 +206,7 @@
              target:nil
              action:nil] autorelease];
   
-  GradientButton* btn=[[GradientButton  alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 33.0)];
+  GradientButton* btn=[[[GradientButton  alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 33.0)]autorelease];
   if ([v hasError])
     [btn useRedDeleteStyle];
   else

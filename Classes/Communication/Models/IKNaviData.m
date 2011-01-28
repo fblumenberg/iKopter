@@ -41,7 +41,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 + (id)dataWithData:(NSData *)data {
-  return [[IKNaviData alloc] initWithData:data];
+  return [[[IKNaviData alloc] initWithData:data]autorelease];
 }
 
 - (id)initWithData:(NSData*)data {

@@ -41,6 +41,82 @@
 @synthesize delegate=_delegate;
 @synthesize data=_data;
 
+-(BOOL) areEnginesOn {
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->FCStatusFlags&FC_STATUS_MOTOR_RUN) == FC_STATUS_MOTOR_RUN);
+}
+-(BOOL) isFlying{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->FCStatusFlags&FC_STATUS_FLY) == FC_STATUS_FLY);
+}
+-(BOOL) isCalibrating{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->FCStatusFlags&FC_STATUS_CALIBRATE) == FC_STATUS_CALIBRATE);
+}
+-(BOOL) isStarting{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->FCStatusFlags&FC_STATUS_START) == FC_STATUS_START);
+}
+
+-(BOOL) isEmergencyLanding;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->FCStatusFlags&FC_STATUS_EMERGENCY_LANDING) == FC_STATUS_EMERGENCY_LANDING);
+}
+
+-(BOOL) isLowBat;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->FCStatusFlags&FC_STATUS_LOWBAT) == FC_STATUS_LOWBAT);
+}
+
+-(BOOL) isFreeModeEnabled;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->NCFlags&NC_FLAG_FREE) == NC_FLAG_FREE);
+}
+
+-(BOOL) isPositionHoldEnabled;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->NCFlags&NC_FLAG_PH) == NC_FLAG_PH);
+}
+
+-(BOOL) isComingHomeEnabled;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->NCFlags&NC_FLAG_CH) == NC_FLAG_CH);
+}
+
+-(BOOL) isRangeLimitReached;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->NCFlags&NC_FLAG_RANGE_LIMIT) == NC_FLAG_RANGE_LIMIT);
+}
+
+-(BOOL) isTargetReached;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->NCFlags&NC_FLAG_TARGET_REACHED) == NC_FLAG_TARGET_REACHED);
+}
+
+-(BOOL) isManualControlEnabled;{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->NCFlags&NC_FLAG_MANUAL_CONTROL) == NC_FLAG_MANUAL_CONTROL);
+}
+-(BOOL) isGpsOk{
+  if (!_data.data) 
+    return NO;
+  return ((_data.data->NCFlags&NC_FLAG_GPS_OK) == NC_FLAG_GPS_OK);
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (id) init
@@ -81,7 +157,7 @@
   [self.delegate newValue:self.data];
 
   NSLog(@"osdCount=%d",requestCount);
-  if (requestCount++ >= 7 ) {
+  if (requestCount++ >= 6 ) {
     [self sendOsdRefreshRequest];
     requestCount = 0;
   }

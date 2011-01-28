@@ -232,19 +232,19 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
     
     settings = [[NSMutableArray array] retain];
       
-    IKParamSet* p=[[IKParamSet alloc]init];
+    IKParamSet* p=[[[IKParamSet alloc]init]autorelease];
     ParamSet_DefaultSet1(p);
     [settings addObject:p];
-    p=[[IKParamSet alloc]init];
+    p=[[[IKParamSet alloc]init]autorelease];
     ParamSet_DefaultSet2(p);
     [settings addObject:p];
-    p=[[IKParamSet alloc]init];
+    p=[[[IKParamSet alloc]init]autorelease];
     ParamSet_DefaultSet3(p);
     [settings addObject:p];
-    p=[[IKParamSet alloc]init];
+    p=[[[IKParamSet alloc]init]autorelease];
     ParamSet_DefaultSet3(p);
     [settings addObject:p];
-    p=[[IKParamSet alloc]init];
+    p=[[[IKParamSet alloc]init]autorelease];
     ParamSet_DefaultSet3(p);
     [settings addObject:p];
     

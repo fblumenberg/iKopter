@@ -55,7 +55,9 @@
     int dataLength = [data length] < 16 ? [data length] : 16;
     
     NSData * strData = [NSData dataWithBytesNoCopy:(void*)(++bytes) length:dataLength freeWhenDone:NO];
-    label = [[[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] retain];
+    
+    NSString* tmp=[[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding]autorelease];
+    label = [[tmp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] retain];
   }
   return self;
 }

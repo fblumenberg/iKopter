@@ -29,10 +29,32 @@
 
 @interface HorizonOsdViewController : UIViewController<OsdValueDelegate> {
 
+  UITextView* osdText;
   IKAttitudeIndicator* indicator;
   OsdValue* osdValue;
+  
+  UILabel* heigth;
+  UILabel* heigthSetpoint;
+  UILabel* battery;
+  UILabel* current;
+  UILabel* usedCapacity;
+  UILabel* satelites;
+  UILabel* gpsMode;
+  UILabel* gpsTarget;
+  UILabel* flightTime;
 }
 
 @property(retain) IBOutlet IKAttitudeIndicator* indicator;
+@property(retain) IBOutlet UITextView* osdText;
+
+@property(retain) IBOutlet UILabel* heigth;
+@property(retain) IBOutlet UILabel* heigthSetpoint;
+@property(retain) IBOutlet UILabel* battery;
+@property(retain) IBOutlet UILabel* current;
+@property(retain) IBOutlet UILabel* usedCapacity;
+@property(retain) IBOutlet UILabel* satelites;
+@property(retain) IBOutlet UILabel* gpsMode;
+@property(retain) IBOutlet UILabel* gpsTarget;
+@property(retain) IBOutlet UILabel* flightTime;
 
 @end

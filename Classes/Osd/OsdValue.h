@@ -45,4 +45,18 @@
 @property(assign) id<OsdValueDelegate> delegate;
 @property(readonly,retain) IKNaviData* data;
 
+@property(readonly) BOOL areEnginesOn;
+@property(readonly) BOOL isFlying;
+@property(readonly) BOOL isCalibrating;
+@property(readonly) BOOL isStarting;
+@property(readonly) BOOL isEmergencyLanding;
+@property(readonly) BOOL isLowBat;
+@property(readonly) BOOL isFreeModeEnabled;
+@property(readonly) BOOL isPositionHoldEnabled;
+@property(readonly) BOOL isComingHomeEnabled;
+@property(readonly) BOOL isRangeLimitReached;
+@property(readonly) BOOL isTargetReached;
+@property(readonly) BOOL isManualControlEnabled;
+@property(readonly) BOOL isGpsOk;
+
 @end

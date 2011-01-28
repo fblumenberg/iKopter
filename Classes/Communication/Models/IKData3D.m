@@ -38,7 +38,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 + (id)dataWithData:(NSData *)data {
-  return [[IKData3D alloc] initWithData:data];
+  return [[[IKData3D alloc] initWithData:data]autorelease];
 }
 
 - (id)initWithData:(NSData*)data {
