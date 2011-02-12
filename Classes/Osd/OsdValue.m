@@ -130,6 +130,7 @@
                name:MKOsdNotification
              object:nil];
     
+    self.data=[IKNaviData data];
     [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
     
   }
@@ -147,14 +148,14 @@
 
 
 - (void) sendOsdRefreshRequest {
-  [[MKConnectionController sharedMKConnectionController] requestOsdDataForInterval:50];
+  [[MKConnectionController sharedMKConnectionController] requestOsdDataForInterval:40];
 }
 
 - (void) osdNotification:(NSNotification *)aNotification {
   
   self.data = [[aNotification userInfo] objectForKey:kIKDataKeyOsd];
   
-  [self.delegate newValue:self.data];
+  [self.delegate newValue:self];
 
   NSLog(@"osdCount=%d",requestCount);
   if (requestCount++ >= 6 ) {

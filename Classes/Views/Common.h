@@ -15,3 +15,5 @@ void drawGlossAndGradient(CGContextRef context, CGRect rect, CGColorRef startCol
 static inline double radians (double degrees) { return degrees * M_PI/180; }
 CGMutablePathRef createArcPathFromBottomOfRect(CGRect rect, CGFloat arcHeight);
 CGMutablePathRef createRoundedRectForRect(CGRect rect, CGFloat radius);
+
+CGSize sizeThatFitsKeepingAspectRatio(CGSize originalSize, CGSize sizeToFit);

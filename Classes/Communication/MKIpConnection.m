@@ -42,7 +42,7 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 
 - (id) initWithDelegate:(id<MKConnectionDelegate>)theDelegate;
 {
-  if (self = [super init]) {
+  if (self == [super init]) {
     
     asyncSocket = [[AsyncSocket alloc] init];
     [asyncSocket setDelegate:self];   
@@ -107,7 +107,7 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 #pragma mark AsyncSocketDelegate
 
 - (BOOL) onSocketWillConnect:(AsyncSocket *)sock {
-  DLog(@"About to connect to %S", [sock connectedHost]);
+  DLog(@"About to connect to %@", [sock connectedHost]);
   return TRUE;
 }
 

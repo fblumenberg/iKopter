@@ -40,6 +40,12 @@
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
++ (id)data {
+  IKMkNaviData data;
+  memset(&data,1,sizeof(data));
+  return [[[IKNaviData alloc] initWithData:[NSData dataWithBytesNoCopy:&data length:sizeof(data) freeWhenDone:NO]]autorelease];
+}
+
 + (id)dataWithData:(NSData *)data {
   return [[[IKNaviData alloc] initWithData:data]autorelease];
 }

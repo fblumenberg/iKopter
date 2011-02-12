@@ -13,6 +13,11 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		BA0D1A4412F2E78500555855 /* OsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D1A4212F2E78500555855 /* OsdViewController.m */; };
+		BA0D1A4512F2E78500555855 /* OsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1A4312F2E78500555855 /* OsdViewController.xib */; };
+		BA0D1C0412F7224900555855 /* tabHorizon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1C0312F7224900555855 /* tabHorizon.png */; };
+		BA0D1C2912F7250900555855 /* ValueOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D1C2712F7250900555855 /* ValueOsdViewController.m */; };
+		BA0D1C2A12F7250900555855 /* ValueOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1C2812F7250900555855 /* ValueOsdViewController.xib */; };
 		BA7018DD12D63A120048790A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DB12D63A120048790A /* Icon.png */; };
 		BA7018DE12D63A120048790A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DC12D63A120048790A /* Icon@2x.png */; };
 		BA701AA612D8C3EE0048790A /* AnalogValues.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA312D8C3EE0048790A /* AnalogValues.m */; };
@@ -91,6 +96,9 @@
 		BA71D0C612D267270029C5F7 /* MixerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */; };
 		BA71D0C712D267270029C5F7 /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BF12D267270029C5F7 /* MixerViewController.m */; };
 		BA71D0EE12D2707D0029C5F7 /* AllSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */; };
+		BA7F89A112FEFC5400D6C3A5 /* IKCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7F899E12FEFC5400D6C3A5 /* IKCompass.m */; };
+		BA7F89A212FEFC5400D6C3A5 /* IKInstrumentsCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7F89A012FEFC5400D6C3A5 /* IKInstrumentsCommon.m */; };
+		BA7F89B212FEFC6A00D6C3A5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7F89B112FEFC6A00D6C3A5 /* CoreText.framework */; };
 		BA9C01C412DF927900A3A706 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C01C312DF927900A3A706 /* MBProgressHUD.m */; };
 		BA9C023812E1BEB900A3A706 /* OsdValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C023712E1BEB900A3A706 /* OsdValue.m */; };
 		BA9C024012E1BFF000A3A706 /* IKData3D.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C023F12E1BFF000A3A706 /* IKData3D.m */; };
@@ -102,6 +110,24 @@
 		BA9C07A212E62B7200A3A706 /* IKAttitudeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C07A012E62B7200A3A706 /* IKAttitudeIndicator.m */; };
 		BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */; };
 		BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C081712E7796600A3A706 /* IKNaviData.m */; };
+		BAB8A98113007667002CBB97 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97713007667002CBB97 /* altitude.png */; };
+		BAB8A98213007667002CBB97 /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97813007667002CBB97 /* altitudeMax.png */; };
+		BAB8A98313007667002CBB97 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97913007667002CBB97 /* battery.png */; };
+		BAB8A98413007667002CBB97 /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97A13007667002CBB97 /* compass.png */; };
+		BAB8A98513007667002CBB97 /* flightTime.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97B13007667002CBB97 /* flightTime.png */; };
+		BAB8A98613007667002CBB97 /* gpsCH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97C13007667002CBB97 /* gpsCH.png */; };
+		BAB8A98713007667002CBB97 /* gpsPH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97D13007667002CBB97 /* gpsPH.png */; };
+		BAB8A98813007667002CBB97 /* gpsSat.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97E13007667002CBB97 /* gpsSat.png */; };
+		BAB8A98913007667002CBB97 /* gpsSat2.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97F13007667002CBB97 /* gpsSat2.png */; };
+		BAB8A98A13007667002CBB97 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A98013007667002CBB97 /* speed.png */; };
+		BAB8A9E813007DBE002CBB97 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8A9E713007DBE002CBB97 /* UIImage+Tint.m */; };
+		BAB8AA8613008985002CBB97 /* RawOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8AA8413008985002CBB97 /* RawOsdViewController.m */; };
+		BAB8AA8713008985002CBB97 /* RawOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AA8513008985002CBB97 /* RawOsdViewController.xib */; };
+		BAB8AAF013009795002CBB97 /* home1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AAEE13009795002CBB97 /* home1.png */; };
+		BAB8AAF113009795002CBB97 /* home2.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AAEF13009795002CBB97 /* home2.png */; };
+		BAB8AB0B130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */; };
+		BAC5425012F75E6900379C4D /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC5424F12F75E6900379C4D /* 13-target.png */; };
+		BACCCCA312FEE7E500D2EFE7 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCCCA212FEE7E500D2EFE7 /* CustomBadge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +140,13 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iKopter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iKopter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BA0D1A4112F2E78500555855 /* OsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdViewController.h; sourceTree = "<group>"; };
+		BA0D1A4212F2E78500555855 /* OsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdViewController.m; sourceTree = "<group>"; };
+		BA0D1A4312F2E78500555855 /* OsdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OsdViewController.xib; sourceTree = "<group>"; };
+		BA0D1C0312F7224900555855 /* tabHorizon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabHorizon.png; sourceTree = "<group>"; };
+		BA0D1C2612F7250900555855 /* ValueOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueOsdViewController.h; sourceTree = "<group>"; };
+		BA0D1C2712F7250900555855 /* ValueOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueOsdViewController.m; sourceTree = "<group>"; };
+		BA0D1C2812F7250900555855 /* ValueOsdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ValueOsdViewController.xib; sourceTree = "<group>"; };
 		BA7018DB12D63A120048790A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BA7018DC12D63A120048790A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BA701AA212D8C3EE0048790A /* AnalogValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogValues.h; sourceTree = "<group>"; };
@@ -254,6 +287,11 @@
 		BA71D0BE12D267270029C5F7 /* MixerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixerViewController.h; sourceTree = "<group>"; };
 		BA71D0BF12D267270029C5F7 /* MixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerViewController.m; sourceTree = "<group>"; };
 		BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AllSettings.plist; sourceTree = "<group>"; };
+		BA7F899D12FEFC5400D6C3A5 /* IKCompass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKCompass.h; sourceTree = "<group>"; };
+		BA7F899E12FEFC5400D6C3A5 /* IKCompass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKCompass.m; sourceTree = "<group>"; };
+		BA7F899F12FEFC5400D6C3A5 /* IKInstrumentsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKInstrumentsCommon.h; sourceTree = "<group>"; };
+		BA7F89A012FEFC5400D6C3A5 /* IKInstrumentsCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKInstrumentsCommon.m; sourceTree = "<group>"; };
+		BA7F89B112FEFC6A00D6C3A5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		BA9C01C212DF927900A3A706 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		BA9C01C312DF927900A3A706 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		BA9C023612E1BEB900A3A706 /* OsdValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdValue.h; sourceTree = "<group>"; };
@@ -273,6 +311,27 @@
 		BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA9C081612E7796600A3A706 /* IKNaviData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKNaviData.h; sourceTree = "<group>"; };
 		BA9C081712E7796600A3A706 /* IKNaviData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKNaviData.m; sourceTree = "<group>"; };
+		BAB8A97713007667002CBB97 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
+		BAB8A97813007667002CBB97 /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
+		BAB8A97913007667002CBB97 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
+		BAB8A97A13007667002CBB97 /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
+		BAB8A97B13007667002CBB97 /* flightTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flightTime.png; sourceTree = "<group>"; };
+		BAB8A97C13007667002CBB97 /* gpsCH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsCH.png; sourceTree = "<group>"; };
+		BAB8A97D13007667002CBB97 /* gpsPH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsPH.png; sourceTree = "<group>"; };
+		BAB8A97E13007667002CBB97 /* gpsSat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsSat.png; sourceTree = "<group>"; };
+		BAB8A97F13007667002CBB97 /* gpsSat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsSat2.png; sourceTree = "<group>"; };
+		BAB8A98013007667002CBB97 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
+		BAB8A9E613007DBE002CBB97 /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		BAB8A9E713007DBE002CBB97 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+		BAB8AA8313008985002CBB97 /* RawOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RawOsdViewController.h; sourceTree = "<group>"; };
+		BAB8AA8413008985002CBB97 /* RawOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RawOsdViewController.m; sourceTree = "<group>"; };
+		BAB8AA8513008985002CBB97 /* RawOsdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RawOsdViewController.xib; sourceTree = "<group>"; };
+		BAB8AAEE13009795002CBB97 /* home1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home1.png; sourceTree = "<group>"; };
+		BAB8AAEF13009795002CBB97 /* home2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home2.png; sourceTree = "<group>"; };
+		BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ValueOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
+		BAC5424F12F75E6900379C4D /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "13-target.png"; path = "../../../../Downloads/icons/icons/13-target.png"; sourceTree = SOURCE_ROOT; };
+		BACCCCA112FEE7E500D2EFE7 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
+		BACCCCA212FEE7E500D2EFE7 /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +345,7 @@
 				BA71CDE412D0C2830029C5F7 /* CFNetwork.framework in Frameworks */,
 				BA71CDE612D0C2910029C5F7 /* MessageUI.framework in Frameworks */,
 				BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */,
+				BA7F89B212FEFC6A00D6C3A5 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +389,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				BA7F89B112FEFC6A00D6C3A5 /* CoreText.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -400,6 +461,12 @@
 		BA701C0512DA148D0048790A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA7F899D12FEFC5400D6C3A5 /* IKCompass.h */,
+				BA7F899E12FEFC5400D6C3A5 /* IKCompass.m */,
+				BA7F899F12FEFC5400D6C3A5 /* IKInstrumentsCommon.h */,
+				BA7F89A012FEFC5400D6C3A5 /* IKInstrumentsCommon.m */,
+				BACCCCA112FEE7E500D2EFE7 /* CustomBadge.h */,
+				BACCCCA212FEE7E500D2EFE7 /* CustomBadge.m */,
 				BA9C079D12E62B7200A3A706 /* Common.h */,
 				BA9C079E12E62B7200A3A706 /* Common.m */,
 				BA9C079F12E62B7200A3A706 /* IKAttitudeIndicator.h */,
@@ -413,6 +480,20 @@
 		BA71CCD112CFF1730029C5F7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BAB8AAEE13009795002CBB97 /* home1.png */,
+				BAB8AAEF13009795002CBB97 /* home2.png */,
+				BAB8A97713007667002CBB97 /* altitude.png */,
+				BAB8A97813007667002CBB97 /* altitudeMax.png */,
+				BAB8A97913007667002CBB97 /* battery.png */,
+				BAB8A97A13007667002CBB97 /* compass.png */,
+				BAB8A97B13007667002CBB97 /* flightTime.png */,
+				BAB8A97C13007667002CBB97 /* gpsCH.png */,
+				BAB8A97D13007667002CBB97 /* gpsPH.png */,
+				BAB8A97E13007667002CBB97 /* gpsSat.png */,
+				BAB8A97F13007667002CBB97 /* gpsSat2.png */,
+				BAB8A98013007667002CBB97 /* speed.png */,
+				BAC5424F12F75E6900379C4D /* 13-target.png */,
+				BA0D1C0312F7224900555855 /* tabHorizon.png */,
 				BA71CEA812D0D43F0029C5F7 /* leftTriangle.png */,
 				BA71CEA912D0D43F0029C5F7 /* rightTriangle.png */,
 				BA71CEAA12D0D43F0029C5F7 /* star.png */,
@@ -661,6 +742,8 @@
 		BA9C01C112DF927900A3A706 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				BAB8A9E613007DBE002CBB97 /* UIImage+Tint.h */,
+				BAB8A9E713007DBE002CBB97 /* UIImage+Tint.m */,
 				BA9C01C212DF927900A3A706 /* MBProgressHUD.h */,
 				BA9C01C312DF927900A3A706 /* MBProgressHUD.m */,
 			);
@@ -670,6 +753,7 @@
 		BA9C023512E1BEB900A3A706 /* Osd */ = {
 			isa = PBXGroup;
 			children = (
+				BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */,
 				BA9C025112E1C59900A3A706 /* Data3DValue.h */,
 				BA9C025212E1C59900A3A706 /* Data3DValue.m */,
 				BA9C023612E1BEB900A3A706 /* OsdValue.h */,
@@ -678,6 +762,15 @@
 				BA9C074812E623D600A3A706 /* HorizonOsdViewController.m */,
 				BA9C074912E623D600A3A706 /* HorizonOsdViewController.xib */,
 				BA9C078E12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib */,
+				BA0D1A4112F2E78500555855 /* OsdViewController.h */,
+				BA0D1A4212F2E78500555855 /* OsdViewController.m */,
+				BA0D1A4312F2E78500555855 /* OsdViewController.xib */,
+				BA0D1C2612F7250900555855 /* ValueOsdViewController.h */,
+				BA0D1C2712F7250900555855 /* ValueOsdViewController.m */,
+				BA0D1C2812F7250900555855 /* ValueOsdViewController.xib */,
+				BAB8AA8313008985002CBB97 /* RawOsdViewController.h */,
+				BAB8AA8413008985002CBB97 /* RawOsdViewController.m */,
+				BAB8AA8513008985002CBB97 /* RawOsdViewController.xib */,
 			);
 			path = Osd;
 			sourceTree = "<group>";
@@ -756,6 +849,24 @@
 				BA701E3912DA5BB90048790A /* DeviceInfoController.xib in Resources */,
 				BA9C074B12E623D600A3A706 /* HorizonOsdViewController.xib in Resources */,
 				BA9C078F12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib in Resources */,
+				BA0D1A4512F2E78500555855 /* OsdViewController.xib in Resources */,
+				BA0D1C0412F7224900555855 /* tabHorizon.png in Resources */,
+				BA0D1C2A12F7250900555855 /* ValueOsdViewController.xib in Resources */,
+				BAC5425012F75E6900379C4D /* 13-target.png in Resources */,
+				BAB8A98113007667002CBB97 /* altitude.png in Resources */,
+				BAB8A98213007667002CBB97 /* altitudeMax.png in Resources */,
+				BAB8A98313007667002CBB97 /* battery.png in Resources */,
+				BAB8A98413007667002CBB97 /* compass.png in Resources */,
+				BAB8A98513007667002CBB97 /* flightTime.png in Resources */,
+				BAB8A98613007667002CBB97 /* gpsCH.png in Resources */,
+				BAB8A98713007667002CBB97 /* gpsPH.png in Resources */,
+				BAB8A98813007667002CBB97 /* gpsSat.png in Resources */,
+				BAB8A98913007667002CBB97 /* gpsSat2.png in Resources */,
+				BAB8A98A13007667002CBB97 /* speed.png in Resources */,
+				BAB8AA8713008985002CBB97 /* RawOsdViewController.xib in Resources */,
+				BAB8AAF013009795002CBB97 /* home1.png in Resources */,
+				BAB8AAF113009795002CBB97 /* home2.png in Resources */,
+				BAB8AB0B130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +943,13 @@
 				BA9C07A112E62B7200A3A706 /* Common.m in Sources */,
 				BA9C07A212E62B7200A3A706 /* IKAttitudeIndicator.m in Sources */,
 				BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */,
+				BA0D1A4412F2E78500555855 /* OsdViewController.m in Sources */,
+				BA0D1C2912F7250900555855 /* ValueOsdViewController.m in Sources */,
+				BACCCCA312FEE7E500D2EFE7 /* CustomBadge.m in Sources */,
+				BA7F89A112FEFC5400D6C3A5 /* IKCompass.m in Sources */,
+				BA7F89A212FEFC5400D6C3A5 /* IKInstrumentsCommon.m in Sources */,
+				BAB8A9E813007DBE002CBB97 /* UIImage+Tint.m in Sources */,
+				BAB8AA8613008985002CBB97 /* RawOsdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

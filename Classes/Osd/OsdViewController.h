@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010-2011, Frank Blumenberg
+// Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,19 +22,25 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "OsdValue.h"
 
-#import "IKMkDataTypes.h"
-
-@interface IKNaviData : NSObject {
-
-  IKMkNaviData _data;
+@interface OsdViewController : UIViewController<UITabBarDelegate, OsdValueDelegate> {
+  
+  OsdValue* osdValue;
+  
+  NSArray* viewControllers;
+	UITabBar* tabBar;
+	
+  UITabBarItem *horizonOsdTabBarItem;
+  UITabBarItem *valuesOsdTabBarItem;
+  UIViewController<OsdValueDelegate> *selectedViewController;
 }
 
-@property(assign,readonly) IKMkNaviData* data;
-
-+ (id)data;
-+ (id)dataWithData:(NSData *)data;
-- (id)initWithData:(NSData*)data;
+@property (nonatomic, retain) NSArray *viewControllers;
+@property (nonatomic, retain) IBOutlet UITabBar *tabBar;
+@property (nonatomic, retain) IBOutlet UITabBarItem *horizonOsdTabBarItem;
+@property (nonatomic, retain) IBOutlet UITabBarItem *valuesOsdTabBarItem;
+@property (nonatomic, retain) UIViewController<OsdValueDelegate> *selectedViewController;
 
 @end

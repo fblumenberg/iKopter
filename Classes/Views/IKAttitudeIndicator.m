@@ -6,6 +6,7 @@
 //  Copyright 2011 de.frankblumenberg. All rights reserved.
 //
 
+#import "IKInstrumentsCommon.h"
 #import "IKAttitudeIndicator.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Common.h"
@@ -14,14 +15,6 @@
 #define  kDegreeMarksLayerName @"DegreeMarksLayerName" 
 #define  kWingsLayerName @"WingsLayerName"
 
-@interface IKLayerDelegateProxy : NSObject 
-{
-  id _delegate;
-}
-
-- (id)initWithDelegate:(id)delegate;
-
-@end
 
 
 @interface IKAttitudeIndicator(private)
@@ -369,25 +362,6 @@
   _degreeMarksLayer.transform = current;
   current = CATransform3DTranslate(current,0,(_pitch/60.0)*CGRectGetHeight(self.layer.bounds), 0);
   _horizonLayer.transform = current; 
-}
-
-@end
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-@implementation IKLayerDelegateProxy
-
-- (id)initWithDelegate:(id)delegate {
-  self = [super init];
-  if (self) {
-    _delegate = delegate;
-  }
-  return self; 
-}
-
-- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx {
-  if( [_delegate respondsToSelector:@selector(drawLayer:inContext:)] )
-    [_delegate drawLayer:layer inContext:ctx];
 }
 
 @end

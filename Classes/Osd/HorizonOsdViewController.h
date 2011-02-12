@@ -31,7 +31,6 @@
 
   UITextView* osdText;
   IKAttitudeIndicator* indicator;
-  OsdValue* osdValue;
   
   UILabel* heigth;
   UILabel* heigthSetpoint;

@@ -26,9 +26,11 @@
 #import "IKMkDatatypes.h"
 #import "IKNaviData.h"
 
+@class OsdValue;
+
 @protocol OsdValueDelegate
 
-- (void) newValue:(IKNaviData*)data;
+- (void) newValue:(OsdValue*)value;
 
 @end
 
