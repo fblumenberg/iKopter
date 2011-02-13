@@ -298,6 +298,7 @@
 {
   NSError* err = [[aNotification userInfo] objectForKey:@"error"];
   [_hud hide:YES];
+  [UIApplication sharedApplication].idleTimerDisabled=NO;
   
   UIAlertView *alert = [[UIAlertView alloc] 
                         initWithTitle:NSLocalizedString(@"Server error", @"Server error")
@@ -329,6 +330,7 @@
 
   [_hud hide:YES];
   
+  [UIApplication sharedApplication].idleTimerDisabled=YES;
   [self initToolbar];
 }
 
@@ -336,6 +338,7 @@
 {
   [_hud hide:YES];
   connectionState=MKConnectionStateDisconnected;
+  [UIApplication sharedApplication].idleTimerDisabled=NO;
   [self.navigationController popToRootViewControllerAnimated:YES]; 
 }
 
