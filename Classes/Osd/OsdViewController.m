@@ -85,11 +85,11 @@
   
   [super viewWillAppear:animated];
   
-  for (UIViewController* controller in self.viewControllers) {
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
-    [controller.view addGestureRecognizer:singleTap];
-    [singleTap release];    
-  }
+//  for (UIViewController* controller in self.viewControllers) {
+//    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
+//    [controller.view addGestureRecognizer:singleTap];
+//    [singleTap release];    
+//  }
   
   [self.navigationController setToolbarHidden:YES animated:YES];
   [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -149,6 +149,10 @@
 -(void) updateSelectedViewFrame {
   self.selectedViewController.view.frame=CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-CGRectGetHeight(self.tabBar.frame));
   [selectedViewController newValue:osdValue];
+  
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
+    [self.selectedViewController.view addGestureRecognizer:singleTap];
+    [singleTap release];    
 }
 
 
@@ -179,10 +183,13 @@
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
   UIViewController *newSelectedViewController = [viewControllers objectAtIndex:item.tag];
+  
+  [self.selectedViewController viewWillDisappear:NO];
   [self.selectedViewController.view removeFromSuperview];
   
   [self.view addSubview:newSelectedViewController.view];
   self.selectedViewController = newSelectedViewController;
+  [self.selectedViewController viewWillAppear:NO];
   [self updateSelectedViewFrame];
 }
 

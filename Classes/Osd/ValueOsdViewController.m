@@ -26,6 +26,14 @@
 #import "ValueOsdViewController.h"
 #import "UIImage+Tint.h"
 
+/////////////////////////////////////////////////////////////////////////////////
+@interface ValueOsdViewController()
+
+- (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation;
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////
 @implementation ValueOsdViewController
 
 @synthesize gpsSateliteOk;
@@ -79,17 +87,33 @@
   gpsOkColor=nil;
 }
 
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  [self updateViewWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
 }
 
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+- (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
+  
+  
   if ( UIInterfaceOrientationIsPortrait(orientation) ){
     [[NSBundle mainBundle] loadNibNamed:@"ValueOsdViewController" owner:self options:nil];
   }
   else if (UIInterfaceOrientationIsLandscape(orientation)){
     [[NSBundle mainBundle] loadNibNamed:@"ValueOsdViewControllerLandscape" owner:self options:nil];
   }
+
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+  [self updateViewWithOrientation: orientation];
+
 }
 
 
