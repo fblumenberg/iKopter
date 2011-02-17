@@ -377,7 +377,7 @@
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="276680621">
+							<object class="NSColorSpace" key="NSCustomColorSpace">
 								<int key="NSID">2</int>
 							</object>
 						</object>
@@ -405,9 +405,8 @@
 						<string key="NSFrame">{{332, 123}, {142, 142}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-							<reference key="NSCustomColorSpace" ref="276680621"/>
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAwLjQzNTI5NDEyMTUgMC44MTE3NjQ3MTcxAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -448,7 +447,7 @@
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuODAwMDAwMDExOSAwLjgwMDAwMDAxMTkAA</bytes>
+					<bytes key="NSRGB">MSAxIDEAA</bytes>
 				</object>
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
@@ -843,7 +842,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ValueOsdViewController</string>
 					<string>UIResponder</string>
-					<string>{{440, 637}, {480, 320}}</string>
+					<string>{{332, 631}, {480, 320}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSMutableArray">
 						<bool key="EncodedWithXMLCoder">YES</bool>

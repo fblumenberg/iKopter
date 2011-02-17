@@ -122,8 +122,9 @@
   
   IKMkNaviData*data=value.data.data;
   
-  heigth.text=[NSString stringWithFormat:@"%0.1f m",data->Altimeter/30.0];  
-  heigthSetpoint.text=[NSString stringWithFormat:@"%0.1f",data->SetpointAltitude/30.0];  
+  heigth.text=[NSString stringWithFormat:@"%0.1f m",data->Altimeter/20.0];  
+  heigthSetpoint.text=[NSString stringWithFormat:@"%0.1f",data->SetpointAltitude/20.0];  
+  
   battery.text=[NSString stringWithFormat:@"%0.1f V",data->UBat/10.0];    
   current.text=[NSString stringWithFormat:@"%0.1f",data->Current/10.0];      
   usedCapacity.text=[NSString stringWithFormat:@"%d",data->UsedCapacity];  
