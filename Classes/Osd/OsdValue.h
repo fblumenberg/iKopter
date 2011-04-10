@@ -39,6 +39,7 @@
 @interface OsdValue : NSObject {
 
   int requestCount;
+  NSTimer* requestTimer;
    
   id<OsdValueDelegate> _delegate;
   IKNaviData* _data;
@@ -60,5 +61,8 @@
 @property(readonly) BOOL isTargetReached;
 @property(readonly) BOOL isManualControlEnabled;
 @property(readonly) BOOL isGpsOk;
+
+- (void) startRequesting;
+- (void) stopRequesting;
 
 @end

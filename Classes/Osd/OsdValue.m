@@ -123,27 +123,42 @@
 {
   self = [super init];
   if (self != nil) {
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-    
-    [nc addObserver:self
-           selector:@selector(osdNotification:)
-               name:MKOsdNotification
-             object:nil];
-    
+   
     self.data=[IKNaviData data];
-    [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
     
   }
   return self;
 }
 
-- (void) dealloc
-{
+- (void) dealloc {
+  
+  self.data=nil;
+  [super dealloc];
+}
+
+
+- (void) startRequesting {
+
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  
+  [nc addObserver:self
+         selector:@selector(osdNotification:)
+             name:MKOsdNotification
+           object:nil];
+
+  requestTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
+                @selector(sendOsdRefreshRequest) userInfo:nil repeats:YES];
+  
+  [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
+}
+
+- (void) stopRequesting {
+  
+  [requestTimer invalidate];
+  requestTimer=nil;
+
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
-
-  [_data release];
-  [super dealloc];
 }
 
 
@@ -157,11 +172,11 @@
   
   [self.delegate newValue:self];
 
-  NSLog(@"osdCount=%d",requestCount);
-  if (requestCount++ >= 6 ) {
-    [self sendOsdRefreshRequest];
-    requestCount = 0;
-  }
+//  NSLog(@"osdCount=%d",requestCount);
+//  if (requestCount++ >= 6 ) {
+//    [self sendOsdRefreshRequest];
+//    requestCount = 0;
+//  }
 }
 
 @end

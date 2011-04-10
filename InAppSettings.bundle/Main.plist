@@ -54,16 +54,6 @@
 			<key>IASKViewControllerClass</key>
 			<string>OsdViewController</string>
 		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>OSD Horizon</string>
-			<key>IASKViewControllerSelector</key>
-			<string>init</string>
-			<key>IASKViewControllerClass</key>
-			<string>HorizonOsdViewController</string>
-		</dict>
 	</array>
 </dict>
 </plist>

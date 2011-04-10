@@ -162,6 +162,8 @@
   else
     gpsMode.text=@"??";    
   
+  flightTime.text=[NSString stringWithFormat:@"%02d:%02d",data->FlyingTime/60,data->FlyingTime%60];
+  
 //  if(value.isTargetReached)
 //    gpsTarget.text=@"TARGET";
 //  else

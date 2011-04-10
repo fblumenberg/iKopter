@@ -47,11 +47,6 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 - (void)dealloc {
-  
-  [osdValue release];
-  self.selectedViewController=nil;
-  self.viewControllers=nil;
-  
   [super dealloc];
 }
 
@@ -67,15 +62,15 @@
   NSArray *array = [[NSArray alloc] initWithObjects:horizonViewController, valueViewController, rawViewController, nil];
   self.viewControllers = array;
   
-  [self.view addSubview:horizonViewController.view];
-  self.selectedViewController = horizonViewController;
+  [self.view addSubview:valueViewController.view];
+  self.selectedViewController = valueViewController;
   
   [array release];
   [horizonViewController release];
   [valueViewController release];
   [rawViewController release];
   
-  self.tabBar.selectedItem=self.horizonOsdTabBarItem;
+  self.tabBar.selectedItem=self.valuesOsdTabBarItem;
   
   osdValue = [[OsdValue alloc] init];
   osdValue.delegate = self;
@@ -84,13 +79,9 @@
 - (void) viewWillAppear:(BOOL)animated {
   
   [super viewWillAppear:animated];
-  
-//  for (UIViewController* controller in self.viewControllers) {
-//    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
-//    [controller.view addGestureRecognizer:singleTap];
-//    [singleTap release];    
-//  }
-  
+
+  [osdValue startRequesting];
+
   [self.navigationController setToolbarHidden:YES animated:YES];
   [self.navigationController setNavigationBarHidden:NO animated:NO];
   
@@ -111,13 +102,19 @@
     self.navigationController.navigationBar.translucent=NO;
   }
   
+  osdValue.delegate = nil;
+  [osdValue stopRequesting];
+
   [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  // Release any retained subviews of the main view.
-  // e.g. self.myOutlet = nil;
+  
+  self.selectedViewController=nil;
+  self.viewControllers=nil;
+  
+  [osdValue release];
 }
 
 
@@ -194,7 +191,7 @@
 }
 
 - (void) newValue:(OsdValue*)value {
-  [selectedViewController newValue:value];
+  [self.selectedViewController newValue:value];
 }
 
 @end
