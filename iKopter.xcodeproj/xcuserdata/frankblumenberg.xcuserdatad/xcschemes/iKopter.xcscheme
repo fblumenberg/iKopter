@@ -61,8 +61,8 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "NSZombieEnabled"
-            value = "NO"
-            isEnabled = "NO">
+            value = "YES"
+            isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "NSShowNonLocalizedStrings"

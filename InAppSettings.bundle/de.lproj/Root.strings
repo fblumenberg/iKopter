@@ -1,4 +1,191 @@
+/* MKHost */
+"HOST_TITLE"="MK-Host";
 "HOST_NAME"="Name";
 "HOST_ADDRESS"="Adresse";
 "HOST_PORT"="Port";
-"HOST_CONNECTION"="Verbindungsart";
+"HOST_CONNECTION"="Verbindungstyp";
+
+
+/* Main */
+"LCD"="LCD";
+"Debug"="Debug/Analog";
+"Settings"="Einstellungen";
+"OSD"="OSD";
+
+/* Setting */
+"Setting"="Parameterset";
+"Name"="Name";
+"Channels"="Kanäle";
+"Compass"="Kompass";
+"NaviControl"="Navi Control";
+"Stick"="Stick";
+"Altitude"="Höhe";
+"Camera"="Kamera";
+"Gyro"="Gyro";
+"Coupling"="Achskoppelung";
+"Looping"="Looping";
+"Misc"="Verschiedenes";
+
+/* Altitude */
+"AltitudeTITLE"="Höhe";
+"GlobalConfig_HOEHENREGELUNG"="Höhenregelung aktiv";
+"ExtraConfig_HEIGHT_LIMIT"="Art";
+"ExtraConfig_HEIGHT_LIMIT_0"="Höhenbegrenzung";
+"ExtraConfig_HEIGHT_LIMIT_1"="Vario-Höhe";
+"GlobalConfig_HOEHEN_SCHALTER"="Schalter für Höhe";
+"ExtraConfig_VARIO_BEEP"="akustisches Variometer";
+"MaxHoehe"="Sollwert";
+"Hoehe_Verstaerkung"="Verstärkung/Rate";
+"Hoehe_MinGas"="Min. Gas";
+"Hoehe_HoverBand"="Schwebe-Gas +/-";
+"Hoehe_P"="Höhe P";
+"Hoehe_GPS_Z"="GPS-Z";
+"Luftdruck_D"="Luftdruck D";
+"Hoehe_ACC_Wirkung"="Z-ACC";
+"Hoehe_StickNeutralPoint"="Stick Neutral Punkt";
+"Hoehe_StickNeutralPoint_FOOTER"="0 - automatisch / 120 - Mittelposition";
+
+/* Channels */
+"ChannelsTITLE"="Kanäle";
+"Receiver"="Empfänger";
+"ExtraConfig_SENSITIVE_RC"="Erweiterte Empfangssignalprüfung";
+"ChannelsTest"="RC-Kanäle Test";
+"MotorSafetySwitch"="Motor-Sicherheitschalter";
+"RC_Channel_OFF"="AUS";
+"RC_Channel_1"="RC Kanal 1";
+"RC_Channel_2"="RC Kanal 2";
+"RC_Channel_3"="RC Kanal 3";
+"RC_Channel_4"="RC Kanal 4";
+"RC_Channel_5"="RC Kanal 5";
+"RC_Channel_6"="RC Kanal 6";
+"RC_Channel_7"="RC Kanal 7";
+"RC_Channel_8"="RC Kanal 8";
+"RC_Channel_9"="RC Kanal 9";
+"RC_Channel_10"="RC Kanal 10";
+"RC_Channel_11"="RC Kanal 11";
+"RC_Channel_11"="RC Kanal 12";
+"RC_SerChannel_1"="RC Serial Kanal 1";
+"RC_SerChannel_2"="RC Serial Kanal 2";
+"RC_SerChannel_3"="RC Serial Kanal 3";
+"RC_SerChannel_4"="RC Serial Kanal 4";
+"RC_SerChannel_5"="RC Serial Kanal 5";
+"RC_SerChannel_6"="RC Serial Kanal 6";
+"RC_SerChannel_7"="RC Serial Kanal 7";
+"RC_SerChannel_8"="RC Serial Kanal 8";
+"RC_SerChannel_9"="RC Serial Kanal 9";
+"RC_SerChannel_10"="RC Serial Kanal 10";
+"RC_SerChannel_11"="RC Serial Kanal 11";
+"RC_SerChannel_11"="RC Serial Kanal 12";
+"Kanalbelegung_00"="Gas";
+"Kanalbelegung_01"="Gier";
+"Kanalbelegung_02"="Nick";
+"Kanalbelegung_03"="Roll";
+"Kanalbelegung_04"="Poti1";
+"Kanalbelegung_05"="Poti2";
+"Kanalbelegung_06"="Poti3";
+"Kanalbelegung_07"="Poti4";
+"Kanalbelegung_08"="Poti5";
+"Kanalbelegung_09"="Poti6";
+"Kanalbelegung_10"="Poti7";
+"Kanalbelegung_11"="Poti8";
+
+/* Stick */
+"StickTITLE"="Stick";
+"Stick_P"="Nick-/Roll-P";
+"Stick_D"="Nick-/Roll-D";
+"Gier_P"="Gier-P";
+"ExternalControl"="External Control";
+
+/* Gyro */
+"GyroTITLE"="Gyro";
+"Gyro_P"="Gyro-P";
+"Gyro_I"="Gyro-I";
+"Gyro_D"="Gyro-D";
+"YawTITLE"="Gier";
+"Gyro_Gier_P"="Gier-P";
+"Gyro_Gier_I"="Gier-I";
+"DynamicStability"="Dynamische Stabilität";
+"Driftkomp"="Drift-Kompensation";
+"GyroAccFaktor"="ACC/Gyro-Faktor";
+"GyroAccAbgleich"="ACC/Gyro-Komp";
+"I_Faktor"="Main I";
+
+/* Navi Control */
+"NaviControlTITLE"="Navi Control";
+"GlobalConfig_GPS_AKTIV"="GPS aktiv";
+"NaviGpsModeControl"="GPS Modus Steuerung";
+"NaviGpsGain"="GPS-Verstärkung";
+"NaviStickThreshold"="GPS Stick Schwelle";
+"NaviGpsMinSat"="Min. Sat";
+"NaviGpsP"="GPS-P";
+"NaviGpsPLimit"="GPS-P Limit";
+"NaviGpsI"="GPS-I";
+"NaviGpsILimit"="GPS-I Limit";
+"NaviGpsD"="GPS-D";
+"NaviGpsDLimit"="GPS-D Limit";
+"NaviGpsACC"="GPS-Acc.";
+"NaviWindCorrection"="GPS Windkorrektur";
+"NaviSpeedCompensation"="Bremswirkung";
+"NaviOperatingRadius"="GPS max. Radius";
+"NaviAngleLimitation"="GPS Winkel Limit";
+"NaviPH_LoginTime"="PH Login Zeit";
+
+/* Compass */ 
+"CompassTITLE"="Compass";
+"GlobalConfig_KOMPASS_AKTIV"="Kompass aktiv";
+"GlobalConfig_KOMPASS_FIX"="Feste Ausrichtung";
+"KompassWirkung"="Kompasswirkung";
+
+/* Coupling */
+"CouplingTITLE"="Achskopplung";
+"GlobalConfig_ACHSENKOPPLUNG_AKTIV"="aktiv";
+"AchsKopplung1"="Gier pos. Rückkopplung";
+"AchsKopplung2"="Nick/Roll Rückkopplung";
+"CouplingYawCorrection"="Gier Korrektur";
+
+
+/* Looping */
+"LoopingTITLE"="Looping";
+"LoopGasLimit"="Gas Limit";
+"LoopThreshold"="Ansprechschwelle";
+"LoopHysterese"="Hysterese";
+"WinkelUmschlagNick"="Umkehrpunkt Nick";
+"WinkelUmschlagRoll"="Umkehrpunkt Roll";
+"LoopStickTITLE"="Looping, wenn Stick ist";
+"BitConfig_LOOP_OBEN"="Oben";
+"BitConfig_LOOP_UNTEN"="Unten";
+"BitConfig_LOOP_LINKS"="Links";
+"BitConfig_LOOP_RECHTS"="Rechts";
+
+/* Misc */
+"MiscTITLE"="Verschiedenes";
+"Gas_Min"="Min. Gas";
+"Gas_Max"="Max. Gas";
+"ExtraConfig_3_3V_REFERENCE"="Spannungsreferenz";
+"ExtraConfig_3_3V_REFERENCE_0"="3.0 V";
+"ExtraConfig_3_3V_REFERENCE_1"="3.3 V";
+
+"OrientationModeControl"="Carefree control";
+"UnterspannungsWarnung"="Unterspannung";
+"NotGasZeit"="NOT-Gas Zeit [0.1s]";
+"NotGas"="NOT-Gas";
+
+/* Camera */
+"CameraTITLE"="Kamera";
+"CameraNickTITLE"="Nick";
+"CameraRollTITLE"="Roll";
+"ServoNickControl"="Servo Ansteuerung";
+"ServoNickComp"="Kompensation";
+"ServoCompInvert_NICK"="Richtung umkehren";
+"ServoNickMin"="Min";
+"ServoNickMax"="Max";
+"ServoRollControl"="Servo Ansteuerung";
+"ServoRollComp"="Kompensation";
+"ServoCompInvert_ROLL"="Richtung umkehren";
+"ServoRollMin"="Min";
+"ServoRollMax"="Max";
+"ServoNickRefresh"="Ansteuergeschwindigkeit";
+"ServoManualControlSpeed"="manuelle Geschwindigkeit";
+"Servo3"="Servo3";
+"Servo4"="Servo4";
+"Servo5"="Servo5";

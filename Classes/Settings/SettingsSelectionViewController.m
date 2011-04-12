@@ -124,7 +124,7 @@ static NSUInteger kNumberOfSettings = 5;
   UIBarButtonItem* actionButton;
   
   actionButton =  [[[UIBarButtonItem alloc]
-                    initWithTitle:@"Change Active"
+                    initWithTitle:NSLocalizedString(@"Change Active",@"")
                             style:UIBarButtonItemStyleBordered|UIBarButtonItemStyleDone
                             target:self
                             action:@selector(saveActiveSetting:)] autorelease];

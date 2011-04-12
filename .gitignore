@@ -28,3 +28,5 @@ CVS
 *~.nib
 *.swp
 *~
+/iKopter.xcodeproj/xcuserdata/frankblumenberg.xcuserdatad/xcdebugger/
+*.xcscheme

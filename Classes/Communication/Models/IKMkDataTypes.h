@@ -210,7 +210,7 @@ typedef struct
     unsigned char Index;
     unsigned char Revision;
     unsigned char Kanalbelegung[12];       // GAS[0], GIER[1],NICK[2], ROLL[3], POTI1, POTI2, POTI3
-    unsigned char GlobalConfig;           // 0x01=Höhenregler aktiv,0x02=Kompass aktiv, 0x04=GPS aktiv, 0x08=Heading Hold aktiv
+    unsigned char GlobalConfig;           // 0x01=Hï¿½henregler aktiv,0x02=Kompass aktiv, 0x04=GPS aktiv, 0x08=Heading Hold aktiv
     unsigned char Hoehe_MinGas;           // Wert : 0-100
     unsigned char Luftdruck_D;            // Wert : 0-250
     unsigned char MaxHoehe;               // Wert : 0-32
@@ -234,7 +234,7 @@ typedef struct
     unsigned char Gyro_Gier_I;            // Wert : 0-250
     unsigned char Gyro_Stability;         // Wert : 0-16
     unsigned char UnterspannungsWarnung;  // Wert : 0-250
-    unsigned char NotGas;                 // Wert : 0-250     //Gaswert bei Empängsverlust
+    unsigned char NotGas;                 // Wert : 0-250     //Gaswert bei Empï¿½ngsverlust
     unsigned char NotGasZeit;             // Wert : 0-250     // Zeitbis auf NotGas geschaltet wird, wg. Rx-Problemen
     unsigned char Receiver;               // 0= Summensignal, 1= Spektrum, 2 =Jeti, 3=ACT DSL, 4=ACT S3D
     unsigned char I_Faktor;               // Wert : 0-250
@@ -258,14 +258,14 @@ typedef struct
     unsigned char Servo3;                // Value or mapping of the Servo Output
     unsigned char Servo4;                    // Value or mapping of the Servo Output
     unsigned char Servo5;                    // Value or mapping of the Servo Output
-    unsigned char LoopGasLimit;           // Wert: 0-250  max. Gas während Looping
-    unsigned char LoopThreshold;          // Wert: 0-250  Schwelle für Stickausschlag
-    unsigned char LoopHysterese;          // Wert: 0-250  Hysterese für Stickausschlag
+    unsigned char LoopGasLimit;           // Wert: 0-250  max. Gas wï¿½hrend Looping
+    unsigned char LoopThreshold;          // Wert: 0-250  Schwelle fï¿½r Stickausschlag
+    unsigned char LoopHysterese;          // Wert: 0-250  Hysterese fï¿½r Stickausschlag
     unsigned char AchsKopplung1;          // Wert: 0-250  Faktor, mit dem Gier die Achsen Roll und Nick koppelt (NickRollMitkopplung)
     unsigned char AchsKopplung2;          // Wert: 0-250  Faktor, mit dem Nick und Roll verkoppelt werden
     unsigned char CouplingYawCorrection;  // Wert: 0-250  Faktor, mit dem Nick und Roll verkoppelt werden
-    unsigned char WinkelUmschlagNick;     // Wert: 0-250  180°-Punkt
-    unsigned char WinkelUmschlagRoll;     // Wert: 0-250  180°-Punkt
+    unsigned char WinkelUmschlagNick;     // Wert: 0-250  180ï¿½-Punkt
+    unsigned char WinkelUmschlagRoll;     // Wert: 0-250  180ï¿½-Punkt
     unsigned char GyroAccAbgleich;        // 1/k  (Koppel_ACC_Wirkung)
     unsigned char Driftkomp;
     unsigned char DynamicStability;
@@ -317,7 +317,7 @@ typedef struct
 
 typedef struct 
 {
-  int16_t  Winkel[3]; // nick, roll, compass in 0,1¡
+  int16_t  Winkel[3]; // nick, roll, compass in 0,1ï¿½
   int8_t   Centroid[3];
   int8_t   reserve[5];
 } IKMkData3D;
@@ -383,10 +383,10 @@ typedef struct
   uint16_t      FlyingTime;         // in seconds
   uint8_t       UBat;           // Battery Voltage in 0.1 Volts
   uint16_t      GroundSpeed;        // speed over ground in cm/s (2D)
-  int16_t       Heading;          // current flight direction in ° as angle to north
-  int16_t       CompassHeading;       // current compass value in °
-  int8_t        AngleNick;          // current Nick angle in 1°
-  int8_t        AngleRoll;          // current Rick angle in 1°
+  int16_t       Heading;          // current flight direction in ï¿½ as angle to north
+  int16_t       CompassHeading;       // current compass value in ï¿½
+  int8_t        AngleNick;          // current Nick angle in 1ï¿½
+  int8_t        AngleRoll;          // current Rick angle in 1ï¿½
   uint8_t       RC_Quality;         // RC_Quality
   uint8_t       FCStatusFlags;        // Flags from FC
   uint8_t       NCFlags;          // Flags from NC
