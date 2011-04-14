@@ -189,7 +189,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   //    return;
   
   DLog("Activate the NaviControl");
-  uint8_t bytes[5];
+  uint8_t bytes[6];
   bytes[0] = 0x1B;
   bytes[1] = 0x1B;
   bytes[2] = 0x55;
