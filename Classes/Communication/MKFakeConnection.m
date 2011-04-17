@@ -275,10 +275,11 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
     
   }
   
+#ifdef DEBUG
   int port = [[hostItems objectAtIndex:1] intValue];
   NSString * host = [hostItems objectAtIndex:0];
-  
   DLog(@"Try to connect to %@ on port %d", host, port);
+#endif
   
   [self performSelector:@selector(doConnect) withObject:nil afterDelay:0.5];
   return YES;

@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "MainViewController.h"
+#import "AboutViewController.h"
 
 #import "MKHosts.h";
 #import "MKHost.h";
@@ -24,7 +25,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.title = NSLocalizedString(@"µKopter",@"Root Title");
+  self.title = NSLocalizedString(@"iKopter",@"Root Title");
 
   hosts=[[MKHosts alloc]init];
   
@@ -42,6 +43,10 @@
                     action:nil] autorelease];
   
   [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,addButton,nil]];
+  
+  UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight]; 
+  [infoButton addTarget:self action:@selector(showInfoView:) forControlEvents:UIControlEventTouchUpInside];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
   
   self.tableView.allowsSelectionDuringEditing=YES;
 }
@@ -82,6 +87,16 @@
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES; //(interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+-(void)showInfoView:(id)sende {
+	AboutViewController *controller = [[AboutViewController alloc] initWithNibName:@"AboutView" bundle:nil];
+	
+	controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+	[self presentModalViewController:controller animated:YES];
+	
+	[controller release];  
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

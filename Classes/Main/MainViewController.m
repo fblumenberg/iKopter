@@ -325,7 +325,6 @@
   [_tableView endUpdates];
   
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];
-  
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
 
   [_hud hide:YES];

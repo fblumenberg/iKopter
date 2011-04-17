@@ -110,6 +110,8 @@
 		BA9C07A212E62B7200A3A706 /* IKAttitudeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C07A012E62B7200A3A706 /* IKAttitudeIndicator.m */; };
 		BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */; };
 		BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C081712E7796600A3A706 /* IKNaviData.m */; };
+		BAAA7B1A1356E5A500365FCB /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAA7B171356E5A500365FCB /* AboutViewController.m */; };
+		BAAA7B1B1356E5A500365FCB /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAAA7B181356E5A500365FCB /* AboutView.xib */; };
 		BAB8A98113007667002CBB97 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97713007667002CBB97 /* altitude.png */; };
 		BAB8A98213007667002CBB97 /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97813007667002CBB97 /* altitudeMax.png */; };
 		BAB8A98313007667002CBB97 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97913007667002CBB97 /* battery.png */; };
@@ -311,6 +313,10 @@
 		BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA9C081612E7796600A3A706 /* IKNaviData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKNaviData.h; sourceTree = "<group>"; };
 		BA9C081712E7796600A3A706 /* IKNaviData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKNaviData.m; sourceTree = "<group>"; };
+		BAAA7B161356E5A500365FCB /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Classes/AboutViewController.h"; sourceTree = "<group>"; };
+		BAAA7B171356E5A500365FCB /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Classes/AboutViewController.m"; sourceTree = "<group>"; };
+		BAAA7B191356E5A500365FCB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Resources/Localizations/English.lproj/AboutView.xib"; sourceTree = "<group>"; };
+		BAAA7B1C1356E5D800365FCB /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/AboutView.xib; sourceTree = "<group>"; };
 		BAB8A97713007667002CBB97 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAB8A97813007667002CBB97 /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
 		BAB8A97913007667002CBB97 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
@@ -504,6 +510,9 @@
 		BA71CCFB12D0BFC80029C5F7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BAAA7B161356E5A500365FCB /* AboutViewController.h */,
+				BAAA7B171356E5A500365FCB /* AboutViewController.m */,
+				BAAA7B181356E5A500365FCB /* AboutView.xib */,
 				BA71CD6412D0C0740029C5F7 /* RootViewController.h */,
 				BA71CD6512D0C0740029C5F7 /* RootViewController.m */,
 				BA71CCFC12D0BFC80029C5F7 /* iKopterAppDelegate.h */,
@@ -782,6 +791,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iKopter" */;
 			buildPhases = (
+				BAAA7B0F1356CDB100365FCB /* ShellScript */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -867,10 +877,27 @@
 				BAB8AAF013009795002CBB97 /* home1.png in Resources */,
 				BAB8AAF113009795002CBB97 /* home2.png in Resources */,
 				BAB8AB0B130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib in Resources */,
+				BAAA7B1B1356E5A500365FCB /* AboutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BAAA7B0F1356CDB100365FCB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./plistVersionIncrement.sh ";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -950,6 +977,7 @@
 				BA7F89A212FEFC5400D6C3A5 /* IKInstrumentsCommon.m in Sources */,
 				BAB8A9E813007DBE002CBB97 /* UIImage+Tint.m in Sources */,
 				BAB8AA8613008985002CBB97 /* RawOsdViewController.m in Sources */,
+				BAAA7B1A1356E5A500365FCB /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,6 +993,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		BAAA7B181356E5A500365FCB /* AboutView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAAA7B191356E5A500365FCB /* English */,
+				BAAA7B1C1356E5D800365FCB /* de */,
+			);
+			name = AboutView.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -972,6 +1009,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Frank Blumenberg (UC3926TG95)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -979,7 +1018,9 @@
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "iKopter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
 				PRODUCT_NAME = iKopter;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EBFABE8A-728B-4757-BF76-E7863CF04E85";
 			};
 			name = Debug;
 		};
@@ -987,24 +1028,63 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Frank Blumenberg (UC3926TG95)";
+				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
 				INFOPLIST_FILE = "iKopter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
 				PRODUCT_NAME = iKopter;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EBFABE8A-728B-4757-BF76-E7863CF04E85";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
+		BAAA7B0D13556EBA00365FCB /* Release Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Frank Blumenberg";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3790BCAE-4764-4AED-B0D9-9F586B80BD1B";
+				SDKROOT = iphoneos;
+			};
+			name = "Release Distribution";
+		};
+		BAAA7B0E13556EBA00365FCB /* Release Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				INFOPLIST_FILE = "iKopter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				PRODUCT_NAME = iKopter;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release Distribution";
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1012,13 +1092,15 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -1031,6 +1113,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				BAAA7B0E13556EBA00365FCB /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1040,6 +1123,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				BAAA7B0D13556EBA00365FCB /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

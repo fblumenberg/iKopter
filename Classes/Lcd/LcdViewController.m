@@ -186,9 +186,11 @@
       break;
   }
 
+#ifdef DEBUG
   MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
   DLog(@"Device set to %d", cCtrl.currentDevice);
-
+#endif
+  
   [self performSelector:@selector(sendMenuRefreshRequest) withObject:self afterDelay:0.1];
 }
 

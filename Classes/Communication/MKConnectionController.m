@@ -160,8 +160,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 - (void) sendRequest:(NSData *)data;
 {
   DLog(@"%@",data);
-  NSString * msg = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
-  DLog(@"%@", msg);
+  DLog(@"%@", [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease]);
   
   [inputController writeMkData:data];
 }
@@ -346,9 +345,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 - (void) didReadMkData:(NSData *)data {
   
   NSData * strData = [data subdataWithRange:NSMakeRange(0, [data length] - 1)];
-  
-  NSString * msg = [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease];
-  DLog(@">>%@<<", msg);
+  DLog(@">>%@<<", [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease]);
   
   if ([strData isCrcOk]) {
     //    DLog(@"Data length %d",[strData length]);
@@ -368,8 +365,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       [self handleMkResponseForDeviceCheck:[data command] withPayload:payload forAddress:address];
     
   } else {
-    NSString * msg = [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease];
-    DLog(@"%@", msg);
+    DLog(@"%@", [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease]);
   }
 }
 
