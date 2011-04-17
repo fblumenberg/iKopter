@@ -48,36 +48,38 @@
       
       h = [[MKHost alloc]init];
       h.name = @"Quadkopter WLAN";
-      h.address = @"192.168.0.74";
-      h.port = 23;
+      h.address = @"192.168.0.74:23";
       h.connectionClass = @"MKIpConnection";
-      [hosts addObject:h];
-      [h release];
-      
-      h = [[MKHost alloc]init];
-      h.name = @"Quadkopter QMK";
-      h.address = @"127.0.0.1";
-      h.port = 64400;
-      h.connectionClass = @"MKQmkIpConnection";
       [hosts addObject:h];
       [h release];
       
       h = [[MKHost alloc]init];
       h.name = @"Quadkopter Fake";
-      h.address = @"192.168.0.74";
-      h.port = 23;
+      h.address = @"Dummy";
       h.connectionClass = @"MKFakeConnection";
       [hosts addObject:h];
       [h release];
       
       h = [[MKHost alloc]init];
-      h.name = @"Quadkopter Serproxy";
-      h.address = @"127.0.0.1";
-      h.port = 64400;
+      h.name = @"Serproxy";
+      h.address = @"127.0.0.1:64400";
       h.connectionClass = @"MKIpConnection";
       [hosts addObject:h];
       [h release];
+
+      h = [[MKHost alloc]init];
+      h.name = @"Quadkopter Serial";
+      h.address = @"/dev/tty.iap";
+      h.connectionClass = @"MKSerialConnection";
+      [hosts addObject:h];
+      [h release];
       
+      h = [[MKHost alloc]init];
+      h.name = @"Quadkopter Serial MKUSB";
+      h.address = @"/dev/cu.usbserial-A2002Qzh";
+      h.connectionClass = @"MKSerialConnection";
+      [hosts addObject:h];
+      [h release];
 
       [self save];
     }

@@ -130,6 +130,9 @@
 		BAB8AB0B130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */; };
 		BAC5425012F75E6900379C4D /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC5424F12F75E6900379C4D /* 13-target.png */; };
 		BACCCCA312FEE7E500D2EFE7 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCCCA212FEE7E500D2EFE7 /* CustomBadge.m */; };
+		BAE653A8135B1EDB0036CB96 /* MKSerialConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653A6135B1EDB0036CB96 /* MKSerialConnection.m */; };
+		BAE653B0135B208D0036CB96 /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653AD135B208D0036CB96 /* AMSerialPort.m */; };
+		BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653AF135B208D0036CB96 /* AMSerialPortAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -338,6 +341,14 @@
 		BAC5424F12F75E6900379C4D /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "13-target.png"; path = "../../../../Downloads/icons/icons/13-target.png"; sourceTree = SOURCE_ROOT; };
 		BACCCCA112FEE7E500D2EFE7 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
 		BACCCCA212FEE7E500D2EFE7 /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
+		BAE653A6135B1EDB0036CB96 /* MKSerialConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSerialConnection.m; sourceTree = "<group>"; };
+		BAE653A7135B1EDB0036CB96 /* MKSerialConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSerialConnection.h; sourceTree = "<group>"; };
+		BAE653AA135B208D0036CB96 /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
+		BAE653AB135B208D0036CB96 /* AMSerialErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialErrors.h; sourceTree = "<group>"; };
+		BAE653AC135B208D0036CB96 /* AMSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPort.h; sourceTree = "<group>"; };
+		BAE653AD135B208D0036CB96 /* AMSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort.m; sourceTree = "<group>"; };
+		BAE653AE135B208D0036CB96 /* AMSerialPortAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortAdditions.h; sourceTree = "<group>"; };
+		BAE653AF135B208D0036CB96 /* AMSerialPortAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortAdditions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -442,6 +453,8 @@
 		BA701A9812D8C24D0048790A /* Connections */ = {
 			isa = PBXGroup;
 			children = (
+				BAE653A6135B1EDB0036CB96 /* MKSerialConnection.m */,
+				BAE653A7135B1EDB0036CB96 /* MKSerialConnection.h */,
 				BA71CDAC12D0C2660029C5F7 /* MKConnection.h */,
 				BA71CDB112D0C2660029C5F7 /* MKFakeConnection.h */,
 				BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */,
@@ -636,6 +649,7 @@
 		BA71CDA812D0C2660029C5F7 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
+				BAE653A9135B208D0036CB96 /* Serial */,
 				BA701A9812D8C24D0048790A /* Connections */,
 				BA71CDA912D0C2660029C5F7 /* Lowlevel */,
 				BA71CDAD12D0C2660029C5F7 /* MKConnectionController.h */,
@@ -782,6 +796,19 @@
 				BAB8AA8513008985002CBB97 /* RawOsdViewController.xib */,
 			);
 			path = Osd;
+			sourceTree = "<group>";
+		};
+		BAE653A9135B208D0036CB96 /* Serial */ = {
+			isa = PBXGroup;
+			children = (
+				BAE653AA135B208D0036CB96 /* AMSDKCompatibility.h */,
+				BAE653AB135B208D0036CB96 /* AMSerialErrors.h */,
+				BAE653AC135B208D0036CB96 /* AMSerialPort.h */,
+				BAE653AD135B208D0036CB96 /* AMSerialPort.m */,
+				BAE653AE135B208D0036CB96 /* AMSerialPortAdditions.h */,
+				BAE653AF135B208D0036CB96 /* AMSerialPortAdditions.m */,
+			);
+			path = Serial;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -978,6 +1005,9 @@
 				BAB8A9E813007DBE002CBB97 /* UIImage+Tint.m in Sources */,
 				BAB8AA8613008985002CBB97 /* RawOsdViewController.m in Sources */,
 				BAAA7B1A1356E5A500365FCB /* AboutViewController.m in Sources */,
+				BAE653A8135B1EDB0036CB96 /* MKSerialConnection.m in Sources */,
+				BAE653B0135B208D0036CB96 /* AMSerialPort.m in Sources */,
+				BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,7 +1040,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Frank Blumenberg (UC3926TG95)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1020,7 +1050,7 @@
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
 				PRODUCT_NAME = iKopter;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EBFABE8A-728B-4757-BF76-E7863CF04E85";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
@@ -1029,14 +1059,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Frank Blumenberg (UC3926TG95)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
 				PRODUCT_NAME = iKopter;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EBFABE8A-728B-4757-BF76-E7863CF04E85";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1094,13 +1124,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Frank Blumenberg (UC3926TG95)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AAD66CCD-96AD-4592-B606-BA4E0022999A";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

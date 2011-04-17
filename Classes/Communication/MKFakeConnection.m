@@ -268,19 +268,6 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
                 format:@"Attempting to connect without a delegate. Set a delegate first."];
   }
   
-  NSArray * hostItems = [hostOrDevice componentsSeparatedByString:@":"];
-  if ( [hostItems count] != 2 ) {
-    [NSException raise:MKDummyConnectionException
-                format:@"Attempting to connect without a port. Set a port first."];
-    
-  }
-  
-#ifdef DEBUG
-  int port = [[hostItems objectAtIndex:1] intValue];
-  NSString * host = [hostItems objectAtIndex:0];
-  DLog(@"Try to connect to %@ on port %d", host, port);
-#endif
-  
   [self performSelector:@selector(doConnect) withObject:nil afterDelay:0.5];
   return YES;
 }

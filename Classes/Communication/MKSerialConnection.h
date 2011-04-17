@@ -23,16 +23,19 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
+#import "MKConnection.h"
 
+@class AMSerialPort;
 
-@interface MKHost : NSObject<NSCoding, NSCopying> {
-  NSString*  _name;
-  NSString*  _address;
-  NSString*  _connectionClass;
+@interface MKSerialConnection : NSObject<MKConnection> {
+
+  AMSerialPort* port;
+  NSMutableData* mkData;
+
+  id<MKConnectionDelegate> delegate;
 }
 
-@property(retain) NSString* name;
-@property(retain) NSString* address;
-@property(retain) NSString* connectionClass;
+@property(nonatomic,retain) AMSerialPort* port;
+@property(nonatomic,retain) NSMutableData* mkData;
 
 @end

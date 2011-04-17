@@ -26,14 +26,12 @@
 
 #define    kNameKey             @"name"
 #define    kAddressKey          @"address"
-#define    kPortKey             @"port"
 #define    kConnectionClassKey  @"connectionClass"
 
 @implementation MKHost
 
 @synthesize name=_name;
 @synthesize address=_address;
-@synthesize port=_port;
 @synthesize connectionClass=_connectionClass;
 
 - (id) init
@@ -55,21 +53,19 @@
 }
 
 -(NSString*) description {
-  return [NSString stringWithFormat:@"%@-%@:%d",self.name,self.address,self.port];
+  return [NSString stringWithFormat:@"%@-%@",self.name,self.address];
 }
 
 #pragma mark NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder {
   [encoder encodeObject:_name forKey:kNameKey];
   [encoder encodeObject:_address forKey:kAddressKey];
-  [encoder encodeInteger:_port forKey:kPortKey];
   [encoder encodeObject:_connectionClass forKey:kConnectionClassKey];
 }
 - (id)initWithCoder:(NSCoder *)decoder {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.name = [decoder decodeObjectForKey:kNameKey];
     self.address = [decoder decodeObjectForKey:kAddressKey];
-    self.port = [decoder decodeIntegerForKey:kPortKey];
     self.connectionClass = [decoder decodeObjectForKey:kConnectionClassKey];
   }
   return self;
@@ -80,7 +76,6 @@
   MKHost *copy = [[[self class] allocWithZone: zone] init];
   copy.name = [[self.name copyWithZone:zone] autorelease];
   copy.address = [[self.address copyWithZone:zone] autorelease];
-  copy.port = self.port;
   copy.connectionClass = [[self.connectionClass copyWithZone:zone] autorelease];
   
   return copy;

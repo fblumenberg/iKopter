@@ -4,6 +4,9 @@
 "HOST_ADDRESS"="Adresse";
 "HOST_PORT"="Port";
 "HOST_CONNECTION"="Verbindungstyp";
+"HOST_CONNECTION_TCP"="TCP/IP Verbindung";
+"HOST_CONNECTION_FAKE"="Fake Verbindung";
+"HOST_CONNECTION_SERIAL"="Serielle Verbindung";
 
 
 /* Main */

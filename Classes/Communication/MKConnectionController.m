@@ -126,7 +126,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     inputController = [[nsclass alloc] initWithDelegate:self];
     
     [hostOrDevice release];
-    hostOrDevice = [NSString stringWithFormat:@"%@:%d",host.address,host.port];
+    hostOrDevice = host.address;
     [hostOrDevice retain];
     
     didPostConnectNotification = NO;
@@ -138,6 +138,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     NSError * err = nil;
     if (![inputController connectTo:hostOrDevice error:&err]) {
       NSLog(@"Error: %@", err);
+      [self performSelector:@selector(stop) withObject:self afterDelay:0.1];
     }
   }
 }

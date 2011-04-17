@@ -2,78 +2,68 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Title</key>
-	<string>MK Host</string>
-	<key>StringsTable</key>
-	<string>MKHost</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Title</key>
+			<string></string>
+                <key>FooterText</key>
+                <string>HOST_CONNECTION_FOOTER</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string></string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>HOST_NAME</string>
-			<key>Key</key>
-			<string>name</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<false/>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
 			<key>AutocapitalizationType</key>
 			<string>None</string>
 			<key>AutocorrectionType</key>
 			<string>No</string>
-		</dict>
-		<dict>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>IsSecure</key>
+			<false/>
+			<key>Key</key>
+			<string>name</string>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>Title</key>
+			<string>HOST_NAME</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>HOST_ADDRESS</string>
+		</dict>
+		<dict>
 			<key>Key</key>
 			<string>address</string>
-		</dict>
-		<dict>
+			<key>Title</key>
+			<string>HOST_ADDRESS</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>HOST_PORT</string>
-			<key>Key</key>
-			<string>port</string>
-			<key>KeyboardType</key>
-			<string>NumberPad</string>
-			<key>IASKIsNumber</key>
-			<true/>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>HOST_CONNECTION</string>
-			<key>Key</key>
-			<string>connectionClass</string>
 			<key>DefaultValue</key>
 			<string>MKIpConnection</string>
+			<key>Key</key>
+			<string>connectionClass</string>
+			<key>Title</key>
+			<string>HOST_CONNECTION</string>
 			<key>Titles</key>
 			<array>
-				<string>Use TCP Connection</string>
-				<string>Use Fake Connection</string>
-				<string>Use QMK Connection</string>
+				<string>HOST_CONNECTION_TCP</string>
+				<string>HOST_CONNECTION_FAKE</string>
+				<string>HOST_CONNECTION_SERIAL</string>
 			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
 			<key>Values</key>
 			<array>
 				<string>MKIpConnection</string>
 				<string>MKFakeConnection</string>
-				<string>MKQmkIpConnection</string>
+				<string>MKSerialConnection</string>
 			</array>
 		</dict>
 	</array>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>Title</key>
+	<string>MK Host</string>
 </dict>
 </plist>

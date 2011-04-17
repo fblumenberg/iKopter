@@ -70,8 +70,8 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 
   NSArray * hostItems = [hostOrDevice componentsSeparatedByString:@":"];
   if ( [hostItems count] != 2 ) {
-    [NSException raise:MKIpConnectionException
-                format:@"Attempting to connect without a port. Set a port first."];
+    ALog(@"Attempting to connect without a port. Set a port first.");
+    return NO;
   }
 
   int port = [[hostItems objectAtIndex:1] intValue];
