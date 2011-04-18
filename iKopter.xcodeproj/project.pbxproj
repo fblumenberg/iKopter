@@ -133,6 +133,132 @@
 		BAE653A8135B1EDB0036CB96 /* MKSerialConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653A6135B1EDB0036CB96 /* MKSerialConnection.m */; };
 		BAE653B0135B208D0036CB96 /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653AD135B208D0036CB96 /* AMSerialPort.m */; };
 		BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653AF135B208D0036CB96 /* AMSerialPortAdditions.m */; };
+		BAE653B5135C9D270036CB96 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		BAE653B6135C9D270036CB96 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		BAE653B7135C9D270036CB96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA71CC7412CFDA920029C5F7 /* Localizable.strings */; };
+		BAE653B8135C9D270036CB96 /* IASKAppSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4212D0C0600029C5F7 /* IASKAppSettingsView.xib */; };
+		BAE653B9135C9D270036CB96 /* IASKAppSettingsWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4312D0C0600029C5F7 /* IASKAppSettingsWebView.xib */; };
+		BAE653BA135C9D270036CB96 /* IASKPotiTextFieldSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4412D0C0600029C5F7 /* IASKPotiTextFieldSpecifierViewCell.xib */; };
+		BAE653BB135C9D270036CB96 /* IASKPSSliderSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4512D0C0600029C5F7 /* IASKPSSliderSpecifierViewCell.xib */; };
+		BAE653BC135C9D270036CB96 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4612D0C0600029C5F7 /* IASKPSTextFieldSpecifierViewCell.xib */; };
+		BAE653BD135C9D270036CB96 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4712D0C0600029C5F7 /* IASKPSToggleSwitchSpecifierViewCell.xib */; };
+		BAE653BE135C9D270036CB96 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CD4812D0C0600029C5F7 /* IASKSpecifierValuesView.xib */; };
+		BAE653BF135C9D270036CB96 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA71CE0A12D0C3840029C5F7 /* InAppSettings.bundle */; };
+		BAE653C0135C9D270036CB96 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA71CE0B12D0C3840029C5F7 /* Settings.bundle */; };
+		BAE653C1135C9D270036CB96 /* LcdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71CE9D12D0D2D40029C5F7 /* LcdViewController.xib */; };
+		BAE653C2135C9D270036CB96 /* leftTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CEA812D0D43F0029C5F7 /* leftTriangle.png */; };
+		BAE653C3135C9D270036CB96 /* rightTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CEA912D0D43F0029C5F7 /* rightTriangle.png */; };
+		BAE653C4135C9D270036CB96 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = BA71CEAA12D0D43F0029C5F7 /* star.png */; };
+		BAE653C5135C9D270036CB96 /* MixerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0BD12D267270029C5F7 /* MixerTableViewCell.xib */; };
+		BAE653C6135C9D270036CB96 /* AllSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */; };
+		BAE653C7135C9D270036CB96 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DB12D63A120048790A /* Icon.png */; };
+		BAE653C8135C9D270036CB96 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DC12D63A120048790A /* Icon@2x.png */; };
+		BAE653C9135C9D270036CB96 /* DeviceInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA701E3712DA5BB90048790A /* DeviceInfoController.xib */; };
+		BAE653CA135C9D270036CB96 /* HorizonOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA9C074912E623D600A3A706 /* HorizonOsdViewController.xib */; };
+		BAE653CB135C9D270036CB96 /* HorizonOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA9C078E12E62AA900A3A706 /* HorizonOsdViewControllerLandscape.xib */; };
+		BAE653CC135C9D270036CB96 /* OsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1A4312F2E78500555855 /* OsdViewController.xib */; };
+		BAE653CD135C9D270036CB96 /* tabHorizon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1C0312F7224900555855 /* tabHorizon.png */; };
+		BAE653CE135C9D270036CB96 /* ValueOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1C2812F7250900555855 /* ValueOsdViewController.xib */; };
+		BAE653CF135C9D270036CB96 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC5424F12F75E6900379C4D /* 13-target.png */; };
+		BAE653D0135C9D270036CB96 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97713007667002CBB97 /* altitude.png */; };
+		BAE653D1135C9D270036CB96 /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97813007667002CBB97 /* altitudeMax.png */; };
+		BAE653D2135C9D270036CB96 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97913007667002CBB97 /* battery.png */; };
+		BAE653D3135C9D270036CB96 /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97A13007667002CBB97 /* compass.png */; };
+		BAE653D4135C9D270036CB96 /* flightTime.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97B13007667002CBB97 /* flightTime.png */; };
+		BAE653D5135C9D270036CB96 /* gpsCH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97C13007667002CBB97 /* gpsCH.png */; };
+		BAE653D6135C9D270036CB96 /* gpsPH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97D13007667002CBB97 /* gpsPH.png */; };
+		BAE653D7135C9D270036CB96 /* gpsSat.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97E13007667002CBB97 /* gpsSat.png */; };
+		BAE653D8135C9D270036CB96 /* gpsSat2.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97F13007667002CBB97 /* gpsSat2.png */; };
+		BAE653D9135C9D270036CB96 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A98013007667002CBB97 /* speed.png */; };
+		BAE653DA135C9D270036CB96 /* RawOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AA8513008985002CBB97 /* RawOsdViewController.xib */; };
+		BAE653DB135C9D270036CB96 /* home1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AAEE13009795002CBB97 /* home1.png */; };
+		BAE653DC135C9D270036CB96 /* home2.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AAEF13009795002CBB97 /* home2.png */; };
+		BAE653DD135C9D270036CB96 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */; };
+		BAE653DE135C9D270036CB96 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAAA7B181356E5A500365FCB /* AboutView.xib */; };
+		BAE653E0135C9D270036CB96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		BAE653E1135C9D270036CB96 /* iKopterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFD12D0BFC80029C5F7 /* iKopterAppDelegate.m */; };
+		BAE653E2135C9D270036CB96 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFF12D0BFC80029C5F7 /* MainViewController.m */; };
+		BAE653E3135C9D270036CB96 /* MKHost.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD1112D0C04A0029C5F7 /* MKHost.m */; };
+		BAE653E4135C9D270036CB96 /* MKHosts.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD1312D0C04A0029C5F7 /* MKHosts.m */; };
+		BAE653E5135C9D270036CB96 /* MKHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD1512D0C04A0029C5F7 /* MKHostViewController.m */; };
+		BAE653E6135C9D270036CB96 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD1C12D0C0600029C5F7 /* IASKAppSettingsViewController.m */; };
+		BAE653E7135C9D270036CB96 /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD1E12D0C0600029C5F7 /* IASKAppSettingsWebViewController.m */; };
+		BAE653E8135C9D270036CB96 /* IASKSpecifierValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD2012D0C0600029C5F7 /* IASKSpecifierValuesViewController.m */; };
+		BAE653E9135C9D270036CB96 /* IASKSettingsReader.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD2312D0C0600029C5F7 /* IASKSettingsReader.m */; };
+		BAE653EA135C9D270036CB96 /* IASKSettingsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD2512D0C0600029C5F7 /* IASKSettingsStore.m */; };
+		BAE653EB135C9D270036CB96 /* IASKSettingsStoreFile.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD2712D0C0600029C5F7 /* IASKSettingsStoreFile.m */; };
+		BAE653EC135C9D270036CB96 /* IASKSettingsStoreObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD2912D0C0600029C5F7 /* IASKSettingsStoreObject.m */; };
+		BAE653ED135C9D270036CB96 /* IASKSettingsStoreUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD2B12D0C0600029C5F7 /* IASKSettingsStoreUserDefaults.m */; };
+		BAE653EE135C9D270036CB96 /* IASKSpecifier.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD2D12D0C0600029C5F7 /* IASKSpecifier.m */; };
+		BAE653EF135C9D270036CB96 /* IASKPotiTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3012D0C0600029C5F7 /* IASKPotiTextField.m */; };
+		BAE653F0135C9D270036CB96 /* IASKPotiTextFieldSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3212D0C0600029C5F7 /* IASKPotiTextFieldSpecifierViewCell.m */; };
+		BAE653F1135C9D270036CB96 /* IASKPSSliderSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3412D0C0600029C5F7 /* IASKPSSliderSpecifierViewCell.m */; };
+		BAE653F2135C9D270036CB96 /* IASKPSTextFieldSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3612D0C0600029C5F7 /* IASKPSTextFieldSpecifierViewCell.m */; };
+		BAE653F3135C9D270036CB96 /* IASKPSTitleValueSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3812D0C0600029C5F7 /* IASKPSTitleValueSpecifierViewCell.m */; };
+		BAE653F4135C9D270036CB96 /* IASKPSToggleSwitchSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3A12D0C0600029C5F7 /* IASKPSToggleSwitchSpecifierViewCell.m */; };
+		BAE653F5135C9D270036CB96 /* IASKSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3C12D0C0600029C5F7 /* IASKSlider.m */; };
+		BAE653F6135C9D270036CB96 /* IASKSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD3E12D0C0600029C5F7 /* IASKSwitch.m */; };
+		BAE653F7135C9D270036CB96 /* IASKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD4012D0C0600029C5F7 /* IASKTextField.m */; };
+		BAE653F8135C9D270036CB96 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD6512D0C0740029C5F7 /* RootViewController.m */; };
+		BAE653F9135C9D270036CB96 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD9B12D0C15D0029C5F7 /* TTGlobalCore.m */; };
+		BAE653FA135C9D270036CB96 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CD9D12D0C15D0029C5F7 /* TTGlobalCorePaths.m */; };
+		BAE653FB135C9D270036CB96 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDAB12D0C2660029C5F7 /* AsyncSocket.m */; };
+		BAE653FC135C9D270036CB96 /* MKConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDAE12D0C2660029C5F7 /* MKConnectionController.m */; };
+		BAE653FD135C9D270036CB96 /* MKFakeConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */; };
+		BAE653FE135C9D270036CB96 /* MKIpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB412D0C2660029C5F7 /* MKIpConnection.m */; };
+		BAE653FF135C9D270036CB96 /* MKQmkIpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB612D0C2660029C5F7 /* MKQmkIpConnection.m */; };
+		BAE65400135C9D270036CB96 /* IKDebugData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB912D0C2660029C5F7 /* IKDebugData.m */; };
+		BAE65401135C9D270036CB96 /* IKDebugLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDBB12D0C2660029C5F7 /* IKDebugLabel.m */; };
+		BAE65402135C9D270036CB96 /* IKDeviceVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDBD12D0C2660029C5F7 /* IKDeviceVersion.m */; };
+		BAE65403135C9D270036CB96 /* IKLcdDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDBF12D0C2660029C5F7 /* IKLcdDisplay.m */; };
+		BAE65404135C9D270036CB96 /* IKLcdMenuPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC112D0C2660029C5F7 /* IKLcdMenuPage.m */; };
+		BAE65405135C9D270036CB96 /* IKParamSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC412D0C2660029C5F7 /* IKParamSet.m */; };
+		BAE65406135C9D270036CB96 /* NSData+MKCommandDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC612D0C2660029C5F7 /* NSData+MKCommandDecode.m */; };
+		BAE65407135C9D270036CB96 /* NSData+MKCommandEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC812D0C2660029C5F7 /* NSData+MKCommandEncode.m */; };
+		BAE65408135C9D270036CB96 /* NSData+MKPayloadDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCA12D0C2660029C5F7 /* NSData+MKPayloadDecode.m */; };
+		BAE65409135C9D270036CB96 /* NSData+MKPayloadDecodeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCB12D0C2660029C5F7 /* NSData+MKPayloadDecodeSetting.m */; };
+		BAE6540A135C9D270036CB96 /* NSData+MKPayloadEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCD12D0C2660029C5F7 /* NSData+MKPayloadEncode.m */; };
+		BAE6540B135C9D270036CB96 /* NSData+MKPayloadEncodeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCE12D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m */; };
+		BAE6540C135C9D270036CB96 /* LcdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CE9C12D0D2D40029C5F7 /* LcdViewController.m */; };
+		BAE6540D135C9D270036CB96 /* SettingsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0A512D266AF0029C5F7 /* SettingsSelectionViewController.m */; };
+		BAE6540E135C9D270036CB96 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0A712D266AF0029C5F7 /* SettingViewController.m */; };
+		BAE6540F135C9D270036CB96 /* ChannelsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B012D267270029C5F7 /* ChannelsViewCell.m */; };
+		BAE65410135C9D270036CB96 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B212D267270029C5F7 /* ChannelsViewController.m */; };
+		BAE65411135C9D270036CB96 /* EngineTestSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B512D267270029C5F7 /* EngineTestSliderCell.m */; };
+		BAE65412135C9D270036CB96 /* EngineTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B712D267270029C5F7 /* EngineTestViewController.m */; };
+		BAE65413135C9D270036CB96 /* EngineValues.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0B912D267270029C5F7 /* EngineValues.m */; };
+		BAE65414135C9D270036CB96 /* MixerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BC12D267270029C5F7 /* MixerTableViewCell.m */; };
+		BAE65415135C9D270036CB96 /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0BF12D267270029C5F7 /* MixerViewController.m */; };
+		BAE65416135C9D270036CB96 /* AnalogValues.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA312D8C3EE0048790A /* AnalogValues.m */; };
+		BAE65417135C9D270036CB96 /* AnalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA512D8C3EE0048790A /* AnalogViewController.m */; };
+		BAE65418135C9D270036CB96 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701C0712DA148D0048790A /* GradientButton.m */; };
+		BAE65419135C9D270036CB96 /* DeviceInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701E3612DA5BB90048790A /* DeviceInfoController.m */; };
+		BAE6541A135C9D270036CB96 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C01C312DF927900A3A706 /* MBProgressHUD.m */; };
+		BAE6541B135C9D270036CB96 /* OsdValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C023712E1BEB900A3A706 /* OsdValue.m */; };
+		BAE6541C135C9D270036CB96 /* IKData3D.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C023F12E1BFF000A3A706 /* IKData3D.m */; };
+		BAE6541D135C9D270036CB96 /* Data3DValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C025212E1C59900A3A706 /* Data3DValue.m */; };
+		BAE6541E135C9D270036CB96 /* HorizonOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C074812E623D600A3A706 /* HorizonOsdViewController.m */; };
+		BAE6541F135C9D270036CB96 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C079E12E62B7200A3A706 /* Common.m */; };
+		BAE65420135C9D270036CB96 /* IKAttitudeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C07A012E62B7200A3A706 /* IKAttitudeIndicator.m */; };
+		BAE65421135C9D270036CB96 /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C081712E7796600A3A706 /* IKNaviData.m */; };
+		BAE65422135C9D270036CB96 /* OsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D1A4212F2E78500555855 /* OsdViewController.m */; };
+		BAE65423135C9D270036CB96 /* ValueOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D1C2712F7250900555855 /* ValueOsdViewController.m */; };
+		BAE65424135C9D270036CB96 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCCCA212FEE7E500D2EFE7 /* CustomBadge.m */; };
+		BAE65425135C9D270036CB96 /* IKCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7F899E12FEFC5400D6C3A5 /* IKCompass.m */; };
+		BAE65426135C9D270036CB96 /* IKInstrumentsCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7F89A012FEFC5400D6C3A5 /* IKInstrumentsCommon.m */; };
+		BAE65427135C9D270036CB96 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8A9E713007DBE002CBB97 /* UIImage+Tint.m */; };
+		BAE65428135C9D270036CB96 /* RawOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8AA8413008985002CBB97 /* RawOsdViewController.m */; };
+		BAE65429135C9D270036CB96 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAA7B171356E5A500365FCB /* AboutViewController.m */; };
+		BAE6542A135C9D270036CB96 /* MKSerialConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653A6135B1EDB0036CB96 /* MKSerialConnection.m */; };
+		BAE6542B135C9D270036CB96 /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653AD135B208D0036CB96 /* AMSerialPort.m */; };
+		BAE6542C135C9D270036CB96 /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE653AF135B208D0036CB96 /* AMSerialPortAdditions.m */; };
+		BAE6542E135C9D270036CB96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		BAE6542F135C9D270036CB96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		BAE65430135C9D270036CB96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		BAE65431135C9D270036CB96 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA71CDE312D0C2830029C5F7 /* CFNetwork.framework */; };
+		BAE65432135C9D270036CB96 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA71CDE512D0C2910029C5F7 /* MessageUI.framework */; };
+		BAE65433135C9D270036CB96 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */; };
+		BAE65434135C9D270036CB96 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7F89B112FEFC6A00D6C3A5 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -349,6 +475,7 @@
 		BAE653AD135B208D0036CB96 /* AMSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPort.m; sourceTree = "<group>"; };
 		BAE653AE135B208D0036CB96 /* AMSerialPortAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSerialPortAdditions.h; sourceTree = "<group>"; };
 		BAE653AF135B208D0036CB96 /* AMSerialPortAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSerialPortAdditions.m; sourceTree = "<group>"; };
+		BAE65439135C9D270036CB96 /* iKopter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iKopter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,6 +490,20 @@
 				BA71CDE612D0C2910029C5F7 /* MessageUI.framework in Frameworks */,
 				BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */,
 				BA7F89B212FEFC6A00D6C3A5 /* CoreText.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAE6542D135C9D270036CB96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE6542E135C9D270036CB96 /* Foundation.framework in Frameworks */,
+				BAE6542F135C9D270036CB96 /* UIKit.framework in Frameworks */,
+				BAE65430135C9D270036CB96 /* CoreGraphics.framework in Frameworks */,
+				BAE65431135C9D270036CB96 /* CFNetwork.framework in Frameworks */,
+				BAE65432135C9D270036CB96 /* MessageUI.framework in Frameworks */,
+				BAE65433135C9D270036CB96 /* QuartzCore.framework in Frameworks */,
+				BAE65434135C9D270036CB96 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* iKopter.app */,
+				BAE65439135C9D270036CB96 /* iKopter.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -832,6 +974,25 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* iKopter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BAE653B2135C9D270036CB96 /* iKopter Cydia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAE65435135C9D270036CB96 /* Build configuration list for PBXNativeTarget "iKopter Cydia" */;
+			buildPhases = (
+				BAE653B3135C9D270036CB96 /* ShellScript */,
+				BAE653B4135C9D270036CB96 /* Resources */,
+				BAE653DF135C9D270036CB96 /* Sources */,
+				BAE6542D135C9D270036CB96 /* Frameworks */,
+				BA91F295135CA48F00069BFD /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iKopter Cydia";
+			productName = iKopter;
+			productReference = BAE65439135C9D270036CB96 /* iKopter.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -854,6 +1015,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* iKopter */,
+				BAE653B2135C9D270036CB96 /* iKopter Cydia */,
 			);
 		};
 /* End PBXProject section */
@@ -908,10 +1070,85 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BAE653B4135C9D270036CB96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE653B5135C9D270036CB96 /* MainWindow.xib in Resources */,
+				BAE653B6135C9D270036CB96 /* RootViewController.xib in Resources */,
+				BAE653B7135C9D270036CB96 /* Localizable.strings in Resources */,
+				BAE653B8135C9D270036CB96 /* IASKAppSettingsView.xib in Resources */,
+				BAE653B9135C9D270036CB96 /* IASKAppSettingsWebView.xib in Resources */,
+				BAE653BA135C9D270036CB96 /* IASKPotiTextFieldSpecifierViewCell.xib in Resources */,
+				BAE653BB135C9D270036CB96 /* IASKPSSliderSpecifierViewCell.xib in Resources */,
+				BAE653BC135C9D270036CB96 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
+				BAE653BD135C9D270036CB96 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
+				BAE653BE135C9D270036CB96 /* IASKSpecifierValuesView.xib in Resources */,
+				BAE653BF135C9D270036CB96 /* InAppSettings.bundle in Resources */,
+				BAE653C0135C9D270036CB96 /* Settings.bundle in Resources */,
+				BAE653C1135C9D270036CB96 /* LcdViewController.xib in Resources */,
+				BAE653C2135C9D270036CB96 /* leftTriangle.png in Resources */,
+				BAE653C3135C9D270036CB96 /* rightTriangle.png in Resources */,
+				BAE653C4135C9D270036CB96 /* star.png in Resources */,
+				BAE653C5135C9D270036CB96 /* MixerTableViewCell.xib in Resources */,
+				BAE653C6135C9D270036CB96 /* AllSettings.plist in Resources */,
+				BAE653C7135C9D270036CB96 /* Icon.png in Resources */,
+				BAE653C8135C9D270036CB96 /* Icon@2x.png in Resources */,
+				BAE653C9135C9D270036CB96 /* DeviceInfoController.xib in Resources */,
+				BAE653CA135C9D270036CB96 /* HorizonOsdViewController.xib in Resources */,
+				BAE653CB135C9D270036CB96 /* HorizonOsdViewControllerLandscape.xib in Resources */,
+				BAE653CC135C9D270036CB96 /* OsdViewController.xib in Resources */,
+				BAE653CD135C9D270036CB96 /* tabHorizon.png in Resources */,
+				BAE653CE135C9D270036CB96 /* ValueOsdViewController.xib in Resources */,
+				BAE653CF135C9D270036CB96 /* 13-target.png in Resources */,
+				BAE653D0135C9D270036CB96 /* altitude.png in Resources */,
+				BAE653D1135C9D270036CB96 /* altitudeMax.png in Resources */,
+				BAE653D2135C9D270036CB96 /* battery.png in Resources */,
+				BAE653D3135C9D270036CB96 /* compass.png in Resources */,
+				BAE653D4135C9D270036CB96 /* flightTime.png in Resources */,
+				BAE653D5135C9D270036CB96 /* gpsCH.png in Resources */,
+				BAE653D6135C9D270036CB96 /* gpsPH.png in Resources */,
+				BAE653D7135C9D270036CB96 /* gpsSat.png in Resources */,
+				BAE653D8135C9D270036CB96 /* gpsSat2.png in Resources */,
+				BAE653D9135C9D270036CB96 /* speed.png in Resources */,
+				BAE653DA135C9D270036CB96 /* RawOsdViewController.xib in Resources */,
+				BAE653DB135C9D270036CB96 /* home1.png in Resources */,
+				BAE653DC135C9D270036CB96 /* home2.png in Resources */,
+				BAE653DD135C9D270036CB96 /* ValueOsdViewControllerLandscape.xib in Resources */,
+				BAE653DE135C9D270036CB96 /* AboutView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		BA91F295135CA48F00069BFD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo $TARGET_BUILD_DIR/$EXECUTABLE_PATH\n/usr/bin/ldid -S \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\ncp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/cydia/iKopter/Applications/\"";
+		};
 		BAAA7B0F1356CDB100365FCB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./plistVersionIncrement.sh ";
+		};
+		BAE653B3135C9D270036CB96 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1011,6 +1248,90 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BAE653DF135C9D270036CB96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE653E0135C9D270036CB96 /* main.m in Sources */,
+				BAE653E1135C9D270036CB96 /* iKopterAppDelegate.m in Sources */,
+				BAE653E2135C9D270036CB96 /* MainViewController.m in Sources */,
+				BAE653E3135C9D270036CB96 /* MKHost.m in Sources */,
+				BAE653E4135C9D270036CB96 /* MKHosts.m in Sources */,
+				BAE653E5135C9D270036CB96 /* MKHostViewController.m in Sources */,
+				BAE653E6135C9D270036CB96 /* IASKAppSettingsViewController.m in Sources */,
+				BAE653E7135C9D270036CB96 /* IASKAppSettingsWebViewController.m in Sources */,
+				BAE653E8135C9D270036CB96 /* IASKSpecifierValuesViewController.m in Sources */,
+				BAE653E9135C9D270036CB96 /* IASKSettingsReader.m in Sources */,
+				BAE653EA135C9D270036CB96 /* IASKSettingsStore.m in Sources */,
+				BAE653EB135C9D270036CB96 /* IASKSettingsStoreFile.m in Sources */,
+				BAE653EC135C9D270036CB96 /* IASKSettingsStoreObject.m in Sources */,
+				BAE653ED135C9D270036CB96 /* IASKSettingsStoreUserDefaults.m in Sources */,
+				BAE653EE135C9D270036CB96 /* IASKSpecifier.m in Sources */,
+				BAE653EF135C9D270036CB96 /* IASKPotiTextField.m in Sources */,
+				BAE653F0135C9D270036CB96 /* IASKPotiTextFieldSpecifierViewCell.m in Sources */,
+				BAE653F1135C9D270036CB96 /* IASKPSSliderSpecifierViewCell.m in Sources */,
+				BAE653F2135C9D270036CB96 /* IASKPSTextFieldSpecifierViewCell.m in Sources */,
+				BAE653F3135C9D270036CB96 /* IASKPSTitleValueSpecifierViewCell.m in Sources */,
+				BAE653F4135C9D270036CB96 /* IASKPSToggleSwitchSpecifierViewCell.m in Sources */,
+				BAE653F5135C9D270036CB96 /* IASKSlider.m in Sources */,
+				BAE653F6135C9D270036CB96 /* IASKSwitch.m in Sources */,
+				BAE653F7135C9D270036CB96 /* IASKTextField.m in Sources */,
+				BAE653F8135C9D270036CB96 /* RootViewController.m in Sources */,
+				BAE653F9135C9D270036CB96 /* TTGlobalCore.m in Sources */,
+				BAE653FA135C9D270036CB96 /* TTGlobalCorePaths.m in Sources */,
+				BAE653FB135C9D270036CB96 /* AsyncSocket.m in Sources */,
+				BAE653FC135C9D270036CB96 /* MKConnectionController.m in Sources */,
+				BAE653FD135C9D270036CB96 /* MKFakeConnection.m in Sources */,
+				BAE653FE135C9D270036CB96 /* MKIpConnection.m in Sources */,
+				BAE653FF135C9D270036CB96 /* MKQmkIpConnection.m in Sources */,
+				BAE65400135C9D270036CB96 /* IKDebugData.m in Sources */,
+				BAE65401135C9D270036CB96 /* IKDebugLabel.m in Sources */,
+				BAE65402135C9D270036CB96 /* IKDeviceVersion.m in Sources */,
+				BAE65403135C9D270036CB96 /* IKLcdDisplay.m in Sources */,
+				BAE65404135C9D270036CB96 /* IKLcdMenuPage.m in Sources */,
+				BAE65405135C9D270036CB96 /* IKParamSet.m in Sources */,
+				BAE65406135C9D270036CB96 /* NSData+MKCommandDecode.m in Sources */,
+				BAE65407135C9D270036CB96 /* NSData+MKCommandEncode.m in Sources */,
+				BAE65408135C9D270036CB96 /* NSData+MKPayloadDecode.m in Sources */,
+				BAE65409135C9D270036CB96 /* NSData+MKPayloadDecodeSetting.m in Sources */,
+				BAE6540A135C9D270036CB96 /* NSData+MKPayloadEncode.m in Sources */,
+				BAE6540B135C9D270036CB96 /* NSData+MKPayloadEncodeSetting.m in Sources */,
+				BAE6540C135C9D270036CB96 /* LcdViewController.m in Sources */,
+				BAE6540D135C9D270036CB96 /* SettingsSelectionViewController.m in Sources */,
+				BAE6540E135C9D270036CB96 /* SettingViewController.m in Sources */,
+				BAE6540F135C9D270036CB96 /* ChannelsViewCell.m in Sources */,
+				BAE65410135C9D270036CB96 /* ChannelsViewController.m in Sources */,
+				BAE65411135C9D270036CB96 /* EngineTestSliderCell.m in Sources */,
+				BAE65412135C9D270036CB96 /* EngineTestViewController.m in Sources */,
+				BAE65413135C9D270036CB96 /* EngineValues.m in Sources */,
+				BAE65414135C9D270036CB96 /* MixerTableViewCell.m in Sources */,
+				BAE65415135C9D270036CB96 /* MixerViewController.m in Sources */,
+				BAE65416135C9D270036CB96 /* AnalogValues.m in Sources */,
+				BAE65417135C9D270036CB96 /* AnalogViewController.m in Sources */,
+				BAE65418135C9D270036CB96 /* GradientButton.m in Sources */,
+				BAE65419135C9D270036CB96 /* DeviceInfoController.m in Sources */,
+				BAE6541A135C9D270036CB96 /* MBProgressHUD.m in Sources */,
+				BAE6541B135C9D270036CB96 /* OsdValue.m in Sources */,
+				BAE6541C135C9D270036CB96 /* IKData3D.m in Sources */,
+				BAE6541D135C9D270036CB96 /* Data3DValue.m in Sources */,
+				BAE6541E135C9D270036CB96 /* HorizonOsdViewController.m in Sources */,
+				BAE6541F135C9D270036CB96 /* Common.m in Sources */,
+				BAE65420135C9D270036CB96 /* IKAttitudeIndicator.m in Sources */,
+				BAE65421135C9D270036CB96 /* IKNaviData.m in Sources */,
+				BAE65422135C9D270036CB96 /* OsdViewController.m in Sources */,
+				BAE65423135C9D270036CB96 /* ValueOsdViewController.m in Sources */,
+				BAE65424135C9D270036CB96 /* CustomBadge.m in Sources */,
+				BAE65425135C9D270036CB96 /* IKCompass.m in Sources */,
+				BAE65426135C9D270036CB96 /* IKInstrumentsCommon.m in Sources */,
+				BAE65427135C9D270036CB96 /* UIImage+Tint.m in Sources */,
+				BAE65428135C9D270036CB96 /* RawOsdViewController.m in Sources */,
+				BAE65429135C9D270036CB96 /* AboutViewController.m in Sources */,
+				BAE6542A135C9D270036CB96 /* MKSerialConnection.m in Sources */,
+				BAE6542B135C9D270036CB96 /* AMSerialPort.m in Sources */,
+				BAE6542C135C9D270036CB96 /* AMSerialPortAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -1104,6 +1425,58 @@
 			};
 			name = "Release Distribution";
 		};
+		BAE65436135C9D270036CB96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "iKopter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				PRODUCT_NAME = iKopter;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+			};
+			name = Debug;
+		};
+		BAE65437135C9D270036CB96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				INFOPLIST_FILE = "iKopter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				PRODUCT_NAME = iKopter;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BAE65438135C9D270036CB96 /* Release Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				INFOPLIST_FILE = "iKopter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				PRODUCT_NAME = iKopter;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release Distribution";
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1144,6 +1517,16 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				BAAA7B0E13556EBA00365FCB /* Release Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAE65435135C9D270036CB96 /* Build configuration list for PBXNativeTarget "iKopter Cydia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAE65436135C9D270036CB96 /* Debug */,
+				BAE65437135C9D270036CB96 /* Release */,
+				BAE65438135C9D270036CB96 /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
