@@ -63,7 +63,6 @@
 		BA71CDD112D0C2660029C5F7 /* MKConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDAE12D0C2660029C5F7 /* MKConnectionController.m */; };
 		BA71CDD212D0C2660029C5F7 /* MKFakeConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */; };
 		BA71CDD312D0C2660029C5F7 /* MKIpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB412D0C2660029C5F7 /* MKIpConnection.m */; };
-		BA71CDD412D0C2660029C5F7 /* MKQmkIpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB612D0C2660029C5F7 /* MKQmkIpConnection.m */; };
 		BA71CDD512D0C2660029C5F7 /* IKDebugData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB912D0C2660029C5F7 /* IKDebugData.m */; };
 		BA71CDD612D0C2660029C5F7 /* IKDebugLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDBB12D0C2660029C5F7 /* IKDebugLabel.m */; };
 		BA71CDD712D0C2660029C5F7 /* IKDeviceVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDBD12D0C2660029C5F7 /* IKDeviceVersion.m */; };
@@ -73,9 +72,7 @@
 		BA71CDDB12D0C2660029C5F7 /* NSData+MKCommandDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC612D0C2660029C5F7 /* NSData+MKCommandDecode.m */; };
 		BA71CDDC12D0C2660029C5F7 /* NSData+MKCommandEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC812D0C2660029C5F7 /* NSData+MKCommandEncode.m */; };
 		BA71CDDD12D0C2660029C5F7 /* NSData+MKPayloadDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCA12D0C2660029C5F7 /* NSData+MKPayloadDecode.m */; };
-		BA71CDDE12D0C2660029C5F7 /* NSData+MKPayloadDecodeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCB12D0C2660029C5F7 /* NSData+MKPayloadDecodeSetting.m */; };
 		BA71CDDF12D0C2660029C5F7 /* NSData+MKPayloadEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCD12D0C2660029C5F7 /* NSData+MKPayloadEncode.m */; };
-		BA71CDE012D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCE12D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m */; };
 		BA71CDE412D0C2830029C5F7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA71CDE312D0C2830029C5F7 /* CFNetwork.framework */; };
 		BA71CDE612D0C2910029C5F7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA71CDE512D0C2910029C5F7 /* MessageUI.framework */; };
 		BA71CE0C12D0C3840029C5F7 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA71CE0A12D0C3840029C5F7 /* InAppSettings.bundle */; };
@@ -206,7 +203,6 @@
 		BAE653FC135C9D270036CB96 /* MKConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDAE12D0C2660029C5F7 /* MKConnectionController.m */; };
 		BAE653FD135C9D270036CB96 /* MKFakeConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */; };
 		BAE653FE135C9D270036CB96 /* MKIpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB412D0C2660029C5F7 /* MKIpConnection.m */; };
-		BAE653FF135C9D270036CB96 /* MKQmkIpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB612D0C2660029C5F7 /* MKQmkIpConnection.m */; };
 		BAE65400135C9D270036CB96 /* IKDebugData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDB912D0C2660029C5F7 /* IKDebugData.m */; };
 		BAE65401135C9D270036CB96 /* IKDebugLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDBB12D0C2660029C5F7 /* IKDebugLabel.m */; };
 		BAE65402135C9D270036CB96 /* IKDeviceVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDBD12D0C2660029C5F7 /* IKDeviceVersion.m */; };
@@ -216,9 +212,7 @@
 		BAE65406135C9D270036CB96 /* NSData+MKCommandDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC612D0C2660029C5F7 /* NSData+MKCommandDecode.m */; };
 		BAE65407135C9D270036CB96 /* NSData+MKCommandEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDC812D0C2660029C5F7 /* NSData+MKCommandEncode.m */; };
 		BAE65408135C9D270036CB96 /* NSData+MKPayloadDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCA12D0C2660029C5F7 /* NSData+MKPayloadDecode.m */; };
-		BAE65409135C9D270036CB96 /* NSData+MKPayloadDecodeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCB12D0C2660029C5F7 /* NSData+MKPayloadDecodeSetting.m */; };
 		BAE6540A135C9D270036CB96 /* NSData+MKPayloadEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCD12D0C2660029C5F7 /* NSData+MKPayloadEncode.m */; };
-		BAE6540B135C9D270036CB96 /* NSData+MKPayloadEncodeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CDCE12D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m */; };
 		BAE6540C135C9D270036CB96 /* LcdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CE9C12D0D2D40029C5F7 /* LcdViewController.m */; };
 		BAE6540D135C9D270036CB96 /* SettingsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0A512D266AF0029C5F7 /* SettingsSelectionViewController.m */; };
 		BAE6540E135C9D270036CB96 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71D0A712D266AF0029C5F7 /* SettingViewController.m */; };
@@ -357,13 +351,10 @@
 		BA71CDAD12D0C2660029C5F7 /* MKConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKConnectionController.h; sourceTree = "<group>"; };
 		BA71CDAE12D0C2660029C5F7 /* MKConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKConnectionController.m; sourceTree = "<group>"; };
 		BA71CDAF12D0C2660029C5F7 /* MKDataConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDataConstants.h; sourceTree = "<group>"; };
-		BA71CDB012D0C2660029C5F7 /* MKDatatypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDatatypes.h; sourceTree = "<group>"; };
 		BA71CDB112D0C2660029C5F7 /* MKFakeConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFakeConnection.h; sourceTree = "<group>"; };
 		BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFakeConnection.m; sourceTree = "<group>"; };
 		BA71CDB312D0C2660029C5F7 /* MKIpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKIpConnection.h; sourceTree = "<group>"; };
 		BA71CDB412D0C2660029C5F7 /* MKIpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKIpConnection.m; sourceTree = "<group>"; };
-		BA71CDB512D0C2660029C5F7 /* MKQmkIpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKQmkIpConnection.h; sourceTree = "<group>"; };
-		BA71CDB612D0C2660029C5F7 /* MKQmkIpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKQmkIpConnection.m; sourceTree = "<group>"; };
 		BA71CDB812D0C2660029C5F7 /* IKDebugData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKDebugData.h; sourceTree = "<group>"; };
 		BA71CDB912D0C2660029C5F7 /* IKDebugData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKDebugData.m; sourceTree = "<group>"; };
 		BA71CDBA12D0C2660029C5F7 /* IKDebugLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKDebugLabel.h; sourceTree = "<group>"; };
@@ -383,10 +374,8 @@
 		BA71CDC812D0C2660029C5F7 /* NSData+MKCommandEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKCommandEncode.m"; sourceTree = "<group>"; };
 		BA71CDC912D0C2660029C5F7 /* NSData+MKPayloadDecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKPayloadDecode.h"; sourceTree = "<group>"; };
 		BA71CDCA12D0C2660029C5F7 /* NSData+MKPayloadDecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKPayloadDecode.m"; sourceTree = "<group>"; };
-		BA71CDCB12D0C2660029C5F7 /* NSData+MKPayloadDecodeSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKPayloadDecodeSetting.m"; sourceTree = "<group>"; };
 		BA71CDCC12D0C2660029C5F7 /* NSData+MKPayloadEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKPayloadEncode.h"; sourceTree = "<group>"; };
 		BA71CDCD12D0C2660029C5F7 /* NSData+MKPayloadEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKPayloadEncode.m"; sourceTree = "<group>"; };
-		BA71CDCE12D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKPayloadEncodeSetting.m"; sourceTree = "<group>"; };
 		BA71CDCF12D0C2660029C5F7 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		BA71CDE312D0C2830029C5F7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BA71CDE512D0C2910029C5F7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -602,8 +591,6 @@
 				BA71CDB212D0C2660029C5F7 /* MKFakeConnection.m */,
 				BA71CDB312D0C2660029C5F7 /* MKIpConnection.h */,
 				BA71CDB412D0C2660029C5F7 /* MKIpConnection.m */,
-				BA71CDB512D0C2660029C5F7 /* MKQmkIpConnection.h */,
-				BA71CDB612D0C2660029C5F7 /* MKQmkIpConnection.m */,
 			);
 			name = Connections;
 			sourceTree = "<group>";
@@ -797,7 +784,6 @@
 				BA71CDAD12D0C2660029C5F7 /* MKConnectionController.h */,
 				BA71CDAE12D0C2660029C5F7 /* MKConnectionController.m */,
 				BA71CDAF12D0C2660029C5F7 /* MKDataConstants.h */,
-				BA71CDB012D0C2660029C5F7 /* MKDatatypes.h */,
 				BA71CDB712D0C2660029C5F7 /* Models */,
 				BA71CDC512D0C2660029C5F7 /* NSData+MKCommandDecode.h */,
 				BA71CDC612D0C2660029C5F7 /* NSData+MKCommandDecode.m */,
@@ -805,10 +791,8 @@
 				BA71CDC812D0C2660029C5F7 /* NSData+MKCommandEncode.m */,
 				BA71CDC912D0C2660029C5F7 /* NSData+MKPayloadDecode.h */,
 				BA71CDCA12D0C2660029C5F7 /* NSData+MKPayloadDecode.m */,
-				BA71CDCB12D0C2660029C5F7 /* NSData+MKPayloadDecodeSetting.m */,
 				BA71CDCC12D0C2660029C5F7 /* NSData+MKPayloadEncode.h */,
 				BA71CDCD12D0C2660029C5F7 /* NSData+MKPayloadEncode.m */,
-				BA71CDCE12D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m */,
 				BA71CDCF12D0C2660029C5F7 /* SynthesizeSingleton.h */,
 			);
 			path = Communication;
@@ -918,7 +902,6 @@
 		BA9C023512E1BEB900A3A706 /* Osd */ = {
 			isa = PBXGroup;
 			children = (
-				BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */,
 				BA9C025112E1C59900A3A706 /* Data3DValue.h */,
 				BA9C025212E1C59900A3A706 /* Data3DValue.m */,
 				BA9C023612E1BEB900A3A706 /* OsdValue.h */,
@@ -933,6 +916,7 @@
 				BA0D1C2612F7250900555855 /* ValueOsdViewController.h */,
 				BA0D1C2712F7250900555855 /* ValueOsdViewController.m */,
 				BA0D1C2812F7250900555855 /* ValueOsdViewController.xib */,
+				BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */,
 				BAB8AA8313008985002CBB97 /* RawOsdViewController.h */,
 				BAB8AA8413008985002CBB97 /* RawOsdViewController.m */,
 				BAB8AA8513008985002CBB97 /* RawOsdViewController.xib */,
@@ -1199,7 +1183,6 @@
 				BA71CDD112D0C2660029C5F7 /* MKConnectionController.m in Sources */,
 				BA71CDD212D0C2660029C5F7 /* MKFakeConnection.m in Sources */,
 				BA71CDD312D0C2660029C5F7 /* MKIpConnection.m in Sources */,
-				BA71CDD412D0C2660029C5F7 /* MKQmkIpConnection.m in Sources */,
 				BA71CDD512D0C2660029C5F7 /* IKDebugData.m in Sources */,
 				BA71CDD612D0C2660029C5F7 /* IKDebugLabel.m in Sources */,
 				BA71CDD712D0C2660029C5F7 /* IKDeviceVersion.m in Sources */,
@@ -1209,9 +1192,7 @@
 				BA71CDDB12D0C2660029C5F7 /* NSData+MKCommandDecode.m in Sources */,
 				BA71CDDC12D0C2660029C5F7 /* NSData+MKCommandEncode.m in Sources */,
 				BA71CDDD12D0C2660029C5F7 /* NSData+MKPayloadDecode.m in Sources */,
-				BA71CDDE12D0C2660029C5F7 /* NSData+MKPayloadDecodeSetting.m in Sources */,
 				BA71CDDF12D0C2660029C5F7 /* NSData+MKPayloadEncode.m in Sources */,
-				BA71CDE012D0C2660029C5F7 /* NSData+MKPayloadEncodeSetting.m in Sources */,
 				BA71CE9E12D0D2D40029C5F7 /* LcdViewController.m in Sources */,
 				BA71D0A812D266AF0029C5F7 /* SettingsSelectionViewController.m in Sources */,
 				BA71D0A912D266AF0029C5F7 /* SettingViewController.m in Sources */,
@@ -1283,7 +1264,6 @@
 				BAE653FC135C9D270036CB96 /* MKConnectionController.m in Sources */,
 				BAE653FD135C9D270036CB96 /* MKFakeConnection.m in Sources */,
 				BAE653FE135C9D270036CB96 /* MKIpConnection.m in Sources */,
-				BAE653FF135C9D270036CB96 /* MKQmkIpConnection.m in Sources */,
 				BAE65400135C9D270036CB96 /* IKDebugData.m in Sources */,
 				BAE65401135C9D270036CB96 /* IKDebugLabel.m in Sources */,
 				BAE65402135C9D270036CB96 /* IKDeviceVersion.m in Sources */,
@@ -1293,9 +1273,7 @@
 				BAE65406135C9D270036CB96 /* NSData+MKCommandDecode.m in Sources */,
 				BAE65407135C9D270036CB96 /* NSData+MKCommandEncode.m in Sources */,
 				BAE65408135C9D270036CB96 /* NSData+MKPayloadDecode.m in Sources */,
-				BAE65409135C9D270036CB96 /* NSData+MKPayloadDecodeSetting.m in Sources */,
 				BAE6540A135C9D270036CB96 /* NSData+MKPayloadEncode.m in Sources */,
-				BAE6540B135C9D270036CB96 /* NSData+MKPayloadEncodeSetting.m in Sources */,
 				BAE6540C135C9D270036CB96 /* LcdViewController.m in Sources */,
 				BAE6540D135C9D270036CB96 /* SettingsSelectionViewController.m in Sources */,
 				BAE6540E135C9D270036CB96 /* SettingViewController.m in Sources */,

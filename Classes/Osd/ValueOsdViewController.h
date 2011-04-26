@@ -13,6 +13,7 @@
 
 @interface ValueOsdViewController : UIViewController<OsdValueDelegate> {
 
+  UILabel* noData;
   UILabel* heigth;
   UILabel* heigthSetpoint;
   UILabel* battery;
@@ -43,6 +44,7 @@
 @property(retain) UIImage* gpsSateliteOk;
 @property(retain) UIImage* gpsSateliteErr;
 
+@property(retain) IBOutlet UILabel* noData;
 @property(retain) IBOutlet UILabel* heigth;
 @property(retain) IBOutlet UILabel* heigthSetpoint;
 @property(retain) IBOutlet UILabel* battery;

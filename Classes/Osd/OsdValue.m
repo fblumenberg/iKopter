@@ -149,6 +149,7 @@
   requestTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
                 @selector(sendOsdRefreshRequest) userInfo:nil repeats:YES];
   
+  requestCount=0;
   [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
 }
 
@@ -163,11 +164,17 @@
 
 
 - (void) sendOsdRefreshRequest {
+  
+  if(requestCount==3)
+    [self.delegate noDataAvailable];
+  
   [[MKConnectionController sharedMKConnectionController] requestOsdDataForInterval:40];
+  requestCount++;
 }
 
 - (void) osdNotification:(NSNotification *)aNotification {
-  
+
+  requestCount=0;
   self.data = [[aNotification userInfo] objectForKey:kIKDataKeyOsd];
   
   [self.delegate newValue:self];

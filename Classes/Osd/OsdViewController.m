@@ -81,6 +81,8 @@
   [super viewWillAppear:animated];
 
   [osdValue startRequesting];
+  
+  [self.selectedViewController viewWillAppear:animated];
 
   [self.navigationController setToolbarHidden:YES animated:YES];
   [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -126,6 +128,9 @@
   
   BOOL result=YES;
   
+  if( interfaceOrientation==UIInterfaceOrientationLandscapeRight )
+    return NO;
+  
   for (UIViewController* controller in self.viewControllers) {
     result &= [controller shouldAutorotateToInterfaceOrientation:interfaceOrientation];
   }
@@ -145,11 +150,12 @@
 
 -(void) updateSelectedViewFrame {
   self.selectedViewController.view.frame=CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-CGRectGetHeight(self.tabBar.frame));
+  
   [selectedViewController newValue:osdValue];
   
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
-    [self.selectedViewController.view addGestureRecognizer:singleTap];
-    [singleTap release];    
+  UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
+  [self.selectedViewController.view addGestureRecognizer:singleTap];
+  [singleTap release];    
 }
 
 
@@ -193,5 +199,11 @@
 - (void) newValue:(OsdValue*)value {
   [self.selectedViewController newValue:value];
 }
+
+- (void) noDataAvailable {
+  if([self.selectedViewController respondsToSelector:@selector(noDataAvailable)])
+    [self.selectedViewController noDataAvailable];
+}
+
 
 @end

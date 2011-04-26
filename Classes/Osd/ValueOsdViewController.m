@@ -54,7 +54,7 @@
 @synthesize waypoint;
 @synthesize targetPosDev;
 @synthesize homePosDev;
-
+@synthesize noData;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
@@ -120,6 +120,8 @@
 #pragma mark OsdValueDelegate implementation
 - (void) newValue:(OsdValue*)value {
   
+  self.noData.hidden=YES;
+
   IKMkNaviData*data=value.data.data;
   
   heigth.text=[NSString stringWithFormat:@"%0.1f m",data->Altimeter/20.0];  
@@ -169,5 +171,9 @@
 //  else
 //    gpsTarget.text=@"";
 }  
+
+- (void) noDataAvailable {
+  self.noData.hidden=NO;
+}
 
 @end
