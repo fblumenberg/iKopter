@@ -29,8 +29,3 @@
 
 @end
 
-@interface NSData (MKPayloadEncodeSettings)
-
-//+ (NSData *) payloadForWriteSettingRequest:(NSDictionary *)theDictionary;
-
-@end
