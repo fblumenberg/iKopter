@@ -35,4 +35,6 @@
 @property(retain) NSString* address;
 @property(retain) NSString* connectionClass;
 
+-(UIImage*) cellImage;
+
 @end

@@ -129,6 +129,7 @@
   
   MKHost* host = [hosts hostAtIndexPath:indexPath];
   
+  cell.imageView.image = [host cellImage];
   cell.textLabel.text = host.name;
   cell.detailTextLabel.text = host.address;
   cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;

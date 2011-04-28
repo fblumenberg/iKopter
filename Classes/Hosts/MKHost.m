@@ -56,6 +56,19 @@
   return [NSString stringWithFormat:@"%@-%@",self.name,self.address];
 }
 
+-(UIImage*) cellImage{
+  if([self.connectionClass isEqualToString:@"MKIpConnection"])
+    return [UIImage imageNamed:@"icon-wifi.png"];
+  if([self.connectionClass isEqualToString:@"MKSerialConnection"])
+    return [UIImage imageNamed:@"icon-usb.png"];
+  if([self.connectionClass isEqualToString:@"MKBluetoothConnection"])
+    return [UIImage imageNamed:@"icon-bluetooth.png"];
+  
+  
+  return [UIImage imageNamed:@"icon-phone.png"];
+}
+
+
 #pragma mark NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder {
   [encoder encodeObject:_name forKey:kNameKey];

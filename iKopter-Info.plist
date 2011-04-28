@@ -28,7 +28,7 @@
 	<key>CFBundleURLTypes</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>0.1.0.110</string>
+	<string>0.1.0.136</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>NSMainNibFile</key>

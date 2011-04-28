@@ -26,7 +26,6 @@
 #import "ChannelsViewCell.h"
 #import "MKConnectionController.h"
 #import "NSData+MKCommandEncode.h"
-#import "MKDatatypes.h"
 #import "MKDataConstants.h"
 
 #define kAnalogLabelFile @"AnalogLables.plist"

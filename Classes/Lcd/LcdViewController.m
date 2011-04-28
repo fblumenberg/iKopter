@@ -25,7 +25,6 @@
 #import "LcdViewController.h"
 #import "MKConnectionController.h"
 #import "NSData+MKCommandEncode.h"
-#import "MKDatatypes.h"
 #import "MKDataConstants.h"
 
 #import "IKLcdDisplay.h"

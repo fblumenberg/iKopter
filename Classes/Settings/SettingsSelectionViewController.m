@@ -29,7 +29,6 @@
 #import "NSData+MKCommandEncode.h"
 #import "NSData+MKPayloadEncode.h"
 
-#import "MKDatatypes.h"
 #import "MKDataConstants.h"
 
 #import "IKParamSet.h"
