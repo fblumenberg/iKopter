@@ -21,12 +21,12 @@
 @class IASKSettingsReader;
 
 @interface IASKSpecifierValuesViewController : UIViewController {
-    IBOutlet UITableView    *_tableView;
-    
-    IASKSpecifier             *_currentSpecifier;
-    NSIndexPath             *_checkedItem;
+  IBOutlet UITableView    *_tableView;
+  
+  IASKSpecifier             *_currentSpecifier;
+  NSIndexPath             *_checkedItem;
 	IASKSettingsReader		*_settingsReader;
-    id<IASKSettingsStore>  _settingsStore;
+  id<IASKSettingsStore>  _settingsStore;
 }
 
 @property (nonatomic, retain) NSIndexPath *checkedItem;

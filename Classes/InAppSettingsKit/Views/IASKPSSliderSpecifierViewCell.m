@@ -21,26 +21,26 @@
 @implementation IASKPSSliderSpecifierViewCell
 
 @synthesize slider=_slider, 
-minImage=_minImage, 
-maxImage=_maxImage;
+            minImage=_minImage, 
+            maxImage=_maxImage;
 
 - (void)layoutSubviews {
-  [super layoutSubviews];
+    [super layoutSubviews];
 	CGRect  sliderBounds    = _slider.bounds;
-  CGPoint sliderCenter    = _slider.center;
-  const double superViewWidth = _slider.superview.frame.size.width;
-  
-  sliderCenter.x = superViewWidth / 2;
-  sliderBounds.size.width = superViewWidth - kIASKSliderNoImagesPadding * 2;
+    CGPoint sliderCenter    = _slider.center;
+    const double superViewWidth = _slider.superview.frame.size.width;
+    
+    sliderCenter.x = superViewWidth / 2;
+    sliderBounds.size.width = superViewWidth - kIASKSliderNoImagesPadding * 2;
 	_minImage.hidden = YES;
 	_maxImage.hidden = YES;
-  
+
 	// Check if there are min and max images. If so, change the layout accordingly.
 	if (_minImage.image && _maxImage.image) {
 		// Both images
 		_minImage.hidden = NO;
 		_maxImage.hidden = NO;
-    sliderBounds.size.width  = superViewWidth - kIASKSliderImagesPadding * 2;
+        sliderBounds.size.width  = superViewWidth - kIASKSliderImagesPadding * 2;
 	}
 	else if (_minImage.image) {
 		// Min image
@@ -56,11 +56,11 @@ maxImage=_maxImage;
 	}
 	
 	_slider.bounds = sliderBounds;
-  _slider.center = sliderCenter;
+    _slider.center = sliderCenter;
 }	
 
 - (void)dealloc {
-  [super dealloc];
+    [super dealloc];
 }
 
 - (void)prepareForReuse {

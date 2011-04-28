@@ -21,7 +21,7 @@
 @implementation IASKSettingsStoreFile
 
 - (id)initWithPath:(NSString*)path {
-    if([super init]) {
+    if((self = [super init])) {
         _filePath = [path retain];
         _dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
         if(_dict == nil) {
@@ -39,7 +39,6 @@
 
 
 - (void)setObject:(id)value forKey:(NSString *)key {
-  NSLog(@"Set object %@ (%@) for key %@",value,[value class],key);
     [_dict setObject:value forKey:key];
 }
 

@@ -46,6 +46,8 @@
 #define kIASKKeyboardAlphabet                 @"Alphabet"
 #define kIASKKeyboardNumbersAndPunctuation    @"NumbersAndPunctuation"
 #define kIASKKeyboardNumberPad                @"NumberPad"
+#define kIASKKeyboardDecimalPad               @"DecimalPad"
+
 #define KIASKKeyboardURL                      @"URL"
 #define kIASKKeyboardEmailAddress             @"EmailAddress"
 #define kIASKAutoCapNone                      @"None"
@@ -100,22 +102,26 @@
 #define kCFCoreFoundationVersionNumber_iPhoneOS_4_0 550.32
 #endif
 
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_4_1
+#define kCFCoreFoundationVersionNumber_iPhoneOS_4_1 550.38
+#endif
+
+
 #define IASK_IF_IOS4_OR_GREATER(...) \
 if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_4_0) \
 { \
 __VA_ARGS__ \
 }
 
-
 @class IASKSpecifier;
 
 @interface IASKSettingsReader : NSObject {
-  NSString        *_path;
-  NSString        *_bundlePath;
-  NSDictionary    *_settingsBundle;
-  NSArray         *_dataSource;
-  NSBundle        *_bundle;
-  NSString        *_title;
+    NSString        *_path;
+    NSString        *_localizationTable;
+    NSString        *_bundlePath;
+    NSDictionary    *_settingsBundle;
+    NSArray         *_dataSource;
+    NSBundle        *_bundle;
 }
 
 - (id)initWithFile:(NSString*)file;
@@ -130,7 +136,7 @@ __VA_ARGS__ \
 - (NSString*)pathForImageNamed:(NSString*)image;
 
 @property (nonatomic, retain) NSString      *path;
-@property (nonatomic, retain) NSString      *title;
+@property (nonatomic, retain) NSString      *localizationTable;
 @property (nonatomic, retain) NSString      *bundlePath;
 @property (nonatomic, retain) NSDictionary  *settingsBundle;
 @property (nonatomic, retain) NSArray       *dataSource;

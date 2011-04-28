@@ -95,7 +95,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 
 #pragma mark standard view controller methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ([super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     // If set to YES, will display credits for InAppSettingsKit creators
     _showCreditsFooter = YES;
     
@@ -146,13 +146,7 @@ CGRect IASKCGRectSwap(CGRect rect);
     [buttonItem release];
   } 
   if (!self.title) {
-    if (self.settingsReader.title) {
-      self.title = self.settingsReader.title;
-    }
-    else {
       self.title = NSLocalizedString(@"Settings", @"");
-    }
-
   }
 	
 	if (self.currentIndexPath) {
@@ -252,6 +246,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 		[self.currentFirstResponder resignFirstResponder];
 	}
 	
+	[self.settingsStore synchronize];
 	self.navigationController.delegate = nil;
 	
 	if (self.delegate && [self.delegate conformsToProtocol:@protocol(IASKSettingsDelegate)]) {
@@ -347,7 +342,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 	NSString *title;
 	if ((title = [self tableView:tableView titleForHeaderInSection:section])) {
 		CGSize size = [title sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] 
-                    constrainedToSize:CGSizeMake(tableView.frame.size.width - 2*kIASKHorizontalPaddingGroupTitles, tableView.frame.size.height)
+                    constrainedToSize:CGSizeMake(tableView.frame.size.width - 2*kIASKHorizontalPaddingGroupTitles, INFINITY)
                         lineBreakMode:UILineBreakModeWordWrap];
 		return size.height+kIASKVerticalPaddingGroupTitles;
 	}

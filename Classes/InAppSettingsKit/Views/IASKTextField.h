@@ -18,7 +18,7 @@
 
 
 @interface IASKTextField : UITextField {
-  NSString *_key;
+    NSString *_key;
 }
 
 @property (nonatomic, retain) NSString *key;

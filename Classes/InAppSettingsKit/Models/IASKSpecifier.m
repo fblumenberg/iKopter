@@ -29,75 +29,75 @@
 @synthesize settingsReader = _settingsReader;
 
 - (id)initWithSpecifier:(NSDictionary*)specifier {
-  if ([super init]) {
-    [self setSpecifierDict:specifier];
-    
-    if ([[self type] isEqualToString:kIASKPSMultiValueSpecifier] ||
-        [[self type] isEqualToString:kIASKPSTitleValueSpecifier]) {
-      [self _reinterpretValues:[self specifierDict]];
+    if ((self = [super init])) {
+        [self setSpecifierDict:specifier];
+        
+        if ([[self type] isEqualToString:kIASKPSMultiValueSpecifier] ||
+			[[self type] isEqualToString:kIASKPSTitleValueSpecifier]) {
+            [self _reinterpretValues:[self specifierDict]];
+        }
     }
-  }
-  return self;
+    return self;
 }
 
 - (void)dealloc {
-  [_specifierDict release];
-  [_multipleValuesDict release];
+    [_specifierDict release];
+    [_multipleValuesDict release];
 	_settingsReader = nil;
-  
-  [super dealloc];
+	
+    [super dealloc];
 }
 
 - (void)_reinterpretValues:(NSDictionary*)specifierDict {
-  NSArray *values = [_specifierDict objectForKey:kIASKValues];
-  NSArray *titles = [_specifierDict objectForKey:kIASKTitles];
-  
-  NSMutableDictionary *multipleValuesDict = [[[NSMutableDictionary alloc] init] autorelease];
-  
-  if (values) {
+    NSArray *values = [_specifierDict objectForKey:kIASKValues];
+    NSArray *titles = [_specifierDict objectForKey:kIASKTitles];
+    
+    NSMutableDictionary *multipleValuesDict = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    if (values) {
 		[multipleValuesDict setObject:values forKey:kIASKValues];
 	}
 	
-  if (titles) {
+    if (titles) {
 		[multipleValuesDict setObject:titles forKey:kIASKTitles];
 	}
-  
-  [self setMultipleValuesDict:multipleValuesDict];
+    
+    [self setMultipleValuesDict:multipleValuesDict];
 }
 - (NSString*)localizedObjectForKey:(NSString*)key {
 	return [self.settingsReader titleForStringId:[_specifierDict objectForKey:key]];
 }
 
 - (NSString*)title {
-  return [self localizedObjectForKey:kIASKTitle];
+    return [self localizedObjectForKey:kIASKTitle];
 }
 
 - (NSString*)footerText {
-  return [self localizedObjectForKey:kIASKFooterText];
+    return [self localizedObjectForKey:kIASKFooterText];
 }
 
 -(Class) viewControllerClass {
-  return NSClassFromString([_specifierDict objectForKey:kIASKViewControllerClass]);
+    return NSClassFromString([_specifierDict objectForKey:kIASKViewControllerClass]);
 }
 
 -(SEL) viewControllerSelector {
-  return NSSelectorFromString([_specifierDict objectForKey:kIASKViewControllerSelector]);
+    return NSSelectorFromString([_specifierDict objectForKey:kIASKViewControllerSelector]);
 }
 
 -(Class)buttonClass {
-  return NSClassFromString([_specifierDict objectForKey:kIASKButtonClass]);
+    return NSClassFromString([_specifierDict objectForKey:kIASKButtonClass]);
 }
 
 -(SEL)buttonAction {
-  return NSSelectorFromString([_specifierDict objectForKey:kIASKButtonAction]);
+    return NSSelectorFromString([_specifierDict objectForKey:kIASKButtonAction]);
 }
 
 - (NSString*)key {
-  return [_specifierDict objectForKey:kIASKKey];
+    return [_specifierDict objectForKey:kIASKKey];
 }
 
 - (NSString*)type {
-  return [_specifierDict objectForKey:kIASKType];
+    return [_specifierDict objectForKey:kIASKType];
 }
 
 - (NSString*)titleForCurrentValue:(id)currentValue {
@@ -106,7 +106,7 @@
 	if (values.count != titles.count) {
 		return nil;
 	}
-  NSInteger keyIndex = [values indexOfObject:currentValue];
+    NSInteger keyIndex = [values indexOfObject:currentValue];
 	if (keyIndex == NSNotFound) {
 		return nil;
 	}
@@ -118,27 +118,27 @@
 }
 
 - (NSInteger)multipleValuesCount {
-  return [[_multipleValuesDict objectForKey:kIASKValues] count];
+    return [[_multipleValuesDict objectForKey:kIASKValues] count];
 }
 
 - (NSArray*)multipleValues {
-  return [_multipleValuesDict objectForKey:kIASKValues];
+    return [_multipleValuesDict objectForKey:kIASKValues];
 }
 
 - (NSArray*)multipleTitles {
-  return [_multipleValuesDict objectForKey:kIASKTitles];
+    return [_multipleValuesDict objectForKey:kIASKTitles];
 }
 
 - (NSString*)file {
-  return [_specifierDict objectForKey:kIASKFile];
+    return [_specifierDict objectForKey:kIASKFile];
 }
 
 - (id)defaultValue {
-  return [_specifierDict objectForKey:kIASKDefaultValue];
+    return [_specifierDict objectForKey:kIASKDefaultValue];
 }
 
 - (id)defaultStringValue {
-  return [[_specifierDict objectForKey:kIASKDefaultValue] description];
+    return [[_specifierDict objectForKey:kIASKDefaultValue] description];
 }
 
 - (BOOL)defaultBoolValue {
@@ -153,31 +153,31 @@
 }
 
 - (id)trueValue {
-  return [_specifierDict objectForKey:kIASKTrueValue];
+    return [_specifierDict objectForKey:kIASKTrueValue];
 }
 
 - (id)falseValue {
-  return [_specifierDict objectForKey:kIASKFalseValue];
+    return [_specifierDict objectForKey:kIASKFalseValue];
 }
 
 - (float)minimumValue {
-  return [[_specifierDict objectForKey:kIASKMinimumValue] floatValue];
+    return [[_specifierDict objectForKey:kIASKMinimumValue] floatValue];
 }
 
 - (float)maximumValue {
-  return [[_specifierDict objectForKey:kIASKMaximumValue] floatValue];
+    return [[_specifierDict objectForKey:kIASKMaximumValue] floatValue];
 }
 
 - (NSString*)minimumValueImage {
-  return [_specifierDict objectForKey:kIASKMinimumValueImage];
+    return [_specifierDict objectForKey:kIASKMinimumValueImage];
 }
 
 - (NSString*)maximumValueImage {
-  return [_specifierDict objectForKey:kIASKMaximumValueImage];
+    return [_specifierDict objectForKey:kIASKMaximumValueImage];
 }
 
 - (BOOL)isSecure {
-  return [[_specifierDict objectForKey:kIASKIsSecure] boolValue];
+    return [[_specifierDict objectForKey:kIASKIsSecure] boolValue];
 }
 
 - (BOOL)isNumber {
@@ -185,51 +185,59 @@
 }
 
 - (UIKeyboardType)keyboardType {
-  if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardAlphabet]) {
-    return UIKeyboardTypeASCIICapable;
-  }
-  else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardNumbersAndPunctuation]) {
-    return UIKeyboardTypeNumbersAndPunctuation;
-  }
-  else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardNumberPad]) {
-    return UIKeyboardTypeNumberPad;
-  }
-  else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:KIASKKeyboardURL]) {
-    return UIKeyboardTypeURL;
-  }
-  else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardEmailAddress]) {
-    return UIKeyboardTypeEmailAddress;
-  }
-  return UIKeyboardTypeDefault;
+    if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardAlphabet]) {
+        return UIKeyboardTypeASCIICapable;
+    }
+    else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardNumbersAndPunctuation]) {
+        return UIKeyboardTypeNumbersAndPunctuation;
+    }
+    else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardNumberPad]) {
+        return UIKeyboardTypeNumberPad;
+    }
+    else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardDecimalPad]) {
+		if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_4_1) {
+			return UIKeyboardTypeDecimalPad;
+		}
+		else {
+			return UIKeyboardTypeNumbersAndPunctuation;
+		}
+    }
+    else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:KIASKKeyboardURL]) {
+        return UIKeyboardTypeURL;
+    }
+    else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardEmailAddress]) {
+        return UIKeyboardTypeEmailAddress;
+    }
+    return UIKeyboardTypeDefault;
 }
 
 - (UITextAutocapitalizationType)autocapitalizationType {
-  if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapNone]) {
+    if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapNone]) {
+        return UITextAutocapitalizationTypeNone;
+    }
+    else if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapSentences]) {
+        return UITextAutocapitalizationTypeSentences;
+    }
+    else if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapWords]) {
+        return UITextAutocapitalizationTypeWords;
+    }
+    else if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapAllCharacters]) {
+        return UITextAutocapitalizationTypeAllCharacters;
+    }
     return UITextAutocapitalizationTypeNone;
-  }
-  else if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapSentences]) {
-    return UITextAutocapitalizationTypeSentences;
-  }
-  else if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapWords]) {
-    return UITextAutocapitalizationTypeWords;
-  }
-  else if ([[_specifierDict objectForKey:kIASKAutocapitalizationType] isEqualToString:kIASKAutoCapAllCharacters]) {
-    return UITextAutocapitalizationTypeAllCharacters;
-  }
-  return UITextAutocapitalizationTypeNone;
 }
 
 - (UITextAutocorrectionType)autoCorrectionType {
-  if ([[_specifierDict objectForKey:kIASKAutoCorrectionType] isEqualToString:kIASKAutoCorrDefault]) {
+    if ([[_specifierDict objectForKey:kIASKAutoCorrectionType] isEqualToString:kIASKAutoCorrDefault]) {
+        return UITextAutocorrectionTypeDefault;
+    }
+    else if ([[_specifierDict objectForKey:kIASKAutoCorrectionType] isEqualToString:kIASKAutoCorrNo]) {
+        return UITextAutocorrectionTypeNo;
+    }
+    else if ([[_specifierDict objectForKey:kIASKAutoCorrectionType] isEqualToString:kIASKAutoCorrYes]) {
+        return UITextAutocorrectionTypeYes;
+    }
     return UITextAutocorrectionTypeDefault;
-  }
-  else if ([[_specifierDict objectForKey:kIASKAutoCorrectionType] isEqualToString:kIASKAutoCorrNo]) {
-    return UITextAutocorrectionTypeNo;
-  }
-  else if ([[_specifierDict objectForKey:kIASKAutoCorrectionType] isEqualToString:kIASKAutoCorrYes]) {
-    return UITextAutocorrectionTypeYes;
-  }
-  return UITextAutocorrectionTypeDefault;
 }
 
 @end
