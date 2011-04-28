@@ -25,7 +25,7 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStore.h"
-#import "DeviceInfoController.h"
+#import "DeviceInfoCell.h"
 #import "MBProgressHUD.h"
 
 typedef enum{
@@ -37,7 +37,7 @@ typedef enum{
 @class MKHost;
 @class MBProgressHUD;
 
-@interface MainViewController : IASKAppSettingsViewController<DeviceInfoControllerDelegate,MBProgressHUDDelegate> {
+@interface MainViewController : IASKAppSettingsViewController<MBProgressHUDDelegate> {
   
   MKConnectionState connectionState;
   MKHost* _host;

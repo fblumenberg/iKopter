@@ -2,58 +2,88 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Title</key>
-	<string>Main</string>
-	<key>StringsTable</key>
-	<string>Main</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>LCD</string>
-			<key>IASKViewControllerSelector</key>
-			<string>init</string>
 			<key>IASKViewControllerClass</key>
 			<string>LcdViewController</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>Debug</string>
 			<key>IASKViewControllerSelector</key>
 			<string>init</string>
+			<key>Title</key>
+			<string>LCD</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
 			<key>IASKViewControllerClass</key>
 			<string>AnalogViewController</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>Settings</string>
 			<key>IASKViewControllerSelector</key>
 			<string>init</string>
+			<key>Title</key>
+			<string>Debug</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
 			<key>IASKViewControllerClass</key>
 			<string>SettingsSelectionViewController</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>OSD</string>
 			<key>IASKViewControllerSelector</key>
 			<string>init</string>
+			<key>Title</key>
+			<string>Settings</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
 			<key>IASKViewControllerClass</key>
 			<string>OsdViewController</string>
+			<key>IASKViewControllerSelector</key>
+			<string>init</string>
+			<key>Title</key>
+			<string>OSD</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>NaviCtrl</string>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>NC</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>FlightCtrl</string>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>FC</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>MK3MAG</string>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>MAG</string>
 		</dict>
 	</array>
+	<key>StringsTable</key>
+	<string>Main</string>
+	<key>Title</key>
+	<string>Main</string>
 </dict>
 </plist>

@@ -27,7 +27,7 @@
 #import "GradientButton.h"
 #import "IASKSettingsStoreObject.h"
 #import "MBProgressHUD.h"
- 
+#import "IASKSpecifier.h"
 
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
@@ -52,6 +52,8 @@
     self.host = theHost;
 
     connectionState=MKConnectionStateDisconnected;
+    
+    self.delegate=self;
   }
   
   return self;
@@ -158,14 +160,11 @@
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void) deviceInfoControllerDidFinish:(DeviceInfoController*)controller{
-  [self dismissModalViewControllerAnimated:YES];
-}
 - (void)showInfoForDevice:(id)sender {
   GradientButton* btn=(GradientButton*)sender;
   IKMkAddress address=(IKMkAddress)btn.tag;
   IKDeviceVersion* v=[[MKConnectionController sharedMKConnectionController] versionForAddress:address];
-
+  
   if(v){
     NSString *msg;
     
@@ -182,7 +181,7 @@
                           otherButtonTitles:nil];
     [alert show];
     [alert release];
-//    [msg release];
+    //    [msg release];
   }
   
 //  DeviceInfoController* devInfoController = [[DeviceInfoController alloc] initWithNibName:@"DeviceInfoController" bundle:nil];
@@ -277,6 +276,62 @@
   return cell;
 }
 
+
+
+- (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {
+		return 44;
+}
+
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
+  
+  static NSString *CellIdentifier = @"DeviceInfoCell";
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+  }
+  
+  
+  IKMkAddress address=kIKMkAddressMK3MAg;
+  
+  if( [specifier.key isEqualToString:@"NC"] ) 
+    address=kIKMkAddressNC;
+  else if( [specifier.key isEqualToString:@"FC"] ) 
+    address=kIKMkAddressFC;
+  
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  cell.accessoryType = UITableViewCellAccessoryNone;
+  
+  IKDeviceVersion* v = [[MKConnectionController sharedMKConnectionController] versionForAddress:address];
+  if(v){
+    cell.textLabel.text = v.versionString;
+    
+    UIImage *accessoryImage = v.hasError?[UIImage imageNamed:@"blank_badge_red.png"]:[UIImage imageNamed:@"blank_badge_red.png"];
+    UIImageView *accImageView = [[UIImageView alloc] initWithImage:accessoryImage];
+    [accImageView setFrame:CGRectMake(0, 0, 32.0, 32.0)];
+    cell.accessoryView = accImageView;
+    [accImageView release];
+  }
+  else{
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ not available",nil),[specifier title]];
+  }
+
+  
+//	DeviceInfoCell *cell = (DeviceInfoCell*)[tableView dequeueReusableCellWithIdentifier:@"DeviceInfoCell"];
+//	
+//	if (!cell) {
+//    NSArray *nib=[[NSBundle mainBundle] loadNibNamed:@"DeviceInfoCell" 
+//                                               owner:self 
+//                                             options:nil];
+//    
+//		cell = (DeviceInfoCell*)[nib objectAtIndex:0];
+//	}
+//  
+//	cell.textView.text= @"Testext";
+  
+	return cell;
+}
 //////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Connection status actions (Statemachine)
@@ -320,9 +375,12 @@
 
   connectionState=MKConnectionStateConnected;
 
-  [_tableView beginUpdates]; 
-  [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade]; 
-  [_tableView endUpdates];
+//  [_tableView beginUpdates]; 
+//  [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade]; 
+//  [_tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade]; 
+//  [_tableView endUpdates];
+  
+  [_tableView reloadData];
   
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];

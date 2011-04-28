@@ -38,6 +38,16 @@
 		BA66496D1369D68600716D89 /* icon-phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6649621369D68600716D89 /* icon-phone@2x.png */; };
 		BA66496E1369D68600716D89 /* icon-bluetooth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6649631369D68600716D89 /* icon-bluetooth@2x.png */; };
 		BA66496F1369D68600716D89 /* icon-bluetooth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6649631369D68600716D89 /* icon-bluetooth@2x.png */; };
+		BA6649871369FEDB00716D89 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6649891369FEDB00716D89 /* AboutView.xib */; };
+		BA66498B1369FEF600716D89 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6649891369FEDB00716D89 /* AboutView.xib */; };
+		BA66498E136A015500716D89 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66498D136A015500716D89 /* DeviceInfoCell.m */; };
+		BA66498F136A015500716D89 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66498D136A015500716D89 /* DeviceInfoCell.m */; };
+		BA664991136A01C800716D89 /* DeviceInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA664990136A01C800716D89 /* DeviceInfoCell.xib */; };
+		BA664992136A01C800716D89 /* DeviceInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA664990136A01C800716D89 /* DeviceInfoCell.xib */; };
+		BA664995136A12D400716D89 /* blank_badge_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BA664993136A12D200716D89 /* blank_badge_red.png */; };
+		BA664996136A12D400716D89 /* blank_badge_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BA664993136A12D200716D89 /* blank_badge_red.png */; };
+		BA664997136A12D400716D89 /* blank_badge_green.png in Resources */ = {isa = PBXBuildFile; fileRef = BA664994136A12D300716D89 /* blank_badge_green.png */; };
+		BA664998136A12D400716D89 /* blank_badge_green.png in Resources */ = {isa = PBXBuildFile; fileRef = BA664994136A12D300716D89 /* blank_badge_green.png */; };
 		BA7018DD12D63A120048790A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DB12D63A120048790A /* Icon.png */; };
 		BA7018DE12D63A120048790A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7018DC12D63A120048790A /* Icon@2x.png */; };
 		BA701AA612D8C3EE0048790A /* AnalogValues.m in Sources */ = {isa = PBXBuildFile; fileRef = BA701AA312D8C3EE0048790A /* AnalogValues.m */; };
@@ -128,7 +138,6 @@
 		BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */; };
 		BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C081712E7796600A3A706 /* IKNaviData.m */; };
 		BAAA7B1A1356E5A500365FCB /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAA7B171356E5A500365FCB /* AboutViewController.m */; };
-		BAAA7B1B1356E5A500365FCB /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAAA7B181356E5A500365FCB /* AboutView.xib */; };
 		BAB8A98113007667002CBB97 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97713007667002CBB97 /* altitude.png */; };
 		BAB8A98213007667002CBB97 /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97813007667002CBB97 /* altitudeMax.png */; };
 		BAB8A98313007667002CBB97 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97913007667002CBB97 /* battery.png */; };
@@ -191,7 +200,6 @@
 		BAE653DB135C9D270036CB96 /* home1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AAEE13009795002CBB97 /* home1.png */; };
 		BAE653DC135C9D270036CB96 /* home2.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AAEF13009795002CBB97 /* home2.png */; };
 		BAE653DD135C9D270036CB96 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8AB0A130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib */; };
-		BAE653DE135C9D270036CB96 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAAA7B181356E5A500365FCB /* AboutView.xib */; };
 		BAE653E0135C9D270036CB96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		BAE653E1135C9D270036CB96 /* iKopterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFD12D0BFC80029C5F7 /* iKopterAppDelegate.m */; };
 		BAE653E2135C9D270036CB96 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA71CCFF12D0BFC80029C5F7 /* MainViewController.m */; };
@@ -302,6 +310,13 @@
 		BA6649611369D68600716D89 /* icon-usb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-usb@2x.png"; sourceTree = "<group>"; };
 		BA6649621369D68600716D89 /* icon-phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-phone@2x.png"; sourceTree = "<group>"; };
 		BA6649631369D68600716D89 /* icon-bluetooth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-bluetooth@2x.png"; sourceTree = "<group>"; };
+		BA6649881369FEDB00716D89 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AboutView.xib; sourceTree = "<group>"; };
+		BA66498A1369FEE700716D89 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/AboutView.xib; sourceTree = "<group>"; };
+		BA66498C136A015400716D89 /* DeviceInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoCell.h; sourceTree = "<group>"; };
+		BA66498D136A015500716D89 /* DeviceInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoCell.m; sourceTree = "<group>"; };
+		BA664990136A01C800716D89 /* DeviceInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceInfoCell.xib; sourceTree = "<group>"; };
+		BA664993136A12D200716D89 /* blank_badge_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_badge_red.png; sourceTree = "<group>"; };
+		BA664994136A12D300716D89 /* blank_badge_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_badge_green.png; sourceTree = "<group>"; };
 		BA7018DB12D63A120048790A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BA7018DC12D63A120048790A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BA701AA212D8C3EE0048790A /* AnalogValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogValues.h; sourceTree = "<group>"; };
@@ -463,8 +478,6 @@
 		BA9C081712E7796600A3A706 /* IKNaviData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKNaviData.m; sourceTree = "<group>"; };
 		BAAA7B161356E5A500365FCB /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Classes/AboutViewController.h"; sourceTree = "<group>"; };
 		BAAA7B171356E5A500365FCB /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Classes/AboutViewController.m"; sourceTree = "<group>"; };
-		BAAA7B191356E5A500365FCB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Resources/Localizations/English.lproj/AboutView.xib"; sourceTree = "<group>"; };
-		BAAA7B1C1356E5D800365FCB /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/AboutView.xib; sourceTree = "<group>"; };
 		BAB8A97713007667002CBB97 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAB8A97813007667002CBB97 /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
 		BAB8A97913007667002CBB97 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
@@ -660,6 +673,8 @@
 		BA71CCD112CFF1730029C5F7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BA664993136A12D200716D89 /* blank_badge_red.png */,
+				BA664994136A12D300716D89 /* blank_badge_green.png */,
 				BA66495E1369D68600716D89 /* icon-usb.png */,
 				BA66495F1369D68600716D89 /* icon-phone.png */,
 				BA6649601369D68600716D89 /* icon-bluetooth.png */,
@@ -692,9 +707,9 @@
 		BA71CCFB12D0BFC80029C5F7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BA6649891369FEDB00716D89 /* AboutView.xib */,
 				BAAA7B161356E5A500365FCB /* AboutViewController.h */,
 				BAAA7B171356E5A500365FCB /* AboutViewController.m */,
-				BAAA7B181356E5A500365FCB /* AboutView.xib */,
 				BA71CD6412D0C0740029C5F7 /* RootViewController.h */,
 				BA71CD6512D0C0740029C5F7 /* RootViewController.m */,
 				BA71CCFC12D0BFC80029C5F7 /* iKopterAppDelegate.h */,
@@ -704,6 +719,9 @@
 				BA701E3512DA5BB90048790A /* DeviceInfoController.h */,
 				BA701E3612DA5BB90048790A /* DeviceInfoController.m */,
 				BA701E3712DA5BB90048790A /* DeviceInfoController.xib */,
+				BA66498C136A015400716D89 /* DeviceInfoCell.h */,
+				BA66498D136A015500716D89 /* DeviceInfoCell.m */,
+				BA664990136A01C800716D89 /* DeviceInfoCell.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1090,7 +1108,6 @@
 				BAB8AAF013009795002CBB97 /* home1.png in Resources */,
 				BAB8AAF113009795002CBB97 /* home2.png in Resources */,
 				BAB8AB0B130099F4002CBB97 /* ValueOsdViewControllerLandscape.xib in Resources */,
-				BAAA7B1B1356E5A500365FCB /* AboutView.xib in Resources */,
 				BA6649541368DD2800716D89 /* Default.png in Resources */,
 				BA6649551368DD2800716D89 /* Default@2x.png in Resources */,
 				BA6649581369CC9D00716D89 /* icon-wifi.png in Resources */,
@@ -1101,6 +1118,10 @@
 				BA66496A1369D68600716D89 /* icon-usb@2x.png in Resources */,
 				BA66496C1369D68600716D89 /* icon-phone@2x.png in Resources */,
 				BA66496E1369D68600716D89 /* icon-bluetooth@2x.png in Resources */,
+				BA6649871369FEDB00716D89 /* AboutView.xib in Resources */,
+				BA664991136A01C800716D89 /* DeviceInfoCell.xib in Resources */,
+				BA664995136A12D400716D89 /* blank_badge_red.png in Resources */,
+				BA664997136A12D400716D89 /* blank_badge_green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,7 +1170,6 @@
 				BAE653DB135C9D270036CB96 /* home1.png in Resources */,
 				BAE653DC135C9D270036CB96 /* home2.png in Resources */,
 				BAE653DD135C9D270036CB96 /* ValueOsdViewControllerLandscape.xib in Resources */,
-				BAE653DE135C9D270036CB96 /* AboutView.xib in Resources */,
 				BA66495A1369D0EF00716D89 /* icon-wifi.png in Resources */,
 				BA66495B1369D0EF00716D89 /* icon-wifi@2x.png in Resources */,
 				BA66495C1369D0FB00716D89 /* Default.png in Resources */,
@@ -1160,6 +1180,10 @@
 				BA66496B1369D68600716D89 /* icon-usb@2x.png in Resources */,
 				BA66496D1369D68600716D89 /* icon-phone@2x.png in Resources */,
 				BA66496F1369D68600716D89 /* icon-bluetooth@2x.png in Resources */,
+				BA66498B1369FEF600716D89 /* AboutView.xib in Resources */,
+				BA664992136A01C800716D89 /* DeviceInfoCell.xib in Resources */,
+				BA664996136A12D400716D89 /* blank_badge_red.png in Resources */,
+				BA664998136A12D400716D89 /* blank_badge_green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1310,7 @@
 				BAE653A8135B1EDB0036CB96 /* MKSerialConnection.m in Sources */,
 				BAE653B0135B208D0036CB96 /* AMSerialPort.m in Sources */,
 				BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */,
+				BA66498E136A015500716D89 /* DeviceInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1367,12 +1392,22 @@
 				BAE6542A135C9D270036CB96 /* MKSerialConnection.m in Sources */,
 				BAE6542B135C9D270036CB96 /* AMSerialPort.m in Sources */,
 				BAE6542C135C9D270036CB96 /* AMSerialPortAdditions.m in Sources */,
+				BA66498F136A015500716D89 /* DeviceInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BA6649891369FEDB00716D89 /* AboutView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA6649881369FEDB00716D89 /* en */,
+				BA66498A1369FEE700716D89 /* de */,
+			);
+			name = AboutView.xib;
+			sourceTree = "<group>";
+		};
 		BA71CC7412CFDA920029C5F7 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1380,15 +1415,6 @@
 				BA71CC7712CFDA9F0029C5F7 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		BAAA7B181356E5A500365FCB /* AboutView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BAAA7B191356E5A500365FCB /* English */,
-				BAAA7B1C1356E5D800365FCB /* de */,
-			);
-			name = AboutView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
