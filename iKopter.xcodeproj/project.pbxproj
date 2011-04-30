@@ -40,10 +40,6 @@
 		BA66496F1369D68600716D89 /* icon-bluetooth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6649631369D68600716D89 /* icon-bluetooth@2x.png */; };
 		BA6649871369FEDB00716D89 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6649891369FEDB00716D89 /* AboutView.xib */; };
 		BA66498B1369FEF600716D89 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6649891369FEDB00716D89 /* AboutView.xib */; };
-		BA66498E136A015500716D89 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66498D136A015500716D89 /* DeviceInfoCell.m */; };
-		BA66498F136A015500716D89 /* DeviceInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA66498D136A015500716D89 /* DeviceInfoCell.m */; };
-		BA664991136A01C800716D89 /* DeviceInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA664990136A01C800716D89 /* DeviceInfoCell.xib */; };
-		BA664992136A01C800716D89 /* DeviceInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA664990136A01C800716D89 /* DeviceInfoCell.xib */; };
 		BA664995136A12D400716D89 /* blank_badge_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BA664993136A12D200716D89 /* blank_badge_red.png */; };
 		BA664996136A12D400716D89 /* blank_badge_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BA664993136A12D200716D89 /* blank_badge_red.png */; };
 		BA664997136A12D400716D89 /* blank_badge_green.png in Resources */ = {isa = PBXBuildFile; fileRef = BA664994136A12D300716D89 /* blank_badge_green.png */; };
@@ -312,9 +308,6 @@
 		BA6649631369D68600716D89 /* icon-bluetooth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-bluetooth@2x.png"; sourceTree = "<group>"; };
 		BA6649881369FEDB00716D89 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AboutView.xib; sourceTree = "<group>"; };
 		BA66498A1369FEE700716D89 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/AboutView.xib; sourceTree = "<group>"; };
-		BA66498C136A015400716D89 /* DeviceInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoCell.h; sourceTree = "<group>"; };
-		BA66498D136A015500716D89 /* DeviceInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoCell.m; sourceTree = "<group>"; };
-		BA664990136A01C800716D89 /* DeviceInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceInfoCell.xib; sourceTree = "<group>"; };
 		BA664993136A12D200716D89 /* blank_badge_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_badge_red.png; sourceTree = "<group>"; };
 		BA664994136A12D300716D89 /* blank_badge_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_badge_green.png; sourceTree = "<group>"; };
 		BA7018DB12D63A120048790A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -719,9 +712,6 @@
 				BA701E3512DA5BB90048790A /* DeviceInfoController.h */,
 				BA701E3612DA5BB90048790A /* DeviceInfoController.m */,
 				BA701E3712DA5BB90048790A /* DeviceInfoController.xib */,
-				BA66498C136A015400716D89 /* DeviceInfoCell.h */,
-				BA66498D136A015500716D89 /* DeviceInfoCell.m */,
-				BA664990136A01C800716D89 /* DeviceInfoCell.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1119,7 +1109,6 @@
 				BA66496C1369D68600716D89 /* icon-phone@2x.png in Resources */,
 				BA66496E1369D68600716D89 /* icon-bluetooth@2x.png in Resources */,
 				BA6649871369FEDB00716D89 /* AboutView.xib in Resources */,
-				BA664991136A01C800716D89 /* DeviceInfoCell.xib in Resources */,
 				BA664995136A12D400716D89 /* blank_badge_red.png in Resources */,
 				BA664997136A12D400716D89 /* blank_badge_green.png in Resources */,
 			);
@@ -1181,7 +1170,6 @@
 				BA66496D1369D68600716D89 /* icon-phone@2x.png in Resources */,
 				BA66496F1369D68600716D89 /* icon-bluetooth@2x.png in Resources */,
 				BA66498B1369FEF600716D89 /* AboutView.xib in Resources */,
-				BA664992136A01C800716D89 /* DeviceInfoCell.xib in Resources */,
 				BA664996136A12D400716D89 /* blank_badge_red.png in Resources */,
 				BA664998136A12D400716D89 /* blank_badge_green.png in Resources */,
 			);
@@ -1310,7 +1298,6 @@
 				BAE653A8135B1EDB0036CB96 /* MKSerialConnection.m in Sources */,
 				BAE653B0135B208D0036CB96 /* AMSerialPort.m in Sources */,
 				BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */,
-				BA66498E136A015500716D89 /* DeviceInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,7 +1379,6 @@
 				BAE6542A135C9D270036CB96 /* MKSerialConnection.m in Sources */,
 				BAE6542B135C9D270036CB96 /* AMSerialPort.m in Sources */,
 				BAE6542C135C9D270036CB96 /* AMSerialPortAdditions.m in Sources */,
-				BA66498F136A015500716D89 /* DeviceInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

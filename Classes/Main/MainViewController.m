@@ -115,7 +115,7 @@
              name:MKFoundDeviceNotification
            object:nil];
 
-  [self.navigationController setToolbarHidden:NO animated:NO];
+  [self.navigationController setToolbarHidden:YES animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -160,78 +160,6 @@
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)showInfoForDevice:(id)sender {
-  GradientButton* btn=(GradientButton*)sender;
-  IKMkAddress address=(IKMkAddress)btn.tag;
-  IKDeviceVersion* v=[[MKConnectionController sharedMKConnectionController] versionForAddress:address];
-  
-  if(v){
-    NSString *msg;
-    
-    if([v hasError])
-      msg = [[v errorDescriptions] componentsJoinedByString:@"\n"];
-    else 
-      msg = NSLocalizedString(@"No Errors",@"");
-    
-    UIAlertView *alert = [[UIAlertView alloc] 
-                          initWithTitle:v.versionString 
-                          message:msg 
-                          delegate:self 
-                          cancelButtonTitle:NSLocalizedString(@"OK",@"") 
-                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-    //    [msg release];
-  }
-  
-//  DeviceInfoController* devInfoController = [[DeviceInfoController alloc] initWithNibName:@"DeviceInfoController" bundle:nil];
-//  devInfoController.delegate=self;
-//  [self presentModalViewController:devInfoController animated:YES];
-//  [devInfoController release];
-  
-  
-}
-
--(IBAction)dismissDeviceView:(id)sender {
-  [self dismissModalViewControllerAnimated:YES];
-}
-
-- (UIBarButtonItem*) toolbarItemForDevice:(IKMkAddress)address{
-  
-  IKDeviceVersion* v = [[MKConnectionController sharedMKConnectionController] versionForAddress:address];
-  if(!v)
-    return [[[UIBarButtonItem alloc]
-             initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-             target:nil
-             action:nil] autorelease];
-  
-  GradientButton* btn=[[[GradientButton  alloc] initWithFrame:CGRectMake(0.0, 0.0, 63.0, 33.0)]autorelease];
-  if ([v hasError])
-    [btn useRedDeleteStyle];
-  else
-    [btn useGreenConfirmStyle];
-  
-  [btn setTitle:v.deviceName forState:UIControlStateNormal];
-  btn.titleLabel.font = [UIFont  boldSystemFontOfSize:12];
-  btn.tag=address;
-  [btn addTarget:self action:@selector(showInfoForDevice:) forControlEvents:UIControlEventTouchUpInside];
-  
-  return [[[UIBarButtonItem alloc] initWithCustomView:btn] autorelease];
-}
-
-- (void) initToolbar {
-
-  NSMutableArray* items=[NSMutableArray array];
-  
-  [items addObject:[self toolbarItemForDevice:kIKMkAddressNC]];
-  [items addObject:[self toolbarItemForDevice:kIKMkAddressFC]];
-  [items addObject:[self toolbarItemForDevice:kIKMkAddressMK3MAg]];
- 
-  
-  [self setToolbarItems:items];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Table view data source
 
@@ -286,12 +214,7 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
   
   static NSString *CellIdentifier = @"DeviceInfoCell";
-  
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-  }
-  
+  static NSString *CellIdentifierNA = @"DeviceInfoCellNA";
   
   IKMkAddress address=kIKMkAddressMK3MAg;
   
@@ -299,39 +222,76 @@
     address=kIKMkAddressNC;
   else if( [specifier.key isEqualToString:@"FC"] ) 
     address=kIKMkAddressFC;
-  
-  cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  cell.accessoryType = UITableViewCellAccessoryNone;
-  
   IKDeviceVersion* v = [[MKConnectionController sharedMKConnectionController] versionForAddress:address];
-  if(v){
+
+  UITableViewCell *cell;
+  if(v){  
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
     cell.textLabel.text = v.versionString;
     
-    UIImage *accessoryImage = v.hasError?[UIImage imageNamed:@"blank_badge_red.png"]:[UIImage imageNamed:@"blank_badge_red.png"];
+    UIImage *accessoryImage = v.hasError?[UIImage imageNamed:@"blank_badge_red.png"]:[UIImage imageNamed:@"blank_badge_green.png"];
     UIImageView *accImageView = [[UIImageView alloc] initWithImage:accessoryImage];
     [accImageView setFrame:CGRectMake(0, 0, 32.0, 32.0)];
     cell.accessoryView = accImageView;
     [accImageView release];
   }
   else{
-    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ not available",nil),[specifier title]];
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierNA];
+    if (cell == nil) {
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierNA] autorelease];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    cell.textLabel.text = [specifier title];
+    cell.detailTextLabel.text=NSLocalizedString(@"not available", @"Device not available");
   }
-
-  
-//	DeviceInfoCell *cell = (DeviceInfoCell*)[tableView dequeueReusableCellWithIdentifier:@"DeviceInfoCell"];
-//	
-//	if (!cell) {
-//    NSArray *nib=[[NSBundle mainBundle] loadNibNamed:@"DeviceInfoCell" 
-//                                               owner:self 
-//                                             options:nil];
-//    
-//		cell = (DeviceInfoCell*)[nib objectAtIndex:0];
-//	}
-//  
-//	cell.textView.text= @"Testext";
   
 	return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+  static IKMkAddress addressMapping[3]={kIKMkAddressNC, kIKMkAddressFC, kIKMkAddressMK3MAg};
+  
+  NSLog(@"didSelectRowAtIndexPath %d %d",[indexPath section],[indexPath row]);
+  if([indexPath section]==0)
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+  else{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    IKMkAddress address=addressMapping[[indexPath row]];
+    IKDeviceVersion* v=[[MKConnectionController sharedMKConnectionController] versionForAddress:address];
+    
+    if(v){
+      NSString *msg;
+      
+      if([v hasError])
+        msg = [[v errorDescriptions] componentsJoinedByString:@"\n"];
+      else 
+        msg = NSLocalizedString(@"No Errors",@"");
+      
+      UIAlertView *alert = [[UIAlertView alloc] 
+                            initWithTitle:v.versionString 
+                            message:msg 
+                            delegate:self 
+                            cancelButtonTitle:NSLocalizedString(@"OK",@"") 
+                            otherButtonTitles:nil];
+      [alert show];
+      [alert release];
+    }
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Connection status actions (Statemachine)
@@ -388,7 +348,6 @@
   [_hud hide:YES];
   
   [UIApplication sharedApplication].idleTimerDisabled=YES;
-  [self initToolbar];
 }
 
 - (void)disconnected:(NSNotification *)aNotification;
