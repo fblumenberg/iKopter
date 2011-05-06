@@ -25,7 +25,6 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStore.h"
-#import "DeviceInfoCell.h"
 #import "MBProgressHUD.h"
 
 typedef enum{

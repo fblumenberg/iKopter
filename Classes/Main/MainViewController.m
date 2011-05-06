@@ -267,7 +267,7 @@
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
   else{
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES]; 
     
     IKMkAddress address=addressMapping[[indexPath row]];
     IKDeviceVersion* v=[[MKConnectionController sharedMKConnectionController] versionForAddress:address];

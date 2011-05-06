@@ -18,6 +18,8 @@
 		BA0D1C0412F7224900555855 /* tabHorizon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1C0312F7224900555855 /* tabHorizon.png */; };
 		BA0D1C2912F7250900555855 /* ValueOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D1C2712F7250900555855 /* ValueOsdViewController.m */; };
 		BA0D1C2A12F7250900555855 /* ValueOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0D1C2812F7250900555855 /* ValueOsdViewController.xib */; };
+		BA661C231372FF6F00A79E8E /* MKBluetoothConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA661C211372FF6E00A79E8E /* MKBluetoothConnection.m */; };
+		BA661C241372FF6F00A79E8E /* MKBluetoothConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA661C211372FF6E00A79E8E /* MKBluetoothConnection.m */; };
 		BA6649541368DD2800716D89 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6649521368DD2800716D89 /* Default.png */; };
 		BA6649551368DD2800716D89 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6649531368DD2800716D89 /* Default@2x.png */; };
 		BA6649581369CC9D00716D89 /* icon-wifi.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6649561369CC9D00716D89 /* icon-wifi.png */; };
@@ -296,6 +298,8 @@
 		BA0D1C2612F7250900555855 /* ValueOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueOsdViewController.h; sourceTree = "<group>"; };
 		BA0D1C2712F7250900555855 /* ValueOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueOsdViewController.m; sourceTree = "<group>"; };
 		BA0D1C2812F7250900555855 /* ValueOsdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ValueOsdViewController.xib; sourceTree = "<group>"; };
+		BA661C211372FF6E00A79E8E /* MKBluetoothConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBluetoothConnection.m; sourceTree = "<group>"; };
+		BA661C221372FF6F00A79E8E /* MKBluetoothConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBluetoothConnection.h; sourceTree = "<group>"; };
 		BA6649521368DD2800716D89 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA6649531368DD2800716D89 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BA6649561369CC9D00716D89 /* icon-wifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-wifi.png"; sourceTree = "<group>"; };
@@ -826,6 +830,8 @@
 		BA71CDA812D0C2660029C5F7 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
+				BA661C211372FF6E00A79E8E /* MKBluetoothConnection.m */,
+				BA661C221372FF6F00A79E8E /* MKBluetoothConnection.h */,
 				BAE653A9135B208D0036CB96 /* Serial */,
 				BA701A9812D8C24D0048790A /* Connections */,
 				BA71CDA912D0C2660029C5F7 /* Lowlevel */,
@@ -1298,6 +1304,7 @@
 				BAE653A8135B1EDB0036CB96 /* MKSerialConnection.m in Sources */,
 				BAE653B0135B208D0036CB96 /* AMSerialPort.m in Sources */,
 				BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */,
+				BA661C231372FF6F00A79E8E /* MKBluetoothConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1379,6 +1386,7 @@
 				BAE6542A135C9D270036CB96 /* MKSerialConnection.m in Sources */,
 				BAE6542B135C9D270036CB96 /* AMSerialPort.m in Sources */,
 				BAE6542C135C9D270036CB96 /* AMSerialPortAdditions.m in Sources */,
+				BA661C241372FF6F00A79E8E /* MKBluetoothConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
