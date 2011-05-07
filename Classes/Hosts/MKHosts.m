@@ -75,6 +75,13 @@
       [h release];
       
       h = [[MKHost alloc]init];
+      h.name = @"Quadkopter MK-BT";
+      h.address = @"00:0b:ce:04:ce:e3";
+      h.connectionClass = @"MKBluetoothConnection";
+      [hosts addObject:h];
+      [h release];
+
+      h = [[MKHost alloc]init];
       h.name = @"Quadkopter Serial MKUSB";
       h.address = @"/dev/cu.usbserial-A2002Qzh";
       h.connectionClass = @"MKSerialConnection";

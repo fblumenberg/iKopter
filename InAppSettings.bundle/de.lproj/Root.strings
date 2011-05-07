@@ -7,6 +7,7 @@
 "HOST_CONNECTION_TCP"="TCP/IP Verbindung";
 "HOST_CONNECTION_FAKE"="Fake Verbindung";
 "HOST_CONNECTION_SERIAL"="Serielle Verbindung";
+"HOST_CONNECTION_BLUETOOTH"="Bluetooth Verbindung";
 
 
 /* Main */

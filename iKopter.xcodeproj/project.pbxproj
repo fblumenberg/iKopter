@@ -626,6 +626,8 @@
 		BA701A9812D8C24D0048790A /* Connections */ = {
 			isa = PBXGroup;
 			children = (
+				BA661C211372FF6E00A79E8E /* MKBluetoothConnection.m */,
+				BA661C221372FF6F00A79E8E /* MKBluetoothConnection.h */,
 				BAE653A6135B1EDB0036CB96 /* MKSerialConnection.m */,
 				BAE653A7135B1EDB0036CB96 /* MKSerialConnection.h */,
 				BA71CDAC12D0C2660029C5F7 /* MKConnection.h */,
@@ -830,8 +832,6 @@
 		BA71CDA812D0C2660029C5F7 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
-				BA661C211372FF6E00A79E8E /* MKBluetoothConnection.m */,
-				BA661C221372FF6F00A79E8E /* MKBluetoothConnection.h */,
 				BAE653A9135B208D0036CB96 /* Serial */,
 				BA701A9812D8C24D0048790A /* Connections */,
 				BA71CDA912D0C2660029C5F7 /* Lowlevel */,
@@ -1428,6 +1428,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "${SOURCE_ROOT}/lib-simulator/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
@@ -1444,6 +1446,7 @@
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
@@ -1459,6 +1462,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3790BCAE-4764-4AED-B0D9-9F586B80BD1B";
@@ -1486,7 +1490,7 @@
 		BAE65436135C9D270036CB96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1495,8 +1499,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "${SOURCE_ROOT}/lib-simulator/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
@@ -1505,14 +1512,17 @@
 		BAE65437135C9D270036CB96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "${SOURCE_ROOT}/lib-simulator/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
@@ -1522,14 +1532,16 @@
 		BAE65438135C9D270036CB96 /* Release Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1544,6 +1556,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1559,6 +1572,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AAD66CCD-96AD-4592-B606-BA4E0022999A";

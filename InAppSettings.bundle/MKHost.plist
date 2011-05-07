@@ -5,10 +5,10 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>FooterText</key>
+			<string>HOST_CONNECTION_FOOTER</string>
 			<key>Title</key>
 			<string></string>
-                <key>FooterText</key>
-                <string>HOST_CONNECTION_FOOTER</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -50,6 +50,7 @@
 				<string>HOST_CONNECTION_TCP</string>
 				<string>HOST_CONNECTION_FAKE</string>
 				<string>HOST_CONNECTION_SERIAL</string>
+				<string>HOST_CONNECTION_BLUETOOTH</string>
 			</array>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
@@ -58,6 +59,7 @@
 				<string>MKIpConnection</string>
 				<string>MKFakeConnection</string>
 				<string>MKSerialConnection</string>
+				<string>MKBluetoothConnection</string>
 			</array>
 		</dict>
 	</array>
