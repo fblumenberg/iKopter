@@ -22,26 +22,48 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import "MKConnection.h"
+
 #import "MKBTStackManager.h"
 
-#include <btstack/btstack.h>
+static MKBTStackManager * btstackManager = nil;
 
-@interface MKBluetoothConnection : NSObject<MKConnection,MKBTStackManagerDelegate> {
+@interface MKBTStackManager (privat)
+- (void)handlePacketWithType:(uint8_t) packet_type forChannel:(uint16_t) channel andData:(uint8_t *)packet withLen:(uint16_t) size;
+@end
 
-  BOOL opened;
-  
-  MKBTStackManager* btManager;
-  
-  bd_addr_t address;
-  uint16_t rfcomm_channel_id;
-
-  NSMutableData* mkData;
-
-  id<MKConnectionDelegate> delegate;
+// needed for libBTstack
+static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packet, uint16_t size){
+	[btstackManager handlePacketWithType:packet_type forChannel:channel andData:packet withLen:size];
 }
 
-@property(nonatomic,retain) NSMutableData* mkData;
+@implementation MKBTStackManager
+
+@synthesize delegate = _delegate;
+
+-(MKBTStackManager *) init {
+	self = [super init];
+	if (!self) return self;
+	
+	connectedToDaemon = NO;
+
+	// Use Cocoa run loop
+	run_loop_init(RUN_LOOP_COCOA);
+	
+	// our packet handler
+	bt_register_packet_handler(packet_handler);
+	
+	return self;
+}
+
++(MKBTStackManager *) sharedInstance {
+	if (!btstackManager) {
+		btstackManager = [[MKBTStackManager alloc] init];
+	}
+	return btstackManager;
+}
+
+-(void) handlePacketWithType:(uint8_t)packet_type forChannel:(uint16_t)channel andData:(uint8_t *)packet withLen:(uint16_t) size {
+  [_delegate btstackManager:self handlePacketWithType:packet_type forChannel:channel andData:packet withLen:size];
+}
 
 @end

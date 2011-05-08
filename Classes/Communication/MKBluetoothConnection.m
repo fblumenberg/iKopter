@@ -24,16 +24,12 @@
 
 
 #import "MKBluetoothConnection.h"
+#import "MKBTStackManager.h"
 
 static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnectionException";
 
-static MKBluetoothConnection * btConnection= nil;
-
-static BOOL runLoopInit=NO;
-
 @interface MKBluetoothConnection()
 
--(void)handlePacketWithType:(uint8_t) packet_type forChannel:(uint16_t) channel andData:(uint8_t *)packet withLen:(uint16_t) size;
 -(void)didDisconnect;
 -(void)didConnect;
 -(void)didDisconnectWithError:(int) err;
@@ -43,11 +39,6 @@ static BOOL runLoopInit=NO;
 
 @end
 
-// needed for libBTstack
-static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packet, uint16_t size){
-	[btConnection handlePacketWithType:packet_type forChannel:channel andData:packet withLen:size];
-}
-
 @implementation MKBluetoothConnection
 
 #pragma mark Properties
@@ -56,6 +47,7 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
 @synthesize mkData;
 
 
+//////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Initialization
 
 - (id) init {
@@ -66,21 +58,13 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
 {
   if (self == [super init]) {
     
-    if (!runLoopInit) {
-      // Use Cocoa run loop
-      run_loop_init(RUN_LOOP_COCOA);
-      
-      // our packet handler
-      bt_register_packet_handler(packet_handler);
-
-      runLoopInit=YES;
-    }
+    btManager = [MKBTStackManager sharedInstance];
+    btManager.delegate=self;
     
     self.delegate = theDelegate;
     
     memset(address, 0, sizeof(bd_addr_t));
     
-    btConnection=self;
   }
   return self;
 }
@@ -91,11 +75,15 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
   [super dealloc];
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark MKInput
 
 
 -(void)didDisconnect {
+  
+  int err=bt_close();
+  DLog(@"bt_close called with retval %d", err);
   
   opened=NO;
   
@@ -109,11 +97,14 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
   opened=YES;
   
   if ( [delegate respondsToSelector:@selector(didConnectTo:)] ) {
-    [delegate didConnectTo:@""];
+    [delegate didConnectTo:[self stringForAddress]];
   }
 }
 
 -(void)didDisconnectWithError:(int) err {
+  
+  int retval=bt_close();
+  DLog(@"bt_close called with retval %d", retval);
   
   opened=NO;
   
@@ -121,6 +112,9 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
     [delegate willDisconnectWithError:[NSError errorWithDomain:@"de.frankblumenberg.ikopter" code:err userInfo:nil]];
   }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 
 - (BOOL) connectTo:(NSString *)hostOrDevice error:(NSError **)err;
 {
@@ -135,9 +129,12 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
   
   self.mkData=[NSMutableData dataWithCapacity:30];
   
-  bt_open();
+  if( bt_open()!=0 ){
+    DLog(@"bt_open failed. Maybe no BTStack installed");
+    [self didDisconnectWithError:-1];
+  }
+                                    
   bt_send_cmd(&btstack_set_power_mode, HCI_POWER_ON );
-  
   DLog(@"Did connect to %@", hostOrDevice);
   
   return YES;
@@ -152,11 +149,10 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
 {
   DLog(@"Try to disconnect from %@", [self stringForAddress]);
   
+  DLog(@"Send RFCOMM disconnect");
   bt_send_cmd(&rfcomm_disconnect, rfcomm_channel_id,0);
+  DLog(@"Send deactivate");
 	bt_send_cmd(&btstack_set_power_mode, HCI_POWER_OFF);
-  
-  bt_close();
-  opened=NO;
   
   [self didDisconnect];
 }
@@ -166,6 +162,7 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
   bt_send_rfcomm(rfcomm_channel_id, (uint8_t*)[data bytes], [data length]);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
 - (void)btReadData:(uint8_t *)packet withLen:(uint16_t) size
@@ -232,14 +229,20 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
   }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
--(void) handlePacketWithType:(uint8_t)packet_type forChannel:(uint16_t)channel andData:(uint8_t *)packet withLen:(uint16_t) size {
+
+-(void) btstackManager:(MKBTStackManager*) manager
+  handlePacketWithType:(uint8_t) packet_type
+            forChannel:(uint16_t) channel
+               andData:(uint8_t *)packet
+               withLen:(uint16_t) size {
   bd_addr_t event_addr;
   
 	switch (packet_type) {
 			
 		case RFCOMM_DATA_PACKET:
-			NSLog(@"Received RFCOMM data on channel id %u, size %u\n", channel, size);
+			DLog(@"Received RFCOMM data on channel id %u, size %u", channel, size);
 			hexdump(packet, size);
       [self btReadData:packet withLen:size];
 			break;
@@ -249,20 +252,21 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
 					
 				case BTSTACK_EVENT_POWERON_FAILED:
 					// handle HCI init failure
-					NSLog(@"HCI Init failed - make sure you have turned off Bluetooth in the System Settings\n");
+					DLog(@"HCI Init failed - make sure you have turned off Bluetooth in the System Settings");
           [self didDisconnectWithError:-1];
 					break;		
 					
 				case BTSTACK_EVENT_STATE:
 					// bt stack activated, get started
           if (packet[2] == HCI_STATE_WORKING) {
+            DLog(@"BTStack is activated, start RFCOMM connection");
 						bt_send_cmd(&rfcomm_create_channel, address, 1);
 					}
 					break;
 					
 				case HCI_EVENT_PIN_CODE_REQUEST:
 					// inform about pin code request
-					NSLog(@"Using PIN 0000\n");
+					DLog(@"Using PIN 0000");
 					bt_flip_addr(event_addr, &packet[2]); 
 					bt_send_cmd(&hci_pin_code_request_reply, &event_addr, 4, "0000");
 					break;
@@ -270,23 +274,19 @@ static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packe
 				case RFCOMM_EVENT_OPEN_CHANNEL_COMPLETE:
 					// data: event(8), len(8), status (8), address (48), server channel(8), rfcomm_cid(16), max frame size(16)
 					if (packet[2]) {
-						NSLog(@"RFCOMM channel open failed, status %u\n", packet[2]);
+						DLog(@"RFCOMM channel open failed, status %u", packet[2]);
             [self didDisconnectWithError:packet[2]];
 					} else {
 						rfcomm_channel_id = READ_BT_16(packet, 10);
 						int16_t mtu = READ_BT_16(packet, 12);
-						NSLog(@"RFCOMM channel open succeeded. New RFCOMM Channel ID %u, max frame size %u\n", rfcomm_channel_id, mtu);
-            
-            if ( [delegate respondsToSelector:@selector(didConnectTo:)] ) {
-              [delegate didConnectTo:[self stringForAddress]];
-            }
-            
+						DLog(@"RFCOMM channel open succeeded. New RFCOMM Channel ID %u, max frame size %u", rfcomm_channel_id, mtu);
+            [self didConnect];
 					}
 					break;
 					
 				case HCI_EVENT_DISCONNECTION_COMPLETE:
 					// connection closed -> quit test app
-					NSLog(@"Basebank connection closed\n");
+					DLog(@"Basebank connection closed");
           [self didDisconnect];
 					break;
 					

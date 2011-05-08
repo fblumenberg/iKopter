@@ -22,26 +22,33 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
+
 #import <Foundation/Foundation.h>
-#import "MKConnection.h"
-#import "MKBTStackManager.h"
+#import <btstack/btstack.h>
 
-#include <btstack/btstack.h>
+@protocol MKBTStackManagerDelegate;
 
-@interface MKBluetoothConnection : NSObject<MKConnection,MKBTStackManagerDelegate> {
-
-  BOOL opened;
-  
-  MKBTStackManager* btManager;
-  
-  bd_addr_t address;
-  uint16_t rfcomm_channel_id;
-
-  NSMutableData* mkData;
-
-  id<MKConnectionDelegate> delegate;
+@interface MKBTStackManager : NSObject {
+      
+	id<MKBTStackManagerDelegate> _delegate;
+	BOOL connectedToDaemon;
 }
 
-@property(nonatomic,retain) NSMutableData* mkData;
+@property (nonatomic, assign) id<MKBTStackManagerDelegate> delegate;
+
+// shared instance
++(MKBTStackManager *) sharedInstance;
 
 @end
+
+@protocol MKBTStackManagerDelegate
+
+// direct access
+-(void) btstackManager:(MKBTStackManager*) manager
+  handlePacketWithType:(uint8_t) packet_type
+            forChannel:(uint16_t) channel
+               andData:(uint8_t *)packet
+               withLen:(uint16_t) size;
+
+@end
+
