@@ -137,6 +137,13 @@
 		BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C081712E7796600A3A706 /* IKNaviData.m */; };
 		BAAA7B1A1356E5A500365FCB /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAA7B171356E5A500365FCB /* AboutViewController.m */; };
 		BAB27AEE137690FD0027A990 /* MKBTStackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27AED137690FD0027A990 /* MKBTStackManager.m */; };
+		BAB27B1313773A9C0027A990 /* MKBTStackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27AED137690FD0027A990 /* MKBTStackManager.m */; };
+		BAB27B18137744250027A990 /* BTStackManagerDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B14137744250027A990 /* BTStackManagerDiscovery.m */; };
+		BAB27B19137744250027A990 /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B16137744250027A990 /* BTDevice.m */; };
+		BAB27B1C137747270027A990 /* BTDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B1A137747270027A990 /* BTDiscoveryViewController.m */; };
+		BAB27B1D137748B10027A990 /* BTDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B1A137747270027A990 /* BTDiscoveryViewController.m */; };
+		BAB27B1E137748B10027A990 /* BTStackManagerDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B14137744250027A990 /* BTStackManagerDiscovery.m */; };
+		BAB27B1F137748B10027A990 /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B16137744250027A990 /* BTDevice.m */; };
 		BAB8A98113007667002CBB97 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97713007667002CBB97 /* altitude.png */; };
 		BAB8A98213007667002CBB97 /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97813007667002CBB97 /* altitudeMax.png */; };
 		BAB8A98313007667002CBB97 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97913007667002CBB97 /* battery.png */; };
@@ -478,6 +485,12 @@
 		BAAA7B171356E5A500365FCB /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Classes/AboutViewController.m"; sourceTree = "<group>"; };
 		BAB27AEC137690FD0027A990 /* MKBTStackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBTStackManager.h; sourceTree = "<group>"; };
 		BAB27AED137690FD0027A990 /* MKBTStackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBTStackManager.m; sourceTree = "<group>"; };
+		BAB27B14137744250027A990 /* BTStackManagerDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStackManagerDiscovery.m; sourceTree = "<group>"; };
+		BAB27B15137744250027A990 /* BTStackManagerDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStackManagerDiscovery.h; sourceTree = "<group>"; };
+		BAB27B16137744250027A990 /* BTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDevice.m; sourceTree = "<group>"; };
+		BAB27B17137744250027A990 /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
+		BAB27B1A137747270027A990 /* BTDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoveryViewController.m; sourceTree = "<group>"; };
+		BAB27B1B137747270027A990 /* BTDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoveryViewController.h; sourceTree = "<group>"; };
 		BAB8A97713007667002CBB97 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAB8A97813007667002CBB97 /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
 		BAB8A97913007667002CBB97 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
@@ -858,10 +871,16 @@
 		BA71CDA912D0C2660029C5F7 /* Lowlevel */ = {
 			isa = PBXGroup;
 			children = (
+				BAB27B1A137747270027A990 /* BTDiscoveryViewController.m */,
+				BAB27B1B137747270027A990 /* BTDiscoveryViewController.h */,
+				BAB27B14137744250027A990 /* BTStackManagerDiscovery.m */,
+				BAB27B15137744250027A990 /* BTStackManagerDiscovery.h */,
+				BAB27B16137744250027A990 /* BTDevice.m */,
+				BAB27B17137744250027A990 /* BTDevice.h */,
 				BA71CDAA12D0C2660029C5F7 /* AsyncSocket.h */,
 				BA71CDAB12D0C2660029C5F7 /* AsyncSocket.m */,
-				BAB27AEC137690FD0027A990 /* MKBTStackManager.h */,
 				BAB27AED137690FD0027A990 /* MKBTStackManager.m */,
+				BAB27AEC137690FD0027A990 /* MKBTStackManager.h */,
 			);
 			path = Lowlevel;
 			sourceTree = "<group>";
@@ -1311,6 +1330,9 @@
 				BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */,
 				BA661C231372FF6F00A79E8E /* MKBluetoothConnection.m in Sources */,
 				BAB27AEE137690FD0027A990 /* MKBTStackManager.m in Sources */,
+				BAB27B18137744250027A990 /* BTStackManagerDiscovery.m in Sources */,
+				BAB27B19137744250027A990 /* BTDevice.m in Sources */,
+				BAB27B1C137747270027A990 /* BTDiscoveryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,6 +1415,10 @@
 				BAE6542B135C9D270036CB96 /* AMSerialPort.m in Sources */,
 				BAE6542C135C9D270036CB96 /* AMSerialPortAdditions.m in Sources */,
 				BA661C241372FF6F00A79E8E /* MKBluetoothConnection.m in Sources */,
+				BAB27B1313773A9C0027A990 /* MKBTStackManager.m in Sources */,
+				BAB27B1D137748B10027A990 /* BTDiscoveryViewController.m in Sources */,
+				BAB27B1E137748B10027A990 /* BTStackManagerDiscovery.m in Sources */,
+				BAB27B1F137748B10027A990 /* BTDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

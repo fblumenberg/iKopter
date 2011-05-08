@@ -4,10 +4,12 @@
 "HOST_ADDRESS"="Adresse";
 "HOST_PORT"="Port";
 "HOST_CONNECTION"="Verbindungstyp";
-"HOST_CONNECTION_TCP"="TCP/IP Verbindung";
+"HOST_CONNECTION_TCP"="WLAN Verbindung";
 "HOST_CONNECTION_FAKE"="Fake Verbindung";
 "HOST_CONNECTION_SERIAL"="Serielle Verbindung";
 "HOST_CONNECTION_BLUETOOTH"="Bluetooth Verbindung";
+"HOST_CONNECTION_FOOTER"="WLAN - Hostname:Port\nBluetooth - aa:bb:cc:dd:ee:ff";
+"HOST_CONNECTION_BTSEARCH"="Bluetooth suchen";
 
 
 /* Main */

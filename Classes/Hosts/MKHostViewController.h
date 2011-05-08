@@ -25,10 +25,11 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStore.h"
+#import "BTDiscoveryViewController.h"
 
 @class MKHost;
 
-@interface MKHostViewController : IASKAppSettingsViewController {
+@interface MKHostViewController : IASKAppSettingsViewController<BTDiscoveryDelegate> {
   
 }
 

@@ -62,6 +62,20 @@
 				<string>MKBluetoothConnection</string>
 			</array>
 		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+    <dict>
+			<key>Key</key>
+			<string>BTInquiryAction</string>
+			<key>Title</key>
+			<string>HOST_CONNECTION_BTSEARCH</string>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>
