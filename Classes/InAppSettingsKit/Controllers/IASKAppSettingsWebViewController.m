@@ -51,7 +51,7 @@
 
 - (void)viewDidUnload {
 	[super viewDidUnload];
-	self.url = nil;
+	self.webView = nil;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -63,7 +63,7 @@
 	
 	// intercept mailto URL and send it to an in-app Mail compose view instead
 	if ([[newURL scheme] isEqualToString:@"mailto"]) {
-    
+
 		NSArray *rawURLparts = [[newURL resourceSpecifier] componentsSeparatedByString:@"?"];
 		if (rawURLparts.count > 2) {
 			return NO; // invalid URL
@@ -71,7 +71,7 @@
 		
 		MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
 		mailViewController.mailComposeDelegate = self;
-    
+
 		NSMutableArray *toRecipients = [NSMutableArray array];
 		NSString *defaultRecipient = [rawURLparts objectAtIndex:0];
 		if (defaultRecipient.length) {
@@ -91,9 +91,9 @@
 				NSString *value = [keyValue objectAtIndex:1];
 				
 				value =  (NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
-                                                                                     (CFStringRef)value,
-                                                                                     CFSTR(""),
-                                                                                     kCFStringEncodingUTF8);
+																							 (CFStringRef)value,
+																							 CFSTR(""),
+																							 kCFStringEncodingUTF8);
 				[value autorelease];
 				
 				if ([key isEqualToString:@"subject"]) {
@@ -121,7 +121,7 @@
 		}
 		
 		[mailViewController setToRecipients:toRecipients];
-    
+
 		[self presentModalViewController:mailViewController animated:YES];
 		[mailViewController release];
 		return NO;

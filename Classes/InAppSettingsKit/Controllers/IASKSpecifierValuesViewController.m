@@ -27,42 +27,43 @@
 
 @implementation IASKSpecifierValuesViewController
 
+@synthesize tableView=_tableView;
 @synthesize currentSpecifier=_currentSpecifier;
 @synthesize checkedItem=_checkedItem;
 @synthesize settingsReader = _settingsReader;
 @synthesize settingsStore = _settingsStore;
 
 - (void) updateCheckedItem {
-  NSInteger index;
+    NSInteger index;
 	
 	// Find the currently checked item
-  if([self.settingsStore objectForKey:[_currentSpecifier key]]) {
-    index = [[_currentSpecifier multipleValues] indexOfObject:[self.settingsStore objectForKey:[_currentSpecifier key]]];
-  } else {
-    index = [[_currentSpecifier multipleValues] indexOfObject:[_currentSpecifier defaultValue]];
-  }
+    if([self.settingsStore objectForKey:[_currentSpecifier key]]) {
+      index = [[_currentSpecifier multipleValues] indexOfObject:[self.settingsStore objectForKey:[_currentSpecifier key]]];
+    } else {
+      index = [[_currentSpecifier multipleValues] indexOfObject:[_currentSpecifier defaultValue]];
+    }
 	[self setCheckedItem:[NSIndexPath indexPathForRow:index inSection:0]];
 }
 
 - (id<IASKSettingsStore>)settingsStore {
-  if(_settingsStore == nil) {
-    _settingsStore = [[IASKSettingsStoreUserDefaults alloc] init];
-  }
-  return _settingsStore;
+    if(_settingsStore == nil) {
+        _settingsStore = [[IASKSettingsStoreUserDefaults alloc] init];
+    }
+    return _settingsStore;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  if (_currentSpecifier) {
-    [self setTitle:[_currentSpecifier title]];
-    [self updateCheckedItem];
-  }
-  
-  if (_tableView) {
-    [_tableView reloadData];
+    if (_currentSpecifier) {
+        [self setTitle:[_currentSpecifier title]];
+        [self updateCheckedItem];
+    }
     
+    if (_tableView) {
+        [_tableView reloadData];
+
 		// Make sure the currently checked item is visible
-    [_tableView scrollToRowAtIndexPath:[self checkedItem] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
-  }
+        [_tableView scrollToRowAtIndexPath:[self checkedItem] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    }
 	[super viewWillAppear:animated];
 }
 
@@ -70,9 +71,9 @@
 	[_tableView flashScrollIndicators];
 	[super viewDidAppear:animated];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(userDefaultsDidChange)
-                                               name:NSUserDefaultsDidChangeNotification
-                                             object:[NSUserDefaults standardUserDefaults]];
+											 selector:@selector(userDefaultsDidChange)
+												 name:NSUserDefaultsDidChangeNotification
+											   object:[NSUserDefaults standardUserDefaults]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -82,12 +83,12 @@
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return (interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
 }
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
-  [super didReceiveMemoryWarning];
+    [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
 }
@@ -95,16 +96,17 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+	self.tableView = nil;
 }
 
 
 - (void)dealloc {
-  [_currentSpecifier release];
-  [_checkedItem release];
-	[_settingsReader release];
-  [_settingsStore release];
-	
-  [super dealloc];
+    [_currentSpecifier release], _currentSpecifier = nil;
+	[_checkedItem release], _checkedItem = nil;
+	[_settingsReader release], _settingsReader = nil;
+    [_settingsStore release], _settingsStore = nil;
+	[_tableView release], _tableView = nil;
+    [super dealloc];
 }
 
 
@@ -116,7 +118,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [_currentSpecifier multipleValuesCount];
+    return [_currentSpecifier multipleValuesCount];
 }
 
 - (void)selectCell:(UITableViewCell *)cell {
@@ -130,50 +132,50 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-  return [_currentSpecifier footerText];
+    return [_currentSpecifier footerText];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:kCellValue];
-  NSArray *titles         = [_currentSpecifier multipleTitles];
+    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:kCellValue];
+    NSArray *titles         = [_currentSpecifier multipleTitles];
 	
-  if (!cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellValue] autorelease];
-  }
+    if (!cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellValue] autorelease];
+    }
 	
 	if ([indexPath isEqual:[self checkedItem]]) {
 		[self selectCell:cell];
-  } else {
-    [self deselectCell:cell];
-  }
+    } else {
+        [self deselectCell:cell];
+    }
 	
 	@try {
 		[[cell textLabel] setText:[self.settingsReader titleForStringId:[titles objectAtIndex:indexPath.row]]];
 	}
 	@catch (NSException * e) {}
-  return cell;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-  if (indexPath == [self checkedItem]) {
+    if (indexPath == [self checkedItem]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
+    
+    NSArray *values         = [_currentSpecifier multipleValues];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    return;
-  }
-  
-  NSArray *values         = [_currentSpecifier multipleValues];
-  
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  [self deselectCell:[tableView cellForRowAtIndexPath:[self checkedItem]]];
-  [self selectCell:[tableView cellForRowAtIndexPath:indexPath]];
-  [self setCheckedItem:indexPath];
+    [self deselectCell:[tableView cellForRowAtIndexPath:[self checkedItem]]];
+    [self selectCell:[tableView cellForRowAtIndexPath:indexPath]];
+    [self setCheckedItem:indexPath];
 	
-  [self.settingsStore setObject:[values objectAtIndex:indexPath.row] forKey:[_currentSpecifier key]];
+    [self.settingsStore setObject:[values objectAtIndex:indexPath.row] forKey:[_currentSpecifier key]];
 	[self.settingsStore synchronize];
-  [[NSNotificationCenter defaultCenter] postNotificationName:kIASKAppSettingChanged
-                                                      object:[_currentSpecifier key]
-                                                    userInfo:[NSDictionary dictionaryWithObject:[values objectAtIndex:indexPath.row]
-                                                                                         forKey:[_currentSpecifier key]]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kIASKAppSettingChanged
+                                                        object:[_currentSpecifier key]
+                                                      userInfo:[NSDictionary dictionaryWithObject:[values objectAtIndex:indexPath.row]
+                                                                                           forKey:[_currentSpecifier key]]];
 }
 
 #pragma mark Notifications

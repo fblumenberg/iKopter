@@ -34,28 +34,31 @@
 
 - (NSString*)mailComposeBody;
 - (UIViewController<MFMailComposeViewControllerDelegate>*)viewControllerForMailComposeView;
+
+- (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key;
 @end
 
 
 @interface IASKAppSettingsViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate> {
 	id<IASKSettingsDelegate>  _delegate;
-  IBOutlet UITableView    *_tableView;
-  
-  NSMutableArray          *_viewList;
-  NSIndexPath             *_currentIndexPath;
+    UITableView    			*_tableView;
+    
+    NSMutableArray          *_viewList;
+    NSIndexPath             *_currentIndexPath;
 	NSIndexPath				*_topmostRowBeforeKeyboardWasShown;
 	
 	IASKSettingsReader		*_settingsReader;
-  id<IASKSettingsStore>  _settingsStore;
+    id<IASKSettingsStore>  _settingsStore;
 	NSString				*_file;
 	
 	id                      _currentFirstResponder;
-  
-  BOOL                    _showCreditsFooter;
-  BOOL                    _showDoneButton;
+    
+    BOOL                    _showCreditsFooter;
+    BOOL                    _showDoneButton;
 }
 
 @property (nonatomic, assign) IBOutlet id delegate;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) NSIndexPath   *currentIndexPath;
 @property (nonatomic, retain) IASKSettingsReader *settingsReader;
 @property (nonatomic, retain) id<IASKSettingsStore> settingsStore;
