@@ -90,6 +90,8 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
   if ( [delegate respondsToSelector:@selector(didDisconnect)] ) {
     [delegate didDisconnect];
   }
+  
+//  btManager.delegate=nil;
 }
 
 -(void)didConnect {
@@ -111,6 +113,8 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
   if ( [delegate respondsToSelector:@selector(willDisconnectWithError:)] ) {
     [delegate willDisconnectWithError:[NSError errorWithDomain:@"de.frankblumenberg.ikopter" code:err userInfo:nil]];
   }
+  
+//  btManager.delegate=nil;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -133,6 +137,8 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
     DLog(@"bt_open failed. Maybe no BTStack installed");
     [self didDisconnectWithError:-1];
   }
+  
+//  btManager.delegate=self;
                                     
   bt_send_cmd(&btstack_set_power_mode, HCI_POWER_ON );
   DLog(@"Did connect to %@", hostOrDevice);
@@ -261,6 +267,8 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
           if (packet[2] == HCI_STATE_WORKING) {
             DLog(@"BTStack is activated, start RFCOMM connection");
 						bt_send_cmd(&rfcomm_create_channel, address, 1);
+
+            [self performSelector:@selector(disconnect) withObject:self afterDelay:30.0];
 					}
 					break;
 					
@@ -272,6 +280,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 					break;
           
 				case RFCOMM_EVENT_OPEN_CHANNEL_COMPLETE:
+          [MKBluetoothConnection cancelPreviousPerformRequestsWithTarget:self];
 					// data: event(8), len(8), status (8), address (48), server channel(8), rfcomm_cid(16), max frame size(16)
 					if (packet[2]) {
 						DLog(@"RFCOMM channel open failed, status %u", packet[2]);
@@ -291,10 +300,12 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 					break;
 					
 				default:
+          DLog(@"Unhandled HCI_EVENT_PACKET packet with event %d for channel %d", packet[0],channel);
 					break;
 			}
 			break;
 		default:
+      DLog(@"Unhandled packet with type %d for channel %d", packet_type,channel);
 			break;
 	}
 }

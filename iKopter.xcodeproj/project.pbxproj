@@ -136,6 +136,7 @@
 		BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */; };
 		BA9C081812E7796600A3A706 /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9C081712E7796600A3A706 /* IKNaviData.m */; };
 		BAAA7B1A1356E5A500365FCB /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAA7B171356E5A500365FCB /* AboutViewController.m */; };
+		BAB27AEE137690FD0027A990 /* MKBTStackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27AED137690FD0027A990 /* MKBTStackManager.m */; };
 		BAB8A98113007667002CBB97 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97713007667002CBB97 /* altitude.png */; };
 		BAB8A98213007667002CBB97 /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97813007667002CBB97 /* altitudeMax.png */; };
 		BAB8A98313007667002CBB97 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97913007667002CBB97 /* battery.png */; };
@@ -475,6 +476,8 @@
 		BA9C081712E7796600A3A706 /* IKNaviData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKNaviData.m; sourceTree = "<group>"; };
 		BAAA7B161356E5A500365FCB /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Classes/AboutViewController.h"; sourceTree = "<group>"; };
 		BAAA7B171356E5A500365FCB /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = "../../../../Bücher/iPhone_App_Dev_MissingCD-ROM/Ch05_06_Flashlight_Pro/Classes/AboutViewController.m"; sourceTree = "<group>"; };
+		BAB27AEC137690FD0027A990 /* MKBTStackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBTStackManager.h; sourceTree = "<group>"; };
+		BAB27AED137690FD0027A990 /* MKBTStackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBTStackManager.m; sourceTree = "<group>"; };
 		BAB8A97713007667002CBB97 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAB8A97813007667002CBB97 /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
 		BAB8A97913007667002CBB97 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
@@ -857,6 +860,8 @@
 			children = (
 				BA71CDAA12D0C2660029C5F7 /* AsyncSocket.h */,
 				BA71CDAB12D0C2660029C5F7 /* AsyncSocket.m */,
+				BAB27AEC137690FD0027A990 /* MKBTStackManager.h */,
+				BAB27AED137690FD0027A990 /* MKBTStackManager.m */,
 			);
 			path = Lowlevel;
 			sourceTree = "<group>";
@@ -1305,6 +1310,7 @@
 				BAE653B0135B208D0036CB96 /* AMSerialPort.m in Sources */,
 				BAE653B1135B208D0036CB96 /* AMSerialPortAdditions.m in Sources */,
 				BA661C231372FF6F00A79E8E /* MKBluetoothConnection.m in Sources */,
+				BAB27AEE137690FD0027A990 /* MKBTStackManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
