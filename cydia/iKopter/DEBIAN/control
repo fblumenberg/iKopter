@@ -6,3 +6,4 @@ Description: A control App for the Mikrokopter.
 Homepage: http://www.mikrokopter.de/ucwiki/iKopter
 Maintainer: Frank <ikopter@frankblumenberg.de>
 Section: Utility
+Depends: ch.ringwald.btstack (>= 0.3-434)
