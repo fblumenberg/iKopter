@@ -46,6 +46,8 @@
     self.setting = aSetting;
     self.showCreditsFooter=NO;
     self.showDoneButton=NO;
+    
+    self.title = NSLocalizedString(@"Setting",nil);
   }
   
   return self;

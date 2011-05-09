@@ -26,6 +26,7 @@
 #import "IASKSettingsStoreObject.h"
 
 #import "BTDiscoveryViewController.h"
+#import "BTDevice.h"
 
 @implementation MKHostViewController
 
@@ -40,6 +41,8 @@
     self.showDoneButton=NO;
     
     self.delegate=self;
+    
+    self.title=NSLocalizedString(@"MK Connection", @"MKHost title");
   }
   return self;
 }
@@ -71,6 +74,12 @@
 }
 
 -(BOOL) discoveryView:(BTDiscoveryViewController*)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
+  
+  BTDevice* device=[discoveryView.bt deviceAtIndex:deviceIndex];
+  
+  [self.settingsStore setObject:[device nameOrAddress] forKey:@"name"];
+  [self.settingsStore setObject:[device addressString] forKey:@"address"];
+  [_tableView reloadData];
   
   [discoveryView.navigationController dismissModalViewControllerAnimated:YES];
   return YES;

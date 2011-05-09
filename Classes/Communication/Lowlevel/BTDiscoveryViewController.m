@@ -41,6 +41,7 @@
 @synthesize showIcons;
 @synthesize delegate = _delegate;
 @synthesize customActivityText;
+@synthesize bt;
 
 - (id) init {
 	self = [super initWithStyle:UITableViewStyleGrouped];
@@ -54,7 +55,7 @@
 	bluetoothActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	[bluetoothActivity startAnimating];
 	
-	bt = [[BTStackManagerDiscovery alloc]init];
+	self.bt = [[[BTStackManagerDiscovery alloc]init]autorelease];
   [bt addListener:self];
   
 	_delegate = nil;
@@ -90,11 +91,13 @@
  - (void)viewWillAppear:(BOOL)animated {
    [super viewWillAppear:animated];
   
-   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(cancel)];
+   self.title=NSLocalizedString(@"Bluetooth", @"BT discovery title");
+   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", @"BT descovery cancel") style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
    
    BTstackError err = [bt activate];
-   
    if (err) DLog(@"activate err 0x%02x!", err);
+   
+   [self reload];
  }
  
 /*
@@ -171,7 +174,7 @@
 #pragma mark Table view methods
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-	return @"Devices";
+	return NSLocalizedString(@"Select the Device", @"BT discovery title");
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -205,10 +208,10 @@
 			theLabel = customActivityText;
 			cell.accessoryView = bluetoothActivity;
 		} else if ([bt isActivating]){
-			theLabel = @"Activating BTstack...";
+			theLabel = NSLocalizedString(@"Activating BTstack...",@"BT discovery");;
 			cell.accessoryView = bluetoothActivity;
 		} else if (![bt isActive]){
-			theLabel = @"Bluetooth not accessible!";
+			theLabel = NSLocalizedString(@"Bluetooth not accessible!",@"BT discovery");
 			cell.accessoryView = nil;
 		} else {
       
@@ -219,18 +222,18 @@
 				switch (inquiryState){
 					case kInquiryInactive:
 						if ([bt numberOfDevicesFound] > 0){
-							theLabel = @"Find more devices...";
+							theLabel = NSLocalizedString(@"Find more devices...",@"BT discovery");
 						} else {
-							theLabel = @"Find devices...";
+							theLabel = NSLocalizedString(@"Find devices...",@"BT discovery");
 						}
 						cell.accessoryView = nil;
 						break;
 					case kInquiryActive:
-						theLabel = @"Searching...";
+						theLabel = NSLocalizedString(@"Searching...",@"BT discovery");
 						cell.accessoryView = bluetoothActivity;
 						break;
 					case kInquiryRemoteName:
-						theLabel = @"Query device names...";
+						theLabel = NSLocalizedString(@"Query device names...",@"BT discovery");
 						cell.accessoryView = bluetoothActivity;
 						break;
 				}
@@ -318,7 +321,7 @@
 
 - (void)dealloc {
   [super dealloc];
-  [bt release];
+  self.bt=nil;
 }
 
 

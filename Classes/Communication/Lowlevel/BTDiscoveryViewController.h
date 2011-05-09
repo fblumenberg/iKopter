@@ -58,6 +58,7 @@ typedef enum {
 @property (nonatomic, assign) NSObject<BTDiscoveryDelegate> * delegate;
 @property (nonatomic, assign) BOOL showIcons;
 @property (nonatomic, retain) NSString *customActivityText;
+@property (nonatomic, retain) BTStackManagerDiscovery *bt;
 @end
 
 @protocol BTDiscoveryDelegate
