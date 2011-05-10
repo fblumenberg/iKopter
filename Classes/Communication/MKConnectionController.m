@@ -446,7 +446,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 - (void) connectionTimeout {
   DLog(@"connection timeout, retry count %d",retryCount);
-  if (++retryCount>3) {
+  if (++retryCount>3 && connectionState==kConnectionStateWaitNC) {
     [self stop];
   }
   else {
