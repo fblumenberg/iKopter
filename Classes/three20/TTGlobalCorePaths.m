@@ -15,7 +15,8 @@
 //
 
 #import "TTGlobalCorePaths.h"
-
+#include <sys/stat.h>
+#include <sys/types.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsBundleURL(NSString* URL) {
@@ -40,9 +41,15 @@ NSString* TTPathForBundleResource(NSString* relativePath) {
 NSString* TTPathForDocumentsResource(NSString* relativePath) {
   static NSString* documentsPath = nil;
   if (!documentsPath) {
+#ifdef FOR_CYDIA
+    documentsPath = @"/var/mobile/Library/de.frankblumenberg.ikopter";
+    
+    mkdir([documentsPath UTF8String],755);
+#else    
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(
       NSDocumentDirectory, NSUserDomainMask, YES);
     documentsPath = [[dirs objectAtIndex:0] retain];
+#endif
   }
   return [documentsPath stringByAppendingPathComponent:relativePath];
 }
