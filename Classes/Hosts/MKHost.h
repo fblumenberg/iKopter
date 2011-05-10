@@ -28,11 +28,13 @@
 @interface MKHost : NSObject<NSCoding, NSCopying> {
   NSString*  _name;
   NSString*  _address;
+  NSString*  _pin;
   NSString*  _connectionClass;
 }
 
 @property(retain) NSString* name;
 @property(retain) NSString* address;
+@property(retain) NSString* pin;
 @property(retain) NSString* connectionClass;
 
 -(UIImage*) cellImage;

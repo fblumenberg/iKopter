@@ -129,7 +129,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
   
   DLog(@"Try to connect to %@", hostOrDevice);
   
-  NSArray* deviceParts=[hostOrDevice componentsSeparatedByString:@"#"];
+  NSArray* deviceParts=[hostOrDevice componentsSeparatedByString:@"(#)"];
   
   if([deviceParts count]>1){
     [[deviceParts objectAtIndex:1] getCString:pin maxLength:17 encoding:NSISOLatin1StringEncoding];

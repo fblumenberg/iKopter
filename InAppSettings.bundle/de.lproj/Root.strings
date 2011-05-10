@@ -2,6 +2,7 @@
 "HOST_TITLE"="MK-Host";
 "HOST_NAME"="Name";
 "HOST_ADDRESS"="Adresse";
+"HOST_PIN"="Pin";
 "HOST_PORT"="Port";
 "HOST_CONNECTION"="Verbindungstyp";
 "HOST_CONNECTION_TCP"="WLAN Verbindung";

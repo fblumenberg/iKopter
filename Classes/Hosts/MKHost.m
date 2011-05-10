@@ -26,12 +26,14 @@
 
 #define    kNameKey             @"name"
 #define    kAddressKey          @"address"
+#define    kPinKey              @"pin"
 #define    kConnectionClassKey  @"connectionClass"
 
 @implementation MKHost
 
 @synthesize name=_name;
 @synthesize address=_address;
+@synthesize pin=_pin;
 @synthesize connectionClass=_connectionClass;
 
 - (id) init
@@ -39,6 +41,8 @@
   self = [super init];
   if (self != nil) {
     self.name = NSLocalizedString(@"New host",@"Default host name");
+    self.address =@"";
+    self.pin =@"";
   }
   return self;
 }
@@ -48,6 +52,7 @@
   self.name=nil;
   self.address=nil;
   self.connectionClass=nil;
+  self.pin=nil;
   
   [super dealloc];
 }
@@ -73,12 +78,14 @@
 - (void)encodeWithCoder:(NSCoder *)encoder {
   [encoder encodeObject:_name forKey:kNameKey];
   [encoder encodeObject:_address forKey:kAddressKey];
+  [encoder encodeObject:_pin forKey:kPinKey];
   [encoder encodeObject:_connectionClass forKey:kConnectionClassKey];
 }
 - (id)initWithCoder:(NSCoder *)decoder {
   if ((self = [super init])) {
     self.name = [decoder decodeObjectForKey:kNameKey];
     self.address = [decoder decodeObjectForKey:kAddressKey];
+    self.pin = [decoder decodeObjectForKey:kPinKey];
     self.connectionClass = [decoder decodeObjectForKey:kConnectionClassKey];
   }
   return self;
@@ -89,6 +96,7 @@
   MKHost *copy = [[[self class] allocWithZone: zone] init];
   copy.name = [[self.name copyWithZone:zone] autorelease];
   copy.address = [[self.address copyWithZone:zone] autorelease];
+  copy.pin = [[self.pin copyWithZone:zone] autorelease];
   copy.connectionClass = [[self.connectionClass copyWithZone:zone] autorelease];
   
   return copy;

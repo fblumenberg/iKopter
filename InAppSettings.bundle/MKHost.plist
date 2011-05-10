@@ -39,6 +39,14 @@
 			<string>PSTextFieldSpecifier</string>
 		</dict>
 		<dict>
+			<key>Key</key>
+			<string>pin</string>
+			<key>Title</key>
+			<string>HOST_PIN</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<string>MKIpConnection</string>
 			<key>Key</key>

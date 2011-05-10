@@ -126,8 +126,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     inputController = [[nsclass alloc] initWithDelegate:self];
     
     [hostOrDevice release];
-    hostOrDevice = host.address;
-    [hostOrDevice retain];
+    if(host.pin || [host.pin length]==0){
+      hostOrDevice = [NSString stringWithFormat:@"%@(#)%@",host.address,host.pin];  
+    }
+    else{
+      hostOrDevice = host.address;
+      [hostOrDevice retain];
+    }
     
     didPostConnectNotification = NO;
     
