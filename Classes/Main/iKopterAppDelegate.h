@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BWQuincyManager.h"
 
-@interface iKopterAppDelegate : NSObject <UIApplicationDelegate> {
+@interface iKopterAppDelegate : NSObject <UIApplicationDelegate,BWQuincyManagerDelegate> {
     
     UIWindow *window;
     UINavigationController *navigationController;

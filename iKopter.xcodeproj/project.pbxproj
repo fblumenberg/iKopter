@@ -144,6 +144,13 @@
 		BAB27B1D137748B10027A990 /* BTDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B1A137747270027A990 /* BTDiscoveryViewController.m */; };
 		BAB27B1E137748B10027A990 /* BTStackManagerDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B14137744250027A990 /* BTStackManagerDiscovery.m */; };
 		BAB27B1F137748B10027A990 /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B16137744250027A990 /* BTDevice.m */; };
+		BAB27B3E1379C03B0027A990 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB27B3D1379C03B0027A990 /* SystemConfiguration.framework */; };
+		BAB27B451379C0B50027A990 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB27B3D1379C03B0027A990 /* SystemConfiguration.framework */; };
+		BAB27B4A1379C8F30027A990 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB27B491379C8F30027A990 /* CrashReporter.framework */; };
+		BAB27B4B1379C8FC0027A990 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB27B491379C8F30027A990 /* CrashReporter.framework */; };
+		BAB27B4D1379C91A0027A990 /* Quincy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAB27B4C1379C9190027A990 /* Quincy.bundle */; };
+		BAB27B501379C92B0027A990 /* BWQuincyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B4E1379C92B0027A990 /* BWQuincyManager.m */; };
+		BAB27B511379CAA00027A990 /* BWQuincyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB27B4E1379C92B0027A990 /* BWQuincyManager.m */; };
 		BAB8A98113007667002CBB97 /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97713007667002CBB97 /* altitude.png */; };
 		BAB8A98213007667002CBB97 /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97813007667002CBB97 /* altitudeMax.png */; };
 		BAB8A98313007667002CBB97 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB8A97913007667002CBB97 /* battery.png */; };
@@ -491,6 +498,11 @@
 		BAB27B17137744250027A990 /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
 		BAB27B1A137747270027A990 /* BTDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDiscoveryViewController.m; sourceTree = "<group>"; };
 		BAB27B1B137747270027A990 /* BTDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDiscoveryViewController.h; sourceTree = "<group>"; };
+		BAB27B3D1379C03B0027A990 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BAB27B491379C8F30027A990 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = QuincyKit/CrashReporter.framework; sourceTree = "<group>"; };
+		BAB27B4C1379C9190027A990 /* Quincy.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Quincy.bundle; path = QuincyKit/Quincy.bundle; sourceTree = "<group>"; };
+		BAB27B4E1379C92B0027A990 /* BWQuincyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BWQuincyManager.m; path = QuincyKit/BWQuincyManager.m; sourceTree = SOURCE_ROOT; };
+		BAB27B4F1379C92B0027A990 /* BWQuincyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BWQuincyManager.h; path = QuincyKit/BWQuincyManager.h; sourceTree = SOURCE_ROOT; };
 		BAB8A97713007667002CBB97 /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAB8A97813007667002CBB97 /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
 		BAB8A97913007667002CBB97 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
@@ -535,6 +547,8 @@
 				BA71CDE612D0C2910029C5F7 /* MessageUI.framework in Frameworks */,
 				BA9C07A812E62B8B00A3A706 /* QuartzCore.framework in Frameworks */,
 				BA7F89B212FEFC6A00D6C3A5 /* CoreText.framework in Frameworks */,
+				BAB27B451379C0B50027A990 /* SystemConfiguration.framework in Frameworks */,
+				BAB27B4B1379C8FC0027A990 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +556,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAB27B4A1379C8F30027A990 /* CrashReporter.framework in Frameworks */,
+				BAB27B3E1379C03B0027A990 /* SystemConfiguration.framework in Frameworks */,
 				BAE6542E135C9D270036CB96 /* Foundation.framework in Frameworks */,
 				BAE6542F135C9D270036CB96 /* UIKit.framework in Frameworks */,
 				BAE65430135C9D270036CB96 /* CoreGraphics.framework in Frameworks */,
@@ -588,12 +604,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				BAB27B491379C8F30027A990 /* CrashReporter.framework */,
+				BAB27B3D1379C03B0027A990 /* SystemConfiguration.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				BA7F89B112FEFC6A00D6C3A5 /* CoreText.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -610,6 +627,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BAB27B4C1379C9190027A990 /* Quincy.bundle */,
 				BA6649521368DD2800716D89 /* Default.png */,
 				BA6649531368DD2800716D89 /* Default@2x.png */,
 				BA71D0ED12D2707D0029C5F7 /* AllSettings.plist */,
@@ -629,6 +647,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA7F89B112FEFC6A00D6C3A5 /* CoreText.framework */,
 				BA71CDE312D0C2830029C5F7 /* CFNetwork.framework */,
 				BA9C07A712E62B8B00A3A706 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -969,6 +988,8 @@
 		BA9C01C112DF927900A3A706 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				BAB27B4E1379C92B0027A990 /* BWQuincyManager.m */,
+				BAB27B4F1379C92B0027A990 /* BWQuincyManager.h */,
 				BAB8A9E613007DBE002CBB97 /* UIImage+Tint.h */,
 				BAB8A9E713007DBE002CBB97 /* UIImage+Tint.m */,
 				BA9C01C212DF927900A3A706 /* MBProgressHUD.h */,
@@ -1141,6 +1162,7 @@
 				BA6649871369FEDB00716D89 /* AboutView.xib in Resources */,
 				BA664995136A12D400716D89 /* blank_badge_red.png in Resources */,
 				BA664997136A12D400716D89 /* blank_badge_green.png in Resources */,
+				BAB27B4D1379C91A0027A990 /* Quincy.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1333,6 +1355,7 @@
 				BAB27B18137744250027A990 /* BTStackManagerDiscovery.m in Sources */,
 				BAB27B19137744250027A990 /* BTDevice.m in Sources */,
 				BAB27B1C137747270027A990 /* BTDiscoveryViewController.m in Sources */,
+				BAB27B501379C92B0027A990 /* BWQuincyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1419,6 +1442,7 @@
 				BAB27B1D137748B10027A990 /* BTDiscoveryViewController.m in Sources */,
 				BAB27B1E137748B10027A990 /* BTStackManagerDiscovery.m in Sources */,
 				BAB27B1F137748B10027A990 /* BTDevice.m in Sources */,
+				BAB27B511379CAA00027A990 /* BWQuincyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1453,6 +1477,11 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/QuincyKit\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1474,6 +1503,11 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/QuincyKit\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
 				INFOPLIST_FILE = "iKopter-Info.plist";
@@ -1509,6 +1543,11 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/QuincyKit\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
 				INFOPLIST_FILE = "iKopter-Info.plist";
@@ -1526,14 +1565,24 @@
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/QuincyKit\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"FOR_CYDIA=1",
+					"DEBUG=1",
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*][arch=*]" = "DEBUG=1";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				OTHER_LDFLAGS = "-all_load";
 				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "${SOURCE_ROOT}/lib-simulator/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
@@ -1548,11 +1597,19 @@
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/QuincyKit\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "FOR_CYDIA=1";
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*][arch=*]" = "";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				OTHER_LDFLAGS = "-all_load";
 				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "${SOURCE_ROOT}/lib-simulator/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
@@ -1568,11 +1625,18 @@
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/QuincyKit\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iKopter_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "FOR_CYDIA=1";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Classes/Communication/Lowlevel";
 				INFOPLIST_FILE = "iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				OTHER_LDFLAGS = "-all_load";
 				"OTHER_LDFLAGS[arch=*]" = "${SOURCE_ROOT}/lib-iphone/libBTstack.dylib";
 				PRODUCT_NAME = iKopter;
 				VALIDATE_PRODUCT = YES;
