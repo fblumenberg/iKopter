@@ -37,6 +37,8 @@
   bd_addr_t address;
   uint16_t rfcomm_channel_id;
   timer_source_t connectionTimeout;
+  
+  char pin[17];
 
   NSMutableData* mkData;
 

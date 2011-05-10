@@ -129,7 +129,17 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
   
   DLog(@"Try to connect to %@", hostOrDevice);
   
-  [self setAddressFromString:hostOrDevice];
+  NSArray* deviceParts=[hostOrDevice componentsSeparatedByString:@"#"];
+  
+  if([deviceParts length]>1){
+    [[deviceParts objectAtIndex:1] getCString:pin maxLength:17 encoding:NSISOLatin1StringEncoding];
+  }
+  else
+    strcpy(pin,"0000");
+  
+  
+  
+  [self setAddressFromString:[deviceParts objectAtIndex:0]];
   
   self.mkData=[NSMutableData dataWithCapacity:30];
   
@@ -276,7 +286,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 					// inform about pin code request
 					DLog(@"Using PIN 0000");
 					bt_flip_addr(event_addr, &packet[2]); 
-					bt_send_cmd(&hci_pin_code_request_reply, &event_addr, 4, "0000");
+					bt_send_cmd(&hci_pin_code_request_reply, &event_addr, strlen(pin), pin);
 					break;
           
 				case RFCOMM_EVENT_OPEN_CHANNEL_COMPLETE:
