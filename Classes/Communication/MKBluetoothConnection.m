@@ -131,7 +131,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
   
   NSArray* deviceParts=[hostOrDevice componentsSeparatedByString:@"#"];
   
-  if([deviceParts length]>1){
+  if([deviceParts count]>1){
     [[deviceParts objectAtIndex:1] getCString:pin maxLength:17 encoding:NSISOLatin1StringEncoding];
   }
   else
