@@ -1,0 +1,6 @@
+﻿"SettingsActivateLogging" = "Logging aktivien";
+"SettingsActivateLoggingDescription" = "Wenn das Logging aktiv ist, dann werden Log-Informationen in einer Datei gespeichert.";
+"SettingsLogLevel" = "Log Level";
+"SettingsLogLevelDescription" = ".";
+"SettingsSendLogfile" = "Log-Datei per Email versenden";
+"SettingsSendLogfileDescription" = "";

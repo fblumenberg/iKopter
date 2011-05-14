@@ -1,0 +1,6 @@
+﻿"SettingsActivateLogging" = "Activate logging";
+"SettingsActivateLoggingDescription" = "If activated, the log messages will be written to a file.";
+"SettingsLogLevel" = "Log level";
+"SettingsLogLevelDescription" = ".";
+"SettingsSendLogfile" = "Send Logfile to developer";
+"SettingsSendLogfileDescription" = "Here it is possible to send a log file to the developer.";

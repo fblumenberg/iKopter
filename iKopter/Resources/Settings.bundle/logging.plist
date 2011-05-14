@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>IKLoggingActive</string>
+			<key>Title</key>
+			<string>SettingsActivateLogging</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>2</integer>
+			<key>Key</key>
+			<string>IKLoggingLevel</string>
+			<key>Title</key>
+			<string>SettingsLogLevel</string>
+			<key>Titles</key>
+			<array>
+				<string>lcl_vCritical</string>
+				<string>lcl_vError</string>
+				<string>lcl_vWarning</string>
+				<string>lcl_vInfo</string>
+				<string>lcl_vDebug</string>
+				<string>lcl_vTrace</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>SettingsActivateLoggingDescription</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>IASKMailComposeBccRecipents</key>
+			<array/>
+			<key>IASKMailComposeBody</key>
+			<string>The iKopter log file from a customer.</string>
+			<key>IASKMailComposeBodyIsHTML</key>
+			<string>NO</string>
+			<key>IASKMailComposeCcRecipents</key>
+			<array/>
+			<key>IASKMailComposeSubject</key>
+			<string>iKopter Logfile</string>
+			<key>IASKMailComposeToRecipents</key>
+			<array>
+				<string>frank@frankblumenberg.de</string>
+			</array>
+			<key>Title</key>
+			<string>SettingsSendLogfile</string>
+			<key>Type</key>
+			<string>IASKMailComposeSpecifier</string>
+		</dict>
+	</array>
+	<key>StringsTable</key>
+	<string>logging</string>
+	<key>Title</key>
+	<string>Logging</string>
+</dict>
+</plist>

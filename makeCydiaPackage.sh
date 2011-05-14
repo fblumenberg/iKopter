@@ -1,14 +1,12 @@
-xcodebuild -configuration "Release Distribution" -target "iKopter Cydia"
+xcodebuild -configuration "Release Distribution" -target "iKopter"
 
 PROJECTMAIN=$(pwd)
 PROJECT_NAME=$(basename "${PROJECTMAIN}")
+APPMAIN=${PROJECTMAIN}/Cydia/iKopter/Applications/${PROJECT_NAME}.app
 #
-if [[ -f "${PROJECTMAIN}/Resources/${PROJECT_NAME}-Info.plist" ]]
+if [[ -f "${APPMAIN}/Info.plist" ]]
 then
-buildPlist="${PROJECTMAIN}/Resources/${PROJECT_NAME}-Info.plist"
-elif [[ -f "${PROJECTMAIN}/${PROJECT_NAME}-Info.plist" ]]
-then
-buildPlist="${PROJECTMAIN}/${PROJECT_NAME}-Info.plist"
+buildPlist="${APPMAIN}/Info.plist"
 else
 echo -e "Can't find the plist: ${PROJECT_NAME}-Info.plist"
 exit 1
@@ -21,20 +19,20 @@ echo -e "\"${buildPlist}\" does not contain key: \"CFBundleVersion\""
 exit 1
 fi
 
-cd ${PROJECTMAIN}/cydia/iKopter/DEBIAN
+cd ${PROJECTMAIN}/Cydia/iKopter/DEBIAN
 sed 's/Version:.*$/Version: '${buildVersion}'/' control > control1
 echo "==============================="
 mv control1 control
 
-find ${PROJECTMAIN}/cydia -name .DS_Store -ls -exec rm {} \;
-rm -Rf ${PROJECTMAIN}/cydia/repo
-mkdir ${PROJECTMAIN}/cydia/repo
-mkdir ${PROJECTMAIN}/cydia/repo/deb
+find ${PROJECTMAIN}/Cydia -name .DS_Store -ls -exec rm {} \;
+rm -Rf ${PROJECTMAIN}/Cydia/repo
+mkdir ${PROJECTMAIN}/Cydia/repo
+mkdir ${PROJECTMAIN}/Cydia/repo/deb
 
-cd ${PROJECTMAIN}/cydia
-dpkg-deb -b iKopter ${PROJECTMAIN}/cydia/repo/deb/${PROJECT_NAME}Package.deb
+cd ${PROJECTMAIN}/Cydia
+dpkg-deb -b iKopter ${PROJECTMAIN}/Cydia/repo/deb/${PROJECT_NAME}Package.deb
 
-cd ${PROJECTMAIN}/cydia/repo 
+cd ${PROJECTMAIN}/Cydia/repo 
 dpkg-scanpackages deb / > Packages
 cat Packages
 bzip2 Packages

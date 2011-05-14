@@ -9,12 +9,12 @@
 PROJECTMAIN=$(pwd)
 PROJECT_NAME=$(basename "${PROJECTMAIN}")
 #
-if [[ -f "${PROJECTMAIN}/Resources/${PROJECT_NAME}-Info.plist" ]]
+if [[ -f "${PROJECTMAIN}/${PROJECT_NAME}/Resources/${PROJECT_NAME}-Info.plist" ]]
 then
-buildPlist="${PROJECTMAIN}/Resources/${PROJECT_NAME}-Info.plist"
-elif [[ -f "${PROJECTMAIN}/${PROJECT_NAME}-Info.plist" ]]
+buildPlist="${PROJECTMAIN}/${PROJECT_NAME}/Resources/${PROJECT_NAME}-Info.plist"
+elif [[ -f "${PROJECTMAIN}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist" ]]
 then
-buildPlist="${PROJECTMAIN}/${PROJECT_NAME}-Info.plist"
+buildPlist="${PROJECTMAIN}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist"
 else
 echo -e "Can't find the plist: ${PROJECT_NAME}-Info.plist"
 exit 1

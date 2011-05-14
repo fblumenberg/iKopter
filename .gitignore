@@ -1,18 +1,23 @@
-# Mac OS X Finder and whatnot
-.DS_Store
-
 # XCode (and ancestors) per-user config (very noisy, and not relevant)
 *.mode1
-*.mode1v3
-*.mode2v3
+*.mode?v3
+!default.mode?v3
 *.perspective
 *.perspectivev3
+!default.perspectivev3
 *.pbxuser
+!default.pbxuser
 
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+
+profile
+*.moved-aside
 
 # Generated files
 VersionX-revision.h
-
+Cydia/iKopter/Applications/iKopter.app
 
 # build products
 build/
@@ -23,10 +28,21 @@ build/
 .svn
 CVS
 
-
 # automatic backup files
 *~.nib
 *.swp
 *~
+*(Autosaved).rtfd/
+Backup[ ]of[ ]*.pages/
+Backup[ ]of[ ]*.key/
+Backup[ ]of[ ]*.numbers/
 
-xcuserdata
+# osx noise
+.DS_Store
+*.ipa
+*.swp
+*~.nib
+profile
+
+
+/Cydia/repo/
