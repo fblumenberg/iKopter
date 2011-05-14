@@ -1,4 +1,4 @@
-// ///////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "iKopterAppDelegate.h"
+#import "MKConnectionController.h"
 
 #undef ql_component
 #define ql_component lcl_cApplication
@@ -58,6 +59,9 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+  [[MKConnectionController sharedMKConnectionController] stop];
+  [self.navigationController popToRootViewControllerAnimated:NO]; 
+
   /*
    Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
    If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
