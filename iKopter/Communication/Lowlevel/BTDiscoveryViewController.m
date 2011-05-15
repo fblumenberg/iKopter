@@ -304,15 +304,18 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (!_delegate) return nil;
 	int index = [indexPath indexAtPosition:1];
-	if (index >= [bt numberOfDevicesFound]){
+	
+  if (index >= [bt numberOfDevicesFound]){
 		if ([_delegate respondsToSelector:@selector(statusCellSelectedDiscoveryView:)]){
 			[_delegate statusCellSelectedDiscoveryView:self];
 			return nil;
 		}
 	}
-	if ([_delegate respondsToSelector:@selector(discoveryView:willSelectDeviceAtIndex:)] && [_delegate discoveryView:self willSelectDeviceAtIndex:index]){
-		return indexPath;
-	}
+  else{
+    if ([_delegate respondsToSelector:@selector(discoveryView:willSelectDeviceAtIndex:)] && [_delegate discoveryView:self willSelectDeviceAtIndex:index]){
+      return indexPath;
+    }
+  }
 	return nil;
 }
 

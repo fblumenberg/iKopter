@@ -122,20 +122,17 @@
 {
   [super viewDidAppear:animated];
   
-  if(self.tableView.editing ) {
+  if( editingHost ) {
     
-    if( editingHost ) {
-      
-      NSArray* indexPaths=[NSArray arrayWithObject:editingHost];
-      
-      NSLog(@"appear reload %@",indexPaths);
-      [self.tableView beginUpdates];
-      [self.tableView reloadRowsAtIndexPaths:indexPaths 
-                            withRowAnimation:UITableViewRowAnimationFade];
-      [self.tableView endUpdates];
-      
-      editingHost=nil;
-    }
+    NSArray* indexPaths=[NSArray arrayWithObject:editingHost];
+    
+    NSLog(@"appear reload %@",indexPaths);
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:indexPaths 
+                          withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+    
+    editingHost=nil;
     
     [hosts save];
   }

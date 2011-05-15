@@ -62,7 +62,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
   if (self == [super init]) {
     
     btManager = [MKBTStackManager sharedInstance];
-    btManager.delegate=self;
+    btManager.delegate=nil;
     
     self.delegate = theDelegate;
     
@@ -94,7 +94,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
     [delegate didDisconnect];
   }
   
-//  btManager.delegate=nil;
+  btManager.delegate=nil;
 }
 
 -(void)didConnect {
@@ -117,7 +117,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
     [delegate willDisconnectWithError:[NSError errorWithDomain:@"de.frankblumenberg.ikopter" code:err userInfo:nil]];
   }
   
-//  btManager.delegate=nil;
+  btManager.delegate=nil;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
     [self didDisconnectWithError:-1];
   }
   
-//  btManager.delegate=self;
+  btManager.delegate=self;
                                     
   bt_send_cmd(&btstack_set_power_mode, HCI_POWER_ON );
   qlinfo(@"Did connect to %@", hostOrDevice);

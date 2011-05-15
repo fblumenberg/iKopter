@@ -25,8 +25,8 @@
 #import "MKHostViewController.h"
 #import "IASKSettingsStoreObject.h"
 
-//#import "BTDiscoveryViewController.h"
-//#import "BTDevice.h"
+#import "BTDiscoveryViewController.h"
+#import "BTDevice.h"
 
 @implementation MKHostViewController
 
@@ -61,29 +61,29 @@
 }
 
 -(void)settingsViewController:(id)sender buttonTappedForKey:(NSString*)key {
-//	BTDiscoveryViewController *controller = [[BTDiscoveryViewController alloc] init];
-//  
-//  UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:controller];
-//	
-//	navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//  controller.delegate=self;
-//	[self presentModalViewController:navController animated:YES];
-//	
-//	[controller release];  
-//	[navController release];  
+	BTDiscoveryViewController *controller = [[BTDiscoveryViewController alloc] init];
+  
+  UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:controller];
+	
+	navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  controller.delegate=self;
+	[self presentModalViewController:navController animated:YES];
+	
+	[controller release];  
+	[navController release];  
 }
 
-//-(BOOL) discoveryView:(BTDiscoveryViewController*)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
-//  
-//  BTDevice* device=[discoveryView.bt deviceAtIndex:deviceIndex];
-//  
-//  [self.settingsStore setObject:[device nameOrAddress] forKey:@"name"];
-//  [self.settingsStore setObject:[device addressString] forKey:@"address"];
-//  [_tableView reloadData];
-//  
-//  [discoveryView.navigationController dismissModalViewControllerAnimated:YES];
-//  return YES;
-//}
+-(BOOL) discoveryView:(BTDiscoveryViewController*)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
+  
+  BTDevice* device=[discoveryView.bt deviceAtIndex:deviceIndex];
+  
+  [self.settingsStore setObject:[device nameOrAddress] forKey:@"name"];
+  [self.settingsStore setObject:[device addressString] forKey:@"address"];
+  [_tableView reloadData];
+  
+  [discoveryView.navigationController dismissModalViewControllerAnimated:YES];
+  return YES;
+}
 
 
 @end
