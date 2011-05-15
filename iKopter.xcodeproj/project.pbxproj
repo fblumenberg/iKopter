@@ -1332,6 +1332,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = FOR_CYDIA;
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/BTStack/include";
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;

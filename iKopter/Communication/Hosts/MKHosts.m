@@ -45,11 +45,11 @@
       hosts = [[NSMutableArray alloc]init];
       
       MKHost* h;
-      
+
       h = [[MKHost alloc]init];
-      h.name = @"Quadkopter WLAN";
-      h.address = @"192.168.0.74:23";
-      h.connectionClass = @"MKIpConnection";
+      h.name = @"Quadkopter Serial";
+      h.address = @"/dev/tty.iap";
+      h.connectionClass = @"MKSerialConnection";
       [hosts addObject:h];
       [h release];
       
@@ -57,6 +57,13 @@
       h.name = @"Quadkopter Fake";
       h.address = @"Dummy";
       h.connectionClass = @"MKFakeConnection";
+      [hosts addObject:h];
+      [h release];
+#ifdef DEBUG      
+      h = [[MKHost alloc]init];
+      h.name = @"Quadkopter WLAN";
+      h.address = @"192.168.0.74:23";
+      h.connectionClass = @"MKIpConnection";
       [hosts addObject:h];
       [h release];
       
@@ -67,13 +74,6 @@
       [hosts addObject:h];
       [h release];
 
-      h = [[MKHost alloc]init];
-      h.name = @"Quadkopter Serial";
-      h.address = @"/dev/tty.iap";
-      h.connectionClass = @"MKSerialConnection";
-      [hosts addObject:h];
-      [h release];
-      
       h = [[MKHost alloc]init];
       h.name = @"Quadkopter MK-BT";
       h.address = @"00:0b:ce:04:ce:e3";
@@ -94,6 +94,7 @@
       h.connectionClass = @"MKSerialConnection";
       [hosts addObject:h];
       [h release];
+#endif
       
       [self save];
     }

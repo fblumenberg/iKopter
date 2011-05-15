@@ -57,12 +57,11 @@
 #pragma mark IASKAppSettingsViewControllerDelegate protocol
 
 //- (NSString*)mailComposeBody {
-//  return @"Testtext";
+//  
+//  return [NSString stringWithFormat:@"The iKopter log file from a customer.\n%@",[LCLLogFile path]];
 //}
 
 - (void)mailComposeAttachment:(MFMailComposeViewController*)mailViewController{
-  
-//  NSString *filePath=[LCLLogFile path];
   
   NSString *csv = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:nil];
   NSData *csvData = [csv dataUsingEncoding:NSUTF8StringEncoding];
@@ -74,7 +73,30 @@
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
   [self dismissModalViewControllerAnimated:YES];
 	
-	// your code here to reconfigure the app for changed settings
+  
+# ifndef _LCL_NO_LOGGING
+  
+  BOOL logActive=NO;
+  _lcl_level_t level=lcl_vCritical;
+  
+  NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKLoggingActive];
+  if (testValue) {
+    logActive = [[NSUserDefaults standardUserDefaults] boolForKey:kIKLoggingActive];
+  }
+  
+  testValue = nil;
+  testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKLoggingLevel];
+  if (testValue) {
+    level = [[NSUserDefaults standardUserDefaults] integerForKey:kIKLoggingLevel];
+  }
+  
+  if(!logActive)  
+    level=lcl_vOff;
+  
+  lcl_configure_by_identifier("*", level);
+  
+# endif
+
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {

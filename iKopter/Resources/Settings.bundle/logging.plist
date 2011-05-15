@@ -61,7 +61,7 @@
 			<string>iKopter Logfile</string>
 			<key>IASKMailComposeToRecipents</key>
 			<array>
-				<string>frank@frankblumenberg.de</string>
+				<string>ikopter@frankblumenberg.de</string>
 			</array>
 			<key>Title</key>
 			<string>SettingsSendLogfile</string>

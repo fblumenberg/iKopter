@@ -91,17 +91,30 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+  
+  [super viewWillAppear:animated];
+ 
   values = [[AnalogValues alloc] init];
   values.delegate = self;
+  
+  self.navigationController.hidesBottomBarWhenPushed=NO;
+  [self.navigationController setToolbarHidden:NO animated:YES];
   
   [self updateSegment];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+
   [values reloadAll];
 }
 
+- (void) viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self.navigationController setToolbarHidden:YES animated:YES];
+}
 - (void) viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
   
   TT_RELEASE_SAFELY(values);
 }
