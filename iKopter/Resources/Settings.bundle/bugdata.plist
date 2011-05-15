@@ -47,16 +47,18 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
 			<key>Key</key>
 			<string>CrashDataContactEmailKey</string>
 			<key>KeyboardType</key>
 			<string>EmailAddress</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
 			<key>Title</key>
 			<string>SettingsContactEmail</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>Title</key>

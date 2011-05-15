@@ -30,6 +30,7 @@
 #import "MKHost.h"
 #import "MKHostViewController.h"
 #import "MKConnectionController.h"
+#import "IASKPSTitleValueSpecifierViewCell.h"
 
 @implementation RootViewController
 
@@ -75,6 +76,30 @@
 	
 	// your code here to reconfigure the app for changed settings
 }
+
+- (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {
+	if ([[specifier key] isEqualToString:@"customCell"]) {
+		return 44;
+	}
+	return 0;
+}
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier key]];
+  
+  if (!cell) {
+    cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier key]] autorelease];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+  }
+  
+  cell.textLabel.text = NSLocalizedString(@"Version",nil);
+  cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+  
+  [cell setUserInteractionEnabled:NO];
+  
+  return cell;
+}
+
 
 #pragma mark -
 #pragma mark View life cycle

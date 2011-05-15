@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string> </string>
+			<string></string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -25,6 +25,22 @@
 			<string>SettingsLoggingTitle</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>As an example, we use a multiline UITextView here.</string>
+			<key>Key</key>
+			<string>customCell</string>
+			<key>Title</key>
+			<string>Custom Field</string>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
