@@ -57,8 +57,8 @@ extern NSString * const MKData3DNotification;
 
 @interface MKConnectionController : NSObject<MKConnectionDelegate> {
 
-  NSObject<MKConnection> * inputController;
-  NSString * hostOrDevice;
+  NSObject<MKConnection>* _inputController;
+  NSString* _hostOrDevice;
   
   NSInteger connectionState;
   NSInteger retryCount;
@@ -72,6 +72,8 @@ extern NSString * const MKData3DNotification;
 
 @property(readonly) IKMkAddress primaryDevice;
 @property(assign,readonly) IKMkAddress currentDevice;
+@property(retain) NSString* hostOrDevice;
+@property(retain) NSObject<MKConnection>* inputController;
 
 + (MKConnectionController *) sharedMKConnectionController;
 

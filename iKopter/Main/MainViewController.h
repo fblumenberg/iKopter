@@ -47,9 +47,6 @@ typedef enum{
 
 - (id)initWithHost:(MKHost*)theHost;
 
--(IBAction)dismissDeviceView:(id)sender;
-
-
 - (void)userDidDisconnect;
 - (void)userDidCancelLastConnectRequest;
 - (void)connectionRequestDidFail:(NSNotification *)aNotification;

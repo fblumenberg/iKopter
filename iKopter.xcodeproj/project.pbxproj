@@ -1263,7 +1263,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-all_load",
-					"${SOURCE_ROOT}/lib-iphone/libBTstack.dylib",
+					"${SOURCE_ROOT}/Frameworks/BTStack/lib-iphone/libBTstack.dylib",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
 					"-all_load",
@@ -1291,7 +1291,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-all_load",
-					"${SOURCE_ROOT}/lib-iphone/libBTstack.dylib",
+					"${SOURCE_ROOT}/Frameworks/BTStack/lib-iphone/libBTstack.dylib",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
 					"-all_load",
@@ -1337,7 +1337,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
 					"-all_load",
-					"${SOURCE_ROOT}/lib-iphone/libBTstack.dylib",
+					"${SOURCE_ROOT}/Frameworks/BTStack/lib-iphone/libBTstack.dylib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

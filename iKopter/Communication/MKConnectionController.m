@@ -91,8 +91,8 @@ NSString * const MKData3DNotification = @"MKData3DNotification";
 
 // -------------------------------------------------------------------------------
 
-//@synthesize hostOrDevice;
-//@synthesize inputController;
+@synthesize hostOrDevice=_hostOrDevice;
+@synthesize inputController=_inputController;
 
 @synthesize primaryDevice;
 @synthesize currentDevice;
@@ -104,10 +104,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 // -------------------------------------------------------------------------------
 
 - (void) dealloc {
-  [hostOrDevice release];
   
+  self.hostOrDevice=nil;
+  self.inputController=nil;
   [self clearVersions];
-  [inputController release];
   [super dealloc];
 }
 
@@ -115,23 +115,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 - (void) start:(MKHost*)host {
   
-  if (![inputController isConnected]) {
+  if (![self.inputController isConnected]) {
     
     Class nsclass = NSClassFromString(host.connectionClass);
     if (!nsclass) {
       nsclass = [MKIpConnection class];
     }
     
-    [inputController release];
-    inputController = [[nsclass alloc] initWithDelegate:self];
+    self.inputController = [[nsclass alloc] initWithDelegate:self];
     
-    [hostOrDevice release];
     if(host.pin || [host.pin length]==0){
-      hostOrDevice = [NSString stringWithFormat:@"%@(#)%@",host.address,host.pin];  
+      self.hostOrDevice = [NSString stringWithFormat:@"%@(#)%@",host.address,host.pin];  
     }
     else{
-      hostOrDevice = host.address;
-      [hostOrDevice retain];
+      self.hostOrDevice = host.address;
     }
     
     didPostConnectNotification = NO;
@@ -141,7 +138,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     connectionState=kConnectionStateIdle;
     
     NSError * err = nil;
-    if (![inputController connectTo:hostOrDevice error:&err]) {
+    if (![self.inputController connectTo:self.hostOrDevice error:&err]) {
       NSLog(@"Error: %@", err);
       [self performSelector:@selector(stop) withObject:self afterDelay:0.1];
     }
@@ -149,18 +146,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 }
 
 - (void) stop {
-  if ([inputController isConnected]) {
+  if ([self.inputController isConnected]) {
     qltrace(@"disconnect");
-    [inputController disconnect];
+    [self.inputController disconnect];
   }
-  
-  //  self.inputController=nil;
-  
 }
 
 - (BOOL) isRunning;
 {
-  return [inputController isConnected];
+  return [self.inputController isConnected];
 }
 
 - (void) sendRequest:(NSData *)data;
@@ -168,7 +162,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   qltrace(@"%@",data);
   qltrace(@"%@", [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease]);
   
-  [inputController writeMkData:data];
+  [self.inputController writeMkData:data];
 }
 
 - (IKDeviceVersion *) versionForAddress:(IKMkAddress)theAddress;

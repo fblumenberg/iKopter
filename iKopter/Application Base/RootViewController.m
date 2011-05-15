@@ -61,12 +61,10 @@
 
 - (void)mailComposeAttachment:(MFMailComposeViewController*)mailViewController{
   
-  NSString *filePath=[LCLLogFile path];
+//  NSString *filePath=[LCLLogFile path];
   
   NSString *csv = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:nil];
   NSData *csvData = [csv dataUsingEncoding:NSUTF8StringEncoding];
-  
-  //  NSData *csvData = [NSData dataWithContentsOfFile:[LCLLogFile path]]; 
   
   [mailViewController addAttachmentData:csvData mimeType:@"text/plain" fileName:@"ikopter.log"];
 }

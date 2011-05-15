@@ -25,7 +25,7 @@
 
 #import "IKDeviceVersion.h"
 
-static const NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"MK3Mag" };
+static NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"MK3Mag" };
 
 
 @implementation IKDeviceVersion

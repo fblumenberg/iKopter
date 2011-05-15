@@ -130,6 +130,15 @@
   return d; 
 }
 
+- (NSDictionary *) decodeMixerReadResponse {
+  return [NSDictionary dictionary];
+}
+
+- (NSDictionary *) decodeMixerWriteResponse {
+  return [NSDictionary dictionary];
+}
+
+
 @end
 
 /////////////////////////////////////////////////////////////////////////////////

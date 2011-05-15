@@ -41,7 +41,10 @@
 @end
 
 
-@interface IASKAppSettingsViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate> {
+@interface IASKAppSettingsViewController : UIViewController <UITextFieldDelegate, 
+                                                             UINavigationControllerDelegate, 
+                                                            UITableViewDataSource,UITableViewDelegate,
+                                                             MFMailComposeViewControllerDelegate> {
 	id<IASKSettingsDelegate>  _delegate;
     UITableView    			*_tableView;
     
