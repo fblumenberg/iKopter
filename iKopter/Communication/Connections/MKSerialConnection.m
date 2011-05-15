@@ -91,20 +91,9 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 //}
 //
 
-- (BOOL) connectTo:(NSString *)hostOrDevice error:(NSError **)err;
-{
-  if (delegate == nil) {
-    [NSException raise:MKSerialConnectionException
-                format:@"Attempting to connect without a delegate. Set a delegate first."];
-  }
+- (void) openPort{
   
-  if([self.port isOpen])
-    [self.port close];
-  
-  self.port=[[[AMSerialPort alloc] init:hostOrDevice withName:hostOrDevice type:(NSString*)CFSTR(kIOSerialBSDRS232Type)] autorelease];
-  [self.port setDelegate:self];
-  
-  qltrace(@"Try to connect to %@", hostOrDevice);
+  qltrace(@"Try to connect to %@", [self.port bsdPath]);
   if([self.port open]){
     
     [self.port setSpeed:57600];
@@ -115,21 +104,36 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
       if ( [delegate respondsToSelector:@selector(willDisconnectWithError:)] ) {
         [delegate willDisconnectWithError:[NSError errorWithDomain:AMSerialErrorDomain code:-1 userInfo:nil]];
       }
-      return NO;
+      return;
     }
-
+    
     self.mkData=[NSMutableData dataWithCapacity:30];
-
-    qltrace(@"Did connect to %@", hostOrDevice);
+    
+    qltrace(@"Did connect to %@", [self.port bsdPath]);
     [self performSelector:@selector(didConnect) withObject:self afterDelay:0.1];
     [self.port performSelector:@selector(readDataInBackground) withObject:self afterDelay:0.1];
   }
   else {
-    qlerror(@"Could not open %@", hostOrDevice);
+    qlerror(@"Could not open %@", [self.port bsdPath]);
     
     [self performSelector:@selector(didDisconnect) withObject:self afterDelay:0.5];
-    return NO;
   }
+}
+
+- (BOOL) connectTo:(MKHost *)hostOrDevice error:(NSError **)err;
+{
+  if (delegate == nil) {
+    [NSException raise:MKSerialConnectionException
+                format:@"Attempting to connect without a delegate. Set a delegate first."];
+  }
+  
+  if([self.port isOpen])
+    [self.port close];
+  
+  self.port=[[[AMSerialPort alloc] init:hostOrDevice.address withName:hostOrDevice.address type:(NSString*)CFSTR(kIOSerialBSDRS232Type)] autorelease];
+  [self.port setDelegate:self];
+  
+  [self performSelector:@selector(openPort) withObject:self afterDelay:0.0];
   
   return YES;
 }

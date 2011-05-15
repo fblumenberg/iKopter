@@ -88,6 +88,13 @@
       [hosts addObject:h];
       [h release];
 
+      h = [[MKHost alloc]init];
+      h.name = @"Quadkopter Serial MKUSB";
+      h.address = @"/dev/cu.MikroKopter_BT-SerialPo";
+      h.connectionClass = @"MKSerialConnection";
+      [hosts addObject:h];
+      [h release];
+      
       [self save];
     }
   }

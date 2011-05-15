@@ -123,27 +123,22 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 //////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
-- (BOOL) connectTo:(NSString *)hostOrDevice error:(NSError **)err;
-{
+- (BOOL) connectTo:(MKHost*)hostOrDevice error:(NSError **)err {
   if (delegate == nil) {
     [NSException raise:MKBluetoothConnectionException
                 format:@"Attempting to connect without a delegate. Set a delegate first."];
   }
   
-  qlinfo(@"Try to connect to %@", hostOrDevice);
+  qlinfo(@"Try to connect to %@", hostOrDevice.address);
   
-  NSArray* deviceParts=[hostOrDevice componentsSeparatedByString:@"(#)"];
-  
-  if([deviceParts count]>1){
-    [[deviceParts objectAtIndex:1] getCString:pin maxLength:17 encoding:NSISOLatin1StringEncoding];
-  }
-  else
+  if( [hostOrDevice.pin length]>0)
+    [hostOrDevice.pin getCString:pin maxLength:17 encoding:NSISOLatin1StringEncoding];
+  else{
+    qlinfo(@"No PIN set for device, default to 0000");
     strcpy(pin,"0000");
+  }
   
-  
-  
-  [self setAddressFromString:[deviceParts objectAtIndex:0]];
-  
+  [self setAddressFromString:hostOrDevice.address];
   self.mkData=[NSMutableData dataWithCapacity:30];
   
   if( bt_open()!=0 ){

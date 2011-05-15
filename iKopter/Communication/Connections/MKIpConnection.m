@@ -61,14 +61,14 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 #pragma mark -
 #pragma mark MKInput
 
-- (BOOL) connectTo:(NSString *)hostOrDevice error:(NSError **)err;
+- (BOOL) connectTo:(MKHost*)hostOrDevice error:(NSError **)err;
 {
   if (delegate == nil) {
     [NSException raise:MKIpConnectionException
                 format:@"Attempting to connect without a delegate. Set a delegate first."];
   }
 
-  NSArray * hostItems = [hostOrDevice componentsSeparatedByString:@":"];
+  NSArray * hostItems = [hostOrDevice.address componentsSeparatedByString:@":"];
   if ( [hostItems count] != 2 ) {
     qlcritical(@"Attempting to connect without a port. Set a port first.");
     return NO;

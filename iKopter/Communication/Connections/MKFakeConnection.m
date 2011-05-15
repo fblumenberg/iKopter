@@ -263,7 +263,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 #pragma mark -
 #pragma mark MKInput
 
-- (BOOL) connectTo:(NSString *)hostOrDevice error:(NSError **)err;
+- (BOOL) connectTo:(MKHost*)hostOrDevice error:(NSError **)err;
 {
   if (delegate == nil) {
     [NSException raise:MKDummyConnectionException

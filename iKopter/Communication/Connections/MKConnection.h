@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
+#import "MKHost.h"
 
 @protocol MKConnectionDelegate < NSObject >
 @optional
@@ -40,7 +41,7 @@
 
 - (id) initWithDelegate:(id<MKConnectionDelegate>)delegate;
 
-- (BOOL) connectTo:(NSString *)hostOrDevice error:(NSError **)err;
+- (BOOL) connectTo:(MKHost*)hostOrDevice error:(NSError **)err;
 - (BOOL) isConnected;
 - (void) disconnect;
 
