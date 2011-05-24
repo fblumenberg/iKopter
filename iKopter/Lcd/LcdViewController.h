@@ -28,6 +28,8 @@
   UILabel * label;
   int lcdCount;
   
+  NSTimer* requestTimer;
+  
   UIFont* portraitFont;
   UIFont* landscapeFont;
   
@@ -46,5 +48,7 @@
 - (IBAction) prevScreen;
 - (IBAction) changeDevice;
 
+- (void) startRequesting;
+- (void) stopRequesting;
 
 @end

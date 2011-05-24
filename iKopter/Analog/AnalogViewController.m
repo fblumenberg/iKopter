@@ -105,14 +105,17 @@
 
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-
-  [values reloadAll];
+  
+  [values startRequesting];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
+  
+  [values stopRequesting];
   [self.navigationController setToolbarHidden:YES animated:YES];
 }
+
 - (void) viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   
@@ -126,7 +129,8 @@
 #pragma mark -
 
 -(void) reloadAll {
-  [values reloadAll];  
+  [values reloadLabels];  
+  [self.tableView reloadData];
 } 
 
 - (IBAction) changeDevice {

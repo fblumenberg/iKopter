@@ -349,6 +349,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     IKMkAddress address = [strData address];
     if (address!=currentDevice) {
       currentDevice=address;
+      qltrace(@"Device changed to %d, send notification",currentDevice);
       [[NSNotificationCenter defaultCenter] postNotificationName:MKDeviceChangedNotification 
                                                           object:self 
                                                         userInfo:nil];

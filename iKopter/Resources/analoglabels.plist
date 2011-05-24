@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict/>
+	<dict>
+		<key>UNK</key>
+		<array>
+			<string>FC-Analog-01</string>
+			<string>FC-Analog-02</string>
+			<string>FC-Analog-03</string>
+			<string>FC-Analog-04</string>
+			<string>FC-Analog-05</string>
+			<string>FC-Analog-06</string>
+			<string>FC-Analog-07</string>
+			<string>FC-Analog-08</string>
+			<string>FC-Analog-09</string>
+			<string>FC-Analog-10</string>
+			<string>FC-Analog-11</string>
+			<string>FC-Analog-12</string>
+			<string>FC-Analog-13</string>
+			<string>FC-Analog-14</string>
+			<string>FC-Analog-15</string>
+			<string>FC-Analog-16</string>
+			<string>FC-Analog-17</string>
+			<string>FC-Analog-18</string>
+			<string>FC-Analog-19</string>
+			<string>FC-Analog-20</string>
+			<string>FC-Analog-21</string>
+			<string>FC-Analog-22</string>
+			<string>FC-Analog-23</string>
+			<string>FC-Analog-24</string>
+			<string>FC-Analog-25</string>
+			<string>FC-Analog-26</string>
+			<string>FC-Analog-27</string>
+			<string>FC-Analog-28</string>
+			<string>FC-Analog-29</string>
+			<string>FC-Analog-30</string>
+			<string>FC-Analog-31</string>
+			<string>FC-Analog-32</string>
+		</array>
+		<key>0.80e</key>
+		<array>
+			<string>AngleNick</string>
+			<string>AngleRoll</string>
+			<string>AccNick</string>
+			<string>AccRoll</string>
+			<string>YawGyro</string>
+			<string>Height Value</string>
+			<string>AccZ</string>
+			<string>Gas</string>
+			<string>Compass Value</string>
+			<string>Voltage [0.1V]</string>
+			<string>Receiver Level</string>
+			<string>Gyro Compass</string>
+			<string>Motor 1</string>
+			<string>Motor 2</string>
+			<string>Motor 3</string>
+			<string>Motor 4</string>
+			<string>16</string>
+			<string>17</string>
+			<string>18</string>
+			<string>19</string>
+			<string>Servo</string>
+			<string>Hovergas</string>
+			<string>Current [0.1A]</string>
+			<string>Capacity [mAh]</string>
+			<string>24</string>
+			<string>25</string>
+			<string>26</string>
+			<string>27</string>
+			<string>I2C-Error</string>
+			<string>BL Limit</string>
+			<string>GPS_Nick</string>
+			<string>GPS_Roll</string>
+		</array>
+		<key>0.82a</key>
+		<array>
+			<string>AngleNick</string>
+			<string>AngleRoll</string>
+			<string>AccNick</string>
+			<string>AccRoll</string>
+			<string>YawGyro</string>
+			<string>Height Value</string>
+			<string>AccZ</string>
+			<string>Gas</string>
+			<string>Compass Value</string>
+			<string>Voltage [0.1V]</string>
+			<string>Receiver Level</string>
+			<string>Gyro Compass</string>
+			<string>Motor 1</string>
+			<string>Motor 2</string>
+			<string>Motor 3</string>
+			<string>Motor 4</string>
+			<string>16</string>
+			<string>17</string>
+			<string>18</string>
+			<string>19</string>
+			<string>Servo</string>
+			<string>Hovergas</string>
+			<string>Current [0.1A]</string>
+			<string>Capacity [mAh]</string>
+			<string>24</string>
+			<string>25</string>
+			<string>26</string>
+			<string>27</string>
+			<string>I2C-Error</string>
+			<string>BL Limit</string>
+			<string>GPS_Nick</string>
+			<string>GPS_Roll</string>
+		</array>
+		<key>0.82b</key>
+		<array>
+			<string>AngleNick</string>
+			<string>AngleRoll</string>
+			<string>AccNick</string>
+			<string>AccRoll</string>
+			<string>YawGyro</string>
+			<string>Height Value</string>
+			<string>AccZ</string>
+			<string>Gas</string>
+			<string>Compass Value</string>
+			<string>Voltage [0.1V]</string>
+			<string>Receiver Level</string>
+			<string>Gyro Compass</string>
+			<string>Motor 1</string>
+			<string>Motor 2</string>
+			<string>Motor 3</string>
+			<string>Motor 4</string>
+			<string>16</string>
+			<string>17</string>
+			<string>18</string>
+			<string>19</string>
+			<string>Servo</string>
+			<string>Hovergas</string>
+			<string>Current [0.1A]</string>
+			<string>Capacity [mAh]</string>
+			<string>24</string>
+			<string>25</string>
+			<string>26</string>
+			<string>27</string>
+			<string>I2C-Error</string>
+			<string>BL Limit</string>
+			<string>GPS_Nick</string>
+			<string>GPS_Roll</string>
+		</array>
+		<key>0.84a</key>
+		<array>
+			<string>AngleNick</string>
+			<string>AngleRoll</string>
+			<string>AccNick</string>
+			<string>AccRoll</string>
+			<string>YawGyro</string>
+			<string>Height Value</string>
+			<string>AccZ</string>
+			<string>Gas</string>
+			<string>Compass Value</string>
+			<string>Voltage [0.1V]</string>
+			<string>Receiver Level</string>
+			<string>Gyro Compass</string>
+			<string>Motor 1</string>
+			<string>Motor 2</string>
+			<string>Motor 3</string>
+			<string>Motor 4</string>
+			<string>16</string>
+			<string>17</string>
+			<string>18</string>
+			<string>19</string>
+			<string>Servo</string>
+			<string>Hovergas</string>
+			<string>Current [0.1A]</string>
+			<string>Capacity [mAh]</string>
+			<string>Hight Setpoint</string>
+			<string>25</string>
+			<string>26</string>
+			<string>Compass Setpoint</string>
+			<string>I2C-Error</string>
+			<string>BL Limit</string>
+			<string>GPS_Nick</string>
+			<string>GPS_Roll</string>
+		</array>
+	</dict>
+	<dict>
+		<key>UNK</key>
+		<array>
+			<string>NC-Analog-01</string>
+			<string>NC-Analog-02</string>
+			<string>NC-Analog-03</string>
+			<string>NC-Analog-04</string>
+			<string>NC-Analog-05</string>
+			<string>NC-Analog-06</string>
+			<string>NC-Analog-07</string>
+			<string>NC-Analog-08</string>
+			<string>NC-Analog-09</string>
+			<string>NC-Analog-10</string>
+			<string>NC-Analog-11</string>
+			<string>NC-Analog-12</string>
+			<string>NC-Analog-13</string>
+			<string>NC-Analog-14</string>
+			<string>NC-Analog-15</string>
+			<string>NC-Analog-16</string>
+			<string>NC-Analog-17</string>
+			<string>NC-Analog-18</string>
+			<string>NC-Analog-19</string>
+			<string>NC-Analog-20</string>
+			<string>NC-Analog-21</string>
+			<string>NC-Analog-22</string>
+			<string>NC-Analog-23</string>
+			<string>NC-Analog-24</string>
+			<string>NC-Analog-25</string>
+			<string>NC-Analog-26</string>
+			<string>NC-Analog-27</string>
+			<string>NC-Analog-28</string>
+			<string>NC-Analog-29</string>
+			<string>NC-Analog-30</string>
+			<string>NC-Analog-31</string>
+			<string>NC-Analog-32</string>
+		</array>
+		<key>0.20c</key>
+		<array>
+			<string>AngleNick</string>
+			<string>AngleRoll</string>
+			<string>AccNick</string>
+			<string>AccRoll</string>
+			<string>OperatingRadius</string>
+			<string>FC-Flags</string>
+			<string>NC-Flags</string>
+			<string>NickServo</string>
+			<string>RollServo</string>
+			<string>GPS Data</string>
+			<string>CompassHeading</string>
+			<string>GyroHeading</string>
+			<string>SPI Error</string>
+			<string>SPI Okay</string>
+			<string>I2C Error</string>
+			<string>I2C Okay</string>
+			<string></string>
+			<string>ACC_Speed_N</string>
+			<string>ACC_Speed_E</string>
+			<string>Speed_z</string>
+			<string></string>
+			<string>N_Speed</string>
+			<string>E_Speed</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string>Distance N</string>
+			<string>Distance E</string>
+			<string>GPS_Nick</string>
+			<string>GPS_Roll</string>
+			<string>Used_Sats</string>
+		</array>
+		<key>0.22a</key>
+		<array>
+			<string>AngleNick</string>
+			<string>AngleRoll</string>
+			<string>AccNick</string>
+			<string>AccRoll</string>
+			<string>OperatingRadius</string>
+			<string>FC-Flags</string>
+			<string>NC-Flags</string>
+			<string>NickServo</string>
+			<string>RollServo</string>
+			<string>GPS Data</string>
+			<string>CompassHeading</string>
+			<string>GyroHeading</string>
+			<string>SPI Error</string>
+			<string>SPI Okay</string>
+			<string>I2C Error</string>
+			<string>I2C Okay</string>
+			<string></string>
+			<string>ACC_Speed_N</string>
+			<string>ACC_Speed_E</string>
+			<string>Speed_z</string>
+			<string></string>
+			<string>N_Speed</string>
+			<string>E_Speed</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string>Distance N</string>
+			<string>Distance E</string>
+			<string>GPS_Nick</string>
+			<string>GPS_Roll</string>
+			<string>Used_Sats</string>
+		</array>
+		<key>0.24b</key>
+		<array>
+			<string>AngleNick</string>
+			<string>AngleRoll</string>
+			<string>AccNick</string>
+			<string>AccRoll</string>
+			<string>OperatingRadius</string>
+			<string>FC-Flags</string>
+			<string>NC-Flags</string>
+			<string>NickServo</string>
+			<string>RollServo</string>
+			<string>GPS Data</string>
+			<string>CompassHeading</string>
+			<string>GyroHeading</string>
+			<string>SPI Error</string>
+			<string>SPI Okay</string>
+			<string>I2C Error</string>
+			<string>I2C Okay</string>
+			<string>*POI_INDEX</string>
+			<string>ACC_Speed_N</string>
+			<string>ACC_Speed_E</string>
+			<string>Speed_z</string>
+			<string>20</string>
+			<string>N_Speed</string>
+			<string>E_Speed</string>
+			<string>23</string>
+			<string>24</string>
+			<string>25</string>
+			<string>26</string>
+			<string>Distance N</string>
+			<string>Distance E</string>
+			<string>GPS_Nick</string>
+			<string>GPS_Roll</string>
+			<string>Used_Sats</string>
+		</array>
+	</dict>
+	<dict>
+		<key>UNK</key>
+		<array>
+			<string>MK3MAG-Analog-01</string>
+			<string>MK3MAG-Analog-02</string>
+			<string>MK3MAG-Analog-03</string>
+			<string>MK3MAG-Analog-04</string>
+			<string>MK3MAG-Analog-05</string>
+			<string>MK3MAG-Analog-06</string>
+			<string>MK3MAG-Analog-07</string>
+			<string>MK3MAG-Analog-08</string>
+			<string>MK3MAG-Analog-09</string>
+			<string>MK3MAG-Analog-10</string>
+			<string>MK3MAG-Analog-11</string>
+			<string>MK3MAG-Analog-12</string>
+			<string>MK3MAG-Analog-13</string>
+			<string>MK3MAG-Analog-14</string>
+			<string>MK3MAG-Analog-15</string>
+			<string>MK3MAG-Analog-16</string>
+			<string>MK3MAG-Analog-17</string>
+			<string>MK3MAG-Analog-18</string>
+			<string>MK3MAG-Analog-19</string>
+			<string>MK3MAG-Analog-20</string>
+			<string>MK3MAG-Analog-21</string>
+			<string>MK3MAG-Analog-22</string>
+			<string>MK3MAG-Analog-23</string>
+			<string>MK3MAG-Analog-24</string>
+			<string>MK3MAG-Analog-25</string>
+			<string>MK3MAG-Analog-26</string>
+			<string>MK3MAG-Analog-27</string>
+			<string>MK3MAG-Analog-28</string>
+			<string>MK3MAG-Analog-29</string>
+			<string>MK3MAG-Analog-30</string>
+			<string>MK3MAG-Analog-31</string>
+			<string>MK3MAG-Analog-32</string>
+		</array>
+		<key>0.23a</key>
+		<array>
+			<string>Magnet X</string>
+			<string>Magnet Y</string>
+			<string>Magnet Z</string>
+			<string>RawMagnet X</string>
+			<string>RawMagnet Y</string>
+			<string>RawMagnet Z</string>
+			<string>Attitude Nick</string>
+			<string>Attitude Roll</string>
+			<string>Magnet X Offset</string>
+			<string>Magnet X Range</string>
+			<string>Magnet Y Offset</string>
+			<string>Magnet Y Range</string>
+			<string>Magnet Z Offset</string>
+			<string>Magnet Z Range</string>
+			<string>Calstate</string>
+			<string>Heading</string>
+			<string></string>
+			<string></string>
+			<string>Acc X</string>
+			<string>Acc Y</string>
+			<string>Acc Z</string>
+			<string>RawAcc X</string>
+			<string>RawAcc Y</string>
+			<string>RawAcc Z</string>
+			<string>Serial Poti1</string>
+			<string>Serial Poti2</string>
+			<string>Serial Poti3</string>
+			<string>Heading X</string>
+			<string>Heading Y</string>
+			<string>Attitude Source</string>
+			<string>I2C Error</string>
+			<string>I2C Okay</string>
+		</array>
+	</dict>
+</array>
+</plist>

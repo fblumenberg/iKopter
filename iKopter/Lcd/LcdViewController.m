@@ -117,12 +117,14 @@
              name:MKLcdNotification
            object:nil];
 
-  [self performSelector:@selector(sendMenuRefreshRequest) withObject:self afterDelay:0.1];
+  [self startRequesting];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  
+  [self stopRequesting];
 
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
 
 	// restore the nav bar and status bar color to default
@@ -139,6 +141,29 @@
   [self adjustViewsForOrientation:newInterfaceOrientation];
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+
+- (void) startRequesting {
+  
+  requestTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
+                @selector(sendMenuRefreshRequest) userInfo:nil repeats:YES];
+  
+  [self performSelector:@selector(sendMenuRefreshRequest) withObject:self afterDelay:0.1];
+}
+
+- (void) stopRequesting {
+  
+  [requestTimer invalidate];
+  requestTimer=nil;
+  
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  [nc removeObserver:self];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 
 - (void) sendMenuRequestForKeys:(uint8_t)keys;
 {
@@ -167,7 +192,7 @@
   label.text = [lcdDisplay screenTextJoinedByString:@"\r\n"];
   
   if (lcdCount++ > 4 ) {
-    [self sendMenuRefreshRequest];
+//    [self sendMenuRefreshRequest];
     lcdCount = 0;
   }
 }

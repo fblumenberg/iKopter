@@ -183,6 +183,7 @@
     
     [hosts save];
   }
+  
 }
 
 - (void)viewWillDisappear:(BOOL)animated

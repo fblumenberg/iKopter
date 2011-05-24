@@ -33,10 +33,13 @@
 
 @interface AnalogValues : NSObject {
 
-  NSMutableArray * analogLabels;
+  NSArray * analogLabels;
+  
+  NSArray * currAnalogLabels;
   NSMutableArray * debugData;
   
   int debugResponseCounter;
+  NSTimer* requestTimer;
   
   id<AnalogValuesDelegate> _delegate;
 }
@@ -46,6 +49,9 @@
 -(NSUInteger) count;
 -(NSString*) labelAtIndexPath:(NSIndexPath *)indexPath;
 -(NSString*) valueAtIndexPath:(NSIndexPath *)indexPath;
--(void) reloadAll;
+-(void) reloadLabels;
+
+- (void) startRequesting;
+- (void) stopRequesting;
 
 @end
