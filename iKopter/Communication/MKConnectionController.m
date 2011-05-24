@@ -194,7 +194,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   NSData * data = [NSData dataWithBytes:&bytes length:6];
   [self sendRequest:data];
   
-  currentDevice=kIKMkAddressNC;
+  //currentDevice=kIKMkAddressNC;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -211,7 +212,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
                            payloadForByte:byte];
   
   [self sendRequest:data];
-  currentDevice=kIKMkAddressFC;
+  //currentDevice=kIKMkAddressFC;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -228,7 +230,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
                            payloadForByte:byte];
   
   [self sendRequest:data];
-  currentDevice=kIKMkAddressMK3MAg;
+  //currentDevice=kIKMkAddressMK3MAg;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -347,13 +350,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     
     NSData * payload = [strData payload];
     IKMkAddress address = [strData address];
-    if (address!=currentDevice) {
-      currentDevice=address;
-      qltrace(@"Device changed to %d, send notification",currentDevice);
-      [[NSNotificationCenter defaultCenter] postNotificationName:MKDeviceChangedNotification 
-                                                          object:self 
-                                                        userInfo:nil];
-    }
+//    if (address!=currentDevice) {
+//      currentDevice=address;
+//      qltrace(@"Device changed to %d, send notification",currentDevice);
+//      [[NSNotificationCenter defaultCenter] postNotificationName:MKDeviceChangedNotification 
+//                                                          object:self 
+//                                                        userInfo:nil];
+//    }
     
     if (connectionState==kConnectionDeviceChecked)
       [self handleMkResponse:[data command] withPayload:payload forAddress:address];
@@ -400,6 +403,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 }
 
 
+-(void) checkForDeviceChange:(IKMkAddress)address {
+  
+  if (address!=currentDevice) {
+      currentDevice=address;
+        qltrace(@"Device changed to %d, send notification",currentDevice);
+       [[NSNotificationCenter defaultCenter] postNotificationName:MKDeviceChangedNotification 
+                                                           object:self 
+                                                         userInfo:nil];
+  }
+}
+                             
+
 - (void) nextConnectAction {
   qltrace(@"Next connection action, current state is %d",connectionState);
   switch (connectionState) {
@@ -407,25 +422,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       retryCount=0;
       connectionState=kConnectionStateWaitNC;
       [self activateNaviCtrl];
-      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
       [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:6.0];
       break;
     case kConnectionStateWaitNC:
       connectionState=kConnectionStateWaitFC;
       [self activateFlightCtrl];
-      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
       [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
       break;
     case kConnectionStateWaitFC:
       connectionState=kConnectionStateWaitNC_2;
       [self activateNaviCtrl];
-      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
       [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
       break;
     case kConnectionStateWaitNC_2:
       connectionState=kConnectionStateWaitMK3MAG;
       [self activateMK3MAG];
-      [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
       [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
       break;
     case kConnectionStateWaitMK3MAG:
@@ -449,25 +460,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       case kConnectionStateWaitNC:
         connectionState=kConnectionStateWaitNC;
         [self activateNaviCtrl];
-        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
         [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:6.0];
         break;
       case kConnectionStateWaitFC:
         connectionState=kConnectionStateWaitFC;
         [self activateFlightCtrl];
-        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
         [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
         break;
       case kConnectionStateWaitNC_2:
         connectionState=kConnectionStateWaitNC_2;
         [self activateNaviCtrl];
-        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
         [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
         break;
       case kConnectionStateWaitMK3MAG:
         connectionState=kConnectionStateWaitMK3MAG;
         [self activateMK3MAG];
-        [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
         [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
         break;
     }
@@ -531,6 +538,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     case MKCommandVersionResponse:
       n = MKVersionNotification;
       d = [payload decodeVersionResponseForAddress:address];
+      [self checkForDeviceChange:address];
       break;
     default:
       break;
@@ -554,11 +562,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       qltrace(@"Got a device version %@",[self versionForAddress:address]);
       
       NSDictionary* d=[NSDictionary dictionaryWithObject:[self versionForAddress:address] forKey:kIKDataKeyVersion];
-      
       [[NSNotificationCenter defaultCenter] postNotificationName:MKFoundDeviceNotification 
                                                           object:self 
                                                         userInfo:d];
       
+      [self checkForDeviceChange:address];
       [self nextConnectAction];
       break;
     default:
