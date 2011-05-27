@@ -5,7 +5,7 @@
 	<key>Title</key>
 	<string>GyroTITLE</string>
 	<key>StringsTable</key>
-	<string>Altitude</string>
+	<string>Root</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>

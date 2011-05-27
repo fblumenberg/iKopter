@@ -5,7 +5,7 @@
 	<key>Title</key>
 	<string>NaviControlTITLE</string>
 	<key>StringsTable</key>
-	<string> Root</string>
+	<string>Root</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
