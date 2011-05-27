@@ -98,6 +98,16 @@
 			<key>IASKIsNumber</key>
 			<true/>
 		</dict>
+        <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>GlobalConfig_DREHRATEN_BEGRENZER</string>
+            <key>Key</key>
+            <string>GlobalConfig_DREHRATEN_BEGRENZER</string>
+            <key>DefaultValue</key>
+            <true/>
+        </dict>
     	<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>

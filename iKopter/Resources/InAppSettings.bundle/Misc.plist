@@ -98,6 +98,22 @@
                 <key>IASKIsNumber</key>
                 <true/>
             </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>Title</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSToggleSwitchSpecifier</string>
+                <key>Title</key>
+                <string>GlobalConfig_HEADING_HOLD</string>
+                <key>Key</key>
+                <string>GlobalConfig_HEADING_HOLD</string>
+                <key>DefaultValue</key>
+                <true/>
+            </dict>
         </array>
     </dict>
 </plist>
