@@ -64,6 +64,7 @@
 		BA0D478E137D033A001415C3 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D478B137D033A001415C3 /* UIImage+Tint.m */; };
 		BA0D4790137D04E6001415C3 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA0D478F137D04E5001415C3 /* InAppSettings.bundle */; };
 		BA2206881385B31500396AA2 /* analoglabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2206871385B31500396AA2 /* analoglabels.plist */; };
+		BA761324138FFFB600C86318 /* IKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = BA761323138FFFB600C86318 /* IKPoint.m */; };
 		BAA4E630137EB11B0068E38E /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E62F137EB11B0068E38E /* BTDevice.m */; };
 		BAA4E63F137EB34D0068E38E /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E634137EB34D0068E38E /* AMSerialPort.m */; };
 		BAA4E640137EB34D0068E38E /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E636137EB34D0068E38E /* AMSerialPortAdditions.m */; };
@@ -258,6 +259,8 @@
 		BA0D478B137D033A001415C3 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		BA0D478F137D04E5001415C3 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		BA2206871385B31500396AA2 /* analoglabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = analoglabels.plist; sourceTree = "<group>"; };
+		BA761322138FFFB600C86318 /* IKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKPoint.h; sourceTree = "<group>"; };
+		BA761323138FFFB600C86318 /* IKPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKPoint.m; sourceTree = "<group>"; };
 		BAA4E62E137EB11B0068E38E /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
 		BAA4E62F137EB11B0068E38E /* BTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDevice.m; sourceTree = "<group>"; };
 		BAA4E631137EB34C0068E38E /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
@@ -791,6 +794,8 @@
 		BAA4E661137EB5BA0068E38E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BA761322138FFFB600C86318 /* IKPoint.h */,
+				BA761323138FFFB600C86318 /* IKPoint.m */,
 				BAA4E662137EB5BA0068E38E /* IKData3D.h */,
 				BAA4E663137EB5BA0068E38E /* IKData3D.m */,
 				BAA4E664137EB5BA0068E38E /* IKDebugData.h */,
@@ -1162,6 +1167,7 @@
 				BAA4E6E7137EB89D0068E38E /* IKAttitudeIndicator.m in Sources */,
 				BAA4E6E8137EB89D0068E38E /* IKCompass.m in Sources */,
 				BAA4E6E9137EB89D0068E38E /* IKInstrumentsCommon.m in Sources */,
+				BA761324138FFFB600C86318 /* IKPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

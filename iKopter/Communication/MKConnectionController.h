@@ -50,10 +50,15 @@ extern NSString * const MKWriteMixerNotification;
 extern NSString * const MKOsdNotification;
 extern NSString * const MKData3DNotification;
 
+extern NSString * const MKReadPointNotification;
+extern NSString * const MKWritePointNotification;
+
 
 @class MKHost;
 @class IKParamSet;
 @class IKDeviceVersion;
+@class IKPoint;
+
 
 @interface MKConnectionController : NSObject<MKConnectionDelegate> {
 
@@ -99,5 +104,9 @@ extern NSString * const MKData3DNotification;
 - (void) requestData3DForInterval:(NSUInteger)interval;
 - (void) requestDebugValueForInterval:(NSUInteger)interval;
 - (void) requestOsdDataForInterval:(NSUInteger)interval;
+
+- (void) requestPointForIndex:(NSInteger)interval;
+- (void) writePoint:(IKPoint*)point;
+
   
 @end

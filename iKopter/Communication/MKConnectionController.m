@@ -33,6 +33,7 @@
 
 #import "IKDeviceVersion.h"
 #import "IKParamSet.h"
+#import "IKPoint.h"
 
 // ///////////////////////////////////////////////////////////////////////////////
 NSString * const MKFoundDeviceNotification = @"MKFoundDeviceNotification";
@@ -57,6 +58,9 @@ NSString * const MKWriteMixerNotification = @"MKWriteMixerNotification";
 
 NSString * const MKOsdNotification = @"MKOsdNotification";
 NSString * const MKData3DNotification = @"MKData3DNotification";
+
+NSString * const MKReadPointNotification = @"MKReadPointNotification";
+NSString * const MKWritePointNotification = @"MKWritePointNotification";
 
 
 // ///////////////////////////////////////////////////////////////////////////////
@@ -316,6 +320,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) requestPointForIndex:(NSInteger)theIndex {
+  uint8_t index = theIndex;
+  
+  NSData * data = [NSData dataWithCommand:MKCommandReadPointRequest
+                               forAddress:kIKMkAddressNC
+                         payloadWithBytes:&index
+                                   length:1];
+  
+  [self sendRequest:data];
+}
+
+- (void) writePoint:(IKPoint*)point {
+  
+  NSData * payload = [point data];
+  NSData * data = [payload dataWithCommand:MKCommandWritePointRequest
+                                forAddress:kIKMkAddressNC];
+  [self sendRequest:data];
+}
+
+- (void) sendPoint:(IKPoint*)point {
+  
+  NSData * payload = [point data];
+  NSData * data = [payload dataWithCommand:MKCommandSendPointRequest
+                                forAddress:kIKMkAddressNC];
+  [self sendRequest:data];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark MKInputDelegate
 
@@ -534,6 +566,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     case MKCommandData3DResponse:
       n = MKData3DNotification;
       d = [payload decodeData3DResponse];
+      break;
+    case MKCommandReadPointResponse:
+      n = MKReadPointNotification;
+      d = [payload decodePointReadResponse];
+      break;
+    case MKCommandWritePointResponse:
+      n = MKWritePointNotification;
+      d = [payload decodePointWriteResponse];
       break;
     case MKCommandVersionResponse:
       n = MKVersionNotification;
