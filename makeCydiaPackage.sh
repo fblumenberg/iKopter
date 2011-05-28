@@ -1,3 +1,5 @@
+./plistVersionIncrement.sh
+
 xcodebuild -configuration "Release Distribution" -target "iKopter"
 
 PROJECTMAIN=$(pwd)
