@@ -195,6 +195,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   [self sendRequest:data];
   
   //currentDevice=kIKMkAddressNC;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
   [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
@@ -213,6 +214,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   
   [self sendRequest:data];
   //currentDevice=kIKMkAddressFC;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
   [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
@@ -231,6 +233,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   
   [self sendRequest:data];
   //currentDevice=kIKMkAddressMK3MAg;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.7];
   [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 

@@ -345,14 +345,14 @@
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
 
-  [_hud hide:YES];
+  [_hud hide:NO];
   
   [UIApplication sharedApplication].idleTimerDisabled=YES;
 }
 
 - (void)disconnected:(NSNotification *)aNotification;
 {
-  [_hud hide:YES];
+  [_hud hide:NO];
   connectionState=MKConnectionStateDisconnected;
   [UIApplication sharedApplication].idleTimerDisabled=NO;
   [self.navigationController popToRootViewControllerAnimated:YES]; 
