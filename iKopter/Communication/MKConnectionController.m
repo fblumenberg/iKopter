@@ -176,6 +176,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   return versions[kIKMkAddressNC]!=nil;
 }
 
+- (BOOL) hasFlightCtrl {
+  return versions[kIKMkAddressFC]!=nil;
+}
+
+- (BOOL) hasMK3MAG {
+  return versions[kIKMkAddressMK3MAg]!=nil;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) activateNaviCtrl {
   
@@ -456,8 +464,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 - (void) connectionTimeout {
   qltrace(@"connection timeout, retry count %d",retryCount);
-  if (++retryCount>3 && connectionState==kConnectionStateWaitNC) {
-    [self stop];
+  if (++retryCount>3 ){
+    
+    if(connectionState==kConnectionStateWaitNC) {
+      [self stop];
+    }
+    else{
+      connectionState=kConnectionDeviceChecked;
+      NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+      [nc postNotificationName:MKConnectedNotification object:self userInfo:nil];
+    }
   }
   else {
     switch (connectionState) {

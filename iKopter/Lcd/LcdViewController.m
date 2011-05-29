@@ -56,16 +56,9 @@
 
 - (void) updateSegment {
   
-  if ([[MKConnectionController sharedMKConnectionController] hasNaviCtrl]) {
-    [segment setEnabled:YES forSegmentAtIndex:0];
-    [segment setEnabled:YES forSegmentAtIndex:1];
-    [segment setEnabled:YES forSegmentAtIndex:2];
-  } 
-  else {
-    [segment setEnabled:NO forSegmentAtIndex:0];
-    [segment setEnabled:YES forSegmentAtIndex:1];
-    [segment setEnabled:NO forSegmentAtIndex:2];
-  }
+  [segment setEnabled:[[MKConnectionController sharedMKConnectionController] hasNaviCtrl] forSegmentAtIndex:0];
+  [segment setEnabled:[[MKConnectionController sharedMKConnectionController] hasFlightCtrl] forSegmentAtIndex:1];
+  [segment setEnabled:[[MKConnectionController sharedMKConnectionController] hasMK3MAG] forSegmentAtIndex:2];
 
   IKMkAddress currentDevice=[MKConnectionController sharedMKConnectionController].currentDevice;
   switch (currentDevice) {
