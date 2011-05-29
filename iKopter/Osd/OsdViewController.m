@@ -88,6 +88,11 @@
   [self.navigationController setNavigationBarHidden:NO animated:NO];
   
   self.navigationController.navigationBar.translucent=YES;
+  
+//  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action: nil] autorelease];
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"screenlock-locked.png"] style:UIBarButtonItemStylePlain target:self action: nil] autorelease];
+  
+  
   [self updateSelectedViewFrame];
 }
 
