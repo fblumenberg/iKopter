@@ -167,8 +167,9 @@
 
 - (void) readSettingNotification:(NSNotification *)aNotification {
   
-  NSDictionary* d=[aNotification userInfo];
-  self.setting = [d mutableCopy];
+  IKParamSet* paramSet=[[aNotification userInfo] objectForKey:kIKDataKeyParamSet];
+  self.setting = paramSet;
+  self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:paramSet];
   [_tableView reloadData];
 }
 
