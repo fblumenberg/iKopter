@@ -64,16 +64,6 @@
 		BA0D478E137D033A001415C3 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D478B137D033A001415C3 /* UIImage+Tint.m */; };
 		BA0D4790137D04E6001415C3 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA0D478F137D04E5001415C3 /* InAppSettings.bundle */; };
 		BA2206881385B31500396AA2 /* analoglabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2206871385B31500396AA2 /* analoglabels.plist */; };
-		BA49038813953FE200517B7D /* btstack.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49037D13953FE200517B7D /* btstack.c */; };
-		BA49038913953FE200517B7D /* hci_cmds.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49037E13953FE200517B7D /* hci_cmds.c */; };
-		BA49038A13953FE200517B7D /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49037F13953FE200517B7D /* linked_list.c */; };
-		BA49038B13953FE200517B7D /* run_loop_cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = BA49038013953FE200517B7D /* run_loop_cocoa.m */; };
-		BA49038C13953FE200517B7D /* run_loop_embedded.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49038113953FE200517B7D /* run_loop_embedded.c */; };
-		BA49038D13953FE200517B7D /* run_loop_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49038213953FE200517B7D /* run_loop_posix.c */; };
-		BA49038E13953FE200517B7D /* run_loop.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49038413953FE200517B7D /* run_loop.c */; };
-		BA49038F13953FE200517B7D /* sdp_util.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49038513953FE200517B7D /* sdp_util.c */; };
-		BA49039013953FE200517B7D /* socket_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49038613953FE200517B7D /* socket_connection.c */; };
-		BA49039113953FE200517B7D /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = BA49038713953FE200517B7D /* utils.c */; };
 		BA76133C1391184300C86318 /* screenlock.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133B1391184300C86318 /* screenlock.png */; };
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
@@ -168,6 +158,16 @@
 		BAA4E724137EBA630068E38E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E722137EBA630068E38E /* Localizable.strings */; };
 		BAA4E758137EC6160068E38E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */; };
 		BAA4E759137EC6160068E38E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */; };
+		BAC81D67139550F000F642FA /* btstack.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D55139550F000F642FA /* btstack.c */; };
+		BAC81D68139550F000F642FA /* hci_cmds.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D57139550F000F642FA /* hci_cmds.c */; };
+		BAC81D69139550F000F642FA /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5C139550F000F642FA /* linked_list.c */; };
+		BAC81D6A139550F000F642FA /* run_loop_cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5E139550F000F642FA /* run_loop_cocoa.m */; };
+		BAC81D6B139550F000F642FA /* run_loop_embedded.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5F139550F000F642FA /* run_loop_embedded.c */; };
+		BAC81D6C139550F000F642FA /* run_loop_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D60139550F000F642FA /* run_loop_posix.c */; };
+		BAC81D6D139550F000F642FA /* run_loop.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D62139550F000F642FA /* run_loop.c */; };
+		BAC81D6E139550F000F642FA /* sdp_util.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D63139550F000F642FA /* sdp_util.c */; };
+		BAC81D6F139550F000F642FA /* socket_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D64139550F000F642FA /* socket_connection.c */; };
+		BAC81D70139550F000F642FA /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D66139550F000F642FA /* utils.c */; };
 		BAD69580137E9ECF006C129D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957E137E9ECF006C129D /* Default.png */; };
 		BAD69581137E9ECF006C129D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957F137E9ECF006C129D /* Default@2x.png */; };
 /* End PBXBuildFile section */
@@ -272,17 +272,6 @@
 		BA0D478B137D033A001415C3 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		BA0D478F137D04E5001415C3 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		BA2206871385B31500396AA2 /* analoglabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = analoglabels.plist; sourceTree = "<group>"; };
-		BA49037D13953FE200517B7D /* btstack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = btstack.c; path = "Frameworks/BTStack/src-client/btstack.c"; sourceTree = SOURCE_ROOT; };
-		BA49037E13953FE200517B7D /* hci_cmds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hci_cmds.c; path = "Frameworks/BTStack/src-client/hci_cmds.c"; sourceTree = SOURCE_ROOT; };
-		BA49037F13953FE200517B7D /* linked_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = linked_list.c; path = "Frameworks/BTStack/src-client/linked_list.c"; sourceTree = SOURCE_ROOT; };
-		BA49038013953FE200517B7D /* run_loop_cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = run_loop_cocoa.m; path = "Frameworks/BTStack/src-client/run_loop_cocoa.m"; sourceTree = SOURCE_ROOT; };
-		BA49038113953FE200517B7D /* run_loop_embedded.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = run_loop_embedded.c; path = "Frameworks/BTStack/src-client/run_loop_embedded.c"; sourceTree = SOURCE_ROOT; };
-		BA49038213953FE200517B7D /* run_loop_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = run_loop_posix.c; path = "Frameworks/BTStack/src-client/run_loop_posix.c"; sourceTree = SOURCE_ROOT; };
-		BA49038313953FE200517B7D /* run_loop_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = run_loop_private.h; path = "Frameworks/BTStack/src-client/run_loop_private.h"; sourceTree = SOURCE_ROOT; };
-		BA49038413953FE200517B7D /* run_loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = run_loop.c; path = "Frameworks/BTStack/src-client/run_loop.c"; sourceTree = SOURCE_ROOT; };
-		BA49038513953FE200517B7D /* sdp_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sdp_util.c; path = "Frameworks/BTStack/src-client/sdp_util.c"; sourceTree = SOURCE_ROOT; };
-		BA49038613953FE200517B7D /* socket_connection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = socket_connection.c; path = "Frameworks/BTStack/src-client/socket_connection.c"; sourceTree = SOURCE_ROOT; };
-		BA49038713953FE200517B7D /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utils.c; path = "Frameworks/BTStack/src-client/utils.c"; sourceTree = SOURCE_ROOT; };
 		BA76133B1391184300C86318 /* screenlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenlock.png; sourceTree = "<group>"; };
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
@@ -433,6 +422,25 @@
 		BAA4E725137EBA780068E38E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		BAC81D54139550F000F642FA /* bt_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bt_control.h; sourceTree = "<group>"; };
+		BAC81D55139550F000F642FA /* btstack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = btstack.c; sourceTree = "<group>"; };
+		BAC81D56139550F000F642FA /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
+		BAC81D57139550F000F642FA /* hci_cmds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hci_cmds.c; sourceTree = "<group>"; };
+		BAC81D58139550F000F642FA /* hci_transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hci_transport.h; sourceTree = "<group>"; };
+		BAC81D59139550F000F642FA /* hci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hci.h; sourceTree = "<group>"; };
+		BAC81D5A139550F000F642FA /* l2cap_signaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = l2cap_signaling.h; sourceTree = "<group>"; };
+		BAC81D5B139550F000F642FA /* l2cap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = l2cap.h; sourceTree = "<group>"; };
+		BAC81D5C139550F000F642FA /* linked_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = linked_list.c; sourceTree = "<group>"; };
+		BAC81D5D139550F000F642FA /* remote_device_db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remote_device_db.h; sourceTree = "<group>"; };
+		BAC81D5E139550F000F642FA /* run_loop_cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = run_loop_cocoa.m; sourceTree = "<group>"; };
+		BAC81D5F139550F000F642FA /* run_loop_embedded.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = run_loop_embedded.c; sourceTree = "<group>"; };
+		BAC81D60139550F000F642FA /* run_loop_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = run_loop_posix.c; sourceTree = "<group>"; };
+		BAC81D61139550F000F642FA /* run_loop_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = run_loop_private.h; sourceTree = "<group>"; };
+		BAC81D62139550F000F642FA /* run_loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = run_loop.c; sourceTree = "<group>"; };
+		BAC81D63139550F000F642FA /* sdp_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sdp_util.c; sourceTree = "<group>"; };
+		BAC81D64139550F000F642FA /* socket_connection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket_connection.c; sourceTree = "<group>"; };
+		BAC81D65139550F000F642FA /* socket_connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_connection.h; sourceTree = "<group>"; };
+		BAC81D66139550F000F642FA /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
 		BAD6957E137E9ECF006C129D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BAD6957F137E9ECF006C129D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -742,20 +750,28 @@
 			path = Hosts;
 			sourceTree = "<group>";
 		};
-		BA49037C13953FC000517B7D /* BTStack-Client */ = {
+		BA4E544413955043005CE4D2 /* BTStack-Client */ = {
 			isa = PBXGroup;
 			children = (
-				BA49037D13953FE200517B7D /* btstack.c */,
-				BA49037E13953FE200517B7D /* hci_cmds.c */,
-				BA49037F13953FE200517B7D /* linked_list.c */,
-				BA49038013953FE200517B7D /* run_loop_cocoa.m */,
-				BA49038113953FE200517B7D /* run_loop_embedded.c */,
-				BA49038213953FE200517B7D /* run_loop_posix.c */,
-				BA49038313953FE200517B7D /* run_loop_private.h */,
-				BA49038413953FE200517B7D /* run_loop.c */,
-				BA49038513953FE200517B7D /* sdp_util.c */,
-				BA49038613953FE200517B7D /* socket_connection.c */,
-				BA49038713953FE200517B7D /* utils.c */,
+				BAC81D54139550F000F642FA /* bt_control.h */,
+				BAC81D55139550F000F642FA /* btstack.c */,
+				BAC81D56139550F000F642FA /* debug.h */,
+				BAC81D57139550F000F642FA /* hci_cmds.c */,
+				BAC81D58139550F000F642FA /* hci_transport.h */,
+				BAC81D59139550F000F642FA /* hci.h */,
+				BAC81D5A139550F000F642FA /* l2cap_signaling.h */,
+				BAC81D5B139550F000F642FA /* l2cap.h */,
+				BAC81D5C139550F000F642FA /* linked_list.c */,
+				BAC81D5D139550F000F642FA /* remote_device_db.h */,
+				BAC81D5E139550F000F642FA /* run_loop_cocoa.m */,
+				BAC81D5F139550F000F642FA /* run_loop_embedded.c */,
+				BAC81D60139550F000F642FA /* run_loop_posix.c */,
+				BAC81D61139550F000F642FA /* run_loop_private.h */,
+				BAC81D62139550F000F642FA /* run_loop.c */,
+				BAC81D63139550F000F642FA /* sdp_util.c */,
+				BAC81D64139550F000F642FA /* socket_connection.c */,
+				BAC81D65139550F000F642FA /* socket_connection.h */,
+				BAC81D66139550F000F642FA /* utils.c */,
 			);
 			name = "BTStack-Client";
 			sourceTree = "<group>";
@@ -763,7 +779,7 @@
 		BAA4E62D137EB11B0068E38E /* Lowlevel */ = {
 			isa = PBXGroup;
 			children = (
-				BA49037C13953FC000517B7D /* BTStack-Client */,
+				BA4E544413955043005CE4D2 /* BTStack-Client */,
 				BAA4E649137EB3C50068E38E /* Serial */,
 				BAA4E648137EB3B00068E38E /* Bluetooth */,
 				BAA4E647137EB39D0068E38E /* Network */,
@@ -1218,16 +1234,16 @@
 				BAA4E6E7137EB89D0068E38E /* IKAttitudeIndicator.m in Sources */,
 				BAA4E6E8137EB89D0068E38E /* IKCompass.m in Sources */,
 				BAA4E6E9137EB89D0068E38E /* IKInstrumentsCommon.m in Sources */,
-				BA49038813953FE200517B7D /* btstack.c in Sources */,
-				BA49038913953FE200517B7D /* hci_cmds.c in Sources */,
-				BA49038A13953FE200517B7D /* linked_list.c in Sources */,
-				BA49038B13953FE200517B7D /* run_loop_cocoa.m in Sources */,
-				BA49038C13953FE200517B7D /* run_loop_embedded.c in Sources */,
-				BA49038D13953FE200517B7D /* run_loop_posix.c in Sources */,
-				BA49038E13953FE200517B7D /* run_loop.c in Sources */,
-				BA49038F13953FE200517B7D /* sdp_util.c in Sources */,
-				BA49039013953FE200517B7D /* socket_connection.c in Sources */,
-				BA49039113953FE200517B7D /* utils.c in Sources */,
+				BAC81D67139550F000F642FA /* btstack.c in Sources */,
+				BAC81D68139550F000F642FA /* hci_cmds.c in Sources */,
+				BAC81D69139550F000F642FA /* linked_list.c in Sources */,
+				BAC81D6A139550F000F642FA /* run_loop_cocoa.m in Sources */,
+				BAC81D6B139550F000F642FA /* run_loop_embedded.c in Sources */,
+				BAC81D6C139550F000F642FA /* run_loop_posix.c in Sources */,
+				BAC81D6D139550F000F642FA /* run_loop.c in Sources */,
+				BAC81D6E139550F000F642FA /* sdp_util.c in Sources */,
+				BAC81D6F139550F000F642FA /* socket_connection.c in Sources */,
+				BAC81D70139550F000F642FA /* utils.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1400,10 +1416,7 @@
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/BTStack/include";
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
-				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
-					"-all_load",
-					"${SOURCE_ROOT}/Frameworks/BTStack/lib-iphone/libBTstack.dylib",
-				);
+				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
