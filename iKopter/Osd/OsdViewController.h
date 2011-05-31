@@ -29,6 +29,8 @@
   
   OsdValue* osdValue;
   
+  UIButton *screenLockButton;
+  
   NSArray* viewControllers;
 	UITabBar* tabBar;
 	
@@ -38,6 +40,7 @@
 }
 
 @property (nonatomic, retain) NSArray *viewControllers;
+@property (nonatomic, retain) UIButton *screenLockButton;
 @property (nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property (nonatomic, retain) IBOutlet UITabBarItem *horizonOsdTabBarItem;
 @property (nonatomic, retain) IBOutlet UITabBarItem *valuesOsdTabBarItem;
