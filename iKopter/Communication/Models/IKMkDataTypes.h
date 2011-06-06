@@ -394,7 +394,7 @@ typedef struct
   uint8_t       OperatingRadius;      // current operation radius around the Home Position in m
   int16_t       TopSpeed;         // velocity in vertical direction in cm/s
   uint8_t       TargetHoldTime;       // time in s to stay at the given target, counts down to 0 if target has been reached
-  uint8_t       RC_RSSI;          // Receiver signal strength (since version 2 added)
+  uint8_t       FCStatusFlags2;				// StatusFlags2 (since version 5 added)
   int16_t       SetpointAltitude;     // setpoint for altitude
   uint8_t       Gas;            // for future use
   uint16_t      Current;          // actual current in 0.1A steps
@@ -419,3 +419,7 @@ typedef struct
 #define FC_STATUS_LOWBAT              0x20
 #define FC_STATUS_VARIO_TRIM_UP       0x40
 #define FC_STATUS_VARIO_TRIM_DOWN     0x80
+
+// FC STATUS FLAGS2
+#define FC_STATUS2_CAREFREE           0x01
+#define FC_STATUS2_ALTITUDE_CONTROL   0x02
