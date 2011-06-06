@@ -156,8 +156,11 @@
   [info appendFormat:@"SetpointAltitude: %d\r\n",value.data.data->SetpointAltitude];
   [info appendFormat:@"Gas: %d\r\n",value.data.data->Gas];
   
-  
-  [info appendFormat:@"RC_RSSI: %d\r\n",value.data.data->RC_RSSI];
+
+  if(value.data.data->Version==5)
+    [info appendFormat:@"FCStatusFlags2: %d\r\n",value.data.data->FCStatusFlags2];
+  else
+    [info appendFormat:@"RC_RSSI: %d\r\n",value.data.data->FCStatusFlags2];
   [info appendFormat:@"Current: %d\r\n",value.data.data->Current];
   [info appendFormat:@"UsedCapacity: %d\r\n",value.data.data->UsedCapacity];
   

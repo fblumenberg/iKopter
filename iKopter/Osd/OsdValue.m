@@ -22,9 +22,12 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
+#import "iKopterAppDelegate.h"
 #import "OsdValue.h"
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
+#import "NCLogSession.h"
+#import "NCLogRecord.h"
 
 @interface OsdValue()
 - (void) sendOsdRefreshRequest;
@@ -40,6 +43,8 @@
 
 @synthesize delegate=_delegate;
 @synthesize data=_data;
+@synthesize ncLogSession=_ncLogSession;
+@synthesize managedObjectContext;
 
 -(BOOL) areEnginesOn {
   if (!_data.data) 
@@ -126,6 +131,18 @@
    
     self.data=[IKNaviData data];
     
+    iKopterAppDelegate* appDelegate =(iKopterAppDelegate*)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext=appDelegate.managedObjectContext;
+    
+    self.ncLogSession = [NSEntityDescription insertNewObjectForEntityForName:@"NCLogSession" inManagedObjectContext:self.managedObjectContext];
+    self.ncLogSession.timeStamp=[NSDate date];
+    
+//    OsdRecord *object = [NSEntityDescription insertNewObjectForEntityForName:@"OsdRecord" inManagedObjectContext:context];
+//    object.timeStamp=[NSDate date];
+//    
+//    NSMutableSet *relationshipSet = [newManagedObject mutableSetValueForKey:@"records"];
+//    [relationshipSet addObject:object];
+
   }
   return self;
 }

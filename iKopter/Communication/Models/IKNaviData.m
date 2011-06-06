@@ -54,7 +54,7 @@
   self = [super init];
   if (self != nil) {
     memcpy(&_data,[data bytes],sizeof(_data));
-    NSLog(@"Roll %d",_data.AngleRoll);
+//    NSLog(@"Roll %d",_data.AngleRoll);
   }
   return self;
 }

@@ -38,6 +38,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@class NCLogSession;
+
 @interface OsdValue : NSObject {
 
   int requestCount;
@@ -45,10 +47,15 @@
    
   id<OsdValueDelegate> _delegate;
   IKNaviData* _data;
+  NCLogSession* _ncLogSession;
+  
 }
 
+@property(retain) NCLogSession* ncLogSession;
 @property(assign) id<OsdValueDelegate> delegate;
 @property(readonly,retain) IKNaviData* data;
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property(readonly) BOOL areEnginesOn;
 @property(readonly) BOOL isFlying;
