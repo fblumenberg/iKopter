@@ -260,10 +260,10 @@
 		BA0D475F137C715A001415C3 /* qlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qlog.h; sourceTree = "<group>"; };
 		BA0D4763137C72DD001415C3 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalCorePaths.h; sourceTree = "<group>"; };
 		BA0D4764137C72DD001415C3 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
-		BA0D4775137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = /Users/frankblumenberg/Develop/Cocoa/TempInfo/iKopterNG/iKopter/iKopter/Resources/de.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
-		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "/Users/frankblumenberg/Develop/Cocoa/TempInfo/iKopterNG/iKopter/iKopter/Application Base/de.lproj/MainWindow.xib"; sourceTree = "<absolute>"; };
-		BA0D4777137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "/Users/frankblumenberg/Develop/Cocoa/TempInfo/iKopterNG/iKopter/iKopter/Application Base/de.lproj/MainWindow-iPad.xib"; sourceTree = "<absolute>"; };
-		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "/Users/frankblumenberg/Develop/Cocoa/TempInfo/iKopterNG/iKopter/iKopter/Application Base/de.lproj/RootViewController.xib"; sourceTree = "<absolute>"; };
+		BA0D4775137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow.xib"; sourceTree = "<group>"; };
+		BA0D4777137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/RootViewController.xib"; sourceTree = "<group>"; };
 		BA0D477B137D0109001415C3 /* MKHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHost.h; sourceTree = "<group>"; };
 		BA0D477C137D0109001415C3 /* MKHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHost.m; sourceTree = "<group>"; };
 		BA0D477D137D0109001415C3 /* MKHosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHosts.h; sourceTree = "<group>"; };
