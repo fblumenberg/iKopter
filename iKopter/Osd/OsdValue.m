@@ -192,11 +192,19 @@
 
   [logTimer invalidate];
   logTimer=nil;
+  
+  if( _logActive ){
+    self.ncLogSession.timeStampEnd=[NSDate date];
+    
+    NSError *error = nil;
+    if(![self.managedObjectContext save:&error]){
+      qlcritical(@"Could not save the NC-Log records %@",error);
+    }
+  }
 
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
   
-  self.ncLogSession.timeStampEnd=[NSDate date];
 }
 
 
@@ -227,6 +235,9 @@
   
   NCLogRecord* record=[NSEntityDescription insertNewObjectForEntityForName:@"NCLogRecord" inManagedObjectContext:self.managedObjectContext];
   record.timeStamp=[NSDate date];
+  
+  [record fillFromNCData:self.data];
+  
   NSMutableSet *relationshipSet = [self.ncLogSession mutableSetValueForKey:@"records"];
   [relationshipSet addObject:record];
   
