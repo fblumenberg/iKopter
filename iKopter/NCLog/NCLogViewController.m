@@ -8,8 +8,8 @@
 
 #import "NCLogViewController.h"
 #import "iKopterAppDelegate.h"
-#import "OsdEvent.h"
-#import "OsdRecord.h"
+#import "NCLogSession.h"
+#import "NCLogRecord.h"
 
 @interface NCLogViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -103,7 +103,7 @@
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
   }
   
   // Configure the cell.
@@ -152,8 +152,15 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-  OsdEvent* managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+  NCLogSession* managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  cell.textLabel.text = [NSDateFormatter localizedStringFromDate:managedObject.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:kCFDateFormatterNoStyle];
+  
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ –– %@ (%d)", 
+                               [NSDateFormatter localizedStringFromDate:managedObject.timeStampStart dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
+                               [NSDateFormatter localizedStringFromDate:managedObject.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
+                               [managedObject.records count]];
+  
+
 }
 
 #pragma mark - Table view delegate
@@ -185,14 +192,14 @@
   // Create the fetch request for the entity.
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   // Edit the entity name as appropriate.
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"OsdEvent" inManagedObjectContext:self.managedObjectContext];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"NCLogSession" inManagedObjectContext:self.managedObjectContext];
   [fetchRequest setEntity:entity];
   
   // Set the batch size to a suitable number.
   [fetchRequest setFetchBatchSize:20];
   
   // Edit the sort key as appropriate.
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStampStart" ascending:NO];
   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
   
   [fetchRequest setSortDescriptors:sortDescriptors];

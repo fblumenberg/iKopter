@@ -48,6 +48,8 @@
   [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"http://frankblumenberg.de/crashlog/crash_v200.php"];
   [[BWQuincyManager sharedQuincyManager] setDelegate:self];
   
+  
+  [self saveContext];
   return YES;
 }
 
@@ -64,10 +66,7 @@
   [[MKConnectionController sharedMKConnectionController] stop];
   [self.navigationController popToRootViewControllerAnimated:NO]; 
 
-  /*
-   Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-   If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-   */
+  [self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -162,7 +161,7 @@
   {
     return __managedObjectModel;
   }
-  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"OsdData" withExtension:@"momd"];
+  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"iKopter" withExtension:@"momd"];
   __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
   return __managedObjectModel;
 }
@@ -212,17 +211,6 @@
   }    
   
   return __persistentStoreCoordinator;
-}
-
-#pragma mark - Application's Documents directory
-
-/**
- Returns the URL to the application's Documents directory.
- */
-- (NSURL *)applicationDocumentsDirectory
-{
-
-  return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 

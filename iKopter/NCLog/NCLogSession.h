@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define kIKNCLoggingInterval @"IKNCLoggingInterval"
+#define kIKNCLoggingActive @"IKNCLoggingActive"
+
+
 @class NCLogRecord;
 
 @interface NCLogSession : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSDate * timeStamp;
+@property (nonatomic, retain) NSDate * timeStampStart;
+@property (nonatomic, retain) NSDate * timeStampEnd;
 @property (nonatomic, retain) NSSet* records;
 
 @end

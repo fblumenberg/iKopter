@@ -175,8 +175,6 @@
 		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
 		BAEEFBE6139D6FF90003860E /* NCLogSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDE139D6FF90003860E /* NCLogSession.m */; };
 		BAEEFBE7139D6FF90003860E /* NCLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBE0139D6FF90003860E /* NCLogViewController.m */; };
-		BAEEFBE8139D6FF90003860E /* OsdEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBE2139D6FF90003860E /* OsdEvent.m */; };
-		BAEEFBE9139D6FF90003860E /* OsdRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBE4139D6FF90003860E /* OsdRecord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -458,10 +456,6 @@
 		BAEEFBDE139D6FF90003860E /* NCLogSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLogSession.m; sourceTree = "<group>"; };
 		BAEEFBDF139D6FF90003860E /* NCLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogViewController.h; sourceTree = "<group>"; };
 		BAEEFBE0139D6FF90003860E /* NCLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLogViewController.m; sourceTree = "<group>"; };
-		BAEEFBE1139D6FF90003860E /* OsdEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdEvent.h; sourceTree = "<group>"; };
-		BAEEFBE2139D6FF90003860E /* OsdEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdEvent.m; sourceTree = "<group>"; };
-		BAEEFBE3139D6FF90003860E /* OsdRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdRecord.h; sourceTree = "<group>"; };
-		BAEEFBE4139D6FF90003860E /* OsdRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdRecord.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1041,10 +1035,6 @@
 				BAEEFBDE139D6FF90003860E /* NCLogSession.m */,
 				BAEEFBDF139D6FF90003860E /* NCLogViewController.h */,
 				BAEEFBE0139D6FF90003860E /* NCLogViewController.m */,
-				BAEEFBE1139D6FF90003860E /* OsdEvent.h */,
-				BAEEFBE2139D6FF90003860E /* OsdEvent.m */,
-				BAEEFBE3139D6FF90003860E /* OsdRecord.h */,
-				BAEEFBE4139D6FF90003860E /* OsdRecord.m */,
 			);
 			path = NCLog;
 			sourceTree = "<group>";
@@ -1296,8 +1286,6 @@
 				BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */,
 				BAEEFBE6139D6FF90003860E /* NCLogSession.m in Sources */,
 				BAEEFBE7139D6FF90003860E /* NCLogViewController.m in Sources */,
-				BAEEFBE8139D6FF90003860E /* OsdEvent.m in Sources */,
-				BAEEFBE9139D6FF90003860E /* OsdRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

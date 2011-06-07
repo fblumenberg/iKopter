@@ -44,11 +44,13 @@
 
   int requestCount;
   NSTimer* requestTimer;
+  NSTimer* logTimer;
    
   id<OsdValueDelegate> _delegate;
   IKNaviData* _data;
   NCLogSession* _ncLogSession;
-  
+  NSTimeInterval _logInterval;
+  BOOL _logActive;
 }
 
 @property(retain) NCLogSession* ncLogSession;

@@ -31,6 +31,7 @@
 
 @interface OsdValue()
 - (void) sendOsdRefreshRequest;
+- (void) logNCData;
 - (void) osdNotification:(NSNotification *)aNotification;
 
 @property(retain) IKNaviData* data;
@@ -128,21 +129,30 @@
 {
   self = [super init];
   if (self != nil) {
-   
+    
     self.data=[IKNaviData data];
     
-    iKopterAppDelegate* appDelegate =(iKopterAppDelegate*)[[UIApplication sharedApplication] delegate];
-    self.managedObjectContext=appDelegate.managedObjectContext;
+    _logActive=NO;
     
-    self.ncLogSession = [NSEntityDescription insertNewObjectForEntityForName:@"NCLogSession" inManagedObjectContext:self.managedObjectContext];
-    self.ncLogSession.timeStamp=[NSDate date];
+    NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingActive];
+    if (testValue) {
+      _logActive = [[NSUserDefaults standardUserDefaults] boolForKey:kIKNCLoggingActive];
+    }
     
-//    OsdRecord *object = [NSEntityDescription insertNewObjectForEntityForName:@"OsdRecord" inManagedObjectContext:context];
-//    object.timeStamp=[NSDate date];
-//    
-//    NSMutableSet *relationshipSet = [newManagedObject mutableSetValueForKey:@"records"];
-//    [relationshipSet addObject:object];
-
+    testValue = nil;
+    testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingInterval];
+    if (testValue) {
+      _logInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:kIKNCLoggingInterval]/1000.0;
+    }
+    
+    if (_logActive) {
+      iKopterAppDelegate* appDelegate =(iKopterAppDelegate*)[[UIApplication sharedApplication] delegate];
+      self.managedObjectContext=appDelegate.managedObjectContext;
+      
+      self.ncLogSession = [NSEntityDescription insertNewObjectForEntityForName:@"NCLogSession" inManagedObjectContext:self.managedObjectContext];
+      self.ncLogSession.timeStampStart=[NSDate date];
+    }
+    
   }
   return self;
 }
@@ -168,6 +178,11 @@
   
   requestCount=0;
   [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
+  
+  if( _logActive ){
+    logTimer=[NSTimer scheduledTimerWithTimeInterval: _logInterval target:self selector:
+              @selector(logNCData) userInfo:nil repeats:YES];
+  }
 }
 
 - (void) stopRequesting {
@@ -175,8 +190,13 @@
   [requestTimer invalidate];
   requestTimer=nil;
 
+  [logTimer invalidate];
+  logTimer=nil;
+
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
+  
+  self.ncLogSession.timeStampEnd=[NSDate date];
 }
 
 
@@ -202,5 +222,16 @@
 //    requestCount = 0;
 //  }
 }
+
+- (void) logNCData {
+  
+  NCLogRecord* record=[NSEntityDescription insertNewObjectForEntityForName:@"NCLogRecord" inManagedObjectContext:self.managedObjectContext];
+  record.timeStamp=[NSDate date];
+  NSMutableSet *relationshipSet = [self.ncLogSession mutableSetValueForKey:@"records"];
+  [relationshipSet addObject:record];
+  
+  qltrace(@"log");
+}
+
 
 @end

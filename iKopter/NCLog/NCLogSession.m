@@ -11,7 +11,8 @@
 
 
 @implementation NCLogSession
-@dynamic timeStamp;
+@dynamic timeStampStart;
+@dynamic timeStampEnd;
 @dynamic records;
 
 - (void)addRecordsObject:(NCLogRecord *)value {    
