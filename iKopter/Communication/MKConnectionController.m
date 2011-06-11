@@ -437,9 +437,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:6.0];
       break;
     case kConnectionStateWaitNC:
-      connectionState=kConnectionStateWaitFC;
-      [self activateFlightCtrl];
-      [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+      if (self.currentDevice==kIKMkAddressFC) {
+        connectionState=kConnectionDeviceChecked;
+        NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:MKConnectedNotification object:self userInfo:nil];
+      }
+      else{
+        connectionState=kConnectionStateWaitFC;
+        [self activateFlightCtrl];
+        [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+      }
       break;
     case kConnectionStateWaitFC:
       connectionState=kConnectionStateWaitNC_2;
