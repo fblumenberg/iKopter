@@ -133,6 +133,9 @@
     self.data=[IKNaviData data];
     
     _logActive=NO;
+    _logInterval=1.0;
+    
+    NSLog(@"Def:%@",[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]);
     
     NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingActive];
     if (testValue) {
@@ -142,7 +145,8 @@
     testValue = nil;
     testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingInterval];
     if (testValue) {
-      _logInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:kIKNCLoggingInterval]/1000.0;
+      _logInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:kIKNCLoggingInterval];
+      _logInterval /=1000.0;
     }
     
     if (_logActive) {
