@@ -31,6 +31,7 @@
 #import "MKHostViewController.h"
 #import "MKConnectionController.h"
 #import "IASKPSTitleValueSpecifierViewCell.h"
+#import "NCLogViewController.h"
 
 @implementation RootViewController
 
@@ -208,17 +209,47 @@
 #pragma mark -
 #pragma mark Table view data source
 
-// Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 2;//self.tableView.editing?1:2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  if(section==0)
+    return [hosts count];
+  
   return 1;
 }
 
 
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [hosts count];
-}
+//////////////////////////////////////////////////////////////////////////////////////////////
 
+- (UITableViewCell *) cellForExtra: (UITableView *) tableView indexPath: (NSIndexPath *) indexPath  {
+  static NSString *CellIdentifier = @"RootExtraCell";
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+  }
+  
+  switch (indexPath.row) {
+    case 0:
+      cell.textLabel.text = NSLocalizedString(@"NC Log",@"NC-LOG cell");
+      break;
+    case 1:
+      cell.textLabel.text = NSLocalizedString(@"Engine test",@"Motor test cell");
+      break;
+    case 2:
+      cell.textLabel.text = NSLocalizedString(@"Channels",@"Channels cell");
+      break;
+  }
+  cell.accessoryView = nil;
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  cell.imageView.image = nil;
+  
+  
+  return cell;
+  
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -226,6 +257,10 @@
   NSLog(@"cellForRowAtIndexPath %@",indexPath);
   
   static NSString *CellIdentifier = @"MKHostCell";
+  
+  if(indexPath.section==1)
+    return [self cellForExtra: tableView indexPath: indexPath];
+
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
@@ -246,8 +281,7 @@
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-  // Return NO if you do not want the specified item to be editable.
-  return YES;
+  return indexPath.section==0;
 }
 
 
@@ -269,28 +303,51 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-  return YES;
+  return indexPath.section==0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Table view delegate
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (self.tableView.editing && indexPath.section!=0) {
+    return nil;
+  }
+  
+  return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
-  MKHost* host=[hosts hostAtIndexPath:indexPath];
-  if (self.tableView.editing ) {
-    MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
-    editingHost = indexPath;
-    [self.navigationController pushViewController:hostView animated:YES];
-    [hostView release];
+  if( indexPath.section==0 ){
+    MKHost* host=[hosts hostAtIndexPath:indexPath];
+    if (self.tableView.editing ) {
+      MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
+      editingHost = indexPath;
+      [self.navigationController pushViewController:hostView animated:YES];
+      [hostView release];
+    }
+    else {
+      MainViewController* mainView = [[MainViewController alloc] initWithHost:host];
+      [self.navigationController pushViewController:mainView animated:YES];
+      [mainView release];   
+    }
   }
-  else {
-    MainViewController* mainView = [[MainViewController alloc] initWithHost:host];
-    [self.navigationController pushViewController:mainView animated:YES];
-    [mainView release];   
+  else{
+    UIViewController* extraView=nil;
+    
+    switch (indexPath.row) {
+      case 0:
+        extraView = [[NCLogViewController alloc] initWithStyle:UITableViewStylePlain];
+        break;
+    }
+    
+    [self.navigationController setToolbarHidden:NO animated:NO];
+    [self.navigationController pushViewController:extraView animated:YES];
+    [extraView release];
   }
 }
 

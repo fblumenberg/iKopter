@@ -38,3 +38,31 @@
 - (id)initWithData:(NSData*)data;
 
 @end
+
+
+@interface IKGPSPos : NSObject<NSCoding> {
+  
+}
+
+@property(assign) NSInteger  longitude;      // in 1E-7 deg
+@property(assign) NSInteger  latitude;       // in 1E-7 deg
+@property(assign) NSUInteger altitude;       // in mm
+@property(assign) NSInteger  status;         // validity of data
+
++ (id)positionWithMkPos:(IKMkGPSPos *)pos;
+- (id)initWithMkPos:(IKMkGPSPos*)pos;
+
+@end
+
+@interface IKGPSPosDev : NSObject<NSCoding> {
+  
+}
+
+@property(assign) NSUInteger distance;       // in mm
+@property(assign) NSInteger  bearing;         // validity of data
+
++ (id)positionWithMkPosDev:(IKMkGPSPosDev *)pos;
+- (id)initWithMkPosDev:(IKMkGPSPosDev*)pos;
+
+@end
+

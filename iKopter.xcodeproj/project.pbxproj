@@ -172,6 +172,11 @@
 		BAC81D70139550F000F642FA /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D66139550F000F642FA /* utils.c */; };
 		BAD69580137E9ECF006C129D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957E137E9ECF006C129D /* Default.png */; };
 		BAD69581137E9ECF006C129D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957F137E9ECF006C129D /* Default@2x.png */; };
+		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
+		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
+		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
+		BAEEFBE6139D6FF90003860E /* NCLogSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDE139D6FF90003860E /* NCLogSession.m */; };
+		BAEEFBE7139D6FF90003860E /* NCLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBE0139D6FF90003860E /* NCLogViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -258,9 +263,9 @@
 		BA0D4763137C72DD001415C3 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalCorePaths.h; sourceTree = "<group>"; };
 		BA0D4764137C72DD001415C3 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
 		BA0D4775137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow.xib"; sourceTree = "<group>"; };
 		BA0D4777137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/RootViewController.xib"; sourceTree = "<group>"; };
 		BA0D477B137D0109001415C3 /* MKHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHost.h; sourceTree = "<group>"; };
 		BA0D477C137D0109001415C3 /* MKHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHost.m; sourceTree = "<group>"; };
 		BA0D477D137D0109001415C3 /* MKHosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHosts.h; sourceTree = "<group>"; };
@@ -448,6 +453,14 @@
 		BAC81D66139550F000F642FA /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
 		BAD6957E137E9ECF006C129D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BAD6957F137E9ECF006C129D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iKopter.xcdatamodel; sourceTree = "<group>"; };
+		BAEEFBDB139D6FF90003860E /* NCLogRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogRecord.h; sourceTree = "<group>"; };
+		BAEEFBDC139D6FF90003860E /* NCLogRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLogRecord.m; sourceTree = "<group>"; };
+		BAEEFBDD139D6FF90003860E /* NCLogSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogSession.h; sourceTree = "<group>"; };
+		BAEEFBDE139D6FF90003860E /* NCLogSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLogSession.m; sourceTree = "<group>"; };
+		BAEEFBDF139D6FF90003860E /* NCLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogViewController.h; sourceTree = "<group>"; };
+		BAEEFBE0139D6FF90003860E /* NCLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLogViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +468,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */,
 				BAA4E6ED137EB9210068E38E /* QuartzCore.framework in Frameworks */,
 				BAA4E6EB137EB8FF0068E38E /* CoreText.framework in Frameworks */,
 				BAA4E646137EB3700068E38E /* CFNetwork.framework in Frameworks */,
@@ -490,6 +504,7 @@
 		BA0D466E137C5127001415C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BAEEFBB2139D3B680003860E /* CoreData.framework */,
 				BAA4E6EC137EB9210068E38E /* QuartzCore.framework */,
 				BAA4E6EA137EB8FF0068E38E /* CoreText.framework */,
 				BAA4E645137EB3700068E38E /* CFNetwork.framework */,
@@ -506,6 +521,8 @@
 		BA0D4675137C5127001415C3 /* iKopter */ = {
 			isa = PBXGroup;
 			children = (
+				BAEEFBDA139D6FF90003860E /* NCLog */,
+				BAEEFBC7139D6E160003860E /* CoreData */,
 				BAA4E686137EB89C0068E38E /* Analog */,
 				BAA4E68B137EB89C0068E38E /* Channels */,
 				BAA4E690137EB89C0068E38E /* EngineTest */,
@@ -1009,6 +1026,27 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		BAEEFBC7139D6E160003860E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		BAEEFBDA139D6FF90003860E /* NCLog */ = {
+			isa = PBXGroup;
+			children = (
+				BAEEFBDB139D6FF90003860E /* NCLogRecord.h */,
+				BAEEFBDC139D6FF90003860E /* NCLogRecord.m */,
+				BAEEFBDD139D6FF90003860E /* NCLogSession.h */,
+				BAEEFBDE139D6FF90003860E /* NCLogSession.m */,
+				BAEEFBDF139D6FF90003860E /* NCLogViewController.h */,
+				BAEEFBE0139D6FF90003860E /* NCLogViewController.m */,
+			);
+			path = NCLog;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1254,6 +1292,10 @@
 				BAC81D6F139550F000F642FA /* socket_connection.c in Sources */,
 				BAC81D70139550F000F642FA /* utils.c in Sources */,
 				BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */,
+				BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */,
+				BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */,
+				BAEEFBE6139D6FF90003860E /* NCLogSession.m in Sources */,
+				BAEEFBE7139D6FF90003860E /* NCLogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1458,6 +1500,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */,
+			);
+			currentVersion = BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */;
+			path = iKopter.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BA0D4662137C5127001415C3 /* Project object */;
 }

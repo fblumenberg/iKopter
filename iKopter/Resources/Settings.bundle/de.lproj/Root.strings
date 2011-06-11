@@ -4,3 +4,5 @@
 /* What to do in case of crashes */
 "SettingsCrashTitle" = "Fehlerbericht";
 "SettingsLoggingTitle" = "Logging";
+"SettingsNCLoggingInterval" = "NC-Log Intervall";
+"SettingsActivateNCLogging" = "NC-Logging aktivien";

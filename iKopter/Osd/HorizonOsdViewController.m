@@ -156,7 +156,6 @@
   [info appendFormat:@"SetpointAltitude: %d\r\n",value.data.data->SetpointAltitude];
   [info appendFormat:@"Gas: %d\r\n",value.data.data->Gas];
   
-  
   if(value.data.data->Version==5)
     [info appendFormat:@"FCStatusFlags2: %d\r\n",value.data.data->FCStatusFlags2];
   else

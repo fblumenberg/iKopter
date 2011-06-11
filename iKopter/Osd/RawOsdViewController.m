@@ -63,8 +63,6 @@
     [info appendFormat:@"RC_RSSI: %d\r\n",value.data.data->FCStatusFlags2];
   [info appendFormat:@"Current: %d\r\n",value.data.data->Current];
   [info appendFormat:@"UsedCapacity: %d\r\n",value.data.data->UsedCapacity];
-  [info appendFormat:@"Current: %d\r\n",value.data.data->Current];
-  [info appendFormat:@"UsedCapacity: %d\r\n",value.data.data->UsedCapacity];
   
   osdText.text=info;
 }
