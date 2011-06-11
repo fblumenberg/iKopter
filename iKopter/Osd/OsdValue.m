@@ -115,6 +115,19 @@
   return ((_data.data->NCFlags&NC_FLAG_GPS_OK) == NC_FLAG_GPS_OK);
 }
 
+-(BOOL) isCareFreeOn{
+  if (!_data.data) 
+    return NO;
+  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_CAREFREE) == FC_STATUS2_CAREFREE);
+}
+
+-(BOOL) isAltControlOn{
+  if (!_data.data) 
+    return NO;
+  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_ALTITUDE_CONTROL) == FC_STATUS2_ALTITUDE_CONTROL);
+}
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,7 +178,7 @@
 
 - (void) sendOsdRefreshRequest {
   
-  if(requestCount==3)
+  if(requestCount>3)
     [self.delegate noDataAvailable];
   
   [[MKConnectionController sharedMKConnectionController] requestOsdDataForInterval:40];

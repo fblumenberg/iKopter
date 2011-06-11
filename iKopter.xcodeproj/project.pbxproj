@@ -68,6 +68,8 @@
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
 		BA7613431391338500C86318 /* screenlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7613401391338500C86318 /* screenlock@2x.png */; };
+		BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */; };
+		BA9F3C0613A4251000D98C55 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9F3C0513A4251000D98C55 /* 13-target.png */; };
 		BAA4E630137EB11B0068E38E /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E62F137EB11B0068E38E /* BTDevice.m */; };
 		BAA4E63F137EB34D0068E38E /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E634137EB34D0068E38E /* AMSerialPort.m */; };
 		BAA4E640137EB34D0068E38E /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E636137EB34D0068E38E /* AMSerialPortAdditions.m */; };
@@ -256,9 +258,9 @@
 		BA0D4763137C72DD001415C3 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalCorePaths.h; sourceTree = "<group>"; };
 		BA0D4764137C72DD001415C3 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
 		BA0D4775137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow.xib"; sourceTree = "<group>"; };
+		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		BA0D4777137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/RootViewController.xib"; sourceTree = "<group>"; };
+		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		BA0D477B137D0109001415C3 /* MKHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHost.h; sourceTree = "<group>"; };
 		BA0D477C137D0109001415C3 /* MKHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHost.m; sourceTree = "<group>"; };
 		BA0D477D137D0109001415C3 /* MKHosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHosts.h; sourceTree = "<group>"; };
@@ -276,6 +278,9 @@
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
 		BA7613401391338500C86318 /* screenlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock@2x.png"; sourceTree = "<group>"; };
+		BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
+		BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
+		BA9F3C0513A4251000D98C55 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
 		BAA4E62E137EB11B0068E38E /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
 		BAA4E62F137EB11B0068E38E /* BTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDevice.m; sourceTree = "<group>"; };
 		BAA4E631137EB34C0068E38E /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
@@ -673,6 +678,8 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */,
+				BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */,
 				BAA4E685137EB5D90068E38E /* SynthesizeSingleton.h */,
 				BA0D4785137D033A001415C3 /* MBProgressHUD.h */,
 				BA0D4786137D033A001415C3 /* MBProgressHUD.m */,
@@ -688,6 +695,7 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA9F3C0513A4251000D98C55 /* 13-target.png */,
 				BA76133E1391338400C86318 /* screenlock-locked.png */,
 				BA76133F1391338400C86318 /* screenlock-locked@2x.png */,
 				BA7613401391338500C86318 /* screenlock@2x.png */,
@@ -1115,6 +1123,7 @@
 				BA7613411391338500C86318 /* screenlock-locked.png in Resources */,
 				BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */,
 				BA7613431391338500C86318 /* screenlock@2x.png in Resources */,
+				BA9F3C0613A4251000D98C55 /* 13-target.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1244,6 +1253,7 @@
 				BAC81D6E139550F000F642FA /* sdp_util.c in Sources */,
 				BAC81D6F139550F000F642FA /* socket_connection.c in Sources */,
 				BAC81D70139550F000F642FA /* utils.c in Sources */,
+				BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

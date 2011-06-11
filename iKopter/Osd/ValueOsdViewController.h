@@ -29,13 +29,19 @@
   IKCompass* compass;
  
   UIImageView* gpsSatelite;
+  
   CustomBadge* satelites;
+  CustomBadge* careFree;
+  CustomBadge* altitudeControl;
+  
   UILabel* gpsMode;
   UILabel* gpsTarget;
   
   UILabel* flightTime;
 
   UIColor* gpsOkColor;
+  UIColor* functionOffColor;
+  UIColor* functionOnColor;
 
   UIImage* gpsSateliteOk;
   UIImage* gpsSateliteErr;
@@ -52,6 +58,8 @@
 @property(retain) IBOutlet UILabel* usedCapacity;
 @property(retain) IBOutlet UIImageView* gpsSatelite;
 @property(retain) IBOutlet CustomBadge* satelites;
+@property(retain) IBOutlet CustomBadge* careFree;
+@property(retain) IBOutlet CustomBadge* altitudeControl;
 @property(retain) IBOutlet UILabel* gpsMode;
 @property(retain) IBOutlet UILabel* gpsTarget;
 @property(retain) IBOutlet UILabel* flightTime;

@@ -63,6 +63,8 @@
 @property(readonly) BOOL isTargetReached;
 @property(readonly) BOOL isManualControlEnabled;
 @property(readonly) BOOL isGpsOk;
+@property(readonly) BOOL isCareFreeOn;
+@property(readonly) BOOL isAltControlOn;
 
 - (void) startRequesting;
 - (void) stopRequesting;

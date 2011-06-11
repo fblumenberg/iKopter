@@ -152,6 +152,9 @@
   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
   
   self.tableView.allowsSelectionDuringEditing=YES;
+  
+  [self.navigationController setNavigationBarHidden:NO animated:NO];
+  self.navigationController.navigationBar.translucent=NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
