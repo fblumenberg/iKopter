@@ -51,16 +51,6 @@
 			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
-			<key>IASKViewControllerClass</key>
-			<string>NCLogViewController</string>
-			<key>IASKViewControllerSelector</key>
-			<string>init</string>
-			<key>Title</key>
-			<string>NC-Log</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
 			<key>Title</key>
 			<string></string>
 			<key>Type</key>
