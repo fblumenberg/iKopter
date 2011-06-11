@@ -1,6 +1,6 @@
 ./plistVersionIncrement.sh
 
-xcodebuild -configuration "Release Distribution" -target "iKopter"
+xcodebuild -sdk "iOS 4.3" -configuration "Release Distribution" -target "iKopter"
 
 PROJECTMAIN=$(pwd)
 PROJECT_NAME=$(basename "${PROJECTMAIN}")
