@@ -22,7 +22,7 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-
+#import <CoreLocation/CoreLocation.h>
 #import "IKNaviData.h"
 
 @implementation IKNaviData
@@ -65,13 +65,33 @@
 
 @end
 
+@interface IKGPSPos()
+
+@property(retain) CLLocation* location;
+
+@end
 
 @implementation IKGPSPos
 
+@synthesize location;
 @synthesize latitude;
 @synthesize longitude;
 @synthesize altitude;
 @synthesize status;
+
+
+#define kDEGREE_FACTOR 10000000.0
+#define kALTITUDE_FACTOR 1000.0
+
+
+-(void)updateLocation{
+  
+  self.location = [[CLLocation alloc]initWithCoordinate:CLLocationCoordinate2DMake(self.latitude/kDEGREE_FACTOR, self.longitude/kDEGREE_FACTOR) 
+                                               altitude:self.altitude/kALTITUDE_FACTOR 
+                                     horizontalAccuracy:0 
+                                       verticalAccuracy:0 
+                                              timestamp:[NSDate date]];
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -84,10 +104,11 @@
 - (id)initWithMkPos:(IKMkGPSPos*)pos {
   self = [super init];
   if (self != nil) {
-    self.latitude=pos->Latitude;
-    self.longitude=pos->Longitude;
-    self.altitude=pos->Altitude;
-    self.status=pos->Status;
+    latitude=pos->Latitude;
+    longitude=pos->Longitude;
+    altitude=pos->Altitude;
+    status=pos->Status;
+    [self updateLocation];
   }
   return self;
 }
@@ -104,10 +125,11 @@
 }
 - (id)initWithCoder:(NSCoder *)aDecoder{
   if ((self = [super init])) {
-    self.latitude=[aDecoder decodeIntegerForKey:@"latitude"];
-    self.longitude=[aDecoder decodeIntegerForKey:@"longitude"];
-    self.altitude=[aDecoder decodeIntegerForKey:@"altitude"];
-    self.status=[aDecoder decodeIntegerForKey:@"status"];
+    latitude=[aDecoder decodeIntegerForKey:@"latitude"];
+    longitude=[aDecoder decodeIntegerForKey:@"longitude"];
+    altitude=[aDecoder decodeIntegerForKey:@"altitude"];
+    status=[aDecoder decodeIntegerForKey:@"status"];
+    [self updateLocation];
   }
   return self;
 }

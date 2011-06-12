@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+
 #import "OsdValue.h"
 
-@interface MapOsdViewController : UIViewController<OsdValueDelegate> {
+@interface MapOsdViewController : UIViewController<OsdValueDelegate,MKMapViewDelegate,CLLocationManagerDelegate> {
     
 }
+
+//CLLocationManagerDelegate, MKReverseGeocoderDelegate, MKMapViewDelegate
+@property(retain) IBOutlet MKMapView* mapView;
 
 @end

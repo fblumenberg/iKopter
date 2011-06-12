@@ -183,6 +183,11 @@
 		BAE3B00713A4B83E007E0F2F /* tabValues.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B00513A4B83E007E0F2F /* tabValues.png */; };
 		BAE3B00813A4B83E007E0F2F /* tabValues@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B00613A4B83E007E0F2F /* tabValues@2x.png */; };
 		BAE3B01813A4D2C7007E0F2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */; };
+		BAE3B02213A4DCC0007E0F2F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE3B02113A4DCC0007E0F2F /* MapKit.framework */; };
+		BAE3B02513A4F27B007E0F2F /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B02413A4F27B007E0F2F /* MapLocation.m */; };
+		BAE3B02913A5010D007E0F2F /* annotation-current.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B02613A5010D007E0F2F /* annotation-current.png */; };
+		BAE3B02A13A5010D007E0F2F /* annotation-home.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B02713A5010D007E0F2F /* annotation-home.png */; };
+		BAE3B02B13A5010D007E0F2F /* annotation-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B02813A5010D007E0F2F /* annotation-target.png */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
 		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
@@ -476,6 +481,12 @@
 		BAE3B00513A4B83E007E0F2F /* tabValues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabValues.png; sourceTree = "<group>"; };
 		BAE3B00613A4B83E007E0F2F /* tabValues@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabValues@2x.png"; sourceTree = "<group>"; };
 		BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BAE3B02113A4DCC0007E0F2F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BAE3B02313A4F27A007E0F2F /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocation.h; sourceTree = "<group>"; };
+		BAE3B02413A4F27B007E0F2F /* MapLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocation.m; sourceTree = "<group>"; };
+		BAE3B02613A5010D007E0F2F /* annotation-current.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-current.png"; sourceTree = "<group>"; };
+		BAE3B02713A5010D007E0F2F /* annotation-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-home.png"; sourceTree = "<group>"; };
+		BAE3B02813A5010D007E0F2F /* annotation-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-target.png"; sourceTree = "<group>"; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iKopter.xcdatamodel; sourceTree = "<group>"; };
 		BAEEFBDB139D6FF90003860E /* NCLogRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogRecord.h; sourceTree = "<group>"; };
@@ -491,6 +502,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE3B02213A4DCC0007E0F2F /* MapKit.framework in Frameworks */,
 				BAE3B01813A4D2C7007E0F2F /* CoreLocation.framework in Frameworks */,
 				BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */,
 				BAA4E6ED137EB9210068E38E /* QuartzCore.framework in Frameworks */,
@@ -511,6 +523,7 @@
 		BA0D4660137C5127001415C3 = {
 			isa = PBXGroup;
 			children = (
+				BAE3B02113A4DCC0007E0F2F /* MapKit.framework */,
 				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
 				BA0D4675137C5127001415C3 /* iKopter */,
 				BA0D466E137C5127001415C3 /* Frameworks */,
@@ -737,6 +750,9 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B02613A5010D007E0F2F /* annotation-current.png */,
+				BAE3B02713A5010D007E0F2F /* annotation-home.png */,
+				BAE3B02813A5010D007E0F2F /* annotation-target.png */,
 				BAE3B00513A4B83E007E0F2F /* tabValues.png */,
 				BAE3B00613A4B83E007E0F2F /* tabValues@2x.png */,
 				BAE3AFFC13A4AFC8007E0F2F /* tabHorizont.png */,
@@ -1007,6 +1023,8 @@
 		BAA4E6A4137EB89C0068E38E /* Osd */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B02313A4F27A007E0F2F /* MapLocation.h */,
+				BAE3B02413A4F27B007E0F2F /* MapLocation.m */,
 				BAA4E6A5137EB89C0068E38E /* Data3DValue.h */,
 				BAA4E6A6137EB89C0068E38E /* Data3DValue.m */,
 				BAA4E6A7137EB89C0068E38E /* HorizonOsdViewController.h */,
@@ -1207,6 +1225,9 @@
 				BAE3B00413A4B27D007E0F2F /* MapOsdViewController.xib in Resources */,
 				BAE3B00713A4B83E007E0F2F /* tabValues.png in Resources */,
 				BAE3B00813A4B83E007E0F2F /* tabValues@2x.png in Resources */,
+				BAE3B02913A5010D007E0F2F /* annotation-current.png in Resources */,
+				BAE3B02A13A5010D007E0F2F /* annotation-home.png in Resources */,
+				BAE3B02B13A5010D007E0F2F /* annotation-target.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,6 +1363,7 @@
 				BAEEFBE6139D6FF90003860E /* NCLogSession.m in Sources */,
 				BAEEFBE7139D6FF90003860E /* NCLogViewController.m in Sources */,
 				BAE3B00313A4B27D007E0F2F /* MapOsdViewController.m in Sources */,
+				BAE3B02513A4F27B007E0F2F /* MapLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
