@@ -12,6 +12,7 @@
 @implementation MapOsdViewController
 
 @synthesize mapView;
+@synthesize mapTypeSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,6 +59,15 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
   return YES;
+}
+
+- (IBAction)mapTypeChange{
+  if(self.mapTypeSwitch.on){
+    mapView.mapType=MKMapTypeHybrid;
+  }
+  else{
+    mapView.mapType=MKMapTypeStandard;
+  }
 }
 
 #pragma mark - CLLocationManagerDelegate Methods

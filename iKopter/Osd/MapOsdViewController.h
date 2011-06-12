@@ -14,9 +14,13 @@
 
 @interface MapOsdViewController : UIViewController<OsdValueDelegate,MKMapViewDelegate,CLLocationManagerDelegate> {
     
+  
 }
 
 //CLLocationManagerDelegate, MKReverseGeocoderDelegate, MKMapViewDelegate
 @property(retain) IBOutlet MKMapView* mapView;
+@property(retain) IBOutlet UISwitch* mapTypeSwitch;
+
+- (IBAction)mapTypeChange;
 
 @end
