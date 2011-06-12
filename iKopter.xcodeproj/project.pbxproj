@@ -172,6 +172,17 @@
 		BAC81D70139550F000F642FA /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D66139550F000F642FA /* utils.c */; };
 		BAD69580137E9ECF006C129D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957E137E9ECF006C129D /* Default.png */; };
 		BAD69581137E9ECF006C129D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957F137E9ECF006C129D /* Default@2x.png */; };
+		BAE3AFF213A4A76D007E0F2F /* icon-receipt.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFF013A4A76D007E0F2F /* icon-receipt.png */; };
+		BAE3AFF313A4A76D007E0F2F /* icon-receipt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFF113A4A76D007E0F2F /* icon-receipt@2x.png */; };
+		BAE3AFFA13A4AAD5007E0F2F /* icon-map1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFF813A4AAD5007E0F2F /* icon-map1.png */; };
+		BAE3AFFB13A4AAD5007E0F2F /* icon-map1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFF913A4AAD5007E0F2F /* icon-map1@2x.png */; };
+		BAE3AFFE13A4AFC8007E0F2F /* tabHorizont.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFFC13A4AFC8007E0F2F /* tabHorizont.png */; };
+		BAE3AFFF13A4AFC8007E0F2F /* tabHorizont@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFFD13A4AFC8007E0F2F /* tabHorizont@2x.png */; };
+		BAE3B00313A4B27D007E0F2F /* MapOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B00113A4B27D007E0F2F /* MapOsdViewController.m */; };
+		BAE3B00413A4B27D007E0F2F /* MapOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B00213A4B27D007E0F2F /* MapOsdViewController.xib */; };
+		BAE3B00713A4B83E007E0F2F /* tabValues.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B00513A4B83E007E0F2F /* tabValues.png */; };
+		BAE3B00813A4B83E007E0F2F /* tabValues@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B00613A4B83E007E0F2F /* tabValues@2x.png */; };
+		BAE3B01813A4D2C7007E0F2F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
 		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
@@ -263,9 +274,9 @@
 		BA0D4763137C72DD001415C3 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalCorePaths.h; sourceTree = "<group>"; };
 		BA0D4764137C72DD001415C3 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
 		BA0D4775137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow.xib"; sourceTree = "<group>"; };
+		BA0D4776137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		BA0D4777137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/RootViewController.xib"; sourceTree = "<group>"; };
+		BA0D4778137CFDDD001415C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		BA0D477B137D0109001415C3 /* MKHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHost.h; sourceTree = "<group>"; };
 		BA0D477C137D0109001415C3 /* MKHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHost.m; sourceTree = "<group>"; };
 		BA0D477D137D0109001415C3 /* MKHosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHosts.h; sourceTree = "<group>"; };
@@ -453,6 +464,18 @@
 		BAC81D66139550F000F642FA /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
 		BAD6957E137E9ECF006C129D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BAD6957F137E9ECF006C129D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BAE3AFF013A4A76D007E0F2F /* icon-receipt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-receipt.png"; sourceTree = "<group>"; };
+		BAE3AFF113A4A76D007E0F2F /* icon-receipt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-receipt@2x.png"; sourceTree = "<group>"; };
+		BAE3AFF813A4AAD5007E0F2F /* icon-map1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-map1.png"; sourceTree = "<group>"; };
+		BAE3AFF913A4AAD5007E0F2F /* icon-map1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-map1@2x.png"; sourceTree = "<group>"; };
+		BAE3AFFC13A4AFC8007E0F2F /* tabHorizont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabHorizont.png; sourceTree = "<group>"; };
+		BAE3AFFD13A4AFC8007E0F2F /* tabHorizont@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabHorizont@2x.png"; sourceTree = "<group>"; };
+		BAE3B00013A4B27D007E0F2F /* MapOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOsdViewController.h; sourceTree = "<group>"; };
+		BAE3B00113A4B27D007E0F2F /* MapOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOsdViewController.m; sourceTree = "<group>"; };
+		BAE3B00213A4B27D007E0F2F /* MapOsdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapOsdViewController.xib; sourceTree = "<group>"; };
+		BAE3B00513A4B83E007E0F2F /* tabValues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabValues.png; sourceTree = "<group>"; };
+		BAE3B00613A4B83E007E0F2F /* tabValues@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabValues@2x.png"; sourceTree = "<group>"; };
+		BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iKopter.xcdatamodel; sourceTree = "<group>"; };
 		BAEEFBDB139D6FF90003860E /* NCLogRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogRecord.h; sourceTree = "<group>"; };
@@ -468,6 +491,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE3B01813A4D2C7007E0F2F /* CoreLocation.framework in Frameworks */,
 				BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */,
 				BAA4E6ED137EB9210068E38E /* QuartzCore.framework in Frameworks */,
 				BAA4E6EB137EB8FF0068E38E /* CoreText.framework in Frameworks */,
@@ -487,6 +511,7 @@
 		BA0D4660137C5127001415C3 = {
 			isa = PBXGroup;
 			children = (
+				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
 				BA0D4675137C5127001415C3 /* iKopter */,
 				BA0D466E137C5127001415C3 /* Frameworks */,
 				BA0D466C137C5127001415C3 /* Products */,
@@ -712,6 +737,14 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B00513A4B83E007E0F2F /* tabValues.png */,
+				BAE3B00613A4B83E007E0F2F /* tabValues@2x.png */,
+				BAE3AFFC13A4AFC8007E0F2F /* tabHorizont.png */,
+				BAE3AFFD13A4AFC8007E0F2F /* tabHorizont@2x.png */,
+				BAE3AFF813A4AAD5007E0F2F /* icon-map1.png */,
+				BAE3AFF913A4AAD5007E0F2F /* icon-map1@2x.png */,
+				BAE3AFF013A4A76D007E0F2F /* icon-receipt.png */,
+				BAE3AFF113A4A76D007E0F2F /* icon-receipt@2x.png */,
 				BA9F3C0513A4251000D98C55 /* 13-target.png */,
 				BA76133E1391338400C86318 /* screenlock-locked.png */,
 				BA76133F1391338400C86318 /* screenlock-locked@2x.png */,
@@ -992,6 +1025,9 @@
 				BAA4E6B4137EB89D0068E38E /* ValueOsdViewController.m */,
 				BAA4E6B5137EB89D0068E38E /* ValueOsdViewController.xib */,
 				BAA4E6B6137EB89D0068E38E /* ValueOsdViewControllerLandscape.xib */,
+				BAE3B00013A4B27D007E0F2F /* MapOsdViewController.h */,
+				BAE3B00113A4B27D007E0F2F /* MapOsdViewController.m */,
+				BAE3B00213A4B27D007E0F2F /* MapOsdViewController.xib */,
 			);
 			path = Osd;
 			sourceTree = "<group>";
@@ -1162,6 +1198,15 @@
 				BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */,
 				BA7613431391338500C86318 /* screenlock@2x.png in Resources */,
 				BA9F3C0613A4251000D98C55 /* 13-target.png in Resources */,
+				BAE3AFF213A4A76D007E0F2F /* icon-receipt.png in Resources */,
+				BAE3AFF313A4A76D007E0F2F /* icon-receipt@2x.png in Resources */,
+				BAE3AFFA13A4AAD5007E0F2F /* icon-map1.png in Resources */,
+				BAE3AFFB13A4AAD5007E0F2F /* icon-map1@2x.png in Resources */,
+				BAE3AFFE13A4AFC8007E0F2F /* tabHorizont.png in Resources */,
+				BAE3AFFF13A4AFC8007E0F2F /* tabHorizont@2x.png in Resources */,
+				BAE3B00413A4B27D007E0F2F /* MapOsdViewController.xib in Resources */,
+				BAE3B00713A4B83E007E0F2F /* tabValues.png in Resources */,
+				BAE3B00813A4B83E007E0F2F /* tabValues@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1296,6 +1341,7 @@
 				BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */,
 				BAEEFBE6139D6FF90003860E /* NCLogSession.m in Sources */,
 				BAEEFBE7139D6FF90003860E /* NCLogViewController.m in Sources */,
+				BAE3B00313A4B27D007E0F2F /* MapOsdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,7 @@
 	
   UITabBarItem *horizonOsdTabBarItem;
   UITabBarItem *valuesOsdTabBarItem;
+  UITabBarItem *mapOsdTabBarItem;
   UIViewController<OsdValueDelegate> *selectedViewController;
 }
 
@@ -44,6 +45,7 @@
 @property (nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property (nonatomic, retain) IBOutlet UITabBarItem *horizonOsdTabBarItem;
 @property (nonatomic, retain) IBOutlet UITabBarItem *valuesOsdTabBarItem;
+@property (nonatomic, retain) IBOutlet UITabBarItem *mapOsdTabBarItem;
 @property (nonatomic, retain) UIViewController<OsdValueDelegate> *selectedViewController;
 
 @end

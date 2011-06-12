@@ -26,6 +26,7 @@
 #import "ValueOsdViewController.h"
 #import "HorizonOsdViewController.h"
 #import "RawOsdViewController.h"
+#import "MapOsdViewController.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 @interface OsdViewController()
@@ -43,6 +44,7 @@
 @synthesize tabBar;
 @synthesize	horizonOsdTabBarItem;
 @synthesize valuesOsdTabBarItem;
+@synthesize mapOsdTabBarItem;
 @synthesize selectedViewController;
 @synthesize screenLockButton;
 
@@ -60,8 +62,9 @@
   HorizonOsdViewController* horizonViewController=[[HorizonOsdViewController alloc]initWithNibName:@"HorizonOsdViewController" bundle:nil];
   ValueOsdViewController* valueViewController=[[ValueOsdViewController alloc]initWithNibName:@"ValueOsdViewController" bundle:nil];
   RawOsdViewController* rawViewController=[[RawOsdViewController alloc]initWithNibName:@"RawOsdViewController" bundle:nil];
+  MapOsdViewController* mapViewController=[[MapOsdViewController alloc]initWithNibName:@"MapOsdViewController" bundle:nil];
   
-  NSArray *array = [[NSArray alloc] initWithObjects:horizonViewController, valueViewController, rawViewController, nil];
+  NSArray *array = [[NSArray alloc] initWithObjects:horizonViewController, valueViewController, rawViewController, mapViewController, nil];
   self.viewControllers = array;
   
   [self.view addSubview:valueViewController.view];
@@ -71,6 +74,7 @@
   [horizonViewController release];
   [valueViewController release];
   [rawViewController release];
+  [mapViewController release];
   
   self.tabBar.selectedItem=self.valuesOsdTabBarItem;
   
