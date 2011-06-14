@@ -188,6 +188,11 @@
 		BAE3B02913A5010D007E0F2F /* annotation-current.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B02613A5010D007E0F2F /* annotation-current.png */; };
 		BAE3B02A13A5010D007E0F2F /* annotation-home.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B02713A5010D007E0F2F /* annotation-home.png */; };
 		BAE3B02B13A5010D007E0F2F /* annotation-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B02813A5010D007E0F2F /* annotation-target.png */; };
+		BAE3B02F13A7F159007E0F2F /* NCLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B02D13A7F159007E0F2F /* NCLogDetailViewController.m */; };
+		BAE3B03013A7F159007E0F2F /* NCLogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B02E13A7F159007E0F2F /* NCLogDetailViewController.xib */; };
+		BAE3B03313A80118007E0F2F /* icon-mail1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B03113A80118007E0F2F /* icon-mail1.png */; };
+		BAE3B03413A80118007E0F2F /* icon-mail1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B03213A80118007E0F2F /* icon-mail1@2x.png */; };
+		BAE3B03B13A81543007E0F2F /* CHCSVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B03A13A81543007E0F2F /* CHCSVWriter.m */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
 		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
@@ -487,6 +492,13 @@
 		BAE3B02613A5010D007E0F2F /* annotation-current.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-current.png"; sourceTree = "<group>"; };
 		BAE3B02713A5010D007E0F2F /* annotation-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-home.png"; sourceTree = "<group>"; };
 		BAE3B02813A5010D007E0F2F /* annotation-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation-target.png"; sourceTree = "<group>"; };
+		BAE3B02C13A7F159007E0F2F /* NCLogDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogDetailViewController.h; sourceTree = "<group>"; };
+		BAE3B02D13A7F159007E0F2F /* NCLogDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLogDetailViewController.m; sourceTree = "<group>"; };
+		BAE3B02E13A7F159007E0F2F /* NCLogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCLogDetailViewController.xib; sourceTree = "<group>"; };
+		BAE3B03113A80118007E0F2F /* icon-mail1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-mail1.png"; sourceTree = "<group>"; };
+		BAE3B03213A80118007E0F2F /* icon-mail1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-mail1@2x.png"; sourceTree = "<group>"; };
+		BAE3B03913A81543007E0F2F /* CHCSVWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVWriter.h; sourceTree = "<group>"; };
+		BAE3B03A13A81543007E0F2F /* CHCSVWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVWriter.m; sourceTree = "<group>"; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iKopter.xcdatamodel; sourceTree = "<group>"; };
 		BAEEFBDB139D6FF90003860E /* NCLogRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogRecord.h; sourceTree = "<group>"; };
@@ -733,6 +745,8 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B03913A81543007E0F2F /* CHCSVWriter.h */,
+				BAE3B03A13A81543007E0F2F /* CHCSVWriter.m */,
 				BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */,
 				BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */,
 				BAA4E685137EB5D90068E38E /* SynthesizeSingleton.h */,
@@ -750,6 +764,8 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B03113A80118007E0F2F /* icon-mail1.png */,
+				BAE3B03213A80118007E0F2F /* icon-mail1@2x.png */,
 				BAE3B02613A5010D007E0F2F /* annotation-current.png */,
 				BAE3B02713A5010D007E0F2F /* annotation-home.png */,
 				BAE3B02813A5010D007E0F2F /* annotation-target.png */,
@@ -1097,6 +1113,9 @@
 				BAEEFBDE139D6FF90003860E /* NCLogSession.m */,
 				BAEEFBDF139D6FF90003860E /* NCLogViewController.h */,
 				BAEEFBE0139D6FF90003860E /* NCLogViewController.m */,
+				BAE3B02C13A7F159007E0F2F /* NCLogDetailViewController.h */,
+				BAE3B02D13A7F159007E0F2F /* NCLogDetailViewController.m */,
+				BAE3B02E13A7F159007E0F2F /* NCLogDetailViewController.xib */,
 			);
 			path = NCLog;
 			sourceTree = "<group>";
@@ -1228,6 +1247,9 @@
 				BAE3B02913A5010D007E0F2F /* annotation-current.png in Resources */,
 				BAE3B02A13A5010D007E0F2F /* annotation-home.png in Resources */,
 				BAE3B02B13A5010D007E0F2F /* annotation-target.png in Resources */,
+				BAE3B03013A7F159007E0F2F /* NCLogDetailViewController.xib in Resources */,
+				BAE3B03313A80118007E0F2F /* icon-mail1.png in Resources */,
+				BAE3B03413A80118007E0F2F /* icon-mail1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,6 +1386,8 @@
 				BAEEFBE7139D6FF90003860E /* NCLogViewController.m in Sources */,
 				BAE3B00313A4B27D007E0F2F /* MapOsdViewController.m in Sources */,
 				BAE3B02513A4F27B007E0F2F /* MapLocation.m in Sources */,
+				BAE3B02F13A7F159007E0F2F /* NCLogDetailViewController.m in Sources */,
+				BAE3B03B13A81543007E0F2F /* CHCSVWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

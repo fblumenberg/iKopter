@@ -67,4 +67,5 @@
 @property (nonatomic, retain) NCLogSession * session;
 
 -(void) fillFromNCData:(IKNaviData*)ncData;
+
 @end

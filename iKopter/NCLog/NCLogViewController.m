@@ -177,7 +177,7 @@
                                [NSDateFormatter localizedStringFromDate:managedObject.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
                                [managedObject.records count]];
   
-
+  cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark - Table view delegate
