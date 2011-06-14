@@ -162,6 +162,8 @@
     return __managedObjectModel;
   }
   NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"iKopter" withExtension:@"momd"];
+  
+  qlinfo(@"URL for managed model %@",modelURL);
   __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
   return __managedObjectModel;
 }
@@ -176,9 +178,10 @@
   {
     return __persistentStoreCoordinator;
   }
-  
+
   NSURL *storeURL = [NSURL fileURLWithPath:TTPathForDocumentsResource(@"ikopter.sqlite")];
-  
+  qlinfo(@"URL for core data store %@",storeURL);
+
   NSError *error = nil;
   __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
   if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
