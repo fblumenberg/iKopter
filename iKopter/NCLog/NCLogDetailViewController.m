@@ -40,6 +40,7 @@
 @implementation NCLogDetailViewController
 
 @synthesize session;
+@synthesize startDate,endDate,records;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -95,6 +96,17 @@
               action:@selector(uploadSession)] autorelease];
 
  	[self setToolbarItems:[NSArray arrayWithObjects:mail,spacer,delete,spacer,action,nil]];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+
+  self.startDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
+  self.endDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
+  self.records.text=[NSString stringWithFormat:@"%d",[session.records count]];
+
 }
 
 - (void)viewDidUnload
@@ -115,6 +127,25 @@
 
 -(void)deleteSession{
   
+  // Delete the managed object for the given index path
+  NSManagedObjectContext *context = [self.session managedObjectContext];
+  [context deleteObject:self.session];
+  
+  // Save the context.
+  NSError *error = nil;
+  if (![context save:&error])
+  {
+    /*
+     Replace this implementation with code to handle the error appropriately.
+     
+     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+     */
+    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    abort();
+  }
+
+  
+  [self.navigationController popViewControllerAnimated:YES]; 
 }
 
 -(void)sendSessionAsEmail{

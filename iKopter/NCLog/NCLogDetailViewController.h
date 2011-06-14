@@ -32,4 +32,9 @@
 }
 
 @property(retain) NCLogSession* session;
+
+@property(retain) IBOutlet UILabel* startDate;
+@property(retain) IBOutlet UILabel* endDate;
+@property(retain) IBOutlet UILabel* records;
+
 @end
