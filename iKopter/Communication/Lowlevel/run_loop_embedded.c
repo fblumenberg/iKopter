@@ -72,6 +72,7 @@ int embedded_remove_data_source(data_source_t *ds){
  * Add timer to run_loop (keep list sorted)
  */
 void embedded_add_timer(timer_source_t *ts){
+#ifdef HAVE_TIME
     linked_item_t *it;
     for (it = (linked_item_t *) &timers; it->next ; it = it->next){
         if (run_loop_timer_compare( (timer_source_t *) it->next, ts) >= 0) {
@@ -82,17 +83,20 @@ void embedded_add_timer(timer_source_t *ts){
     it->next = (linked_item_t *) ts;
     // log_dbg("Added timer %x at %u\n", (int) ts, (unsigned int) ts->timeout.tv_sec);
     // embedded_dump_timer();
+#endif
 }
 
 /**
  * Remove timer from run loop
  */
 int embedded_remove_timer(timer_source_t *ts){
+#ifdef HAVE_TIME
     // log_dbg("Removed timer %x at %u\n", (int) ts, (unsigned int) ts->timeout.tv_sec);
     return linked_list_remove(&timers, (linked_item_t *) ts);
+#endif
 }
 
-void embedded_dump_timer(){
+void embedded_dump_timer(void){
 #ifndef EMBEDDED
     linked_item_t *it;
     int i = 0;
@@ -106,13 +110,11 @@ void embedded_dump_timer(){
 /**
  * Execute run_loop
  */
-void embedded_execute() {
+void embedded_execute(void) {
     data_source_t *ds;
 #ifdef HAVE_TIME
     timer_source_t       *ts;
     struct timeval current_tv;
-    struct timeval next_tv;
-    struct timeval *timeout;
 #endif
     
     while (1) {
@@ -140,7 +142,7 @@ void embedded_execute() {
     }
 }
 
-void embedded_init(){
+void embedded_init(void){
     data_sources = NULL;
     timers = NULL;
 }

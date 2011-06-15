@@ -42,6 +42,7 @@
 
 #include "run_loop_private.h"
 
+#include "debug.h"
 #include "../config.h"
 
 static run_loop_t * the_run_loop = NULL;
@@ -57,10 +58,10 @@ extern run_loop_t run_loop_cocoa;
 #endif
 
 // assert run loop initialized
-void run_loop_assert(){
+void run_loop_assert(void){
 #ifndef EMBEDDED
     if (!the_run_loop){
-        fprintf(stderr, "ERROR: run_loop function called before run_loop_init!\n");
+        log_err("ERROR: run_loop function called before run_loop_init!\n");
         exit(10);
     }
 #endif
@@ -115,7 +116,7 @@ void run_loop_execute() {
 void run_loop_init(RUN_LOOP_TYPE type){
 #ifndef EMBEDDED
     if (the_run_loop){
-        fprintf(stderr, "ERROR: run loop initialized twice!\n");
+        log_err("ERROR: run loop initialized twice!\n");
         exit(10);
     }
 #endif
@@ -135,7 +136,7 @@ void run_loop_init(RUN_LOOP_TYPE type){
 #endif
         default:
 #ifndef EMBEDDED
-            fprintf(stderr, "ERROR: invalid run loop type %u selected!\n", type);
+            log_err("ERROR: invalid run loop type %u selected!\n", type);
             exit(10);
 #endif
             break;
@@ -145,6 +146,7 @@ void run_loop_init(RUN_LOOP_TYPE type){
 
 // set timer
 void run_loop_set_timer(timer_source_t *a, int timeout_in_ms){
+#ifdef HAVE_TIME
     gettimeofday(&a->timeout, NULL);
     a->timeout.tv_sec  +=  timeout_in_ms / 1000;
     a->timeout.tv_usec += (timeout_in_ms % 1000) * 1000;
@@ -152,8 +154,10 @@ void run_loop_set_timer(timer_source_t *a, int timeout_in_ms){
         a->timeout.tv_usec -= 1000000;
         a->timeout.tv_sec++;
     }
+#endif
 }
 
+#ifdef HAVE_TIME
 // compare timers - NULL is assumed to be before the Big Bang
 // pre: 0 <= tv_usec < 1000000
 int run_loop_timeval_compare(struct timeval *a, struct timeval *b){
@@ -187,4 +191,5 @@ int run_loop_timer_compare(timer_source_t *a, timer_source_t *b){
     if (!b) return 1;
     return run_loop_timeval_compare(&a->timeout, &b->timeout);
 }
+#endif
 

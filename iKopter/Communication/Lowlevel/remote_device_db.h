@@ -33,23 +33,30 @@
  * interface to provide link key and remote name storage
  */
 
+#pragma once
+
 #include <btstack/utils.h>
 
 typedef struct {
 
     // management
-    void (*open)();
-    void (*close)();
+    void (*open)(void);
+    void (*close)(void);
     
     // link key
     int  (*get_link_key)(bd_addr_t *bd_addr, link_key_t *link_key);
     void (*put_link_key)(bd_addr_t *bd_addr, link_key_t *key);
     void (*delete_link_key)(bd_addr_t *bd_addr);
     
-    // remove name
+    // remote name
     int  (*get_name)(bd_addr_t *bd_addr, device_name_t *device_name);
     void (*put_name)(bd_addr_t *bd_addr, device_name_t *device_name);
     void (*delete_name)(bd_addr_t *bd_addr);
+
+    // persistent rfcomm channel
+    uint8_t (*persistent_rfcomm_channel)(char *servicename);
+
 } remote_device_db_t;
 
 extern remote_device_db_t remote_device_db_iphone;
+extern remote_device_db_t remote_device_db_memory;

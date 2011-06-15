@@ -36,7 +36,6 @@
 #include <btstack/sdp_util.h>
 #include <btstack/utils.h>
 
-#include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -74,10 +73,6 @@ int de_get_data_size(uint8_t * header){
     uint32_t result = 0;
     de_type_t de_type = de_get_element_type(header);
     de_size_t de_size = de_get_size_type(header);
-    if (de_size <= DE_SIZE_128){
-        if (de_type == DE_NIL) return 0;
-        return 1 << de_size;
-    }
     switch (de_size){
         case DE_SIZE_VAR_8:
             result = header[1];
@@ -88,6 +83,14 @@ int de_get_data_size(uint8_t * header){
         case DE_SIZE_VAR_32:
             result = READ_NET_32(header,1);
             break;
+        default:
+        // case DE_SIZE_8:
+        // case DE_SIZE_16:
+        // case DE_SIZE_32:
+        // case DE_SIZE_64:
+        // case DE_SIZE_128:
+            if (de_type == DE_NIL) return 0;
+            return 1 << de_size;
     }
     return result;    
 }
@@ -364,6 +367,45 @@ uint8_t * sdp_get_attribute_value_for_attribute_id(uint8_t * record, uint16_t at
     context.attributeID = attributeID;
     sdp_attribute_list_traverse_sequence(record, sdp_traversal_attribute_by_id, &context);
     return context.attributeValue;
+}
+
+#pragma mark Set AttributeValue for AttributeID
+struct sdp_context_set_attribute_for_id {
+    uint16_t  attributeID;
+    uint32_t  attributeValue;
+    uint8_t   attributeFound;
+};
+static int sdp_traversal_set_attribute_for_id(uint16_t attributeID, uint8_t * attributeValue, de_type_t attributeType, de_size_t size, void *my_context){
+    struct sdp_context_set_attribute_for_id * context = (struct sdp_context_set_attribute_for_id *) my_context;
+    if (attributeID == context->attributeID) {
+        context->attributeFound = 1;
+        switch (size){
+            case DE_SIZE_8:
+                if (attributeType != DE_NIL){
+                    attributeValue[1] = context->attributeValue;
+                }
+                break;
+            case DE_SIZE_16:
+                net_store_16(attributeValue, 1, context->attributeValue);
+                break;
+            case DE_SIZE_32:
+                net_store_32(attributeValue, 1, context->attributeValue);
+                break;
+                // Might want to support STRINGS to, copy upto original length
+            default:
+                break;
+        }        
+        return 1;
+    }
+    return 0;
+}
+uint8_t sdp_set_attribute_value_for_attribute_id(uint8_t * record, uint16_t attributeID, uint32_t value){
+    struct sdp_context_set_attribute_for_id context;
+    context.attributeID = attributeID;
+    context.attributeValue = value;
+    context.attributeFound = 0;
+    sdp_attribute_list_traverse_sequence(record, sdp_traversal_set_attribute_for_id, &context);
+    return context.attributeFound;
 }
 
 #pragma mark ServiceRecord contains UUID

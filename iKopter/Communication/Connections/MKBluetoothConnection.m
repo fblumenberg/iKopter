@@ -288,14 +288,14 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 					break;
           
 				case RFCOMM_EVENT_OPEN_CHANNEL_COMPLETE:
-          [MKBluetoothConnection cancelPreviousPerformRequestsWithTarget:self];
-					// data: event(8), len(8), status (8), address (48), server channel(8), rfcomm_cid(16), max frame size(16)
+					// data: event(8), len(8), status (8), address (48),              server channel(8), rfcomm_cid(16), max frame size(16)
+          // data: event(8), len(8), status (8), address (48), handle (16), server channel(8), rfcomm_cid(16), max frame size(16)
 					if (packet[2]) {
 						qltrace(@"RFCOMM channel open failed, status %u", packet[2]);
             [self didDisconnectWithError:packet[2]];
 					} else {
-						rfcomm_channel_id = READ_BT_16(packet, 10);
-						int16_t mtu = READ_BT_16(packet, 12);
+						rfcomm_channel_id = READ_BT_16(packet, 12);
+						int16_t mtu = READ_BT_16(packet, 14);
 						qltrace(@"RFCOMM channel open succeeded. New RFCOMM Channel ID %u, max frame size %u", rfcomm_channel_id, mtu);
             [self didConnect];
 					}
