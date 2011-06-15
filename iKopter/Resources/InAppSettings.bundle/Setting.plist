@@ -102,6 +102,14 @@
 			<key>File</key>
 			<string>Misc</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>User</string>
+			<key>File</key>
+			<string>User</string>
+		</dict>
 	</array>
 </dict>
 </plist>
