@@ -99,7 +99,6 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 
 -(void)didConnect {
   
-  opened=YES;
   
   if ( [delegate respondsToSelector:@selector(didConnectTo:)] ) {
     [delegate didConnectTo:[self stringForAddress]];
@@ -145,7 +144,8 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
     qlwarning(@"bt_open failed. Maybe no BTStack installed");
     [self didDisconnectWithError:-1];
   }
-  
+  opened=YES;
+
   btManager.delegate=self;
                                     
   bt_send_cmd(&btstack_set_power_mode, HCI_POWER_ON );
@@ -161,19 +161,22 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 
 - (void) disconnect;
 {
-  qlinfo(@"Try to disconnect from %@", [self stringForAddress]);
-  
-  qldebug(@"Send RFCOMM disconnect");
-  bt_send_cmd(&rfcomm_disconnect, rfcomm_channel_id,0);
-  qldebug(@"Send deactivate");
-	bt_send_cmd(&btstack_set_power_mode, HCI_POWER_OFF);
+  if([self isConnected]){
+    qlinfo(@"Try to disconnect from %@", [self stringForAddress]);
+    
+    qldebug(@"Send RFCOMM disconnect");
+    bt_send_cmd(&rfcomm_disconnect, rfcomm_channel_id,0);
+    qldebug(@"Send deactivate");
+    bt_send_cmd(&btstack_set_power_mode, HCI_POWER_OFF);
+  }
   
   [self didDisconnect];
 }
 
 - (void) writeMkData:(NSData *)data;
 {
-  bt_send_rfcomm(rfcomm_channel_id, (uint8_t*)[data bytes], [data length]);
+  if([self isConnected])
+    bt_send_rfcomm(rfcomm_channel_id, (uint8_t*)[data bytes], [data length]);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -257,7 +260,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 			
 		case RFCOMM_DATA_PACKET:
 			qltrace(@"Received RFCOMM data on channel id %u, size %u", channel, size);
-			hexdump(packet, size);
+			//hexdump(packet, size);
       [self btReadData:packet withLen:size];
 			break;
 			
@@ -276,7 +279,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
             qltrace(@"BTStack is activated, start RFCOMM connection");
 						bt_send_cmd(&rfcomm_create_channel, address, 1);
 
-            [self performSelector:@selector(disconnect) withObject:self afterDelay:30.0];
+//            [self performSelector:@selector(disconnect) withObject:self afterDelay:30.0];
 					}
 					break;
 					
