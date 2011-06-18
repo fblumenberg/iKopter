@@ -25,6 +25,7 @@
 
 #import "ValueOsdViewController.h"
 #import "UIImage+Tint.h"
+#import "UIColor+ColorWithHex.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 @interface ValueOsdViewController()
@@ -55,6 +56,8 @@
 @synthesize targetPosDev;
 @synthesize homePosDev;
 @synthesize noData;
+@synthesize altitudeControl;
+@synthesize careFree;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
@@ -63,12 +66,21 @@
     if (self) {
       self.gpsSateliteOk = [UIImage imageNamed:@"gpsSat2.png"];
       self.gpsSateliteErr=[self.gpsSateliteOk imageTintedWithColor:[UIColor redColor]];
+     
+      gpsOkColor=[[UIColor colorWithRed:0.0 green:0.5 blue:0.25 alpha:1.0]retain];
+      functionOffColor=[[UIColor colorWithHexString:@"#E6E6E6" andAlpha:1.0]retain];
+      functionOnColor=[UIColor blueColor];
+      
     }
     return self;
 }
 
 
 - (void)dealloc {
+  [gpsOkColor release];
+  gpsOkColor=nil;
+  [functionOffColor release];
+  functionOffColor=nil;
   [super dealloc];
 }
 
@@ -77,14 +89,13 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  gpsOkColor=[[UIColor colorWithRed:0.0 green:0.5 blue:0.25 alpha:1.0]retain];
+
+
 }
 
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  [gpsOkColor release];
-  gpsOkColor=nil;
 }
 
 
@@ -92,6 +103,7 @@
   [super viewWillAppear:animated];
   
   [self updateViewWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
+
 }
 
 
@@ -109,6 +121,11 @@
     [[NSBundle mainBundle] loadNibNamed:@"ValueOsdViewControllerLandscape" owner:self options:nil];
   }
 
+  self.altitudeControl.badgeInsetColor=functionOffColor;
+  [self.altitudeControl autoBadgeSizeWithString:@"ALT"];
+  
+  self.careFree.badgeInsetColor=functionOffColor;
+  [self.careFree autoBadgeSizeWithString:@"ALT"];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
@@ -132,9 +149,20 @@
   usedCapacity.text=[NSString stringWithFormat:@"%d",data->UsedCapacity];  
   
   satelites.badgeInsetColor = value.isGpsOk?gpsOkColor:[UIColor redColor];
-//  [satelites autoBadgeSizeWithString:[NSString stringWithFormat:@"%d",data->SatsInUse]];
-  satelites.badgeText=[NSString stringWithFormat:@"%d",data->SatsInUse];
-  [satelites setNeedsDisplay];
+  [satelites autoBadgeSizeWithString:[NSString stringWithFormat:@"%d",data->SatsInUse]];
+//  satelites.badgeText=[NSString stringWithFormat:@"%d",data->SatsInUse];
+//  [satelites setNeedsDisplay];
+  
+  self.altitudeControl.badgeInsetColor=value.isAltControlOn?functionOnColor:functionOffColor;
+  self.altitudeControl.badgeText=@"Alt";
+  [self.altitudeControl setNeedsDisplay];
+//  [self.altitudeControl autoBadgeSizeWithString:@"Alt"];
+  
+  self.careFree.badgeInsetColor=value.isCareFreeOn?functionOnColor:functionOffColor;
+  self.careFree.badgeText=@"CF";
+  [self.careFree setNeedsDisplay];
+//  [self.careFree autoBadgeSizeWithString:@"CF"];
+  
   
   attitude.text=[NSString stringWithFormat:@"%d° %d° / %d°",data->CompassHeading,
                  data->AngleNick,

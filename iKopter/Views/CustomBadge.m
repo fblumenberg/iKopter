@@ -22,8 +22,6 @@
 #import "CustomBadge.h"
 
 @interface CustomBadge()
-- (id) initWithString:(NSString *)badgeString;
-- (id) initWithString:(NSString *)badgeString withStringColor:(UIColor*)stringColor withInsetColor:(UIColor*)insetColor withBadgeFrame:(BOOL)badgeFrameYesNo withBadgeFrameColor:(UIColor*)frameColor;
 - (void) drawRoundedRectWithContext:(CGContextRef)context withRect:(CGRect)rect;
 - (void) drawFrameWithContext:(CGContextRef)context withRect:(CGRect)rect;
 @end
@@ -36,109 +34,175 @@
 @synthesize badgeFrameColor;
 @synthesize badgeFrame;
 @synthesize badgeCornerRoundness;
+@synthesize badgeScaleFactor;
+@synthesize badgeShining;
 
 
-// Use this method if you want to change the badge text after the first rendering 
-- (void) autoBadgeSizeWithString:(NSString *)badgeString
+- (void)awakeFromNib
 {
-	CGSize retValue = CGSizeMake(25, 25);
-	CGFloat rectWidth, rectHeight;
-	CGSize stringSize = [badgeString sizeWithFont:[UIFont boldSystemFontOfSize:12]];
-	CGFloat flexSpace;
-	if ([badgeString length]>=2) 
-	{
-		flexSpace = [badgeString length]*1;
-		rectWidth = 25 + (stringSize.width + flexSpace); rectHeight = 25;
-		retValue = CGSizeMake(rectWidth, rectHeight);
-	}
-	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, retValue.width, retValue.height);
-	self.badgeText = badgeString;
+//	self = [super initWithFrame:CGRectMake(0, 0, 25, 25)];
+//	if(self!=nil) {
+		self.contentScaleFactor = [[UIScreen mainScreen] scale];
+		self.backgroundColor = [UIColor clearColor];
+		self.badgeText = @"1";
+		self.badgeTextColor = [UIColor whiteColor];
+		self.badgeFrame = YES;
+		self.badgeFrameColor = [UIColor whiteColor];
+		self.badgeInsetColor = [UIColor redColor];
+		self.badgeCornerRoundness = 0.4;
+		self.badgeScaleFactor = 1.0;;
+		self.badgeShining = YES;
+		[self autoBadgeSizeWithString:self.badgeText];		
+//	}
+//	return self;
 }
 
 // I recommend to use the allocator customBadgeWithString
-- (id) initWithString:(NSString *)badgeString
+- (id) initWithString:(NSString *)badgeString withScale:(CGFloat)scale withShining:(BOOL)shining
 {
 	self = [super initWithFrame:CGRectMake(0, 0, 25, 25)];
-	[self autoBadgeSizeWithString:badgeString];
-	if(self!=nil)
-	{
+	if(self!=nil) {
+		self.contentScaleFactor = [[UIScreen mainScreen] scale];
 		self.backgroundColor = [UIColor clearColor];
 		self.badgeText = badgeString;
 		self.badgeTextColor = [UIColor whiteColor];
 		self.badgeFrame = YES;
 		self.badgeFrameColor = [UIColor whiteColor];
 		self.badgeInsetColor = [UIColor redColor];
-		self.badgeCornerRoundness = 0.40;		
+		self.badgeCornerRoundness = 0.4;
+		self.badgeScaleFactor = scale;
+		self.badgeShining = shining;
+		[self autoBadgeSizeWithString:badgeString];		
 	}
 	return self;
 }
 
-
-- (void) awakeFromNib {
-	[self autoBadgeSizeWithString:@""];
-  self.backgroundColor = [UIColor clearColor];
-  self.badgeText = @"";
-  self.badgeTextColor = [UIColor whiteColor];
-  self.badgeFrame = YES;
-  self.badgeFrameColor = [UIColor whiteColor];
-  self.badgeInsetColor = [UIColor redColor];
-  self.badgeCornerRoundness = 0.40;		
-}
-
-
 // I recommend to use the allocator customBadgeWithString
-- (id) initWithString:(NSString *)badgeString withStringColor:(UIColor*)stringColor withInsetColor:(UIColor*)insetColor withBadgeFrame:(BOOL)badgeFrameYesNo withBadgeFrameColor:(UIColor*)frameColor
+- (id) initWithString:(NSString *)badgeString withStringColor:(UIColor*)stringColor withInsetColor:(UIColor*)insetColor withBadgeFrame:(BOOL)badgeFrameYesNo withBadgeFrameColor:(UIColor*)frameColor withScale:(CGFloat)scale withShining:(BOOL)shining 
 {
 	self = [super initWithFrame:CGRectMake(0, 0, 25, 25)];
-	[self autoBadgeSizeWithString:badgeString];
-	if(self!=nil)
-	{
+	if(self!=nil) {
+		self.contentScaleFactor = [[UIScreen mainScreen] scale];
 		self.backgroundColor = [UIColor clearColor];
 		self.badgeText = badgeString;
 		self.badgeTextColor = stringColor;
 		self.badgeFrame = badgeFrameYesNo;
 		self.badgeFrameColor = frameColor;
 		self.badgeInsetColor = insetColor;
-		self.badgeCornerRoundness = 0.40;		
+		self.badgeCornerRoundness = 0.40;	
+		self.badgeScaleFactor = scale;
+		self.badgeShining = shining;
+		[self autoBadgeSizeWithString:badgeString];
 	}
 	return self;
 }
 
+
+// Use this method if you want to change the badge text after the first rendering 
+- (void) autoBadgeSizeWithString:(NSString *)badgeString
+{
+	CGSize retValue;
+	CGFloat rectWidth, rectHeight;
+	CGSize stringSize = [badgeString sizeWithFont:[UIFont boldSystemFontOfSize:12]];
+	CGFloat flexSpace;
+	if ([badgeString length]>=2) {
+		flexSpace = [badgeString length];
+		rectWidth = 25 + (stringSize.width + flexSpace); rectHeight = 25;
+		retValue = CGSizeMake(rectWidth*badgeScaleFactor, rectHeight*badgeScaleFactor);
+	} else {
+		retValue = CGSizeMake(25*badgeScaleFactor, 25*badgeScaleFactor);
+	}
+	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, retValue.width, retValue.height);
+	self.badgeText = badgeString;
+	[self setNeedsDisplay];
+}
+
+
 // Creates a Badge with a given Text 
 + (CustomBadge*) customBadgeWithString:(NSString *)badgeString
 {
-	return [[[self alloc] initWithString:badgeString] autorelease];
+	return [[[self alloc] initWithString:badgeString withScale:1.0 withShining:YES] autorelease];
 }
+
 
 // Creates a Badge with a given Text, Text Color, Inset Color, Frame (YES/NO) and Frame Color 
-+ (CustomBadge*) customBadgeWithString:(NSString *)badgeString withStringColor:(UIColor*)stringColor withInsetColor:(UIColor*)insetColor withBadgeFrame:(BOOL)badgeFrameYesNo withBadgeFrameColor:(UIColor*)frameColor
++ (CustomBadge*) customBadgeWithString:(NSString *)badgeString withStringColor:(UIColor*)stringColor withInsetColor:(UIColor*)insetColor withBadgeFrame:(BOOL)badgeFrameYesNo withBadgeFrameColor:(UIColor*)frameColor withScale:(CGFloat)scale withShining:(BOOL)shining
 {
-	return [[[self alloc] initWithString:badgeString withStringColor:stringColor withInsetColor:insetColor withBadgeFrame:badgeFrameYesNo withBadgeFrameColor:frameColor] autorelease];
+	return [[[self alloc] initWithString:badgeString withStringColor:stringColor withInsetColor:insetColor withBadgeFrame:badgeFrameYesNo withBadgeFrameColor:frameColor withScale:scale withShining:shining] autorelease];
 }
 
+
+
+ 
 
 // Draws the Badge with Quartz
 -(void) drawRoundedRectWithContext:(CGContextRef)context withRect:(CGRect)rect
 {
+	CGContextSaveGState(context);
+	
 	CGFloat radius = CGRectGetMaxY(rect)*self.badgeCornerRoundness;
 	CGFloat puffer = CGRectGetMaxY(rect)*0.10;
-	
 	CGFloat maxX = CGRectGetMaxX(rect) - puffer;
 	CGFloat maxY = CGRectGetMaxY(rect) - puffer;
 	CGFloat minX = CGRectGetMinX(rect) + puffer;
 	CGFloat minY = CGRectGetMinY(rect) + puffer;
-	
+		
     CGContextBeginPath(context);
 	CGContextSetFillColorWithColor(context, [self.badgeInsetColor CGColor]);
 	CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
 	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
 	CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
 	CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
-	CGContextSetShadowWithColor(context, CGSizeMake(2,2), 3, [[UIColor blackColor] CGColor]);
+	CGContextSetShadowWithColor(context, CGSizeMake(1.0,1.0), 3, [[UIColor blackColor] CGColor]);
 	CGContextClosePath(context);
     CGContextFillPath(context);
-	
+
+	CGContextRestoreGState(context);
+
 }
+
+// Draws the Badge Shine with Quartz
+-(void) drawShineWithContext:(CGContextRef)context withRect:(CGRect)rect
+{
+	CGContextSaveGState(context);
+ 
+	CGFloat radius = CGRectGetMaxY(rect)*self.badgeCornerRoundness;
+	CGFloat puffer = CGRectGetMaxY(rect)*0.10;
+	CGFloat maxX = CGRectGetMaxX(rect) - puffer;
+	CGFloat maxY = CGRectGetMaxY(rect) - puffer;
+	CGFloat minX = CGRectGetMinX(rect) + puffer;
+	CGFloat minY = CGRectGetMinY(rect) + puffer;
+	CGContextBeginPath(context);
+	CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
+	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
+	CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
+	CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
+	CGContextClip(context);
+	CGContextClosePath(context);
+	
+	
+	size_t num_locations = 2;
+	CGFloat locations[2] = { 0.0, 0.4 };
+	CGFloat components[8] = {  0.92, 0.92, 0.92, 1.0, 0.82, 0.82, 0.82, 0.4 };
+
+	CGColorSpaceRef cspace;
+	CGGradientRef gradient;
+	cspace = CGColorSpaceCreateDeviceRGB();
+	gradient = CGGradientCreateWithColorComponents (cspace, components, locations, num_locations);
+	
+	CGPoint sPoint, ePoint;
+	sPoint.x = 0;
+	sPoint.y = 0;
+	ePoint.x = 0;
+	ePoint.y = maxY;
+	CGContextDrawLinearGradient (context, gradient, sPoint, ePoint, 0);
+	
+	CGColorSpaceRelease(cspace);
+	CGGradientRelease(gradient);
+	
+	CGContextRestoreGState(context);	
+}
+
 
 // Draws the Badge Frame with Quartz
 -(void) drawFrameWithContext:(CGContextRef)context withRect:(CGRect)rect
@@ -153,7 +217,11 @@
 	
 	
     CGContextBeginPath(context);
-	CGContextSetLineWidth(context, 2);
+	CGFloat lineSize = 2;
+	if(self.badgeScaleFactor>1) {
+		lineSize += self.badgeScaleFactor*0.25;
+	}
+	CGContextSetLineWidth(context, lineSize);
 	CGContextSetStrokeColorWithColor(context, [self.badgeFrameColor CGColor]);
 	CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
 	CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
@@ -164,48 +232,38 @@
 }
 
 
-// Draws Method
 - (void)drawRect:(CGRect)rect {
-
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetShouldAntialias(context, YES);
 	
-	CGLayerRef buttonLayer = CGLayerCreateWithContext(context, rect.size, NULL);
-	CGContextRef buttonLayer_Context = CGLayerGetContext(buttonLayer);
-	[self drawRoundedRectWithContext:buttonLayer_Context withRect:rect];
-	CGContextDrawLayerInRect(context, rect, buttonLayer);
-	CGLayerRelease(buttonLayer);
-
-	if (self.badgeFrame) 
-	{
-		CGLayerRef frameLayer = CGLayerCreateWithContext(context, rect.size, NULL);
-		CGContextRef frameLayer_Context = CGLayerGetContext(frameLayer);
-		[self drawFrameWithContext:frameLayer_Context withRect:rect];
-		CGContextDrawLayerInRect(context, rect, frameLayer);
-		CGLayerRelease(frameLayer);		
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	[self drawRoundedRectWithContext:context withRect:rect];
+	
+	if(self.badgeShining) {
+		[self drawShineWithContext:context withRect:rect];
 	}
 	
-	if ([self.badgeText length]>0) 
-	{
+	if (self.badgeFrame)  {
+		[self drawFrameWithContext:context withRect:rect];
+	}
+	
+	if ([self.badgeText length]>0) {
 		[badgeTextColor set];
-		UIFont *textFont = [UIFont boldSystemFontOfSize:13];
+		CGFloat sizeOfFont = 13.5*badgeScaleFactor;
+		if ([self.badgeText length]<2) {
+			sizeOfFont += sizeOfFont*0.20;
+		}
+		UIFont *textFont = [UIFont boldSystemFontOfSize:sizeOfFont];
 		CGSize textSize = [self.badgeText sizeWithFont:textFont];
 		[self.badgeText drawAtPoint:CGPointMake((rect.size.width/2-textSize.width/2), (rect.size.height/2-textSize.height/2)) withFont:textFont];
-		
 	}
 	
-	
-
 }
-
 
 - (void)dealloc {
 	
 	[badgeText release];
 	[badgeTextColor release];
 	[badgeInsetColor release];
-	[badgeFrameColor release];
-	 
+	[badgeFrameColor release];	
     [super dealloc];
 }
 

@@ -90,6 +90,8 @@ extern NSString * const MKWritePointNotification;
 - (void) sendRequest:(NSData *)data;
 
 - (BOOL) hasNaviCtrl;
+- (BOOL) hasFlightCtrl;
+- (BOOL) hasMK3MAG;
 - (void) activateNaviCtrl;
 - (void) activateFlightCtrl;
 - (void) activateMK3MAG;

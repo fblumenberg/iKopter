@@ -64,9 +64,9 @@
 			<key>Type</key>
 			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Gyro_Gier_P</string>
+			<string>Gyro_Gier_I</string>
 			<key>Key</key>
-			<string>Gyro_Gier_P</string>
+			<string>Gyro_Gier_I</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
 		</dict>    

@@ -94,6 +94,14 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 - (void) openPort{
   
   qltrace(@"Try to connect to %@", [self.port bsdPath]);
+  
+  if ([[self.port bsdPath]length]==0) {
+    if ( [delegate respondsToSelector:@selector(willDisconnectWithError:)] ) {
+      [delegate willDisconnectWithError:[NSError errorWithDomain:AMSerialErrorDomain code:-2 userInfo:nil]];
+    }
+    return;
+  }
+  
   if([self.port open]){
     
     [self.port setSpeed:57600];

@@ -22,12 +22,16 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
+#import "iKopterAppDelegate.h"
 #import "OsdValue.h"
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
+#import "NCLogSession.h"
+#import "NCLogRecord.h"
 
 @interface OsdValue()
 - (void) sendOsdRefreshRequest;
+- (void) logNCData;
 - (void) osdNotification:(NSNotification *)aNotification;
 
 @property(retain) IKNaviData* data;
@@ -40,6 +44,8 @@
 
 @synthesize delegate=_delegate;
 @synthesize data=_data;
+@synthesize ncLogSession=_ncLogSession;
+@synthesize managedObjectContext;
 
 -(BOOL) areEnginesOn {
   if (!_data.data) 
@@ -115,6 +121,19 @@
   return ((_data.data->NCFlags&NC_FLAG_GPS_OK) == NC_FLAG_GPS_OK);
 }
 
+-(BOOL) isCareFreeOn{
+  if (!_data.data) 
+    return NO;
+  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_CAREFREE) == FC_STATUS2_CAREFREE);
+}
+
+-(BOOL) isAltControlOn{
+  if (!_data.data) 
+    return NO;
+  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_ALTITUDE_CONTROL) == FC_STATUS2_ALTITUDE_CONTROL);
+}
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,8 +142,33 @@
 {
   self = [super init];
   if (self != nil) {
-   
+    
     self.data=[IKNaviData data];
+    
+    _logActive=NO;
+    _logInterval=1.0;
+    
+    NSLog(@"Def:%@",[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]);
+    
+    NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingActive];
+    if (testValue) {
+      _logActive = [[NSUserDefaults standardUserDefaults] boolForKey:kIKNCLoggingActive];
+    }
+    
+    testValue = nil;
+    testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingInterval];
+    if (testValue) {
+      _logInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:kIKNCLoggingInterval];
+      _logInterval /=1000.0;
+    }
+    
+    if (_logActive) {
+      iKopterAppDelegate* appDelegate =(iKopterAppDelegate*)[[UIApplication sharedApplication] delegate];
+      self.managedObjectContext=appDelegate.managedObjectContext;
+      
+      self.ncLogSession = [NSEntityDescription insertNewObjectForEntityForName:@"NCLogSession" inManagedObjectContext:self.managedObjectContext];
+      self.ncLogSession.timeStampStart=[NSDate date];
+    }
     
   }
   return self;
@@ -151,6 +195,11 @@
   
   requestCount=0;
   [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
+  
+  if( _logActive ){
+    logTimer=[NSTimer scheduledTimerWithTimeInterval: _logInterval target:self selector:
+              @selector(logNCData) userInfo:nil repeats:YES];
+  }
 }
 
 - (void) stopRequesting {
@@ -158,14 +207,27 @@
   [requestTimer invalidate];
   requestTimer=nil;
 
+  [logTimer invalidate];
+  logTimer=nil;
+  
+  if( _logActive ){
+    self.ncLogSession.timeStampEnd=[NSDate date];
+    
+    NSError *error = nil;
+    if(![self.managedObjectContext save:&error]){
+      qlcritical(@"Could not save the NC-Log records %@",error);
+    }
+  }
+
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
+  
 }
 
 
 - (void) sendOsdRefreshRequest {
   
-  if(requestCount==3)
+  if(requestCount>3)
     [self.delegate noDataAvailable];
   
   [[MKConnectionController sharedMKConnectionController] requestOsdDataForInterval:40];
@@ -185,5 +247,19 @@
 //    requestCount = 0;
 //  }
 }
+
+- (void) logNCData {
+  
+  NCLogRecord* record=[NSEntityDescription insertNewObjectForEntityForName:@"NCLogRecord" inManagedObjectContext:self.managedObjectContext];
+  record.timeStamp=[NSDate date];
+  
+  [record fillFromNCData:self.data];
+  
+  NSMutableSet *relationshipSet = [self.ncLogSession mutableSetValueForKey:@"records"];
+  [relationshipSet addObject:record];
+  
+  qltrace(@"log");
+}
+
 
 @end

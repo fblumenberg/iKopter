@@ -180,6 +180,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   return versions[kIKMkAddressNC]!=nil;
 }
 
+- (BOOL) hasFlightCtrl {
+  return versions[kIKMkAddressFC]!=nil;
+}
+
+- (BOOL) hasMK3MAG {
+  return versions[kIKMkAddressMK3MAg]!=nil;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) activateNaviCtrl {
   
@@ -199,6 +207,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   [self sendRequest:data];
   
   //currentDevice=kIKMkAddressNC;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
   [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
@@ -217,6 +226,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   
   [self sendRequest:data];
   //currentDevice=kIKMkAddressFC;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
   [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
@@ -235,6 +245,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
   
   [self sendRequest:data];
   //currentDevice=kIKMkAddressMK3MAg;
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.5];
+  [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:0.7];
   [self performSelector:@selector(requestDeviceVersion) withObject:self afterDelay:1.0];
 }
 
@@ -457,9 +469,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:6.0];
       break;
     case kConnectionStateWaitNC:
-      connectionState=kConnectionStateWaitFC;
-      [self activateFlightCtrl];
-      [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+      if (self.currentDevice==kIKMkAddressFC) {
+        connectionState=kConnectionDeviceChecked;
+        NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:MKConnectedNotification object:self userInfo:nil];
+      }
+      else{
+        connectionState=kConnectionStateWaitFC;
+        [self activateFlightCtrl];
+        [self performSelector:@selector(connectionTimeout) withObject:self afterDelay:2.0];
+      }
       break;
     case kConnectionStateWaitFC:
       connectionState=kConnectionStateWaitNC_2;
@@ -484,8 +503,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 - (void) connectionTimeout {
   qltrace(@"connection timeout, retry count %d",retryCount);
-  if (++retryCount>3 && connectionState==kConnectionStateWaitNC) {
-    [self stop];
+  if (++retryCount>3 ){
+    
+    if(connectionState==kConnectionStateWaitNC) {
+      [self stop];
+    }
+    else{
+      connectionState=kConnectionDeviceChecked;
+      NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+      [nc postNotificationName:MKConnectedNotification object:self userInfo:nil];
+    }
   }
   else {
     switch (connectionState) {

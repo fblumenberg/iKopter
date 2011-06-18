@@ -26,12 +26,14 @@
 #import "ValueOsdViewController.h"
 #import "HorizonOsdViewController.h"
 #import "RawOsdViewController.h"
+#import "MapOsdViewController.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 @interface OsdViewController()
 - (void)conceal;
 - (void)concealAfterDelay:(NSTimeInterval)delay;
 - (void)updateSelectedViewFrame;
+- (void)doScreenLock;
 @end
 
 
@@ -42,7 +44,9 @@
 @synthesize tabBar;
 @synthesize	horizonOsdTabBarItem;
 @synthesize valuesOsdTabBarItem;
+@synthesize mapOsdTabBarItem;
 @synthesize selectedViewController;
+@synthesize screenLockButton;
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -58,8 +62,9 @@
   HorizonOsdViewController* horizonViewController=[[HorizonOsdViewController alloc]initWithNibName:@"HorizonOsdViewController" bundle:nil];
   ValueOsdViewController* valueViewController=[[ValueOsdViewController alloc]initWithNibName:@"ValueOsdViewController" bundle:nil];
   RawOsdViewController* rawViewController=[[RawOsdViewController alloc]initWithNibName:@"RawOsdViewController" bundle:nil];
+  MapOsdViewController* mapViewController=[[MapOsdViewController alloc]initWithNibName:@"MapOsdViewController" bundle:nil];
   
-  NSArray *array = [[NSArray alloc] initWithObjects:horizonViewController, valueViewController, rawViewController, nil];
+  NSArray *array = [[NSArray alloc] initWithObjects:horizonViewController, valueViewController, rawViewController, mapViewController, nil];
   self.viewControllers = array;
   
   [self.view addSubview:valueViewController.view];
@@ -69,6 +74,7 @@
   [horizonViewController release];
   [valueViewController release];
   [rawViewController release];
+  [mapViewController release];
   
   self.tabBar.selectedItem=self.valuesOsdTabBarItem;
   
@@ -88,6 +94,21 @@
   [self.navigationController setNavigationBarHidden:NO animated:NO];
   
   self.navigationController.navigationBar.translucent=YES;
+  
+//  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action: nil] autorelease];
+//  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"screenlock-locked.png"] style:UIBarButtonItemStylePlain target:self action: nil] autorelease];
+  
+  self.screenLockButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+  [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock.png"] forState:UIControlStateNormal];
+  [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock.png"] forState:UIControlStateDisabled];
+  [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock-locked.png"] forState:UIControlStateSelected];
+  [self.screenLockButton setSelected:NO];
+  
+  [self.screenLockButton addTarget:self action:@selector(doScreenLock) forControlEvents:UIControlEventTouchUpInside];
+  
+  
+  self.navigationItem.rightBarButtonItem =[[[UIBarButtonItem alloc] initWithCustomView:screenLockButton]autorelease];
+  
   [self updateSelectedViewFrame];
 }
 
@@ -115,6 +136,7 @@
   
   self.selectedViewController=nil;
   self.viewControllers=nil;
+  self.screenLockButton=nil;
   
   [osdValue release];
 }
@@ -124,11 +146,15 @@
 #pragma mark -
 #pragma mark View rotation 
 
+- (void)doScreenLock {
+  [self.screenLockButton setSelected:!self.screenLockButton.selected];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   
   BOOL result=YES;
   
-  if( interfaceOrientation==UIInterfaceOrientationLandscapeRight )
+  if( self.screenLockButton.selected )
     return NO;
   
   for (UIViewController* controller in self.viewControllers) {

@@ -29,18 +29,23 @@
   
   OsdValue* osdValue;
   
+  UIButton *screenLockButton;
+  
   NSArray* viewControllers;
 	UITabBar* tabBar;
 	
   UITabBarItem *horizonOsdTabBarItem;
   UITabBarItem *valuesOsdTabBarItem;
+  UITabBarItem *mapOsdTabBarItem;
   UIViewController<OsdValueDelegate> *selectedViewController;
 }
 
 @property (nonatomic, retain) NSArray *viewControllers;
+@property (nonatomic, retain) UIButton *screenLockButton;
 @property (nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property (nonatomic, retain) IBOutlet UITabBarItem *horizonOsdTabBarItem;
 @property (nonatomic, retain) IBOutlet UITabBarItem *valuesOsdTabBarItem;
+@property (nonatomic, retain) IBOutlet UITabBarItem *mapOsdTabBarItem;
 @property (nonatomic, retain) UIViewController<OsdValueDelegate> *selectedViewController;
 
 @end
