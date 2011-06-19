@@ -32,7 +32,6 @@
   IASKAppSettingsViewController *appSettingsViewController;
 
   MKHosts* hosts;
-  NSIndexPath* editingHost;
 }
 
 - (void)addHost;

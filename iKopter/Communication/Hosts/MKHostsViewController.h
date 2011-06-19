@@ -23,17 +23,16 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-#import "IASKAppSettingsViewController.h"
-#import "IASKSettingsStore.h"
-#import "BTDiscoveryViewController.h"
+#import "MKHosts.h"
 
-@class MKHost;
+@interface MKHostsViewController : UITableViewController {
+    
 
-@interface MKHostViewController : IASKAppSettingsViewController<BTDiscoveryDelegate> {
-  
+  NSIndexPath* editingHost;
 }
 
-- (id)initWithHost:(MKHost*)theHost;
+@property(retain) MKHosts* hosts;
+- (id)initWithHosts:(MKHosts*)theHostList;
 
 
 @end
