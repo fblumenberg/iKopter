@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010-2011, Frank Blumenberg
+// Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,51 +22,41 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
+#import "WaypointViewController.h"
+#import "IASKSettingsStoreObject.h"
+#import "IKPoint.h"
 
-#import "IKMkDataTypes.h"
 
-@class CLLocation;
+@implementation WaypointViewController
 
-@interface IKNaviData : NSObject {
+#pragma mark -
 
-  IKMkNaviData _data;
+- (id)initWithPoint:(IKPoint*)theHost {
+  if ((self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil])) {
+    self.file = @"WayPoint";
+    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:theHost];
+    
+    self.showCreditsFooter=NO;
+    self.showDoneButton=NO;
+    
+    self.delegate=self;
+    
+    self.title=NSLocalizedString(@"Waypoint", @"Waypoint view title");
+  }
+  return self;
 }
 
-@property(assign,readonly) IKMkNaviData* data;
-
-+ (id)data;
-+ (id)dataWithData:(NSData *)data;
-- (id)initWithData:(NSData*)data;
-
-@end
-
-
-@interface IKGPSPos : NSObject<NSCoding> {
-  
+- (void)dealloc {
+  [super dealloc];
 }
 
-@property(assign) NSInteger  longitude;      // in 1E-7 deg
-@property(assign) NSInteger  latitude;       // in 1E-7 deg
-@property(assign) NSUInteger altitude;       // in mm
-@property(assign) NSInteger  status;         // validity of data
+#pragma mark -
 
-@property(readonly,retain) CLLocation* location;
-
-+ (id)positionWithMkPos:(IKMkGPSPos *)pos;
-- (id)initWithMkPos:(IKMkGPSPos*)pos;
-
-@end
-
-@interface IKGPSPosDev : NSObject<NSCoding> {
-  
+// called after this controller's view will appear
+- (void)viewWillAppear:(BOOL)animated
+{	
+  [super viewWillAppear:animated];
 }
-
-@property(assign) NSUInteger distance;       // in mm
-@property(assign) NSInteger  bearing;         // validity of data
-
-+ (id)positionWithMkPosDev:(IKMkGPSPosDev *)pos;
-- (id)initWithMkPosDev:(IKMkGPSPosDev*)pos;
 
 @end
 

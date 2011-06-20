@@ -196,6 +196,10 @@
 		BAE3B09D13ACE978007E0F2F /* IKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09C13ACE978007E0F2F /* IKPoint.m */; };
 		BAE3B0A013AE4DAC007E0F2F /* IKPointList.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09F13AE4DAA007E0F2F /* IKPointList.m */; };
 		BAE3B0A413AE5124007E0F2F /* MKHostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */; };
+		BAE3B0A813AFD0D0007E0F2F /* IKPointListList.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */; };
+		BAE3B0AC13AFD504007E0F2F /* WaypointListListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0AB13AFD504007E0F2F /* WaypointListListViewController.m */; };
+		BAE3B0AF13AFD9AC007E0F2F /* WaypointListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0AE13AFD9AC007E0F2F /* WaypointListViewController.m */; };
+		BAE3B12013AFEA51007E0F2F /* WaypointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
 		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
@@ -508,6 +512,14 @@
 		BAE3B09F13AE4DAA007E0F2F /* IKPointList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKPointList.m; sourceTree = "<group>"; };
 		BAE3B0A113AE5123007E0F2F /* MKHostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHostsViewController.h; sourceTree = "<group>"; };
 		BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHostsViewController.m; sourceTree = "<group>"; };
+		BAE3B0A613AFD0CD007E0F2F /* IKPointListList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKPointListList.h; sourceTree = "<group>"; };
+		BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKPointListList.m; sourceTree = "<group>"; };
+		BAE3B0AA13AFD504007E0F2F /* WaypointListListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointListListViewController.h; sourceTree = "<group>"; };
+		BAE3B0AB13AFD504007E0F2F /* WaypointListListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointListListViewController.m; sourceTree = "<group>"; };
+		BAE3B0AD13AFD9AC007E0F2F /* WaypointListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointListViewController.h; sourceTree = "<group>"; };
+		BAE3B0AE13AFD9AC007E0F2F /* WaypointListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointListViewController.m; sourceTree = "<group>"; };
+		BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointViewController.h; sourceTree = "<group>"; };
+		BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointViewController.m; sourceTree = "<group>"; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iKopter.xcdatamodel; sourceTree = "<group>"; };
 		BAEEFBDB139D6FF90003860E /* NCLogRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogRecord.h; sourceTree = "<group>"; };
@@ -580,6 +592,7 @@
 		BA0D4675137C5127001415C3 /* iKopter */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B0A913AFD503007E0F2F /* Waypoints */,
 				BAEEFBDA139D6FF90003860E /* NCLog */,
 				BAEEFBC7139D6E160003860E /* CoreData */,
 				BAA4E686137EB89C0068E38E /* Analog */,
@@ -960,6 +973,8 @@
 		BAA4E661137EB5BA0068E38E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B0A613AFD0CD007E0F2F /* IKPointListList.h */,
+				BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */,
 				BAE3B09E13AE4DA9007E0F2F /* IKPointList.h */,
 				BAE3B09F13AE4DAA007E0F2F /* IKPointList.m */,
 				BAE3B09B13ACE978007E0F2F /* IKPoint.h */,
@@ -1109,6 +1124,19 @@
 				BAA4E6C8137EB89D0068E38E /* IKInstrumentsCommon.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BAE3B0A913AFD503007E0F2F /* Waypoints */ = {
+			isa = PBXGroup;
+			children = (
+				BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */,
+				BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */,
+				BAE3B0AD13AFD9AC007E0F2F /* WaypointListViewController.h */,
+				BAE3B0AE13AFD9AC007E0F2F /* WaypointListViewController.m */,
+				BAE3B0AA13AFD504007E0F2F /* WaypointListListViewController.h */,
+				BAE3B0AB13AFD504007E0F2F /* WaypointListListViewController.m */,
+			);
+			path = Waypoints;
 			sourceTree = "<group>";
 		};
 		BAEEFBC7139D6E160003860E /* CoreData */ = {
@@ -1406,6 +1434,10 @@
 				BAE3B09D13ACE978007E0F2F /* IKPoint.m in Sources */,
 				BAE3B0A013AE4DAC007E0F2F /* IKPointList.m in Sources */,
 				BAE3B0A413AE5124007E0F2F /* MKHostsViewController.m in Sources */,
+				BAE3B0A813AFD0D0007E0F2F /* IKPointListList.m in Sources */,
+				BAE3B0AC13AFD504007E0F2F /* WaypointListListViewController.m in Sources */,
+				BAE3B0AF13AFD9AC007E0F2F /* WaypointListViewController.m in Sources */,
+				BAE3B12013AFEA51007E0F2F /* WaypointViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

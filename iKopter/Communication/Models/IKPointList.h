@@ -26,14 +26,13 @@
 
 @class IKPoint;
 
-@interface IKPointList : NSObject {
+@interface IKPointList : NSObject<NSCoding> {
 
-  NSMutableArray* points;
 }
 
 @property(retain) NSString* name;
+@property(retain) NSMutableArray* points;
 
--(void) save; 
 -(NSUInteger) count;
 
 -(IKPoint*) pointAtIndexPath:(NSIndexPath *)indexPath;

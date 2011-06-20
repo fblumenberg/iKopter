@@ -356,6 +356,10 @@ typedef struct
 } __attribute__((packed)) Attitude_t;
 
 
+#define	INVALID		0x00
+#define NEWDATA		0x01
+#define PROCESSED	0x02
+
 typedef struct
 {
   int32_t Longitude;      // in 1E-7 deg
@@ -425,6 +429,10 @@ typedef struct
 #define FC_STATUS_LOWBAT              0x20
 #define FC_STATUS_VARIO_TRIM_UP       0x40
 #define FC_STATUS_VARIO_TRIM_DOWN     0x80
+
+#define POINT_TYPE_INVALID 255
+#define POINT_TYPE_WP	0
+#define POINT_TYPE_POI	1
 
 typedef struct
 {

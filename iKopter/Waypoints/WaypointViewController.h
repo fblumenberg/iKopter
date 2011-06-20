@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010-2011, Frank Blumenberg
+// Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,51 +22,17 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "IASKAppSettingsViewController.h"
+#import "IASKSettingsStore.h"
 
-#import "IKMkDataTypes.h"
+@class IKPoint;
 
-@class CLLocation;
-
-@interface IKNaviData : NSObject {
-
-  IKMkNaviData _data;
-}
-
-@property(assign,readonly) IKMkNaviData* data;
-
-+ (id)data;
-+ (id)dataWithData:(NSData *)data;
-- (id)initWithData:(NSData*)data;
-
-@end
-
-
-@interface IKGPSPos : NSObject<NSCoding> {
+@interface WaypointViewController : IASKAppSettingsViewController {
   
 }
 
-@property(assign) NSInteger  longitude;      // in 1E-7 deg
-@property(assign) NSInteger  latitude;       // in 1E-7 deg
-@property(assign) NSUInteger altitude;       // in mm
-@property(assign) NSInteger  status;         // validity of data
+- (id)initWithPoint:(IKPoint*)theHost;
 
-@property(readonly,retain) CLLocation* location;
-
-+ (id)positionWithMkPos:(IKMkGPSPos *)pos;
-- (id)initWithMkPos:(IKMkGPSPos*)pos;
 
 @end
-
-@interface IKGPSPosDev : NSObject<NSCoding> {
-  
-}
-
-@property(assign) NSUInteger distance;       // in mm
-@property(assign) NSInteger  bearing;         // validity of data
-
-+ (id)positionWithMkPosDev:(IKMkGPSPosDev *)pos;
-- (id)initWithMkPosDev:(IKMkGPSPosDev*)pos;
-
-@end
-

@@ -33,6 +33,7 @@
 #import "IASKPSTitleValueSpecifierViewCell.h"
 #import "NCLogViewController.h"
 #import "MKHostsViewController.h"
+#import "WaypointListListViewController.h"
 
 @implementation RootViewController
 
@@ -178,8 +179,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Table view data source
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 2;
@@ -208,7 +208,7 @@
       cell.textLabel.text = NSLocalizedString(@"NC Log",@"NC-LOG cell");
       break;
     case 1:
-      cell.textLabel.text = NSLocalizedString(@"Hosts",@"Motor test cell");
+      cell.textLabel.text = NSLocalizedString(@"Waypoint Lists",@"Waypointlist cell");
       break;
     case 2:
       cell.textLabel.text = NSLocalizedString(@"Channels",@"Channels cell");
@@ -299,7 +299,7 @@
         extraView = [[NCLogViewController alloc] initWithStyle:UITableViewStylePlain];
         break;
       case 1:
-        extraView = [[MKHostsViewController alloc] initWithHosts:hosts];
+        extraView = [[WaypointListListViewController alloc] init];
         break;
     }
     

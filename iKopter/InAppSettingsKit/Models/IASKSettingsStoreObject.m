@@ -37,12 +37,12 @@
 
 - (void)setObject:(id)value forKey:(NSString *)key {
   NSLog(@"Set object %@ (%@) for key %@",value,[value class],key);
-  [_object setValue:value forKey:key];
+  [_object setValue:value forKeyPath:key];
 }
 
 - (id)objectForKey:(NSString *)key {
   NSLog(@"Get object for key %@",key);
-  return [_object valueForKey:key];
+  return [_object valueForKeyPath:key];
 }
 
 - (BOOL)synchronize {

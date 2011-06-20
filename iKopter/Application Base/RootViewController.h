@@ -34,8 +34,6 @@
   MKHosts* hosts;
 }
 
-- (void)addHost;
-
 @property (nonatomic, retain) IASKAppSettingsViewController *appSettingsViewController;
 
 - (IBAction)showSettingsModal:(id)sender;
