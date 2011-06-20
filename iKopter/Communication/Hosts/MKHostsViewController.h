@@ -32,6 +32,8 @@
 }
 
 @property(retain) MKHosts* hosts;
+@property(retain) UIBarButtonItem* addButton;
+
 - (id)initWithHosts:(MKHosts*)theHostList;
 
 

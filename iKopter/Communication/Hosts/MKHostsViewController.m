@@ -30,6 +30,7 @@
 @implementation MKHostsViewController
 
 @synthesize hosts;
+@synthesize addButton;
 
 - (id)initWithHosts:(MKHosts *)theHostList {
   if ((self =  [super initWithStyle:UITableViewStylePlain])) {
@@ -56,12 +57,11 @@
 {
   [super viewDidLoad];
   
-  UIBarButtonItem* addButton;
-  addButton =  [[[UIBarButtonItem alloc]
+  self.addButton =  [[[UIBarButtonItem alloc]
                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                  target:self
                  action:@selector(addHost)] autorelease];
-  addButton.style = UIBarButtonItemStyleBordered;
+  self.addButton.style = UIBarButtonItemStyleBordered;
   
   UIBarButtonItem* spacerButton;
   spacerButton =  [[[UIBarButtonItem alloc]
@@ -69,7 +69,7 @@
                     target:nil
                     action:nil] autorelease];
   
-  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,addButton,nil]];
+  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil]];
   self.tableView.allowsSelectionDuringEditing=YES;
 }
 
@@ -174,12 +174,50 @@
   return indexPath.section==0;
 }
 
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated {
+  [super setEditing: editing animated: animated];
+  
+  UIBarButtonItem* spacerButton;
+  spacerButton =  [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                    target:nil
+                    action:nil] autorelease];
+  if(editing)
+    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
+  else
+    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
+}
+
+//
+//-(void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+//  
+//  UIBarButtonItem* spacerButton;
+//  spacerButton =  [[[UIBarButtonItem alloc]
+//                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                    target:nil
+//                    action:nil] autorelease];
+//  
+//  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
+//
+//}
+//
+//- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+//  
+//  UIBarButtonItem* spacerButton;
+//  spacerButton =  [[[UIBarButtonItem alloc]
+//                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                    target:nil
+//                    action:nil] autorelease];
+//  
+//  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
+//}
+//
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Table view delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (self.tableView.editing && indexPath.section!=0) {
+  if (self.tableView.editing) {
     return nil;
   }
   
@@ -192,12 +230,12 @@
   
   if( indexPath.section==0 ){
     MKHost* host=[self.hosts hostAtIndexPath:indexPath];
-//    if (self.tableView.editing ) {
+    if (!self.tableView.editing ) {
       MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
       editingHost = indexPath;
       [self.navigationController pushViewController:hostView animated:YES];
       [hostView release];
-//    }
+    }
   }
 }
 
