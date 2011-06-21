@@ -22,41 +22,22 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "WaypointViewController.h"
-#import "IASKSettingsStoreObject.h"
-#import "IKPoint.h"
+#import <Foundation/Foundation.h>
 
+@class Route;
 
-@implementation WaypointViewController
+@interface Routes : NSObject {
 
-#pragma mark -
-
-- (id)initWithPoint:(IKPoint*)theWayPoint {
-  if ((self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil])) {
-    self.file = @"WayPoint";
-    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:theWayPoint];
-    
-    self.showCreditsFooter=NO;
-    self.showDoneButton=NO;
-    
-    self.delegate=self;
-    
-    self.title=NSLocalizedString(@"Waypoint", @"Waypoint view title");
-  }
-  return self;
+  NSMutableArray* routes;
 }
 
-- (void)dealloc {
-  [super dealloc];
-}
+-(void) save; 
+-(NSUInteger) count;
 
-#pragma mark -
+-(Route*) routeAtIndexPath:(NSIndexPath *)indexPath;
 
-// called after this controller's view will appear
-- (void)viewWillAppear:(BOOL)animated
-{	
-  [super viewWillAppear:animated];
-}
+-(NSIndexPath*) addRoute;
+-(void) moveRouteAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
+-(void) deleteRouteAtIndexPath:(NSIndexPath*)indexPath;
 
 @end
-

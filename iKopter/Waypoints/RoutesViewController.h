@@ -23,15 +23,15 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-#import "IKPointListList.h"
+#import "Routes.h"
 
-@interface WaypointListListViewController : UITableViewController {
+@interface RoutesViewController : UITableViewController {
     
 
   NSIndexPath* editingList;
 }
 
-@property(retain) IKPointListList* lists;
+@property(retain) Routes* lists;
 @property(retain) UIBarButtonItem* addButton;
 
 - (id)init;

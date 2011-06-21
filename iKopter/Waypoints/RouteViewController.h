@@ -22,41 +22,19 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "WaypointViewController.h"
-#import "IASKSettingsStoreObject.h"
-#import "IKPoint.h"
 
+#import <UIKit/UIKit.h>
+#import "Route.h"
 
-@implementation WaypointViewController
-
-#pragma mark -
-
-- (id)initWithPoint:(IKPoint*)theWayPoint {
-  if ((self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil])) {
-    self.file = @"WayPoint";
-    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:theWayPoint];
+@interface RouteViewController : UIViewController<UITabBarDelegate> {
     
-    self.showCreditsFooter=NO;
-    self.showDoneButton=NO;
-    
-    self.delegate=self;
-    
-    self.title=NSLocalizedString(@"Waypoint", @"Waypoint view title");
-  }
-  return self;
 }
 
-- (void)dealloc {
-  [super dealloc];
-}
+@property (retain) UISegmentedControl* segment;
+@property (retain) Route* route;
+@property (retain) NSArray *viewControllers;
+@property (retain) UIViewController *selectedViewController;
 
-#pragma mark -
-
-// called after this controller's view will appear
-- (void)viewWillAppear:(BOOL)animated
-{	
-  [super viewWillAppear:animated];
-}
+- (id)initWithRoute:(Route*) list;
 
 @end
-

@@ -22,19 +22,23 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <UIKit/UIKit.h>
-#import "IKPointList.h"
+#import <Foundation/Foundation.h>
 
-@interface WaypointListViewController : UITableViewController<UITextFieldDelegate> {
-    
+@class IKPoint;
 
-  NSIndexPath* editingPoint;
+@interface Route : NSObject<NSCoding> {
+
 }
 
-@property(retain) IKPointList* list;
-@property(retain) UIBarButtonItem* addButton;
+@property(retain) NSString* name;
+@property(retain) NSMutableArray* points;
 
-- (id)initWithList:(IKPointList*) list;
+-(NSUInteger) count;
 
+-(IKPoint*) pointAtIndexPath:(NSIndexPath *)indexPath;
+
+-(NSIndexPath*) addPoint;
+-(void) movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
+-(void) deletePointAtIndexPath:(NSIndexPath*)indexPath;
 
 @end

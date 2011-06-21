@@ -22,28 +22,26 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "WaypointListViewController.h"
-#import "WaypointViewController.h"
-#import "IKPoint.h"
-#import "IASKPSTextFieldSpecifierViewCell.h"
-#import "IASKTextField.h"
+#import "RoutesViewController.h"
+#import "RouteViewController.h"
+#import "Route.h"
 
-@implementation WaypointListViewController
+@implementation RoutesViewController
 
-@synthesize list;
+@synthesize lists;
 @synthesize addButton;
 
-- (id)initWithList:(IKPointList*) aList {
-  if ((self =  [super initWithStyle:UITableViewStyleGrouped])) {
-    self.list=aList;
-    self.title=NSLocalizedString(@"Waypoint List", @"Waypoint Lists title");
+- (id)init {
+  if ((self =  [super initWithStyle:UITableViewStylePlain])) {
+    self.lists=[[[Routes alloc] init] autorelease];
+    self.title=NSLocalizedString(@"Routes", @"Waypoint Lists title");
   }
   return self;
 }
 
 - (void)dealloc
 {
-  self.list = nil;
+  self.lists = nil;
   [super dealloc];
 }
 
@@ -61,7 +59,7 @@
   self.addButton =  [[[UIBarButtonItem alloc]
                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                  target:self
-                 action:@selector(addHost)] autorelease];
+                 action:@selector(addRoute)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
   
   UIBarButtonItem* spacerButton;
@@ -72,13 +70,12 @@
   
   [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil]];
   self.tableView.allowsSelectionDuringEditing=YES;
-  
 }
 
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  self.list = nil;
+  self.lists = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -97,9 +94,9 @@
 {
   [super viewDidAppear:animated];
   
-  if( editingPoint ) {
+  if( editingList ) {
     
-    NSArray* indexPaths=[NSArray arrayWithObject:editingPoint];
+    NSArray* indexPaths=[NSArray arrayWithObject:editingList];
     
     NSLog(@"appear reload %@",indexPaths);
     [self.tableView beginUpdates];
@@ -107,99 +104,39 @@
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
-    editingPoint=nil;
+    editingList=nil;
+    
+    [self.lists save];
   }
-}
-
-#pragma mark -
-#pragma mark UITextFieldDelegate Functions
-
-- (void)_textChanged:(id)sender {
-  IASKTextField *text = (IASKTextField*)sender;
-  list.name=text.text;
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-	[textField setTextAlignment:UITextAlignmentLeft];
-//	self.currentFirstResponder = textField;
-  return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-//	self.currentFirstResponder = nil;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-  [textField resignFirstResponder];
-	return YES;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 2;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if(section==0) 
-    return 1;
-  
-  return [self.list count];
+  return [self.lists count];
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-- (UITableViewCell *) cellForExtra: (UITableView *) tableView indexPath: (NSIndexPath *) indexPath  {
-  static NSString *CellIdentifier = @"WaypointExtraCell";
-
-  IASKPSTextFieldSpecifierViewCell *cell = (IASKPSTextFieldSpecifierViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  
-  if (!cell) {
-    cell = (IASKPSTextFieldSpecifierViewCell*) [[[NSBundle mainBundle] loadNibNamed:@"IASKPSTextFieldSpecifierViewCell" 
-                                                                              owner:self 
-                                                                            options:nil] objectAtIndex:0];
-    
-    cell.textField.textAlignment = UITextAlignmentLeft;
-    cell.textField.returnKeyType = UIReturnKeyDone;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-  }
-  
-  [[cell label] setText:NSLocalizedString(@"Name", @"Waypoint List name label")];      
-  
-  [[cell textField] setText:list.name];
-  
-  [[cell textField] setDelegate:self];
-  [[cell textField] addTarget:self action:@selector(_textChanged:) forControlEvents:UIControlEventEditingChanged];
-  [[cell textField] setSecureTextEntry:NO];
-  [[cell textField] setKeyboardType:UIKeyboardTypeAlphabet];
-  [[cell textField] setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-  [[cell textField] setAutocorrectionType:UITextAutocorrectionTypeNo];
-  [cell setNeedsLayout];
-  return cell;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
   NSLog(@"cellForRowAtIndexPath %@",indexPath);
   
-  if(indexPath.section==0){
-    return [self cellForExtra:tableView indexPath:indexPath];
-  }
-  
-  static NSString *CellIdentifier = @"IKPointListCell";
+  static NSString *CellIdentifier = @"RoutesCell";
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
   }
   
-  IKPoint* point = [self.list pointAtIndexPath:indexPath];
+  Route* list = [self.lists routeAtIndexPath:indexPath];
   
-  cell.textLabel.text = [NSString stringWithFormat:@"Waypoint %d",point.index];
+  cell.textLabel.text = list.name;
 //  cell.detailTextLabel.text = host.address;
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   
@@ -210,7 +147,7 @@
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-  return indexPath.section==1;
+  return indexPath.section==0;
 }
 
 
@@ -219,7 +156,7 @@
   
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     // Delete the row from the data source.
-    [self.list deletePointAtIndexPath:indexPath];
+    [self.lists deleteRouteAtIndexPath:indexPath];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
   }   
   else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -228,11 +165,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-  [self.list movePointAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
+  [self.lists moveRouteAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-  return indexPath.section==1;
+  return indexPath.section==0;
 }
 
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -254,7 +191,7 @@
 #pragma mark Table view delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (self.tableView.editing || indexPath.section==0 ) {
+  if (self.tableView.editing) {
     return nil;
   }
   
@@ -265,35 +202,34 @@
   
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
-  if( indexPath.section==1 ){
-    IKPoint* point=[self.list pointAtIndexPath:indexPath];
+  if( indexPath.section==0 ){
+    Route* list = [self.lists routeAtIndexPath:editingList];
     if (!self.tableView.editing ) {
-      
-      WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-      editingPoint = indexPath;
-      [self.navigationController pushViewController:hostView animated:YES];
-      [hostView release];
+      RouteViewController* listView = [[RouteViewController alloc] initWithRoute:list];
+      editingList = indexPath;
+      [self.navigationController pushViewController:listView animated:YES];
+      [listView release];
     }
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)addHost {
+- (void)addRoute {
   
-  editingPoint=[self.list addPoint];
+  editingList=[self.lists addRoute];
   
-  NSArray* indexPaths=[NSArray arrayWithObject:editingPoint];
+  NSArray* indexPaths=[NSArray arrayWithObject:editingList];
   
   [self.tableView beginUpdates];
   [self.tableView insertRowsAtIndexPaths:indexPaths 
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
   
-  IKPoint* point = [self.list pointAtIndexPath:editingPoint];
-  WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-  [self.navigationController pushViewController:hostView animated:YES];
-  [hostView release];
+  Route* list = [self.lists routeAtIndexPath:editingList];
+  RouteViewController* listView = [[RouteViewController alloc] initWithRoute:list];
+  [self.navigationController pushViewController:listView animated:YES];
+  [listView release];
 }
 
 @end

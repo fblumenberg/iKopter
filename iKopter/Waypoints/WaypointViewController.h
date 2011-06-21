@@ -32,7 +32,7 @@
   
 }
 
-- (id)initWithPoint:(IKPoint*)theHost;
+- (id)initWithPoint:(IKPoint*)theWayPoint;
 
 
 @end
