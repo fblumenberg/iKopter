@@ -33,7 +33,7 @@
 #import "IASKPSTitleValueSpecifierViewCell.h"
 #import "NCLogViewController.h"
 #import "MKHostsViewController.h"
-#import "WaypointListListViewController.h"
+#import "RoutesViewController.h"
 
 @implementation RootViewController
 
@@ -208,7 +208,7 @@
       cell.textLabel.text = NSLocalizedString(@"NC Log",@"NC-LOG cell");
       break;
     case 1:
-      cell.textLabel.text = NSLocalizedString(@"Waypoint Lists",@"Waypointlist cell");
+      cell.textLabel.text = NSLocalizedString(@"Routes",@"Waypointlist cell");
       break;
     case 2:
       cell.textLabel.text = NSLocalizedString(@"Channels",@"Channels cell");
@@ -299,7 +299,7 @@
         extraView = [[NCLogViewController alloc] initWithStyle:UITableViewStylePlain];
         break;
       case 1:
-        extraView = [[WaypointListListViewController alloc] init];
+        extraView = [[RoutesViewController alloc] init];
         break;
     }
     

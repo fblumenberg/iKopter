@@ -130,6 +130,7 @@
 }
 
 #pragma mark - Map View Delegate Methods
+
 - (MKAnnotationView *) mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>) annotation {
   static NSString *placemarkIdentifierDevice = @"Device Map Location Identifier";
   static NSString *placemarkIdentifier = @"Map Location Identifier";
@@ -216,13 +217,13 @@
 
 - (void) newValue:(OsdValue*)value {
   IKGPSPos* gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->HomePosition)];
-  [self updateAnnotationForType:IKMapLocationHomePosition coordinate:gpsPos.location.coordinate];
+  [self updateAnnotationForType:IKMapLocationHomePosition coordinate:gpsPos.coordinate];
   
   gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->TargetPosition)];
-  [self updateAnnotationForType:IKMapLocationTargetPosition coordinate:gpsPos.location.coordinate];
+  [self updateAnnotationForType:IKMapLocationTargetPosition coordinate:gpsPos.coordinate];
 
   gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->CurrentPosition)];
-  [self updateAnnotationForType:IKMapLocationCurrentPosition coordinate:gpsPos.location.coordinate];
+  [self updateAnnotationForType:IKMapLocationCurrentPosition coordinate:gpsPos.coordinate];
 }
 
 - (void) noDataAvailable {

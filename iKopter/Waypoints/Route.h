@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @class IKPoint;
 
@@ -33,11 +34,17 @@
 @property(retain) NSString* name;
 @property(retain) NSMutableArray* points;
 
++ (CLLocationCoordinate2D) defaultCoordinate;
+
 -(NSUInteger) count;
 
 -(IKPoint*) pointAtIndexPath:(NSIndexPath *)indexPath;
 
--(NSIndexPath*) addPoint;
+-(NSIndexPath*) addPointAtDefault;
+-(NSIndexPath*) addPointAtCenter;
+-(NSIndexPath*) addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
+
+
 -(void) movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
 -(void) deletePointAtIndexPath:(NSIndexPath*)indexPath;
 

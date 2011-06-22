@@ -22,7 +22,6 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <CoreLocation/CoreLocation.h>
 #import "IKNaviData.h"
 
 @implementation IKNaviData
@@ -59,38 +58,39 @@
   return self;
 }
 
+
+@end
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@end
-
-@interface IKGPSPos()
-
-@property(retain) CLLocation* location;
-
-@end
-
-@implementation IKGPSPos
-
-@synthesize location;
-@synthesize latitude;
-@synthesize longitude;
-@synthesize altitude;
-@synthesize status;
-
 
 #define kDEGREE_FACTOR 10000000.0
 #define kALTITUDE_FACTOR 1000.0
 
 
--(void)updateLocation{
-  
-  self.location = [[CLLocation alloc]initWithCoordinate:CLLocationCoordinate2DMake(self.latitude/kDEGREE_FACTOR, self.longitude/kDEGREE_FACTOR) 
-                                               altitude:self.altitude/kALTITUDE_FACTOR 
-                                     horizontalAccuracy:0 
-                                       verticalAccuracy:0 
-                                              timestamp:[NSDate date]];
+@interface IKGPSPos()
+
+@property(nonatomic,retain) CLLocation* location;
+
+@end
+
+@implementation IKGPSPos
+
+@synthesize latitude;
+@synthesize location;
+@synthesize longitude;
+@synthesize altitude;
+@synthesize status;
+
+
+-(CLLocationCoordinate2D) coordinate{
+  return CLLocationCoordinate2DMake(self.latitude/kDEGREE_FACTOR, self.longitude/kDEGREE_FACTOR);
+}
+
+-(void) setCoordinate:(CLLocationCoordinate2D)coordinate{
+  self.longitude=(NSInteger)(coordinate.longitude*kDEGREE_FACTOR); 
+  self.latitude=(NSInteger)(coordinate.latitude*kDEGREE_FACTOR); 
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,16 @@
     longitude=pos->Longitude;
     altitude=pos->Altitude;
     status=pos->Status;
-    [self updateLocation];
+  }
+  return self;
+}
+
+- (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate{
+  self = [super init];
+  if (self != nil) {
+    self.coordinate=theCoordinate;
+    altitude=0;
+    status=0;
   }
   return self;
 }
@@ -129,7 +138,6 @@
     longitude=[aDecoder decodeIntegerForKey:@"longitude"];
     altitude=[aDecoder decodeIntegerForKey:@"altitude"];
     status=[aDecoder decodeIntegerForKey:@"status"];
-    [self updateLocation];
   }
   return self;
 }

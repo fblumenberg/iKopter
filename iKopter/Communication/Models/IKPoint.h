@@ -23,15 +23,16 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
-
+#import <MapKit/MapKit.h>
 #import "IKMkDataTypes.h"
 #import "IKNaviData.h"
 
-@interface IKPoint :  NSObject<NSCoding> {
+@class CLLocation;
+
+@interface IKPoint :  IKGPSPos<MKAnnotation,NSCoding> {
 
 }
-
-@property(retain) IKGPSPos*  position;  
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 
 @property(assign) NSInteger heading;          // orientation, 0 no action, 1...360 fix heading, neg. = Index to POI in WP List
 @property(assign) NSInteger toleranceRadius;	// in meters, if the MK is within that range around the target, then the next target is triggered
@@ -44,6 +45,8 @@
 
 + (id)pointWithData:(NSData *)data;
 - (id)initWithData:(NSData*)data;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate;
+
 - (NSData*) data;
 
 @end

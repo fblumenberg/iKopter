@@ -33,6 +33,10 @@
 @synthesize name;
 @synthesize points;
 
++ (CLLocationCoordinate2D) defaultCoordinate{
+  return CLLocationCoordinate2DMake(49.860348, 8.686227);
+}
+
 - (id) init
 {
   self = [super init];
@@ -79,23 +83,54 @@
   return [points objectAtIndex:row];
 }
 
--(NSIndexPath*) addPoint {
-  IKPoint* h = [[IKPoint alloc]init];
+
+-(NSIndexPath*) addPointAtDefault {
+  return [self addPointAtCoordinate:[Route defaultCoordinate]];
+}
+
+-(NSIndexPath*) addPointAtCenter {
+  
+  if([self.points count]>1){
+    CLLocationDegrees latMin=360.0;
+    CLLocationDegrees latMax=-360.0;
+    CLLocationDegrees longMin=360.0;
+    CLLocationDegrees longMax=-360.0;
+    
+    for (IKPoint* p in self.points) {
+      latMax=MAX(latMax, p.coordinate.latitude);
+      latMin=MIN(latMin, p.coordinate.latitude);
+      longMax=MAX(longMax, p.coordinate.longitude);
+      longMin=MIN(longMin, p.coordinate.longitude);
+    }
+    
+    CLLocationCoordinate2D coordinate=CLLocationCoordinate2DMake(latMin+(latMax-latMin)/2.0, longMin+(longMax-longMin)/2.0);
+    return [self addPointAtCoordinate:coordinate];
+  }
+  else if([self.points count]==1){
+    IKPoint* p=[self.points objectAtIndex:0];
+    return [self addPointAtCoordinate:p.coordinate];
+  }
+  
+  return [self addPointAtDefault];
+}
+
+-(NSIndexPath*) addPointAtCoordinate:(CLLocationCoordinate2D)coordinate {
+  IKPoint* h = [[IKPoint alloc]initWithCoordinate:coordinate];
   [points addObject:h];
   [h release];
-
+  
   [points enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
     IKPoint* p=object;
     p.index=index+1;
   }];
-
+  
   return [NSIndexPath indexPathForRow:[points count]-1 inSection:1]; 
 }
 
 -(void) movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
   qltrace(@"movePointAtIndexPath %@ -> %@",fromIndexPath,toIndexPath);
   qltrace(@"%@",points);
-
+  
   NSUInteger fromRow = [fromIndexPath row];
   NSUInteger toRow = [toIndexPath row];
   
@@ -108,7 +143,7 @@
     IKPoint* p=object;
     p.index=index+1;
   }];
-    
+  
   qltrace(@"%@",points);
 }
 

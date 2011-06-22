@@ -54,28 +54,16 @@
   if (self) {
     self.route=theRoute;
     self.title=NSLocalizedString(@"Route", @"Waypoint Lists title");
-    
-    RouteListViewController*  listViewController=[[RouteListViewController alloc] initWithRoute:theRoute];
-    RouteMapViewController* mapViewController=[[RouteMapViewController alloc] initWithRoute:theRoute];
-    
-    NSArray *array = [[NSArray alloc] initWithObjects:listViewController, mapViewController, nil];
-    self.viewControllers = array;
-    
-    [self.view addSubview:listViewController.view];
-    self.selectedViewController = listViewController;
-    
-    [array release];
-    [listViewController release];
-    [mapViewController release];
-    
   }
   return self;
 }
 
 - (void)dealloc {
-  self.route = nil;
-  self.viewControllers = nil;
   self.selectedViewController = nil;
+  self.viewControllers = nil;
+  self.route = nil;
+  self.addButton=nil;
+  self.spacer=nil;
   
   [super dealloc];
 }
@@ -90,9 +78,19 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
+  RouteListViewController*  listViewController=[[RouteListViewController alloc] initWithRoute:self.route];
+  RouteMapViewController* mapViewController=[[RouteMapViewController alloc] initWithRoute:self.route];
   
+  NSArray *array = [[NSArray alloc] initWithObjects:listViewController, mapViewController, nil];
+  self.viewControllers = array;
+  [array release];
+  
+  [listViewController release];
+  [mapViewController release];
+
   NSArray* segmentItems = [NSArray arrayWithObjects:@"List",@"Map",nil];
-  segment = [[UISegmentedControl alloc] initWithItems:segmentItems];
+  segment = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
   segment.segmentedControlStyle=UISegmentedControlStyleBar;
   
   segment.tintColor = [UIColor darkGrayColor];
@@ -123,6 +121,8 @@
                       target:nil
                       action:@selector(addPoint)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
+
+  segment.selectedSegmentIndex=0;
 }
 
 - (void)viewDidUnload
@@ -130,8 +130,9 @@
   [super viewDidUnload];
 
   self.route = nil;
-  self.viewControllers = nil;
   self.selectedViewController = nil;
+  
+  self.viewControllers = nil;
   self.addButton=nil;
   self.spacer=nil;
 }
@@ -140,6 +141,10 @@
   [super viewWillAppear:animated];
   [self.selectedViewController viewWillAppear:animated];
   [self updateSelectedViewFrame];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+  [self.selectedViewController viewWillDisappear:NO];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -176,7 +181,7 @@
 #pragma mark - UITabBarDelegate
 
 -(void) changeView{
-  UIViewController *newSelectedViewController = [viewControllers objectAtIndex:segment.selectedSegmentIndex];
+  UIViewController *newSelectedViewController = [self.viewControllers objectAtIndex:segment.selectedSegmentIndex];
   
   [self.selectedViewController setEditing:NO animated:YES];
   [self.selectedViewController viewWillDisappear:NO];
@@ -185,22 +190,8 @@
   [self.view addSubview:newSelectedViewController.view];
   self.selectedViewController = newSelectedViewController;
   [self.selectedViewController viewWillAppear:NO];
+
   [self updateSelectedViewFrame];
 }
-
-//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-//{
-//  UIViewController *newSelectedViewController = [viewControllers objectAtIndex:item.tag];
-//  
-//  [self.selectedViewController setEditing:NO animated:YES];
-//  [self.selectedViewController viewWillDisappear:NO];
-//  [self.selectedViewController.view removeFromSuperview];
-//  
-//  [self.view addSubview:newSelectedViewController.view];
-//  self.selectedViewController = newSelectedViewController;
-//  [self.selectedViewController viewWillAppear:NO];
-//  [self updateSelectedViewFrame];
-//}
-
 
 @end

@@ -57,22 +57,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
-//  self.addButton =  [[[UIBarButtonItem alloc]
-//                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-//                 target:self
-//                 action:@selector(addHost)] autorelease];
-//  self.addButton.style = UIBarButtonItemStyleBordered;
-//  
-//  UIBarButtonItem* spacerButton;
-//  spacerButton =  [[[UIBarButtonItem alloc]
-//                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-//                    target:nil
-//                    action:nil] autorelease];
-//  
-//  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil]];
   self.tableView.allowsSelectionDuringEditing=NO;
-  
 }
 
 - (void)viewDidUnload
@@ -89,7 +74,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  [self.navigationController setToolbarHidden:NO animated:NO];
+  qltrace(@"Reload route list");
+  [self.tableView reloadData];
 }
 
 
@@ -184,7 +170,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  NSLog(@"cellForRowAtIndexPath %@",indexPath);
+ // NSLog(@"cellForRowAtIndexPath %@",indexPath);
   
   if(indexPath.section==0){
     return [self cellForExtra:tableView indexPath:indexPath];
@@ -281,7 +267,7 @@
 
 - (void)addPoint {
   
-  editingPoint=[self.list addPoint];
+  editingPoint=[self.list addPointAtCenter];
   
   NSArray* indexPaths=[NSArray arrayWithObject:editingPoint];
   

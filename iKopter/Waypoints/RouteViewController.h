@@ -33,7 +33,8 @@
 @property (retain) UISegmentedControl* segment;
 @property (retain) Route* route;
 @property (retain) NSArray *viewControllers;
-@property (retain) UIViewController *selectedViewController;
+
+@property (assign) UIViewController *selectedViewController;
 
 - (id)initWithRoute:(Route*) list;
 

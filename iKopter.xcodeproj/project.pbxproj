@@ -209,9 +209,7 @@
 		BAE3B03413A80118007E0F2F /* icon-mail1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3B03213A80118007E0F2F /* icon-mail1@2x.png */; };
 		BAE3B03B13A81543007E0F2F /* CHCSVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B03A13A81543007E0F2F /* CHCSVWriter.m */; };
 		BAE3B09D13ACE978007E0F2F /* IKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09C13ACE978007E0F2F /* IKPoint.m */; };
-		BAE3B0A013AE4DAC007E0F2F /* IKPointList.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09F13AE4DAA007E0F2F /* IKPointList.m */; };
 		BAE3B0A413AE5124007E0F2F /* MKHostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */; };
-		BAE3B0A813AFD0D0007E0F2F /* IKPointListList.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */; };
 		BAE3B12013AFEA51007E0F2F /* WaypointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
@@ -544,12 +542,8 @@
 		BAE3B03A13A81543007E0F2F /* CHCSVWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVWriter.m; sourceTree = "<group>"; };
 		BAE3B09B13ACE978007E0F2F /* IKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKPoint.h; sourceTree = "<group>"; };
 		BAE3B09C13ACE978007E0F2F /* IKPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKPoint.m; sourceTree = "<group>"; };
-		BAE3B09E13AE4DA9007E0F2F /* IKPointList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKPointList.h; sourceTree = "<group>"; };
-		BAE3B09F13AE4DAA007E0F2F /* IKPointList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKPointList.m; sourceTree = "<group>"; };
 		BAE3B0A113AE5123007E0F2F /* MKHostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHostsViewController.h; sourceTree = "<group>"; };
 		BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHostsViewController.m; sourceTree = "<group>"; };
-		BAE3B0A613AFD0CD007E0F2F /* IKPointListList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKPointListList.h; sourceTree = "<group>"; };
-		BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKPointListList.m; sourceTree = "<group>"; };
 		BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointViewController.h; sourceTree = "<group>"; };
 		BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointViewController.m; sourceTree = "<group>"; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -588,8 +582,6 @@
 		BA0D4660137C5127001415C3 = {
 			isa = PBXGroup;
 			children = (
-				BAE3B02113A4DCC0007E0F2F /* MapKit.framework */,
-				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
 				BA0D4675137C5127001415C3 /* iKopter */,
 				BA0D466E137C5127001415C3 /* Frameworks */,
 				BA0D466C137C5127001415C3 /* Products */,
@@ -607,6 +599,8 @@
 		BA0D466E137C5127001415C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B02113A4DCC0007E0F2F /* MapKit.framework */,
+				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
 				BAEEFBB2139D3B680003860E /* CoreData.framework */,
 				BAA4E6EC137EB9210068E38E /* QuartzCore.framework */,
 				BAA4E6EA137EB8FF0068E38E /* CoreText.framework */,
@@ -1009,10 +1003,6 @@
 		BAA4E661137EB5BA0068E38E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BAE3B0A613AFD0CD007E0F2F /* IKPointListList.h */,
-				BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */,
-				BAE3B09E13AE4DA9007E0F2F /* IKPointList.h */,
-				BAE3B09F13AE4DAA007E0F2F /* IKPointList.m */,
 				BAE3B09B13ACE978007E0F2F /* IKPoint.h */,
 				BAE3B09C13ACE978007E0F2F /* IKPoint.m */,
 				BAA4E662137EB5BA0068E38E /* IKData3D.h */,
@@ -1490,9 +1480,7 @@
 				BAE3B02F13A7F159007E0F2F /* NCLogDetailViewController.m in Sources */,
 				BAE3B03B13A81543007E0F2F /* CHCSVWriter.m in Sources */,
 				BAE3B09D13ACE978007E0F2F /* IKPoint.m in Sources */,
-				BAE3B0A013AE4DAC007E0F2F /* IKPointList.m in Sources */,
 				BAE3B0A413AE5124007E0F2F /* MKHostsViewController.m in Sources */,
-				BAE3B0A813AFD0D0007E0F2F /* IKPointListList.m in Sources */,
 				BAE3B12013AFEA51007E0F2F /* WaypointViewController.m in Sources */,
 				BA585C1413B0ED1A00AE0958 /* Route.m in Sources */,
 				BA585C1513B0ED1A00AE0958 /* Routes.m in Sources */,
@@ -1627,14 +1615,8 @@
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/BTStack/include";
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-all_load",
-					"${SOURCE_ROOT}/Frameworks/BTStack/lib-iphone/libBTstack.dylib",
-				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
-					"-all_load",
-					"${SOURCE_ROOT}/lib-simulator/libBTstack.dylib",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "-all_load";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

@@ -143,8 +143,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark View rotation 
+#pragma mark - View rotation 
 
 - (void)doScreenLock {
   [self.screenLockButton setSelected:!self.screenLockButton.selected];

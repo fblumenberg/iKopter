@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "IKMkDataTypes.h"
 
@@ -51,10 +52,11 @@
 @property(assign) NSUInteger altitude;       // in mm
 @property(assign) NSInteger  status;         // validity of data
 
-@property(readonly,retain) CLLocation* location;
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 
 + (id)positionWithMkPos:(IKMkGPSPos *)pos;
 - (id)initWithMkPos:(IKMkGPSPos*)pos;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate;
 
 @end
 

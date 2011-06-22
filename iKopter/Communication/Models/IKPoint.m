@@ -31,7 +31,6 @@
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@synthesize position;
 @synthesize heading;              // orientation, 0 no action, 1...360 fix heading, neg. = Index to POI in WP List
 @synthesize toleranceRadius;      // in meters, if the MK is within that range around the target, then the next target is triggered
 @synthesize holdTime;             // in seconds, if the was once in the tolerance area around a WP, this time defines the delay before the next WP is triggered
@@ -40,6 +39,14 @@
 @synthesize type;                 // typeof Waypoint
 @synthesize wpEventChannelValue; //
 @synthesize altitudeRate;         // rate to change the setpoint
+
+-(CLLocationCoordinate2D) coordinate{
+  return [super coordinate];
+}
+
+-(void) setCoordinate:(CLLocationCoordinate2D)coordinate{
+  [super setCoordinate:coordinate];
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -50,17 +57,14 @@
 }
 
 - (id)initWithData:(NSData*)data {
-  self = [super init];
+  const char* b=[data bytes];
+  b++;
+  b++;
+  IKMkPoint _point;
+  memcpy(&_point,b,sizeof(_point));
+
+  self = [super initWithMkPos:&(_point.Position)];
   if (self != nil) {
-    
-    const char* b=[data bytes];
-    
-    b++;
-    b++;
-    
-    IKMkPoint _point;
-    
-    memcpy(&_point,b,sizeof(_point));
     
     self.heading = _point.Heading;             
     self.toleranceRadius = _point.ToleranceRadius;     
@@ -70,7 +74,6 @@
     self.type = _point.Type;                
     self.wpEventChannelValue = _point.WP_EventChannelValue;
     self.altitudeRate = _point.AltitudeRate;  
-    self.position = [IKGPSPos positionWithMkPos:&(_point.Position)];
   }
   return self;
 }
@@ -87,23 +90,46 @@
   _point.Type = self.type;                
   _point.WP_EventChannelValue = self.wpEventChannelValue;
   _point.AltitudeRate = self.altitudeRate;            
-
-  _point.Position.Altitude = self.position.altitude;
-  _point.Position.Longitude = self.position.longitude;
-  _point.Position.Latitude = self.position.latitude;
-  _point.Position.Status = self.position.status;
+  
+  _point.Position.Altitude = self.altitude;
+  _point.Position.Longitude = self.longitude;
+  _point.Position.Latitude = self.latitude;
+  _point.Position.Status = self.status;
   
   memcpy((unsigned char *)(payloadData),(unsigned char *)&_point,sizeof(_point));
   
   return [NSData dataWithBytes:payloadData length:sizeof(payloadData)];  
 }
+
+- (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate{
+  self = [super init];
+  if (self != nil) {
+    self.heading = 0;             
+    self.toleranceRadius = 5;     
+    self.holdTime = 2;            
+    self.eventFlag = 0;          
+    self.index = 0;               
+    self.type = POINT_TYPE_WP;                
+    self.wpEventChannelValue = 0;
+    self.altitudeRate = 20;  
+    
+    self.coordinate=theCoordinate;
+  }
+  return self;
+}
+
+- (id)initWithLocation:(CLLocation*)location{
+  return [self initWithCoordinate:location.coordinate];
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma - mark NSCoding
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
-  [aCoder encodeObject:self.position forKey:@"position"];
-
+  [super encodeWithCoder:aCoder];
+  
   [aCoder encodeInteger:self.heading forKey:@"heading"];
   [aCoder encodeInteger:self.toleranceRadius forKey:@"toleranceRadius"];
   [aCoder encodeInteger:self.holdTime forKey:@"holdTime"];
@@ -112,13 +138,10 @@
   [aCoder encodeInteger:self.type forKey:@"type"];
   [aCoder encodeInteger:self.wpEventChannelValue forKey:@"wpEventChannelValue"];
   [aCoder encodeInteger:self.altitudeRate forKey:@"altitudeRate"];
-
+  
 }
 - (id)initWithCoder:(NSCoder *)aDecoder{
-  if ((self = [super init])) {
-    
-    self.position = [aDecoder decodeObjectForKey:@"position"];
-
+  if ((self = [super initWithCoder:aDecoder])) {
     self.heading = [aDecoder decodeIntegerForKey:@"heading"];
     self.toleranceRadius = [aDecoder decodeIntegerForKey:@"toleranceRadius"];
     self.heading = [aDecoder decodeIntegerForKey:@"heading"];
@@ -138,5 +161,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (NSString *)title {
+  return  [NSString stringWithFormat:NSLocalizedString(@"Waypoint %d", @"WP Annotation callout"),self.index];
+}
 
 @end
