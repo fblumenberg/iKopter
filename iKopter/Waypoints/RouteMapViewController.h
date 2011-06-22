@@ -23,6 +23,7 @@
 
 - (id)initWithRoute:(Route*) theRoute;
 - (IBAction) changeMapViewType;
+- (void)addPoint;
 
 
 @end

@@ -65,6 +65,10 @@
   return YES;
 }
 
+- (void)addPoint{
+  
+}
+
 #pragma mark - Page Curl stuff
 
 - (void)changeMapViewType {

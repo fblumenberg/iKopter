@@ -43,9 +43,9 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUISegmentedControl" id="821095486">
+					<object class="IBUISegmentedControl" id="323287322">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">261</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{20, 309}, {280, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -85,13 +85,13 @@
 							<reference ref="4"/>
 						</object>
 					</object>
-					<object class="IBMKMapView" id="1052033108">
+					<object class="IBMKMapView" id="467514425">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 372}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="821095486"/>
+						<reference key="NSNextKeyView" ref="323287322"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -100,7 +100,7 @@
 				<string key="NSFrame">{{0, 64}, {320, 372}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="1052033108"/>
+				<reference key="NSNextKeyView" ref="467514425"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -131,14 +131,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mapView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1052033108"/>
+						<reference key="destination" ref="467514425"/>
 					</object>
 					<int key="connectionID">6</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">changeMapViewType</string>
-						<reference key="source" ref="821095486"/>
+						<reference key="source" ref="323287322"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">13</int>
 					</object>
@@ -148,7 +148,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">segmentedControl</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="821095486"/>
+						<reference key="destination" ref="323287322"/>
 					</object>
 					<int key="connectionID">8</int>
 				</object>
@@ -167,8 +167,8 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="821095486"/>
-							<reference ref="1052033108"/>
+							<reference ref="323287322"/>
+							<reference ref="467514425"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -185,12 +185,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
-						<reference key="object" ref="821095486"/>
+						<reference key="object" ref="323287322"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="1052033108"/>
+						<reference key="object" ref="467514425"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

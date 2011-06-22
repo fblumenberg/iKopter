@@ -31,7 +31,7 @@
 @implementation RouteListViewController
 
 @synthesize list;
-@synthesize addButton;
+//@synthesize addButton;
 
 - (id)initWithRoute:(Route*) aList {
   if ((self =  [super initWithStyle:UITableViewStyleGrouped])) {
@@ -58,20 +58,20 @@
 {
   [super viewDidLoad];
   
-  self.addButton =  [[[UIBarButtonItem alloc]
-                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                 target:self
-                 action:@selector(addHost)] autorelease];
-  self.addButton.style = UIBarButtonItemStyleBordered;
-  
-  UIBarButtonItem* spacerButton;
-  spacerButton =  [[[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil
-                    action:nil] autorelease];
-  
-  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil]];
-  self.tableView.allowsSelectionDuringEditing=YES;
+//  self.addButton =  [[[UIBarButtonItem alloc]
+//                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                 target:self
+//                 action:@selector(addHost)] autorelease];
+//  self.addButton.style = UIBarButtonItemStyleBordered;
+//  
+//  UIBarButtonItem* spacerButton;
+//  spacerButton =  [[[UIBarButtonItem alloc]
+//                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                    target:nil
+//                    action:nil] autorelease];
+//  
+//  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil]];
+  self.tableView.allowsSelectionDuringEditing=NO;
   
 }
 
@@ -243,10 +243,10 @@
                     initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                     target:nil
                     action:nil] autorelease];
-  if(editing)
-    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
-  else
-    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
+//  if(editing)
+//    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
+//  else
+//    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -279,7 +279,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)addHost {
+- (void)addPoint {
   
   editingPoint=[self.list addPoint];
   

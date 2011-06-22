@@ -120,8 +120,8 @@
 
   self.addButton =  [[[UIBarButtonItem alloc]
                       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                      target:self
-                      action:@selector(addRoute)] autorelease];
+                      target:nil
+                      action:@selector(addPoint)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
 }
 
@@ -142,16 +142,21 @@
   [self updateSelectedViewFrame];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  [self updateSelectedViewFrame];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  return YES;
 }
 
 -(void) updateSelectedViewFrame {
   self.selectedViewController.view.frame=CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), 
                                                     CGRectGetHeight(self.view.bounds));
 
-//  [self.navigationItem setRightBarButtonItem:self.selectedViewController.editButtonItem animated:YES];
+  self.addButton.target = self.selectedViewController;
+  
   if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]){
     [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,self.spacer,self.addButton,nil] animated:YES];
   } else {

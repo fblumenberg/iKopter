@@ -32,9 +32,9 @@
 }
 
 @property(retain) Route* list;
-@property(retain) UIBarButtonItem* addButton;
 
 - (id)initWithRoute:(Route*) list;
+- (void)addPoint;
 
 
 @end
