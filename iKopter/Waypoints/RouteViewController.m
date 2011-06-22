@@ -28,6 +28,10 @@
 
 @interface RouteViewController()
 
+@property (retain) UIBarButtonItem* spacer;
+@property (retain) UIBarButtonItem* addButton;
+
+
 -(void) updateSelectedViewFrame;
 -(void) changeView;
 
@@ -39,6 +43,9 @@
 @synthesize selectedViewController;
 @synthesize route;
 @synthesize segment;
+@synthesize addButton;
+@synthesize spacer;
+
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -105,7 +112,17 @@
 
   [self.navigationItem setRightBarButtonItem:segmentButton animated:NO];
   
+  self.spacer =  [[[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                    target:nil
+                    action:nil] autorelease];
 
+
+  self.addButton =  [[[UIBarButtonItem alloc]
+                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                      target:self
+                      action:@selector(addRoute)] autorelease];
+  self.addButton.style = UIBarButtonItemStyleBordered;
 }
 
 - (void)viewDidUnload
@@ -115,6 +132,8 @@
   self.route = nil;
   self.viewControllers = nil;
   self.selectedViewController = nil;
+  self.addButton=nil;
+  self.spacer=nil;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -133,6 +152,18 @@
                                                     CGRectGetHeight(self.view.bounds));
 
 //  [self.navigationItem setRightBarButtonItem:self.selectedViewController.editButtonItem animated:YES];
+  if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]){
+    [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,self.spacer,self.addButton,nil] animated:YES];
+  } else {
+    UIBarButtonItem* curlBarItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                                                                                  target:((RouteMapViewController*)self.selectedViewController).curlBarItem 
+                                                                                  action:@selector(touched)]autorelease];
+    
+    [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+                                                    self.spacer,
+                                                    self.addButton,
+                                                    curlBarItem, nil] animated:YES];
+  }
 }
 
 

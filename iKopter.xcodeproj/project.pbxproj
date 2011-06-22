@@ -64,6 +64,21 @@
 		BA0D478E137D033A001415C3 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D478B137D033A001415C3 /* UIImage+Tint.m */; };
 		BA0D4790137D04E6001415C3 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA0D478F137D04E5001415C3 /* InAppSettings.bundle */; };
 		BA2206881385B31500396AA2 /* analoglabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2206871385B31500396AA2 /* analoglabels.plist */; };
+		BA585C1413B0ED1A00AE0958 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0D13B0ED1A00AE0958 /* Route.m */; };
+		BA585C1513B0ED1A00AE0958 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0F13B0ED1A00AE0958 /* Routes.m */; };
+		BA585C1613B0ED1A00AE0958 /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C1113B0ED1A00AE0958 /* RoutesViewController.m */; };
+		BA585C1713B0ED1A00AE0958 /* RouteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C1313B0ED1A00AE0958 /* RouteListViewController.m */; };
+		BA585C3B13B120EF00AE0958 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C3913B120EF00AE0958 /* RouteViewController.m */; };
+		BA585C3C13B120EF00AE0958 /* RouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA585C3A13B120EF00AE0958 /* RouteViewController.xib */; };
+		BA585C4013B124BD00AE0958 /* RouteMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C3E13B124BC00AE0958 /* RouteMapViewController.m */; };
+		BA585C4113B124BD00AE0958 /* RouteMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA585C3F13B124BC00AE0958 /* RouteMapViewController.xib */; };
+		BA585C4613B1378A00AE0958 /* list-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = BA585C4413B1378A00AE0958 /* list-mode.png */; };
+		BA585C4713B1378A00AE0958 /* list-mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA585C4513B1378A00AE0958 /* list-mode@2x.png */; };
+		BA585C4A13B137FC00AE0958 /* map-mode.png in Resources */ = {isa = PBXBuildFile; fileRef = BA585C4813B137FB00AE0958 /* map-mode.png */; };
+		BA585C4B13B137FC00AE0958 /* map-mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA585C4913B137FB00AE0958 /* map-mode@2x.png */; };
+		BA585C5F13B1547300AE0958 /* MapOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C5E13B1547300AE0958 /* MapOptionsView.m */; };
+		BA585C6113B156AD00AE0958 /* MapOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA585C6013B156AD00AE0958 /* MapOptionsView.xib */; };
+		BA585C6413B15A7C00AE0958 /* FDCurlViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */; };
 		BA76133C1391184300C86318 /* screenlock.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133B1391184300C86318 /* screenlock.png */; };
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
@@ -197,8 +212,6 @@
 		BAE3B0A013AE4DAC007E0F2F /* IKPointList.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09F13AE4DAA007E0F2F /* IKPointList.m */; };
 		BAE3B0A413AE5124007E0F2F /* MKHostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */; };
 		BAE3B0A813AFD0D0007E0F2F /* IKPointListList.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */; };
-		BAE3B0AC13AFD504007E0F2F /* WaypointListListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0AB13AFD504007E0F2F /* WaypointListListViewController.m */; };
-		BAE3B0AF13AFD9AC007E0F2F /* WaypointListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0AE13AFD9AC007E0F2F /* WaypointListViewController.m */; };
 		BAE3B12013AFEA51007E0F2F /* WaypointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
@@ -307,6 +320,29 @@
 		BA0D478B137D033A001415C3 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		BA0D478F137D04E5001415C3 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		BA2206871385B31500396AA2 /* analoglabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = analoglabels.plist; sourceTree = "<group>"; };
+		BA585C0C13B0ED1A00AE0958 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		BA585C0D13B0ED1A00AE0958 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		BA585C0E13B0ED1A00AE0958 /* Routes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Routes.h; sourceTree = "<group>"; };
+		BA585C0F13B0ED1A00AE0958 /* Routes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Routes.m; sourceTree = "<group>"; };
+		BA585C1013B0ED1A00AE0958 /* RoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutesViewController.h; sourceTree = "<group>"; };
+		BA585C1113B0ED1A00AE0958 /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesViewController.m; sourceTree = "<group>"; };
+		BA585C1213B0ED1A00AE0958 /* RouteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteListViewController.h; sourceTree = "<group>"; };
+		BA585C1313B0ED1A00AE0958 /* RouteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteListViewController.m; sourceTree = "<group>"; };
+		BA585C3813B120EF00AE0958 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
+		BA585C3913B120EF00AE0958 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		BA585C3A13B120EF00AE0958 /* RouteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteViewController.xib; sourceTree = "<group>"; };
+		BA585C3D13B124BC00AE0958 /* RouteMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteMapViewController.h; sourceTree = "<group>"; };
+		BA585C3E13B124BC00AE0958 /* RouteMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteMapViewController.m; sourceTree = "<group>"; };
+		BA585C3F13B124BC00AE0958 /* RouteMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteMapViewController.xib; sourceTree = "<group>"; };
+		BA585C4413B1378A00AE0958 /* list-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-mode.png"; sourceTree = "<group>"; };
+		BA585C4513B1378A00AE0958 /* list-mode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-mode@2x.png"; sourceTree = "<group>"; };
+		BA585C4813B137FB00AE0958 /* map-mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-mode.png"; sourceTree = "<group>"; };
+		BA585C4913B137FB00AE0958 /* map-mode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-mode@2x.png"; sourceTree = "<group>"; };
+		BA585C5D13B1547300AE0958 /* MapOptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapOptionsView.h; sourceTree = "<group>"; };
+		BA585C5E13B1547300AE0958 /* MapOptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapOptionsView.m; sourceTree = "<group>"; };
+		BA585C6013B156AD00AE0958 /* MapOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapOptionsView.xib; sourceTree = "<group>"; };
+		BA585C6213B15A7C00AE0958 /* FDCurlViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCurlViewControl.h; sourceTree = "<group>"; };
+		BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCurlViewControl.m; sourceTree = "<group>"; };
 		BA76133B1391184300C86318 /* screenlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenlock.png; sourceTree = "<group>"; };
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
@@ -514,10 +550,6 @@
 		BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHostsViewController.m; sourceTree = "<group>"; };
 		BAE3B0A613AFD0CD007E0F2F /* IKPointListList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKPointListList.h; sourceTree = "<group>"; };
 		BAE3B0A713AFD0CE007E0F2F /* IKPointListList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKPointListList.m; sourceTree = "<group>"; };
-		BAE3B0AA13AFD504007E0F2F /* WaypointListListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointListListViewController.h; sourceTree = "<group>"; };
-		BAE3B0AB13AFD504007E0F2F /* WaypointListListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointListListViewController.m; sourceTree = "<group>"; };
-		BAE3B0AD13AFD9AC007E0F2F /* WaypointListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointListViewController.h; sourceTree = "<group>"; };
-		BAE3B0AE13AFD9AC007E0F2F /* WaypointListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointListViewController.m; sourceTree = "<group>"; };
 		BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointViewController.h; sourceTree = "<group>"; };
 		BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointViewController.m; sourceTree = "<group>"; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -786,6 +818,10 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA585C4813B137FB00AE0958 /* map-mode.png */,
+				BA585C4913B137FB00AE0958 /* map-mode@2x.png */,
+				BA585C4413B1378A00AE0958 /* list-mode.png */,
+				BA585C4513B1378A00AE0958 /* list-mode@2x.png */,
 				BAE3B03113A80118007E0F2F /* icon-mail1.png */,
 				BAE3B03213A80118007E0F2F /* icon-mail1@2x.png */,
 				BAE3B02613A5010D007E0F2F /* annotation-current.png */,
@@ -1110,6 +1146,8 @@
 		BAA4E6BC137EB89D0068E38E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA585C6213B15A7C00AE0958 /* FDCurlViewControl.h */,
+				BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */,
 				BAA4E6BD137EB89D0068E38E /* Common.h */,
 				BAA4E6BE137EB89D0068E38E /* Common.m */,
 				BAA4E6BF137EB89D0068E38E /* CustomBadge.h */,
@@ -1122,6 +1160,9 @@
 				BAA4E6C6137EB89D0068E38E /* IKCompass.m */,
 				BAA4E6C7137EB89D0068E38E /* IKInstrumentsCommon.h */,
 				BAA4E6C8137EB89D0068E38E /* IKInstrumentsCommon.m */,
+				BA585C5D13B1547300AE0958 /* MapOptionsView.h */,
+				BA585C5E13B1547300AE0958 /* MapOptionsView.m */,
+				BA585C6013B156AD00AE0958 /* MapOptionsView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1129,12 +1170,22 @@
 		BAE3B0A913AFD503007E0F2F /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
+				BA585C0C13B0ED1A00AE0958 /* Route.h */,
+				BA585C0D13B0ED1A00AE0958 /* Route.m */,
+				BA585C0E13B0ED1A00AE0958 /* Routes.h */,
+				BA585C0F13B0ED1A00AE0958 /* Routes.m */,
+				BA585C1013B0ED1A00AE0958 /* RoutesViewController.h */,
+				BA585C1113B0ED1A00AE0958 /* RoutesViewController.m */,
 				BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */,
 				BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */,
-				BAE3B0AD13AFD9AC007E0F2F /* WaypointListViewController.h */,
-				BAE3B0AE13AFD9AC007E0F2F /* WaypointListViewController.m */,
-				BAE3B0AA13AFD504007E0F2F /* WaypointListListViewController.h */,
-				BAE3B0AB13AFD504007E0F2F /* WaypointListListViewController.m */,
+				BA585C3813B120EF00AE0958 /* RouteViewController.h */,
+				BA585C3913B120EF00AE0958 /* RouteViewController.m */,
+				BA585C1213B0ED1A00AE0958 /* RouteListViewController.h */,
+				BA585C1313B0ED1A00AE0958 /* RouteListViewController.m */,
+				BA585C3A13B120EF00AE0958 /* RouteViewController.xib */,
+				BA585C3D13B124BC00AE0958 /* RouteMapViewController.h */,
+				BA585C3E13B124BC00AE0958 /* RouteMapViewController.m */,
+				BA585C3F13B124BC00AE0958 /* RouteMapViewController.xib */,
 			);
 			path = Waypoints;
 			sourceTree = "<group>";
@@ -1293,6 +1344,13 @@
 				BAE3B03013A7F159007E0F2F /* NCLogDetailViewController.xib in Resources */,
 				BAE3B03313A80118007E0F2F /* icon-mail1.png in Resources */,
 				BAE3B03413A80118007E0F2F /* icon-mail1@2x.png in Resources */,
+				BA585C3C13B120EF00AE0958 /* RouteViewController.xib in Resources */,
+				BA585C4113B124BD00AE0958 /* RouteMapViewController.xib in Resources */,
+				BA585C4613B1378A00AE0958 /* list-mode.png in Resources */,
+				BA585C4713B1378A00AE0958 /* list-mode@2x.png in Resources */,
+				BA585C4A13B137FC00AE0958 /* map-mode.png in Resources */,
+				BA585C4B13B137FC00AE0958 /* map-mode@2x.png in Resources */,
+				BA585C6113B156AD00AE0958 /* MapOptionsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1435,9 +1493,15 @@
 				BAE3B0A013AE4DAC007E0F2F /* IKPointList.m in Sources */,
 				BAE3B0A413AE5124007E0F2F /* MKHostsViewController.m in Sources */,
 				BAE3B0A813AFD0D0007E0F2F /* IKPointListList.m in Sources */,
-				BAE3B0AC13AFD504007E0F2F /* WaypointListListViewController.m in Sources */,
-				BAE3B0AF13AFD9AC007E0F2F /* WaypointListViewController.m in Sources */,
 				BAE3B12013AFEA51007E0F2F /* WaypointViewController.m in Sources */,
+				BA585C1413B0ED1A00AE0958 /* Route.m in Sources */,
+				BA585C1513B0ED1A00AE0958 /* Routes.m in Sources */,
+				BA585C1613B0ED1A00AE0958 /* RoutesViewController.m in Sources */,
+				BA585C1713B0ED1A00AE0958 /* RouteListViewController.m in Sources */,
+				BA585C3B13B120EF00AE0958 /* RouteViewController.m in Sources */,
+				BA585C4013B124BD00AE0958 /* RouteMapViewController.m in Sources */,
+				BA585C5F13B1547300AE0958 /* MapOptionsView.m in Sources */,
+				BA585C6413B15A7C00AE0958 /* FDCurlViewControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
