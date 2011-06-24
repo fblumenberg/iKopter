@@ -541,7 +541,10 @@
 				BA0D466E137C5127001415C3 /* Frameworks */,
 				BA0D466C137C5127001415C3 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
 		};
 		BA0D466C137C5127001415C3 /* Products */ = {
 			isa = PBXGroup;
