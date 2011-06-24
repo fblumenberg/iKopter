@@ -33,6 +33,7 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 #pragma mark Properties
 
 @synthesize delegate;
+@synthesize mkData;
 
 #pragma mark Initialization
 
@@ -46,7 +47,9 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
     
     asyncSocket = [[AsyncSocket alloc] init];
     [asyncSocket setDelegate:self];   
-                   
+
+    self.mkData = [NSMutableData dataWithCapacity:512];
+
     self.delegate = theDelegate;
   }
   return self;
@@ -55,6 +58,7 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 - (void) dealloc {
   qltrace("dealloc");
   [asyncSocket release];
+  self.mkData=nil;
   [super dealloc];
 }
 
@@ -126,12 +130,42 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 
 - (void) onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
 {
-  if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
-    [delegate didReadMkData:data];
-  }
-//  qltrace(@"Did read data %@",data);
-//
-//  qltrace(@"Start reading the next data frame");
+  /*
+   * The new data, which may only be partial, gets appended to the previously
+   * collected buffer in self.mkData.
+   * Then a line delimiter is searched, and any complete lines are passed
+   * to the delegate, and removed from the local buffer in self.mkData.
+   * We repeat this search for lines until no more are found.
+   */
+  
+  [self.mkData appendData:data];
+  
+  Boolean again;
+  do {
+    again = false;
+
+    const char* haystackBytes = [self.mkData bytes];
+    static char needle='\r';
+    
+    for (int i=0; i < [self.mkData length]; i++) {
+      if( haystackBytes[i]==needle ) { // check for line delimiter
+        
+        // extract the line
+        NSRange r={0,i+1};
+        NSData* cmdData=[self.mkData subdataWithRange:r];
+        
+        // remove the line from the receive buffer
+        [self.mkData replaceBytesInRange:r withBytes:NULL length:0];
+        
+        if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
+          [delegate didReadMkData:cmdData];
+        }
+        again = true; // see if there are more lines to process
+        break;
+      }
+    }
+  } while (again);
+
   [sock readDataToData:[AsyncSocket CRData] withTimeout:-1 tag:0];
 }
 
