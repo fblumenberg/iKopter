@@ -67,8 +67,9 @@
 
 - (void)viewDidUnload
 {
-  [super viewDidUnload];
+  [lm_ stopUpdatingLocation];
   [lm_ release]; lm_ = nil;
+  [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -88,10 +89,11 @@
 #pragma mark - CLLocationManagerDelegate Methods
 - (void)locationManager:(CLLocationManager *)manager 
     didUpdateToLocation:(CLLocation *)newLocation 
-           fromLocation:(CLLocation *)oldLocation {
-  
-  if ([newLocation.timestamp timeIntervalSince1970] < [NSDate timeIntervalSinceReferenceDate] - 60)
+           fromLocation:(CLLocation *)oldLocation
+{
+  if ([newLocation.timestamp timeIntervalSince1970] < ([NSDate timeIntervalSinceReferenceDate] - 60)) {
     return;
+  }
   
   MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 250, 250); 
   MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
@@ -101,13 +103,14 @@
   annotation.type=IKMapLocationDevice;
   annotation.coordinate=newLocation.coordinate;
   [mapView addAnnotation:annotation];
-  
   [annotation release];
 
   manager.delegate = nil;
   [manager stopUpdatingLocation];
-  [manager autorelease];
-  
+  if (lm_ == manager) {
+    [lm_ autorelease];
+    lm_ = nil;
+  }
 }
 
 - (void)locationManager:(CLLocationManager *)manager 
