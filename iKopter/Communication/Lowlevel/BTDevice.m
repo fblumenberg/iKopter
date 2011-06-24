@@ -39,11 +39,11 @@
 
 static int kCOD_MINOR_BIT_OFFSET = 2;
 static int kCOD_MAJOR_BIT_OFFSET = 8 * 1;
-static int kCOD_SERVICE_BIT_OFFSET = 8 * 1 + 5;
+//unused: static int kCOD_SERVICE_BIT_OFFSET = 8 * 1 + 5;
 
 static int kCOD_MINOR_MASK = 0x0000FC;
 static int kCOD_MAJOR_MASK = 0x001F00;
-static int kCOD_SERVICE_MASK = 0xFFE000;
+//unused: static int kCOD_SERVICE_MASK = 0xFFE000;
 
 @implementation BTDevice
 
