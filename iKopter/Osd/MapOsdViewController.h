@@ -30,7 +30,7 @@
 
 @interface MapOsdViewController : UIViewController<OsdValueDelegate,MKMapViewDelegate,CLLocationManagerDelegate> {
     
-  
+  CLLocationManager *lm_;
 }
 
 //CLLocationManagerDelegate, MKReverseGeocoderDelegate, MKMapViewDelegate

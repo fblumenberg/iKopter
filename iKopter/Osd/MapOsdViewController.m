@@ -41,6 +41,7 @@
 
 - (void)dealloc
 {
+  [lm_ release];
   [super dealloc];
 }
 
@@ -58,18 +59,16 @@
 {
   [super viewDidLoad];
 
-  CLLocationManager *lm = [[CLLocationManager alloc] init];
-  lm.delegate = self;
-  lm.desiredAccuracy = kCLLocationAccuracyBest;
-  [lm startUpdatingLocation];
-
+  lm_ = [[CLLocationManager alloc] init];
+  lm_.delegate = self;
+  lm_.desiredAccuracy = kCLLocationAccuracyBest;
+  [lm_ startUpdatingLocation];
 }
 
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  // Release any retained subviews of the main view.
-  // e.g. self.myOutlet = nil;
+  [lm_ release]; lm_ = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -139,7 +138,7 @@
     if(((MapLocation*)annotation).type==IKMapLocationDevice){
       annotationView = [theMapView dequeueReusableAnnotationViewWithIdentifier:placemarkIdentifierDevice];
       if (annotationView == nil)
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifierDevice];
+        annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifierDevice] autorelease];
       else 
         annotationView.annotation = annotation;
       ((MKPinAnnotationView*)annotationView).animatesDrop = YES;
@@ -151,7 +150,7 @@
     else{
       annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:placemarkIdentifier];
       if (annotationView == nil)
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifier];
+        annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifier] autorelease];
       else 
         annotationView.annotation = annotation;
       
@@ -177,6 +176,7 @@
   }
   return nil;
 }
+
 - (void)mapViewDidFailLoadingMap:(MKMapView *)theMapView withError:(NSError *)error {
   UIAlertView *alert = [[UIAlertView alloc] 
                         initWithTitle:NSLocalizedString(@"Error loading map", @"Error loading map")
