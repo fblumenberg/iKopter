@@ -36,6 +36,7 @@
 //CLLocationManagerDelegate, MKReverseGeocoderDelegate, MKMapViewDelegate
 @property(retain) IBOutlet MKMapView* mapView;
 @property(retain) IBOutlet UISwitch* mapTypeSwitch;
+@property(retain) CLLocationManager *lm;
 
 - (IBAction)mapTypeChange;
 
