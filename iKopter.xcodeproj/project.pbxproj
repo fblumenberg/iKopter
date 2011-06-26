@@ -535,8 +535,6 @@
 		BA0D4660137C5127001415C3 = {
 			isa = PBXGroup;
 			children = (
-				BAE3B02113A4DCC0007E0F2F /* MapKit.framework */,
-				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
 				BA0D4675137C5127001415C3 /* iKopter */,
 				BA0D466E137C5127001415C3 /* Frameworks */,
 				BA0D466C137C5127001415C3 /* Products */,
@@ -557,6 +555,8 @@
 		BA0D466E137C5127001415C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3B02113A4DCC0007E0F2F /* MapKit.framework */,
+				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
 				BAEEFBB2139D3B680003860E /* CoreData.framework */,
 				BAA4E6EC137EB9210068E38E /* QuartzCore.framework */,
 				BAA4E6EA137EB8FF0068E38E /* CoreText.framework */,
