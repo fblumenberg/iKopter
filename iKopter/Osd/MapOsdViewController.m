@@ -29,6 +29,7 @@
 
 @synthesize mapView;
 @synthesize mapTypeSwitch;
+@synthesize lm;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +42,9 @@
 
 - (void)dealloc
 {
+  self.mapView=nil;
+  self.mapTypeSwitch=nil;
+  self.lm=nil;
   [super dealloc];
 }
 
@@ -58,18 +62,18 @@
 {
   [super viewDidLoad];
 
-  CLLocationManager *lm = [[CLLocationManager alloc] init];
-  lm.delegate = self;
-  lm.desiredAccuracy = kCLLocationAccuracyBest;
-  [lm startUpdatingLocation];
+  self.lm = [[[CLLocationManager alloc] init]autorelease];
+  self.lm.delegate = self;
+  self.lm.desiredAccuracy = kCLLocationAccuracyBest;
+  [self.lm startUpdatingLocation];
 
 }
 
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  // Release any retained subviews of the main view.
-  // e.g. self.myOutlet = nil;
+  [self.lm startUpdatingLocation];
+  self.lm=nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -140,7 +144,7 @@
     if(((MapLocation*)annotation).type==IKMapLocationDevice){
       annotationView = [theMapView dequeueReusableAnnotationViewWithIdentifier:placemarkIdentifierDevice];
       if (annotationView == nil)
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifierDevice];
+        annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifierDevice]autorelease];
       else 
         annotationView.annotation = annotation;
       ((MKPinAnnotationView*)annotationView).animatesDrop = YES;
@@ -152,7 +156,7 @@
     else{
       annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:placemarkIdentifier];
       if (annotationView == nil)
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifier];
+        annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifier]autorelease];
       else 
         annotationView.annotation = annotation;
       

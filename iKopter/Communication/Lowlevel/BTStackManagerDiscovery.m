@@ -336,7 +336,7 @@
   if (!name){
     name = [[NSString alloc] initWithBytes:&packet[9] length:nameLen encoding:NSISOLatin1StringEncoding];
   }
-  return name;
+  return [name autorelease];
 }
 
 - (void) updateBTDevice:(BTDevice *) device fromRemoteNameEvent:(uint8_t *) packet {
