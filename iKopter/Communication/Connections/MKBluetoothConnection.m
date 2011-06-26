@@ -138,7 +138,7 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
   }
   
   [self setAddressFromString:hostOrDevice.address];
-  self.mkData=[NSMutableData dataWithCapacity:30];
+  self.mkData=[NSMutableData dataWithCapacity:512];
   
   if( bt_open()!=0 ){
     qlwarning(@"bt_open failed. Maybe no BTStack installed");
@@ -186,32 +186,43 @@ static NSString * const MKBluetoothConnectionException = @"MKBluetoothConnection
 {
 	NSData *data = [NSData dataWithBytes:packet length:size];
 	if ([data length] > 0) {
+      
+    /*
+     * The new data, which may only be partial, gets appended to the previously
+     * collected buffer in self.mkData.
+     * Then a line delimiter is searched, and any complete lines are passed
+     * to the delegate, and removed from the local buffer in self.mkData.
+     * We repeat this search for lines until no more are found.
+     */
     
     [self.mkData appendData:data];
     
-    const char* haystackBytes = [self.mkData bytes];
-    static char needle='\r';
-    
-    for (NSUInteger i=0; i < [self.mkData length]; i++)
-    {
-      if( haystackBytes[i]==needle ) {
-        
-        NSRange r={0,i+1};
-        NSData* cmdData=[self.mkData subdataWithRange:r];
-        
-        r=NSMakeRange(i+1,[self.mkData length]-[cmdData length]);
-        
-        self.mkData=[[self.mkData subdataWithRange:r]mutableCopy];
-        
-        //        NSString *dataText = [[[NSString alloc] initWithData:cmdData encoding:NSASCIIStringEncoding]autorelease];
-        //        NSLog(@"%@",dataText);
-        
-        if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
-          [delegate didReadMkData:cmdData];
+    Boolean again;
+    do {
+      again = false;
+
+      const char* haystackBytes = [self.mkData bytes];
+      static char needle='\r';
+      
+      for (int i=0; i < [self.mkData length]; i++) {
+        if( haystackBytes[i]==needle ) { // check for line delimiter
+          
+          // extract the line
+          NSRange r={0,i+1};
+          NSData* cmdData=[self.mkData subdataWithRange:r];
+          
+          // remove the line from the receive buffer
+          [self.mkData replaceBytesInRange:r withBytes:NULL length:0];
+          
+          if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
+            [delegate didReadMkData:cmdData];
+          }
+          again = true; // see if there are more lines to process
+          break;
         }
-        break;
       }
-    }
+    } while (again);
+
 	} 
 }
 
