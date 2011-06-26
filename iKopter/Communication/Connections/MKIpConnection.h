@@ -30,8 +30,11 @@
 @interface MKIpConnection : NSObject<MKConnection> {
 
   AsyncSocket * asyncSocket;
+  NSMutableData* mkData;
 
   id<MKConnectionDelegate> delegate;
 }
+
+@property(nonatomic,retain) NSMutableData* mkData;
 
 @end

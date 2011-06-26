@@ -66,7 +66,7 @@
   UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:controller];
 	
 	navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-  controller.delegate=self;
+    controller.delegate=self;
 	[self presentModalViewController:navController animated:YES];
 	
 	[controller release];  

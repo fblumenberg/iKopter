@@ -59,7 +59,15 @@
       h.connectionClass = @"MKFakeConnection";
       [hosts addObject:h];
       [h release];
-#ifdef DEBUG      
+
+#ifdef DEBUG
+      h = [[MKHost alloc]init];
+      h.name = @"Wi.232";
+      h.address = @"/dev/cu.usbserial-A1004747";
+      h.connectionClass = @"MKSerialConnection";
+      [hosts addObject:h];
+      [h release];
+      
       h = [[MKHost alloc]init];
       h.name = @"Quadkopter WLAN";
       h.address = @"192.168.0.74:23";

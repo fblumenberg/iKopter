@@ -73,6 +73,7 @@ int embedded_remove_data_source(data_source_t *ds){
  */
 void embedded_add_timer(timer_source_t *ts){
 #ifdef HAVE_TIME
+    int run_loop_timer_compare(timer_source_t *a, timer_source_t *b); // to get rid of a "Analyse" warning
     linked_item_t *it;
     for (it = (linked_item_t *) &timers; it->next ; it = it->next){
         if (run_loop_timer_compare( (timer_source_t *) it->next, ts) >= 0) {
