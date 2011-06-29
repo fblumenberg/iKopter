@@ -236,12 +236,14 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 
   int i=0;
   for (IKPoint* p in self.route.points) {
-    coordinates[i]=p.coordinate;
-    i++;
+    if(p.type==POINT_TYPE_WP){
+      coordinates[i]=p.coordinate;
+      i++;
+    }
   }
 
   [self.mapView removeOverlay:self.lineOverlay];
-  self.lineOverlay = [MKPolyline polylineWithCoordinates:coordinates count:[self.route.points count]];
+  self.lineOverlay = [MKPolyline polylineWithCoordinates:coordinates count:i];
 
   [self.mapView addOverlay:self.lineOverlay];
 }
