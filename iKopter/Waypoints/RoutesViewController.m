@@ -203,7 +203,7 @@
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
   if( indexPath.section==0 ){
-    Route* list = [self.lists routeAtIndexPath:editingList];
+    Route* list = [self.lists routeAtIndexPath:indexPath];
     if (!self.tableView.editing ) {
       RouteViewController* listView = [[RouteViewController alloc] initWithRoute:list];
       editingList = indexPath;
