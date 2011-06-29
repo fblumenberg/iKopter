@@ -32,6 +32,7 @@
 
 @synthesize list;
 //@synthesize addButton;
+@synthesize surrogateParent;
 
 - (id)initWithRoute:(Route*) aList {
   if ((self =  [super initWithStyle:UITableViewStyleGrouped])) {
@@ -257,7 +258,7 @@
       
       WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
       editingPoint = indexPath;
-      [self.navigationController pushViewController:hostView animated:YES];
+      [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
       [hostView release];
     }
   }

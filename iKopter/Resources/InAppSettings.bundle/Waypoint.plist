@@ -16,13 +16,13 @@
 			<key>Title</key>
 			<string>Long.</string>
 			<key>Key</key>
-			<string>position.longitude</string>
+			<string>posLongitude</string>
 			<key>DefaultValue</key>
 			<string>0.0</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
-			<string>NumbersAndPunctuation</string>
+			<string>DecimalPad</string>
 			<key>AutocorrectionType</key>
 			<string>Default</string>
 		</dict>
@@ -32,7 +32,7 @@
 			<key>Title</key>
 			<string>Lat.</string>
 			<key>Key</key>
-			<string>position.latitude</string>
+			<string>posLatitude</string>
 			<key>DefaultValue</key>
 			<string>0.0</string>
 			<key>IsSecure</key>
@@ -48,7 +48,7 @@
 			<key>Title</key>
 			<string>Altitude</string>
 			<key>Key</key>
-			<string>position.altitude</string>
+			<string>posAltitude</string>
 			<key>DefaultValue</key>
 			<string>0</string>
 			<key>IsSecure</key>

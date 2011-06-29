@@ -24,8 +24,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Route.h"
+#import "SurrogateViewParent.h"
 
-@interface RouteListViewController : UITableViewController<UITextFieldDelegate> {
+@interface RouteListViewController : UITableViewController<UITextFieldDelegate,SurrogateViewParent> {
     
 
   NSIndexPath* editingPoint;

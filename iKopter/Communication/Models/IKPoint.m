@@ -48,6 +48,28 @@
   [super setCoordinate:coordinate];
 }
 
+-(CLLocationDegrees) posLatitude{
+  return self.coordinate.latitude;
+};
+-(void) setPosLatitude:(CLLocationDegrees)latitude{
+  [super setCoordinate:CLLocationCoordinate2DMake(latitude, self.coordinate.longitude)];
+};
+
+-(CLLocationDegrees) posLongitude{
+  return self.coordinate.longitude;
+};
+-(void) setPosLongitude:(CLLocationDegrees)longitude{
+  [super setCoordinate:CLLocationCoordinate2DMake(self.coordinate.latitude, longitude)];
+};
+
+-(CLLocationDegrees) posAltitude{
+  return self.altitude/1000.0;
+};
+-(void) setPosAltitude:(double)posAltitude{
+  self.altitude=(NSUInteger)(posAltitude*1000);
+};
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

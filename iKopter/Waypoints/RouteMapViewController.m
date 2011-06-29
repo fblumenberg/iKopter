@@ -10,6 +10,14 @@
 #import "RouteMapViewController.h"
 #import "IKPoint.h"
 #import "MapLocation.h"
+#import "WaypointViewController.h"
+
+@interface RouteMapViewController()
+
+-(void)updateRouteOverlay;
+
+@end
+
 
 @implementation RouteMapViewController
 
@@ -17,6 +25,8 @@
 @synthesize mapView;
 @synthesize curlBarItem;
 @synthesize segmentedControl;
+@synthesize surrogateParent;
+@synthesize lineOverlay;
 
 - (id)initWithRoute:(Route*) theRoute {
   self = [super initWithNibName:@"RouteMapViewController" bundle:nil];
@@ -79,6 +89,8 @@
   
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView addAnnotations:route.points];
+  [self updateRouteOverlay];
+
   if([route.points count]>1){
     
     MKMapRect flyTo = MKMapRectNull;
@@ -133,6 +145,7 @@
   
   IKPoint* point = [self.route pointAtIndexPath:editingPoint];
   [mapView addAnnotation:point];
+  [self updateRouteOverlay];
 }
 
 #pragma mark - Page Curl stuff
@@ -180,6 +193,57 @@
                         otherButtonTitles:nil];
   [alert show];
   [alert release];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+  if ([view.annotation isKindOfClass:[IKPoint class]]) {
+    IKPoint* point=(IKPoint*)view.annotation;
+    
+    WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
+    [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
+    [hostView release];
+  }
+}
+
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay{
+	
+	if ([overlay isKindOfClass:[MKPolyline class]]) {
+		
+		MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+		polylineView.strokeColor = [UIColor blueColor];
+		polylineView.lineWidth = 1.5;
+		return polylineView;
+	}
+	
+	return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView 
+    annotationView:(MKAnnotationView *)view 
+didChangeDragState:(MKAnnotationViewDragState)newState 
+      fromOldState:(MKAnnotationViewDragState)oldState{
+
+  if(newState==MKAnnotationViewDragStateEnding || newState==MKAnnotationViewDragStateDragging){
+    [self updateRouteOverlay]; 
+  }
+}
+
+#pragma mark Overlays
+
+-(void)updateRouteOverlay{
+  CLLocationCoordinate2D coordinates[[self.route.points count]];
+
+  int i=0;
+  for (IKPoint* p in self.route.points) {
+    coordinates[i]=p.coordinate;
+    i++;
+  }
+
+  [self.mapView removeOverlay:self.lineOverlay];
+  self.lineOverlay = [MKPolyline polylineWithCoordinates:coordinates count:[self.route.points count]];
+
+  [self.mapView addOverlay:self.lineOverlay];
 }
 
 @end

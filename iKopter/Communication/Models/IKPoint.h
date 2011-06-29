@@ -43,6 +43,10 @@
 @property(assign) NSInteger wpEventChannelValue;  //
 @property(assign) NSInteger altitudeRate;     // rate to change the setpoint
 
+@property(assign) CLLocationDegrees posLatitude;
+@property(assign) CLLocationDegrees posLongitude;
+@property(assign) double posAltitude;
+
 + (id)pointWithData:(NSData *)data;
 - (id)initWithData:(NSData*)data;
 - (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate;

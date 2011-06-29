@@ -25,15 +25,20 @@
 #import "RouteViewController.h"
 #import "RouteListViewController.h"
 #import "RouteMapViewController.h"
+#import "MKConnectionController.h"
 
 @interface RouteViewController()
 
 @property (retain) UIBarButtonItem* spacer;
 @property (retain) UIBarButtonItem* addButton;
+@property (retain) UIBarButtonItem* ulButton;
+@property (retain) UIBarButtonItem* dlButton;
 
 
 -(void) updateSelectedViewFrame;
 -(void) changeView;
+-(void) uploadRoute;
+-(void) downloadRoute;
 
 @end
 
@@ -45,7 +50,8 @@
 @synthesize segment;
 @synthesize addButton;
 @synthesize spacer;
-
+@synthesize ulButton;
+@synthesize dlButton;
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +70,8 @@
   self.route = nil;
   self.addButton=nil;
   self.spacer=nil;
+  self.dlButton=nil;
+  self.ulButton=nil;
   
   [super dealloc];
 }
@@ -78,9 +86,11 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-
+  
   RouteListViewController*  listViewController=[[RouteListViewController alloc] initWithRoute:self.route];
+  listViewController.surrogateParent=self;
   RouteMapViewController* mapViewController=[[RouteMapViewController alloc] initWithRoute:self.route];
+  mapViewController.surrogateParent=self;
   
   NSArray *array = [[NSArray alloc] initWithObjects:listViewController, mapViewController, nil];
   self.viewControllers = array;
@@ -88,7 +98,7 @@
   
   [listViewController release];
   [mapViewController release];
-
+  
   NSArray* segmentItems = [NSArray arrayWithObjects:@"List",@"Map",nil];
   segment = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
   segment.segmentedControlStyle=UISegmentedControlStyleBar;
@@ -107,21 +117,36 @@
   UIBarButtonItem* segmentButton;
   segmentButton =  [[[UIBarButtonItem alloc]
                      initWithCustomView:segment] autorelease];
-
+  
   [self.navigationItem setRightBarButtonItem:segmentButton animated:NO];
   
   self.spacer =  [[[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil
-                    action:nil] autorelease];
-
-
+                   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                   target:nil
+                   action:nil] autorelease];
+  
+  
   self.addButton =  [[[UIBarButtonItem alloc]
                       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                       target:nil
                       action:@selector(addPoint)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
-
+  
+  if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
+    
+    self.ulButton =  [[[UIBarButtonItem alloc]
+                       initWithImage:[UIImage imageNamed:@"icon-ul1.png"] 
+                       style:UIBarButtonItemStyleBordered
+                       target:nil
+                       action:@selector(uploadRoute)] autorelease];
+    
+    self.dlButton =  [[[UIBarButtonItem alloc]
+                       initWithImage:[UIImage imageNamed:@"icon-dl1.png"] 
+                       style:UIBarButtonItemStyleBordered
+                       target:nil
+                       action:@selector(downloadRoute)] autorelease];
+  }
+  
   segment.selectedSegmentIndex=0;
 }
 
@@ -135,6 +160,8 @@
   self.viewControllers = nil;
   self.addButton=nil;
   self.spacer=nil;
+  self.dlButton=nil;
+  self.ulButton=nil;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -159,20 +186,41 @@
 -(void) updateSelectedViewFrame {
   self.selectedViewController.view.frame=CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), 
                                                     CGRectGetHeight(self.view.bounds));
-
+  
   self.addButton.target = self.selectedViewController;
   
   if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]){
-    [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,self.spacer,self.addButton,nil] animated:YES];
+    if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
+      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+                             self.spacer,
+                             self.ulButton,
+                             self.dlButton,
+                             self.addButton,nil] animated:YES];
+    }
+    else{
+      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+                             self.spacer,
+                             self.addButton,nil] animated:YES];
+    }
   } else {
     UIBarButtonItem* curlBarItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
                                                                                   target:((RouteMapViewController*)self.selectedViewController).curlBarItem 
                                                                                   action:@selector(touched)]autorelease];
     
-    [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
-                                                    self.spacer,
-                                                    self.addButton,
-                                                    curlBarItem, nil] animated:YES];
+    if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
+      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+                             self.spacer,
+                             self.ulButton,
+                             self.dlButton,
+                             self.addButton,
+                             curlBarItem, nil] animated:YES];
+    }
+    else{
+      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+                             self.spacer,
+                             self.addButton,
+                             curlBarItem, nil] animated:YES];
+    }
   }
 }
 
@@ -194,4 +242,14 @@
   [self updateSelectedViewFrame];
 }
 
+#pragma mark - Up-/Download 
+
+-(void) uploadRoute{
+}
+
+-(void) downloadRoute{
+  
+}
+
 @end
+

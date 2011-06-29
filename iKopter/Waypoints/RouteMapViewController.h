@@ -26,17 +26,19 @@
 #import <MapKit/MapKit.h>
 #import "Route.h"
 #import "FDCurlViewControl.h"
+#import "SurrogateViewParent.h"
 
 @class MKMapView;
 
-@interface RouteMapViewController : UIViewController<MKMapViewDelegate> {
+@interface RouteMapViewController : UIViewController<MKMapViewDelegate,SurrogateViewParent> {
     
 }
 
 @property (retain) Route* route;
 @property (retain) IBOutlet MKMapView *mapView;
 @property (retain) FDCurlViewControl* curlBarItem;
-@property(retain) IBOutlet UISegmentedControl *segmentedControl;
+@property (retain) IBOutlet UISegmentedControl *segmentedControl;
+@property (retain) MKPolyline* lineOverlay;
 
 - (id)initWithRoute:(Route*) theRoute;
 - (IBAction) changeMapViewType;
