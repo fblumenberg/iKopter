@@ -26,6 +26,7 @@
 #import "RouteListViewController.h"
 #import "RouteMapViewController.h"
 #import "MKConnectionController.h"
+#import "MKDataConstants.h"
 
 @interface RouteViewController()
 
@@ -137,7 +138,7 @@
     self.ulButton =  [[[UIBarButtonItem alloc]
                        initWithImage:[UIImage imageNamed:@"icon-ul1.png"] 
                        style:UIBarButtonItemStyleBordered
-                       target:nil
+                       target:self
                        action:@selector(uploadRoute)] autorelease];
     
     self.dlButton =  [[[UIBarButtonItem alloc]
@@ -168,10 +169,21 @@
   [super viewWillAppear:animated];
   [self.selectedViewController viewWillAppear:animated];
   [self updateSelectedViewFrame];
+  
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  [nc addObserver:self
+         selector:@selector(writePointNotification:)
+             name:MKWritePointNotification
+           object:nil];
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
   [self.selectedViewController viewWillDisappear:NO];
+
+  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  [nc removeObserver:self];
+
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -194,7 +206,7 @@
       [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
                              self.spacer,
                              self.ulButton,
-                             self.dlButton,
+                             //self.dlButton,
                              self.addButton,nil] animated:YES];
     }
     else{
@@ -211,7 +223,7 @@
       [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
                              self.spacer,
                              self.ulButton,
-                             self.dlButton,
+                             //self.dlButton,
                              self.addButton,
                              curlBarItem, nil] animated:YES];
     }
@@ -244,8 +256,29 @@
 
 #pragma mark - Up-/Download 
 
--(void) uploadRoute{
+-(void) uploadPoint:(NSUInteger)index{
+
+  IKPoint* p=(IKPoint*)[self.route.points objectAtIndex:index];
+  qlinfo(@"Upload point (%d) %@",index,p);
+  [[MKConnectionController sharedMKConnectionController] writePoint:p];
 }
+
+-(void) uploadRoute{
+  currIndex=0;
+  [self uploadPoint:currIndex++];
+}
+
+- (void) writePointNotification:(NSNotification *)aNotification {
+  NSDictionary* d=[aNotification userInfo];
+  NSInteger index = [[d objectForKey:kMKDataKeyIndex] integerValue]-1;
+
+  qlinfo(@"Upload point (%d) finished",index);
+
+  if (currIndex<[self.route.points count]) {
+    [self uploadPoint:currIndex++];
+  }
+}
+
 
 -(void) downloadRoute{
   

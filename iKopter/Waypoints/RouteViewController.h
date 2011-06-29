@@ -28,6 +28,7 @@
 
 @interface RouteViewController : UIViewController<UITabBarDelegate> {
     
+  NSUInteger currIndex;
 }
 
 @property (retain) UISegmentedControl* segment;
