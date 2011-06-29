@@ -27,6 +27,7 @@
 #import "RouteMapViewController.h"
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
+#import "IKPoint.h"
 
 @interface RouteViewController()
 
@@ -256,6 +257,18 @@
 
 #pragma mark - Up-/Download 
 
+-(void) uploadClearPoint{
+  
+  IKPoint* p=[[[IKPoint alloc]init]autorelease];
+  
+  p.status = INVALID;
+  p.index = 0;
+  
+  qlinfo(@"Upload clear list point %@",p);
+  [[MKConnectionController sharedMKConnectionController] writePoint:p];
+}
+
+
 -(void) uploadPoint:(NSUInteger)index{
 
   IKPoint* p=(IKPoint*)[self.route.points objectAtIndex:index];
@@ -265,7 +278,7 @@
 
 -(void) uploadRoute{
   currIndex=0;
-  [self uploadPoint:currIndex++];
+  [self uploadClearPoint];
 }
 
 - (void) writePointNotification:(NSNotification *)aNotification {
