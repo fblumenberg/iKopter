@@ -33,6 +33,7 @@
 
 @property (retain) UIBarButtonItem* spacer;
 @property (retain) UIBarButtonItem* addButton;
+@property (retain) UIBarButtonItem* addWithGpsButton;
 @property (retain) UIBarButtonItem* ulButton;
 @property (retain) UIBarButtonItem* dlButton;
 
@@ -51,6 +52,7 @@
 @synthesize route;
 @synthesize segment;
 @synthesize addButton;
+@synthesize addWithGpsButton;
 @synthesize spacer;
 @synthesize ulButton;
 @synthesize dlButton;
@@ -71,6 +73,7 @@
   self.viewControllers = nil;
   self.route = nil;
   self.addButton=nil;
+  self.addWithGpsButton=nil;
   self.spacer=nil;
   self.dlButton=nil;
   self.ulButton=nil;
@@ -133,6 +136,13 @@
                       target:nil
                       action:@selector(addPoint)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
+
+  self.addWithGpsButton =  [[[UIBarButtonItem alloc]
+                     initWithImage:[UIImage imageNamed:@"icon-add-gps.png"] 
+                     style:UIBarButtonItemStyleBordered
+                     target:self
+                     action:nil] autorelease];
+
   
   if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
     
@@ -161,6 +171,7 @@
   
   self.viewControllers = nil;
   self.addButton=nil;
+  self.addWithGpsButton=nil;
   self.spacer=nil;
   self.dlButton=nil;
   self.ulButton=nil;
@@ -208,11 +219,12 @@
                              self.spacer,
                              self.ulButton,
                              //self.dlButton,
+                             self.addWithGpsButton,
                              self.addButton,nil] animated:YES];
     }
     else{
       [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
-                             self.spacer,
+                             self.spacer,self.addWithGpsButton,
                              self.addButton,nil] animated:YES];
     }
   } else {
@@ -225,6 +237,7 @@
                              self.spacer,
                              self.ulButton,
                              //self.dlButton,
+                             self.addWithGpsButton,
                              self.addButton,
                              curlBarItem, nil] animated:YES];
     }
@@ -232,6 +245,7 @@
       [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
                              self.spacer,
                              self.addButton,
+                             self.addWithGpsButton,
                              curlBarItem, nil] animated:YES];
     }
   }

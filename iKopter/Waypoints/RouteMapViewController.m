@@ -26,7 +26,6 @@
 @synthesize curlBarItem;
 @synthesize segmentedControl;
 @synthesize surrogateParent;
-@synthesize lineOverlay;
 
 - (id)initWithRoute:(Route*) theRoute {
   self = [super initWithNibName:@"RouteMapViewController" bundle:nil];
@@ -210,11 +209,24 @@
 	
 	if ([overlay isKindOfClass:[MKPolyline class]]) {
 		
-		MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+		MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
 		polylineView.strokeColor = [UIColor blueColor];
 		polylineView.lineWidth = 1.5;
 		return polylineView;
 	}
+  else if([overlay isKindOfClass:[MKCircle class]]) {
+    MKCircleView* circleView=[[[MKCircleView alloc] initWithCircle:overlay] autorelease];
+    if([((MKCircle*)overlay).title length]>0){ 
+    circleView.strokeColor = [UIColor redColor];
+    circleView.fillColor = [UIColor colorWithRed:(255 / 255.0) green:(0 / 255.0) blue:(0 / 255.0) alpha: 0.1];
+    }
+    else{
+      circleView.strokeColor = [UIColor greenColor];
+      circleView.fillColor = [UIColor colorWithRed:(0 / 255.0) green:(255 / 255.0) blue:(0 / 255.0) alpha: 0.1];
+    }
+      circleView.lineWidth = 1.5;  
+    return circleView; 
+  }
 	
 	return nil;
 }
@@ -234,18 +246,27 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 -(void)updateRouteOverlay{
   CLLocationCoordinate2D coordinates[[self.route.points count]];
 
+  [self.mapView removeOverlays:self.mapView.overlays];
+  
   int i=0;
   for (IKPoint* p in self.route.points) {
     if(p.type==POINT_TYPE_WP){
       coordinates[i]=p.coordinate;
+      
+      MKCircle* c=[MKCircle circleWithCenterCoordinate:p.coordinate radius:p.toleranceRadius];
+      if(i==0)
+        c.title=@"start";
+      
+      [self.mapView addOverlay:c];
+      
       i++;
+      
     }
   }
 
-  [self.mapView removeOverlay:self.lineOverlay];
-  self.lineOverlay = [MKPolyline polylineWithCoordinates:coordinates count:i];
-
-  [self.mapView addOverlay:self.lineOverlay];
+  [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coordinates count:i]];
+  
+  qltrace(@"Overlays %@",self.mapView.overlays);
 }
 
 @end

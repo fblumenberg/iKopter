@@ -220,6 +220,8 @@
 		BAF6758013BBC21900F18C23 /* icon-ul1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF6757C13BBC21900F18C23 /* icon-ul1@2x.png */; };
 		BAF6758113BBC21900F18C23 /* icon-dl1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF6757D13BBC21900F18C23 /* icon-dl1.png */; };
 		BAF6758213BBC21900F18C23 /* icon-dl1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF6757E13BBC21900F18C23 /* icon-dl1@2x.png */; };
+		BAF6758413BE2AB600F18C23 /* icon-add-gps.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF6758313BE2AB600F18C23 /* icon-add-gps.png */; };
+		BAF6758613BE2CE700F18C23 /* icon-add-gps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF6758513BE2CE700F18C23 /* icon-add-gps@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -563,6 +565,8 @@
 		BAF6757C13BBC21900F18C23 /* icon-ul1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ul1@2x.png"; sourceTree = "<group>"; };
 		BAF6757D13BBC21900F18C23 /* icon-dl1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-dl1.png"; sourceTree = "<group>"; };
 		BAF6757E13BBC21900F18C23 /* icon-dl1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-dl1@2x.png"; sourceTree = "<group>"; };
+		BAF6758313BE2AB600F18C23 /* icon-add-gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-add-gps.png"; sourceTree = "<group>"; };
+		BAF6758513BE2CE700F18C23 /* icon-add-gps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-add-gps@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -825,6 +829,8 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BAF6758513BE2CE700F18C23 /* icon-add-gps@2x.png */,
+				BAF6758313BE2AB600F18C23 /* icon-add-gps.png */,
 				BAF6757B13BBC21900F18C23 /* icon-ul1.png */,
 				BAF6757C13BBC21900F18C23 /* icon-ul1@2x.png */,
 				BAF6757D13BBC21900F18C23 /* icon-dl1.png */,
@@ -1362,6 +1368,8 @@
 				BAF6758013BBC21900F18C23 /* icon-ul1@2x.png in Resources */,
 				BAF6758113BBC21900F18C23 /* icon-dl1.png in Resources */,
 				BAF6758213BBC21900F18C23 /* icon-dl1@2x.png in Resources */,
+				BAF6758413BE2AB600F18C23 /* icon-add-gps.png in Resources */,
+				BAF6758613BE2CE700F18C23 /* icon-add-gps@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

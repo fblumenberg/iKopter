@@ -38,7 +38,6 @@
 @property (retain) IBOutlet MKMapView *mapView;
 @property (retain) FDCurlViewControl* curlBarItem;
 @property (retain) IBOutlet UISegmentedControl *segmentedControl;
-@property (retain) MKPolyline* lineOverlay;
 
 - (id)initWithRoute:(Route*) theRoute;
 - (IBAction) changeMapViewType;
