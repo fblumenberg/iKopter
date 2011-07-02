@@ -179,7 +179,12 @@
   [selectedViewController newValue:osdValue];
   
   UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
-  [self.selectedViewController.view addGestureRecognizer:singleTap];
+  if ([self.selectedViewController isKindOfClass:[MapOsdViewController class]]) {
+    [((MapOsdViewController*)self.selectedViewController).mapView addGestureRecognizer:singleTap];  
+  }
+  else{
+    [self.selectedViewController.view addGestureRecognizer:singleTap];
+  }
   [singleTap release];    
 }
 
@@ -189,7 +194,7 @@
 #pragma mark Navigation bar Hideing 
 
 - (void)conceal {
-  qltrace(@"Hideing navigation bar");
+  qltrace(@"Hiding navigation bar");
   [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 

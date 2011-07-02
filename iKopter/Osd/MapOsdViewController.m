@@ -29,7 +29,6 @@
 
 @synthesize mapView;
 @synthesize mapTypeSwitch;
-@synthesize lm;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +43,6 @@
 {
   self.mapView=nil;
   self.mapTypeSwitch=nil;
-  self.lm=nil;
   [super dealloc];
 }
 
@@ -61,76 +59,17 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-
-  self.lm = [[[CLLocationManager alloc] init]autorelease];
-  self.lm.delegate = self;
-  self.lm.desiredAccuracy = kCLLocationAccuracyBest;
-  [self.lm startUpdatingLocation];
-
+  needRegionAdjustment=YES;
 }
 
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  [self.lm startUpdatingLocation];
-  self.lm=nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
   return YES;
-}
-
-- (IBAction)mapTypeChange{
-  if(self.mapTypeSwitch.on){
-    mapView.mapType=MKMapTypeHybrid;
-  }
-  else{
-    mapView.mapType=MKMapTypeStandard;
-  }
-}
-
-#pragma mark - CLLocationManagerDelegate Methods
-- (void)locationManager:(CLLocationManager *)manager 
-    didUpdateToLocation:(CLLocation *)newLocation 
-           fromLocation:(CLLocation *)oldLocation {
-  
-  if ([newLocation.timestamp timeIntervalSince1970] < [NSDate timeIntervalSinceReferenceDate] - 60)
-    return;
-  
-  MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 250, 250); 
-  MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
-  [mapView setRegion:adjustedRegion animated:YES];
-  
-  MapLocation *annotation = [[MapLocation alloc] init];
-  annotation.type=IKMapLocationDevice;
-  annotation.coordinate=newLocation.coordinate;
-  [mapView addAnnotation:annotation];
-  
-  [annotation release];
-
-  manager.delegate = nil;
-  [manager stopUpdatingLocation];
-  [manager autorelease];
-  
-}
-
-- (void)locationManager:(CLLocationManager *)manager 
-       didFailWithError:(NSError *)error {
-  
-  NSString *errorType = (error.code == kCLErrorDenied) ? 
-  NSLocalizedString(@"Access Denied", @"Access Denied") : 
-  NSLocalizedString(@"Unknown Error", @"Unknown Error");
-  
-  UIAlertView *alert = [[UIAlertView alloc] 
-                        initWithTitle:NSLocalizedString(@"Error getting Location", @"Error getting Location")
-                        message:errorType 
-                        delegate:self 
-                        cancelButtonTitle:NSLocalizedString(@"Okay", @"Okay") 
-                        otherButtonTitles:nil];
-  [alert show];
-  [alert release];
-  [manager release];
 }
 
 #pragma mark - Map View Delegate Methods
@@ -164,6 +103,7 @@
       switch (((MapLocation*)annotation).type) {
         case IKMapLocationCurrentPosition:
           annotationView.image=[UIImage imageNamed:@"annotation-current.png"];
+          [annotationView setSelected:YES animated:NO];
           break;
         case IKMapLocationHomePosition:
           annotationView.image=[UIImage imageNamed:@"annotation-home.png"];
@@ -220,14 +160,22 @@
 #pragma mark - OsdValueDelegate
 
 - (void) newValue:(OsdValue*)value {
-  IKGPSPos* gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->HomePosition)];
-  [self updateAnnotationForType:IKMapLocationHomePosition coordinate:gpsPos.coordinate];
-  
+  IKGPSPos* gpsPos;
+
   gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->TargetPosition)];
   [self updateAnnotationForType:IKMapLocationTargetPosition coordinate:gpsPos.coordinate];
-
   gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->CurrentPosition)];
   [self updateAnnotationForType:IKMapLocationCurrentPosition coordinate:gpsPos.coordinate];
+  gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->HomePosition)];
+  [self updateAnnotationForType:IKMapLocationHomePosition coordinate:gpsPos.coordinate];
+  
+  if( needRegionAdjustment ){
+     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(gpsPos.coordinate, 500, 500); 
+     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
+     [self.mapView setRegion:adjustedRegion animated:YES];
+    needRegionAdjustment=NO;
+  }
+
 }
 
 - (void) noDataAvailable {

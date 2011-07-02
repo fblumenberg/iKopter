@@ -28,16 +28,13 @@
 
 #import "OsdValue.h"
 
-@interface MapOsdViewController : UIViewController<OsdValueDelegate,MKMapViewDelegate,CLLocationManagerDelegate> {
+@interface MapOsdViewController : UIViewController<OsdValueDelegate,MKMapViewDelegate> {
     
+  BOOL needRegionAdjustment;
   
 }
 
-//CLLocationManagerDelegate, MKReverseGeocoderDelegate, MKMapViewDelegate
 @property(retain) IBOutlet MKMapView* mapView;
 @property(retain) IBOutlet UISwitch* mapTypeSwitch;
-@property(retain) CLLocationManager *lm;
-
-- (IBAction)mapTypeChange;
 
 @end
