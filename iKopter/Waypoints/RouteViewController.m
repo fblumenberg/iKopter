@@ -231,6 +231,7 @@
                              self.spacer,
                              self.ulButton,
                              //self.dlButton,
+                             self.spacer,
                              self.addWithGpsButton,
                              self.addButton,nil] animated:YES];
     }
@@ -249,6 +250,7 @@
                              self.spacer,
                              self.ulButton,
                              //self.dlButton,
+                             self.spacer,
                              self.addWithGpsButton,
                              self.addButton,
                              curlBarItem, nil] animated:YES];
