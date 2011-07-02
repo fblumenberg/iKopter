@@ -60,19 +60,19 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  HorizonOsdViewController* horizonViewController=[[HorizonOsdViewController alloc]initWithNibName:@"HorizonOsdViewController" bundle:nil];
+//  HorizonOsdViewController* horizonViewController=[[HorizonOsdViewController alloc]initWithNibName:@"HorizonOsdViewController" bundle:nil];
   ValueOsdViewController* valueViewController=[[ValueOsdViewController alloc]initWithNibName:@"ValueOsdViewController" bundle:nil];
   RawOsdViewController* rawViewController=[[RawOsdViewController alloc]initWithNibName:@"RawOsdViewController" bundle:nil];
   MapOsdViewController* mapViewController=[[MapOsdViewController alloc]initWithNibName:@"MapOsdViewController" bundle:nil];
   
-  NSArray *array = [[NSArray alloc] initWithObjects:horizonViewController, valueViewController, rawViewController, mapViewController, nil];
+  NSArray *array = [[NSArray alloc] initWithObjects:valueViewController, rawViewController, mapViewController, nil];
   self.viewControllers = array;
   
   [self.view addSubview:valueViewController.view];
   self.selectedViewController = valueViewController;
   
   [array release];
-  [horizonViewController release];
+//  [horizonViewController release];
   [valueViewController release];
   [rawViewController release];
   [mapViewController release];
