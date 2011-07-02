@@ -26,6 +26,8 @@
 #import "Route.h"
 #import "SurrogateViewParent.h"
 
+@class CLLocation;
+
 @interface RouteListViewController : UITableViewController<UITextFieldDelegate,SurrogateViewParent> {
     
 
@@ -36,6 +38,7 @@
 
 - (id)initWithRoute:(Route*) list;
 - (void)addPoint;
+- (void)addPointWithLocation:(CLLocation*)location;
 
 
 @end

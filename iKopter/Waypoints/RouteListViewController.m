@@ -283,4 +283,21 @@
   [hostView release];
 }
 
+- (void)addPointWithLocation:(CLLocation*)location{
+  
+  editingPoint=[self.list addPointAtCoordinate:location.coordinate];
+  
+  NSArray* indexPaths=[NSArray arrayWithObject:editingPoint];
+  
+  [self.tableView beginUpdates];
+  [self.tableView insertRowsAtIndexPaths:indexPaths 
+                        withRowAnimation:UITableViewRowAnimationFade];
+  [self.tableView endUpdates];
+  
+  IKPoint* point = [self.list pointAtIndexPath:editingPoint];
+  WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
+  [self.navigationController pushViewController:hostView animated:YES];
+  [hostView release];
+}
+
 @end

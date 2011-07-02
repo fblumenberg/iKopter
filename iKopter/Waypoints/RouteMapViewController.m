@@ -147,6 +147,15 @@
   [self updateRouteOverlay];
 }
 
+- (void)addPointWithLocation:(CLLocation*)location{
+  qltrace(@"addPoint route list");
+  NSIndexPath* editingPoint=[self.route addPointAtCoordinate:location.coordinate];
+  
+  IKPoint* point = [self.route pointAtIndexPath:editingPoint];
+  [mapView addAnnotation:point];
+  [self updateRouteOverlay];
+}
+
 #pragma mark - Page Curl stuff
 
 - (void)changeMapViewType {

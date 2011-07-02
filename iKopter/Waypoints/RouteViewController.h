@@ -24,9 +24,10 @@
 
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "Route.h"
 
-@interface RouteViewController : UIViewController<UITabBarDelegate> {
+@interface RouteViewController : UIViewController<UITabBarDelegate,CLLocationManagerDelegate> {
     
   NSUInteger currIndex;
 }

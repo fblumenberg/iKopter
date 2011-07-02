@@ -29,6 +29,7 @@
 #import "SurrogateViewParent.h"
 
 @class MKMapView;
+@class CLLocation;
 
 @interface RouteMapViewController : UIViewController<MKMapViewDelegate,SurrogateViewParent> {
     
@@ -42,6 +43,7 @@
 - (id)initWithRoute:(Route*) theRoute;
 - (IBAction) changeMapViewType;
 - (void)addPoint;
+- (void)addPointWithLocation:(CLLocation*)location;
 
 
 @end

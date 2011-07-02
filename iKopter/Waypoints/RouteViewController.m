@@ -36,12 +36,15 @@
 @property (retain) UIBarButtonItem* addWithGpsButton;
 @property (retain) UIBarButtonItem* ulButton;
 @property (retain) UIBarButtonItem* dlButton;
+@property(retain) CLLocationManager *lm;
 
 
 -(void) updateSelectedViewFrame;
 -(void) changeView;
 -(void) uploadRoute;
 -(void) downloadRoute;
+-(void) addPointWithGps;
+
 
 @end
 
@@ -56,6 +59,7 @@
 @synthesize spacer;
 @synthesize ulButton;
 @synthesize dlButton;
+@synthesize lm;
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -77,6 +81,7 @@
   self.spacer=nil;
   self.dlButton=nil;
   self.ulButton=nil;
+  self.lm = nil;
   
   [super dealloc];
 }
@@ -141,7 +146,7 @@
                      initWithImage:[UIImage imageNamed:@"icon-add-gps.png"] 
                      style:UIBarButtonItemStyleBordered
                      target:self
-                     action:nil] autorelease];
+                     action:@selector(addPointWithGps)] autorelease];
 
   
   if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
@@ -159,6 +164,11 @@
                        action:@selector(downloadRoute)] autorelease];
   }
   
+  
+  self.lm = [[[CLLocationManager alloc] init]autorelease];
+  self.lm.delegate = self;
+  self.lm.desiredAccuracy = kCLLocationAccuracyBest;
+  
   segment.selectedSegmentIndex=0;
 }
 
@@ -175,6 +185,8 @@
   self.spacer=nil;
   self.dlButton=nil;
   self.ulButton=nil;
+  self.lm = nil;
+
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -309,6 +321,43 @@
 
 -(void) downloadRoute{
   
+}
+
+#pragma mark - CLLocationManagerDelegate Methods
+
+-(void) addPointWithGps{
+  [self.lm startUpdatingLocation];
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager 
+    didUpdateToLocation:(CLLocation *)newLocation 
+           fromLocation:(CLLocation *)oldLocation {
+  
+  if ([newLocation.timestamp timeIntervalSince1970] < [NSDate timeIntervalSinceReferenceDate] - 60)
+    return;
+  
+  [manager stopUpdatingLocation];
+  if([self.selectedViewController respondsToSelector:@selector(addPointWithLocation:)])
+    [self.selectedViewController addPointWithLocation:newLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager 
+       didFailWithError:(NSError *)error {
+  
+  NSString *errorType = (error.code == kCLErrorDenied) ? 
+  NSLocalizedString(@"Access Denied", @"Access Denied") : 
+  NSLocalizedString(@"Unknown Error", @"Unknown Error");
+  
+  UIAlertView *alert = [[UIAlertView alloc] 
+                        initWithTitle:NSLocalizedString(@"Error getting Location", @"Error getting Location")
+                        message:errorType 
+                        delegate:self 
+                        cancelButtonTitle:NSLocalizedString(@"Okay", @"Okay") 
+                        otherButtonTitles:nil];
+  [alert show];
+  [alert release];
+  [manager release];
 }
 
 @end
