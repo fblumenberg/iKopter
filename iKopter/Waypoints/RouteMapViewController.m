@@ -179,7 +179,7 @@
     
     annotationView.annotation = annotation;
     ((MKPinAnnotationView*)annotationView).animatesDrop = NO;
-    ((MKPinAnnotationView*)annotationView).pinColor=MKPinAnnotationColorGreen;
+    ((MKPinAnnotationView*)annotationView).pinColor=((IKPoint*)annotation).type==POINT_TYPE_WP?MKPinAnnotationColorGreen:MKPinAnnotationColorPurple;
 
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     annotationView.enabled = YES;

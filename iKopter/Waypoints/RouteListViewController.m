@@ -186,6 +186,11 @@
   
   IKPoint* point = [self.list pointAtIndexPath:indexPath];
   
+  if (point.type==POINT_TYPE_WP) {
+    cell.imageView.image=[UIImage imageNamed:@"icon-flag.png"];
+  } else {
+    cell.imageView.image=[UIImage imageNamed:@"icon-poi.png"];
+  }
   cell.textLabel.text = [NSString stringWithFormat:@"Waypoint %d",point.index];
 //  cell.detailTextLabel.text = host.address;
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
