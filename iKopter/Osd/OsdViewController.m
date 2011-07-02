@@ -34,6 +34,7 @@
 - (void)concealAfterDelay:(NSTimeInterval)delay;
 - (void)updateSelectedViewFrame;
 - (void)doScreenLock;
+- (void)showNavigationBar;
 @end
 
 
@@ -110,6 +111,8 @@
   self.navigationItem.rightBarButtonItem =[[[UIBarButtonItem alloc] initWithCustomView:screenLockButton]autorelease];
   
   [self updateSelectedViewFrame];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNavigationBar) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -127,6 +130,8 @@
   
   osdValue.delegate = nil;
   [osdValue stopRequesting];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
 
   [super viewWillDisappear:animated];
 }
@@ -192,6 +197,12 @@
 /////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Navigation bar Hideing 
+
+- (void)showNavigationBar{
+  [self.navigationController setNavigationBarHidden:NO animated:NO];
+  self.navigationController.navigationBar.translucent=NO;
+}
+
 
 - (void)conceal {
   qltrace(@"Hiding navigation bar");
