@@ -188,11 +188,14 @@
   
   if (point.type==POINT_TYPE_WP) {
     cell.imageView.image=[UIImage imageNamed:@"icon-flag.png"];
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Waypoint",@"Waypoint cell"),point.index];
   } else {
     cell.imageView.image=[UIImage imageNamed:@"icon-poi.png"];
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"POI",@"POI cell"),point.index];
   }
-  cell.textLabel.text = [NSString stringWithFormat:@"Waypoint %d",point.index];
-//  cell.detailTextLabel.text = host.address;
+  
+  cell.detailTextLabel.text=[NSString stringWithFormat:@"%f,%f - %d",point.posLatitude,point.posLongitude,point.posAltitude];
+  
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   
   return cell;

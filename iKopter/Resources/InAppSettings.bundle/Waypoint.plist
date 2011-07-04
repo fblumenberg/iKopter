@@ -96,7 +96,7 @@
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
-			<string>NumberPad</string>
+			<string>NumbersAndPunctuation</string>
 			<key>AutocorrectionType</key>
 			<string>Default</string>
 		</dict>
@@ -139,22 +139,6 @@
 			<string>WP_EventChannelValue</string>
 			<key>Key</key>
 			<string>wpEventChannelValue</string>
-			<key>DefaultValue</key>
-			<string>0</string>
-			<key>IsSecure</key>
-			<false/>
-			<key>KeyboardType</key>
-			<string>NumberPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>eventFlag</string>
-			<key>Key</key>
-			<string>eventFlag</string>
 			<key>DefaultValue</key>
 			<string>0</string>
 			<key>IsSecure</key>

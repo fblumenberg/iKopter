@@ -11,6 +11,8 @@
 #import "IKPoint.h"
 #import "MapLocation.h"
 #import "WaypointViewController.h"
+#import "HeadingOverlayView.h"
+#import "HeadingOverlay.h"
 
 @interface RouteMapViewController()
 
@@ -66,6 +68,13 @@
                                                                               action:@selector(curlViewDown)];  
   [self.view addGestureRecognizer:singleTap];
   [singleTap release];    
+  
+  NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"RouteMapViewType"];
+  if (testValue) {
+    self.segmentedControl.selectedSegmentIndex=[[NSUserDefaults standardUserDefaults] integerForKey:@"RouteMapViewType"];
+    [self changeMapViewType];
+  }
+  
 }
 
 - (void)viewDidUnload
@@ -161,6 +170,7 @@
 - (void)changeMapViewType {
 	[self.mapView setMapType:self.segmentedControl.selectedSegmentIndex];
   [self.curlBarItem curlViewDown];
+  [[NSUserDefaults standardUserDefaults] setInteger:self.segmentedControl.selectedSegmentIndex forKey:@"RouteMapViewType"];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -223,17 +233,25 @@
 		polylineView.lineWidth = 1.5;
 		return polylineView;
 	}
+	else if ([overlay isKindOfClass:[HeadingOverlay class]]) {
+		
+		HeadingOverlayView *circleView = [[[HeadingOverlayView alloc] initWithHeadingOverlay:overlay] autorelease];
+    circleView.strokeColor = [UIColor yellowColor];
+    
+    circleView.fillColor = [circleView.strokeColor colorWithAlphaComponent:0.4];
+    circleView.lineWidth = 1.5;  
+		return circleView;
+	}
   else if([overlay isKindOfClass:[MKCircle class]]) {
     MKCircleView* circleView=[[[MKCircleView alloc] initWithCircle:overlay] autorelease];
     if([((MKCircle*)overlay).title length]>0){ 
-    circleView.strokeColor = [UIColor redColor];
-    circleView.fillColor = [UIColor colorWithRed:(255 / 255.0) green:(0 / 255.0) blue:(0 / 255.0) alpha: 0.1];
+      circleView.strokeColor = [UIColor redColor];
     }
     else{
       circleView.strokeColor = [UIColor greenColor];
-      circleView.fillColor = [UIColor colorWithRed:(0 / 255.0) green:(255 / 255.0) blue:(0 / 255.0) alpha: 0.1];
     }
-      circleView.lineWidth = 1.5;  
+    circleView.fillColor = [circleView.strokeColor colorWithAlphaComponent:0.4];
+    circleView.lineWidth = 1.5;  
     return circleView; 
   }
 	
@@ -267,6 +285,37 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         c.title=@"start";
       
       [self.mapView addOverlay:c];
+      
+      BOOL createOverlay=YES;
+      if (p.heading!=0) {
+        
+        double angle=p.heading;
+        if(p.heading<0){
+          
+          int idx=(-p.heading)-1;
+          if(idx >= 0 && idx<[route.points count]){
+            
+            IKPoint* poi=[route.points objectAtIndex:idx];
+            
+            MKMapPoint pPoint=MKMapPointForCoordinate(p.coordinate);
+            MKMapPoint poiPoint=MKMapPointForCoordinate(poi.coordinate);
+            
+            double ank=poiPoint.x-pPoint.x;
+            double gek=poiPoint.y-pPoint.y;
+            
+            angle = (atan(gek/ank)*180.0)/M_PI;
+            if(ank<0)
+              angle+=180.0;
+          }
+          else{
+            createOverlay=NO;
+          }
+        }
+        if(createOverlay){
+          HeadingOverlay* h=[HeadingOverlay headingWithCenterCoordinate:p.coordinate radius:10 angle:angle];
+          [self.mapView addOverlay:h];
+        }
+      }
       
       i++;
       

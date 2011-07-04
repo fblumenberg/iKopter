@@ -26,6 +26,7 @@
 #import <MapKit/MapKit.h>
 
 @class IKPoint;
+@class Routes;
 
 @interface Route : NSObject<NSCoding> {
 
@@ -33,7 +34,8 @@
 
 @property(retain) NSString* name;
 @property(retain) NSMutableArray* points;
-
+@property(assign) Routes* routes;
+          
 + (CLLocationCoordinate2D) defaultCoordinate;
 
 -(NSUInteger) count;

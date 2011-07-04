@@ -78,9 +78,13 @@
     [routes retain];
     
     [unarchiver finishDecoding];
-    
     [unarchiver release];
     [data release];        
+
+    [routes enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
+      Route* r=object;
+      r.routes=self;
+    }];
 
     qldebug(@"Loaded the routes %@",routes);
 

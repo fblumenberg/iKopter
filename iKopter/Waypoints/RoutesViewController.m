@@ -227,6 +227,7 @@
   [self.tableView endUpdates];
   
   Route* list = [self.lists routeAtIndexPath:editingList];
+  list.name=NSLocalizedString(@"Route", @"Route default name");
   RouteViewController* listView = [[RouteViewController alloc] initWithRoute:list];
   [self.navigationController pushViewController:listView animated:YES];
   [listView release];

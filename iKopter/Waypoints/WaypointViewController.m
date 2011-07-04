@@ -33,7 +33,7 @@
 
 - (id)initWithPoint:(IKPoint*)theWayPoint {
   if ((self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil])) {
-    self.file = @"WayPoint";
+    self.file = @"Waypoint";
     self.settingsStore = [[[IASKSettingsStoreObject alloc] initWithObject:theWayPoint]autorelease];
     
     self.showCreditsFooter=NO;

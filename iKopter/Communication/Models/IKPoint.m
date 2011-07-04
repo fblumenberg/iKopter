@@ -46,6 +46,7 @@
 
 -(void) setCoordinate:(CLLocationCoordinate2D)coordinate{
   [super setCoordinate:coordinate];
+  [super setStatus:NEWDATA]; 
 }
 
 -(CLLocationDegrees) posLatitude{
@@ -53,6 +54,7 @@
 };
 -(void) setPosLatitude:(CLLocationDegrees)latitude{
   [super setCoordinate:CLLocationCoordinate2DMake(latitude, self.coordinate.longitude)];
+  [super setStatus:NEWDATA]; 
 };
 
 -(CLLocationDegrees) posLongitude{
@@ -60,6 +62,7 @@
 };
 -(void) setPosLongitude:(CLLocationDegrees)longitude{
   [super setCoordinate:CLLocationCoordinate2DMake(self.coordinate.latitude, longitude)];
+  [super setStatus:NEWDATA]; 
 };
 
 -(CLLocationDegrees) posAltitude{
@@ -136,6 +139,8 @@
     self.altitudeRate = 20;  
     
     self.coordinate=theCoordinate;
+
+    [super setStatus:NEWDATA]; 
   }
   return self;
 }
@@ -176,16 +181,21 @@
   return self;
 }
 
-//-(NSString*) description{
-//  return [NSString stringWithFormat:@"%d:%d:%d:%d",self.latitude,self.longitude,self.altitude,self.status];
-//}
+-(NSString*) description{
+  return [NSString stringWithFormat:@"%d:%d:%d:(%d):%d",self.latitude,self.longitude,self.altitude,self.index,self.heading];
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString *)title {
-  return  [NSString stringWithFormat:NSLocalizedString(@"Waypoint %d", @"WP Annotation callout"),self.index];
+  if (self.type==POINT_TYPE_WP) {
+    return [NSString stringWithFormat:NSLocalizedString(@"Waypoint - Index %d", @"WP Annotation callout"),self.index];
+  } else if(self.type==POINT_TYPE_POI){
+    return [NSString stringWithFormat:NSLocalizedString(@"POI - Index %d", @"POI Annotation callout"),self.index];
+  }
+  return  [NSString stringWithFormat:NSLocalizedString(@"Invalid - Index %d", @"INvalid WP Annotation callout"),self.index];
 }
 
 @end

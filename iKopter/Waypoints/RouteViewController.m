@@ -81,6 +81,9 @@
   self.spacer=nil;
   self.dlButton=nil;
   self.ulButton=nil;
+
+  [self.lm stopUpdatingLocation];
+  self.lm.delegate = nil;
   self.lm = nil;
   
   [super dealloc];
@@ -185,6 +188,9 @@
   self.spacer=nil;
   self.dlButton=nil;
   self.ulButton=nil;
+
+  [self.lm stopUpdatingLocation];
+  self.lm.delegate = nil;
   self.lm = nil;
 
 }
@@ -227,7 +233,8 @@
   
   if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]){
     if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
-      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+      [self setToolbarItems:[NSArray arrayWithObjects:
+                             self.selectedViewController.editButtonItem,
                              self.spacer,
                              self.ulButton,
                              //self.dlButton,
@@ -236,7 +243,8 @@
                              self.addButton,nil] animated:YES];
     }
     else{
-      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+      [self setToolbarItems:[NSArray arrayWithObjects:
+                             self.selectedViewController.editButtonItem,
                              self.spacer,self.addWithGpsButton,
                              self.addButton,nil] animated:YES];
     }
@@ -246,21 +254,21 @@
                                                                                   action:@selector(touched)]autorelease];
     
     if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
-      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+      [self setToolbarItems:[NSArray arrayWithObjects:
+                             curlBarItem,
                              self.spacer,
                              self.ulButton,
                              //self.dlButton,
                              self.spacer,
                              self.addWithGpsButton,
-                             self.addButton,
-                             curlBarItem, nil] animated:YES];
+                             self.addButton, nil] animated:YES];
     }
     else{
-      [self setToolbarItems:[NSArray arrayWithObjects:self.selectedViewController.editButtonItem,
+      [self setToolbarItems:[NSArray arrayWithObjects:
+                             curlBarItem,
                              self.spacer,
-                             self.addButton,
                              self.addWithGpsButton,
-                             curlBarItem, nil] animated:YES];
+                             self.addButton, nil] animated:YES];
     }
   }
 }

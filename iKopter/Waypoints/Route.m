@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "IKPoint.h"
+#import "Routes.h"
 #import "Route.h"
 
 #import "TTGlobalCorePaths.h"
@@ -32,6 +33,7 @@
 
 @synthesize name;
 @synthesize points;
+@synthesize routes;
 
 + (CLLocationCoordinate2D) defaultCoordinate{
   return CLLocationCoordinate2DMake(49.860348, 8.686227);
@@ -114,22 +116,49 @@
   return [self addPointAtDefault];
 }
 
+-(void)updatePoints{
+  
+  qltrace(@"%@",points);
+  
+  int newIndexes[32];
+  int oldIndexes[32];
+
+  int index=0;
+  for(IKPoint* p in points){ 
+    newIndexes[index]=index+1;
+    oldIndexes[index]=p.index;
+    p.index=index+1;
+    index++;
+  };
+
+  index=0;
+  for(IKPoint* p in points){ 
+    for(int i=0;i<[points count];i++){
+      qltrace(@"Check if %d==%d",p.heading,-oldIndexes[i]);
+      if( p.heading<0 && p.heading == -oldIndexes[i] ){
+        p.heading = -newIndexes[i];
+        qltrace(@"Update heading to %d",p.heading)
+      }
+    }
+  }
+  
+  [self.routes save];
+  qltrace(@"%@",points);
+}
+
 -(NSIndexPath*) addPointAtCoordinate:(CLLocationCoordinate2D)coordinate {
   IKPoint* h = [[IKPoint alloc]initWithCoordinate:coordinate];
+  h.index=[points count]+1;
   [points addObject:h];
   [h release];
   
-  [points enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
-    IKPoint* p=object;
-    p.index=index+1;
-  }];
-  
+  qltrace(@"%@",points);
+
   return [NSIndexPath indexPathForRow:[points count]-1 inSection:1]; 
 }
 
 -(void) movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
   qltrace(@"movePointAtIndexPath %@ -> %@",fromIndexPath,toIndexPath);
-  qltrace(@"%@",points);
   
   NSUInteger fromRow = [fromIndexPath row];
   NSUInteger toRow = [toIndexPath row];
@@ -139,20 +168,22 @@
   [points insertObject:object atIndex:toRow]; 
   [object release];
   
-  [points enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
-    IKPoint* p=object;
-    p.index=index+1;
-  }];
-  
-  qltrace(@"%@",points);
+  [self updatePoints];
 }
 
 -(void) deletePointAtIndexPath:(NSIndexPath*)indexPath {
+  
+  int oldIndex=((IKPoint*)[points objectAtIndex:[indexPath row]]).index; 
   [points removeObjectAtIndex:[indexPath row]]; 
-  [points enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
-    IKPoint* p=object;
-    p.index=index+1;
-  }];
+  
+  for(IKPoint* p in points){ 
+    if( p.heading<0 && p.heading == -oldIndex ){
+      p.heading = 0;
+      qltrace(@"Update heading to %d",p.heading)
+    }
+  }
+  
+  [self updatePoints];
 }
 
 @end
