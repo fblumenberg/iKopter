@@ -194,7 +194,7 @@
     cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"POI",@"POI cell"),point.index];
   }
   
-  cell.detailTextLabel.text=[NSString stringWithFormat:@"%f,%f - %d",point.posLatitude,point.posLongitude,point.posAltitude];
+  cell.detailTextLabel.text=[NSString stringWithFormat:@"%f,%f - %d",point.posLatitude,point.posLongitude,point.altitude];
   
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   

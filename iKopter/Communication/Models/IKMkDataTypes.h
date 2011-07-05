@@ -434,6 +434,8 @@ typedef struct
 #define POINT_TYPE_WP	0
 #define POINT_TYPE_POI	1
 
+#define WP_EVFLAG_CAMERA_NICK_CONTROL 0x01
+
 typedef struct
 {
  	IKMkGPSPos  Position;         // the gps position of the waypoint, see ubx.h for details

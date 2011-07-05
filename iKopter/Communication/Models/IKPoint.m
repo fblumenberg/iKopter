@@ -40,6 +40,14 @@
 @synthesize wpEventChannelValue; //
 @synthesize altitudeRate;         // rate to change the setpoint
 
+-(NSInteger) altitude{
+  return [super altitude];
+}
+
+-(void) setAltitude:(NSInteger)alt{
+  [super setAltitude:alt];
+}
+
 -(CLLocationCoordinate2D) coordinate{
   return [super coordinate];
 }
@@ -60,18 +68,22 @@
 -(CLLocationDegrees) posLongitude{
   return self.coordinate.longitude;
 };
+
 -(void) setPosLongitude:(CLLocationDegrees)longitude{
   [super setCoordinate:CLLocationCoordinate2DMake(self.coordinate.latitude, longitude)];
   [super setStatus:NEWDATA]; 
 };
 
--(CLLocationDegrees) posAltitude{
-  return self.altitude/1000.0;
-};
--(void) setPosAltitude:(double)posAltitude{
-  self.altitude=(NSUInteger)(posAltitude*1000);
-};
+-(BOOL) cameraNickControl{
+  return (self.eventFlag&WP_EVFLAG_CAMERA_NICK_CONTROL)==WP_EVFLAG_CAMERA_NICK_CONTROL;
+}
 
+-(void) setCameraNickControl:(BOOL) value {
+  if(value)
+    self.eventFlag |= WP_EVFLAG_CAMERA_NICK_CONTROL;
+  else
+    self.eventFlag &= ~WP_EVFLAG_CAMERA_NICK_CONTROL;
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -99,6 +111,12 @@
     self.type = _point.Type;                
     self.wpEventChannelValue = _point.WP_EventChannelValue;
     self.altitudeRate = _point.AltitudeRate;  
+
+    if(self.type==POINT_TYPE_POI)
+      self.altitude/=100;
+    else
+      self.altitude/=10;
+    
   }
   return self;
 }
@@ -114,9 +132,11 @@
   _point.Index = self.index;               
   _point.Type = self.type;                
   _point.WP_EventChannelValue = self.wpEventChannelValue;
-  _point.AltitudeRate = self.altitudeRate;            
+  _point.AltitudeRate = self.altitudeRate;    
+
+  memset(_point.reserve, 0, 8);
   
-  _point.Position.Altitude = self.altitude;
+  _point.Position.Altitude = self.type==POINT_TYPE_POI?self.altitude*100:self.altitude*10;
   _point.Position.Longitude = self.longitude;
   _point.Position.Latitude = self.latitude;
   _point.Position.Status = self.status;

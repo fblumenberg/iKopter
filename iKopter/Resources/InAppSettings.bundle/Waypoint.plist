@@ -11,52 +11,52 @@
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Long.</string>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
+			<key>DefaultValue</key>
+			<string>0.0</string>
+			<key>IsSecure</key>
+			<false/>
 			<key>Key</key>
 			<string>posLongitude</string>
+			<key>KeyboardType</key>
+			<string>DecimalPad</string>
+			<key>Title</key>
+			<string>Long.</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
 			<key>DefaultValue</key>
 			<string>0.0</string>
 			<key>IsSecure</key>
 			<false/>
-			<key>KeyboardType</key>
-			<string>DecimalPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Lat.</string>
 			<key>Key</key>
 			<string>posLatitude</string>
-			<key>DefaultValue</key>
-			<string>0.0</string>
-			<key>IsSecure</key>
-			<false/>
 			<key>KeyboardType</key>
 			<string>DecimalPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
-		</dict>
-		<dict>
+			<key>Title</key>
+			<string>Lat.</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Altitude</string>
-			<key>Key</key>
-			<string>posAltitude</string>
+		</dict>
+		<dict>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
 			<key>DefaultValue</key>
 			<string>0</string>
 			<key>IsSecure</key>
 			<false/>
+			<key>Key</key>
+			<string>altitude</string>
 			<key>KeyboardType</key>
 			<string>NumberPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
+			<key>Title</key>
+			<string>Altitude</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
 		</dict>
 		<dict>
 			<key>Title</key>
@@ -65,105 +65,115 @@
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>Type</string>
-			<key>Key</key>
-			<string>type</string>
 			<key>DefaultValue</key>
 			<integer>2</integer>
-			<key>Values</key>
-			<array>
-				<integer>0</integer>
-				<integer>1</integer>
-			</array>
+			<key>Key</key>
+			<string>type</string>
+			<key>Title</key>
+			<string>Type</string>
 			<key>Titles</key>
 			<array>
 				<string>Waypoint</string>
 				<string>POI</string>
 			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Heading</string>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>IsSecure</key>
+			<false/>
 			<key>Key</key>
 			<string>heading</string>
-			<key>DefaultValue</key>
-			<string>0</string>
-			<key>IsSecure</key>
-			<false/>
 			<key>KeyboardType</key>
 			<string>NumbersAndPunctuation</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
-		</dict>
-		<dict>
+			<key>Title</key>
+			<string>Heading</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>ToleranceRadius</string>
+		</dict>
+		<dict>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>IsSecure</key>
+			<false/>
 			<key>Key</key>
 			<string>toleranceRadius</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+			<key>Title</key>
+			<string>ToleranceRadius</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
 			<key>DefaultValue</key>
 			<string>0</string>
 			<key>IsSecure</key>
 			<false/>
-			<key>KeyboardType</key>
-			<string>NumberPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>HoldTime</string>
 			<key>Key</key>
 			<string>holdTime</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+			<key>Title</key>
+			<string>HoldTime</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
 			<key>DefaultValue</key>
 			<string>0</string>
 			<key>IsSecure</key>
 			<false/>
-			<key>KeyboardType</key>
-			<string>NumberPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>WP_EventChannelValue</string>
 			<key>Key</key>
 			<string>wpEventChannelValue</string>
-			<key>DefaultValue</key>
-			<string>0</string>
-			<key>IsSecure</key>
-			<false/>
 			<key>KeyboardType</key>
 			<string>NumberPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
-		</dict>
-		<dict>
+			<key>Title</key>
+			<string>WP_EventChannelValue</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>altitudeRate</string>
-			<key>Key</key>
-			<string>altitudeRate</string>
+		</dict>
+		<dict>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
 			<key>DefaultValue</key>
 			<string>0</string>
 			<key>IsSecure</key>
 			<false/>
+			<key>Key</key>
+			<string>altitudeRate</string>
 			<key>KeyboardType</key>
 			<string>NumberPad</string>
-			<key>AutocorrectionType</key>
-			<string>Default</string>
+			<key>Title</key>
+			<string>altitudeRate</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
 		</dict>
+    <dict>
+      <key>Type</key>
+      <string>PSToggleSwitchSpecifier</string>
+      <key>Title</key>
+      <string>cameraNickControl</string>
+      <key>Key</key>
+      <string>cameraNickControl</string>
+      <key>DefaultValue</key>
+      <true/>
+    </dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

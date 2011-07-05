@@ -49,7 +49,7 @@
 
 @property(assign) NSInteger  longitude;      // in 1E-7 deg
 @property(assign) NSInteger  latitude;       // in 1E-7 deg
-@property(assign) NSUInteger altitude;       // in mm
+@property(assign) NSInteger altitude;       // in mm
 @property(assign) NSInteger  status;         // validity of data
 
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
