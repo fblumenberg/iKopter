@@ -45,12 +45,16 @@
       routes = [[NSMutableArray alloc]init];
       [self save];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(save) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
   }
   return self;
 }
 
 - (void) dealloc
 {
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+
   [routes release];
   [super dealloc];
 }
