@@ -83,6 +83,10 @@
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
 		BA7613431391338500C86318 /* screenlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7613401391338500C86318 /* screenlock@2x.png */; };
+		BA98EA9A13C6517E005CF2FA /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA98EA9913C6517E005CF2FA /* libIBAForms.a */; };
+		BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */; };
+		BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */; };
+		BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */; };
 		BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */; };
 		BA9F3C0613A4251000D98C55 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9F3C0513A4251000D98C55 /* 13-target.png */; };
 		BAA4E630137EB11B0068E38E /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E62F137EB11B0068E38E /* BTDevice.m */; };
@@ -230,6 +234,23 @@
 		BAF6758613BE2CE700F18C23 /* icon-add-gps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF6758513BE2CE700F18C23 /* icon-add-gps@2x.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BA98EA9413C65113005CF2FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = IBAForms;
+		};
+		BA98EA9713C6514E005CF2FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = IBAForms;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		BA0D466B137C5127001415C3 /* iKopter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iKopter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0D466F137C5127001415C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -357,6 +378,14 @@
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
 		BA7613401391338500C86318 /* screenlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock@2x.png"; sourceTree = "<group>"; };
+		BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = Frameworks/IBAForms/IBAForms.xcodeproj; sourceTree = "<group>"; };
+		BA98EA9913C6517E005CF2FA /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIBAForms.a; sourceTree = SOURCE_ROOT; };
+		BA98EA9B13C6539D005CF2FA /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
+		BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
+		BA98EA9E13C65444005CF2FA /* WaypointViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointViewDataSource.h; sourceTree = "<group>"; };
+		BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointViewDataSource.m; sourceTree = "<group>"; };
+		BA98EAA113C65866005CF2FA /* SettingsFieldStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsFieldStyle.h; sourceTree = "<group>"; };
+		BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFieldStyle.m; sourceTree = "<group>"; };
 		BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
 		BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
 		BA9F3C0513A4251000D98C55 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
@@ -588,6 +617,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA98EA9A13C6517E005CF2FA /* libIBAForms.a in Frameworks */,
 				BAE3B02213A4DCC0007E0F2F /* MapKit.framework in Frameworks */,
 				BAE3B01813A4D2C7007E0F2F /* CoreLocation.framework in Frameworks */,
 				BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */,
@@ -629,6 +659,8 @@
 		BA0D466E137C5127001415C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA98EA9913C6517E005CF2FA /* libIBAForms.a */,
+				BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */,
 				BAE3B02113A4DCC0007E0F2F /* MapKit.framework */,
 				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
 				BAEEFBB2139D3B680003860E /* CoreData.framework */,
@@ -823,6 +855,10 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BA98EAA113C65866005CF2FA /* SettingsFieldStyle.h */,
+				BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */,
+				BA98EA9B13C6539D005CF2FA /* StringToNumberTransformer.h */,
+				BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */,
 				BAE3B03913A81543007E0F2F /* CHCSVWriter.h */,
 				BAE3B03A13A81543007E0F2F /* CHCSVWriter.m */,
 				BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */,
@@ -959,6 +995,14 @@
 				BAC81D66139550F000F642FA /* utils.c */,
 			);
 			name = "BTStack-Client";
+			sourceTree = "<group>";
+		};
+		BA98EA8E13C65113005CF2FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA98EA9513C65113005CF2FA /* libIBAForms.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BAA4E62D137EB11B0068E38E /* Lowlevel */ = {
@@ -1201,6 +1245,8 @@
 		BAE3B0A913AFD503007E0F2F /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
+				BA98EA9E13C65444005CF2FA /* WaypointViewDataSource.h */,
+				BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */,
 				BAC8A16813C1CEF500CA4936 /* HeadingOverlay.m */,
 				BAC8A16913C1CEF600CA4936 /* HeadingOverlay.h */,
 				BA585C0C13B0ED1A00AE0958 /* Route.h */,
@@ -1265,6 +1311,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BA98EA9813C6514E005CF2FA /* PBXTargetDependency */,
 			);
 			name = iKopter;
 			productName = iKopter;
@@ -1287,12 +1334,28 @@
 			mainGroup = BA0D4660137C5127001415C3;
 			productRefGroup = BA0D466C137C5127001415C3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BA98EA8E13C65113005CF2FA /* Products */;
+					ProjectRef = BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BA0D466A137C5127001415C3 /* iKopter */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BA98EA9513C65113005CF2FA /* libIBAForms.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libIBAForms.a;
+			remoteRef = BA98EA9413C65113005CF2FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BA0D4669137C5127001415C3 /* Resources */ = {
@@ -1547,10 +1610,21 @@
 				BA585C6413B15A7C00AE0958 /* FDCurlViewControl.m in Sources */,
 				BAC8A16713C1C55300CA4936 /* HeadingOverlayView.m in Sources */,
 				BAC8A16A13C1CEF600CA4936 /* HeadingOverlay.m in Sources */,
+				BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */,
+				BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */,
+				BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA98EA9813C6514E005CF2FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IBAForms;
+			targetProxy = BA98EA9713C6514E005CF2FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BA0D46DC137C60EB001415C3 /* MainWindow-iPad.xib */ = {
@@ -1647,11 +1721,28 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
-				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/BTStack/include";
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/Frameworks/BTStack/include",
+					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
+				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
-				"OTHER_LDFLAGS[arch=*]" = "-all_load";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "-all_load";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1669,11 +1760,28 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
-				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/BTStack/include";
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/Frameworks/BTStack/include",
+					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
+				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
-				"OTHER_LDFLAGS[arch=*]" = "-all_load";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "-all_load";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1710,10 +1818,24 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = FOR_CYDIA;
-				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/BTStack/include";
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/Frameworks/BTStack/include",
+					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
+				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
-				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "-all_load";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

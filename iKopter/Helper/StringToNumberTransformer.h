@@ -22,50 +22,22 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "WaypointViewController.h"
-#import "WaypointViewDataSource.h"
-#import "IKPoint.h"
+#import <Foundation/Foundation.h>
 
 
-@implementation WaypointViewController
+@interface StringToNumberTransformer : NSValueTransformer {
 
-#pragma mark -
-
-- (id)initWithPoint:(IKPoint*)theWayPoint {
-  
-  WaypointViewDataSource *dataSource = [[[WaypointViewDataSource alloc] initWithModel:theWayPoint] autorelease];
-
-  if ((self =  [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
-    self.hidesBottomBarWhenPushed = NO;
-    self.title=NSLocalizedString(@"Waypoint", @"Waypoint view title");
-  }
-  return self;
 }
 
-- (void)dealloc {
-  [super dealloc];
++ (id)instance;
+
+@end;
+
+@interface StringToDoubleNumberTransformer : NSValueTransformer {
+
+  NSNumberFormatter* formatter;
 }
 
-#pragma mark -
-
-- (void)loadView {
-	[super loadView];
-  
-	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:formTableView];
-	
-	[view addSubview:formTableView];
-	[self setView:view];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
-}
-
++ (id)instance;
 
 @end
-

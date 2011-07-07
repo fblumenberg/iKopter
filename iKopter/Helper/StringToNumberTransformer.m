@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,50 +22,68 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "WaypointViewController.h"
-#import "WaypointViewDataSource.h"
-#import "IKPoint.h"
+#import "StringToNumberTransformer.h"
 
+@implementation StringToNumberTransformer
 
-@implementation WaypointViewController
++ (id)instance {
+	return [[[[self class] alloc] init] autorelease];
+}
 
-#pragma mark -
++ (BOOL)allowsReverseTransformation {
+	return YES;
+}
 
-- (id)initWithPoint:(IKPoint*)theWayPoint {
-  
-  WaypointViewDataSource *dataSource = [[[WaypointViewDataSource alloc] initWithModel:theWayPoint] autorelease];
++ (Class)transformedValueClass {
+	return [NSNumber class];
+}
 
-  if ((self =  [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
-    self.hidesBottomBarWhenPushed = NO;
-    self.title=NSLocalizedString(@"Waypoint", @"Waypoint view title");
+- (NSNumber *)transformedValue:(NSString *)value {
+	return [NSNumber numberWithInteger:[value integerValue]];
+}
+
+- (NSString *)reverseTransformedValue:(NSNumber *)value {
+	return [value stringValue];
+}
+
+@end
+
+@implementation StringToDoubleNumberTransformer
+
++ (id)instance {
+	return [[[[self class] alloc] init] autorelease];
+}
+
+- (id)init {
+  self = [super init];
+  if (self) {
+    formatter=[[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setMaximumFractionDigits:6];
+    [formatter setMinimumFractionDigits:6];
   }
   return self;
 }
 
 - (void)dealloc {
+  [formatter release];
   [super dealloc];
 }
 
-#pragma mark -
-
-- (void)loadView {
-	[super loadView];
-  
-	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:formTableView];
-	
-	[view addSubview:formTableView];
-	[self setView:view];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
++ (BOOL)allowsReverseTransformation {
 	return YES;
 }
 
++ (Class)transformedValueClass {
+	return [NSNumber class];
+}
+
+- (NSNumber *)transformedValue:(NSString *)value {
+	return [formatter numberFromString:value];
+}
+
+- (NSString *)reverseTransformedValue:(NSNumber *)value {
+	return [formatter stringFromNumber:value];
+}
 
 @end
-

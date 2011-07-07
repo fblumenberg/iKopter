@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,50 +22,10 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "WaypointViewController.h"
-#import "WaypointViewDataSource.h"
-#import "IKPoint.h"
+#import <IBAForms/IBAFormDataSource.h>
 
+@interface WaypointViewDataSource : IBAFormDataSource {
 
-@implementation WaypointViewController
-
-#pragma mark -
-
-- (id)initWithPoint:(IKPoint*)theWayPoint {
-  
-  WaypointViewDataSource *dataSource = [[[WaypointViewDataSource alloc] initWithModel:theWayPoint] autorelease];
-
-  if ((self =  [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
-    self.hidesBottomBarWhenPushed = NO;
-    self.title=NSLocalizedString(@"Waypoint", @"Waypoint view title");
-  }
-  return self;
 }
-
-- (void)dealloc {
-  [super dealloc];
-}
-
-#pragma mark -
-
-- (void)loadView {
-	[super loadView];
-  
-	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:formTableView];
-	
-	[view addSubview:formTableView];
-	[self setView:view];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
-}
-
 
 @end
-

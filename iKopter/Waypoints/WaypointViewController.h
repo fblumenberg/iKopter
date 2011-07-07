@@ -23,12 +23,11 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-#import "IASKAppSettingsViewController.h"
-#import "IASKSettingsStore.h"
+#import <IBAForms/IBAFormViewController.h>
 
 @class IKPoint;
 
-@interface WaypointViewController : IASKAppSettingsViewController {
+@interface WaypointViewController : IBAFormViewController {
   
 }
 
