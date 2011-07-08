@@ -77,7 +77,7 @@
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
 	[super setModelValue:value forKeyPath:keyPath];
 	
-	NSLog(@"%@", [self.model description]);
+	qltrace(@"%@", [self.model description]);
 }
 
 -(void)showDiscoveryView{

@@ -38,11 +38,11 @@
   self = [super init];
   if (self) {
     keys = [[NSArray alloc] initWithObjects:
-             @"MKIpConnection", 
-             @"MKFakeConnection", 
-             @"MKSerialConnection", 
-             @"MKBluetoothConnection", 
-             nil];
+            @"MKIpConnection", 
+            @"MKSerialConnection", 
+            @"MKBluetoothConnection", 
+            @"MKFakeConnection", 
+            nil];
 
     pickListOptions = [[NSMutableArray array]retain];
     UIFont* font=[UIFont systemFontOfSize:16];
@@ -53,11 +53,11 @@
     [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Serial Connection",@"Serial Connection title")
                                                                   iconImage:[UIImage imageNamed:@"icon-usb.png"] 
                                                                        font:font] autorelease]];
-    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Fake Connection",@"Fake Connection title") 
-                                                                  iconImage:[UIImage imageNamed:@"icon-phone.png"] 
-                                                                       font:font] autorelease]];
     [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Bluetooth Connection",@"BT Connection title") 
                                                                   iconImage:[UIImage imageNamed:@"icon-bluetooth.png"] 
+                                                                       font:font] autorelease]];
+    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Fake Connection",@"Fake Connection title") 
+                                                                  iconImage:[UIImage imageNamed:@"icon-phone.png"] 
                                                                        font:font] autorelease]];
   }
   return self;
