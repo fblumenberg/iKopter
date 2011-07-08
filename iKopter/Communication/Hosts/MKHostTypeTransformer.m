@@ -45,7 +45,7 @@
             nil];
 
     pickListOptions = [[NSMutableArray array]retain];
-    UIFont* font=[UIFont systemFontOfSize:16];
+    UIFont* font=[UIFont boldSystemFontOfSize:18];
     
     [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"WLAN Connection",@"WLAN Connection title") 
                                                                   iconImage:[UIImage imageNamed:@"icon-wifi.png"] 
