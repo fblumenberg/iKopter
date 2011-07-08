@@ -83,13 +83,13 @@
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
 		BA7613431391338500C86318 /* screenlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7613401391338500C86318 /* screenlock@2x.png */; };
-		BA98EA9A13C6517E005CF2FA /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA98EA9913C6517E005CF2FA /* libIBAForms.a */; };
 		BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */; };
 		BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */; };
 		BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */; };
 		BA98EAB113C72A96005CF2FA /* MKHostTypeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAAE13C72A95005CF2FA /* MKHostTypeTransformer.m */; };
 		BA98EAB213C72A96005CF2FA /* MKHostViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB013C72A96005CF2FA /* MKHostViewDataSource.m */; };
 		BA98EAB513C72D18005CF2FA /* SettingsButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */; };
+		BA98EAC913C751A6005CF2FA /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA98EAC813C751A6005CF2FA /* libIBAForms.a */; };
 		BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */; };
 		BA9F3C0613A4251000D98C55 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9F3C0513A4251000D98C55 /* 13-target.png */; };
 		BAA4E630137EB11B0068E38E /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E62F137EB11B0068E38E /* BTDevice.m */; };
@@ -382,7 +382,6 @@
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
 		BA7613401391338500C86318 /* screenlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock@2x.png"; sourceTree = "<group>"; };
 		BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = Frameworks/IBAForms/IBAForms.xcodeproj; sourceTree = "<group>"; };
-		BA98EA9913C6517E005CF2FA /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIBAForms.a; sourceTree = SOURCE_ROOT; };
 		BA98EA9B13C6539D005CF2FA /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
 		BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
 		BA98EA9E13C65444005CF2FA /* WaypointViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointViewDataSource.h; sourceTree = "<group>"; };
@@ -395,6 +394,7 @@
 		BA98EAB013C72A96005CF2FA /* MKHostViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHostViewDataSource.m; sourceTree = "<group>"; };
 		BA98EAB313C72D17005CF2FA /* SettingsButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsButtonStyle.h; sourceTree = "<group>"; };
 		BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsButtonStyle.m; sourceTree = "<group>"; };
+		BA98EAC813C751A6005CF2FA /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIBAForms.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
 		BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
 		BA9F3C0513A4251000D98C55 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
@@ -626,7 +626,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA98EA9A13C6517E005CF2FA /* libIBAForms.a in Frameworks */,
+				BA98EAC913C751A6005CF2FA /* libIBAForms.a in Frameworks */,
 				BAE3B02213A4DCC0007E0F2F /* MapKit.framework in Frameworks */,
 				BAE3B01813A4D2C7007E0F2F /* CoreLocation.framework in Frameworks */,
 				BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */,
@@ -668,7 +668,7 @@
 		BA0D466E137C5127001415C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BA98EA9913C6517E005CF2FA /* libIBAForms.a */,
+				BA98EAC813C751A6005CF2FA /* libIBAForms.a */,
 				BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */,
 				BAE3B02113A4DCC0007E0F2F /* MapKit.framework */,
 				BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */,
@@ -1504,7 +1504,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo $TARGET_BUILD_DIR/$EXECUTABLE_PATH\nif [[ \"${BUILD_STYLE}\" = \"Release Distribution\" ]] \nthen\n/usr/bin/ldid -S \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\ncp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\nfi";
+			shellScript = "echo $BUILD_STYLE\necho $TARGET_BUILD_DIR/$EXECUTABLE_PATH\nif [[ \"${BUILD_STYLE}\" = \"Release Distribution\" ]] \nthen\necho \"do ldid\"\n/usr/bin/ldid -S \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\ncp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\necho cp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\n./packCydiaPackage.sh\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
