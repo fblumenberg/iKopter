@@ -22,17 +22,18 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <UIKit/UIKit.h>
-#import <IBAForms/IBAFormViewController.h>
-#import "BTDiscoveryViewController.h"
 
-@class MKHost;
+#import <Foundation/Foundation.h>
+#import "IBAForms/IBAPickListFormField.h"
 
-@interface MKHostViewController : IBAFormViewController<BTDiscoveryDelegate> {
-  
+
+@interface MKHostTypeTransformer : NSValueTransformer {
+    
+  NSArray* keys;
 }
 
-- (id)initWithHost:(MKHost*)theHost;
+@property(nonatomic,readonly) NSMutableArray* pickListOptions;
 
++ (id)instance;
 
 @end

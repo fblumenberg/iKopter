@@ -87,6 +87,9 @@
 		BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */; };
 		BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */; };
 		BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */; };
+		BA98EAB113C72A96005CF2FA /* MKHostTypeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAAE13C72A95005CF2FA /* MKHostTypeTransformer.m */; };
+		BA98EAB213C72A96005CF2FA /* MKHostViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB013C72A96005CF2FA /* MKHostViewDataSource.m */; };
+		BA98EAB513C72D18005CF2FA /* SettingsButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */; };
 		BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */; };
 		BA9F3C0613A4251000D98C55 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9F3C0513A4251000D98C55 /* 13-target.png */; };
 		BAA4E630137EB11B0068E38E /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E62F137EB11B0068E38E /* BTDevice.m */; };
@@ -386,6 +389,12 @@
 		BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointViewDataSource.m; sourceTree = "<group>"; };
 		BA98EAA113C65866005CF2FA /* SettingsFieldStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsFieldStyle.h; sourceTree = "<group>"; };
 		BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFieldStyle.m; sourceTree = "<group>"; };
+		BA98EAAD13C72A95005CF2FA /* MKHostTypeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHostTypeTransformer.h; sourceTree = "<group>"; };
+		BA98EAAE13C72A95005CF2FA /* MKHostTypeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHostTypeTransformer.m; sourceTree = "<group>"; };
+		BA98EAAF13C72A96005CF2FA /* MKHostViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHostViewDataSource.h; sourceTree = "<group>"; };
+		BA98EAB013C72A96005CF2FA /* MKHostViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHostViewDataSource.m; sourceTree = "<group>"; };
+		BA98EAB313C72D17005CF2FA /* SettingsButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsButtonStyle.h; sourceTree = "<group>"; };
+		BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsButtonStyle.m; sourceTree = "<group>"; };
 		BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
 		BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
 		BA9F3C0513A4251000D98C55 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
@@ -872,6 +881,8 @@
 				BA0D4763137C72DD001415C3 /* TTGlobalCorePaths.h */,
 				BA0D4764137C72DD001415C3 /* TTGlobalCorePaths.m */,
 				BAF6755613BB9E2200F18C23 /* SurrogateViewParent.h */,
+				BA98EAB313C72D17005CF2FA /* SettingsButtonStyle.h */,
+				BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -959,6 +970,10 @@
 		BA0D477A137D0109001415C3 /* Hosts */ = {
 			isa = PBXGroup;
 			children = (
+				BA98EAAD13C72A95005CF2FA /* MKHostTypeTransformer.h */,
+				BA98EAAE13C72A95005CF2FA /* MKHostTypeTransformer.m */,
+				BA98EAAF13C72A96005CF2FA /* MKHostViewDataSource.h */,
+				BA98EAB013C72A96005CF2FA /* MKHostViewDataSource.m */,
 				BA0D477B137D0109001415C3 /* MKHost.h */,
 				BA0D477C137D0109001415C3 /* MKHost.m */,
 				BA0D477D137D0109001415C3 /* MKHosts.h */,
@@ -1245,8 +1260,6 @@
 		BAE3B0A913AFD503007E0F2F /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
-				BA98EA9E13C65444005CF2FA /* WaypointViewDataSource.h */,
-				BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */,
 				BAC8A16813C1CEF500CA4936 /* HeadingOverlay.m */,
 				BAC8A16913C1CEF600CA4936 /* HeadingOverlay.h */,
 				BA585C0C13B0ED1A00AE0958 /* Route.h */,
@@ -1257,6 +1270,8 @@
 				BA585C1113B0ED1A00AE0958 /* RoutesViewController.m */,
 				BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */,
 				BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */,
+				BA98EA9E13C65444005CF2FA /* WaypointViewDataSource.h */,
+				BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */,
 				BA585C3813B120EF00AE0958 /* RouteViewController.h */,
 				BA585C3913B120EF00AE0958 /* RouteViewController.m */,
 				BA585C1213B0ED1A00AE0958 /* RouteListViewController.h */,
@@ -1613,6 +1628,9 @@
 				BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */,
 				BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */,
 				BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */,
+				BA98EAB113C72A96005CF2FA /* MKHostTypeTransformer.m in Sources */,
+				BA98EAB213C72A96005CF2FA /* MKHostViewDataSource.m in Sources */,
+				BA98EAB513C72D18005CF2FA /* SettingsButtonStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

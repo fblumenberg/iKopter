@@ -126,8 +126,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  NSLog(@"cellForRowAtIndexPath %@",indexPath);
-  
   static NSString *CellIdentifier = @"MKHostCell";
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

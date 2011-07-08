@@ -22,17 +22,12 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <UIKit/UIKit.h>
-#import <IBAForms/IBAFormViewController.h>
+
+#import <IBAForms/IBAFormDataSource.h>
 #import "BTDiscoveryViewController.h"
 
-@class MKHost;
+@interface MKHostViewDataSource : IBAFormDataSource<BTDiscoveryDelegate> {
 
-@interface MKHostViewController : IBAFormViewController<BTDiscoveryDelegate> {
-  
 }
-
-- (id)initWithHost:(MKHost*)theHost;
-
 
 @end
