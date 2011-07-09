@@ -233,11 +233,11 @@
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated {
   [super setEditing: editing animated: animated];
   
-  UIBarButtonItem* spacerButton;
-  spacerButton =  [[[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil
-                    action:nil] autorelease];
+//  UIBarButtonItem* spacerButton;
+//  spacerButton =  [[[UIBarButtonItem alloc]
+//                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+//                    target:nil
+//                    action:nil] autorelease];
 //  if(editing)
 //    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
 //  else

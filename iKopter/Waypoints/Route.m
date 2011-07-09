@@ -131,13 +131,12 @@
     index++;
   };
 
-  index=0;
-  for(IKPoint* p in points){ 
+  for(IKPoint* pointToMove in points){ 
     for(int i=0;i<[points count];i++){
-      qltrace(@"Check if %d==%d",p.heading,-oldIndexes[i]);
-      if( p.heading<0 && p.heading == -oldIndexes[i] ){
-        p.heading = -newIndexes[i];
-        qltrace(@"Update heading to %d",p.heading)
+      qltrace(@"Check if %d==%d",pointToMove.heading,-oldIndexes[i]);
+      if( pointToMove.heading<0 && pointToMove.heading == -oldIndexes[i] ){
+        pointToMove.heading = -newIndexes[i];
+        qltrace(@"Update heading to %d",pointToMove.heading)
       }
     }
   }
