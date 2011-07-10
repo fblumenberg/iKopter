@@ -29,9 +29,11 @@
 
 #import <CrashReporter/CrashReporter.h>
 #import <SystemConfiguration/SystemConfiguration.h>
+#import <UIKit/UIKit.h>
 #import "BWQuincyManager.h"
 
 #include <sys/sysctl.h>
+#include <inttypes.h> //needed for PRIx64 macro
 
 NSBundle *quincyBundle() {
     static NSBundle* bundle = nil;
@@ -87,7 +89,7 @@ NSBundle *quincyBundle() {
 
 - (id) init {
     if ((self = [super init])) {
-		_serverResult = -1;
+		_serverResult = CrashReportStatusUnknown;
 		_crashIdenticalCurrentVersion = YES;
 		_crashData = nil;
         _urlConnection = nil;
@@ -98,7 +100,7 @@ NSBundle *quincyBundle() {
         
 		self.delegate = nil;
         self.feedbackActivated = NO;
-        self.showAlwaysButton = YES;
+        self.showAlwaysButton = NO;
         
 		NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kQuincyKitAnalyzerStarted];
 		if (testValue) {
@@ -202,8 +204,10 @@ NSBundle *quincyBundle() {
         _sendingInProgress = YES;
         if ([self hasNonApprovedCrashReports]) {
             if (![[NSUserDefaults standardUserDefaults] boolForKey: kAutomaticallySendCrashReports]) {
+                NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:BWQuincyLocalize(@"CrashDataFoundTitle")
-                                                                    message:BWQuincyLocalize(@"CrashDataFoundDescription")
+                                                                    message:[NSString stringWithFormat:BWQuincyLocalize(@"CrashDataFoundDescription"), appName]
                                                                    delegate:self
                                                           cancelButtonTitle:BWQuincyLocalize(@"No")
                                                           otherButtonTitles:BWQuincyLocalize(@"Yes"), nil];
@@ -229,7 +233,7 @@ NSBundle *quincyBundle() {
 
     if (!approvedCrashReports || [approvedCrashReports count] == 0) return YES;
     
-	for (int i=0; i < [_crashFiles count]; i++) {
+	for (NSUInteger i=0; i < [_crashFiles count]; i++) {
 		NSString *filename = [_crashFiles objectAtIndex:i];
         
         if (![approvedCrashReports objectForKey:filename]) return YES;
@@ -274,21 +278,21 @@ NSBundle *quincyBundle() {
 		NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
 		switch (_serverResult) {
 			case CrashReportStatusAssigned:
-				alertView = [[UIAlertView alloc] initWithTitle: BWQuincyLocalize(@"CrashResponseTitle")
+				alertView = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:BWQuincyLocalize(@"CrashResponseTitle"), appName ]
 													   message: [NSString stringWithFormat:BWQuincyLocalize(@"CrashResponseNextRelease"), appName]
 													  delegate: self
 											 cancelButtonTitle: BWQuincyLocalize(@"OK")
 											 otherButtonTitles: nil];
 				break;
 			case CrashReportStatusSubmitted:
-				alertView = [[UIAlertView alloc] initWithTitle: BWQuincyLocalize(@"CrashResponseTitle")
+				alertView = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:BWQuincyLocalize(@"CrashResponseTitle"), appName ]
 													   message: [NSString stringWithFormat:BWQuincyLocalize(@"CrashResponseWaitingApple"), appName]
 													  delegate: self
 											 cancelButtonTitle: BWQuincyLocalize(@"OK")
 											 otherButtonTitles: nil];
 				break;
 			case CrashReportStatusAvailable:
-				alertView = [[UIAlertView alloc] initWithTitle: BWQuincyLocalize(@"CrashResponseTitle")
+				alertView = [[UIAlertView alloc] initWithTitle: [NSString stringWithFormat:BWQuincyLocalize(@"CrashResponseTitle"), appName ]
 													   message: [NSString stringWithFormat:BWQuincyLocalize(@"CrashResponseAvailable"), appName]
 													  delegate: self
 											 cancelButtonTitle: BWQuincyLocalize(@"OK")
@@ -353,11 +357,11 @@ NSBundle *quincyBundle() {
     // open source implementation
 	if ([elementName isEqualToString: @"result"]) {
 		if ([_contentOfProperty intValue] > _serverResult) {
-			_serverResult = [_contentOfProperty intValue];
+			_serverResult = (CrashReportStatus)[_contentOfProperty intValue];
 		} else {
-            CrashReportStatus errorcode = [_contentOfProperty intValue];
-            NSLog(@"CrashReporter ended in error code: %i", errorcode);
-        }
+            CrashReportStatus errorcode = (CrashReportStatus)[_contentOfProperty intValue];
+			NSLog(@"CrashReporter ended in error code: %i", errorcode);
+		}
 	}
 }
 
@@ -376,10 +380,24 @@ NSBundle *quincyBundle() {
 #pragma mark Private
 
 
+- (NSString *)_getOSVersionBuild {
+    size_t size = 0;    
+    NSString *osBuildVersion = nil;
+    
+	sysctlbyname("kern.osversion", NULL, &size, NULL, 0);
+	char *answer = (char*)malloc(size);
+	int result = sysctlbyname("kern.osversion", answer, &size, NULL, 0);
+    if (result >= 0) {
+        osBuildVersion = [NSString stringWithCString:answer encoding: NSUTF8StringEncoding];
+    }
+    
+    return osBuildVersion;   
+}
+
 - (NSString *)_getDevicePlatform {
-	size_t size;
+	size_t size = 0;
 	sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-	char *answer = malloc(size);
+	char *answer = (char*)malloc(size);
 	sysctlbyname("hw.machine", answer, &size, NULL, 0);
 	NSString *platform = [NSString stringWithCString:answer encoding: NSUTF8StringEncoding];
 	free(answer);
@@ -412,7 +430,7 @@ NSBundle *quincyBundle() {
     NSMutableString *crashes = nil;
     _crashIdenticalCurrentVersion = NO;
     
-	for (int i=0; i < [_crashFiles count]; i++) {
+	for (NSUInteger i=0; i < [_crashFiles count]; i++) {
 		NSString *filename = [_crashesDir stringByAppendingPathComponent:[_crashFiles objectAtIndex:i]];
 		NSData *crashData = [NSData dataWithContentsOfFile:filename];
 		
@@ -469,7 +487,7 @@ NSBundle *quincyBundle() {
     
     NSFileManager *fm = [NSFileManager defaultManager];
     
-    for (int i=0; i < [_crashFiles count]; i++) {		
+    for (NSUInteger i=0; i < [_crashFiles count]; i++) {		
         [fm removeItemAtPath:[_crashesDir stringByAppendingPathComponent:[_crashFiles objectAtIndex:i]] error:&error];
     }
     [_crashFiles removeAllObjects];
@@ -574,7 +592,12 @@ NSBundle *quincyBundle() {
 	
 	/* System info */
 	[xmlString appendFormat:@"Date/Time:       %s\n", [[report.systemInfo.timestamp description] UTF8String]];
-	[xmlString appendFormat:@"OS Version:      %s %s\n", osName, [report.systemInfo.operatingSystemVersion UTF8String]];
+    NSString *buildNumber = [self _getOSVersionBuild];
+    if (buildNumber) {
+        [xmlString appendFormat:@"OS Version:      %s %s (%s)\n", osName, [report.systemInfo.operatingSystemVersion UTF8String], [buildNumber UTF8String]];
+    } else {
+        [xmlString appendFormat:@"OS Version:      %s %s\n", osName, [report.systemInfo.operatingSystemVersion UTF8String]];
+    }
 	[xmlString appendString:@"Report Version:  104\n"];
 	
 	[xmlString appendString:@"\n"];
@@ -805,7 +828,7 @@ NSBundle *quincyBundle() {
                                                                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                                                                        format:nil
                                                                              errorDescription:NULL];
-            _serverResult = [[response objectForKey:@"status"] intValue];
+            _serverResult = (CrashReportStatus)[[response objectForKey:@"status"] intValue];
             _feedbackRequestID = [[NSString alloc] initWithString:[response objectForKey:@"id"]];
             _feedbackDelayInterval = [[response objectForKey:@"delay"] floatValue];
             if (_feedbackDelayInterval > 0)
