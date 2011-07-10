@@ -25,6 +25,8 @@
 #import "RouteViewController.h"
 #import "RouteListViewController.h"
 #import "RouteMapViewController.h"
+#import "RouteController.h"
+
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
 #import "IKPoint.h"
@@ -37,6 +39,7 @@
 @property (retain) UIBarButtonItem* ulButton;
 @property (retain) UIBarButtonItem* dlButton;
 @property(retain) CLLocationManager *lm;
+@property (retain) RouteController* routeController;
 
 
 -(void) updateSelectedViewFrame;
@@ -53,6 +56,7 @@
 @synthesize viewControllers;
 @synthesize selectedViewController;
 @synthesize route;
+@synthesize routeController;
 @synthesize segment;
 @synthesize addButton;
 @synthesize addWithGpsButton;
@@ -163,7 +167,7 @@
     self.dlButton =  [[[UIBarButtonItem alloc]
                        initWithImage:[UIImage imageNamed:@"icon-dl1.png"] 
                        style:UIBarButtonItemStyleBordered
-                       target:nil
+                       target:self
                        action:@selector(downloadRoute)] autorelease];
   }
   
@@ -200,20 +204,12 @@
   [self.selectedViewController viewWillAppear:animated];
   [self updateSelectedViewFrame];
   
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-  [nc addObserver:self
-         selector:@selector(writePointNotification:)
-             name:MKWritePointNotification
-           object:nil];
-
+  self.routeController = [[[RouteController alloc]initWithDelegate:self]autorelease];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
+  self.routeController=nil;
   [self.selectedViewController viewWillDisappear:NO];
-
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-  [nc removeObserver:self];
-
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -237,7 +233,7 @@
                              self.selectedViewController.editButtonItem,
                              self.spacer,
                              self.ulButton,
-                             //self.dlButton,
+                             self.dlButton,
                              self.spacer,
                              self.addWithGpsButton,
                              self.addButton,nil] animated:YES];
@@ -258,7 +254,7 @@
                              curlBarItem,
                              self.spacer,
                              self.ulButton,
-                             //self.dlButton,
+                             self.dlButton,
                              self.spacer,
                              self.addWithGpsButton,
                              self.addButton, nil] animated:YES];
@@ -291,46 +287,48 @@
   [self updateSelectedViewFrame];
 }
 
-#pragma mark - Up-/Download 
+#pragma mark - Upload
 
--(void) uploadClearPoint{
-  
-  IKPoint* p=[[[IKPoint alloc]init]autorelease];
-  
-  p.status = INVALID;
-  p.index = 0;
-  
-  qlinfo(@"Upload clear list point %@",p);
-  [[MKConnectionController sharedMKConnectionController] writePoint:p];
+- (void) downloadRoute {
+  [routeController downloadRouteFromNaviCtrl];
 }
 
+#pragma mark - RouteControllerDelegate
 
--(void) uploadPoint:(NSUInteger)index{
-
-  IKPoint* p=(IKPoint*)[self.route.points objectAtIndex:index];
-  qlinfo(@"Upload point (%d) %@",index,p);
-  [[MKConnectionController sharedMKConnectionController] writePoint:p];
+-(void) routeControllerFinishedDownload:(RouteController *)controller{
+  qldebug(@"Downloaded route from NC %@",routeController.route);
+  qldebug(@"Downloaded route from NC %@",controller.route.points);
 }
+
 
 -(void) uploadRoute{
-  currIndex=0;
-  [self uploadClearPoint];
+  [self.routeController uploadRouteToNaviCtrl:self.route];
 }
 
-- (void) writePointNotification:(NSNotification *)aNotification {
-  NSDictionary* d=[aNotification userInfo];
-  NSInteger index = [[d objectForKey:kMKDataKeyIndex] integerValue]-1;
-
-  qlinfo(@"Upload point (%d) finished",index);
-
-  if (currIndex<[self.route.points count]) {
-    [self uploadPoint:currIndex++];
-  }
-}
-
-
--(void) downloadRoute{
+-(void)routeControllerFinishedUpload:(RouteController *)controller{
   
+  hud = [[MBProgressHUD alloc] initWithView:self.view];
+  
+  [self.view addSubview:hud];
+  hud.delegate = self;
+  hud.customView = [[[UIImageView alloc] initWithImage:
+                     [UIImage imageNamed:@"icon-check.png"]] autorelease];
+  hud.mode = MBProgressHUDModeCustomView;
+  hud.labelText = NSLocalizedString(@"Upload successful",@"Route Upload success");
+  [hud showWhileExecuting:@selector(waitForTwoSeconds) 
+                 onTarget:self withObject:nil animated:YES];
+}
+
+- (void)waitForTwoSeconds {
+  sleep(1);
+}
+
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden {
+  
+  [hud removeFromSuperview];
+  [hud release];
 }
 
 #pragma mark - CLLocationManagerDelegate Methods

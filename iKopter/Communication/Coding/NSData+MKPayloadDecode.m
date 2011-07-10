@@ -140,14 +140,18 @@
 }
 
 - (NSDictionary *) decodePointReadResponse {
-
   const char * bytes = [self bytes];
-  NSNumber * totalNumber = [NSNumber numberWithChar:bytes[0]];
-  NSNumber * theIndex = [NSNumber numberWithChar:bytes[1]];
-  IKPoint* thePoint = [IKPoint pointWithData:self];
 
-  return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex,
-                    totalNumber,kMKDataKeyMaxItem,thePoint,kIKDataKeyPoint,nil];
+  NSNumber * totalNumber = [NSNumber numberWithChar:bytes[0]];
+  
+  if ([self length]>1) {
+    NSNumber * theIndex = [NSNumber numberWithChar:bytes[1]];
+    IKPoint* thePoint = [IKPoint pointWithData:self];
+    return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex,
+            totalNumber,kMKDataKeyMaxItem,thePoint,kIKDataKeyPoint,nil];
+  }
+
+  return [NSDictionary dictionaryWithObjectsAndKeys:totalNumber,kMKDataKeyMaxItem,nil];
 }
 
 - (NSDictionary *) decodePointWriteResponse {

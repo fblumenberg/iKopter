@@ -26,14 +26,19 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Route.h"
+#import "RouteController.h"
+#import "MBProgressHUD.h"
 
-@interface RouteViewController : UIViewController<UITabBarDelegate,CLLocationManagerDelegate> {
+
+@interface RouteViewController : UIViewController<UITabBarDelegate,CLLocationManagerDelegate,RouteControllerDelegate,MBProgressHUDDelegate> {
     
-  NSUInteger currIndex;
+   MBProgressHUD *hud;
+  
 }
 
 @property (retain) UISegmentedControl* segment;
 @property (retain) Route* route;
+
 @property (retain) NSArray *viewControllers;
 
 @property (assign) UIViewController *selectedViewController;
