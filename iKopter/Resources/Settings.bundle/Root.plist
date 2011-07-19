@@ -74,6 +74,32 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>IKSyncActive</string>
+			<key>Title</key>
+			<string>SettingsActivateSync</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>Key</key>
+			<string>dropboxActionCell</string>
+			<key>Title</key>
+			<string>Custom Field</string>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
 			<string></string>
 			<key>Key</key>
 			<string>customCell</string>

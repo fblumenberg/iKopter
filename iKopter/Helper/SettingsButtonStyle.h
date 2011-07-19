@@ -11,7 +11,14 @@
 
 
 @interface SettingsButtonStyle : IBAFormFieldStyle {
-    
+  
+}
+
+@end
+
+
+@interface SettingsButtonStyleDisabled : IBAFormFieldStyle {
+  
 }
 
 @end

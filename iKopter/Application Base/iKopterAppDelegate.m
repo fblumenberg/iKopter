@@ -24,12 +24,19 @@
 
 #import "iKopterAppDelegate.h"
 #import "MKConnectionController.h"
+#import "DropboxSDK.h"
+#import "IKDropboxLoginController.h"
 
 #undef ql_component
 #define ql_component lcl_cApplication
 
-@implementation iKopterAppDelegate
 
+@interface iKopterAppDelegate () <DBSessionDelegate>
+
+@end
+
+
+@implementation iKopterAppDelegate
 
 @synthesize window=_window;
 @synthesize managedObjectContext=__managedObjectContext;
@@ -50,6 +57,36 @@
   
   
   [self saveContext];
+  
+  // Set these variables before launching the app
+  NSString* consumerKey = @"<YOUR CONSUMER KEY>";
+	NSString* consumerSecret = @"<YOUR CONSUMER SECRET>";
+	
+	// Look below where the DBSession is created to understand how to use DBSession in your app
+	
+	NSString* errorMsg = nil;
+	if ([consumerKey rangeOfCharacterFromSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]].location != NSNotFound) {
+		errorMsg = @"Make sure you set the consumer key correctly in DBRouletteAppDelegate.m";
+	} else if ([consumerSecret rangeOfCharacterFromSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]].location != NSNotFound) {
+		errorMsg = @"Make sure you set the consumer secret correctly in DBRouletteAppDelegate.m";
+	}
+	
+	DBSession* session = 
+  [[DBSession alloc] initWithConsumerKey:consumerKey consumerSecret:consumerSecret];
+	session.delegate = self; // DBSessionDelegate methods allow you to handle re-authenticating
+	[DBSession setSharedSession:session];
+  [session release];
+	
+	if (errorMsg != nil) {
+		[[[[UIAlertView alloc]
+		   initWithTitle:@"Error Configuring Session" message:errorMsg 
+		   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
+		  autorelease]
+		 show];
+	}
+  
+  
+  
   return YES;
 }
 
@@ -216,5 +253,11 @@
   return __persistentStoreCoordinator;
 }
 
+#pragma mark DBSessionDelegate methods
+
+- (void)sessionDidReceiveAuthorizationFailure:(DBSession*)session {
+	IKDropboxLoginController* loginController = [[IKDropboxLoginController new] autorelease];
+	[loginController presentFromController:self.navigationController];
+}
 
 @end

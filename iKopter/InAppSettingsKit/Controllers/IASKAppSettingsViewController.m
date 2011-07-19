@@ -551,7 +551,16 @@ CGRect IASKCGRectSwap(CGRect rect);
         if (!cell) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]] autorelease];
         }
-        cell.textLabel.text = [specifier title];
+        
+      NSString *titleValue = [self.settingsStore objectForKey:key] != nil ? [self.settingsStore objectForKey:key] : [specifier defaultStringValue];
+      if (![titleValue isMemberOfClass:[NSString class]]) {
+        titleValue = [NSString stringWithFormat:@"%@", titleValue];
+      }
+      if (!titleValue) {
+        titleValue=[specifier title];
+      }
+      
+      cell.textLabel.text = titleValue;//[specifier title];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         return cell;
     } else if ([[specifier type] isEqualToString:kIASKMailComposeSpecifier]) {
@@ -763,7 +772,7 @@ CGRect IASKCGRectSwap(CGRect rect);
         }
 
 	} else {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 

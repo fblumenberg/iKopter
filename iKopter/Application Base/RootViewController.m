@@ -34,6 +34,17 @@
 #import "NCLogViewController.h"
 #import "MKHostsViewController.h"
 #import "RoutesViewController.h"
+#import "DropboxSDK.h"
+#import "IKDropboxLoginController.h"
+
+#define kDropBoxAction @"DropBoxAction"
+
+
+@interface RootViewController() <IKDBLoginControllerDelegate>
+
+- (void)updateDropboxButton;
+
+@end
 
 @implementation RootViewController
 
@@ -48,6 +59,9 @@
 }
 
 - (IBAction)showSettingsModal:(id)sender {
+  
+  [self updateDropboxButton];
+  
   UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController];
   //[viewController setShowCreditsFooter:NO];   // Uncomment to not display InAppSettingsKit credits for creators.
   // But we encourage you not to uncomment. Thank you!
@@ -59,10 +73,10 @@
 #pragma mark -
 #pragma mark IASKAppSettingsViewControllerDelegate protocol
 
-//- (NSString*)mailComposeBody {
-//  
-//  return [NSString stringWithFormat:@"The iKopter log file from a customer.\n%@",[LCLLogFile path]];
-//}
+- (void) updateDropboxButton{
+  
+  [self.appSettingsViewController.tableView reloadData];
+}
 
 - (void)mailComposeAttachment:(MFMailComposeViewController*)mailViewController{
   
@@ -103,31 +117,79 @@
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {
-	if ([[specifier key] isEqualToString:@"customCell"]) {
 		return 44;
-	}
-	return 0;
 }
+
+- (void)showDropboxLogin {  
+  if (![[DBSession sharedSession] isLinked]) {
+    
+    IKDropboxLoginController* controller = [[[IKDropboxLoginController alloc] initWithNibName:nil bundle:nil] autorelease];
+//    DBLoginController* controller = [[DBLoginController new] autorelease];
+//    controller.delegate = self;
+    self.appSettingsViewController.navigationController.delegate=nil;
+    [self.appSettingsViewController.navigationController pushViewController:controller animated:YES];
+  } 
+  else {
+    [[DBSession sharedSession] unlink];
+    [self updateDropboxButton];
+  }
+}
+
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {  
+  
+  UITableViewCell* cell = (UITableViewCell*)(gestureRecognizer.view);
+  [cell setSelected:YES animated:NO];
+  [self performSelector:@selector(showDropboxLogin) withObject:nil afterDelay:0.0];
+}
+
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier key]];
   
   if (!cell) {
     cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier key]] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryNone;
   }
+
+  cell.accessoryType = UITableViewCellAccessoryNone;
   
-  cell.textLabel.text = NSLocalizedString(@"Version",nil);
-  cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+	if ([[specifier key] isEqualToString:@"customCell"]) {
+    cell.textLabel.text = NSLocalizedString(@"Version",nil);
+    cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    [cell setUserInteractionEnabled:NO];
+  }
+  else if ([[specifier key] isEqualToString:@"dropboxActionCell"]) {
+    
+    if (![[DBSession sharedSession] isLinked]) {
+      cell.textLabel.text = NSLocalizedString(@"Link with Dropbox",@"Dropbox button link");
+    }
+    else {
+      cell.textLabel.text = NSLocalizedString(@"Unlink from Dropbox",@"Dropbox button link");
+    }
+
+    if (![[DBSession sharedSession] isLinked])
+      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   
-  [cell setUserInteractionEnabled:NO];
+    [cell setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
+    [cell addGestureRecognizer:singleTap];
+    [singleTap release];
+  }
   
   return cell;
 }
 
+#pragma mark - DBLoginControllerDelegate methods
 
-#pragma mark -
-#pragma mark View life cycle
+- (void)loginControllerDidLogin:(IKDropboxLoginController*)controller {
+  [self updateDropboxButton];
+}
+
+- (void)loginControllerDidCancel:(IKDropboxLoginController*)controller {
+  [self updateDropboxButton];
+}
+
+#pragma mark - View life cycle
 
 - (void)viewDidLoad
 {

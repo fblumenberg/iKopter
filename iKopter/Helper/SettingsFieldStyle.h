@@ -19,3 +19,9 @@
 }
 
 @end
+
+@interface SettingsFieldStyleDisabled : IBAFormFieldStyle {
+  
+}
+
+@end

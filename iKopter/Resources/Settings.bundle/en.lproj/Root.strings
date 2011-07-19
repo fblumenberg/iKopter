@@ -6,3 +6,4 @@
 "SettingsLoggingTitle" = "Logging";
 "SettingsNCLoggingInterval" = "NC-Log Interval";
 "SettingsActivateNCLogging" = "Activate NC logging";
+"SettingsActivateSync" = "Synchronization";
