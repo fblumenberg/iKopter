@@ -11,23 +11,18 @@
 *.xcworkspace
 !default.xcworkspace
 xcuserdata
-
 profile
 *.moved-aside
-
 # Generated files
 VersionX-revision.h
 Cydia/iKopter/Applications/iKopter.app
-
 # build products
 build/
 *.[oa]
-
 # Other source repository archive directories (protects when importing)
 .hg
 .svn
 CVS
-
 # automatic backup files
 *~.nib
 *.swp
@@ -36,13 +31,8 @@ CVS
 Backup[ ]of[ ]*.pages/
 Backup[ ]of[ ]*.key/
 Backup[ ]of[ ]*.numbers/
-
 # osx noise
 .DS_Store
 *.ipa
-*.swp
-*~.nib
-profile
-
-
 /Cydia/repo/
+/ Simulator Data

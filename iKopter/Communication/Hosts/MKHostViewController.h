@@ -23,13 +23,12 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-#import "IASKAppSettingsViewController.h"
-#import "IASKSettingsStore.h"
+#import <IBAForms/IBAFormViewController.h>
 #import "BTDiscoveryViewController.h"
 
 @class MKHost;
 
-@interface MKHostViewController : IASKAppSettingsViewController <BTDiscoveryDelegate> {
+@interface MKHostViewController : IBAFormViewController<BTDiscoveryDelegate> {
   
 }
 
