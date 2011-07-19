@@ -169,7 +169,7 @@
                  data->AngleRoll];
   speed.text=[NSString stringWithFormat:@"%d km/h",(data->GroundSpeed*9)/250];
   
-  waypoint.text=[NSString stringWithFormat:@"%d / %d",data->WaypointIndex,data->WaypointNumber];
+  waypoint.text=[NSString stringWithFormat:@"%d / %d (%d)",data->WaypointIndex,data->WaypointNumber,value.poiIndex];
   
   NSUInteger headingHome = (data->HomePositionDeviation.Bearing + 360 - data->CompassHeading) % 360;
   homePosDev.text=[NSString stringWithFormat:@"%d° / %d m",headingHome,data->HomePositionDeviation.Distance / 10];

@@ -60,6 +60,12 @@ typedef enum {
   MKCommandOsdResponse='O',
   MKCommandData3DRequest='c',
   MKCommandData3DResponse='C',
+  MKCommandReadPointRequest='x',
+  MKCommandReadPointResponse='X',
+  MKCommandWritePointRequest='w',
+  MKCommandWritePointResponse='W',
+  MKCommandSendPointRequest='s',
+  
 } MKCommandId;
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -350,6 +356,10 @@ typedef struct
 } __attribute__((packed)) Attitude_t;
 
 
+#define	INVALID		0x00
+#define NEWDATA		0x01
+#define PROCESSED	0x02
+
 typedef struct
 {
   int32_t Longitude;      // in 1E-7 deg
@@ -419,6 +429,26 @@ typedef struct
 #define FC_STATUS_LOWBAT              0x20
 #define FC_STATUS_VARIO_TRIM_UP       0x40
 #define FC_STATUS_VARIO_TRIM_DOWN     0x80
+
+#define POINT_TYPE_INVALID 255
+#define POINT_TYPE_WP	0
+#define POINT_TYPE_POI	1
+
+#define WP_EVFLAG_CAMERA_NICK_CONTROL 0x01
+
+typedef struct
+{
+ 	IKMkGPSPos  Position;         // the gps position of the waypoint, see ubx.h for details
+	int16_t     Heading;          // orientation, 0 no action, 1...360 fix heading, neg. = Index to POI in WP List
+	uint8_t     ToleranceRadius;	// in meters, if the MK is within that range around the target, then the next target is triggered
+	uint8_t     HoldTime;         // in seconds, if the was once in the tolerance area around a WP, this time defines the delay before the next WP is triggered
+	uint8_t     Event_Flag;       // future implementation
+	uint8_t     Index;            // to indentify different waypoints, workaround for bad communications PC <-> NC
+	uint8_t     Type;             // typeof Waypoint
+	uint8_t     WP_EventChannelValue;  //
+	uint8_t     AltitudeRate;     // rate to change the setpoint
+	uint8_t     reserve[8];		    // reserve
+} __attribute__((packed)) IKMkPoint;
 
 // FC STATUS FLAGS2
 #define FC_STATUS2_CAREFREE           0x01

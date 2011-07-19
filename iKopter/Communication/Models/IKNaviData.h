@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "IKMkDataTypes.h"
 
@@ -46,15 +47,16 @@
   
 }
 
-@property(readonly,assign) NSInteger  longitude;      // in 1E-7 deg
-@property(readonly,assign) NSInteger  latitude;       // in 1E-7 deg
-@property(readonly,assign) NSUInteger altitude;       // in mm
-@property(readonly,assign) NSInteger  status;         // validity of data
+@property(assign) NSInteger  longitude;      // in 1E-7 deg
+@property(assign) NSInteger  latitude;       // in 1E-7 deg
+@property(assign) NSInteger altitude;       // in mm
+@property(assign) NSInteger  status;         // validity of data
 
-@property(readonly,retain) CLLocation* location;
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 
 + (id)positionWithMkPos:(IKMkGPSPos *)pos;
 - (id)initWithMkPos:(IKMkGPSPos*)pos;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate;
 
 @end
 

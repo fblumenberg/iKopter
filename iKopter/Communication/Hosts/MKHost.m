@@ -58,7 +58,7 @@
 }
 
 -(NSString*) description {
-  return [NSString stringWithFormat:@"%@-%@",self.name,self.address];
+  return [NSString stringWithFormat:@"%@-%@-%@",self.name,self.address,self.connectionClass];
 }
 
 -(UIImage*) cellImage{

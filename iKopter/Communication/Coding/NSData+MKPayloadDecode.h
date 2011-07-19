@@ -37,8 +37,8 @@
 - (NSDictionary *) decodeData3DResponse;
 - (NSDictionary *) decodeMixerReadResponse;
 - (NSDictionary *) decodeMixerWriteResponse;
-
-
+- (NSDictionary *) decodePointReadResponse;
+- (NSDictionary *) decodePointWriteResponse;
 
 @end
 

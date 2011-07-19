@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.SystemVersion">10K540</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -158,7 +158,7 @@
 					<object class="IBUILabel" id="45455902">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{62, 169}, {101, 36}}</string>
+						<string key="NSFrame">{{44, 169}, {101, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="835299521"/>
@@ -181,7 +181,7 @@
 					<object class="IBUILabel" id="239566949">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{58, 223}, {98, 29}}</string>
+						<string key="NSFrame">{{49, 224}, {123, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="279909236"/>
@@ -190,7 +190,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">WP 1/12</string>
+						<string key="IBUIText">WP 1/12 (0)</string>
 						<reference key="IBUIFont" ref="609527323"/>
 						<reference key="IBUITextColor" ref="331353868"/>
 						<reference key="IBUIHighlightedColor" ref="159153349"/>
@@ -496,6 +496,7 @@
 						<string key="NSFrame">{{214, 370}, {86, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -737,13 +738,11 @@
 							<reference ref="327796732"/>
 							<reference ref="322353819"/>
 							<reference ref="122949917"/>
-							<reference ref="45455902"/>
 							<reference ref="835299521"/>
 							<reference ref="926986498"/>
 							<reference ref="279909236"/>
 							<reference ref="476974246"/>
 							<reference ref="950681600"/>
-							<reference ref="239566949"/>
 							<reference ref="358400019"/>
 							<reference ref="786476940"/>
 							<reference ref="399218866"/>
@@ -761,8 +760,10 @@
 							<reference ref="486166301"/>
 							<reference ref="905617807"/>
 							<reference ref="210175374"/>
-							<reference ref="970118239"/>
 							<reference ref="662947345"/>
+							<reference ref="239566949"/>
+							<reference ref="45455902"/>
+							<reference ref="970118239"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

@@ -28,6 +28,7 @@
 #define kMKDataKeyMaxMenuItem  @"maxMenuItem"
 #define kMKDataKeyMenuRows     @"menuRows"
 
+#define kMKDataKeyMaxItem      @"maxItem"
 #define kMKDataKeyIndex        @"index"
 #define kMKDataKeyChannels     @"channels"
 
@@ -43,6 +44,8 @@
 #define kIKDataKeyDebugData    @"IKDebugData"
 #define kIKDataKeyData3D       @"IKData3D"
 #define kIKDataKeyOsd          @"IKOsdData"
+#define kIKDataKeyPoint        @"IKPoint"
+
 
 
 

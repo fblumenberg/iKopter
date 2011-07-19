@@ -34,6 +34,7 @@
 - (void)concealAfterDelay:(NSTimeInterval)delay;
 - (void)updateSelectedViewFrame;
 - (void)doScreenLock;
+- (void)showNavigationBar;
 @end
 
 
@@ -59,19 +60,19 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  HorizonOsdViewController* horizonViewController=[[HorizonOsdViewController alloc]initWithNibName:@"HorizonOsdViewController" bundle:nil];
+//  HorizonOsdViewController* horizonViewController=[[HorizonOsdViewController alloc]initWithNibName:@"HorizonOsdViewController" bundle:nil];
   ValueOsdViewController* valueViewController=[[ValueOsdViewController alloc]initWithNibName:@"ValueOsdViewController" bundle:nil];
   RawOsdViewController* rawViewController=[[RawOsdViewController alloc]initWithNibName:@"RawOsdViewController" bundle:nil];
   MapOsdViewController* mapViewController=[[MapOsdViewController alloc]initWithNibName:@"MapOsdViewController" bundle:nil];
   
-  NSArray *array = [[NSArray alloc] initWithObjects:horizonViewController, valueViewController, rawViewController, mapViewController, nil];
+  NSArray *array = [[NSArray alloc] initWithObjects:valueViewController, rawViewController, mapViewController, nil];
   self.viewControllers = array;
   
   [self.view addSubview:valueViewController.view];
   self.selectedViewController = valueViewController;
   
   [array release];
-  [horizonViewController release];
+//  [horizonViewController release];
   [valueViewController release];
   [rawViewController release];
   [mapViewController release];
@@ -110,6 +111,8 @@
   self.navigationItem.rightBarButtonItem =[[[UIBarButtonItem alloc] initWithCustomView:screenLockButton]autorelease];
   
   [self updateSelectedViewFrame];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNavigationBar) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -127,6 +130,8 @@
   
   osdValue.delegate = nil;
   [osdValue stopRequesting];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
 
   [super viewWillDisappear:animated];
 }
@@ -143,8 +148,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark View rotation 
+#pragma mark - View rotation 
 
 - (void)doScreenLock {
   [self.screenLockButton setSelected:!self.screenLockButton.selected];
@@ -180,7 +184,12 @@
   [selectedViewController newValue:osdValue];
   
   UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
-  [self.selectedViewController.view addGestureRecognizer:singleTap];
+  if ([self.selectedViewController isKindOfClass:[MapOsdViewController class]]) {
+    [((MapOsdViewController*)self.selectedViewController).mapView addGestureRecognizer:singleTap];  
+  }
+  else{
+    [self.selectedViewController.view addGestureRecognizer:singleTap];
+  }
   [singleTap release];    
 }
 
@@ -189,8 +198,14 @@
 #pragma mark -
 #pragma mark Navigation bar Hideing 
 
+- (void)showNavigationBar{
+  [self.navigationController setNavigationBarHidden:NO animated:NO];
+  self.navigationController.navigationBar.translucent=NO;
+}
+
+
 - (void)conceal {
-  qltrace(@"Hideing navigation bar");
+  qltrace(@"Hiding navigation bar");
   [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 

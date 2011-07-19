@@ -39,18 +39,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @class NCLogSession;
+@class IKDebugData;
 
 @interface OsdValue : NSObject {
-
+  
   int requestCount;
   NSTimer* requestTimer;
   NSTimer* logTimer;
-   
+  
   id<OsdValueDelegate> _delegate;
   IKNaviData* _data;
   NCLogSession* _ncLogSession;
   NSTimeInterval _logInterval;
   BOOL _logActive;
+  
 }
 
 @property(retain) NCLogSession* ncLogSession;
@@ -74,6 +76,7 @@
 @property(readonly) BOOL isGpsOk;
 @property(readonly) BOOL isCareFreeOn;
 @property(readonly) BOOL isAltControlOn;
+@property(readonly) NSInteger poiIndex;
 
 - (void) startRequesting;
 - (void) stopRequesting;

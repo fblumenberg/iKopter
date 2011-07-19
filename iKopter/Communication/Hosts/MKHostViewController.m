@@ -23,7 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "MKHostViewController.h"
-#import "IASKSettingsStoreObject.h"
+#import "MKHostViewDataSource.h"
 
 #import "BTDiscoveryViewController.h"
 #import "BTDevice.h"
@@ -33,15 +33,11 @@
 #pragma mark -
 
 - (id)initWithHost:(MKHost*)theHost {
-  if (self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil]) {
-    self.file = @"MKHost";
-    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:theHost];
-    
-    self.showCreditsFooter=NO;
-    self.showDoneButton=NO;
-    
-    self.delegate=self;
-    
+  
+  MKHostViewDataSource *dataSource = [[[MKHostViewDataSource alloc] initWithModel:theHost] autorelease];
+  
+  if ((self =  [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
+    self.hidesBottomBarWhenPushed = NO;
     self.title=NSLocalizedString(@"MK Connection", @"MKHost title");
   }
   return self;
@@ -53,12 +49,25 @@
 
 #pragma mark -
 
-// called after this controller's view will appear
-- (void)viewWillAppear:(BOOL)animated
-{	
-  [super viewWillAppear:animated];
-  [self.navigationController setToolbarHidden:YES animated:NO];
+- (void)loadView {
+	[super loadView];
+  
+	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	
+	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	[self setTableView:formTableView];
+	
+	[view addSubview:formTableView];
+	[self setView:view];
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
+
+#pragma mark -
 
 -(void)settingsViewController:(id)sender buttonTappedForKey:(NSString*)key {
 	BTDiscoveryViewController *controller = [[BTDiscoveryViewController alloc] init];
@@ -75,13 +84,14 @@
 
 -(BOOL) discoveryView:(BTDiscoveryViewController*)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
   
-  BTDevice* device=[discoveryView.bt deviceAtIndex:deviceIndex];
-  
-  [self.settingsStore setObject:[device nameOrAddress] forKey:@"name"];
-  [self.settingsStore setObject:[device addressString] forKey:@"address"];
-  [_tableView reloadData];
-  
-  [discoveryView.navigationController dismissModalViewControllerAnimated:YES];
+//  BTDevice* device=[discoveryView.bt deviceAtIndex:deviceIndex];
+//  
+//  self.da
+//  [self.settingsStore setObject:[device nameOrAddress] forKey:@"name"];
+//  [self.settingsStore setObject:[device addressString] forKey:@"address"];
+//  [_tableView reloadData];
+//  
+//  [discoveryView.navigationController dismissModalViewControllerAnimated:YES];
   return YES;
 }
 

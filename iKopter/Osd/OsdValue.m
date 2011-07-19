@@ -28,11 +28,13 @@
 #import "MKDataConstants.h"
 #import "NCLogSession.h"
 #import "NCLogRecord.h"
+#import "IKDebugData.h"
 
 @interface OsdValue()
 - (void) sendOsdRefreshRequest;
 - (void) logNCData;
 - (void) osdNotification:(NSNotification *)aNotification;
+- (void) debugValueNotification:(NSNotification *)aNotification;
 
 @property(retain) IKNaviData* data;
 
@@ -46,6 +48,7 @@
 @synthesize data=_data;
 @synthesize ncLogSession=_ncLogSession;
 @synthesize managedObjectContext;
+@synthesize poiIndex;
 
 -(BOOL) areEnginesOn {
   if (!_data.data) 
@@ -190,6 +193,12 @@
              name:MKOsdNotification
            object:nil];
 
+  [nc addObserver:self
+         selector:@selector(debugValueNotification:)
+             name:MKDebugDataNotification
+           object:nil];
+
+
   requestTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
                 @selector(sendOsdRefreshRequest) userInfo:nil repeats:YES];
   
@@ -232,6 +241,8 @@
   
   [[MKConnectionController sharedMKConnectionController] requestOsdDataForInterval:40];
   requestCount++;
+  
+  [[MKConnectionController sharedMKConnectionController] requestDebugValueForInterval:40];
 }
 
 - (void) osdNotification:(NSNotification *)aNotification {
@@ -240,12 +251,11 @@
   self.data = [[aNotification userInfo] objectForKey:kIKDataKeyOsd];
   
   [self.delegate newValue:self];
+}
 
-//  NSLog(@"osdCount=%d",requestCount);
-//  if (requestCount++ >= 6 ) {
-//    [self sendOsdRefreshRequest];
-//    requestCount = 0;
-//  }
+- (void) debugValueNotification:(NSNotification *)aNotification {
+  IKDebugData* debugData = [[aNotification userInfo] objectForKey:kIKDataKeyDebugData];
+  poiIndex=[[debugData analogValueAtIndex:16] integerValue];
 }
 
 - (void) logNCData {
