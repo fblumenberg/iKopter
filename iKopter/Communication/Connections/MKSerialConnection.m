@@ -188,7 +188,6 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
      * collected buffer in self.mkData.
      * Then a line delimiter is searched, and any complete lines are passed
      * to the delegate, and removed from the local buffer in self.mkData.
-     * We repeat this search for lines until no more are found.
      */
     
     [self.mkData appendData:data];
