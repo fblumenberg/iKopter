@@ -35,7 +35,7 @@
 #include <sys/sysctl.h>
 #include <inttypes.h> //needed for PRIx64 macro
 
-NSBundle *quincyBundle() {
+NSBundle *quincyBundle(void) {
     static NSBundle* bundle = nil;
     if (!bundle) {
         NSString* path = [[[NSBundle mainBundle] resourcePath]
@@ -74,6 +74,8 @@ NSBundle *quincyBundle() {
 @synthesize submissionURL = _submissionURL;
 @synthesize showAlwaysButton = _showAlwaysButton;
 @synthesize feedbackActivated = _feedbackActivated;
+@synthesize autoSubmitCrashReport = _autoSubmitCrashReport;
+@synthesize autoSubmitDeviceUDID = _autoSubmitDeviceUDID;
 
 @synthesize appIdentifier = _appIdentifier;
 
@@ -101,6 +103,8 @@ NSBundle *quincyBundle() {
 		self.delegate = nil;
         self.feedbackActivated = NO;
         self.showAlwaysButton = NO;
+        self.autoSubmitCrashReport = NO;
+        self.autoSubmitDeviceUDID = NO;
         
 		NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kQuincyKitAnalyzerStarted];
 		if (testValue) {
@@ -118,6 +122,10 @@ NSBundle *quincyBundle() {
 			[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kQuincyKitActivated];
 		}
 		
+        if ([[NSUserDefaults standardUserDefaults] stringForKey:kAutomaticallySendCrashReports]) {
+            self.autoSubmitCrashReport = [[NSUserDefaults standardUserDefaults] boolForKey: kAutomaticallySendCrashReports];
+        }
+        
 		if (_crashReportActivated) {
 			_crashFiles = [[NSMutableArray alloc] init];
 			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -202,26 +210,22 @@ NSBundle *quincyBundle() {
 - (void)startManager {
     if (!_sendingInProgress && [self hasPendingCrashReport]) {
         _sendingInProgress = YES;
-        if ([self hasNonApprovedCrashReports]) {
-            if (![[NSUserDefaults standardUserDefaults] boolForKey: kAutomaticallySendCrashReports]) {
-                NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:BWQuincyLocalize(@"CrashDataFoundTitle")
-                                                                    message:[NSString stringWithFormat:BWQuincyLocalize(@"CrashDataFoundDescription"), appName]
-                                                                   delegate:self
-                                                          cancelButtonTitle:BWQuincyLocalize(@"No")
-                                                          otherButtonTitles:BWQuincyLocalize(@"Yes"), nil];
-                
-                if ([self isShowingAlwaysButton]) {
-                    [alertView addButtonWithTitle:BWQuincyLocalize(@"Always")];
-                }
-                
-                [alertView setTag: QuincyKitAlertTypeSend];
-                [alertView show];
-                [alertView release];
-            } else {
-                [self _sendCrashReports];
+        if (!self.autoSubmitCrashReport && [self hasNonApprovedCrashReports]) {
+            NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:BWQuincyLocalize(@"CrashDataFoundTitle"), appName]
+                                                                message:[NSString stringWithFormat:BWQuincyLocalize(@"CrashDataFoundDescription"), appName]
+                                                               delegate:self
+                                                      cancelButtonTitle:BWQuincyLocalize(@"Don't Send")
+                                                      otherButtonTitles:BWQuincyLocalize(@"Send Report"), nil];
+            
+            if ([self isShowingAlwaysButton]) {
+                [alertView addButtonWithTitle:BWQuincyLocalize(@"Always")];
             }
+            
+            [alertView setTag: QuincyKitAlertTypeSend];
+            [alertView show];
+            [alertView release];
         } else {
             [self _sendCrashReports];
         }
@@ -415,7 +419,9 @@ NSBundle *quincyBundle() {
 	NSString *contact = @"";
 	NSString *description = @"";
 	
-	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(crashReportUserID)]) {
+    if (self.autoSubmitDeviceUDID) {
+        userid = [[UIDevice currentDevice] uniqueIdentifier];
+    } else if (self.delegate != nil && [self.delegate respondsToSelector:@selector(crashReportUserID)]) {
 		userid = [self.delegate crashReportUserID];
 	}
 	
@@ -439,6 +445,7 @@ NSBundle *quincyBundle() {
 			
             if (report == nil) {
                 NSLog(@"Could not parse crash report");
+				[fm removeItemAtPath:filename error:&error];
                 continue;
             }
 
