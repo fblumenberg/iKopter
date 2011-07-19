@@ -7,24 +7,20 @@
 #               Enjoy! xaos@xm5design.com
 #
 PROJECTMAIN=$(pwd)
-PROJECT_NAME=$(basename "${PROJECTMAIN}")
 #
-if [[ -f "${PROJECTMAIN}/${PROJECT_NAME}/Resources/${PROJECT_NAME}-Info.plist" ]]
+if [[ -f "${PROJECTMAIN}/${INFOPLIST_FILE}" ]]
 then
-buildPlist="${PROJECTMAIN}/${PROJECT_NAME}/Resources/${PROJECT_NAME}-Info.plist"
-elif [[ -f "${PROJECTMAIN}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist" ]]
-then
-buildPlist="${PROJECTMAIN}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist"
+	buildPlist="${PROJECTMAIN}/${INFOPLIST_FILE}"
 else
-echo -e "Can't find the plist: ${PROJECT_NAME}-Info.plist"
+	echo -e "Can't find the plist: ${PROJECTMAIN}/${INFOPLIST_FILE}"
 exit 1
 fi
 #
 buildVersion=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${buildPlist}" 2>/dev/null)
 if [[ "${buildVersion}" = "" ]]
 then
-echo -e "\"${buildPlist}\" does not contain key: \"CFBundleVersion\""
-exit 1
+	echo -e "\"${buildPlist}\" does not contain key: \"CFBundleVersion\""
+	exit 1
 fi
 IFS='.'
 set $buildVersion
