@@ -27,6 +27,17 @@
 #import "DropboxSDK.h"
 #import "IKDropboxLoginController.h"
 
+// Here we import the Dropbox credentials. You have to get your own to compile.
+#import "ExternalData.h"
+
+#ifndef kDROPBOX_CONSUMER_KEY
+#define kDROPBOX_CONSUMER_KEY @"<YOUR CONSUMER KEY>"
+#endif
+
+#ifndef kDROPBOX_CONSUMER_SECRET
+#define kDROPBOX_CONSUMER_SECRET @"<YOUR CONSUMER SECRET>"
+#endif
+
 #undef ql_component
 #define ql_component lcl_cApplication
 
@@ -59,16 +70,16 @@
   [self saveContext];
   
   // Set these variables before launching the app
-  NSString* consumerKey = @"<YOUR CONSUMER KEY>";
-	NSString* consumerSecret = @"<YOUR CONSUMER SECRET>";
+  NSString* consumerKey = kDROPBOX_CONSUMER_KEY;
+	NSString* consumerSecret = kDROPBOX_CONSUMER_SECRET;
 	
 	// Look below where the DBSession is created to understand how to use DBSession in your app
 	
 	NSString* errorMsg = nil;
 	if ([consumerKey rangeOfCharacterFromSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]].location != NSNotFound) {
-		errorMsg = @"Make sure you set the consumer key correctly in DBRouletteAppDelegate.m";
+		errorMsg = @"Make sure you set the consumer key correctly";
 	} else if ([consumerSecret rangeOfCharacterFromSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]].location != NSNotFound) {
-		errorMsg = @"Make sure you set the consumer secret correctly in DBRouletteAppDelegate.m";
+		errorMsg = @"Make sure you set the consumer secret correctly";
 	}
 	
 	DBSession* session = 
