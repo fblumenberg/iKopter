@@ -83,6 +83,17 @@
   return nil;
 }
 
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  if(shownModal){
+  UIBarButtonItem* cancelItem =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+                                                                              target:self action:@selector(didPressCancel)] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelItem;
+
+  }
+  
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
@@ -108,6 +119,12 @@
   
   [self.restClient loginWithEmail:data.email password:data.password];
 
+}
+
+-(void) didPressCancel{
+  
+  [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
+  [delegate loginControllerDidCancel:self];
 }
 
 #pragma mark DBRestClient methods

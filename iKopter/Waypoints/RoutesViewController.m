@@ -26,10 +26,18 @@
 #import "RouteViewController.h"
 #import "Route.h"
 
+#import "IKDropboxController.h"
+#import "DropboxSDK.h"
+#import "NSString+Dropbox.h"
+
+@interface RoutesViewController() <IKDropboxControllerDelegate>
+@end;
+
 @implementation RoutesViewController
 
 @synthesize lists;
 @synthesize addButton;
+@synthesize syncButton;
 
 - (id)init {
   if ((self =  [super initWithStyle:UITableViewStylePlain])) {
@@ -61,6 +69,13 @@
                  target:self
                  action:@selector(addRoute)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
+
+  self.syncButton =  [[[UIBarButtonItem alloc]
+                       initWithImage:[UIImage imageNamed:@"icon-backforth.png"] 
+                       style:UIBarButtonItemStyleBordered
+                       target:self
+                       action:@selector(syncRoutes)] autorelease];
+
   
   UIBarButtonItem* spacerButton;
   spacerButton =  [[[UIBarButtonItem alloc]
@@ -68,7 +83,14 @@
                     target:nil
                     action:nil] autorelease];
   
-  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil]];
+  [self setToolbarItems:[NSArray arrayWithObjects:
+                         self.editButtonItem,
+                         spacerButton,
+                         self.syncButton,
+                         spacerButton,
+                         self.addButton,
+                         nil]];
+  
   self.tableView.allowsSelectionDuringEditing=YES;
 }
 
@@ -183,7 +205,13 @@
   if(editing)
     [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
   else
-    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
+    [self setToolbarItems:[NSArray arrayWithObjects:
+                           self.editButtonItem,
+                           spacerButton,
+                           self.syncButton,
+                           spacerButton,
+                           self.addButton,
+                           nil] animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,5 +260,68 @@
   [self.navigationController pushViewController:listView animated:YES];
   [listView release];
 }
+
+- (void)syncRoutes{
+
+  IKDropboxController* dbCtrl=[IKDropboxController sharedIKDropboxController];
+  dbCtrl.delegate = self;
+  [dbCtrl connectAndPrepareMetadata];
+}
+
+#pragma mark - IKDropboxControllerDelegate
+
+-(void) dropboxReady:(IKDropboxController*)controller{
+  
+  BOOL hasRoutesFile=YES;
+  
+  NSString* routesFileName= [self.lists.routesFile lastPathComponent];
+  for (DBMetadata* child in controller.metaData.contents) {
+    qltrace(@"Check path %@",child.path);
+    hasRoutesFile = [routesFileName isEqualToDropboxPath:child.path];
+  }
+  
+  UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") 
+                                                          delegate:self 
+                                                 cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel Button") 
+                                            destructiveButtonTitle:hasRoutesFile?NSLocalizedString(@"Restore", @"Restore Button"):nil 
+                                                 otherButtonTitles:NSLocalizedString(@"Backup",@"Backup Button"), nil];
+  popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+  [popupQuery showFromToolbar:self.navigationController.toolbar];
+  [popupQuery release];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  
+  NSString* routesFileName= [self.lists.routesFile lastPathComponent];
+
+  if(buttonIndex == actionSheet.destructiveButtonIndex){
+    NSLog(@"Restore");
+  }
+  else if(buttonIndex == actionSheet.firstOtherButtonIndex){
+    
+    [[IKDropboxController sharedIKDropboxController].restClient uploadFile:routesFileName toPath:@"/iKopterData" fromPath:lists.routesFile];
+    NSLog(@"Backup");
+  }
+}
+
+#pragma mark - DBRestClientDelegate
+
+- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath {
+  
+}
+
+- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error{
+  
+}
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath{
+  
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error{
+  
+}
+
+
 
 @end

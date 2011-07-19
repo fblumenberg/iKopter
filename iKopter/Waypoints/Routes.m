@@ -29,11 +29,12 @@
 #import "TTCorePreprocessorMacros.h"
 
 @interface Routes (Private)
--(void) load;
--(void) save;
+
 @end
 
 @implementation Routes
+
+@synthesize routesFile;
 
 - (id) init
 {
@@ -55,6 +56,7 @@
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
 
+  [routesFile release];
   [routes release];
   [super dealloc];
 }
@@ -67,14 +69,15 @@
 
 -(void) load {
   
-  NSString *filePath = TTPathForDocumentsResource(kFilename);
+  [routesFile release];
+  routesFile = [TTPathForDocumentsResource(kFilename) retain];
   
-  if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+  if ([[NSFileManager defaultManager] fileExistsAtPath:routesFile]) {
     
-    qlinfo(@"Load the point lists from %@",filePath);
+    qlinfo(@"Load the point lists from %@",routesFile);
     
     NSData *data = [[NSMutableData alloc]
-                    initWithContentsOfFile:filePath];
+                    initWithContentsOfFile:routesFile];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     
     TT_RELEASE_SAFELY(routes);

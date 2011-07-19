@@ -23,24 +23,32 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
+#import "SynthesizeSingleton.h"
 
-@class Route;
+#import "IKDropboxLoginController.h"
 
-@interface Routes : NSObject {
+@class DBRestClient;
+@class DBMetadata;
 
-  NSMutableArray* routes;
+@protocol IKDropboxControllerDelegate;
+
+@interface IKDropboxController : NSObject<IKDBLoginControllerDelegate> {
+  
+  DBRestClient* restClient;
 }
 
-@property(nonatomic,readonly) NSString* routesFile;
++(IKDropboxController*) sharedIKDropboxController;
 
--(void) load; 
--(void) save; 
--(NSUInteger) count;
+-(void) connectAndPrepareMetadata;
 
--(Route*) routeAtIndexPath:(NSIndexPath *)indexPath;
+@property(nonatomic, readonly) DBRestClient* restClient;
+@property(nonatomic,readonly) DBMetadata* metaData;
+@property(nonatomic,assign) id<IKDropboxControllerDelegate> delegate;
 
--(NSIndexPath*) addRoute;
--(void) moveRouteAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
--(void) deleteRouteAtIndexPath:(NSIndexPath*)indexPath;
+@end
+
+@protocol IKDropboxControllerDelegate
+
+-(void) dropboxReady:(IKDropboxController*)controller;
 
 @end

@@ -24,8 +24,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Routes.h"
+#import "DropboxSDK.h"
 
-@interface RoutesViewController : UITableViewController {
+@interface RoutesViewController : UITableViewController<UIActionSheetDelegate,DBRestClientDelegate>{
     
 
   NSIndexPath* editingList;
@@ -33,6 +34,7 @@
 
 @property(retain) Routes* lists;
 @property(retain) UIBarButtonItem* addButton;
+@property(retain) UIBarButtonItem* syncButton;
 
 - (id)init;
 
