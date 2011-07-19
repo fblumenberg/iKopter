@@ -287,7 +287,6 @@
         if(createOverlay){
           HeadingOverlay* h=[HeadingOverlay headingWithCenterCoordinate:p.coordinate radius:10 angle:angle];
           [self.mapView addOverlay:h];
-          [h release];
         }
       }
       

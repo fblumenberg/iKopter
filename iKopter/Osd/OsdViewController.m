@@ -112,7 +112,10 @@
   
   [self updateSelectedViewFrame];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNavigationBar) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
+  [[NSNotificationCenter defaultCenter] addObserver:self 
+                                           selector:@selector(showNavigationBar) 
+                                               name:UIApplicationWillResignActiveNotification 
+                                             object:[UIApplication sharedApplication]];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
