@@ -1,0 +1,3201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundles</key>
+	<array>
+		<dict>
+			<key>associated Xcode projects</key>
+			<array>
+				<string>../../iKopter.xcodeproj</string>
+			</array>
+			<key>change date</key>
+			<date>2001-01-01T00:00:00Z</date>
+			<key>changed values</key>
+			<array/>
+			<key>class</key>
+			<string>BLBundleObject</string>
+			<key>errors</key>
+			<array/>
+			<key>files</key>
+			<array>
+				<dict>
+					<key>attachments</key>
+					<dict>
+						<key>backup</key>
+						<dict>
+							<key>1</key>
+							<dict>
+								<key>class</key>
+								<string>BLWrapperHandle</string>
+								<key>name</key>
+								<string>Application Base/MainWindow-iPad/1/MainWindow-iPad.xib</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>change date</key>
+					<date>2011-05-14T14:06:55Z</date>
+					<key>changed values</key>
+					<array/>
+					<key>class</key>
+					<string>BLNibFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>0</integer>
+					<key>hash</key>
+					<string>51e293a20e1040afcdcb6230f6378665
+</string>
+					<key>name</key>
+					<string>MainWindow-iPad.xib</string>
+					<key>objects</key>
+					<array/>
+					<key>old objects</key>
+					<array/>
+					<key>snapshots</key>
+					<dict/>
+					<key>versions</key>
+					<dict>
+						<key>de</key>
+						<string>1</string>
+						<key>en</key>
+						<string>1</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>attachments</key>
+					<dict>
+						<key>backup</key>
+						<dict>
+							<key>1</key>
+							<dict>
+								<key>class</key>
+								<string>BLWrapperHandle</string>
+								<key>name</key>
+								<string>Application Base/MainWindow/1/MainWindow.xib</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>change date</key>
+					<date>2011-07-05T20:29:24Z</date>
+					<key>changed values</key>
+					<array/>
+					<key>class</key>
+					<string>BLNibFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>0</integer>
+					<key>hash</key>
+					<string>1bc0b42a1e28b81c697137abe1b351a2
+</string>
+					<key>name</key>
+					<string>MainWindow.xib</string>
+					<key>objects</key>
+					<array/>
+					<key>old objects</key>
+					<array/>
+					<key>snapshots</key>
+					<dict/>
+					<key>versions</key>
+					<dict>
+						<key>de</key>
+						<string>1</string>
+						<key>en</key>
+						<string>1</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>attachments</key>
+					<dict>
+						<key>backup</key>
+						<dict>
+							<key>1</key>
+							<dict>
+								<key>class</key>
+								<string>BLWrapperHandle</string>
+								<key>name</key>
+								<string>Application Base/RootViewController/1/RootViewController.xib</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>change date</key>
+					<date>2011-07-18T14:12:30Z</date>
+					<key>changed values</key>
+					<array/>
+					<key>class</key>
+					<string>BLNibFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>0</integer>
+					<key>hash</key>
+					<string>29e8ec29a66a67677a49bed0be560202
+</string>
+					<key>name</key>
+					<string>RootViewController.xib</string>
+					<key>objects</key>
+					<array/>
+					<key>old objects</key>
+					<array/>
+					<key>snapshots</key>
+					<dict/>
+					<key>versions</key>
+					<dict>
+						<key>de</key>
+						<string>1</string>
+						<key>en</key>
+						<string>1</string>
+					</dict>
+				</dict>
+			</array>
+			<key>flags</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>../Develop/Cocoa/Mikrocopter/iKopter/iKopter/Application Base</string>
+			<key>naming style</key>
+			<integer>1</integer>
+			<key>referencing style</key>
+			<integer>1</integer>
+			<key>user name</key>
+			<string>Application Base</string>
+		</dict>
+		<dict>
+			<key>associated Xcode projects</key>
+			<array>
+				<string>../../iKopter.xcodeproj</string>
+			</array>
+			<key>change date</key>
+			<date>2001-01-01T00:00:00Z</date>
+			<key>changed values</key>
+			<array/>
+			<key>class</key>
+			<string>BLBundleObject</string>
+			<key>errors</key>
+			<array/>
+			<key>files</key>
+			<array>
+				<dict>
+					<key>attachments</key>
+					<dict>
+						<key>backup</key>
+						<dict>
+							<key>1</key>
+							<dict>
+								<key>class</key>
+								<string>BLWrapperHandle</string>
+								<key>name</key>
+								<string>Resources/Localizable/1/Localizable.strings</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>change date</key>
+					<date>2011-07-19T15:51:57Z</date>
+					<key>changed values</key>
+					<array/>
+					<key>class</key>
+					<string>BLStringsFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>0</integer>
+					<key>hash</key>
+					<string>bbde96f8b1b3649759b25a5568692f32
+</string>
+					<key>name</key>
+					<string>Localizable.strings</string>
+					<key>objects</key>
+					<array>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Access Denied</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Access Denied</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Zugriff verboten</string>
+								<key>en</key>
+								<string>Access Denied</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Activating BTstack...</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktiviere BTstack...</string>
+								<key>en</key>
+								<string>Activating BTstack...</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Host address</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Address</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Adresse</string>
+								<key>en</key>
+								<string>Address</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP Altitude title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Altitude</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Höhe</string>
+								<key>en</key>
+								<string>Altitude</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Err Unknown Msg</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>An unknown error has occurred.</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Es ist ein unbekannter Fehler aufgetreten.</string>
+								<key>en</key>
+								<string>An unknown error has occurred.</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Backup Button</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Backup</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Daten sichern</string>
+								<key>en</key>
+								<string>Backup</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Routes Backup Error Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Backup failed</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Das Sichern ist fehlgeschlagen.</string>
+								<key>en</key>
+								<string>Backup failed</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>BL-Ctrl missing (check connections &amp; mixer setup)</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>BL-Ctrl fehlt (Verbindungen &amp; Mixer-Einstellungen prüfen)</string>
+								<key>en</key>
+								<string>BL-Ctrl missing (check connections &amp; mixer setup)</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Bluetooth</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bluetooth</string>
+								<key>en</key>
+								<string>Bluetooth</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT Connection title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Bluetooth Connection</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bluetooth Verbindung</string>
+								<key>en</key>
+								<string>Bluetooth Connection</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Bluetooth not accessible!</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bluetooth nicht verfügbar!</string>
+								<key>en</key>
+								<string>Bluetooth not accessible!</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>cameraNickControl title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Camera nick control</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Kamera Nick Steuerung</string>
+								<key>en</key>
+								<string>Camera nick control</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT descovery cancel
+  Cancel Button</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Cancel</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Abbruch</string>
+								<key>en</key>
+								<string>Cancel</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Carefree control error/not possible (compass okay?, Orientation = 0 ?)</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Carefree Control Fehler/nicht möglich (Kompass okay?, Orientierung = 0 ?)</string>
+								<key>en</key>
+								<string>Carefree control error/not possible (compass okay?, Orientation = 0 ?)</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Change Active</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktiv schalten</string>
+								<key>en</key>
+								<string>Change Active</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Channels cell</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Channels</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Kanäle</string>
+								<key>en</key>
+								<string>Channels</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP event title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Climb rate</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Steigrate</string>
+								<key>en</key>
+								<string>Climb rate</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>HUD connecting</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Connecting</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Verbinde</string>
+								<key>en</key>
+								<string>Connecting</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Text connecting label</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Connecting…</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Verbinde…</string>
+								<key>en</key>
+								<string>Connecting…</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Create Data Folder Error Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Creating iKopter data folder failed</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Das iKopter Datenverzeichnis konnte nicht erzeugt werden</string>
+								<key>en</key>
+								<string>Creating iKopter data folder failed</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Root edit hosts</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Edit Connections</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Verbindungen bearbeiten</string>
+								<key>en</key>
+								<string>Edit Connections</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Email</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Email</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Email</string>
+								<key>en</key>
+								<string>Email</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Motor test cell</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Engine test</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Motortest</string>
+								<key>en</key>
+								<string>Engine test</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Error getting Location</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Error getting Location</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Die aktuelle Position kann nicht ermittelt werden</string>
+								<key>en</key>
+								<string>Error getting Location</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Error loading map</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Error loading map</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Die Karte kann nicht geladen werden</string>
+								<key>en</key>
+								<string>Error loading map</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP event title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Event</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Ereignis</string>
+								<key>en</key>
+								<string>Event</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Email placeholder</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>example@gmail.com</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>beispiel@googlemail.de</string>
+								<key>en</key>
+								<string>example@gmail.com</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Fake Connection title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Fake Connection</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Fake Verbindung</string>
+								<key>en</key>
+								<string>Fake Connection</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Find devices...</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Suche Geräte...</string>
+								<key>en</key>
+								<string>Find devices...</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Find more devices...</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Weitere Geräte suchen...</string>
+								<key>en</key>
+								<string>Find more devices...</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Flight-Ctrl software incompatible</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Flight-Ctrl Software inkompatibel</string>
+								<key>en</key>
+								<string>Flight-Ctrl software incompatible</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>HUD device</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Found %@</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>%@ gefunden</string>
+								<key>en</key>
+								<string>Found %@</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Getting Data Folder Error Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Getting iKopter data folder failed</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Das iKopter Dropbox Verzeichnis konnte nicht gelesen werden</string>
+								<key>en</key>
+								<string>Getting iKopter data folder failed</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP holdTime title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>HaltTime</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wartezeit</string>
+								<key>en</key>
+								<string>HaltTime</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Hardware: Acc NICK error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Hardware: Acc NICK Fehler</string>
+								<key>en</key>
+								<string>Hardware: Acc NICK error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Hardware: Acc ROLL error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Hardware: Acc ROLL Fehler</string>
+								<key>en</key>
+								<string>Hardware: Acc ROLL error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Hardware: Acc Z error (FlightCtrl installed upside down ?)</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Hardware: Acc Z Fehler (FlightCtrl falsch herum montiert?)</string>
+								<key>en</key>
+								<string>Hardware: Acc Z error (FlightCtrl installed upside down ?)</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Hardware: Gyro NICK error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Hardware: Gyro NICK Fehler</string>
+								<key>en</key>
+								<string>Hardware: Gyro NICK error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Hardware: Gyro ROLL error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Hardware: Gyro ROLL Fehler</string>
+								<key>en</key>
+								<string>Hardware: Gyro ROLL error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Hardware: Gyro YAW error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Hardware: Gyro GIER Fehler</string>
+								<key>en</key>
+								<string>Hardware: Gyro YAW error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Hardware: Pressure sensor error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Hardware: Luftdrucksensor Fehler</string>
+								<key>en</key>
+								<string>Hardware: Pressure sensor error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP Heading title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Heading</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Richtung</string>
+								<key>en</key>
+								<string>Heading</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>I2C bus error (check I2C connections)</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>I2C Bus Fehler (I2C Verbindungen prüfen)</string>
+								<key>en</key>
+								<string>I2C bus error (check I2C connections)</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Root Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>iKopter</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>iKopter</string>
+								<key>en</key>
+								<string>iKopter</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>INvalid WP Annotation callout</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Invalid - Index %d</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Ungültig - Index %d</string>
+								<key>en</key>
+								<string>Invalid - Index %d</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>invalid compass value (MK3Mag not calibrated ?)</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>ungültiger Kompasswert (MK3Mag nicht kalibriert ?)</string>
+								<key>en</key>
+								<string>invalid compass value (MK3Mag not calibrated ?)</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP Latitude title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Lat.</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Breite</string>
+								<key>en</key>
+								<string>Lat.</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Dropbox button link</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Link with Dropbox</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bei Dropbox anmelden</string>
+								<key>en</key>
+								<string>Link with Dropbox</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Button</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Log in to Dropbox</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bei Dropbox anmelden</string>
+								<key>en</key>
+								<string>Log in to Dropbox</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Link Account</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Log In to Dropbox</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bei Dropbox anmelden</string>
+								<key>en</key>
+								<string>Log In to Dropbox</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login HUD</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Logging In</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Anmeldung läuft</string>
+								<key>en</key>
+								<string>Logging In</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Err Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Login Failed</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Anmeldungsfehler</string>
+								<key>en</key>
+								<string>Login Failed</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP Longitude title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Long.</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Länge</string>
+								<key>en</key>
+								<string>Long.</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>InAppSettingsKit</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Mail not configured</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Mail ist nicht konfiguriert</string>
+								<key>en</key>
+								<string>Mail not configured</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Mixer cell</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Mixer</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Mixer</string>
+								<key>en</key>
+								<string>Mixer</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Mixer setup error (check mixervalues)</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Mixer-Einstellungen fehlerhaft (Werte prüfen)</string>
+								<key>en</key>
+								<string>Mixer setup error (check mixervalues)</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>MKHost title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>MK Connection</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>MK Connection</string>
+								<key>en</key>
+								<string>MK Connection</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>MKHost List title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>MK Connections</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>MK Connections</string>
+								<key>en</key>
+								<string>MK Connections</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>MK3Mag software incompatible</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>MK3Mag Software inkompatibel</string>
+								<key>en</key>
+								<string>MK3Mag software incompatible</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Host name
+  Waypoint List name label</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Name</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Name</string>
+								<key>en</key>
+								<string>Name</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>NC-Log Body</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>NaviCtlr logging session from %@ to %@  contains %d records</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>NaviCtlr logging session from %1$@ to %2$@  contains %3$d records</string>
+								<key>en</key>
+								<string>NaviCtlr logging session from %1$@ to %2$@  contains %3$d records</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>NC-Log Subject</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>NaviCtrl Log-Data</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>NaviCtrl Log-Data</string>
+								<key>en</key>
+								<string>NaviCtrl Log-Data</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>NC-LOG cell</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>NC Log</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>NaviCtrl Log-Data</string>
+								<key>en</key>
+								<string>NC Log</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Default host name</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>New host</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Neue Verbindung</string>
+								<key>en</key>
+								<string>New host</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>IBA Nav next</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Next</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Weiter</string>
+								<key>en</key>
+								<string>Next</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>no data from MK3Mag</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>keine Daten von MK3Mag</string>
+								<key>en</key>
+								<string>no data from MK3Mag</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>no data from MKGPS</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>keine Daten von MKGPS</string>
+								<key>en</key>
+								<string>no data from MKGPS</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>No Errors</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Alles OK</string>
+								<key>en</key>
+								<string>No Errors</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>No receiver signal</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>kein Empfängersignal</string>
+								<key>en</key>
+								<string>No receiver signal</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Device not available</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>not available</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>not available</string>
+								<key>en</key>
+								<string>not available</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>NOT CONNECTED LCD</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Not connected
+No data
+
+</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Nicht verbunden
+Keine Daten
+
+</string>
+								<key>en</key>
+								<string>Not connected
+No data
+
+</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>InAppSettingsKit</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>OK</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>OK</string>
+								<key>en</key>
+								<string>OK</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Okay</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Okay</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>OK</string>
+								<key>en</key>
+								<string>Okay</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Password</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Password</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Passwort</string>
+								<key>en</key>
+								<string>Password</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Host pin</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Pin</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>PIn</string>
+								<key>en</key>
+								<string>Pin</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>POI cell</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>POI</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>POI</string>
+								<key>en</key>
+								<string>POI</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>POI Annotation callout</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>POI - Index %d</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>POI - Index %d</string>
+								<key>en</key>
+								<string>POI - Index %d</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP Pos Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Position</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Position</string>
+								<key>en</key>
+								<string>Position</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Potiname</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Poti%d</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Poti%d</string>
+								<key>en</key>
+								<string>Poti%d</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>IBA Nav prev</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Prevoius</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Zurück</string>
+								<key>en</key>
+								<string>Prevoius</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Query device names...</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Gerätenamen erfragen...</string>
+								<key>en</key>
+								<string>Query device names...</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP toleranceRadius title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Radius</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Radius</string>
+								<key>en</key>
+								<string>Radius</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Reload toolbar item</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Reload</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Neu laden</string>
+								<key>en</key>
+								<string>Reload</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Password placeholder</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Required</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Erforderlich</string>
+								<key>en</key>
+								<string>Required</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Restore Button</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Restore</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wiederherstellen</string>
+								<key>en</key>
+								<string>Restore</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Routes Restore Error Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Restore failed</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Das Wiederherstellen ist fehlgeschlagen</string>
+								<key>en</key>
+								<string>Restore failed</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Route default name
+  Waypoint Lists title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Route</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wegpunkt Liste</string>
+								<key>en</key>
+								<string>Route</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Waypoint Lists title
+  Waypointlist cell</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Routes</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wegpunkt Listen</string>
+								<key>en</key>
+								<string>Routes</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Routes Sync Title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Routes Syncronisation</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wegpunkt Listen Synchronisation</string>
+								<key>en</key>
+								<string>Routes Syncronisation</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Save toolbar item</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Save</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Speichern</string>
+								<key>en</key>
+								<string>Save</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT search button</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Search Bluetooth</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bluetooth suchen</string>
+								<key>en</key>
+								<string>Search Bluetooth</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Searching...</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Suche...</string>
+								<key>en</key>
+								<string>Searching...</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>BT discovery title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Select the Device</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Gerät wählen</string>
+								<key>en</key>
+								<string>Select the Device</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Serial Connection title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Serial Connection</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Serielle Verbindung</string>
+								<key>en</key>
+								<string>Serial Connection</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Server error</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Server error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Server Fehler</string>
+								<key>en</key>
+								<string>Server error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Setting</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Setting</string>
+								<key>en</key>
+								<string>Setting</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Setting i</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Setting #%d</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Parameterset #%d</string>
+								<key>en</key>
+								<string>Setting #%d</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Settings controller title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Settings</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Settings</string>
+								<key>en</key>
+								<string>Settings</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>SPI communication error. No data from Navi-Ctrl</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>SPI Kommunikationsfehler. Keine Daten von Navi-Ctrl</string>
+								<key>en</key>
+								<string>SPI communication error. No data from Navi-Ctrl</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>SPI: no data from Flight-Ctrl</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>SPI: keine Daten von Flight-Ctrl</string>
+								<key>en</key>
+								<string>SPI: no data from Flight-Ctrl</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Sync routes HUD</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Syncing</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Synchronisiere</string>
+								<key>en</key>
+								<string>Syncing</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>DB Login Err Msg</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>There was an error connecting to Dropbox.</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bei der Herstellung der Verbindung zu Dropbox ist ein Fehler aufgetreten.</string>
+								<key>en</key>
+								<string>There was an error connecting to Dropbox.</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>InAppSettingsKit</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>This device is not configured for sending Email. Please configure the Mail settings in the Settings app.</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>This device is not configured for sending Email. Please configure the Mail settings in the Settings app.</string>
+								<key>en</key>
+								<string>This device is not configured for sending Email. Please configure the Mail settings in the Settings app.</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Host type
+  type title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Type</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Typ</string>
+								<key>en</key>
+								<string>Type</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Unknown Error</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Unknown Error</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Unknown Error</string>
+								<key>en</key>
+								<string>Unknown Error</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Dropbox button link</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Unlink from Dropbox</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bei Dropbox abmelden</string>
+								<key>en</key>
+								<string>Unlink from Dropbox</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Route Upload success</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Upload successful</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Upload erfolgreich</string>
+								<key>en</key>
+								<string>Upload successful</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Version</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Version</string>
+								<key>en</key>
+								<string>Version</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Waypoint cell
+  Waypoint view title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Waypoint</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wegpunkt</string>
+								<key>en</key>
+								<string>Waypoint</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP Annotation callout</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Waypoint - Index %d</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wegpunkt - Index %d</string>
+								<key>en</key>
+								<string>Waypoint - Index %d</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Host footer</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>WLAN - Hostname:Port
+Bluetooth - aa:bb:cc:dd:ee:ff</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>WLAN - Hostname:Port
+Bluetooth - aa:bb:cc:dd:ee:ff</string>
+								<key>en</key>
+								<string>WLAN - Hostname:Port
+Bluetooth - aa:bb:cc:dd:ee:ff</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WLAN Connection title</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>WLAN Connection</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>WLAN Verbindung</string>
+								<key>en</key>
+								<string>WLAN Connection</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array/>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>You are Here!</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>You are Here!</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Sie sind hier!</string>
+								<key>en</key>
+								<string>You are Here!</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+					</array>
+					<key>old objects</key>
+					<array>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>changed values</key>
+							<array>
+								<string>&lt;reference&gt;</string>
+								<string>de</string>
+							</array>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>WP Annotation callout</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Waypoint %d</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wegpunkt %d</string>
+								<key>en</key>
+								<string>Waypoint %d</string>
+							</dict>
+							<key>snapshots</key>
+							<dict/>
+						</dict>
+					</array>
+					<key>plist file</key>
+					<false/>
+					<key>snapshots</key>
+					<dict/>
+					<key>versions</key>
+					<dict>
+						<key>en</key>
+						<string>1</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>attachments</key>
+					<dict>
+						<key>backup</key>
+						<dict>
+							<key>1</key>
+							<dict>
+								<key>class</key>
+								<string>BLWrapperHandle</string>
+								<key>name</key>
+								<string>Resources/InfoPlist/1/InfoPlist.strings</string>
+							</dict>
+						</dict>
+					</dict>
+					<key>change date</key>
+					<date>2011-05-14T14:06:55Z</date>
+					<key>changed values</key>
+					<array/>
+					<key>class</key>
+					<string>BLStringsFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>0</integer>
+					<key>hash</key>
+					<string>b8f0b99a609bda18c49eed43bb052224
+</string>
+					<key>name</key>
+					<string>InfoPlist.strings</string>
+					<key>objects</key>
+					<array/>
+					<key>old objects</key>
+					<array/>
+					<key>plist file</key>
+					<false/>
+					<key>snapshots</key>
+					<dict/>
+					<key>versions</key>
+					<dict>
+						<key>en</key>
+						<string>1</string>
+					</dict>
+				</dict>
+			</array>
+			<key>flags</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>../Develop/Cocoa/Mikrocopter/iKopter/iKopter/Resources</string>
+			<key>naming style</key>
+			<integer>1</integer>
+			<key>referencing style</key>
+			<integer>1</integer>
+			<key>user name</key>
+			<string>Resources</string>
+		</dict>
+	</array>
+	<key>languages</key>
+	<array>
+		<string>en</string>
+		<string>de</string>
+	</array>
+	<key>preferences</key>
+	<dict>
+		<key>XcodeAddMissingFiles</key>
+		<true/>
+		<key>XcodeFileLimit</key>
+		<real>75</real>
+		<key>XcodeHasFileLimit</key>
+		<true/>
+		<key>XcodeHasLanguageLimit</key>
+		<true/>
+		<key>XcodeLanguageLimit</key>
+		<real>90</real>
+		<key>XcodeRemoveNotMatchingFiles</key>
+		<false/>
+		<key>autotranslateNewStrings</key>
+		<true/>
+		<key>compressLocalizationFiles</key>
+		<false/>
+		<key>deactivateEmptyStrings</key>
+		<true/>
+		<key>defaultBundleNaming</key>
+		<integer>1</integer>
+		<key>defaultBundleReferencing</key>
+		<integer>1</integer>
+		<key>embedDictionary</key>
+		<false/>
+		<key>embedDictionaryGuesses</key>
+		<false/>
+		<key>importEmptyStrings</key>
+		<true/>
+		<key>includeInterfacePreview</key>
+		<true/>
+		<key>markAutotranslatedAsNotChanged</key>
+		<true/>
+		<key>saveCompressed</key>
+		<false/>
+		<key>updateXcodeProjects</key>
+		<false/>
+		<key>valueChangesResetStrings</key>
+		<false/>
+	</dict>
+	<key>reference language</key>
+	<string>en</string>
+	<key>version</key>
+	<integer>5</integer>
+</dict>
+</plist>
