@@ -46,17 +46,18 @@
   IKDropboxLoginSource *dataSource = [[[IKDropboxLoginSource alloc] initWithModel:model] autorelease];
   
   self=[super initWithNibName:nil bundle:nil formDataSource:dataSource];
-    if (self) {
-      self.hidesBottomBarWhenPushed = NO;
-      self.title=NSLocalizedString(@"Log In to Dropbox",@"DB Login Link Account");
-      dataSource.delegate=self;
-    }
-    return self;
+  if (self) {
+    self.hidesBottomBarWhenPushed = NO;
+    self.title=NSLocalizedString(@"Log In to Dropbox",@"DB Login Link Account");
+    dataSource.delegate=self;
+  }
+  return self;
 }
 
 - (void)dealloc
 {
-    [super dealloc];
+  [super dealloc];
+  [restClient release];
 }
 
 #pragma mark -
@@ -86,10 +87,10 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   if(shownModal){
-  UIBarButtonItem* cancelItem =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
-                                                                              target:self action:@selector(didPressCancel)] autorelease];
+    UIBarButtonItem* cancelItem =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+                                                                                target:self action:@selector(didPressCancel)] autorelease];
     self.navigationItem.leftBarButtonItem = cancelItem;
-
+    
   }
   
 }
@@ -118,7 +119,7 @@
   IKDropboxLoginData* data = (IKDropboxLoginData*)dataSource.model;
   
   [self.restClient loginWithEmail:data.email password:data.password];
-
+  
 }
 
 -(void) didPressCancel{
@@ -135,7 +136,7 @@
     [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
   else
     [self.navigationController popViewControllerAnimated:YES];
- 
+  
   [self.delegate loginControllerDidLogin:self];
 }
 
@@ -170,10 +171,11 @@
   
   if (working) {
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.delegate=self;
     hud.labelText = NSLocalizedString(@"Logging In", @"DB Login HUD");
   }
   else
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:!shownModal];
 }
 
 
@@ -197,8 +199,8 @@
 
 - (void)hudWasHidden {
   
-  [hud removeFromSuperview];
-  [hud release];
+  //  [hud removeFromSuperview];
+  //  [hud release];
 }
 
 @end

@@ -66,6 +66,9 @@
 		BA2206881385B31500396AA2 /* analoglabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2206871385B31500396AA2 /* analoglabels.plist */; };
 		BA3B69B713CA07B9000491EB /* icon-check.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3B69B513CA07B9000491EB /* icon-check.png */; };
 		BA3B69B813CA07B9000491EB /* icon-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3B69B613CA07B9000491EB /* icon-check@2x.png */; };
+		BA41B6F613D4379B00408B18 /* icon-backforth.png in Resources */ = {isa = PBXBuildFile; fileRef = BA41B6F413D4379B00408B18 /* icon-backforth.png */; };
+		BA41B6F713D4379B00408B18 /* icon-backforth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA41B6F513D4379B00408B18 /* icon-backforth@2x.png */; };
+		BA41B6FA13D439C500408B18 /* IKDropboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA41B6F913D439C500408B18 /* IKDropboxController.m */; };
 		BA585C1413B0ED1A00AE0958 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0D13B0ED1A00AE0958 /* Route.m */; };
 		BA585C1513B0ED1A00AE0958 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0F13B0ED1A00AE0958 /* Routes.m */; };
 		BA585C1613B0ED1A00AE0958 /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C1113B0ED1A00AE0958 /* RoutesViewController.m */; };
@@ -392,6 +395,10 @@
 		BA2206871385B31500396AA2 /* analoglabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = analoglabels.plist; sourceTree = "<group>"; };
 		BA3B69B513CA07B9000491EB /* icon-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-check.png"; sourceTree = "<group>"; };
 		BA3B69B613CA07B9000491EB /* icon-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-check@2x.png"; sourceTree = "<group>"; };
+		BA41B6F413D4379B00408B18 /* icon-backforth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-backforth.png"; sourceTree = "<group>"; };
+		BA41B6F513D4379B00408B18 /* icon-backforth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-backforth@2x.png"; sourceTree = "<group>"; };
+		BA41B6F813D439C500408B18 /* IKDropboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKDropboxController.h; sourceTree = "<group>"; };
+		BA41B6F913D439C500408B18 /* IKDropboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKDropboxController.m; sourceTree = "<group>"; };
 		BA585C0C13B0ED1A00AE0958 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		BA585C0D13B0ED1A00AE0958 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		BA585C0E13B0ED1A00AE0958 /* Routes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Routes.h; sourceTree = "<group>"; };
@@ -1003,6 +1010,8 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA41B6F413D4379B00408B18 /* icon-backforth.png */,
+				BA41B6F513D4379B00408B18 /* icon-backforth@2x.png */,
 				BA3B69B513CA07B9000491EB /* icon-check.png */,
 				BA3B69B613CA07B9000491EB /* icon-check@2x.png */,
 				BAC8A15713BFCE5100CA4936 /* icon-poi.png */,
@@ -1161,6 +1170,8 @@
 				BA9EACD613CEE225008EC741 /* MPOAuth */,
 				BA9EACFB13CEE225008EC741 /* NSString+Dropbox.h */,
 				BA9EACFC13CEE225008EC741 /* NSString+Dropbox.m */,
+				BA41B6F813D439C500408B18 /* IKDropboxController.h */,
+				BA41B6F913D439C500408B18 /* IKDropboxController.m */,
 			);
 			path = DropboxSDK;
 			sourceTree = "<group>";
@@ -1693,6 +1704,8 @@
 				BAC8A15E13BFCE5100CA4936 /* icon-flag@2x.png in Resources */,
 				BA3B69B713CA07B9000491EB /* icon-check.png in Resources */,
 				BA3B69B813CA07B9000491EB /* icon-check@2x.png in Resources */,
+				BA41B6F613D4379B00408B18 /* icon-backforth.png in Resources */,
+				BA41B6F713D4379B00408B18 /* icon-backforth@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1883,6 +1896,7 @@
 				BA9EAD2913CEE225008EC741 /* NSString+Dropbox.m in Sources */,
 				BA9EAD3913CF0503008EC741 /* IKDropboxLoginController.m in Sources */,
 				BA9EAD3C13CF0B50008EC741 /* IKDropboxLoginSource.m in Sources */,
+				BA41B6FA13D439C500408B18 /* IKDropboxController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,21 +27,28 @@
 #import "Route.h"
 
 #import "IKDropboxController.h"
-#import "DropboxSDK.h"
 #import "NSString+Dropbox.h"
 
 @interface RoutesViewController() <IKDropboxControllerDelegate>
+- (void)setWorking:(BOOL)working;
+
+
+@property(nonatomic,retain) UIActionSheet* backupRestoreSheet;
+
+- (void)hideActionSheet;
+
 @end;
 
 @implementation RoutesViewController
 
-@synthesize lists;
+@synthesize routes;
 @synthesize addButton;
 @synthesize syncButton;
+@synthesize backupRestoreSheet;
 
 - (id)init {
   if ((self =  [super initWithStyle:UITableViewStylePlain])) {
-    self.lists=[[[Routes alloc] init] autorelease];
+    self.routes=[[[Routes alloc] init] autorelease];
     self.title=NSLocalizedString(@"Routes", @"Waypoint Lists title");
   }
   return self;
@@ -49,7 +56,7 @@
 
 - (void)dealloc
 {
-  self.lists = nil;
+  self.routes = nil;
   [super dealloc];
 }
 
@@ -83,21 +90,25 @@
                     target:nil
                     action:nil] autorelease];
   
+  isSynActive=[[NSUserDefaults standardUserDefaults] boolForKey:@"IKSyncActive"];
+  
   [self setToolbarItems:[NSArray arrayWithObjects:
                          self.editButtonItem,
                          spacerButton,
-                         self.syncButton,
+                         isSynActive?self.syncButton:spacerButton,
                          spacerButton,
                          self.addButton,
                          nil]];
   
   self.tableView.allowsSelectionDuringEditing=YES;
+  
+  
 }
 
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  self.lists = nil;
+  self.routes = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -109,6 +120,11 @@
 {
   [super viewWillAppear:animated];
   [self.navigationController setToolbarHidden:NO animated:NO];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self 
+                                           selector:@selector(hideActionSheet) 
+                                               name:UIApplicationWillResignActiveNotification 
+                                             object:[UIApplication sharedApplication]];
 }
 
 
@@ -116,9 +132,9 @@
 {
   [super viewDidAppear:animated];
   
-  if( editingList ) {
+  if( editingRoute ) {
     
-    NSArray* indexPaths=[NSArray arrayWithObject:editingList];
+    NSArray* indexPaths=[NSArray arrayWithObject:editingRoute];
     
     NSLog(@"appear reload %@",indexPaths);
     [self.tableView beginUpdates];
@@ -126,11 +142,22 @@
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
-    editingList=nil;
+    editingRoute=nil;
     
-    [self.lists save];
+    [self.routes save];
   }
 }
+
+-(void) viewWillDisappear:(BOOL)animated{
+  [super viewWillDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self hideActionSheet];
+}
+
+- (void)hideActionSheet{
+  [self.backupRestoreSheet dismissWithClickedButtonIndex:self.backupRestoreSheet.cancelButtonIndex animated:NO];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -141,7 +168,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.lists count];
+  return [self.routes count];
 }
 
 
@@ -156,7 +183,7 @@
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
   }
   
-  Route* list = [self.lists routeAtIndexPath:indexPath];
+  Route* list = [self.routes routeAtIndexPath:indexPath];
   
   cell.textLabel.text = list.name;
 //  cell.detailTextLabel.text = host.address;
@@ -178,7 +205,7 @@
   
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     // Delete the row from the data source.
-    [self.lists deleteRouteAtIndexPath:indexPath];
+    [self.routes deleteRouteAtIndexPath:indexPath];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
   }   
   else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -187,7 +214,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-  [self.lists moveRouteAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
+  [self.routes moveRouteAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -208,7 +235,7 @@
     [self setToolbarItems:[NSArray arrayWithObjects:
                            self.editButtonItem,
                            spacerButton,
-                           self.syncButton,
+                           isSynActive?self.syncButton:spacerButton,
                            spacerButton,
                            self.addButton,
                            nil] animated:YES];
@@ -231,10 +258,10 @@
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
   if( indexPath.section==0 ){
-    Route* list = [self.lists routeAtIndexPath:indexPath];
+    Route* list = [self.routes routeAtIndexPath:indexPath];
     if (!self.tableView.editing ) {
       RouteViewController* listView = [[RouteViewController alloc] initWithRoute:list];
-      editingList = indexPath;
+      editingRoute = indexPath;
       [self.navigationController pushViewController:listView animated:YES];
       [listView release];
     }
@@ -245,18 +272,18 @@
 
 - (void)addRoute {
   
-  editingList=[self.lists addRoute];
+  editingRoute=[self.routes addRoute];
   
-  NSArray* indexPaths=[NSArray arrayWithObject:editingList];
+  NSArray* indexPaths=[NSArray arrayWithObject:editingRoute];
   
   [self.tableView beginUpdates];
   [self.tableView insertRowsAtIndexPaths:indexPaths 
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
   
-  Route* list = [self.lists routeAtIndexPath:editingList];
-  list.name=NSLocalizedString(@"Route", @"Route default name");
-  RouteViewController* listView = [[RouteViewController alloc] initWithRoute:list];
+  Route* newRoute = [self.routes routeAtIndexPath:editingRoute];
+  newRoute.name=NSLocalizedString(@"Route", @"Route default name");
+  RouteViewController* listView = [[RouteViewController alloc] initWithRoute:newRoute];
   [self.navigationController pushViewController:listView animated:YES];
   [listView release];
 }
@@ -272,54 +299,83 @@
 
 -(void) dropboxReady:(IKDropboxController*)controller{
   
-  BOOL hasRoutesFile=YES;
+  NSString* routesFileName= [self.routes.routesFile lastPathComponent];
+  BOOL hasRoutesFile=[controller metadataContainsPath:routesFileName];
   
-  NSString* routesFileName= [self.lists.routesFile lastPathComponent];
-  for (DBMetadata* child in controller.metaData.contents) {
-    qltrace(@"Check path %@",child.path);
-    hasRoutesFile = [routesFileName isEqualToDropboxPath:child.path];
-  }
-  
-  UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") 
+  self.backupRestoreSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") 
                                                           delegate:self 
                                                  cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel Button") 
                                             destructiveButtonTitle:hasRoutesFile?NSLocalizedString(@"Restore", @"Restore Button"):nil 
                                                  otherButtonTitles:NSLocalizedString(@"Backup",@"Backup Button"), nil];
-  popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-  [popupQuery showFromToolbar:self.navigationController.toolbar];
-  [popupQuery release];
+  self.backupRestoreSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+  [self.backupRestoreSheet showFromToolbar:self.navigationController.toolbar];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   
-  NSString* routesFileName= [self.lists.routesFile lastPathComponent];
+  if(buttonIndex==actionSheet.cancelButtonIndex)
+    return;
+  
+  NSString* routesFileName= [self.routes.routesFile lastPathComponent];
+  IKDropboxController* dbCtrl=[IKDropboxController sharedIKDropboxController];
+  
+  dbCtrl.restClient.delegate=self;
 
   if(buttonIndex == actionSheet.destructiveButtonIndex){
-    NSLog(@"Restore");
+    NSString* remoteRoutesPath=[dbCtrl.dataPath stringByAppendingPathComponent:routesFileName];
+    [dbCtrl.restClient loadFile:remoteRoutesPath intoPath:self.routes.routesFile];
   }
   else if(buttonIndex == actionSheet.firstOtherButtonIndex){
-    
-    [[IKDropboxController sharedIKDropboxController].restClient uploadFile:routesFileName toPath:@"/iKopterData" fromPath:lists.routesFile];
-    NSLog(@"Backup");
+    [dbCtrl.restClient uploadFile:routesFileName toPath:dbCtrl.dataPath fromPath:self.routes.routesFile];
   }
+  
+  self.backupRestoreSheet=nil;
+  
+  [self setWorking:YES];
 }
 
+
+- (void)setWorking:(BOOL)working {
+  
+  if (working) {
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = NSLocalizedString(@"Syncing", @"DB Sync routes HUD");
+  }
+  else
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
 #pragma mark - DBRestClientDelegate
 
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath {
+  [self setWorking:NO];
   
+  [self.routes load];
+  [self.tableView reloadData];
 }
 
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error{
+  [self setWorking:NO];
+  [self.routes save];
   
+  [IKDropboxController showError:error withTitle:NSLocalizedString(@"Restore failed", @"Routes Restore Error Title")];
 }
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath{
+  [self setWorking:NO];
   
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error{
+  [self setWorking:NO];
+  [IKDropboxController showError:error withTitle:NSLocalizedString(@"Backup failed", @"Routes Backup Error Title")];
+}
+
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden {
   
+  [hud removeFromSuperview];
+  [hud release];
 }
 
 

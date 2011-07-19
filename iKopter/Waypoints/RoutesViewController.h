@@ -25,14 +25,16 @@
 #import <UIKit/UIKit.h>
 #import "Routes.h"
 #import "DropboxSDK.h"
+#import "MBProgressHUD.h"
 
-@interface RoutesViewController : UITableViewController<UIActionSheetDelegate,DBRestClientDelegate>{
+@interface RoutesViewController : UITableViewController<UIActionSheetDelegate,DBRestClientDelegate,MBProgressHUDDelegate>{
     
-
-  NSIndexPath* editingList;
+  MBProgressHUD* hud;
+  NSIndexPath* editingRoute;
+  BOOL isSynActive;
 }
 
-@property(retain) Routes* lists;
+@property(retain) Routes* routes;
 @property(retain) UIBarButtonItem* addButton;
 @property(retain) UIBarButtonItem* syncButton;
 

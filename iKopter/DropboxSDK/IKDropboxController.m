@@ -22,7 +22,6 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "DropboxSDK.h"
 #import "NSString+Dropbox.h"
 #import "IKDropboxController.h"
 
@@ -39,10 +38,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IKDropboxController);
 
 @synthesize delegate;
 @synthesize metaData;
+@synthesize dataPath;
 
 - (id)init {
   self = [super init];
   if (self) {
+    dataPath=kIKDropboxPath;
   }
   return self;
 }
@@ -53,6 +54,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IKDropboxController);
 }
 
 -(void) connectAndPrepareMetadata{
+
+  restClient.delegate = self;
 
   NSLog(@"Delegate %@",self.delegate);
   if (![[DBSession sharedSession] isLinked]) {
@@ -66,6 +69,44 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IKDropboxController);
   }
 }
 
+-(BOOL) metadataContainsPath:(NSString*)path {
+  NSString* testPath=[self.dataPath stringByAppendingPathComponent:path];
+  
+  for (DBMetadata* child in self.metaData.contents) {
+    qltrace(@"Check path %@",child.path);
+    if([testPath isEqualToDropboxPath:child.path])
+      return YES;
+  }
+  
+  return NO;
+}
+
+
++(void)showError:(NSError *)error withTitle:(NSString *)title{
+
+  NSString* message;
+  if ([error.domain isEqual:NSURLErrorDomain]) {
+    message = NSLocalizedString(@"There was an error connecting to Dropbox.",@"DB Login Err Msg");
+  } else {
+    NSObject* errorResponse = [[error userInfo] objectForKey:@"error"];
+    if ([errorResponse isKindOfClass:[NSString class]]) {
+      message = [[NSBundle mainBundle] localizedStringForKey:(NSString*)errorResponse value:@"" table:nil];
+    } else if ([errorResponse isKindOfClass:[NSDictionary class]]) {
+      NSDictionary* errorDict = (NSDictionary*)errorResponse;
+      message = [[NSBundle mainBundle] localizedStringForKey:([errorDict objectForKey:[[errorDict allKeys] objectAtIndex:0]]) value:@"" table:nil];
+    } else {
+      message = NSLocalizedString(@"An unknown error has occurred.",@"DB Login Err Unknown Msg");
+    }
+  }
+  
+  [[[[UIAlertView alloc] 
+     initWithTitle:title message:message delegate:nil 
+     cancelButtonTitle:@"OK" otherButtonTitles:nil]
+    autorelease]
+   show];
+}
+
+
 #pragma mark - DBRestClientDelegate methods
 
 - (void) restClient:(DBRestClient *)client createdFolder:(DBMetadata *)folder{
@@ -74,13 +115,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IKDropboxController);
     metaData = [folder retain];
     qlinfo(@"Created the Dropbox folder %@",folder.path);
     
+    restClient.delegate = self.delegate;
     [self.delegate dropboxReady:self];
   }
 }
 
 - (void) restClient:(DBRestClient *)client createFolderFailedWithError:(NSError *)error{
-  NSLog(@"restClient:createFolderFailedWithError: %@", [error localizedDescription]);
-//  [self displayError];
+  [IKDropboxController showError:error withTitle:NSLocalizedString(@"Creating iKopter data folder failed" , @"Create Data Folder Error Title")]; 
 }
 
 - (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)newMetadata {
@@ -88,11 +129,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IKDropboxController);
     [metaData release];
     metaData = [newMetadata retain];
     qlinfo(@"Loaded the meta data for the Dropbox folder %@ call delegate %@",newMetadata.path,self.delegate);
+    restClient.delegate = self.delegate;
     [self.delegate dropboxReady:self];
   }
 }
 
 - (void)restClient:(DBRestClient*)client metadataUnchangedAtPath:(NSString*)path {
+  restClient.delegate = self.delegate;
   [self.delegate dropboxReady:self];
 }
 
@@ -103,15 +146,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IKDropboxController);
     qlinfo(@"The Dropbox path for iKopter is not there, create one");
     [self.restClient createFolder:kIKDropboxPath];
   }
-//  [self displayError];
-//  [self setWorking:NO];
+  else{
+    [IKDropboxController showError:error withTitle:NSLocalizedString(@"Getting iKopter data folder failed" , @"Getting Data Folder Error Title")]; 
+  }
 }
 
 #pragma mark - DBLoginControllerDelegate methods
 
 - (void)loginControllerDidLogin:(IKDropboxLoginController*)controller {
   controller.delegate=nil;
-  [self connectAndPrepareMetadata];
+  
+  [self performSelector:@selector(connectAndPrepareMetadata) withObject:self afterDelay:0.1];
 }
 
 - (void)loginControllerDidCancel:(IKDropboxLoginController*)controller {

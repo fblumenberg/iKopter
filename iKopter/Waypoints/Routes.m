@@ -63,7 +63,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define kFilename        @"mkroutes"
+#define kFilename        @"mkroutes.plist"
 #define kDataKey         @"Data"
 #define kNameKey         @"Name"
 
@@ -72,12 +72,18 @@
   [routesFile release];
   routesFile = [TTPathForDocumentsResource(kFilename) retain];
   
+  NSString* oldRoutesFile = [routesFile stringByDeletingPathExtension];
+  if ([[NSFileManager defaultManager] fileExistsAtPath:oldRoutesFile]) {
+    NSError * err = NULL;
+    [[NSFileManager defaultManager] moveItemAtPath:oldRoutesFile toPath:routesFile error:&err];
+    qlinfo(@"Move route file form %@ to %@ : %@",oldRoutesFile,routesFile,err);
+  }  
+  
   if ([[NSFileManager defaultManager] fileExistsAtPath:routesFile]) {
     
     qlinfo(@"Load the point lists from %@",routesFile);
     
-    NSData *data = [[NSMutableData alloc]
-                    initWithContentsOfFile:routesFile];
+    NSData *data = [[NSMutableData alloc] initWithContentsOfFile:routesFile];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     
     TT_RELEASE_SAFELY(routes);

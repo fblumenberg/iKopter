@@ -25,6 +25,7 @@
 #import <Foundation/Foundation.h>
 #import "SynthesizeSingleton.h"
 
+#import "DropboxSDK.h"
 #import "IKDropboxLoginController.h"
 
 @class DBRestClient;
@@ -41,13 +42,18 @@
 
 -(void) connectAndPrepareMetadata;
 
-@property(nonatomic, readonly) DBRestClient* restClient;
+@property(nonatomic,readonly) DBRestClient* restClient;
 @property(nonatomic,readonly) DBMetadata* metaData;
 @property(nonatomic,assign) id<IKDropboxControllerDelegate> delegate;
+@property(nonatomic,readonly) NSString* dataPath;
+
++(void)showError:(NSError*)error withTitle:(NSString*)title;
+
+-(BOOL) metadataContainsPath:(NSString*)path;
 
 @end
 
-@protocol IKDropboxControllerDelegate
+@protocol IKDropboxControllerDelegate <DBRestClientDelegate>
 
 -(void) dropboxReady:(IKDropboxController*)controller;
 
