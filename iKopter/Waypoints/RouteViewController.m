@@ -233,7 +233,7 @@
                              self.selectedViewController.editButtonItem,
                              self.spacer,
                              self.ulButton,
-                             self.dlButton,
+                             //self.dlButton,
                              self.spacer,
                              self.addWithGpsButton,
                              self.addButton,nil] animated:YES];
@@ -254,7 +254,7 @@
                              curlBarItem,
                              self.spacer,
                              self.ulButton,
-                             self.dlButton,
+                             //self.dlButton,
                              self.spacer,
                              self.addWithGpsButton,
                              self.addButton, nil] animated:YES];
