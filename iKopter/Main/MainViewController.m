@@ -214,7 +214,6 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
   
   static NSString *CellIdentifier = @"DeviceInfoCell";
-  static NSString *CellIdentifierNA = @"DeviceInfoCellNA";
   
   IKMkAddress address=kIKMkAddressMK3MAg;
   
@@ -224,33 +223,19 @@
     address=kIKMkAddressFC;
   IKDeviceVersion* v = [[MKConnectionController sharedMKConnectionController] versionForAddress:address];
 
-  UITableViewCell *cell;
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+  }
+  
+  cell.accessoryType = UITableViewCellAccessoryNone;
+
   if(v){  
-    
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
     cell.textLabel.text = v.versionString;
-    
-    UIImage *accessoryImage = v.hasError?[UIImage imageNamed:@"blank_badge_red.png"]:[UIImage imageNamed:@"blank_badge_green.png"];
-    UIImageView *accImageView = [[UIImageView alloc] initWithImage:accessoryImage];
-    [accImageView setFrame:CGRectMake(0, 0, 32.0, 32.0)];
-    cell.accessoryView = accImageView;
-    [accImageView release];
+    cell.detailTextLabel.text = v.hasError?@"\ue219":@"\ue21a"; 
   }
   else{
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierNA];
-    if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierNA] autorelease];
-    }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
     cell.textLabel.text = [specifier title];
     cell.detailTextLabel.text=NSLocalizedString(@"not available", @"Device not available");
   }
@@ -335,11 +320,6 @@
 
   connectionState=MKConnectionStateConnected;
 
-//  [_tableView beginUpdates]; 
-//  [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade]; 
-//  [_tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade]; 
-//  [_tableView endUpdates];
-  
   [_tableView reloadData];
   
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];

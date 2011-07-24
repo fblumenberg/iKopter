@@ -195,8 +195,6 @@
 		BAA4E708137EBA430068E38E /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6EE137EBA430068E38E /* altitude.png */; };
 		BAA4E709137EBA430068E38E /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6EF137EBA430068E38E /* altitudeMax.png */; };
 		BAA4E70A137EBA430068E38E /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F0137EBA430068E38E /* battery.png */; };
-		BAA4E70B137EBA430068E38E /* blank_badge_green.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F1137EBA430068E38E /* blank_badge_green.png */; };
-		BAA4E70C137EBA430068E38E /* blank_badge_red.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F2137EBA430068E38E /* blank_badge_red.png */; };
 		BAA4E70D137EBA430068E38E /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F3137EBA430068E38E /* compass.png */; };
 		BAA4E70E137EBA430068E38E /* flightTime.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F4137EBA430068E38E /* flightTime.png */; };
 		BAA4E70F137EBA430068E38E /* gpsCH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F5137EBA430068E38E /* gpsCH.png */; };
@@ -635,8 +633,6 @@
 		BAA4E6EE137EBA430068E38E /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAA4E6EF137EBA430068E38E /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
 		BAA4E6F0137EBA430068E38E /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
-		BAA4E6F1137EBA430068E38E /* blank_badge_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_badge_green.png; sourceTree = "<group>"; };
-		BAA4E6F2137EBA430068E38E /* blank_badge_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_badge_red.png; sourceTree = "<group>"; };
 		BAA4E6F3137EBA430068E38E /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		BAA4E6F4137EBA430068E38E /* flightTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flightTime.png; sourceTree = "<group>"; };
 		BAA4E6F5137EBA430068E38E /* gpsCH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsCH.png; sourceTree = "<group>"; };
@@ -1051,8 +1047,6 @@
 				BAA4E6EE137EBA430068E38E /* altitude.png */,
 				BAA4E6EF137EBA430068E38E /* altitudeMax.png */,
 				BAA4E6F0137EBA430068E38E /* battery.png */,
-				BAA4E6F1137EBA430068E38E /* blank_badge_green.png */,
-				BAA4E6F2137EBA430068E38E /* blank_badge_red.png */,
 				BAA4E6F3137EBA430068E38E /* compass.png */,
 				BAA4E6F4137EBA430068E38E /* flightTime.png */,
 				BAA4E6F5137EBA430068E38E /* gpsCH.png */,
@@ -1640,8 +1634,6 @@
 				BAA4E708137EBA430068E38E /* altitude.png in Resources */,
 				BAA4E709137EBA430068E38E /* altitudeMax.png in Resources */,
 				BAA4E70A137EBA430068E38E /* battery.png in Resources */,
-				BAA4E70B137EBA430068E38E /* blank_badge_green.png in Resources */,
-				BAA4E70C137EBA430068E38E /* blank_badge_red.png in Resources */,
 				BAA4E70D137EBA430068E38E /* compass.png in Resources */,
 				BAA4E70E137EBA430068E38E /* flightTime.png in Resources */,
 				BAA4E70F137EBA430068E38E /* gpsCH.png in Resources */,
