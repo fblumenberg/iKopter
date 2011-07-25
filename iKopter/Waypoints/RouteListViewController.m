@@ -171,8 +171,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
- // NSLog(@"cellForRowAtIndexPath %@",indexPath);
-  
   if(indexPath.section==0){
     return [self cellForExtra:tableView indexPath:indexPath];
   }
@@ -194,8 +192,7 @@
     cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"POI",@"POI cell"),point.index];
   }
   
-  cell.detailTextLabel.text=[NSString stringWithFormat:@"%f,%f - %d",point.posLatitude,point.posLongitude,point.altitude];
-  
+  cell.detailTextLabel.text=[NSString stringWithFormat:@"%f,%f - %d m - %d s",point.posLatitude,point.posLongitude,point.altitude,point.holdTime];
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   
   return cell;

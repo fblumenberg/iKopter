@@ -174,19 +174,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  NSLog(@"cellForRowAtIndexPath %@",indexPath);
-  
   static NSString *CellIdentifier = @"RoutesCell";
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
   }
   
   Route* list = [self.routes routeAtIndexPath:indexPath];
   
   cell.textLabel.text = list.name;
-//  cell.detailTextLabel.text = host.address;
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   
   return cell;
