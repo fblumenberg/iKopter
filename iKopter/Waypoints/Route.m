@@ -36,7 +36,11 @@
 @synthesize routes;
 
 + (CLLocationCoordinate2D) defaultCoordinate{
-  return CLLocationCoordinate2DMake(49.860348, 8.686227);
+  
+  double latitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultCoordLat"] doubleValue];
+  double longitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultCoordLong"] doubleValue];
+  
+  return CLLocationCoordinate2DMake(latitude, longitude);
 }
 
 - (id) init
@@ -146,10 +150,12 @@
 }
 
 -(NSIndexPath*) addPointAtCoordinate:(CLLocationCoordinate2D)coordinate {
-  IKPoint* h = [[IKPoint alloc]initWithCoordinate:coordinate];
-  h.index=[points count]+1;
-  [points addObject:h];
-  [h release];
+  IKPoint* newPoint = [[IKPoint alloc]initWithCoordinate:coordinate];
+
+  newPoint.index=[points count]+1;
+
+  [points addObject:newPoint];
+  [newPoint release];
   
   qltrace(@"%@",points);
 

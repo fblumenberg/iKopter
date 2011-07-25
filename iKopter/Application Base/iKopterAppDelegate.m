@@ -62,6 +62,19 @@
   self.window.rootViewController = self.navigationController;
   [self.window makeKeyAndVisible];
   
+  // Load the default values for the user defaults
+  NSString* pathToUserDefaultsValues = [[NSBundle mainBundle]
+                                        pathForResource:@"userDefaults" 
+                                        ofType:@"plist"];
+  NSDictionary* userDefaultsValues = [NSDictionary dictionaryWithContentsOfFile:pathToUserDefaultsValues];
+  
+  // Set them in the standard user defaults
+  [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsValues];
+
+  NSLog(@"Def:%@",[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]);
+
+  
+  
   qlinfo(@"Initializing the crash log manager");
   [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"http://frankblumenberg.de/crashlog/crash_v200.php"];
   [[BWQuincyManager sharedQuincyManager] setDelegate:self];

@@ -149,14 +149,15 @@
 - (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate{
   self = [super init];
   if (self != nil) {
-    self.heading = 0;             
-    self.toleranceRadius = 5;     
-    self.holdTime = 2;            
+    self.heading = 0;            
+    self.altitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultAltitude"] integerValue];
+    self.toleranceRadius = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultToleranceRadius"] integerValue];
+    self.holdTime = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultHoldTime"] integerValue];
     self.eventFlag = 0;          
     self.index = 0;               
     self.type = POINT_TYPE_WP;                
     self.wpEventChannelValue = 0;
-    self.altitudeRate = 20;  
+    self.altitudeRate = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultAltitudeRate"] integerValue];
     
     self.coordinate=theCoordinate;
 
