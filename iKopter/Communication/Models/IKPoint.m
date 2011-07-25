@@ -191,6 +191,7 @@
   if ((self = [super initWithCoder:aDecoder])) {
     self.heading = [aDecoder decodeIntegerForKey:@"heading"];
     self.toleranceRadius = [aDecoder decodeIntegerForKey:@"toleranceRadius"];
+    self.holdTime = [aDecoder decodeIntegerForKey:@"holdTime"];
     self.heading = [aDecoder decodeIntegerForKey:@"heading"];
     self.eventFlag = [aDecoder decodeIntegerForKey:@"eventFlag"];
     self.index = [aDecoder decodeIntegerForKey:@"index"];
