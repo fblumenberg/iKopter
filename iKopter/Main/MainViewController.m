@@ -43,7 +43,7 @@
   
   if (self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil]) {
     self.file = @"Main";
-    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:nil];
+    self.settingsStore = [[[IASKSettingsStoreObject alloc] initWithObject:nil] autorelease];
     
     self.showCreditsFooter=NO;
     self.showDoneButton=NO;

@@ -46,10 +46,10 @@
 
 - (void) adjustViewsForOrientation:(UIInterfaceOrientation)orientation {
   if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
-    self.label.font=[[UIFont fontWithName:@"CourierNewPS-BoldMT" size:30.0]retain];
+    self.label.font=[UIFont fontWithName:@"CourierNewPS-BoldMT" size:30.0];
   }
   else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-    self.label.font=[[UIFont fontWithName:@"CourierNewPS-BoldMT" size:22.0]retain];
+    self.label.font=[UIFont fontWithName:@"CourierNewPS-BoldMT" size:22.0];
   }
 }
 
@@ -90,7 +90,7 @@
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
   [self updateSegment];
 
-  [self adjustViewsForOrientation:[[UIDevice currentDevice] orientation]];
+  [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

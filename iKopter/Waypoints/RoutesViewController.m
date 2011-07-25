@@ -45,6 +45,7 @@
 @synthesize addButton;
 @synthesize syncButton;
 @synthesize backupRestoreSheet;
+@synthesize editingRoute;
 
 - (id)init {
   if ((self =  [super initWithStyle:UITableViewStylePlain])) {
@@ -57,6 +58,11 @@
 - (void)dealloc
 {
   self.routes = nil;
+  self.addButton = nil;
+  self.syncButton = nil;
+  self.backupRestoreSheet=nil;
+  self.editingRoute = nil;
+  
   [super dealloc];
 }
 
@@ -132,9 +138,9 @@
 {
   [super viewDidAppear:animated];
   
-  if( editingRoute ) {
+  if( self.editingRoute ) {
     
-    NSArray* indexPaths=[NSArray arrayWithObject:editingRoute];
+    NSArray* indexPaths=[NSArray arrayWithObject:self.editingRoute];
     
     NSLog(@"appear reload %@",indexPaths);
     [self.tableView beginUpdates];
@@ -142,7 +148,7 @@
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
-    editingRoute=nil;
+    self.editingRoute=nil;
     
     [self.routes save];
   }
@@ -258,7 +264,7 @@
     Route* list = [self.routes routeAtIndexPath:indexPath];
     if (!self.tableView.editing ) {
       RouteViewController* listView = [[RouteViewController alloc] initWithRoute:list];
-      editingRoute = indexPath;
+      self.editingRoute = indexPath;
       [self.navigationController pushViewController:listView animated:YES];
       [listView release];
     }
@@ -269,16 +275,16 @@
 
 - (void)addRoute {
   
-  editingRoute=[self.routes addRoute];
+  self.editingRoute=[self.routes addRoute];
   
-  NSArray* indexPaths=[NSArray arrayWithObject:editingRoute];
+  NSArray* indexPaths=[NSArray arrayWithObject:self.editingRoute];
   
   [self.tableView beginUpdates];
   [self.tableView insertRowsAtIndexPaths:indexPaths 
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
   
-  Route* newRoute = [self.routes routeAtIndexPath:editingRoute];
+  Route* newRoute = [self.routes routeAtIndexPath:self.editingRoute];
   newRoute.name=NSLocalizedString(@"Route", @"Route default name");
   RouteViewController* listView = [[RouteViewController alloc] initWithRoute:newRoute];
   [self.navigationController pushViewController:listView animated:YES];
@@ -299,11 +305,11 @@
   NSString* routesFileName= [self.routes.routesFile lastPathComponent];
   BOOL hasRoutesFile=[controller metadataContainsPath:routesFileName];
   
-  self.backupRestoreSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") 
+  self.backupRestoreSheet = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") 
                                                           delegate:self 
                                                  cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel Button") 
                                             destructiveButtonTitle:hasRoutesFile?NSLocalizedString(@"Restore", @"Restore Button"):nil 
-                                                 otherButtonTitles:NSLocalizedString(@"Backup",@"Backup Button"), nil];
+                                                 otherButtonTitles:NSLocalizedString(@"Backup",@"Backup Button"), nil] autorelease];
   self.backupRestoreSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
   [self.backupRestoreSheet showFromToolbar:self.navigationController.toolbar];
 }

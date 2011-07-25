@@ -31,10 +31,10 @@
 @interface RouteListViewController : UITableViewController<UITextFieldDelegate,SurrogateViewParent> {
     
 
-  NSIndexPath* editingPoint;
 }
 
 @property(retain) Route* list;
+@property(retain) NSIndexPath* editingPoint;
 
 - (id)initWithRoute:(Route*) list;
 - (void)addPoint;

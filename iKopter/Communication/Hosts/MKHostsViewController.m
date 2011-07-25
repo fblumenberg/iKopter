@@ -31,6 +31,7 @@
 
 @synthesize hosts;
 @synthesize addButton;
+@synthesize editingHost;
 
 - (id)initWithHosts:(MKHosts *)theHostList {
   if ((self =  [super initWithStyle:UITableViewStylePlain])) {
@@ -43,6 +44,7 @@
 - (void)dealloc
 {
   self.hosts = nil;
+  self.editingHost=nil;
   [super dealloc];
 }
 
@@ -95,9 +97,9 @@
 {
   [super viewDidAppear:animated];
   
-  if( editingHost ) {
+  if( self.editingHost ) {
     
-    NSArray* indexPaths=[NSArray arrayWithObject:editingHost];
+    NSArray* indexPaths=[NSArray arrayWithObject:self.editingHost];
     
     NSLog(@"appear reload %@",indexPaths);
     [self.tableView beginUpdates];
@@ -105,7 +107,7 @@
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
-    editingHost=nil;
+    self.editingHost=nil;
     
     [self.hosts save];
   }
@@ -230,7 +232,7 @@
     MKHost* host=[self.hosts hostAtIndexPath:indexPath];
     if (!self.tableView.editing ) {
       MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
-      editingHost = indexPath;
+      self.editingHost = indexPath;
       [self.navigationController pushViewController:hostView animated:YES];
       [hostView release];
     }
@@ -241,16 +243,16 @@
 
 - (void)addHost {
   
-  editingHost=[self.hosts addHost];
+  self.editingHost=[self.hosts addHost];
   
-  NSArray* indexPaths=[NSArray arrayWithObject:editingHost];
+  NSArray* indexPaths=[NSArray arrayWithObject:self.editingHost];
   
   [self.tableView beginUpdates];
   [self.tableView insertRowsAtIndexPaths:indexPaths 
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
   
-  MKHost* host=[self.hosts hostAtIndexPath:editingHost]; 
+  MKHost* host=[self.hosts hostAtIndexPath:self.editingHost]; 
   MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
   [self.navigationController pushViewController:hostView animated:YES];
   [hostView release];   

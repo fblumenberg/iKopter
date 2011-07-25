@@ -42,7 +42,7 @@
   
   if (self =  [super initWithNibName:@"IASKAppSettingsView" bundle:nil]) {
     self.file = @"Setting";
-    self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:aSetting];
+    self.settingsStore = [[[IASKSettingsStoreObject alloc] initWithObject:aSetting] autorelease];
     self.setting = aSetting;
     self.showCreditsFooter=NO;
     self.showDoneButton=NO;
@@ -56,7 +56,7 @@
 - (void)dealloc {
   
   self.setting=nil;
-  [_setting release];
+
   [super dealloc];
 }
 
@@ -169,7 +169,7 @@
   
   IKParamSet* paramSet=[[aNotification userInfo] objectForKey:kIKDataKeyParamSet];
   self.setting = paramSet;
-  self.settingsStore = [[IASKSettingsStoreObject alloc] initWithObject:paramSet];
+  self.settingsStore = [[[IASKSettingsStoreObject alloc] initWithObject:paramSet]autorelease];
   [_tableView reloadData];
 }
 

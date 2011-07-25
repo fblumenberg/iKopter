@@ -31,7 +31,8 @@
 @implementation RouteListViewController
 
 @synthesize list;
-//@synthesize addButton;
+@synthesize editingPoint;
+
 @synthesize surrogateParent;
 
 - (id)initWithRoute:(Route*) aList {
@@ -45,6 +46,7 @@
 - (void)dealloc
 {
   self.list = nil;
+  self.editingPoint=nil;
   [super dealloc];
 }
 
@@ -65,6 +67,7 @@
 {
   [super viewDidUnload];
   self.list = nil;
+  self.editingPoint = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -84,9 +87,9 @@
 {
   [super viewDidAppear:animated];
   
-  if( editingPoint ) {
+  if( self.editingPoint ) {
     
-    NSArray* indexPaths=[NSArray arrayWithObject:editingPoint];
+    NSArray* indexPaths=[NSArray arrayWithObject:self.editingPoint];
     
     NSLog(@"appear reload %@",indexPaths);
     [self.tableView beginUpdates];
@@ -94,7 +97,7 @@
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
-    editingPoint=nil;
+    self.editingPoint=nil;
   }
 }
 
@@ -262,7 +265,7 @@
     if (!self.tableView.editing ) {
       
       WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-      editingPoint = indexPath;
+      self.editingPoint = indexPath;
       [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
       [hostView release];
     }
@@ -273,16 +276,16 @@
 
 - (void)addPoint {
   
-  editingPoint=[self.list addPointAtCenter];
+  self.editingPoint=[self.list addPointAtCenter];
   
-  NSArray* indexPaths=[NSArray arrayWithObject:editingPoint];
+  NSArray* indexPaths=[NSArray arrayWithObject:self.editingPoint];
   
   [self.tableView beginUpdates];
   [self.tableView insertRowsAtIndexPaths:indexPaths 
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
   
-  IKPoint* point = [self.list pointAtIndexPath:editingPoint];
+  IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
   WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
   [self.navigationController pushViewController:hostView animated:YES];
   [hostView release];
@@ -290,16 +293,16 @@
 
 - (void)addPointWithLocation:(CLLocation*)location{
   
-  editingPoint=[self.list addPointAtCoordinate:location.coordinate];
+  self.editingPoint=[self.list addPointAtCoordinate:location.coordinate];
   
-  NSArray* indexPaths=[NSArray arrayWithObject:editingPoint];
+  NSArray* indexPaths=[NSArray arrayWithObject:self.editingPoint];
   
   [self.tableView beginUpdates];
   [self.tableView insertRowsAtIndexPaths:indexPaths 
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
   
-  IKPoint* point = [self.list pointAtIndexPath:editingPoint];
+  IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
   WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
   [self.navigationController pushViewController:hostView animated:YES];
   [hostView release];

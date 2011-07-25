@@ -126,7 +126,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
       nsclass = [MKIpConnection class];
     }
     
-    self.inputController = [[nsclass alloc] initWithDelegate:self];
+    self.inputController = [[[nsclass alloc] initWithDelegate:self] autorelease];
     
     self.hostOrDevice = host;  
 
@@ -168,7 +168,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 {
   if (theAddress <= kIKMkAddressAll || theAddress > kIKMkAddressMK3MAg)
     return nil;
-  return versions[theAddress];
+  return versions[theAddress-1];
 }
 
 
@@ -177,15 +177,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL) hasNaviCtrl {
-  return versions[kIKMkAddressNC]!=nil;
+  return versions[kIKMkAddressNC-1]!=nil;
 }
 
 - (BOOL) hasFlightCtrl {
-  return versions[kIKMkAddressFC]!=nil;
+  return versions[kIKMkAddressFC-1]!=nil;
 }
 
 - (BOOL) hasMK3MAG {
-  return versions[kIKMkAddressMK3MAg]!=nil;
+  return versions[kIKMkAddressMK3MAg-1]!=nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -420,20 +420,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 - (void) clearVersions {
   
-  [versions[kIKMkAddressFC] release];
-  [versions[kIKMkAddressNC] release];
-  [versions[kIKMkAddressMK3MAg] release];
+  [versions[kIKMkAddressFC-1] release];
+  [versions[kIKMkAddressNC-1] release];
+  [versions[kIKMkAddressMK3MAg-1] release];
   
-  versions[kIKMkAddressFC]=nil;
-  versions[kIKMkAddressNC]=nil;
-  versions[kIKMkAddressMK3MAg]=nil;
+  versions[kIKMkAddressFC-1]=nil;
+  versions[kIKMkAddressNC-1]=nil;
+  versions[kIKMkAddressMK3MAg-1]=nil;
 }
 
 - (void) setVersion:(IKDeviceVersion*)v {
   
   if (v.address > kIKMkAddressAll || v.address <= kIKMkAddressMK3MAg){
-    [versions[v.address] release];  
-    versions[v.address]=[v retain];
+    [versions[v.address-1] release];  
+    versions[v.address-1]=[v retain];
   }
 }
 
@@ -626,7 +626,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
     case MKCommandVersionResponse:
       [NSObject cancelPreviousPerformRequestsWithTarget:self];
       [self setVersion:[IKDeviceVersion versionWithData:payload forAddress:(IKMkAddress)address]];
-      qltrace(@"Got a device version %@",[self versionForAddress:address]);
+      qltrace(@"Got a device %d version %@",address,[self versionForAddress:address]);
       
       NSDictionary* d=[NSDictionary dictionaryWithObject:[self versionForAddress:address] forKey:kIKDataKeyVersion];
       [[NSNotificationCenter defaultCenter] postNotificationName:MKFoundDeviceNotification 

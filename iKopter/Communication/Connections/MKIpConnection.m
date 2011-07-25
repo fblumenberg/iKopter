@@ -42,7 +42,8 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 
 - (id) initWithDelegate:(id<MKConnectionDelegate>)theDelegate;
 {
-  if (self == [super init]) {
+  self = [super init];
+  if (self) {
     
     asyncSocket = [[AsyncSocket alloc] init];
     [asyncSocket setDelegate:self];   

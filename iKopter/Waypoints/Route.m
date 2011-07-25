@@ -122,7 +122,7 @@
 
 -(void)updatePoints{
   
-  qltrace(@"%@",points);
+  qltrace(@"%@",self.points);
   
   int newIndexes[32];
   int oldIndexes[32];
@@ -135,8 +135,8 @@
     index++;
   };
 
-  for(IKPoint* pointToMove in points){ 
-    for(int i=0;i<[points count];i++){
+  for(IKPoint* pointToMove in self.points){ 
+    for(int i=0;i<[self.points count];i++){
       qltrace(@"Check if %d==%d",pointToMove.heading,-oldIndexes[i]);
       if( pointToMove.heading<0 && pointToMove.heading == -oldIndexes[i] ){
         pointToMove.heading = -newIndexes[i];

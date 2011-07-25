@@ -30,13 +30,13 @@
 @interface RoutesViewController : UITableViewController<UIActionSheetDelegate,DBRestClientDelegate,MBProgressHUDDelegate>{
     
   MBProgressHUD* hud;
-  NSIndexPath* editingRoute;
   BOOL isSynActive;
 }
 
 @property(retain) Routes* routes;
 @property(retain) UIBarButtonItem* addButton;
 @property(retain) UIBarButtonItem* syncButton;
+@property(retain) NSIndexPath* editingRoute;
 
 - (id)init;
 

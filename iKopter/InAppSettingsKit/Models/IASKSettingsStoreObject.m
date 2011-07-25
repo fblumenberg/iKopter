@@ -23,7 +23,8 @@
 @synthesize object=_object;
 
 - (id)initWithObject:(id)theObject {
-  if([super init]) {
+  self=[super init];
+  if(self) {
     _object = [theObject retain];
   }
   return self;

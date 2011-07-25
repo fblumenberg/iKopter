@@ -55,10 +55,10 @@
 	connectedToDaemon = NO;
 	
 	// device discovery
-	[self setDiscoveredDevices: [[NSMutableArray alloc] init]];
+	[self setDiscoveredDevices: [NSMutableArray array]];
 	
 	// delegate and listener
-	[self setListeners:[[NSMutableArray alloc] init]];
+	[self setListeners:[NSMutableArray array]];
   
   [MKBTStackManager sharedInstance].delegate=self;
   
@@ -410,7 +410,7 @@
 						// qltrace(@"found %@", [BTDevice stringForAddress:&addr]);
 						BTDevice* device = [self deviceForAddress:&addr];
 						if (!device) {
-							device = [[BTDevice alloc] init];
+							device = [[[BTDevice alloc] init] autorelease];
 							[discoveredDevices addObject:device];
 							[device setAddress:&addr];
 							// get name from deviceInfo
@@ -437,7 +437,7 @@
 						// qltrace(@"found %@", [BTDevice stringForAddress:&addr]);
 						BTDevice* device = [self deviceForAddress:&addr];
 						if (!device) {
-							device = [[BTDevice alloc] init];
+							device = [[[BTDevice alloc] init] autorelease];
 							[discoveredDevices addObject:device];
 							[device setAddress:&addr];
 							// get name from deviceInfo

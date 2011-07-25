@@ -199,7 +199,7 @@
   
   UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight]; 
   [infoButton addTarget:self action:@selector(showSettingsModal:) forControlEvents:UIControlEventTouchUpInside];
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
   
   self.tableView.allowsSelectionDuringEditing=YES;
   

@@ -94,7 +94,10 @@
    [super viewWillAppear:animated];
   
    self.title=NSLocalizedString(@"Bluetooth", @"BT discovery title");
-   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", @"BT descovery cancel") style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
+   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", @"BT descovery cancel") 
+                                                                            style:UIBarButtonItemStyleDone 
+                                                                           target:self 
+                                                                           action:@selector(cancel)] autorelease];
    
    BTstackError err = [bt activate];
    if (err) 

@@ -176,6 +176,9 @@
   self.lm.delegate = self;
   self.lm.desiredAccuracy = kCLLocationAccuracyBest;
   
+  self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
+                                   [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+  
   segment.selectedSegmentIndex=0;
 }
 
@@ -201,8 +204,8 @@
 
 - (void) viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
-  [self.selectedViewController viewWillAppear:animated];
-  [self updateSelectedViewFrame];
+  
+  [self changeView];
   
   self.routeController = [[[RouteController alloc]initWithDelegate:self]autorelease];
 }
@@ -366,6 +369,7 @@
   [alert show];
   [alert release];
   
+  self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized);
   self.lm = nil;
 }
 

@@ -99,7 +99,7 @@
 //  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action: nil] autorelease];
 //  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"screenlock-locked.png"] style:UIBarButtonItemStylePlain target:self action: nil] autorelease];
   
-  self.screenLockButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+  self.screenLockButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
   [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock.png"] forState:UIControlStateNormal];
   [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock.png"] forState:UIControlStateDisabled];
   [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock-locked.png"] forState:UIControlStateSelected];
@@ -229,7 +229,7 @@
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-  UIViewController *newSelectedViewController = [viewControllers objectAtIndex:item.tag];
+  UIViewController<OsdValueDelegate> *newSelectedViewController = [viewControllers objectAtIndex:item.tag];
   
   [self.selectedViewController viewWillDisappear:NO];
   [self.selectedViewController.view removeFromSuperview];
