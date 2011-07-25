@@ -365,7 +365,8 @@
                         otherButtonTitles:nil];
   [alert show];
   [alert release];
-  [manager release];
+  
+  self.lm = nil;
 }
 
 @end
