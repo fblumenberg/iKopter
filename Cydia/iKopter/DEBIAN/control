@@ -1,6 +1,6 @@
 Package: de.frankblumenberg.ikopter
 Name: iKopter
-Version: 0.4.3.15
+Version: 0.4.4.12
 Architecture: iphoneos-arm
 Description: A control App for the Mikrokopter.
 Homepage: http://www.mikrokopter.de/ucwiki/iKopter
