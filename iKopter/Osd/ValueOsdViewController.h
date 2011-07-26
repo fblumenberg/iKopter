@@ -66,13 +66,26 @@
 @property(retain) UIImage* gpsSateliteOk;
 @property(retain) UIImage* gpsSateliteErr;
 
+@property(retain) UIImage* targetReached;
+@property(retain) UIImage* targetReachedPending;
+
+@property(retain) UIImage* batteryOk;
+@property(retain) UIImage* batteryLow;
+
+
+@property(retain) IBOutlet UILabel* infoView;
+
 @property(retain) IBOutlet UILabel* noData;
 @property(retain) IBOutlet UILabel* heigth;
+@property(retain) IBOutlet UILabel* variometer;
 @property(retain) IBOutlet UILabel* heigthSetpoint;
 @property(retain) IBOutlet UILabel* battery;
 @property(retain) IBOutlet UILabel* current;
 @property(retain) IBOutlet UILabel* usedCapacity;
 @property(retain) IBOutlet UIImageView* gpsSatelite;
+@property(retain) IBOutlet UIImageView* targetIcon;
+@property(retain) IBOutlet UIImageView* batteryIcon;
+
 @property(retain) IBOutlet CustomBadge* satelites;
 @property(retain) IBOutlet CustomBadge* careFree;
 @property(retain) IBOutlet CustomBadge* altitudeControl;

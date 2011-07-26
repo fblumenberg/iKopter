@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */; };
 		BA0D4670137C5127001415C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D466F137C5127001415C3 /* UIKit.framework */; };
 		BA0D4672137C5127001415C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4671137C5127001415C3 /* Foundation.framework */; };
 		BA0D4674137C5127001415C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4673137C5127001415C3 /* CoreGraphics.framework */; };
@@ -181,7 +182,6 @@
 		BAA4E6DE137EB89D0068E38E /* RawOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6B2137EB89D0068E38E /* RawOsdViewController.xib */; };
 		BAA4E6DF137EB89D0068E38E /* ValueOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6B4137EB89D0068E38E /* ValueOsdViewController.m */; };
 		BAA4E6E0137EB89D0068E38E /* ValueOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6B5137EB89D0068E38E /* ValueOsdViewController.xib */; };
-		BAA4E6E1137EB89D0068E38E /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6B6137EB89D0068E38E /* ValueOsdViewControllerLandscape.xib */; };
 		BAA4E6E2137EB89D0068E38E /* SettingsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6B9137EB89D0068E38E /* SettingsSelectionViewController.m */; };
 		BAA4E6E3137EB89D0068E38E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6BB137EB89D0068E38E /* SettingViewController.m */; };
 		BAA4E6E4137EB89D0068E38E /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6BE137EB89D0068E38E /* Common.m */; };
@@ -293,6 +293,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValueOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
 		BA0D466B137C5127001415C3 /* iKopter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iKopter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0D466F137C5127001415C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BA0D4671137C5127001415C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -612,7 +613,6 @@
 		BAA4E6B3137EB89D0068E38E /* ValueOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueOsdViewController.h; sourceTree = "<group>"; };
 		BAA4E6B4137EB89D0068E38E /* ValueOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueOsdViewController.m; sourceTree = "<group>"; };
 		BAA4E6B5137EB89D0068E38E /* ValueOsdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValueOsdViewController.xib; sourceTree = "<group>"; };
-		BAA4E6B6137EB89D0068E38E /* ValueOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValueOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
 		BAA4E6B8137EB89D0068E38E /* SettingsSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSelectionViewController.h; sourceTree = "<group>"; };
 		BAA4E6B9137EB89D0068E38E /* SettingsSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSelectionViewController.m; sourceTree = "<group>"; };
 		BAA4E6BA137EB89D0068E38E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -1439,7 +1439,7 @@
 				BAA4E6B3137EB89D0068E38E /* ValueOsdViewController.h */,
 				BAA4E6B4137EB89D0068E38E /* ValueOsdViewController.m */,
 				BAA4E6B5137EB89D0068E38E /* ValueOsdViewController.xib */,
-				BAA4E6B6137EB89D0068E38E /* ValueOsdViewControllerLandscape.xib */,
+				BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */,
 				BAE3B00013A4B27D007E0F2F /* MapOsdViewController.h */,
 				BAE3B00113A4B27D007E0F2F /* MapOsdViewController.m */,
 				BAE3B00213A4B27D007E0F2F /* MapOsdViewController.xib */,
@@ -1565,6 +1565,9 @@
 /* Begin PBXProject section */
 		BA0D4662137C5127001415C3 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = BA0D4665137C5127001415C3 /* Build configuration list for PBXProject "iKopter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -1633,7 +1636,6 @@
 				BAA4E6DC137EB89D0068E38E /* OsdViewController.xib in Resources */,
 				BAA4E6DE137EB89D0068E38E /* RawOsdViewController.xib in Resources */,
 				BAA4E6E0137EB89D0068E38E /* ValueOsdViewController.xib in Resources */,
-				BAA4E6E1137EB89D0068E38E /* ValueOsdViewControllerLandscape.xib in Resources */,
 				BAA4E708137EBA430068E38E /* altitude.png in Resources */,
 				BAA4E709137EBA430068E38E /* altitudeMax.png in Resources */,
 				BAA4E70A137EBA430068E38E /* battery.png in Resources */,
@@ -1704,6 +1706,7 @@
 				BA41B6F613D4379B00408B18 /* icon-backforth.png in Resources */,
 				BA41B6F713D4379B00408B18 /* icon-backforth@2x.png in Resources */,
 				BAFBEC0313DDD4EA000BA62F /* userDefaults.plist in Resources */,
+				BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
