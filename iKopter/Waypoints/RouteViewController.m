@@ -176,8 +176,13 @@
   self.lm.delegate = self;
   self.lm.desiredAccuracy = kCLLocationAccuracyBest;
   
-  self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
-                                   [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+  if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
+    self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
+                                     [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+  }
+  else{
+    self.addWithGpsButton.enabled = [CLLocationManager locationServicesEnabled];
+  }
   
   segment.selectedSegmentIndex=0;
 }
