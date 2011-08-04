@@ -25,11 +25,14 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 #import "IKParamSet.h"
+#import "MBProgressHUD.h"
 
-@interface SettingViewController : IASKAppSettingsViewController {
+@interface SettingViewController : IASKAppSettingsViewController<MBProgressHUDDelegate> {
 
   IKParamSet* _setting;
+  MBProgressHUD *hud;
 }
+
 
 @property(nonatomic,retain) IKParamSet* setting;
 

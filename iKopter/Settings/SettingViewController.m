@@ -119,10 +119,12 @@
            object:nil];
 }
 
-// called after this controller's view will appear
 - (void)viewWillDisappear:(BOOL)animated {
   
   [super viewWillDisappear:animated];
+  
+  [hud hide:NO];  
+  
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
 }
@@ -134,19 +136,33 @@
 - (void)saveSetting:(id)sender {
   
   qltrace(@"save setting");
-
-  IASKSettingsStoreObject* store=(IASKSettingsStoreObject*)self.settingsStore;
-  IKParamSet* setting=store.object;
-  [[MKConnectionController sharedMKConnectionController]saveSetting:setting];
+  [[MKConnectionController sharedMKConnectionController]saveSetting:self.setting];
 }
 
 - (void) writeSettingNotification:(NSNotification *)aNotification {
     
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Setting" message:@"Setting saved"
-                                                 delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-	[alert show];	
-	[alert release];
+  hud = [[MBProgressHUD alloc] initWithView:self.view];
+  
+  [self.view addSubview:hud];
+  hud.delegate = self;
+  hud.customView = [[[UIImageView alloc] initWithImage:
+                     [UIImage imageNamed:@"icon-check.png"]] autorelease];
+  hud.mode = MBProgressHUDModeCustomView;
+  hud.labelText = NSLocalizedString(@"Setting saved",@"Setting saved success");
+  
+  [hud show:YES];
+  [hud hide:YES afterDelay:1.0];
 }
+
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden {
+  
+  [hud removeFromSuperview];
+  [hud release];
+  hud = nil;
+}
+
 
 #pragma mark -
 #pragma mark Reload Setting
