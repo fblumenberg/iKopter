@@ -158,6 +158,9 @@
   [super viewWillDisappear:animated];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self hideActionSheet];
+
+  hud.delegate=nil;
+  [MBProgressHUD hideHUDForView:self.view animated:NO];
 }
 
 - (void)hideActionSheet{

@@ -86,13 +86,15 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  if(shownModal){
-    UIBarButtonItem* cancelItem =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
-                                                                                target:self action:@selector(didPressCancel)] autorelease];
-    self.navigationItem.leftBarButtonItem = cancelItem;
-    
-  }
-  
+  UIBarButtonItem* cancelItem =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+                                                                              target:self 
+                                                                              action:@selector(didPressCancel)] autorelease];
+  self.navigationItem.leftBarButtonItem = cancelItem;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+  hud.delegate=nil;
+  [MBProgressHUD hideHUDForView:self.view animated:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -124,7 +126,12 @@
 
 -(void) didPressCancel{
   
-  [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
+  
+  if(shownModal)
+    [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
+  else
+    [self.navigationController popViewControllerAnimated:YES];
+  
   [delegate loginControllerDidCancel:self];
 }
 
@@ -198,9 +205,6 @@
 #pragma mark MBProgressHUDDelegate methods
 
 - (void)hudWasHidden {
-  
-  //  [hud removeFromSuperview];
-  //  [hud release];
 }
 
 @end
