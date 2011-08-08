@@ -125,6 +125,8 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
   [[MKConnectionController sharedMKConnectionController] stop];
+
+  self.navigationController.delegate = nil;
   [self.navigationController popToRootViewControllerAnimated:NO]; 
 
   [self saveContext];
