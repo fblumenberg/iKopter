@@ -120,21 +120,19 @@ static NSUInteger kNumberOfSettings = 5;
   [self cancelEditActiveSetting:self]; 
   [self reloadAllSettings];
   
-  UIBarButtonItem* actionButton;
-  
-  actionButton =  [[[UIBarButtonItem alloc]
-                    initWithTitle:NSLocalizedString(@"Change Active",@"")
-                            style:UIBarButtonItemStyleBordered|UIBarButtonItemStyleDone
-                            target:self
-                            action:@selector(saveActiveSetting:)] autorelease];
-  
-  
-	[self setToolbarItems:[NSArray arrayWithObject:actionButton] animated:YES];
-  //[actionButton release];
+//  UIBarButtonItem* actionButton;
+//  
+//  actionButton =  [[[UIBarButtonItem alloc]
+//                    initWithTitle:NSLocalizedString(@"Change Active",@"")
+//                            style:UIBarButtonItemStyleBordered|UIBarButtonItemStyleDone
+//                            target:self
+//                            action:@selector(saveActiveSetting:)] autorelease];
+//  
+//  
+//	[self setToolbarItems:[NSArray arrayWithObject:actionButton] animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  // Return YES for supported orientations
   return YES;
 }
 // ////////////////////////////////////////////////////////////////////////////////////////////
@@ -291,39 +289,7 @@ static NSUInteger kNumberOfSettings = 5;
     return indexPath.section==0;
 }
 
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark -
-#pragma mark Actions
+#pragma mark - Actions
 
 - (void) changeSettingNotification:(NSNotification *)aNotification {
   
@@ -361,11 +327,11 @@ static NSUInteger kNumberOfSettings = 5;
 {
   [self.navigationController setToolbarHidden:YES animated:YES];
   
-  UIBarButtonItem *editButton = [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
-                                                                             target:self
-                                                                             action:@selector(editActiveSetting:)]autorelease];
-  
-  [self.navigationItem setRightBarButtonItem:editButton animated:NO];
+//  UIBarButtonItem *editButton = [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+//                                                                             target:self
+//                                                                             action:@selector(editActiveSetting:)]autorelease];
+//  
+//  [self.navigationItem setRightBarButtonItem:editButton animated:NO];
   [self.tableView setEditing:NO animated:YES];
   
   [self.tableView reloadData];
@@ -376,8 +342,11 @@ static NSUInteger kNumberOfSettings = 5;
 #pragma mark Table view delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if( self.tableView.editing && indexPath.section!=0 )
+  NSUInteger row = [indexPath row];
+  
+  if( (self.tableView.editing && indexPath.section!=0) || ([self.settings objectAtIndex:row] == [NSNull null]) )
     return nil;
+  
   return indexPath;
 }
 
