@@ -1,0 +1,4 @@
+﻿"SettingWaypointsGrouptTitle" = "Default Coordinate";
+"SettingWaypointsDescription" = "The coordinate for the first waypoint in a route.";
+"SettingsWaypointLat" = "Lat.";
+"SettingsWaypointLong" = "Long.";

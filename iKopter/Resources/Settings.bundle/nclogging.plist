@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>PreferenceSpecifiers</key>
+    <array>
+      <dict>
+        <key>DefaultValue</key>
+        <false/>
+        <key>Key</key>
+        <string>IKNCLoggingActive</string>
+        <key>Title</key>
+        <string>SettingsActivateNCLogging</string>
+        <key>Type</key>
+        <string>PSToggleSwitchSpecifier</string>
+      </dict>
+      <dict>
+        <key>DefaultValue</key>
+        <integer>500</integer>
+        <key>Key</key>
+        <string>IKNCLoggingInterval</string>
+        <key>Title</key>
+        <string>SettingsNCLoggingInterval</string>
+        <key>Titles</key>
+        <array>
+          <string>200 ms</string>
+          <string>500 ms</string>
+          <string>1000 ms</string>
+          <string>2000 ms</string>
+        </array>
+        <key>Type</key>
+        <string>PSMultiValueSpecifier</string>
+        <key>Values</key>
+        <array>
+          <integer>200</integer>
+          <integer>500</integer>
+          <integer>1000</integer>
+          <integer>2000</integer>
+        </array>
+      </dict>
+      <dict>
+        <key>Title</key>
+        <string>SettingsActivateNCLoggingDescription</string>
+        <key>Type</key>
+        <string>PSGroupSpecifier</string>
+      </dict>
+    </array>
+    <key>StringsTable</key>
+    <string>nclogging</string>
+    <key>Title</key>
+    <string>NC-Logging</string>
+  </dict>
+</plist>

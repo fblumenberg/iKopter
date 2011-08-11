@@ -1,0 +1,3 @@
+﻿"SettingsActivateNCLogging" = "NC-Logging aktivien";
+"SettingsActivateNCLoggingDescription" = "Wenn das Logging aktiv ist, dann werden die OSD Daten gespeichert.";
+"SettingsNCLoggingInterval" = "NC-Log Intervall";

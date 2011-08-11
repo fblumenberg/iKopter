@@ -27,44 +27,20 @@
 			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
+			<key>File</key>
+			<string>nclogging</string>
 			<key>Title</key>
-			<string></string>
+			<string>SettingsNCLoggingTitle</string>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
+			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>IKNCLoggingActive</string>
+			<key>File</key>
+			<string>waypoints</string>
 			<key>Title</key>
-			<string>SettingsActivateNCLogging</string>
+			<string>SettingsWaypointsTitle</string>
 			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<integer>500</integer>
-			<key>Key</key>
-			<string>IKNCLoggingInterval</string>
-			<key>Title</key>
-			<string>SettingsNCLoggingInterval</string>
-			<key>Titles</key>
-			<array>
-				<string>200 ms</string>
-				<string>500 ms</string>
-				<string>1000 ms</string>
-				<string>2000 ms</string>
-			</array>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Values</key>
-			<array>
-				<integer>200</integer>
-				<integer>500</integer>
-				<integer>1000</integer>
-				<integer>2000</integer>
-			</array>
+			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
 			<key>Title</key>

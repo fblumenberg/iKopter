@@ -1,0 +1,4 @@
+﻿"SettingWaypointsGrouptTitle" = "Default Koordinate";
+"SettingWaypointsDescription" = "Die Koordinate des ersten Wegpunkts einer Liste.";
+"SettingsWaypointLat" = "Breite";
+"SettingsWaypointLong" = "Länge";

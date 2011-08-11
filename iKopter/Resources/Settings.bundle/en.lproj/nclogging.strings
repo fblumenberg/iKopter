@@ -1,0 +1,3 @@
+﻿"SettingsNCLoggingInterval" = "NC-Log Interval";
+"SettingsActivateNCLogging" = "Activate NC logging";
+"SettingsActivateNCLoggingDescription" = "If activated, the OSD data will be saved.";
