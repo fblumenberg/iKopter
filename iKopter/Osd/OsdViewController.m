@@ -35,6 +35,7 @@
 - (void)updateSelectedViewFrame;
 - (void)doScreenLock;
 - (void)showNavigationBar;
+- (void)updateSelectedView;
 @end
 
 
@@ -68,8 +69,8 @@
   NSArray *array = [[NSArray alloc] initWithObjects:valueViewController, rawViewController, mapViewController, nil];
   self.viewControllers = array;
   
-  [self.view addSubview:valueViewController.view];
-  self.selectedViewController = valueViewController;
+//  [self.view insertSubview:valueViewController.view belowSubview:self.tabBar];
+//  self.selectedViewController = valueViewController;
   
   [array release];
 //  [horizonViewController release];
@@ -89,7 +90,7 @@
 
   [osdValue startRequesting];
   
-  [self.selectedViewController viewWillAppear:animated];
+//  [self.selectedViewController viewWillAppear:animated];
 
   [self.navigationController setToolbarHidden:YES animated:YES];
   [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -110,7 +111,7 @@
   
   self.navigationItem.rightBarButtonItem =[[[UIBarButtonItem alloc] initWithCustomView:screenLockButton]autorelease];
   
-  [self updateSelectedViewFrame];
+  [self updateSelectedView];
   
   [[NSNotificationCenter defaultCenter] addObserver:self 
                                            selector:@selector(showNavigationBar) 
@@ -120,6 +121,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  [self updateSelectedView];
   [self concealAfterDelay:2.0f];
 }  
 
@@ -227,17 +229,21 @@
 /////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-  UIViewController<OsdValueDelegate> *newSelectedViewController = [viewControllers objectAtIndex:item.tag];
+- (void)updateSelectedView{
+  UIViewController<OsdValueDelegate> *newSelectedViewController = [viewControllers objectAtIndex:tabBar.selectedItem.tag];
   
   [self.selectedViewController viewWillDisappear:NO];
   [self.selectedViewController.view removeFromSuperview];
   
-  [self.view addSubview:newSelectedViewController.view];
+  [self.view insertSubview:newSelectedViewController.view belowSubview:self.tabBar];
   self.selectedViewController = newSelectedViewController;
   [self.selectedViewController viewWillAppear:NO];
   [self updateSelectedViewFrame];
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+  [self updateSelectedView];
 }
 
 - (void) newValue:(OsdValue*)value {

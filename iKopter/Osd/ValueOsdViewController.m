@@ -26,6 +26,7 @@
 #import "ValueOsdViewController.h"
 #import "UIImage+Tint.h"
 #import "UIColor+ColorWithHex.h"
+#import "InnerShadowView.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 @interface ValueOsdViewController()
@@ -43,6 +44,7 @@
 @synthesize batteryIcon;
 @synthesize targetIcon;
 @synthesize variometer;
+@synthesize batteryView;
 @synthesize gpsSateliteOk;
 @synthesize gpsSateliteErr;
 @synthesize heigth;
@@ -56,11 +58,17 @@
 @synthesize gpsTarget;
 @synthesize flightTime;
 @synthesize compass;
+@synthesize attitudeRoll;
+@synthesize attitudeYaw;
+@synthesize attitudeNick;
 @synthesize attitude;
 @synthesize speed;
 @synthesize waypoint;
 @synthesize targetPosDev;
 @synthesize homePosDev;
+@synthesize targetPosDevDistance;
+@synthesize homePosDevDistance;
+@synthesize targetTime;
 @synthesize noData;
 @synthesize altitudeControl;
 @synthesize careFree;
@@ -82,22 +90,29 @@
       self.gpsSateliteOk = [UIImage imageNamed:@"gpsSat2.png"];
       self.gpsSateliteErr=[self.gpsSateliteOk imageTintedWithColor:[UIColor redColor]];
       
-      self.targetReachedPending = [UIImage imageNamed:@"13-target.png"];
+      self.targetReachedPending = [UIImage imageNamed:@"target.png"];
       self.targetReached=[self.targetReachedPending imageTintedWithColor:gpsOkColor];
      
       self.batteryOk = [UIImage imageNamed:@"battery.png"];
-      self.batteryLow=[self.batteryOk imageTintedWithColor:[UIColor redColor]];
+      self.batteryLow=[self.batteryOk imageTintedWithColor:[UIColor whiteColor]];
       
     }
     return self;
 }
-
 
 - (void)dealloc {
   [gpsOkColor release];
   gpsOkColor=nil;
   [functionOffColor release];
   functionOffColor=nil;
+    [attitudeYaw release];
+    [attitudeRoll release];
+    [attitudeYaw release];
+    [attitudeNick release];
+    [batteryView release];
+  [targetPosDevDistance release];
+  [homePosDevDistance release];
+  [targetTime release];
   [super dealloc];
 }
 
@@ -107,11 +122,19 @@
 {
   [super viewDidLoad];
 
-
 }
 
 - (void)viewDidUnload
 {
+    [attitudeYaw release];
+    attitudeYaw = nil;
+    [self setAttitudeRoll:nil];
+    [self setAttitudeYaw:nil];
+    [self setAttitudeNick:nil];
+    [self setBatteryView:nil];
+  [self setTargetPosDevDistance:nil];
+  [self setHomePosDevDistance:nil];
+  [self setTargetTime:nil];
   [super viewDidUnload];
 }
 
@@ -131,13 +154,17 @@
 
 - (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
   
+  NSString* nibName=@"ValueOsdViewController";
   
-  if ( UIInterfaceOrientationIsPortrait(orientation) ){
-    [[NSBundle mainBundle] loadNibNamed:@"ValueOsdViewController" owner:self options:nil];
+  if (UIInterfaceOrientationIsLandscape(orientation)){
+    nibName = [nibName stringByAppendingString:@"Landscape"];
   }
-  else if (UIInterfaceOrientationIsLandscape(orientation)){
-    [[NSBundle mainBundle] loadNibNamed:@"ValueOsdViewControllerLandscape" owner:self options:nil];
+  
+  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+    nibName = [nibName stringByAppendingString:@"-iPad"];
   }
+
+  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
 
   self.altitudeControl.badgeInsetColor=functionOffColor;
   [self.altitudeControl autoBadgeSizeWithString:@"ALT"];
@@ -220,7 +247,7 @@
   }
     
   if(data->Variometer==0)
-    variometer.text=@"";
+    variometer.text=@"—";
   else
     variometer.text=data->Variometer<0?@"▾":@"▴";
     
@@ -228,13 +255,18 @@
   heigth.text=[NSString stringWithFormat:@"%0.1f m",data->Altimeter/20.0];  
   heigthSetpoint.text=[NSString stringWithFormat:@"%0.1f",data->SetpointAltitude/20.0];  
   
+  //-----------------------------------------------------------------------
   battery.text=[NSString stringWithFormat:@"%0.1f V ",data->UBat/10.0];    
-  
-  battery.backgroundColor=value.isLowBat?[UIColor redColor]:[UIColor clearColor];
   battery.textColor=value.isLowBat?[UIColor whiteColor]:[UIColor blackColor];
   
-  current.text=[NSString stringWithFormat:@"%0.1f",data->Current/10.0];      
-  usedCapacity.text=[NSString stringWithFormat:@"%d",data->UsedCapacity];  
+  batteryView.innerBackgroundColor = value.isLowBat?[UIColor redColor]:[UIColor whiteColor];
+  
+  current.text=[NSString stringWithFormat:@"%0.1f A",data->Current/10.0];
+  current.textColor = battery.textColor;
+  
+  usedCapacity.text=[NSString stringWithFormat:@"%d mAh",data->UsedCapacity];  
+  usedCapacity.textColor = battery.textColor;
+  //-----------------------------------------------------------------------
   
   satelites.badgeInsetColor = value.isGpsOk?gpsOkColor:[UIColor redColor];
   [satelites autoBadgeSizeWithString:[NSString stringWithFormat:@"%d",data->SatsInUse]];
@@ -251,22 +283,33 @@
   attitude.text=[NSString stringWithFormat:@"%d° / %d° / %d°",data->CompassHeading,
                  data->AngleNick,
                  data->AngleRoll];
+
+  attitudeYaw.text=[NSString stringWithFormat:@"%d°",data->CompassHeading];
+  attitudeRoll.text=[NSString stringWithFormat:@"%d°",data->AngleRoll];
+  attitudeNick.text=[NSString stringWithFormat:@"%d°",data->AngleNick];
+
   speed.text=[NSString stringWithFormat:@"%d km/h",(data->GroundSpeed*9)/250];
   
   waypoint.text=[NSString stringWithFormat:@"%d / %d (%d)",data->WaypointIndex,data->WaypointNumber,value.poiIndex];
   
+  //-----------------------------------------------------------------------
   NSUInteger headingHome = (data->HomePositionDeviation.Bearing + 360 - data->CompassHeading) % 360;
-  homePosDev.text=[NSString stringWithFormat:@"%d° / %d m",headingHome,data->HomePositionDeviation.Distance / 10];
+  homePosDev.text=[NSString stringWithFormat:@"%d°",headingHome];
+  homePosDevDistance.text=[NSString stringWithFormat:@"%d m",data->HomePositionDeviation.Distance / 10];
   
   NSUInteger headingTarget = (data->TargetPositionDeviation.Bearing + 360 - data->CompassHeading) % 360;
   if(value.isTargetReached && data->TargetHoldTime>0)
-    targetPosDev.text=[NSString stringWithFormat:@"%d° / %d m (%d s)",headingTarget,data->TargetPositionDeviation.Distance / 10,data->TargetHoldTime];
+    targetTime.text=[NSString stringWithFormat:@"%d s",data->TargetHoldTime];
   else
-    targetPosDev.text=[NSString stringWithFormat:@"%d° / %d m",headingTarget,data->TargetPositionDeviation.Distance / 10];
+    targetTime.text=@"";
+    
+  targetPosDev.text=[NSString stringWithFormat:@"%d°",headingTarget];
+  targetPosDevDistance.text=[NSString stringWithFormat:@"%d m",data->TargetPositionDeviation.Distance / 10];
 
   compass.heading=data->CompassHeading;
   compass.homeDeviation=headingHome;
   compass.targetDeviation=headingTarget;
+  //-----------------------------------------------------------------------
  
   gpsSatelite.image= value.isGpsOk?gpsSateliteOk:gpsSateliteErr;
   

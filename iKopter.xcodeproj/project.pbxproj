@@ -85,6 +85,21 @@
 		BA585C5F13B1547300AE0958 /* MapOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C5E13B1547300AE0958 /* MapOptionsView.m */; };
 		BA585C6113B156AD00AE0958 /* MapOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA585C6013B156AD00AE0958 /* MapOptionsView.xib */; };
 		BA585C6413B15A7C00AE0958 /* FDCurlViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */; };
+		BA61017913F868BA00275CB6 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017613F868BA00275CB6 /* battery.png */; };
+		BA61017A13F868BA00275CB6 /* battery30.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017713F868BA00275CB6 /* battery30.png */; };
+		BA61017B13F868BA00275CB6 /* battery30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017813F868BA00275CB6 /* battery30@2x.png */; };
+		BA61018813F8727700275CB6 /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017C13F8727600275CB6 /* compass.png */; };
+		BA61018913F8727700275CB6 /* compass30.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017D13F8727600275CB6 /* compass30.png */; };
+		BA61018A13F8727700275CB6 /* compass30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017E13F8727600275CB6 /* compass30@2x.png */; };
+		BA61018B13F8727700275CB6 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017F13F8727600275CB6 /* home.png */; };
+		BA61018C13F8727700275CB6 /* home30.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018013F8727600275CB6 /* home30.png */; };
+		BA61018D13F8727700275CB6 /* home30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018113F8727600275CB6 /* home30@2x.png */; };
+		BA61018E13F8727700275CB6 /* satelite.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018213F8727600275CB6 /* satelite.png */; };
+		BA61018F13F8727700275CB6 /* satelite30.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018313F8727600275CB6 /* satelite30.png */; };
+		BA61019013F8727700275CB6 /* satelite30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018413F8727700275CB6 /* satelite30@2x.png */; };
+		BA61019113F8727700275CB6 /* target.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018513F8727700275CB6 /* target.png */; };
+		BA61019213F8727700275CB6 /* target30.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018613F8727700275CB6 /* target30.png */; };
+		BA61019313F8727700275CB6 /* target30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018713F8727700275CB6 /* target30@2x.png */; };
 		BA76133C1391184300C86318 /* screenlock.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133B1391184300C86318 /* screenlock.png */; };
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
@@ -194,7 +209,6 @@
 		BAA4E6ED137EB9210068E38E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA4E6EC137EB9210068E38E /* QuartzCore.framework */; };
 		BAA4E708137EBA430068E38E /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6EE137EBA430068E38E /* altitude.png */; };
 		BAA4E709137EBA430068E38E /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6EF137EBA430068E38E /* altitudeMax.png */; };
-		BAA4E70A137EBA430068E38E /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F0137EBA430068E38E /* battery.png */; };
 		BAA4E70D137EBA430068E38E /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F3137EBA430068E38E /* compass.png */; };
 		BAA4E70E137EBA430068E38E /* flightTime.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F4137EBA430068E38E /* flightTime.png */; };
 		BAA4E70F137EBA430068E38E /* gpsCH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F5137EBA430068E38E /* gpsCH.png */; };
@@ -219,6 +233,12 @@
 		BAA4E724137EBA630068E38E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E722137EBA630068E38E /* Localizable.strings */; };
 		BAA4E758137EC6160068E38E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */; };
 		BAA4E759137EC6160068E38E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */; };
+		BAB97F8213F84BB200C49BAE /* backgroundSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */; };
+		BAB97F8313F84BB200C49BAE /* CoolPatternView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */; };
+		BAB97F8413F84BB200C49BAE /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F8113F84BB200C49BAE /* InnerShadowView.m */; };
+		BAB97F8713F84C0700C49BAE /* InnerShadowDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */; };
+		BABCA86D13F14BE3005FF340 /* ValueOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */; };
+		BABCA86F13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */; };
 		BAC81D67139550F000F642FA /* btstack.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D55139550F000F642FA /* btstack.c */; };
 		BAC81D68139550F000F642FA /* hci_cmds.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D57139550F000F642FA /* hci_cmds.c */; };
 		BAC81D69139550F000F642FA /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5C139550F000F642FA /* linked_list.c */; };
@@ -423,6 +443,21 @@
 		BA585C6013B156AD00AE0958 /* MapOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapOptionsView.xib; sourceTree = "<group>"; };
 		BA585C6213B15A7C00AE0958 /* FDCurlViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCurlViewControl.h; sourceTree = "<group>"; };
 		BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCurlViewControl.m; sourceTree = "<group>"; };
+		BA61017613F868BA00275CB6 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = battery.png; path = OSD/battery.png; sourceTree = "<group>"; };
+		BA61017713F868BA00275CB6 /* battery30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = battery30.png; path = OSD/battery30.png; sourceTree = "<group>"; };
+		BA61017813F868BA00275CB6 /* battery30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery30@2x.png"; path = "OSD/battery30@2x.png"; sourceTree = "<group>"; };
+		BA61017C13F8727600275CB6 /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = compass.png; path = OSD/compass.png; sourceTree = "<group>"; };
+		BA61017D13F8727600275CB6 /* compass30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = compass30.png; path = OSD/compass30.png; sourceTree = "<group>"; };
+		BA61017E13F8727600275CB6 /* compass30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass30@2x.png"; path = "OSD/compass30@2x.png"; sourceTree = "<group>"; };
+		BA61017F13F8727600275CB6 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = OSD/home.png; sourceTree = "<group>"; };
+		BA61018013F8727600275CB6 /* home30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home30.png; path = OSD/home30.png; sourceTree = "<group>"; };
+		BA61018113F8727600275CB6 /* home30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home30@2x.png"; path = "OSD/home30@2x.png"; sourceTree = "<group>"; };
+		BA61018213F8727600275CB6 /* satelite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = satelite.png; path = OSD/satelite.png; sourceTree = "<group>"; };
+		BA61018313F8727600275CB6 /* satelite30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = satelite30.png; path = OSD/satelite30.png; sourceTree = "<group>"; };
+		BA61018413F8727700275CB6 /* satelite30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "satelite30@2x.png"; path = "OSD/satelite30@2x.png"; sourceTree = "<group>"; };
+		BA61018513F8727700275CB6 /* target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = target.png; path = OSD/target.png; sourceTree = "<group>"; };
+		BA61018613F8727700275CB6 /* target30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = target30.png; path = OSD/target30.png; sourceTree = "<group>"; };
+		BA61018713F8727700275CB6 /* target30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "target30@2x.png"; path = "OSD/target30@2x.png"; sourceTree = "<group>"; };
 		BA76133B1391184300C86318 /* screenlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenlock.png; sourceTree = "<group>"; };
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
@@ -633,7 +668,6 @@
 		BAA4E6EC137EB9210068E38E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BAA4E6EE137EBA430068E38E /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAA4E6EF137EBA430068E38E /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
-		BAA4E6F0137EBA430068E38E /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
 		BAA4E6F3137EBA430068E38E /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		BAA4E6F4137EBA430068E38E /* flightTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flightTime.png; sourceTree = "<group>"; };
 		BAA4E6F5137EBA430068E38E /* gpsCH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsCH.png; sourceTree = "<group>"; };
@@ -659,6 +693,15 @@
 		BAA4E725137EBA780068E38E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundSmall.png; sourceTree = "<group>"; };
+		BAB97F7E13F84BB200C49BAE /* CoolPatternView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolPatternView.h; sourceTree = "<group>"; };
+		BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoolPatternView.m; sourceTree = "<group>"; };
+		BAB97F8013F84BB200C49BAE /* InnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowView.h; sourceTree = "<group>"; };
+		BAB97F8113F84BB200C49BAE /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowView.m; sourceTree = "<group>"; };
+		BAB97F8513F84C0700C49BAE /* InnerShadowDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowDrawing.h; sourceTree = "<group>"; };
+		BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowDrawing.m; sourceTree = "<group>"; };
+		BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewController-iPad.xib"; sourceTree = "<group>"; };
+		BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
 		BAC81D54139550F000F642FA /* bt_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bt_control.h; sourceTree = "<group>"; };
 		BAC81D55139550F000F642FA /* btstack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = btstack.c; sourceTree = "<group>"; };
 		BAC81D56139550F000F642FA /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
@@ -985,6 +1028,8 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BAB97F8513F84C0700C49BAE /* InnerShadowDrawing.h */,
+				BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */,
 				BA98EAA113C65866005CF2FA /* SettingsFieldStyle.h */,
 				BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */,
 				BA98EA9B13C6539D005CF2FA /* StringToNumberTransformer.h */,
@@ -1011,6 +1056,7 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA61017513F8682900275CB6 /* OSD */,
 				BA41B6F413D4379B00408B18 /* icon-backforth.png */,
 				BA41B6F513D4379B00408B18 /* icon-backforth@2x.png */,
 				BA3B69B513CA07B9000491EB /* icon-check.png */,
@@ -1049,7 +1095,6 @@
 				BA76133B1391184300C86318 /* screenlock.png */,
 				BAA4E6EE137EBA430068E38E /* altitude.png */,
 				BAA4E6EF137EBA430068E38E /* altitudeMax.png */,
-				BAA4E6F0137EBA430068E38E /* battery.png */,
 				BAA4E6F3137EBA430068E38E /* compass.png */,
 				BAA4E6F4137EBA430068E38E /* flightTime.png */,
 				BAA4E6F5137EBA430068E38E /* gpsCH.png */,
@@ -1133,6 +1178,28 @@
 				BAC81D66139550F000F642FA /* utils.c */,
 			);
 			name = "BTStack-Client";
+			sourceTree = "<group>";
+		};
+		BA61017513F8682900275CB6 /* OSD */ = {
+			isa = PBXGroup;
+			children = (
+				BA61017C13F8727600275CB6 /* compass.png */,
+				BA61017D13F8727600275CB6 /* compass30.png */,
+				BA61017E13F8727600275CB6 /* compass30@2x.png */,
+				BA61017F13F8727600275CB6 /* home.png */,
+				BA61018013F8727600275CB6 /* home30.png */,
+				BA61018113F8727600275CB6 /* home30@2x.png */,
+				BA61018213F8727600275CB6 /* satelite.png */,
+				BA61018313F8727600275CB6 /* satelite30.png */,
+				BA61018413F8727700275CB6 /* satelite30@2x.png */,
+				BA61018513F8727700275CB6 /* target.png */,
+				BA61018613F8727700275CB6 /* target30.png */,
+				BA61018713F8727700275CB6 /* target30@2x.png */,
+				BA61017613F868BA00275CB6 /* battery.png */,
+				BA61017713F868BA00275CB6 /* battery30.png */,
+				BA61017813F868BA00275CB6 /* battery30@2x.png */,
+			);
+			name = OSD;
 			sourceTree = "<group>";
 		};
 		BA98EA8E13C65113005CF2FA /* Products */ = {
@@ -1420,6 +1487,8 @@
 		BAA4E6A4137EB89C0068E38E /* Osd */ = {
 			isa = PBXGroup;
 			children = (
+				BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */,
+				BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */,
 				BAE3B02313A4F27A007E0F2F /* MapLocation.h */,
 				BAE3B02413A4F27B007E0F2F /* MapLocation.m */,
 				BAA4E6A5137EB89C0068E38E /* Data3DValue.h */,
@@ -1461,6 +1530,11 @@
 		BAA4E6BC137EB89D0068E38E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */,
+				BAB97F7E13F84BB200C49BAE /* CoolPatternView.h */,
+				BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */,
+				BAB97F8013F84BB200C49BAE /* InnerShadowView.h */,
+				BAB97F8113F84BB200C49BAE /* InnerShadowView.m */,
 				BA585C6213B15A7C00AE0958 /* FDCurlViewControl.h */,
 				BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */,
 				BAA4E6BD137EB89D0068E38E /* Common.h */,
@@ -1638,7 +1712,6 @@
 				BAA4E6E0137EB89D0068E38E /* ValueOsdViewController.xib in Resources */,
 				BAA4E708137EBA430068E38E /* altitude.png in Resources */,
 				BAA4E709137EBA430068E38E /* altitudeMax.png in Resources */,
-				BAA4E70A137EBA430068E38E /* battery.png in Resources */,
 				BAA4E70D137EBA430068E38E /* compass.png in Resources */,
 				BAA4E70E137EBA430068E38E /* flightTime.png in Resources */,
 				BAA4E70F137EBA430068E38E /* gpsCH.png in Resources */,
@@ -1707,6 +1780,24 @@
 				BA41B6F713D4379B00408B18 /* icon-backforth@2x.png in Resources */,
 				BAFBEC0313DDD4EA000BA62F /* userDefaults.plist in Resources */,
 				BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */,
+				BABCA86D13F14BE3005FF340 /* ValueOsdViewController-iPad.xib in Resources */,
+				BABCA86F13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib in Resources */,
+				BAB97F8213F84BB200C49BAE /* backgroundSmall.png in Resources */,
+				BA61017913F868BA00275CB6 /* battery.png in Resources */,
+				BA61017A13F868BA00275CB6 /* battery30.png in Resources */,
+				BA61017B13F868BA00275CB6 /* battery30@2x.png in Resources */,
+				BA61018813F8727700275CB6 /* compass.png in Resources */,
+				BA61018913F8727700275CB6 /* compass30.png in Resources */,
+				BA61018A13F8727700275CB6 /* compass30@2x.png in Resources */,
+				BA61018B13F8727700275CB6 /* home.png in Resources */,
+				BA61018C13F8727700275CB6 /* home30.png in Resources */,
+				BA61018D13F8727700275CB6 /* home30@2x.png in Resources */,
+				BA61018E13F8727700275CB6 /* satelite.png in Resources */,
+				BA61018F13F8727700275CB6 /* satelite30.png in Resources */,
+				BA61019013F8727700275CB6 /* satelite30@2x.png in Resources */,
+				BA61019113F8727700275CB6 /* target.png in Resources */,
+				BA61019213F8727700275CB6 /* target30.png in Resources */,
+				BA61019313F8727700275CB6 /* target30@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1898,6 +1989,9 @@
 				BA9EAD3913CF0503008EC741 /* IKDropboxLoginController.m in Sources */,
 				BA9EAD3C13CF0B50008EC741 /* IKDropboxLoginSource.m in Sources */,
 				BA41B6FA13D439C500408B18 /* IKDropboxController.m in Sources */,
+				BAB97F8313F84BB200C49BAE /* CoolPatternView.m in Sources */,
+				BAB97F8413F84BB200C49BAE /* InnerShadowView.m in Sources */,
+				BAB97F8713F84C0700C49BAE /* InnerShadowDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

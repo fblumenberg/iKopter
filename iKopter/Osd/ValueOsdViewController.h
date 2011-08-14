@@ -27,6 +27,8 @@
 #import "CustomBadge.h"
 #import "IKCompass.h"
 
+@class InnerShadowView;
+
 @interface ValueOsdViewController : UIViewController<OsdValueDelegate> {
 
   UILabel* noData;
@@ -36,13 +38,20 @@
   UILabel* current;
   UILabel* usedCapacity;
   UILabel* attitude;
+
   UILabel* speed;
   UILabel* waypoint;
 
   UILabel* targetPosDev;
   UILabel* homePosDev;
+  UILabel *targetPosDevDistance;
+  UILabel *homePosDevDistance;
+  UILabel *targetTime;
   
   IKCompass* compass;
+  UILabel *attitudeRoll;
+  UILabel *attitudeYaw;
+  UILabel *attitudeNick;
  
   UIImageView* gpsSatelite;
   
@@ -61,7 +70,9 @@
 
   UIImage* gpsSateliteOk;
   UIImage* gpsSateliteErr;
+  InnerShadowView *batteryView;
 }
+@property (nonatomic, retain) IBOutlet InnerShadowView *batteryView;
 
 @property(retain) UIImage* gpsSateliteOk;
 @property(retain) UIImage* gpsSateliteErr;
@@ -93,10 +104,16 @@
 @property(retain) IBOutlet UILabel* gpsTarget;
 @property(retain) IBOutlet UILabel* flightTime;
 @property(retain) IBOutlet IKCompass* compass;
+@property (nonatomic, retain) IBOutlet UILabel *attitudeRoll;
+@property (nonatomic, retain) IBOutlet UILabel *attitudeYaw;
+@property (nonatomic, retain) IBOutlet UILabel *attitudeNick;
 @property(retain) IBOutlet UILabel* attitude;
 @property(retain) IBOutlet UILabel* speed;
 @property(retain) IBOutlet UILabel* waypoint;
 @property(retain) IBOutlet UILabel* targetPosDev;
 @property(retain) IBOutlet UILabel* homePosDev;
+@property (nonatomic, retain) IBOutlet UILabel *targetPosDevDistance;
+@property (nonatomic, retain) IBOutlet UILabel *homePosDevDistance;
+@property (nonatomic, retain) IBOutlet UILabel *targetTime;
 
 @end
