@@ -100,6 +100,8 @@
 		BA61019113F8727700275CB6 /* target.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018513F8727700275CB6 /* target.png */; };
 		BA61019213F8727700275CB6 /* target30.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018613F8727700275CB6 /* target30.png */; };
 		BA61019313F8727700275CB6 /* target30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61018713F8727700275CB6 /* target30@2x.png */; };
+		BA61019A13F888F100275CB6 /* nick.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61019813F888F100275CB6 /* nick.png */; };
+		BA61019B13F888F100275CB6 /* roll.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61019913F888F100275CB6 /* roll.png */; };
 		BA76133C1391184300C86318 /* screenlock.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133B1391184300C86318 /* screenlock.png */; };
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
@@ -209,7 +211,6 @@
 		BAA4E6ED137EB9210068E38E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA4E6EC137EB9210068E38E /* QuartzCore.framework */; };
 		BAA4E708137EBA430068E38E /* altitude.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6EE137EBA430068E38E /* altitude.png */; };
 		BAA4E709137EBA430068E38E /* altitudeMax.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6EF137EBA430068E38E /* altitudeMax.png */; };
-		BAA4E70D137EBA430068E38E /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F3137EBA430068E38E /* compass.png */; };
 		BAA4E70E137EBA430068E38E /* flightTime.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F4137EBA430068E38E /* flightTime.png */; };
 		BAA4E70F137EBA430068E38E /* gpsCH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F5137EBA430068E38E /* gpsCH.png */; };
 		BAA4E710137EBA430068E38E /* gpsPH.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6F6137EBA430068E38E /* gpsPH.png */; };
@@ -458,6 +459,8 @@
 		BA61018513F8727700275CB6 /* target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = target.png; path = OSD/target.png; sourceTree = "<group>"; };
 		BA61018613F8727700275CB6 /* target30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = target30.png; path = OSD/target30.png; sourceTree = "<group>"; };
 		BA61018713F8727700275CB6 /* target30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "target30@2x.png"; path = "OSD/target30@2x.png"; sourceTree = "<group>"; };
+		BA61019813F888F100275CB6 /* nick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nick.png; path = OSD/nick.png; sourceTree = "<group>"; };
+		BA61019913F888F100275CB6 /* roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roll.png; path = OSD/roll.png; sourceTree = "<group>"; };
 		BA76133B1391184300C86318 /* screenlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenlock.png; sourceTree = "<group>"; };
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
@@ -668,7 +671,6 @@
 		BAA4E6EC137EB9210068E38E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BAA4E6EE137EBA430068E38E /* altitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitude.png; sourceTree = "<group>"; };
 		BAA4E6EF137EBA430068E38E /* altitudeMax.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altitudeMax.png; sourceTree = "<group>"; };
-		BAA4E6F3137EBA430068E38E /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		BAA4E6F4137EBA430068E38E /* flightTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flightTime.png; sourceTree = "<group>"; };
 		BAA4E6F5137EBA430068E38E /* gpsCH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsCH.png; sourceTree = "<group>"; };
 		BAA4E6F6137EBA430068E38E /* gpsPH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gpsPH.png; sourceTree = "<group>"; };
@@ -1095,7 +1097,6 @@
 				BA76133B1391184300C86318 /* screenlock.png */,
 				BAA4E6EE137EBA430068E38E /* altitude.png */,
 				BAA4E6EF137EBA430068E38E /* altitudeMax.png */,
-				BAA4E6F3137EBA430068E38E /* compass.png */,
 				BAA4E6F4137EBA430068E38E /* flightTime.png */,
 				BAA4E6F5137EBA430068E38E /* gpsCH.png */,
 				BAA4E6F6137EBA430068E38E /* gpsPH.png */,
@@ -1183,6 +1184,8 @@
 		BA61017513F8682900275CB6 /* OSD */ = {
 			isa = PBXGroup;
 			children = (
+				BA61019813F888F100275CB6 /* nick.png */,
+				BA61019913F888F100275CB6 /* roll.png */,
 				BA61017C13F8727600275CB6 /* compass.png */,
 				BA61017D13F8727600275CB6 /* compass30.png */,
 				BA61017E13F8727600275CB6 /* compass30@2x.png */,
@@ -1712,7 +1715,6 @@
 				BAA4E6E0137EB89D0068E38E /* ValueOsdViewController.xib in Resources */,
 				BAA4E708137EBA430068E38E /* altitude.png in Resources */,
 				BAA4E709137EBA430068E38E /* altitudeMax.png in Resources */,
-				BAA4E70D137EBA430068E38E /* compass.png in Resources */,
 				BAA4E70E137EBA430068E38E /* flightTime.png in Resources */,
 				BAA4E70F137EBA430068E38E /* gpsCH.png in Resources */,
 				BAA4E710137EBA430068E38E /* gpsPH.png in Resources */,
@@ -1798,6 +1800,8 @@
 				BA61019113F8727700275CB6 /* target.png in Resources */,
 				BA61019213F8727700275CB6 /* target30.png in Resources */,
 				BA61019313F8727700275CB6 /* target30@2x.png in Resources */,
+				BA61019A13F888F100275CB6 /* nick.png in Resources */,
+				BA61019B13F888F100275CB6 /* roll.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

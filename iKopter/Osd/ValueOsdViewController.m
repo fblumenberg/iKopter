@@ -36,12 +36,15 @@
 - (void) hideInfoView:(BOOL)animated;
 - (void) showInfoView;
 
+
+
 @end
 
 /////////////////////////////////////////////////////////////////////////////////
 @implementation ValueOsdViewController
 
 @synthesize batteryIcon;
+@synthesize gpsMode;
 @synthesize targetIcon;
 @synthesize variometer;
 @synthesize batteryView;
@@ -54,7 +57,7 @@
 @synthesize usedCapacity;
 @synthesize satelites;
 @synthesize gpsSatelite;
-@synthesize gpsMode;
+//@synthesize gpsMode;
 @synthesize gpsTarget;
 @synthesize flightTime;
 @synthesize compass;
@@ -81,38 +84,44 @@
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      gpsOkColor=[[UIColor colorWithRed:0.0 green:0.5 blue:0.25 alpha:1.0]retain];
-      functionOffColor=[[UIColor colorWithHexString:@"#E6E6E6" andAlpha:1.0]retain];
-      functionOnColor=[UIColor blueColor];
-
-      self.gpsSateliteOk = [UIImage imageNamed:@"gpsSat2.png"];
-      self.gpsSateliteErr=[self.gpsSateliteOk imageTintedWithColor:[UIColor redColor]];
-      
-      self.targetReachedPending = [UIImage imageNamed:@"target.png"];
-      self.targetReached=[self.targetReachedPending imageTintedWithColor:gpsOkColor];
-     
-      self.batteryOk = [UIImage imageNamed:@"battery.png"];
-      self.batteryLow=[self.batteryOk imageTintedWithColor:[UIColor whiteColor]];
-      
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    gpsOkColor=[[UIColor colorWithRed:0.0 green:0.5 blue:0.25 alpha:1.0]retain];
+    functionOffColor=[[UIColor colorWithHexString:@"#E6E6E6" andAlpha:1.0]retain];
+    functionOnColor=[UIColor blueColor];
+    
+    gpsPHColor = [[UIColor colorWithRed:0.0 green:0.5 blue:1.0 alpha:1.0] retain];
+    gpsCHColor = [[UIColor colorWithRed:1.0 green:0.5 blue:0.0 alpha:1.0] retain];
+    
+    
+    self.gpsSateliteOk = [UIImage imageNamed:@"satelite.png"];
+    self.gpsSateliteErr=[self.gpsSateliteOk imageTintedWithColor:[UIColor redColor]];
+    
+    self.targetReachedPending = [UIImage imageNamed:@"target.png"];
+    self.targetReached=[self.targetReachedPending imageTintedWithColor:gpsOkColor];
+    
+    self.batteryOk = [UIImage imageNamed:@"battery.png"];
+    self.batteryLow=[self.batteryOk imageTintedWithColor:[UIColor whiteColor]];
+    
+  }
+  return self;
 }
 
 - (void)dealloc {
   [gpsOkColor release];
-  gpsOkColor=nil;
   [functionOffColor release];
-  functionOffColor=nil;
-    [attitudeYaw release];
-    [attitudeRoll release];
-    [attitudeYaw release];
-    [attitudeNick release];
-    [batteryView release];
+  [gpsPHColor release];
+  [gpsCHColor release];
+  
+  [attitudeYaw release];
+  [attitudeRoll release];
+  [attitudeYaw release];
+  [attitudeNick release];
+  [batteryView release];
   [targetPosDevDistance release];
   [homePosDevDistance release];
   [targetTime release];
+  [gpsMode release];
   [super dealloc];
 }
 
@@ -121,20 +130,21 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-
+  
 }
 
 - (void)viewDidUnload
 {
-    [attitudeYaw release];
-    attitudeYaw = nil;
-    [self setAttitudeRoll:nil];
-    [self setAttitudeYaw:nil];
-    [self setAttitudeNick:nil];
-    [self setBatteryView:nil];
+  [attitudeYaw release];
+  attitudeYaw = nil;
+  [self setAttitudeRoll:nil];
+  [self setAttitudeYaw:nil];
+  [self setAttitudeNick:nil];
+  [self setBatteryView:nil];
   [self setTargetPosDevDistance:nil];
   [self setHomePosDevDistance:nil];
   [self setTargetTime:nil];
+  [self setGpsMode:nil];
   [super viewDidUnload];
 }
 
@@ -143,7 +153,7 @@
   [super viewWillAppear:animated];
   
   [self updateViewWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
-
+  
   [self hideInfoViewAnimated];
 }
 
@@ -163,19 +173,37 @@
   if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
     nibName = [nibName stringByAppendingString:@"-iPad"];
   }
-
+  
   [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
-
+  
+  
+  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+    self.altitudeControl.badgeScaleFactor=1.5;
+    self.careFree.badgeScaleFactor=1.5;
+    self.gpsMode.badgeScaleFactor=1.5;
+    self.satelites.badgeScaleFactor=1.5;
+  }
+  else{
+    self.altitudeControl.badgeScaleFactor=1.0;
+    self.careFree.badgeScaleFactor=1.0;
+    self.gpsMode.badgeScaleFactor=1.0;
+    self.satelites.badgeScaleFactor=1.0;
+  }
+  
   self.altitudeControl.badgeInsetColor=functionOffColor;
   [self.altitudeControl autoBadgeSizeWithString:@"ALT"];
   
   self.careFree.badgeInsetColor=functionOffColor;
   [self.careFree autoBadgeSizeWithString:@"ALT"];
+  
+  self.gpsMode.badgeInsetColor=functionOffColor;
+  [self.gpsMode autoBadgeSizeWithString:@"FREE"];
+  
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
   [self updateViewWithOrientation: orientation];
-
+  
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -183,25 +211,25 @@
 #pragma mark Navigation bar Hideing 
 
 - (void)showInfoView{
-
+  
   CGRect frame = infoView.bounds;
-
+  
   frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height - frame.size.height;
-
+  
   self.infoView.hidden=NO;
   
   [UIView animateWithDuration:0.75
-                     animations:^ {
-                       self.infoView.frame = frame;
-                     }];
-
-
+                   animations:^ {
+                     self.infoView.frame = frame;
+                   }];
+  
+  
   
   
 }
 
 - (void)hideInfoView:(BOOL)animated{
-
+  
   CGRect frame = infoView.bounds;
   frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height;
   
@@ -245,12 +273,12 @@
   else if(data->Errorcode==0 && !self.infoView.hidden) {
     [self hideInfoViewAnimated];
   }
-    
+  
   if(data->Variometer==0)
     variometer.text=@"—";
   else
     variometer.text=data->Variometer<0?@"▾":@"▴";
-    
+  
   
   heigth.text=[NSString stringWithFormat:@"%0.1f m",data->Altimeter/20.0];  
   heigthSetpoint.text=[NSString stringWithFormat:@"%0.1f",data->SetpointAltitude/20.0];  
@@ -283,11 +311,11 @@
   attitude.text=[NSString stringWithFormat:@"%d° / %d° / %d°",data->CompassHeading,
                  data->AngleNick,
                  data->AngleRoll];
-
+  
   attitudeYaw.text=[NSString stringWithFormat:@"%d°",data->CompassHeading];
   attitudeRoll.text=[NSString stringWithFormat:@"%d°",data->AngleRoll];
   attitudeNick.text=[NSString stringWithFormat:@"%d°",data->AngleNick];
-
+  
   speed.text=[NSString stringWithFormat:@"%d km/h",(data->GroundSpeed*9)/250];
   
   waypoint.text=[NSString stringWithFormat:@"%d / %d (%d)",data->WaypointIndex,data->WaypointNumber,value.poiIndex];
@@ -302,36 +330,46 @@
     targetTime.text=[NSString stringWithFormat:@"%d s",data->TargetHoldTime];
   else
     targetTime.text=@"";
-    
+  
   targetPosDev.text=[NSString stringWithFormat:@"%d°",headingTarget];
   targetPosDevDistance.text=[NSString stringWithFormat:@"%d m",data->TargetPositionDeviation.Distance / 10];
-
+  
   compass.heading=data->CompassHeading;
   compass.homeDeviation=headingHome;
   compass.targetDeviation=headingTarget;
   //-----------------------------------------------------------------------
- 
+  
   gpsSatelite.image= value.isGpsOk?gpsSateliteOk:gpsSateliteErr;
   
   targetIcon.image = value.isTargetReached?targetReached:targetReachedPending;
   
   batteryIcon.image = value.isLowBat?batteryLow:batteryOk;
- 
-  if(value.isFreeModeEnabled)
-    gpsMode.text=@"Free";    
-  else if(value.isPositionHoldEnabled)
-    gpsMode.text=@"Pos. Hold";    
-  else if(value.isComingHomeEnabled)
-    gpsMode.text=@"Coming Home";    
-  else
-    gpsMode.text=@"??";    
+  
+  if(value.isFreeModeEnabled){
+    gpsMode.badgeInsetColor = functionOffColor;
+    gpsMode.badgeText=@"FREE";    
+  }
+  else if(value.isPositionHoldEnabled){
+    gpsMode.badgeInsetColor = gpsPHColor;
+    gpsMode.badgeText=@"PH";    
+  }
+  else if(value.isComingHomeEnabled){
+    gpsMode.badgeInsetColor = gpsCHColor;
+    gpsMode.badgeText=@"CH";    
+  }
+  else{
+    gpsMode.badgeInsetColor = [UIColor redColor];
+    gpsMode.badgeText=@"??";    
+  }
+  
+  [self.gpsMode setNeedsDisplay];
   
   flightTime.text=[NSString stringWithFormat:@"%02d:%02d",data->FlyingTime/60,data->FlyingTime%60];
   
-//  if(value.isTargetReached)
-//    gpsTarget.text=@"TARGET";
-//  else
-//    gpsTarget.text=@"";
+  //  if(value.isTargetReached)
+  //    gpsTarget.text=@"TARGET";
+  //  else
+  //    gpsTarget.text=@"";
 }  
 
 - (void) noDataAvailable {

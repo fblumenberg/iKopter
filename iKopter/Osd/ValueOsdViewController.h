@@ -59,7 +59,7 @@
   CustomBadge* careFree;
   CustomBadge* altitudeControl;
   
-  UILabel* gpsMode;
+//  UILabel* gpsMode;
   UILabel* gpsTarget;
   
   UILabel* flightTime;
@@ -67,10 +67,13 @@
   UIColor* gpsOkColor;
   UIColor* functionOffColor;
   UIColor* functionOnColor;
+  UIColor* gpsPHColor;
+  UIColor* gpsCHColor;
 
   UIImage* gpsSateliteOk;
   UIImage* gpsSateliteErr;
   InnerShadowView *batteryView;
+  CustomBadge *gpsMode;
 }
 @property (nonatomic, retain) IBOutlet InnerShadowView *batteryView;
 
@@ -96,11 +99,12 @@
 @property(retain) IBOutlet UIImageView* gpsSatelite;
 @property(retain) IBOutlet UIImageView* targetIcon;
 @property(retain) IBOutlet UIImageView* batteryIcon;
+@property (nonatomic, retain) IBOutlet CustomBadge *gpsMode;
 
 @property(retain) IBOutlet CustomBadge* satelites;
 @property(retain) IBOutlet CustomBadge* careFree;
 @property(retain) IBOutlet CustomBadge* altitudeControl;
-@property(retain) IBOutlet UILabel* gpsMode;
+//@property(retain) IBOutlet UILabel* gpsMode;
 @property(retain) IBOutlet UILabel* gpsTarget;
 @property(retain) IBOutlet UILabel* flightTime;
 @property(retain) IBOutlet IKCompass* compass;
