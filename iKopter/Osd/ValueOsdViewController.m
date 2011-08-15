@@ -81,6 +81,9 @@
 @synthesize targetReachedPending;
 @synthesize batteryOk;
 @synthesize batteryLow;
+@synthesize waypointPOI;
+@synthesize waypointCount;
+@synthesize waypointIndex;
 @synthesize infoView;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -124,8 +127,11 @@
   [homePosDevDistance release];
   [targetTime release];
   [gpsMode release];
-    [attitudeIndicator release];
+  [attitudeIndicator release];
   [topSpeed release];
+  [waypointPOI release];
+  [waypointCount release];
+  [waypointIndex release];
   [super dealloc];
 }
 
@@ -139,7 +145,6 @@
 
 - (void)viewDidUnload
 {
-  [attitudeYaw release];
   attitudeYaw = nil;
   [self setAttitudeRoll:nil];
   [self setAttitudeYaw:nil];
@@ -149,8 +154,11 @@
   [self setHomePosDevDistance:nil];
   [self setTargetTime:nil];
   [self setGpsMode:nil];
-    [self setAttitudeIndicator:nil];
+  [self setAttitudeIndicator:nil];
   [self setTopSpeed:nil];
+  [self setWaypointPOI:nil];
+  [self setWaypointCount:nil];
+  [self setWaypointIndex:nil];
   [super viewDidUnload];
 }
 
@@ -287,7 +295,7 @@
   
   
   heigth.text=[NSString stringWithFormat:@"%0.1f m",data->Altimeter/20.0];  
-  heigthSetpoint.text=[NSString stringWithFormat:@"%0.1f",data->SetpointAltitude/20.0];  
+  heigthSetpoint.text=[NSString stringWithFormat:@"%0.1f m",data->SetpointAltitude/20.0];  
   
   //-----------------------------------------------------------------------
   battery.text=[NSString stringWithFormat:@"%0.1f V ",data->UBat/10.0];    
@@ -321,16 +329,20 @@
   attitudeYaw.text=[NSString stringWithFormat:@"%d°",data->CompassHeading];
   attitudeRoll.text=[NSString stringWithFormat:@"%d°",data->AngleRoll];
   attitudeNick.text=[NSString stringWithFormat:@"%d°",data->AngleNick];
-
+  
   self.attitudeIndicator.pitch=-1*(value.data.data->AngleNick);
   self.attitudeIndicator.roll=-1*(value.data.data->AngleRoll);
-
+  
   //-----------------------------------------------------------------------
-
+  
   speed.text=[NSString stringWithFormat:@"%d km/h",(data->GroundSpeed*9)/250];
   topSpeed.text=[NSString stringWithFormat:@"%d m/s",(data->TopSpeed)/100];
   
+  //-----------------------------------------------------------------------
   waypoint.text=[NSString stringWithFormat:@"%d / %d (%d)",data->WaypointIndex,data->WaypointNumber,value.poiIndex];
+  waypointIndex.text=[NSString stringWithFormat:@"%d",data->WaypointIndex];
+  waypointCount.text=[NSString stringWithFormat:@"/ %d",data->WaypointNumber];
+  waypointPOI.text=[NSString stringWithFormat:@"%d",value.poiIndex];
   
   //-----------------------------------------------------------------------
   NSUInteger headingHome = (data->HomePositionDeviation.Bearing + 360 - data->CompassHeading) % 360;
@@ -377,11 +389,7 @@
   [self.gpsMode setNeedsDisplay];
   
   flightTime.text=[NSString stringWithFormat:@"%02d:%02d",data->FlyingTime/60,data->FlyingTime%60];
-  
-  //  if(value.isTargetReached)
-  //    gpsTarget.text=@"TARGET";
-  //  else
-  //    gpsTarget.text=@"";
+
 }  
 
 - (void) noDataAvailable {
