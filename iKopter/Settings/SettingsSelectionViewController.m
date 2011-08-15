@@ -163,13 +163,20 @@ static NSUInteger kNumberOfSettings = 5;
   }
   
   [self.settings replaceObjectAtIndex:index withObject:paramSet];
-  
+
+  BOOL allSettingsLoaded=YES;
   for (int i=0; i<kNumberOfSettings; i++) {
     if ([self.settings objectAtIndex:i] == [NSNull null]) {
       [[MKConnectionController sharedMKConnectionController] requestSettingForIndex:i+1];
+      allSettingsLoaded=NO;
       break;
     }   
   }
+  
+  if(allSettingsLoaded){
+     [[MKConnectionController sharedMKConnectionController] setActiveSetting:activeSetting];
+  }
+
   [self.tableView reloadData];
 }
 
@@ -299,7 +306,7 @@ static NSUInteger kNumberOfSettings = 5;
   
   activeSetting=index;
   
-  [self cancelEditActiveSetting:self];
+//  [self cancelEditActiveSetting:self];
 }
 
 - (void)saveActiveSetting:(id)sender
