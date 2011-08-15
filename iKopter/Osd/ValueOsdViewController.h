@@ -26,7 +26,7 @@
 #import "OsdValue.h"
 #import "CustomBadge.h"
 #import "IKCompass.h"
-
+#import "IKAttitudeIndicator.h"
 @class InnerShadowView;
 
 @interface ValueOsdViewController : UIViewController<OsdValueDelegate> {
@@ -74,6 +74,8 @@
   UIImage* gpsSateliteErr;
   InnerShadowView *batteryView;
   CustomBadge *gpsMode;
+  IKAttitudeIndicator *attitudeIndicator;
+  UILabel *topSpeed;
 }
 @property (nonatomic, retain) IBOutlet InnerShadowView *batteryView;
 
@@ -100,6 +102,8 @@
 @property(retain) IBOutlet UIImageView* targetIcon;
 @property(retain) IBOutlet UIImageView* batteryIcon;
 @property (nonatomic, retain) IBOutlet CustomBadge *gpsMode;
+@property (nonatomic, retain) IBOutlet IKAttitudeIndicator *attitudeIndicator;
+@property (nonatomic, retain) IBOutlet UILabel *topSpeed;
 
 @property(retain) IBOutlet CustomBadge* satelites;
 @property(retain) IBOutlet CustomBadge* careFree;

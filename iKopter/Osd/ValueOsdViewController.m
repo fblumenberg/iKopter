@@ -45,6 +45,8 @@
 
 @synthesize batteryIcon;
 @synthesize gpsMode;
+@synthesize attitudeIndicator;
+@synthesize topSpeed;
 @synthesize targetIcon;
 @synthesize variometer;
 @synthesize batteryView;
@@ -122,6 +124,8 @@
   [homePosDevDistance release];
   [targetTime release];
   [gpsMode release];
+    [attitudeIndicator release];
+  [topSpeed release];
   [super dealloc];
 }
 
@@ -145,6 +149,8 @@
   [self setHomePosDevDistance:nil];
   [self setTargetTime:nil];
   [self setGpsMode:nil];
+    [self setAttitudeIndicator:nil];
+  [self setTopSpeed:nil];
   [super viewDidUnload];
 }
 
@@ -307,7 +313,7 @@
   self.careFree.badgeText=@"CF";
   [self.careFree setNeedsDisplay];
   
-  
+  //-----------------------------------------------------------------------
   attitude.text=[NSString stringWithFormat:@"%d° / %d° / %d°",data->CompassHeading,
                  data->AngleNick,
                  data->AngleRoll];
@@ -315,8 +321,14 @@
   attitudeYaw.text=[NSString stringWithFormat:@"%d°",data->CompassHeading];
   attitudeRoll.text=[NSString stringWithFormat:@"%d°",data->AngleRoll];
   attitudeNick.text=[NSString stringWithFormat:@"%d°",data->AngleNick];
-  
+
+  self.attitudeIndicator.pitch=-1*(value.data.data->AngleNick);
+  self.attitudeIndicator.roll=-1*(value.data.data->AngleRoll);
+
+  //-----------------------------------------------------------------------
+
   speed.text=[NSString stringWithFormat:@"%d km/h",(data->GroundSpeed*9)/250];
+  topSpeed.text=[NSString stringWithFormat:@"%d m/s",(data->TopSpeed)/100];
   
   waypoint.text=[NSString stringWithFormat:@"%d / %d (%d)",data->WaypointIndex,data->WaypointNumber,value.poiIndex];
   

@@ -74,6 +74,20 @@
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 					</object>
+					<object class="IBUIView" id="391818042">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{60, 161}, {65, 25}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="52343653"/>
+						<string key="NSReuseIdentifierKey">_NS:180</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAxIDAAA</bytes>
+						</object>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
 					<object class="IBUILabel" id="121485487">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -209,29 +223,6 @@
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">2</int>
 					</object>
-					<object class="IBUILabel" id="45455902">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{44, 153}, {124, 36}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="943857291"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Comming home</string>
-						<object class="NSFont" key="IBUIFont" id="609527323">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">24</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<reference key="IBUITextColor" ref="331353868"/>
-						<reference key="IBUIHighlightedColor" ref="159153349"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
-					</object>
 					<object class="IBUILabel" id="239566949">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -245,7 +236,11 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">WP 1/12 (0)</string>
-						<reference key="IBUIFont" ref="609527323"/>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">24</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<reference key="IBUITextColor" ref="331353868"/>
 						<reference key="IBUIHighlightedColor" ref="159153349"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -323,7 +318,7 @@
 						<string key="NSFrame">{{11, 59}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="52343653"/>
+						<reference key="NSNextKeyView" ref="391818042"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -356,7 +351,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">compass.png</string>
+							<string key="NSResourceName">compass30.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="279909236">
@@ -398,7 +393,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home1.png</string>
+							<string key="NSResourceName">home30.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="322353819">
@@ -478,7 +473,7 @@
 						<string key="NSFrame">{{32, 139}, {25, 25}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="45455902"/>
+						<reference key="NSNextKeyView" ref="943857291"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="964821859">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40MDAwMDAwMDYgMC44MDAwMDAwMTE5IDEAA</bytes>
@@ -530,7 +525,7 @@
 						<string key="NSFrame">{{332, 103}, {142, 142}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="68702248"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAwLjUwMTk2MDgxNCAwAA</bytes>
@@ -562,7 +557,7 @@
 						<string key="NSFrame">{{214, 163}, {110, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="358400019"/>
+						<reference key="NSNextKeyView" ref="68702248"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -581,6 +576,7 @@
 						<string key="NSFrame">{{0, 202}, {480, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="358400019"/>
 						<string key="NSReuseIdentifierKey">_NS:311</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -635,14 +631,6 @@
 						<reference key="destination" ref="121485487"/>
 					</object>
 					<int key="connectionID">21</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">gpsMode</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="45455902"/>
-					</object>
-					<int key="connectionID">22</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -804,6 +792,14 @@
 					</object>
 					<int key="connectionID">69</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gpsMode</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="391818042"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -840,7 +836,6 @@
 							<reference ref="210175374"/>
 							<reference ref="52343653"/>
 							<reference ref="791975865"/>
-							<reference ref="45455902"/>
 							<reference ref="239566949"/>
 							<reference ref="358400019"/>
 							<reference ref="322353819"/>
@@ -850,6 +845,7 @@
 							<reference ref="476974246"/>
 							<reference ref="68702248"/>
 							<reference ref="970118239"/>
+							<reference ref="391818042"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -893,12 +889,6 @@
 						<reference key="object" ref="652196236"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Label - UsedCapacity - Value</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">16</int>
-						<reference key="object" ref="45455902"/>
-						<reference key="parent" ref="191373211"/>
-						<string key="objectName">Label - GPS Mode</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
@@ -1055,6 +1045,12 @@
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Label - No Data</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">70</int>
+						<reference key="object" ref="391818042"/>
+						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Custom Badge - GPS</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1072,7 +1068,6 @@
 					<string>12.IBPluginDependency</string>
 					<string>13.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
-					<string>16.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
@@ -1102,6 +1097,8 @@
 					<string>59.IBPluginDependency</string>
 					<string>64.IBPluginDependency</string>
 					<string>67.IBPluginDependency</string>
+					<string>70.CustomClassName</string>
+					<string>70.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1118,7 +1115,6 @@
 							<int key="affinity">1</int>
 						</object>
 					</object>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1153,6 +1149,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>CustomBadge</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1167,7 +1165,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">69</int>
+			<int key="maxID">71</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1181,11 +1179,27 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">IKAttitudeIndicator</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/IKAttitudeIndicator.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">IKCompass</string>
 					<string key="superclassName">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/IKCompass.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">InnerShadowView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/InnerShadowView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1197,11 +1211,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>altitudeControl</string>
 							<string>attitude</string>
+							<string>attitudeIndicator</string>
 							<string>attitudeNick</string>
 							<string>attitudeRoll</string>
 							<string>attitudeYaw</string>
 							<string>battery</string>
 							<string>batteryIcon</string>
+							<string>batteryView</string>
 							<string>careFree</string>
 							<string>compass</string>
 							<string>current</string>
@@ -1212,12 +1228,16 @@
 							<string>heigth</string>
 							<string>heigthSetpoint</string>
 							<string>homePosDev</string>
+							<string>homePosDevDistance</string>
 							<string>infoView</string>
 							<string>noData</string>
 							<string>satelites</string>
 							<string>speed</string>
 							<string>targetIcon</string>
 							<string>targetPosDev</string>
+							<string>targetPosDevDistance</string>
+							<string>targetTime</string>
+							<string>topSpeed</string>
 							<string>usedCapacity</string>
 							<string>variometer</string>
 							<string>waypoint</string>
@@ -1226,17 +1246,20 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CustomBadge</string>
 							<string>UILabel</string>
+							<string>IKAttitudeIndicator</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
+							<string>InnerShadowView</string>
 							<string>CustomBadge</string>
 							<string>IKCompass</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
-							<string>UILabel</string>
+							<string>CustomBadge</string>
 							<string>UIImageView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -1246,6 +1269,9 @@
 							<string>CustomBadge</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -1258,11 +1284,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>altitudeControl</string>
 							<string>attitude</string>
+							<string>attitudeIndicator</string>
 							<string>attitudeNick</string>
 							<string>attitudeRoll</string>
 							<string>attitudeYaw</string>
 							<string>battery</string>
 							<string>batteryIcon</string>
+							<string>batteryView</string>
 							<string>careFree</string>
 							<string>compass</string>
 							<string>current</string>
@@ -1273,12 +1301,16 @@
 							<string>heigth</string>
 							<string>heigthSetpoint</string>
 							<string>homePosDev</string>
+							<string>homePosDevDistance</string>
 							<string>infoView</string>
 							<string>noData</string>
 							<string>satelites</string>
 							<string>speed</string>
 							<string>targetIcon</string>
 							<string>targetPosDev</string>
+							<string>targetPosDevDistance</string>
+							<string>targetTime</string>
+							<string>topSpeed</string>
 							<string>usedCapacity</string>
 							<string>variometer</string>
 							<string>waypoint</string>
@@ -1292,6 +1324,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">attitude</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">attitudeIndicator</string>
+								<string key="candidateClassName">IKAttitudeIndicator</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">attitudeNick</string>
@@ -1314,6 +1350,10 @@
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">batteryView</string>
+								<string key="candidateClassName">InnerShadowView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">careFree</string>
 								<string key="candidateClassName">CustomBadge</string>
 							</object>
@@ -1331,7 +1371,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">gpsMode</string>
-								<string key="candidateClassName">UILabel</string>
+								<string key="candidateClassName">CustomBadge</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">gpsSatelite</string>
@@ -1351,6 +1391,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">homePosDev</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">homePosDevDistance</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -1375,6 +1419,18 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">targetPosDev</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">targetPosDevDistance</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">targetTime</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">topSpeed</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -1417,23 +1473,23 @@
 				<string>13-target.png</string>
 				<string>altitude.png</string>
 				<string>battery.png</string>
-				<string>compass.png</string>
+				<string>compass30.png</string>
 				<string>flightTime.png</string>
 				<string>gpsCH.png</string>
 				<string>gpsSat2.png</string>
-				<string>home1.png</string>
+				<string>home30.png</string>
 				<string>speed.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{28, 28}</string>
 				<string>{30, 30}</string>
-				<string>{30, 30}</string>
-				<string>{24, 24}</string>
-				<string>{30, 30}</string>
+				<string>{60, 60}</string>
 				<string>{30, 30}</string>
 				<string>{30, 30}</string>
-				<string>{40, 40}</string>
+				<string>{30, 30}</string>
+				<string>{30, 30}</string>
+				<string>{30, 30}</string>
 				<string>{28, 28}</string>
 			</object>
 		</object>
