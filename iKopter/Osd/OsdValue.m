@@ -22,6 +22,8 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
+#import <CoreLocation/CoreLocation.h>
+
 #import "iKopterAppDelegate.h"
 #import "OsdValue.h"
 #import "MKConnectionController.h"
@@ -29,14 +31,17 @@
 #import "NCLogSession.h"
 #import "NCLogRecord.h"
 #import "IKDebugData.h"
+#import "IKPoint.h"
 
-@interface OsdValue()
+@interface OsdValue() <CLLocationManagerDelegate>
 - (void) sendOsdRefreshRequest;
+- (void) sendFollowMeRequest;
 - (void) logNCData;
 - (void) osdNotification:(NSNotification *)aNotification;
 - (void) debugValueNotification:(NSNotification *)aNotification;
 
 @property(retain) IKNaviData* data;
+@property(retain) CLLocationManager *lm;
 
 @end
 
@@ -49,6 +54,42 @@
 @synthesize ncLogSession=_ncLogSession;
 @synthesize managedObjectContext;
 @synthesize poiIndex;
+
+@synthesize lm;
+@synthesize canFollowMe;
+@synthesize followMeRequests;
+
+-(void)setFollowMe:(BOOL)followMe {
+  
+  if (_followMe!=followMe) {
+    
+    [self willChangeValueForKey:@"followMe"];
+    _followMe = followMe;
+    [self didChangeValueForKey:@"followMe"];
+    
+    if (_followMe) {
+      [self.lm startUpdatingLocation];
+      _followMeCanStart=NO;
+      followMeRequests=0;
+
+      followMeTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
+                    @selector(sendFollowMeRequest) userInfo:nil repeats:YES];
+
+    } else {
+      followMeRequests=0;
+      [followMeTimer invalidate];
+      followMeTimer=nil;
+      [self.lm stopUpdatingLocation];
+    }
+  }
+}
+
+-(BOOL) followMe{
+
+  return _followMe;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(BOOL) areEnginesOn {
   if (!_data.data) 
@@ -150,6 +191,7 @@
     
     _logActive=NO;
     _logInterval=1.0;
+
     
     NSLog(@"Def:%@",[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]);
     
@@ -173,12 +215,31 @@
       self.ncLogSession.timeStampStart=[NSDate date];
     }
     
+    
+    if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
+      canFollowMe = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
+                                       [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+    }
+    else{
+      canFollowMe = [CLLocationManager locationServicesEnabled];
+    }
+
+    _followMe=NO;
+    _followMeCanStart=NO;
+    
+    self.lm = [[[CLLocationManager alloc] init]autorelease];
+    self.lm.delegate = self;
+    self.lm.desiredAccuracy = kCLLocationAccuracyBest;
   }
   return self;
 }
 
 - (void) dealloc {
   
+  [self.lm stopUpdatingLocation];
+  self.lm.delegate = nil;
+  self.lm = nil;
+
   self.data=nil;
   [super dealloc];
 }
@@ -218,6 +279,9 @@
 
   [logTimer invalidate];
   logTimer=nil;
+  
+  [followMeTimer invalidate];
+  followMeTimer=nil;
   
   if( _logActive ){
     self.ncLogSession.timeStampEnd=[NSDate date];
@@ -269,6 +333,58 @@
   [relationshipSet addObject:record];
   
   qltrace(@"log");
+}
+
+#pragma mark - Location Manager Stuff
+
+- (void)locationManager:(CLLocationManager *)manager 
+    didUpdateToLocation:(CLLocation *)newLocation 
+           fromLocation:(CLLocation *)oldLocation {
+  
+  if ([newLocation.timestamp timeIntervalSince1970] < [NSDate timeIntervalSinceReferenceDate] - 60)
+    return;
+  
+  _followMeCanStart=YES;
+
+}
+
+- (void)locationManager:(CLLocationManager *)manager 
+       didFailWithError:(NSError *)error {
+  
+  NSString *errorType = (error.code == kCLErrorDenied) ? 
+  NSLocalizedString(@"Access Denied", @"Access Denied") : 
+  NSLocalizedString(@"Unknown Error", @"Unknown Error");
+  
+  UIAlertView *alert = [[UIAlertView alloc] 
+                        initWithTitle:NSLocalizedString(@"Error getting Location", @"Error getting Location")
+                        message:errorType 
+                        delegate:self 
+                        cancelButtonTitle:NSLocalizedString(@"Okay", @"Okay") 
+                        otherButtonTitles:nil];
+  [alert show];
+  [alert release];
+  self.lm = nil;
+}
+
+
+- (void) sendFollowMeRequest{
+  if (!_followMeCanStart) return;
+  
+  IKPoint* targetPoint = [[IKPoint alloc]initWithCoordinate:self.lm.location.coordinate];
+  
+  targetPoint.index=1;
+  targetPoint.type=POINT_TYPE_WP;
+  targetPoint.altitude=1;
+  targetPoint.heading=-1;
+  targetPoint.holdTime=60;
+  targetPoint.eventFlag=1;
+  targetPoint.wpEventChannelValue=100;
+  
+  qldebug("Now sending the target %@",targetPoint);
+  [[MKConnectionController sharedMKConnectionController] sendPoint:targetPoint];
+  followMeRequests++;
+
+  [targetPoint release];
 }
 
 

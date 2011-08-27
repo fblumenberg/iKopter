@@ -109,6 +109,7 @@ extern NSString * const MKWritePointNotification;
 
 - (void) requestPointForIndex:(NSInteger)interval;
 - (void) writePoint:(IKPoint*)point;
+- (void) sendPoint:(IKPoint*)point;
 
   
 @end

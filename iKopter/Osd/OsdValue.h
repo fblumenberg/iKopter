@@ -46,13 +46,16 @@
   int requestCount;
   NSTimer* requestTimer;
   NSTimer* logTimer;
+  NSTimer* followMeTimer;
   
   id<OsdValueDelegate> _delegate;
   IKNaviData* _data;
   NCLogSession* _ncLogSession;
   NSTimeInterval _logInterval;
   BOOL _logActive;
-  
+
+  BOOL _followMe;
+  BOOL _followMeCanStart;
 }
 
 @property(retain) NCLogSession* ncLogSession;
@@ -77,6 +80,10 @@
 @property(readonly) BOOL isCareFreeOn;
 @property(readonly) BOOL isAltControlOn;
 @property(readonly) NSInteger poiIndex;
+
+@property(assign) BOOL followMe;
+@property(readonly) BOOL canFollowMe;
+@property(readonly) NSInteger followMeRequests;
 
 - (void) startRequesting;
 - (void) stopRequesting;

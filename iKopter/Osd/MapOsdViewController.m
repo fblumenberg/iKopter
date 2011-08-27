@@ -39,13 +39,7 @@
 @implementation MapOsdViewController
 
 @synthesize mapView;
-@synthesize mapTypeSwitch;
 @synthesize routeController;
-
-@synthesize gpsMode;
-@synthesize altitudeControl;
-@synthesize careFree;
-@synthesize satelites;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,7 +54,6 @@
 - (void)dealloc
 {
   self.mapView=nil;
-  self.mapTypeSwitch=nil;
   self.routeController=nil;
   [super dealloc];
 }

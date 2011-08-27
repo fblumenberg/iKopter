@@ -24,7 +24,7 @@
 
 #import "OsdViewController.h"
 #import "ValueOsdViewController.h"
-#import "HorizonOsdViewController.h"
+#import "FollowMeOsdViewController.h"
 #import "RawOsdViewController.h"
 #import "MapOsdViewController.h"
 
@@ -49,6 +49,7 @@
 @synthesize mapOsdTabBarItem;
 @synthesize selectedViewController;
 @synthesize screenLockButton;
+@synthesize followMeOsdTabBarItem;
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -61,27 +62,27 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-//  HorizonOsdViewController* horizonViewController=[[HorizonOsdViewController alloc]initWithNibName:@"HorizonOsdViewController" bundle:nil];
+  osdValue = [[OsdValue alloc] init];
+  osdValue.delegate = self;
+
   ValueOsdViewController* valueViewController=[[ValueOsdViewController alloc]initWithNibName:@"ValueOsdViewController" bundle:nil];
   RawOsdViewController* rawViewController=[[RawOsdViewController alloc]initWithNibName:@"RawOsdViewController" bundle:nil];
   MapOsdViewController* mapViewController=[[MapOsdViewController alloc]initWithNibName:@"MapOsdViewController" bundle:nil];
+  FollowMeOsdViewController* followMeViewController=[[FollowMeOsdViewController alloc]initWithNibName:@"FollowMeOsdViewController" bundle:nil];
   
-  NSArray *array = [[NSArray alloc] initWithObjects:valueViewController, rawViewController, mapViewController, nil];
+  followMeViewController.osdValue=osdValue;
+  
+  NSArray *array = [[NSArray alloc] initWithObjects:valueViewController, rawViewController, mapViewController, followMeViewController, nil];
   self.viewControllers = array;
   
-//  [self.view insertSubview:valueViewController.view belowSubview:self.tabBar];
-//  self.selectedViewController = valueViewController;
-  
   [array release];
-//  [horizonViewController release];
+  [followMeViewController release];
   [valueViewController release];
   [rawViewController release];
   [mapViewController release];
   
   self.tabBar.selectedItem=self.valuesOsdTabBarItem;
   
-  osdValue = [[OsdValue alloc] init];
-  osdValue.delegate = self;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -90,15 +91,10 @@
 
   [osdValue startRequesting];
   
-//  [self.selectedViewController viewWillAppear:animated];
-
   [self.navigationController setToolbarHidden:YES animated:YES];
   [self.navigationController setNavigationBarHidden:NO animated:NO];
   
   self.navigationController.navigationBar.translucent=YES;
-  
-//  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action: nil] autorelease];
-//  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"screenlock-locked.png"] style:UIBarButtonItemStylePlain target:self action: nil] autorelease];
   
   self.screenLockButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
   [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock.png"] forState:UIControlStateNormal];

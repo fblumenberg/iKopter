@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2011, Frank Blumenberg
+// Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,23 +22,21 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
+
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import "Route.h"
-#import "RouteController.h"
-#import "BaseOsdViewController.h"
+#import "IKAttitudeIndicator.h"
 #import "OsdValue.h"
+#import "BaseOsdViewController.h"
 
-@class CustomBadge;
+@interface FollowMeOsdViewController : BaseOsdViewController<OsdValueDelegate> {
 
-@interface MapOsdViewController : BaseOsdViewController<OsdValueDelegate,MKMapViewDelegate,RouteControllerDelegate> {
-    
-  BOOL needRegionAdjustment;
-  
+  UILabel *followMeRequests;
 }
 
-@property(retain) RouteController* routeController;
-@property(retain) IBOutlet MKMapView* mapView;
+@property (nonatomic, retain) OsdValue* osdValue;
+@property (nonatomic, retain) IBOutlet UISwitch* followMeSwitch;
+@property (nonatomic, retain) IBOutlet UILabel *followMeRequests;
+
+- (IBAction) followMeChanged;
 
 @end
