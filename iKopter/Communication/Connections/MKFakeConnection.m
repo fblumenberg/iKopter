@@ -32,6 +32,8 @@
 #import "MKDataConstants.h"
 #import "IKParamSet.h"
 
+#import "NSString+Parsing.h"
+
 #undef ql_component
 #define ql_component lcl_cCommunication
 
@@ -201,17 +203,36 @@ void ParamSet_DefaultSet3(IKParamSet* EE_Parameter) // beginner
 	EE_Parameter.Name=@"Beginner";
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 
+enum CsvIndex {
+  CSV_altimeter=0,CSV_angleNick,CSV_angleRoll,CSV_compassHeading,CSV_current,CSV_currentPosition,
+  CSV_errorCode,CSV_fcStatusFlags,CSV_fcStatusFlags2,CSV_flyingTime,CSV_gas,CSV_groundSpeed,
+  CSV_heading,CSV_homePosition,CSV_homePositionDeviation,CSV_ncFlags,CSV_operatingRadius,
+  CSV_rcQuality,CSV_satsInUse,CSV_setpointAltitude,CSV_targetHoldTime,CSV_targetPosition,
+  CSV_targetPositionDeviation,CSV_timeStamp,CSV_topSpeed,CSV_uBat,CSV_usedCapacity,
+  CSV_variometer,CSV_version,CSV_waypointIndex,CSV_waypointNumber
+};
+
+
+@interface MKFakeConnection()
+
+-(void) nextRow;
+-(void) updateNaviDataFromRow:(NSInteger)row;
+
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////
 
 static NSString * const MKDummyConnectionException = @"MKDummyConnectionException";
 
-@interface MKFakeConnection (Private)
+@interface MKFakeConnection ()
 
 - (void) doConnect;
 - (void) doDisconnect;
 - (void) doResponseMkData:(NSData*)data;
+
+@property(nonatomic,retain) NSArray* osdData;
 
 @end
 
@@ -220,6 +241,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 #pragma mark Properties
 
 @synthesize delegate;
+@synthesize osdData;
 
 #pragma mark Initialization
 
@@ -251,11 +273,35 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
     [settings addObject:p];
     
     activeSetting = 3;
+    
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"FakeOsd" 
+                                                         ofType:@"csv"];
+    
+    NSError*  error;
+    NSString* data = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error ];
+    
+    self.osdData = [data csvRows];
+    
+    dataRow = 0;
+    [self updateNaviDataFromRow:dataRow];
+    
+    osdTimer=[NSTimer scheduledTimerWithTimeInterval: 1.0 
+                                              target:self 
+                                            selector:@selector(nextRow) 
+                                            userInfo:nil 
+                                             repeats:YES];
+
   }
   return self;
 }
 
 - (void) dealloc {
+  
+  [osdTimer invalidate];
+  osdTimer=nil;
+  
+  self.osdData = nil;
+  
   [settings release];
   [super dealloc];
 }
@@ -308,6 +354,12 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
 {
   IKMkDebugOut d;
   NSData * payload = [NSData dataWithBytes:(void*)&d length:sizeof(d)];
+  return payload;
+}
+
+- (NSData*) osdResponse{
+  
+  NSData * payload = [NSData dataWithBytes:(void*)&naviData length:sizeof(naviData)];
   return payload;
 }
 
@@ -502,6 +554,10 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
         rspPayload = [self writeSettingResponse:payload];
         rspCommand = MKCommandWriteSettingsResponse;
         break;
+      case MKCommandOsdRequest:
+        rspPayload = [self osdResponse];
+        rspCommand = MKCommandOsdResponse;
+        break;
       case MKCommandEngineTestRequest:
         qltrace(@"Engine Test %@",payload);
         [data release];
@@ -522,5 +578,70 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
   
   [data release];
 }
+
+-(void) nextRow {
+  dataRow = (++dataRow % [self.osdData count]);
+  
+  [self updateNaviDataFromRow:dataRow];
+}
+
+
+void fillIKMkGPSPosDevFromString(NSString* data,IKMkGPSPosDev* pos){
+  
+  NSArray *components=[data componentsSeparatedByString:@":"];
+  
+  pos->Distance = [[components objectAtIndex:0] intValue];
+  pos->Bearing = [[components objectAtIndex:1] intValue];
+}
+
+void fillIKMkGPSPosFromString(NSString* data,IKMkGPSPos* pos){
+  
+  NSArray *components=[data componentsSeparatedByString:@":"];
+
+  pos->Latitude = [[components objectAtIndex:0] intValue];
+  pos->Longitude = [[components objectAtIndex:1] intValue];
+
+  pos->Altitude = [[components objectAtIndex:2] intValue];
+  pos->Status = [[components objectAtIndex:3] intValue];
+}
+
+-(void) updateNaviDataFromRow:(NSInteger)row {
+  NSArray* columns = [self.osdData objectAtIndex:row];
+  
+  naviData.Version=NAVIDATA_VERSION;
+  
+  fillIKMkGPSPosFromString([columns objectAtIndex:CSV_currentPosition], &(naviData.CurrentPosition));
+  fillIKMkGPSPosFromString([columns objectAtIndex:CSV_targetPosition], &(naviData.TargetPosition));
+  fillIKMkGPSPosFromString([columns objectAtIndex:CSV_homePosition], &(naviData.HomePosition));
+  
+  fillIKMkGPSPosDevFromString([columns objectAtIndex:CSV_homePositionDeviation], &(naviData.HomePositionDeviation));
+  fillIKMkGPSPosDevFromString([columns objectAtIndex:CSV_targetPositionDeviation], &(naviData.TargetPositionDeviation));
+  
+  naviData.WaypointIndex = [[columns objectAtIndex:CSV_waypointIndex] intValue];        // index of current waypoints running from 0 to WaypointNumber-1
+  naviData.WaypointNumber = [[columns objectAtIndex:CSV_waypointNumber] intValue];       // number of stored waypoints
+  naviData.SatsInUse = [[columns objectAtIndex:CSV_satsInUse] intValue];          // number of satellites used for position solution
+  naviData.Altimeter = [[columns objectAtIndex:CSV_altimeter] intValue];          // hight according to air pressure
+  naviData.Variometer = [[columns objectAtIndex:CSV_variometer] intValue];         // climb(+) and sink(-) rate
+  naviData.FlyingTime = [[columns objectAtIndex:CSV_flyingTime] intValue];         // in seconds
+  naviData.UBat = [[columns objectAtIndex:CSV_uBat] intValue];           // Battery Voltage in 0.1 Volts
+  naviData.GroundSpeed = [[columns objectAtIndex:CSV_groundSpeed] intValue];        // speed over ground in cm/s (2D)
+  naviData.Heading = [[columns objectAtIndex:CSV_heading] intValue];          // current flight direction in � as angle to north
+  naviData.CompassHeading = [[columns objectAtIndex:CSV_compassHeading] intValue];       // current compass value in �
+  naviData.AngleNick = [[columns objectAtIndex:CSV_angleNick] intValue];          // current Nick angle in 1�
+  naviData.AngleRoll = [[columns objectAtIndex:CSV_angleRoll] intValue];          // current Rick angle in 1�
+  naviData.RC_Quality = [[columns objectAtIndex:CSV_rcQuality] intValue];         // RC_Quality
+  naviData.FCStatusFlags = [[columns objectAtIndex:CSV_fcStatusFlags] intValue];        // Flags from FC
+  naviData.NCFlags = [[columns objectAtIndex:CSV_ncFlags] intValue];          // Flags from NC
+  naviData.Errorcode = [[columns objectAtIndex:CSV_errorCode] intValue];          // 0 --> okay
+  naviData.OperatingRadius = [[columns objectAtIndex:CSV_operatingRadius] intValue];      // current operation radius around the Home Position in m
+  naviData.TopSpeed = [[columns objectAtIndex:CSV_topSpeed] intValue];         // velocity in vertical direction in cm/s
+  naviData.TargetHoldTime = [[columns objectAtIndex:CSV_targetHoldTime] intValue];       // time in s to stay at the given target, counts down to 0 if target has been reached
+  naviData.FCStatusFlags2 = [[columns objectAtIndex:CSV_fcStatusFlags2] intValue];				// StatusFlags2 (since version 5 added)
+  naviData.SetpointAltitude = [[columns objectAtIndex:CSV_setpointAltitude] intValue];     // setpoint for altitude
+  naviData.Gas = [[columns objectAtIndex:CSV_gas] intValue];            // for future use
+  naviData.Current = [[columns objectAtIndex:CSV_current] intValue];          // actual current in 0.1A steps
+  naviData.UsedCapacity = [[columns objectAtIndex:CSV_usedCapacity] intValue];       // used capacity in mAh
+}
+
 
 @end

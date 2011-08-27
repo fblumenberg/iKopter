@@ -24,6 +24,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MKConnection.h"
+#import "IKMkDataTypes.h"
 
 @class AsyncSocket;
 
@@ -39,6 +40,12 @@
   int activeSetting;
   
   NSMutableArray* settings;
+  
+  IKMkNaviData naviData;
+  NSInteger dataRow;
+  
+  NSTimer* osdTimer;
+
 }
 
 @property (assign) id<MKConnectionDelegate> delegate;
