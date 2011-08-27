@@ -27,16 +27,13 @@
 #import "CustomBadge.h"
 #import "IKCompass.h"
 #import "IKAttitudeIndicator.h"
+#import "BaseOsdViewController.h"
+
 @class InnerShadowView;
 
-@interface ValueOsdViewController : UIViewController<OsdValueDelegate> {
+@interface ValueOsdViewController : BaseOsdViewController<OsdValueDelegate> {
 
   UILabel* noData;
-  UILabel* heigth;
-  UILabel* heigthSetpoint;
-  UILabel* battery;
-  UILabel* current;
-  UILabel* usedCapacity;
   UILabel* attitude;
 
   UILabel* speed;
@@ -52,26 +49,7 @@
   UILabel *attitudeRoll;
   UILabel *attitudeYaw;
   UILabel *attitudeNick;
- 
-  UIImageView* gpsSatelite;
   
-  CustomBadge* satelites;
-  CustomBadge* careFree;
-  CustomBadge* altitudeControl;
-  
-  UILabel* flightTime;
-
-  UIColor* gpsOkColor;
-  UIColor* functionOffColor;
-  UIColor* functionOnColor;
-  UIColor* gpsPHColor;
-  UIColor* gpsCHColor;
-
-  UIImage* gpsSateliteOk;
-  UIImage* gpsSateliteErr;
-  
-  InnerShadowView *batteryView;
-  CustomBadge *gpsMode;
   IKAttitudeIndicator *attitudeIndicator;
 
   UILabel *topSpeed;
@@ -79,51 +57,34 @@
   UILabel *waypointCount;
   UILabel *waypointIndex;
 }
-@property (nonatomic, retain) IBOutlet InnerShadowView *batteryView;
 
-@property(retain) UIImage* gpsSateliteOk;
-@property(retain) UIImage* gpsSateliteErr;
 
-@property(retain) UIImage* targetReached;
-@property(retain) UIImage* targetReachedPending;
+@property(nonatomic, retain) UIImage* targetReached;
+@property(nonatomic, retain) UIImage* targetReachedPending;
 
-@property(retain) UIImage* batteryOk;
-@property(retain) UIImage* batteryLow;
 
 @property (nonatomic, retain) IBOutlet UILabel *waypointPOI;
 @property (nonatomic, retain) IBOutlet UILabel *waypointCount;
 @property (nonatomic, retain) IBOutlet UILabel *waypointIndex;
 
-@property(retain) IBOutlet UILabel* infoView;
+@property(nonatomic, retain) IBOutlet UILabel* infoView;
 
-@property(retain) IBOutlet UILabel* noData;
-@property(retain) IBOutlet UILabel* heigth;
-@property(retain) IBOutlet UILabel* variometer;
-@property(retain) IBOutlet UILabel* heigthSetpoint;
-@property(retain) IBOutlet UILabel* battery;
-@property(retain) IBOutlet UILabel* current;
-@property(retain) IBOutlet UILabel* usedCapacity;
-@property(retain) IBOutlet UIImageView* gpsSatelite;
-@property(retain) IBOutlet UIImageView* targetIcon;
-@property(retain) IBOutlet UIImageView* batteryIcon;
-@property (nonatomic, retain) IBOutlet CustomBadge *gpsMode;
+@property(nonatomic, retain) IBOutlet UILabel* noData;
+@property(nonatomic, retain) IBOutlet UIImageView* targetIcon;
 @property (nonatomic, retain) IBOutlet IKAttitudeIndicator *attitudeIndicator;
 @property (nonatomic, retain) IBOutlet UILabel *topSpeed;
 
-@property(retain) IBOutlet CustomBadge* satelites;
-@property(retain) IBOutlet CustomBadge* careFree;
-@property(retain) IBOutlet CustomBadge* altitudeControl;
-@property(retain) IBOutlet UILabel* gpsTarget;
-@property(retain) IBOutlet UILabel* flightTime;
-@property(retain) IBOutlet IKCompass* compass;
+
+//@property(nonatomic, retain) IBOutlet UILabel* gpsTarget;
+@property(nonatomic, retain) IBOutlet IKCompass* compass;
 @property (nonatomic, retain) IBOutlet UILabel *attitudeRoll;
 @property (nonatomic, retain) IBOutlet UILabel *attitudeYaw;
 @property (nonatomic, retain) IBOutlet UILabel *attitudeNick;
-@property(retain) IBOutlet UILabel* attitude;
-@property(retain) IBOutlet UILabel* speed;
-@property(retain) IBOutlet UILabel* waypoint;
-@property(retain) IBOutlet UILabel* targetPosDev;
-@property(retain) IBOutlet UILabel* homePosDev;
+@property(nonatomic, retain) IBOutlet UILabel* attitude;
+@property(nonatomic, retain) IBOutlet UILabel* speed;
+@property(nonatomic, retain) IBOutlet UILabel* waypoint;
+@property(nonatomic, retain) IBOutlet UILabel* targetPosDev;
+@property(nonatomic, retain) IBOutlet UILabel* homePosDev;
 @property (nonatomic, retain) IBOutlet UILabel *targetPosDevDistance;
 @property (nonatomic, retain) IBOutlet UILabel *homePosDevDistance;
 @property (nonatomic, retain) IBOutlet UILabel *targetTime;

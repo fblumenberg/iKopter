@@ -47,8 +47,9 @@
 					<object class="IBMKMapView" id="874097523">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{10, 180}, {747, 755}}</string>
+						<string key="NSFrame">{{13, 131}, {996, 552}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -65,6 +66,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 37}, {60, 61}}</string>
 								<reference key="NSSuperview" ref="12986683"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="920516790"/>
 								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -79,6 +81,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{61, 20}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="12986683"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="952609411"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="32949636">
 									<int key="NSColorSpace">1</int>
@@ -89,8 +92,9 @@
 							<object class="IBUIView" id="879622439">
 								<reference key="NSNextResponder" ref="12986683"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{132, 117}, {45, 25}}</string>
+								<string key="NSFrame">{{215, 20}, {45, 25}}</string>
 								<reference key="NSSuperview" ref="12986683"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="833158514"/>
 								<reference key="IBUIBackgroundColor" ref="32949636"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -98,8 +102,9 @@
 							<object class="IBUIView" id="833158514">
 								<reference key="NSNextResponder" ref="12986683"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{132, 68}, {45, 25}}</string>
+								<string key="NSFrame">{{290, 20}, {45, 25}}</string>
 								<reference key="NSSuperview" ref="12986683"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="116937692"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="232134082">
 									<int key="NSColorSpace">1</int>
@@ -112,6 +117,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{122, 20}, {65, 25}}</string>
 								<reference key="NSSuperview" ref="12986683"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="879622439"/>
 								<string key="NSReuseIdentifierKey">_NS:180</string>
 								<reference key="IBUIBackgroundColor" ref="232134082"/>
@@ -120,8 +126,9 @@
 							<object class="IBUILabel" id="820188073">
 								<reference key="NSNextResponder" ref="12986683"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{58, 106}, {76, 36}}</string>
+								<string key="NSFrame">{{160, 62}, {76, 36}}</string>
 								<reference key="NSSuperview" ref="12986683"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -147,8 +154,9 @@
 							<object class="IBUIImageView" id="116937692">
 								<reference key="NSNextResponder" ref="12986683"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 109}, {30, 30}}</string>
+								<string key="NSFrame">{{122, 65}, {30, 30}}</string>
 								<reference key="NSSuperview" ref="12986683"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="820188073"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -158,8 +166,9 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{255, 10}, {244, 162}}</string>
+						<string key="NSFrame">{{353, 10}, {398, 113}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="546129977"/>
 						<string key="NSReuseIdentifierKey">_NS:195</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -176,8 +185,9 @@
 							<object class="IBUILabel" id="240201619">
 								<reference key="NSNextResponder" ref="66535765"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 52}, {177, 57}}</string>
+								<string key="NSFrame">{{20, 14}, {177, 57}}</string>
 								<reference key="NSSuperview" ref="66535765"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="899494071"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -202,6 +212,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{205, 63}, {36, 36}}</string>
 								<reference key="NSSuperview" ref="66535765"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -222,8 +233,9 @@
 							<object class="IBUILabel" id="422849421">
 								<reference key="NSNextResponder" ref="66535765"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{72, 99}, {103, 43}}</string>
+								<string key="NSFrame">{{72, 61}, {103, 43}}</string>
 								<reference key="NSSuperview" ref="66535765"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="240201619"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -240,8 +252,9 @@
 								<int key="IBUITextAlignment">2</int>
 							</object>
 						</object>
-						<string key="NSFrame">{{507, 10}, {250, 162}}</string>
+						<string key="NSFrame">{{759, 10}, {250, 113}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:195</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -257,8 +270,9 @@
 							<object class="IBUILabel" id="808679914">
 								<reference key="NSNextResponder" ref="638622225"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 46}, {237, 70}}</string>
+								<string key="NSFrame">{{60, 8}, {237, 70}}</string>
 								<reference key="NSSuperview" ref="638622225"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="16415098"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -276,8 +290,9 @@
 							<object class="IBUILabel" id="903848704">
 								<reference key="NSNextResponder" ref="638622225"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 114}, {74, 28}}</string>
+								<string key="NSFrame">{{80, 76}, {74, 28}}</string>
 								<reference key="NSSuperview" ref="638622225"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="915784874"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -295,8 +310,9 @@
 							<object class="IBUILabel" id="915784874">
 								<reference key="NSNextResponder" ref="638622225"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{105, 117}, {118, 21}}</string>
+								<string key="NSFrame">{{165, 79}, {118, 21}}</string>
 								<reference key="NSSuperview" ref="638622225"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="12986683"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -316,6 +332,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{9, -1}, {73, 64}}</string>
 								<reference key="NSSuperview" ref="638622225"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="903848704"/>
 								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -326,8 +343,9 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{10, 10}, {237, 162}}</string>
+						<string key="NSFrame">{{13, 10}, {332, 113}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="808679914"/>
 						<string key="NSReuseIdentifierKey">_NS:195</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -337,8 +355,9 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 				</object>
-				<string key="NSFrame">{{0, 20}, {768, 955}}</string>
+				<string key="NSFrame">{{0, 20}, {1024, 699}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="874097523"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -351,6 +370,10 @@
 					<int key="IBUIStatusBarStyle">2</int>
 				</object>
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
+				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
+					<int key="IBUIInterfaceOrientation">3</int>
+					<int key="interfaceOrientation">3</int>
+				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 		</object>
@@ -508,10 +531,10 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="874097523"/>
 							<reference ref="638622225"/>
-							<reference ref="66535765"/>
 							<reference ref="12986683"/>
+							<reference ref="66535765"/>
+							<reference ref="874097523"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -538,11 +561,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="952609411"/>
 							<reference ref="546129977"/>
-							<reference ref="116937692"/>
 							<reference ref="920516790"/>
-							<reference ref="833158514"/>
 							<reference ref="879622439"/>
+							<reference ref="833158514"/>
 							<reference ref="820188073"/>
+							<reference ref="116937692"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Inner Shadow View - State</string>
@@ -552,9 +575,9 @@
 						<reference key="object" ref="66535765"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="899494071"/>
 							<reference ref="240201619"/>
 							<reference ref="422849421"/>
-							<reference ref="899494071"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Inner Shadow View - Height</string>
@@ -565,9 +588,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="915784874"/>
-							<reference ref="903848704"/>
 							<reference ref="16415098"/>
 							<reference ref="808679914"/>
+							<reference ref="903848704"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Inner Shadow View - Battery</string>
@@ -743,7 +766,227 @@
 			<nil key="sourceID"/>
 			<int key="maxID">42</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">BaseOsdViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>altitudeControl</string>
+							<string>battery</string>
+							<string>batteryIcon</string>
+							<string>batteryView</string>
+							<string>careFree</string>
+							<string>current</string>
+							<string>flightTime</string>
+							<string>gpsMode</string>
+							<string>gpsSatelite</string>
+							<string>heigth</string>
+							<string>heigthSetpoint</string>
+							<string>satelites</string>
+							<string>usedCapacity</string>
+							<string>variometer</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>CustomBadge</string>
+							<string>UILabel</string>
+							<string>UIImageView</string>
+							<string>InnerShadowView</string>
+							<string>CustomBadge</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>CustomBadge</string>
+							<string>UIImageView</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>CustomBadge</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>altitudeControl</string>
+							<string>battery</string>
+							<string>batteryIcon</string>
+							<string>batteryView</string>
+							<string>careFree</string>
+							<string>current</string>
+							<string>flightTime</string>
+							<string>gpsMode</string>
+							<string>gpsSatelite</string>
+							<string>heigth</string>
+							<string>heigthSetpoint</string>
+							<string>satelites</string>
+							<string>usedCapacity</string>
+							<string>variometer</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">altitudeControl</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">battery</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">batteryIcon</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">batteryView</string>
+								<string key="candidateClassName">InnerShadowView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">careFree</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">current</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">flightTime</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">gpsMode</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">gpsSatelite</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">heigth</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">heigthSetpoint</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">satelites</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">usedCapacity</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">variometer</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/BaseOsdViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CoolPatternView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CoolPatternView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CustomBadge</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CustomBadge.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">InnerShadowView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/InnerShadowView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MapOsdViewController</string>
+					<string key="superclassName">BaseOsdViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>altitudeControl</string>
+							<string>careFree</string>
+							<string>gpsMode</string>
+							<string>mapTypeSwitch</string>
+							<string>mapView</string>
+							<string>satelites</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>CustomBadge</string>
+							<string>CustomBadge</string>
+							<string>CustomBadge</string>
+							<string>UISwitch</string>
+							<string>MKMapView</string>
+							<string>CustomBadge</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>altitudeControl</string>
+							<string>careFree</string>
+							<string>gpsMode</string>
+							<string>mapTypeSwitch</string>
+							<string>mapView</string>
+							<string>satelites</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">altitudeControl</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">careFree</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">gpsMode</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mapTypeSwitch</string>
+								<string key="candidateClassName">UISwitch</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mapView</string>
+								<string key="candidateClassName">MKMapView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">satelites</string>
+								<string key="candidateClassName">CustomBadge</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MapOsdViewController.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">

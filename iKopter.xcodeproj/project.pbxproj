@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA031B24140433B800CD10C8 /* MapOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */; };
+		BA031B2714043D9400CD10C8 /* BaseOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */; };
 		BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */; };
 		BA0D4670137C5127001415C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D466F137C5127001415C3 /* UIKit.framework */; };
 		BA0D4672137C5127001415C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4671137C5127001415C3 /* Foundation.framework */; };
@@ -234,6 +236,9 @@
 		BAA4E724137EBA630068E38E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E722137EBA630068E38E /* Localizable.strings */; };
 		BAA4E758137EC6160068E38E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */; };
 		BAA4E759137EC6160068E38E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */; };
+		BAA9E1531408F5E70054F123 /* NSString+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9E1521408F5E70054F123 /* NSString+Parsing.m */; };
+		BAA9E1551408F6560054F123 /* FakeOsd.csv in Resources */ = {isa = PBXBuildFile; fileRef = BAA9E1541408F6560054F123 /* FakeOsd.csv */; };
+		BAA9E157140915FC0054F123 /* MapOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA9E156140915FB0054F123 /* MapOsdViewControllerLandscape-iPad.xib */; };
 		BAB97F8213F84BB200C49BAE /* backgroundSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */; };
 		BAB97F8313F84BB200C49BAE /* CoolPatternView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */; };
 		BAB97F8413F84BB200C49BAE /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F8113F84BB200C49BAE /* InnerShadowView.m */; };
@@ -314,6 +319,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapOsdViewController-iPad.xib"; sourceTree = "<group>"; };
+		BA031B2514043D9400CD10C8 /* BaseOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOsdViewController.h; sourceTree = "<group>"; };
+		BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOsdViewController.m; sourceTree = "<group>"; };
 		BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValueOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
 		BA0D466B137C5127001415C3 /* iKopter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iKopter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0D466F137C5127001415C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -695,6 +703,10 @@
 		BAA4E725137EBA780068E38E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		BAA9E1511408F5E70054F123 /* NSString+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Parsing.h"; sourceTree = "<group>"; };
+		BAA9E1521408F5E70054F123 /* NSString+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Parsing.m"; sourceTree = "<group>"; };
+		BAA9E1541408F6560054F123 /* FakeOsd.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FakeOsd.csv; sourceTree = "<group>"; };
+		BAA9E156140915FB0054F123 /* MapOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
 		BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundSmall.png; sourceTree = "<group>"; };
 		BAB97F7E13F84BB200C49BAE /* CoolPatternView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolPatternView.h; sourceTree = "<group>"; };
 		BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoolPatternView.m; sourceTree = "<group>"; };
@@ -896,6 +908,7 @@
 		BA0D46E6137C60EB001415C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BAA9E1541408F6560054F123 /* FakeOsd.csv */,
 				BA2206871385B31500396AA2 /* analoglabels.plist */,
 				BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */,
 				BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */,
@@ -1051,6 +1064,8 @@
 				BAF6755613BB9E2200F18C23 /* SurrogateViewParent.h */,
 				BA98EAB313C72D17005CF2FA /* SettingsButtonStyle.h */,
 				BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */,
+				BAA9E1511408F5E70054F123 /* NSString+Parsing.h */,
+				BAA9E1521408F5E70054F123 /* NSString+Parsing.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1250,9 +1265,11 @@
 		BA9CEE2913F94A7400D073BF /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				BAA9E156140915FB0054F123 /* MapOsdViewControllerLandscape-iPad.xib */,
 				BAE3B00013A4B27D007E0F2F /* MapOsdViewController.h */,
 				BAE3B00113A4B27D007E0F2F /* MapOsdViewController.m */,
 				BAE3B00213A4B27D007E0F2F /* MapOsdViewController.xib */,
+				BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -1547,6 +1564,8 @@
 				BAA4E6AF137EB89C0068E38E /* OsdViewController.xib */,
 				BA9CEE2813F94A6800D073BF /* Raw */,
 				BA9CEE2913F94A7400D073BF /* Map */,
+				BA031B2514043D9400CD10C8 /* BaseOsdViewController.h */,
+				BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */,
 			);
 			path = Osd;
 			sourceTree = "<group>";
@@ -1834,6 +1853,9 @@
 				BA9CEE2513F947A000D073BF /* poi60.png in Resources */,
 				BA9CEE2C13F950D000D073BF /* flightTime.png in Resources */,
 				BA9CEE2D13F950D000D073BF /* flightTime@2x.png in Resources */,
+				BA031B24140433B800CD10C8 /* MapOsdViewController-iPad.xib in Resources */,
+				BAA9E1551408F6560054F123 /* FakeOsd.csv in Resources */,
+				BAA9E157140915FC0054F123 /* MapOsdViewControllerLandscape-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2028,6 +2050,8 @@
 				BAB97F8313F84BB200C49BAE /* CoolPatternView.m in Sources */,
 				BAB97F8413F84BB200C49BAE /* InnerShadowView.m in Sources */,
 				BAB97F8713F84C0700C49BAE /* InnerShadowDrawing.m in Sources */,
+				BA031B2714043D9400CD10C8 /* BaseOsdViewController.m in Sources */,
+				BAA9E1531408F5E70054F123 /* NSString+Parsing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,17 +27,29 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Route.h"
 #import "RouteController.h"
-
+#import "BaseOsdViewController.h"
 #import "OsdValue.h"
 
-@interface MapOsdViewController : UIViewController<OsdValueDelegate,MKMapViewDelegate,RouteControllerDelegate> {
+@class CustomBadge;
+
+@interface MapOsdViewController : BaseOsdViewController<OsdValueDelegate,MKMapViewDelegate,RouteControllerDelegate> {
     
   BOOL needRegionAdjustment;
   
+  UIColor* gpsOkColor;
+  UIColor* functionOffColor;
+  UIColor* functionOnColor;
+  UIColor* gpsPHColor;
+  UIColor* gpsCHColor;
 }
 
 @property(retain) RouteController* routeController;
 @property(retain) IBOutlet MKMapView* mapView;
 @property(retain) IBOutlet UISwitch* mapTypeSwitch;
+
+@property(nonatomic, retain) IBOutlet CustomBadge* satelites;
+@property(nonatomic, retain) IBOutlet CustomBadge* careFree;
+@property(nonatomic, retain) IBOutlet CustomBadge* altitudeControl;
+@property (nonatomic, retain) IBOutlet CustomBadge *gpsMode;
 
 @end

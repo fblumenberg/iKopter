@@ -27,10 +27,12 @@
 #import "HeadingOverlay.h"
 #import "HeadingOverlayView.h"
 #import "IKPoint.h"
+#import "CustomBadge.h"
 
 @interface MapOsdViewController()
 
-  -(void)updateRouteOverlay;
+-(void)updateRouteOverlay;
+-(void) updateViewWithOrientation: (UIInterfaceOrientation) orientation;
 
 @end
 
@@ -40,6 +42,10 @@
 @synthesize mapTypeSwitch;
 @synthesize routeController;
 
+@synthesize gpsMode;
+@synthesize altitudeControl;
+@synthesize careFree;
+@synthesize satelites;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,9 +83,36 @@
   [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  [self updateViewWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+  [self updateViewWithOrientation: orientation];
+}
+
+- (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
+  
+NSString* nibName=@"MapOsdViewController";
+  
+  if (UIInterfaceOrientationIsLandscape(orientation) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+    nibName = [nibName stringByAppendingString:@"Landscape"];
+  }
+  
+  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+    nibName = [nibName stringByAppendingString:@"-iPad"];
+  }
+  
+  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
+  needRegionAdjustment=YES;
+
+  [super updateViewWithOrientation:orientation];
 }
 
 #pragma mark - Map View Delegate Methods
@@ -179,16 +212,25 @@
   gpsPos=[IKGPSPos positionWithMkPos:&(value.data.data->HomePosition)];
   [self updateAnnotationForType:IKMapLocationHomePosition coordinate:gpsPos.coordinate];
   
-  if( needRegionAdjustment ){
+  if( needRegionAdjustment && gpsPos.status!=0 ){
      MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(gpsPos.coordinate, 500, 500); 
      MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
-     [self.mapView setRegion:adjustedRegion animated:YES];
+     [self.mapView setRegion:adjustedRegion animated:NO];
     needRegionAdjustment=NO;
   }
 
   if (value.data.data->WaypointNumber>0 && self.routeController.route==nil && self.routeController.state==RouteControllerIsIdle ) {
     [routeController downloadRouteFromNaviCtrl];
   }
+  
+  //-----------------------------------------------------------------------
+  [self updateHeightView:value];
+  //-----------------------------------------------------------------------
+  [self updateBatteryView:value];
+  //-----------------------------------------------------------------------
+  [self updateStateView:value];
+  //-----------------------------------------------------------------------
+
 }
 
 - (void) noDataAvailable {
