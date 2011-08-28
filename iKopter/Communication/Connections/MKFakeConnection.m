@@ -555,9 +555,15 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
         rspPayload = [self readSettingResponse:payload];
         rspCommand = MKCommandReadSettingsResponse;
         break;
-      case MKCommandWriteSettingsRequest:
-        rspPayload = [self writeSettingResponse:payload];
-        rspCommand = MKCommandWriteSettingsResponse;
+      case MKCommandWriteSettingsRequest: //MKCommandSendPointRequest
+        if ([data address]==kIKMkAddressFC) {
+          rspPayload = [self writeSettingResponse:payload];
+          rspCommand = MKCommandWriteSettingsResponse;
+        } else {
+          qltrace(@"Set target %@",payload);
+          [data release];
+          return;
+        }
         break;
       case MKCommandOsdRequest:
         rspPayload = [self osdResponse];
