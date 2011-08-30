@@ -247,6 +247,10 @@
 		BAB97F8313F84BB200C49BAE /* CoolPatternView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */; };
 		BAB97F8413F84BB200C49BAE /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F8113F84BB200C49BAE /* InnerShadowView.m */; };
 		BAB97F8713F84C0700C49BAE /* InnerShadowDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */; };
+		BAB9A5F6140D654C00741E08 /* FollowMeOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB9A5F2140D654C00741E08 /* FollowMeOsdViewController-iPad.xib */; };
+		BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB9A5F3140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib */; };
+		BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB9A5F4140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib */; };
+		BAB9A5FB140D69CA00741E08 /* ValueBaseOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB9A5FA140D69CA00741E08 /* ValueBaseOsdViewController.m */; };
 		BABCA86D13F14BE3005FF340 /* ValueOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */; };
 		BABCA86F13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */; };
 		BAC81D67139550F000F642FA /* btstack.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D55139550F000F642FA /* btstack.c */; };
@@ -723,6 +727,11 @@
 		BAB97F8113F84BB200C49BAE /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowView.m; sourceTree = "<group>"; };
 		BAB97F8513F84C0700C49BAE /* InnerShadowDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowDrawing.h; sourceTree = "<group>"; };
 		BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowDrawing.m; sourceTree = "<group>"; };
+		BAB9A5F2140D654C00741E08 /* FollowMeOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FollowMeOsdViewController-iPad.xib"; sourceTree = "<group>"; };
+		BAB9A5F3140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FollowMeOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
+		BAB9A5F4140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowMeOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
+		BAB9A5F9140D69CA00741E08 /* ValueBaseOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueBaseOsdViewController.h; sourceTree = "<group>"; };
+		BAB9A5FA140D69CA00741E08 /* ValueBaseOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueBaseOsdViewController.m; sourceTree = "<group>"; };
 		BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewController-iPad.xib"; sourceTree = "<group>"; };
 		BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
 		BAC81D54139550F000F642FA /* bt_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bt_control.h; sourceTree = "<group>"; };
@@ -1576,8 +1585,7 @@
 				BAA4E6AF137EB89C0068E38E /* OsdViewController.xib */,
 				BA9CEE2813F94A6800D073BF /* Raw */,
 				BA9CEE2913F94A7400D073BF /* Map */,
-				BA031B2514043D9400CD10C8 /* BaseOsdViewController.h */,
-				BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */,
+				BAB9A5FC140D6A2C00741E08 /* Base */,
 			);
 			path = Osd;
 			sourceTree = "<group>";
@@ -1625,11 +1633,25 @@
 		BAA9E15D1409283A0054F123 /* FollowMe */ = {
 			isa = PBXGroup;
 			children = (
+				BAB9A5F2140D654C00741E08 /* FollowMeOsdViewController-iPad.xib */,
+				BAB9A5F3140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib */,
+				BAB9A5F4140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib */,
 				BAA9E158140928320054F123 /* FollowMeOsdViewController.h */,
 				BAA9E159140928320054F123 /* FollowMeOsdViewController.m */,
 				BAA9E15A140928330054F123 /* FollowMeOsdViewController.xib */,
 			);
 			name = FollowMe;
+			sourceTree = "<group>";
+		};
+		BAB9A5FC140D6A2C00741E08 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BA031B2514043D9400CD10C8 /* BaseOsdViewController.h */,
+				BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */,
+				BAB9A5F9140D69CA00741E08 /* ValueBaseOsdViewController.h */,
+				BAB9A5FA140D69CA00741E08 /* ValueBaseOsdViewController.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		BAE3B0A913AFD503007E0F2F /* Waypoints */ = {
@@ -1881,6 +1903,9 @@
 				BAA9E15C140928330054F123 /* FollowMeOsdViewController.xib in Resources */,
 				BAA9E16014092A300054F123 /* icon-flying.png in Resources */,
 				BAA9E16114092A300054F123 /* icon-flying@2x.png in Resources */,
+				BAB9A5F6140D654C00741E08 /* FollowMeOsdViewController-iPad.xib in Resources */,
+				BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */,
+				BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2078,6 +2103,7 @@
 				BA031B2714043D9400CD10C8 /* BaseOsdViewController.m in Sources */,
 				BAA9E1531408F5E70054F123 /* NSString+Parsing.m in Sources */,
 				BAA9E15B140928330054F123 /* FollowMeOsdViewController.m in Sources */,
+				BAB9A5FB140D69CA00741E08 /* ValueBaseOsdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

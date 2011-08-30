@@ -28,6 +28,7 @@
 
 @synthesize followMeSwitch;
 @synthesize followMeRequests;
+@synthesize followMeActive;
 @synthesize osdValue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,6 +42,7 @@
 - (void)dealloc
 {
   [followMeRequests release];
+  [followMeActive release];
   [super dealloc];
 }
 
@@ -69,13 +71,13 @@
   
   NSString* nibName=@"FollowMeOsdViewController";
   
-//  if (UIInterfaceOrientationIsLandscape(orientation) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-//    nibName = [nibName stringByAppendingString:@"Landscape"];
-//  }
-//  
-//  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-//    nibName = [nibName stringByAppendingString:@"-iPad"];
-//  }
+  if (UIInterfaceOrientationIsLandscape(orientation)){
+    nibName = [nibName stringByAppendingString:@"Landscape"];
+  }
+  
+  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+    nibName = [nibName stringByAppendingString:@"-iPad"];
+  }
   
   [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
   
@@ -88,8 +90,25 @@
 - (void) newValue:(OsdValue*)value {
   
   self.followMeSwitch.enabled = value.canFollowMe;
-  
   self.followMeRequests.text=[NSString stringWithFormat:@"%d",value.followMeRequests];
+
+  self.followMeActive.text = value.followMeActive?@"\ue21a":@"\ue219";
+  
+  //-----------------------------------------------------------------------
+  [self updateHeightView:value];
+  //-----------------------------------------------------------------------
+  [self updateBatteryView:value];
+  //-----------------------------------------------------------------------
+  [self updateStateView:value];
+  //-----------------------------------------------------------------------
+  [self updateAttitueViews:value];
+  //-----------------------------------------------------------------------
+  [self updateSpeedViews:value];
+  //-----------------------------------------------------------------------
+  [self updateWaypointViews:value];
+  //-----------------------------------------------------------------------
+  [self updateTargetHomeViews:value];
+  //-----------------------------------------------------------------------
 }
 
 - (IBAction) followMeChanged {
@@ -98,6 +117,7 @@
 
 - (void)viewDidUnload {
   [self setFollowMeRequests:nil];
+  [self setFollowMeActive:nil];
   [super viewDidUnload];
 }
 @end

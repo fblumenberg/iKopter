@@ -26,16 +26,19 @@
 #import <UIKit/UIKit.h>
 #import "IKAttitudeIndicator.h"
 #import "OsdValue.h"
-#import "BaseOsdViewController.h"
+#import "ValueBaseOsdViewController.h"
 
-@interface FollowMeOsdViewController : BaseOsdViewController<OsdValueDelegate> {
+@interface FollowMeOsdViewController : ValueBaseOsdViewController<OsdValueDelegate> {
 
   UILabel *followMeRequests;
+  UILabel *followMeActive;
 }
 
 @property (nonatomic, retain) OsdValue* osdValue;
 @property (nonatomic, retain) IBOutlet UISwitch* followMeSwitch;
-@property (nonatomic, retain) IBOutlet UILabel *followMeRequests;
+@property (nonatomic, retain) IBOutlet UILabel* followMeRequests;
+@property (nonatomic, retain) IBOutlet UILabel *followMeActive;
+
 
 - (IBAction) followMeChanged;
 

@@ -72,13 +72,14 @@
       _followMeCanStart=NO;
       followMeRequests=0;
 
-      followMeTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
+      followMeTimer=[NSTimer scheduledTimerWithTimeInterval: 0.2 target:self selector:
                     @selector(sendFollowMeRequest) userInfo:nil repeats:YES];
 
     } else {
       followMeRequests=0;
       [followMeTimer invalidate];
       followMeTimer=nil;
+      _followMeCanStart=NO;
       [self.lm stopUpdatingLocation];
     }
   }
@@ -87,6 +88,10 @@
 -(BOOL) followMe{
 
   return _followMe;
+}
+
+-(BOOL) followMeActive{
+  return _followMe && _followMeCanStart;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

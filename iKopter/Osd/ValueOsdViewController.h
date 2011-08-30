@@ -27,66 +27,18 @@
 #import "CustomBadge.h"
 #import "IKCompass.h"
 #import "IKAttitudeIndicator.h"
-#import "BaseOsdViewController.h"
+#import "ValueBaseOsdViewController.h"
 
 @class InnerShadowView;
 
-@interface ValueOsdViewController : BaseOsdViewController<OsdValueDelegate> {
+@interface ValueOsdViewController : ValueBaseOsdViewController<OsdValueDelegate> {
 
   UILabel* noData;
-  UILabel* attitude;
-
-  UILabel* speed;
-  UILabel* waypoint;
-
-  UILabel* targetPosDev;
-  UILabel* homePosDev;
-  UILabel *targetPosDevDistance;
-  UILabel *homePosDevDistance;
-  UILabel *targetTime;
   
-  IKCompass* compass;
-  UILabel *attitudeRoll;
-  UILabel *attitudeYaw;
-  UILabel *attitudeNick;
-  
-  IKAttitudeIndicator *attitudeIndicator;
-
-  UILabel *topSpeed;
-  UILabel *waypointPOI;
-  UILabel *waypointCount;
-  UILabel *waypointIndex;
 }
 
 
-@property(nonatomic, retain) UIImage* targetReached;
-@property(nonatomic, retain) UIImage* targetReachedPending;
-
-
-@property (nonatomic, retain) IBOutlet UILabel *waypointPOI;
-@property (nonatomic, retain) IBOutlet UILabel *waypointCount;
-@property (nonatomic, retain) IBOutlet UILabel *waypointIndex;
-
 @property(nonatomic, retain) IBOutlet UILabel* infoView;
-
 @property(nonatomic, retain) IBOutlet UILabel* noData;
-@property(nonatomic, retain) IBOutlet UIImageView* targetIcon;
-@property (nonatomic, retain) IBOutlet IKAttitudeIndicator *attitudeIndicator;
-@property (nonatomic, retain) IBOutlet UILabel *topSpeed;
-
-
-//@property(nonatomic, retain) IBOutlet UILabel* gpsTarget;
-@property(nonatomic, retain) IBOutlet IKCompass* compass;
-@property (nonatomic, retain) IBOutlet UILabel *attitudeRoll;
-@property (nonatomic, retain) IBOutlet UILabel *attitudeYaw;
-@property (nonatomic, retain) IBOutlet UILabel *attitudeNick;
-@property(nonatomic, retain) IBOutlet UILabel* attitude;
-@property(nonatomic, retain) IBOutlet UILabel* speed;
-@property(nonatomic, retain) IBOutlet UILabel* waypoint;
-@property(nonatomic, retain) IBOutlet UILabel* targetPosDev;
-@property(nonatomic, retain) IBOutlet UILabel* homePosDev;
-@property (nonatomic, retain) IBOutlet UILabel *targetPosDevDistance;
-@property (nonatomic, retain) IBOutlet UILabel *homePosDevDistance;
-@property (nonatomic, retain) IBOutlet UILabel *targetTime;
 
 @end

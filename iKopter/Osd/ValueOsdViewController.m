@@ -28,6 +28,7 @@
 #import "UIColor+ColorWithHex.h"
 #import "InnerShadowView.h"
 
+
 /////////////////////////////////////////////////////////////////////////////////
 @interface ValueOsdViewController()
 
@@ -43,28 +44,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 @implementation ValueOsdViewController
 
-@synthesize attitudeIndicator;
-@synthesize topSpeed;
-@synthesize targetIcon;
-@synthesize flightTime;
-@synthesize compass;
-@synthesize attitudeRoll;
-@synthesize attitudeYaw;
-@synthesize attitudeNick;
-@synthesize attitude;
-@synthesize speed;
-@synthesize waypoint;
-@synthesize targetPosDev;
-@synthesize homePosDev;
-@synthesize targetPosDevDistance;
-@synthesize homePosDevDistance;
-@synthesize targetTime;
 @synthesize noData;
-@synthesize targetReached;
-@synthesize targetReachedPending;
-@synthesize waypointPOI;
-@synthesize waypointCount;
-@synthesize waypointIndex;
 @synthesize infoView;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -72,25 +52,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    self.targetReachedPending = [UIImage imageNamed:@"target.png"];
-    self.targetReached=[self.targetReachedPending imageTintedWithColor:self.gpsOkColor];
   }
   return self;
 }
 
 - (void)dealloc {
-  [attitudeYaw release];
-  [attitudeRoll release];
-  [attitudeYaw release];
-  [attitudeNick release];
-  [targetPosDevDistance release];
-  [homePosDevDistance release];
-  [targetTime release];
-  [attitudeIndicator release];
-  [topSpeed release];
-  [waypointPOI release];
-  [waypointCount release];
-  [waypointIndex release];
+  self.noData=nil;
+  self.infoView=nil;
+
   [super dealloc];
 }
 
@@ -104,19 +73,6 @@
 
 - (void)viewDidUnload
 {
-  attitudeYaw = nil;
-  [self setAttitudeRoll:nil];
-  [self setAttitudeYaw:nil];
-  [self setAttitudeNick:nil];
-  [self setBatteryView:nil];
-  [self setTargetPosDevDistance:nil];
-  [self setHomePosDevDistance:nil];
-  [self setTargetTime:nil];
-  [self setAttitudeIndicator:nil];
-  [self setTopSpeed:nil];
-  [self setWaypointPOI:nil];
-  [self setWaypointCount:nil];
-  [self setWaypointIndex:nil];
   [super viewDidUnload];
 }
 
@@ -230,49 +186,14 @@
   //-----------------------------------------------------------------------
   [self updateStateView:value];
   //-----------------------------------------------------------------------
-  attitude.text=[NSString stringWithFormat:@"%d° / %d° / %d°",data->CompassHeading,
-                 data->AngleNick,
-                 data->AngleRoll];
-  
-  attitudeYaw.text=[NSString stringWithFormat:@"%d°",data->CompassHeading];
-  attitudeRoll.text=[NSString stringWithFormat:@"%d°",data->AngleRoll];
-  attitudeNick.text=[NSString stringWithFormat:@"%d°",data->AngleNick];
-  
-  self.attitudeIndicator.pitch=-1*(value.data.data->AngleNick);
-  self.attitudeIndicator.roll=-1*(value.data.data->AngleRoll);
-  
+  [self updateAttitueViews:value];
   //-----------------------------------------------------------------------
-  
-  speed.text=[NSString stringWithFormat:@"%d km/h",(data->GroundSpeed*9)/250];
-  topSpeed.text=[NSString stringWithFormat:@"%d m/s",(data->TopSpeed)/100];
-  
+  [self updateSpeedViews:value];
   //-----------------------------------------------------------------------
-  waypoint.text=[NSString stringWithFormat:@"%d / %d (%d)",data->WaypointIndex,data->WaypointNumber,value.poiIndex];
-  waypointIndex.text=[NSString stringWithFormat:@"%d",data->WaypointIndex];
-  waypointCount.text=[NSString stringWithFormat:@"/ %d",data->WaypointNumber];
-  waypointPOI.text=[NSString stringWithFormat:@"%d",value.poiIndex];
-  
+  [self updateWaypointViews:value];
   //-----------------------------------------------------------------------
-  NSUInteger headingHome = (data->HomePositionDeviation.Bearing + 360 - data->CompassHeading) % 360;
-  homePosDev.text=[NSString stringWithFormat:@"%d°",headingHome];
-  homePosDevDistance.text=[NSString stringWithFormat:@"%d m",data->HomePositionDeviation.Distance / 10];
-  
-  NSUInteger headingTarget = (data->TargetPositionDeviation.Bearing + 360 - data->CompassHeading) % 360;
-  if(value.isTargetReached && data->TargetHoldTime>0)
-    targetTime.text=[NSString stringWithFormat:@"%d s",data->TargetHoldTime];
-  else
-    targetTime.text=@"";
-  
-  targetPosDev.text=[NSString stringWithFormat:@"%d°",headingTarget];
-  targetPosDevDistance.text=[NSString stringWithFormat:@"%d m",data->TargetPositionDeviation.Distance / 10];
-  
-  targetIcon.image = value.isTargetReached?targetReached:targetReachedPending;
-  
-  compass.heading=data->CompassHeading;
-  compass.homeDeviation=headingHome;
-  compass.targetDeviation=headingTarget;
+  [self updateTargetHomeViews:value];
   //-----------------------------------------------------------------------
-  
 
 }  
 

@@ -84,6 +84,7 @@
 @property(assign) BOOL followMe;
 @property(readonly) BOOL canFollowMe;
 @property(readonly) NSInteger followMeRequests;
+@property(readonly) BOOL followMeActive;
 
 - (void) startRequesting;
 - (void) stopRequesting;
