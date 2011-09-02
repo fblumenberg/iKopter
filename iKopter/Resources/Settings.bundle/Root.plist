@@ -43,6 +43,14 @@
 			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
+			<key>File</key>
+			<string>followme</string>
+			<key>Title</key>
+			<string>SettingsFollowMeTitle</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string></string>
 			<key>Type</key>

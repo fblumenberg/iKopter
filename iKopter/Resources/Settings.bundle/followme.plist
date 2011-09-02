@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Key</key>
+			<string>FollowMeHeight</string>
+			<key>Title</key>
+			<string>SettingsFollowMeHeight</string>
+			<key>Titles</key>
+			<array>
+				<string>SettingsFollowMeHeight1</string>
+				<string>SettingsFollowMeHeight2</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+		</dict>
+	</array>
+	<key>StringsTable</key>
+	<string>followme</string>
+	<key>Title</key>
+	<string>Follow Me</string>
+</dict>
+</plist>

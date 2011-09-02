@@ -372,6 +372,23 @@
 }
 
 
+-(NSInteger) calccurrentAltitude {
+
+  IKNaviData* d=self.data;
+
+  NSInteger altitudeAir = d.data->Altimeter/20;
+
+  NSInteger altitudeGPS = altitudeAir;
+  
+  if(d.data->CurrentPosition.Status != INVALID && d.data->HomePosition.Status != INVALID ){
+    altitudeGPS = d.data->CurrentPosition.Altitude - d.data->HomePosition.Altitude;
+  }
+  
+  NSInteger altitude = ( 4 * altitudeAir + altitudeGPS ) / 5;
+  
+  return altitude * 10;
+}
+
 - (void) sendFollowMeRequest{
   if (!_followMeCanStart) return;
   
@@ -379,11 +396,20 @@
   
   targetPoint.index=1;
   targetPoint.type=POINT_TYPE_WP;
-  targetPoint.altitude=1;
   targetPoint.heading=-1;
   targetPoint.holdTime=60;
   targetPoint.eventFlag=1;
   targetPoint.wpEventChannelValue=100;
+  targetPoint.altitudeRate=0;
+  
+  switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"FollowMeHeigth"]) {
+    case 1:
+      targetPoint.altitude=1;
+      break;
+    default:
+      targetPoint.altitude=[self calccurrentAltitude];
+      break;
+  }  
   
   qldebug("Now sending the target %@",targetPoint);
   [[MKConnectionController sharedMKConnectionController] sendPoint:targetPoint];

@@ -1,4 +1,4 @@
-﻿
+
 /* Settings */
 
 /* What to do in case of crashes */
@@ -7,3 +7,4 @@
 "SettingsActivateSync" = "Synchronization";
 "SettingsNCLoggingTitle" = "NC-Logging";
 "SettingsWaypointsTitle" = "Waypoints";
+"SettingsFollowMeTitle" = "Follow Me";
