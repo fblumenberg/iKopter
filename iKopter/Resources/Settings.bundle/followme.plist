@@ -24,7 +24,16 @@
 				<integer>2</integer>
 			</array>
 		</dict>
-	</array>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>FollowMeCameraNick</string>
+			<key>Title</key>
+			<string>SettingsFollowMeCameraNickControl</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>	</array>
 	<key>StringsTable</key>
 	<string>followme</string>
 	<key>Title</key>

@@ -16,5 +16,8 @@
 	<integer>20</integer>
 	<key>FollowMeHeigth</key>
 	<integer>1</integer>
+	<key>FollowMeCameraNick
+</key>
+	<true/>
 </dict>
 </plist>

@@ -401,6 +401,7 @@
   targetPoint.eventFlag=1;
   targetPoint.wpEventChannelValue=100;
   targetPoint.altitudeRate=0;
+  targetPoint.cameraNickControl=[[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeCameraNick"];
   
   switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"FollowMeHeigth"]) {
     case 1:
