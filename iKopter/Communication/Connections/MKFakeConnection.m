@@ -465,7 +465,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
     index=activeSetting;
   }
   
-  if( index> [settings count]) index=1;
+  if( index<1 || index> [settings count]) index=1;
   
   index--;
   
