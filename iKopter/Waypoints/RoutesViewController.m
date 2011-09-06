@@ -382,6 +382,7 @@
   
   [hud removeFromSuperview];
   [hud release];
+  hud=nil;
 }
 
 
