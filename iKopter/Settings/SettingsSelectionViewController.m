@@ -174,7 +174,7 @@ static NSUInteger kNumberOfSettings = 5;
   }
   
   if(allSettingsLoaded){
-     [[MKConnectionController sharedMKConnectionController] setActiveSetting:activeSetting];
+     [[MKConnectionController sharedMKConnectionController] setActiveSetting:activeSetting+1];
   }
 
   [self.tableView reloadData];
