@@ -123,12 +123,12 @@ void CommonDefaults(IKParamSet* EE_Parameter)
 	EE_Parameter.NaviGpsMinSat = [NSNumber numberWithUnsignedChar:6];
 	EE_Parameter.NaviStickThreshold = [NSNumber numberWithUnsignedChar:8];
 	EE_Parameter.NaviWindCorrection = [NSNumber numberWithUnsignedChar:90];
-	EE_Parameter.NaviSpeedCompensation = [NSNumber numberWithUnsignedChar:30];
+	EE_Parameter.NaviAccCompensation = [NSNumber numberWithUnsignedChar:30];
 	EE_Parameter.NaviOperatingRadius = [NSNumber numberWithUnsignedChar:100];
 	EE_Parameter.NaviAngleLimitation = [NSNumber numberWithUnsignedChar:100];
 	EE_Parameter.NaviPH_LoginTime = [NSNumber numberWithUnsignedChar:2];
 	EE_Parameter.OrientationAngle = [NSNumber numberWithUnsignedChar:0];
-	EE_Parameter.OrientationModeControl = [NSNumber numberWithUnsignedChar:0];
+	EE_Parameter.CareFreeModeControl = [NSNumber numberWithUnsignedChar:0];
 	EE_Parameter.UnterspannungsWarnung = [NSNumber numberWithUnsignedChar:33]; // Wert : 0-247 ( Automatische Zellenerkennung bei < 50)
 	EE_Parameter.NotGas = [NSNumber numberWithUnsignedChar:45];                // Wert : 0-247     // Gaswert bei Empangsverlust
 	EE_Parameter.NotGasZeit = [NSNumber numberWithUnsignedChar:90];            // Wert : 0-247     // Zeit bis auf NotGas geschaltet wird, wg. Rx-Problemen
@@ -139,7 +139,7 @@ void ParamSet_DefaultSet1(IKParamSet* EE_Parameter) // sport
 	CommonDefaults(EE_Parameter);
 	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:14];            // Wert : 1-20
 	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];            // Wert : 0-20
-	EE_Parameter.Gier_P = [NSNumber numberWithUnsignedChar:12];             // Wert : 1-20
+	EE_Parameter.StickGier_P = [NSNumber numberWithUnsignedChar:12];             // Wert : 1-20
 	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:80];             // Wert : 0-247
 	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:150];            // Wert : 0-247
 	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:80];        // Wert : 0-247
@@ -163,7 +163,7 @@ void ParamSet_DefaultSet2(IKParamSet* EE_Parameter) // normal
 	CommonDefaults(EE_Parameter);
 	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:10];               // Wert : 1-20
 	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];               // Wert : 0-20
-	EE_Parameter.Gier_P = [NSNumber numberWithUnsignedChar:6];                 // Wert : 1-20
+	EE_Parameter.StickGier_P = [NSNumber numberWithUnsignedChar:6];                 // Wert : 1-20
 	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:90];                // Wert : 0-247
 	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:120];               // Wert : 0-247
 	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:90];           // Wert : 0-247
@@ -188,7 +188,7 @@ void ParamSet_DefaultSet3(IKParamSet* EE_Parameter) // beginner
 	CommonDefaults(EE_Parameter);
 	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:8];                // Wert : 1-20
 	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];               // Wert : 0-20
-	EE_Parameter.Gier_P  = [NSNumber numberWithUnsignedChar:6];                // Wert : 1-20
+	EE_Parameter.StickGier_P  = [NSNumber numberWithUnsignedChar:6];                // Wert : 1-20
 	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:100];               // Wert : 0-247
 	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:120];               // Wert : 0-247
 	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:100];          // Wert : 0-247

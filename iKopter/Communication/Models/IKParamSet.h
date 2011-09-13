@@ -28,7 +28,7 @@
 
 @interface IKParamSet: NSObject {
 
-  IKMkParamset _parameter;
+  IKMkParamset88 _parameter;
 }
 
 + (id)settingWithData:(NSData *)data;
@@ -69,7 +69,7 @@
 @property(assign) NSNumber* Hoehe_StickNeutralPoint;
 @property(assign) NSNumber* Stick_P;
 @property(assign) NSNumber* Stick_D;
-@property(assign) NSNumber* Gier_P;
+@property(assign) NSNumber* StickGier_P;
 @property(assign) NSNumber* Gas_Min;
 @property(assign) NSNumber* Gas_Max;
 @property(assign) NSNumber* GyroAccFaktor;
@@ -136,22 +136,27 @@
 @property(assign) NSNumber* NaviGpsMinSat;
 @property(assign) NSNumber* NaviStickThreshold;
 @property(assign) NSNumber* NaviWindCorrection;
-@property(assign) NSNumber* NaviSpeedCompensation;
+@property(assign) NSNumber* NaviAccCompensation;
 @property(assign) NSNumber* NaviOperatingRadius;
 @property(assign) NSNumber* NaviAngleLimitation;
 @property(assign) NSNumber* NaviPH_LoginTime;
 @property(assign) NSNumber* ExternalControl;
 @property(assign) NSNumber* OrientationAngle;
-@property(assign) NSNumber* OrientationModeControl;
+@property(assign) NSNumber* CareFreeModeControl;
 @property(assign) NSNumber* MotorSafetySwitch;
+@property(assign) NSNumber* MotorSmooth;
+@property(assign) NSNumber* ComingHomeAltitude;
+@property(assign) NSNumber* FailSafeTime;
+@property(assign) NSNumber* MaxAltitude;
 @property(assign) NSNumber* BitConfig;
 @property(assign) NSNumber* BitConfig_LOOP_OBEN;
 @property(assign) NSNumber* BitConfig_LOOP_UNTEN;
 @property(assign) NSNumber* BitConfig_LOOP_LINKS;
 @property(assign) NSNumber* BitConfig_LOOP_RECHTS;
-@property(assign) NSNumber* BitConfig_MOTOR_BLINK;
+@property(assign) NSNumber* BitConfig_MOTOR_BLINK1;
 @property(assign) NSNumber* BitConfig_MOTOR_OFF_LED1;
 @property(assign) NSNumber* BitConfig_MOTOR_OFF_LED2;
+@property(assign) NSNumber* BitConfig_MOTOR_BLINK2;
 @property(assign) NSNumber* ServoCompInvert;
 @property(assign) NSNumber* ServoCompInvert_NICK;
 @property(assign) NSNumber* ServoCompInvert_ROLL;
@@ -160,6 +165,11 @@
 @property(assign) NSNumber* ExtraConfig_VARIO_BEEP;
 @property(assign) NSNumber* ExtraConfig_SENSITIVE_RC;
 @property(assign) NSNumber* ExtraConfig_3_3V_REFERENCE;
+@property(assign) NSNumber* ExtraConfig_NO_RCOFF_BEEPING ;
+@property(assign) NSNumber* ExtraConfig_GPS_AID;
+@property(assign) NSNumber* ExtraConfig_LEARNABLE_CAREFREE;
+@property(assign) NSNumber* ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP;
+
 @property(assign) NSString*  Name;
 
 @end

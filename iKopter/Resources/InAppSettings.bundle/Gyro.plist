@@ -148,6 +148,18 @@
 			<key>DefaultValue</key>
 			<integer>0</integer>
 		</dict> 
+  <dict>
+    <key>Type</key>
+    <string>PSTextFieldSpecifier</string>
+    <key>Title</key>
+    <string>MotorSmooth</string>
+    <key>Key</key>
+    <string>MotorSmooth</string>
+    <key>KeyboardType</key>
+    <string>NumberPad</string>
+    <key>IASKIsNumber</key>
+    <true/>
+  </dict>
 	</array>
 </dict>
 </plist>

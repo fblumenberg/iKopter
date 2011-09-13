@@ -23,6 +23,7 @@
 				<string>Spectrum (LowRes)</string>
 				<string>Jeti Sattelite</string>
 				<string>ACT DSL</string>
+				<string>Graupner HoTT</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -34,6 +35,7 @@
 				<integer>3</integer>
 				<integer>4</integer>
 				<integer>5</integer>
+				<integer>6</integer>
 			</array>
 		</dict>
 		<dict>
@@ -301,6 +303,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -330,6 +333,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 		<dict>
@@ -365,6 +369,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -394,6 +399,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 		<dict>
@@ -429,6 +435,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -458,6 +465,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 		<dict>
@@ -493,6 +501,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -522,6 +531,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 		<dict>
@@ -557,6 +567,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -586,6 +597,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 		<dict>
@@ -621,6 +633,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -650,6 +663,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 		<dict>
@@ -685,6 +699,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -714,6 +729,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 		<dict>
@@ -749,6 +765,7 @@
 				<string>Serial_Channel_10</string>
 				<string>Serial_Channel_11</string>
 				<string>Serial_Channel_12</string>
+				<string>WP_Event_Channel</string>
 			</array>
 			<key>DefaultValue</key>
 			<integer>0</integer>
@@ -778,6 +795,7 @@
 				<integer>22</integer>
 				<integer>23</integer>
 				<integer>24</integer>
+				<integer>25</integer>
 			</array>
 		</dict>
 	</array>

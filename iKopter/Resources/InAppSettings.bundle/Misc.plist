@@ -56,12 +56,26 @@
                 <key>Type</key>
                 <string>IASKPotiTextFieldSpecifier</string>
                 <key>Title</key>
-                <string>OrientationModeControl</string>
+                <string>CareFreeModeControl</string>
                 <key>Key</key>
-                <string>OrientationModeControl</string>
+                <string>CareFreeModeControl</string>
                 <key>DefaultValue</key>
                 <integer>0</integer>
             </dict>
+          <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>ExtraConfig_LEARNABLE_CAREFREE</string>
+            <key>Key</key>
+            <string>ExtraConfig_LEARNABLE_CAREFREE</string>
+            <key>DefaultValue</key>
+            <string>NO</string>
+            <key>TrueValue</key>
+            <string>YES</string>
+            <key>FalseValue</key>
+            <string>NO</string>
+          </dict>
             <dict>
                 <key>Type</key>
                 <string>PSTextFieldSpecifier</string>
@@ -98,6 +112,46 @@
                 <key>IASKIsNumber</key>
                 <true/>
             </dict>
+          <dict>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Title</key>
+            <string>FailSafeTime</string>
+            <key>Key</key>
+            <string>FailSafeTime</string>
+            <key>KeyboardType</key>
+            <string>NumberPad</string>
+            <key>IASKIsNumber</key>
+            <true/>
+          </dict>          
+          <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>ExtraConfig_NO_RCOFF_BEEPING</string>
+            <key>Key</key>
+            <string>ExtraConfig_NO_RCOFF_BEEPING</string>
+            <key>DefaultValue</key>
+            <string>NO</string>
+            <key>TrueValue</key>
+            <string>YES</string>
+            <key>FalseValue</key>
+            <string>NO</string>
+          </dict>
+          <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP</string>
+            <key>Key</key>
+            <string>ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP</string>
+            <key>DefaultValue</key>
+            <string>NO</string>
+            <key>TrueValue</key>
+            <string>YES</string>
+            <key>FalseValue</key>
+            <string>NO</string>
+          </dict>
             <dict>
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>

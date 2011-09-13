@@ -301,11 +301,11 @@
 - (void) setStick_D:(NSNumber*) value {
   _parameter.Stick_D = [value unsignedCharValue];
 }
-- (NSNumber*) Gier_P{
-  return [NSNumber numberWithUnsignedChar:_parameter.Gier_P];
+- (NSNumber*) StickGier_P{
+  return [NSNumber numberWithUnsignedChar:_parameter.StickGier_P];
 }
-- (void) setGier_P:(NSNumber*) value {
-  _parameter.Gier_P = [value unsignedCharValue];
+- (void) setStickGier_P:(NSNumber*) value {
+  _parameter.StickGier_P = [value unsignedCharValue];
 }
 - (NSNumber*) Gas_Min{
   return [NSNumber numberWithUnsignedChar:_parameter.Gas_Min];
@@ -703,11 +703,11 @@
 - (void) setNaviWindCorrection:(NSNumber*) value {
   _parameter.NaviWindCorrection = [value unsignedCharValue];
 }
-- (NSNumber*) NaviSpeedCompensation{
-  return [NSNumber numberWithUnsignedChar:_parameter.NaviSpeedCompensation];
+- (NSNumber*) NaviAccCompensation{
+  return [NSNumber numberWithUnsignedChar:_parameter.NaviAccCompensation];
 }
-- (void) setNaviSpeedCompensation:(NSNumber*) value {
-  _parameter.NaviSpeedCompensation = [value unsignedCharValue];
+- (void) setNaviAccCompensation:(NSNumber*) value {
+  _parameter.NaviAccCompensation = [value unsignedCharValue];
 }
 - (NSNumber*) NaviOperatingRadius{
   return [NSNumber numberWithUnsignedChar:_parameter.NaviOperatingRadius];
@@ -739,11 +739,11 @@
 - (void) setOrientationAngle:(NSNumber*) value {
   _parameter.OrientationAngle = [value unsignedCharValue];
 }
-- (NSNumber*) OrientationModeControl{
-  return [NSNumber numberWithUnsignedChar:_parameter.OrientationModeControl];
+- (NSNumber*) CareFreeModeControl{
+  return [NSNumber numberWithUnsignedChar:_parameter.CareFreeModeControl];
 }
-- (void) setOrientationModeControl:(NSNumber*) value {
-  _parameter.OrientationModeControl = [value unsignedCharValue];
+- (void) setCareFreeModeControl:(NSNumber*) value {
+  _parameter.CareFreeModeControl = [value unsignedCharValue];
 }
 - (NSNumber*) MotorSafetySwitch{
   return [NSNumber numberWithUnsignedChar:_parameter.MotorSafetySwitch];
@@ -751,6 +751,32 @@
 - (void) setMotorSafetySwitch:(NSNumber*) value {
   _parameter.MotorSafetySwitch = [value unsignedCharValue];
 }
+- (NSNumber*) MotorSmooth{
+  return [NSNumber numberWithUnsignedChar:_parameter.MotorSmooth];
+}
+- (void) setMotorSmooth:(NSNumber*) value {
+  _parameter.MotorSmooth = [value unsignedCharValue];
+}
+- (NSNumber*) ComingHomeAltitude{
+  return [NSNumber numberWithUnsignedChar:_parameter.ComingHomeAltitude];
+}
+- (void) setComingHomeAltitude:(NSNumber*) value {
+  _parameter.ComingHomeAltitude = [value unsignedCharValue];
+}
+- (NSNumber*) FailSafeTime{
+  return [NSNumber numberWithUnsignedChar:_parameter.FailSafeTime];
+}
+- (void) setFailSafeTime:(NSNumber*) value {
+  _parameter.FailSafeTime = [value unsignedCharValue];
+}
+- (NSNumber*) MaxAltitude{
+  return [NSNumber numberWithUnsignedChar:_parameter.MaxAltitude];
+}
+- (void) setMaxAltitude:(NSNumber*) value {
+  _parameter.MaxAltitude = [value unsignedCharValue];
+}
+
+
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
@@ -797,14 +823,23 @@
   else
      _parameter.BitConfig &= ~CFG_LOOP_RECHTS;
 }
-- (NSNumber*) BitConfig_MOTOR_BLINK{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_BLINK)==CFG_MOTOR_BLINK)];
+- (NSNumber*) BitConfig_MOTOR_BLINK1{
+  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_BLINK1)==CFG_MOTOR_BLINK1)];
 }
-- (void) setBitConfig_MOTOR_BLINK:(NSNumber*) value {
+- (void) setBitConfig_MOTOR_BLINK1:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_MOTOR_BLINK;
+     _parameter.BitConfig |= CFG_MOTOR_BLINK1;
   else
-     _parameter.BitConfig &= ~CFG_MOTOR_BLINK;
+     _parameter.BitConfig &= ~CFG_MOTOR_BLINK1;
+}
+- (NSNumber*) BitConfig_MOTOR_BLINK2{
+  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_BLINK2)==CFG_MOTOR_BLINK2)];
+}
+- (void) setBitConfig_MOTOR_BLINK2:(NSNumber*) value {
+  if([value boolValue])
+    _parameter.BitConfig |= CFG_MOTOR_BLINK2;
+  else
+    _parameter.BitConfig &= ~CFG_MOTOR_BLINK2;
 }
 - (NSNumber*) BitConfig_MOTOR_OFF_LED1{
   return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_OFF_LED1)==CFG_MOTOR_OFF_LED1)];
@@ -896,6 +931,42 @@
      _parameter.ExtraConfig |= CFG_3_3V_REFERENCE;
   else
      _parameter.ExtraConfig &= ~CFG_3_3V_REFERENCE;
+}
+- (NSNumber*) ExtraConfig_NO_RCOFF_BEEPING{
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG_NO_RCOFF_BEEPING)==CFG_NO_RCOFF_BEEPING)];
+}
+- (void) setExtraConfig_NO_RCOFF_BEEPING:(NSNumber*) value {
+  if([value boolValue])
+    _parameter.ExtraConfig |= CFG_NO_RCOFF_BEEPING;
+  else
+    _parameter.ExtraConfig &= ~CFG_NO_RCOFF_BEEPING;
+}
+- (NSNumber*) ExtraConfig_GPS_AID{
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG_GPS_AID)==CFG_GPS_AID)];
+}
+- (void) setExtraConfig_GPS_AID:(NSNumber*) value {
+  if([value boolValue])
+    _parameter.ExtraConfig |= CFG_GPS_AID;
+  else
+    _parameter.ExtraConfig &= ~CFG_GPS_AID;
+}
+- (NSNumber*) ExtraConfig_LEARNABLE_CAREFREE{
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG_LEARNABLE_CAREFREE)==CFG_LEARNABLE_CAREFREE)];
+}
+- (void) setExtraConfig_LEARNABLE_CAREFREE:(NSNumber *) value {
+  if([value boolValue])
+    _parameter.ExtraConfig |= CFG_LEARNABLE_CAREFREE;
+  else
+    _parameter.ExtraConfig &= ~CFG_LEARNABLE_CAREFREE;
+}
+- (NSNumber*) ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP{
+  return [NSNumber numberWithBool:((_parameter.ExtraConfig&CFG_IGNORE_MAG_ERR_AT_STARTUP)==CFG_IGNORE_MAG_ERR_AT_STARTUP)];
+}
+- (void) setExtraConfig_IGNORE_MAG_ERR_AT_STARTUP:(NSNumber *)value {
+  if([value boolValue])
+    _parameter.ExtraConfig |= CFG_IGNORE_MAG_ERR_AT_STARTUP;
+  else
+    _parameter.ExtraConfig &= ~CFG_IGNORE_MAG_ERR_AT_STARTUP;
 }
 
 //---------------------------------------------------

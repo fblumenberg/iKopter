@@ -36,9 +36,9 @@
                 <key>Type</key>
                 <string>IASKPotiTextFieldSpecifier</string>
                 <key>Title</key>
-                <string>Gier_P</string>
+                <string>StickGier_P</string>
                 <key>Key</key>
-                <string>Gier_P</string>
+                <string>StickGier_P</string>
                 <key>DefaultValue</key>
                 <integer>4</integer>
             </dict>

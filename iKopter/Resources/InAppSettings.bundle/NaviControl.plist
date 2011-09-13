@@ -40,6 +40,30 @@
 			<key>DefaultValue</key>
 			<integer>0</integer>
 		</dict>
+    <dict>
+      <key>Type</key>
+      <string>PSToggleSwitchSpecifier</string>
+      <key>Title</key>
+      <string>ExtraConfig_GPS_AID</string>
+      <key>Key</key>
+      <string>ExtraConfig_GPS_AID</string>
+      <key>DefaultValue</key>
+      <string>NO</string>
+      <key>TrueValue</key>
+      <string>YES</string>
+      <key>FalseValue</key>
+      <string>NO</string>
+    </dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKPotiTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>ComingHomeAltitude</string>
+			<key>Key</key>
+			<string>ComingHomeAltitude</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKPotiTextFieldSpecifier</string>
@@ -164,9 +188,9 @@
 			<key>Type</key>
 			<string>IASKPotiTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>NaviSpeedCompensation</string>
+			<string>NaviAccCompensation</string>
 			<key>Key</key>
-			<string>NaviSpeedCompensation</string>
+			<string>NaviAccCompensation</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
 		</dict>
