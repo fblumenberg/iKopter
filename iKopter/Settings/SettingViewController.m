@@ -34,6 +34,7 @@
 #import "IASKSpecifier.h"
 #import "IASKSettingsReader.h"
 #import "IKOutputSettingCell.h"
+#import "IKOutputSettingSwitchCell.h"
 
 
 @implementation SettingViewController
@@ -201,34 +202,71 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {
   NSLog(@"heightForSpecifier %@",specifier);
-	if ([specifier.key isEqualToString:@"J16Bitmask"] || [specifier.key isEqualToString:@"WARN_J16_Bitmask"] ||
-      [specifier.key isEqualToString:@"J17Bitmask"] || [specifier.key isEqualToString:@"WARN_J17_Bitmask"] ) {
+	if ([specifier.key isEqualToString:@"J16Bitmask"] || [specifier.key isEqualToString:@"J17Bitmask"]) {
 		return 88;
 	}
+  else if([specifier.key isEqualToString:@"WARN_J16_Bitmask"] || [specifier.key isEqualToString:@"WARN_J17_Bitmask"]){
+		return 132;
+  }
 	return 0;
 }
 
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
-	IKOutputSettingCell *cell = (IKOutputSettingCell*)[tableView dequeueReusableCellWithIdentifier:specifier.key];
-	
-	if (!cell) {
-		cell = (IKOutputSettingCell*)[[[NSBundle mainBundle] loadNibNamed:@"IKOutputSettingCell" 
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (UITableViewCell*)tableView:(UITableView*)tableView outputCellForSpecifier:(IASKSpecifier*)specifier {
+  IKOutputSettingCell *cell = (IKOutputSettingCell*)[tableView dequeueReusableCellWithIdentifier:specifier.key];
+  if (!cell) {
+    cell = (IKOutputSettingCell*)[[[NSBundle mainBundle] loadNibNamed:@"IKOutputSettingCell" 
                                                                 owner:self 
                                                               options:nil] objectAtIndex:0];
-	}
+  }
   
   [cell.output addTarget:self action:@selector(outputChangedValue:) forControlEvents:UIControlEventValueChanged];
   cell.output.key = specifier.key;
   cell.label.text = specifier.title;
   
-  NSInteger value=0;
-  
+  cell.output.value=0;
   NSNumber* n=[self.settingsStore objectForKey:specifier.key];
   if(n)
-    value=[n integerValue];
+    cell.output.value=[n integerValue];
   
-  cell.output.value = value;
+	return cell;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCell*)tableView:(UITableView*)tableView outputSwitchCellForSpecifier:(IASKSpecifier*)specifier {
+  IKOutputSettingSwitchCell *cell = (IKOutputSettingSwitchCell*)[tableView dequeueReusableCellWithIdentifier:specifier.key];
+  if (!cell) {
+    cell = (IKOutputSettingSwitchCell*)[[[NSBundle mainBundle] loadNibNamed:@"IKOutputSettingSwitchCell" 
+                                                                      owner:self 
+                                                                    options:nil] objectAtIndex:0];
+  }
   
+  
+  [cell.output addTarget:self action:@selector(outputChangedValue:) forControlEvents:UIControlEventValueChanged];
+  cell.output.key = specifier.key;
+  cell.label.text = specifier.title;
+  
+  cell.output.value=0;
+  NSNumber* n=[self.settingsStore objectForKey:specifier.key];
+  if(n)
+    cell.output.value=[n integerValue];
+  
+	return cell;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
+  
+  UITableViewCell* cell=nil;
+
+ 	if ([specifier.key isEqualToString:@"J16Bitmask"] || [specifier.key isEqualToString:@"J17Bitmask"]) {
+    cell = [self tableView:tableView outputCellForSpecifier:specifier];
+	}
+  else if([specifier.key isEqualToString:@"WARN_J16_Bitmask"] || [specifier.key isEqualToString:@"WARN_J17_Bitmask"]){
+    cell = [self tableView:tableView outputSwitchCellForSpecifier:specifier];
+  }
+
 	[cell setNeedsLayout];
 	return cell;
 }

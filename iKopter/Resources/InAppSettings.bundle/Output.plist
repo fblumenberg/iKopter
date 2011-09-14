@@ -13,10 +13,8 @@
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Output_1_HEADER</string>
-			<key>FooterText</key>
-			<string>Output_1_FOOTER</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>DefaultValue</key>
 			<integer>0</integer>
 			<key>Key</key>
@@ -26,26 +24,26 @@
 			<key>Type</key>
 			<string>IASKCustomViewSpecifier</string>
 		</dict>
-        <dict>
-            <key>Type</key>
-            <string>PSToggleSwitchSpecifier</string>
-            <key>Title</key>
-            <string>OutputMotorState</string>
-            <key>Key</key>
-            <string>BitConfig_MOTOR_BLINK1</string>
-            <key>DefaultValue</key>
-            <true/>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSToggleSwitchSpecifier</string>
-            <key>Title</key>
-            <string>OutputBitmaskActive</string>
-            <key>Key</key>
-            <string>BitConfig_MOTOR_BLINK1</string>
-            <key>DefaultValue</key>
-            <true/>
-        </dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>OutputMotorState</string>
+			<key>Key</key>
+			<string>BitConfig_MOTOR_OFF_LED1</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>OutputBitmaskActive</string>
+			<key>Key</key>
+			<string>BitConfig_MOTOR_BLINK1</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKPotiTextFieldSpecifier</string>
@@ -54,7 +52,7 @@
 			<key>Key</key>
 			<string>J16Timing</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>DefaultValue</key>
 			<integer>0</integer>
 			<key>Key</key>
@@ -64,25 +62,13 @@
 			<key>Type</key>
 			<string>IASKCustomViewSpecifier</string>
 		</dict>
-        <dict>
-            <key>Type</key>
-            <string>PSToggleSwitchSpecifier</string>
-            <key>Title</key>
-            <string>OutputWarnBitmaskActive</string>
-            <key>Key</key>
-            <string>BitConfig_MOTOR_OFF_LED1</string>
-            <key>DefaultValue</key>
-            <true/>
-        </dict>
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Output_2_HEADER</string>
-			<key>FooterText</key>
-			<string>Output_2_FOOTER</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>DefaultValue</key>
 			<integer>0</integer>
 			<key>Key</key>
@@ -92,26 +78,26 @@
 			<key>Type</key>
 			<string>IASKCustomViewSpecifier</string>
 		</dict>
-        <dict>
-            <key>Type</key>
-            <string>PSToggleSwitchSpecifier</string>
-            <key>Title</key>
-            <string>OutputMotorState</string>
-            <key>Key</key>
-            <string>BitConfig_MOTOR_BLINK2</string>
-            <key>DefaultValue</key>
-            <true/>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSToggleSwitchSpecifier</string>
-            <key>Title</key>
-            <string>OutputBitmaskActive</string>
-            <key>Key</key>
-            <string>BitConfig_MOTOR_BLINK2</string>
-            <key>DefaultValue</key>
-            <true/>
-        </dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>OutputMotorState</string>
+			<key>Key</key>
+			<string>BitConfig_MOTOR_OFF_LED2</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>OutputBitmaskActive</string>
+			<key>Key</key>
+			<string>BitConfig_MOTOR_BLINK2</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKPotiTextFieldSpecifier</string>
@@ -120,7 +106,7 @@
 			<key>Key</key>
 			<string>J17Timing</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>DefaultValue</key>
 			<integer>0</integer>
 			<key>Key</key>
@@ -130,16 +116,6 @@
 			<key>Type</key>
 			<string>IASKCustomViewSpecifier</string>
 		</dict>
-        <dict>
-            <key>Type</key>
-            <string>PSToggleSwitchSpecifier</string>
-            <key>Title</key>
-            <string>OutputWarnBitmaskActive</string>
-            <key>Key</key>
-            <string>BitConfig_MOTOR_OFF_LED2</string>
-            <key>DefaultValue</key>
-            <true/>
-        </dict>
 	</array>
 </dict>
 </plist>

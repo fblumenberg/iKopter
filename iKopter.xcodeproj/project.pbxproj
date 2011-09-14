@@ -111,6 +111,8 @@
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
 		BA7613431391338500C86318 /* screenlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7613401391338500C86318 /* screenlock@2x.png */; };
+		BA8A23B014213345002095A2 /* IKOutputSettingSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8A23AE14213345002095A2 /* IKOutputSettingSwitchCell.m */; };
+		BA8A23B114213345002095A2 /* IKOutputSettingSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8A23AF14213345002095A2 /* IKOutputSettingSwitchCell.xib */; };
 		BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */; };
 		BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */; };
 		BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */; };
@@ -489,6 +491,9 @@
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
 		BA7613401391338500C86318 /* screenlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock@2x.png"; sourceTree = "<group>"; };
+		BA8A23AD14213345002095A2 /* IKOutputSettingSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSettingSwitchCell.h; sourceTree = "<group>"; };
+		BA8A23AE14213345002095A2 /* IKOutputSettingSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSettingSwitchCell.m; sourceTree = "<group>"; };
+		BA8A23AF14213345002095A2 /* IKOutputSettingSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IKOutputSettingSwitchCell.xib; sourceTree = "<group>"; };
 		BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = Frameworks/IBAForms/IBAForms.xcodeproj; sourceTree = "<group>"; };
 		BA98EA9B13C6539D005CF2FA /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
 		BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
@@ -1612,6 +1617,9 @@
 		BAA4E6BC137EB89D0068E38E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA8A23AD14213345002095A2 /* IKOutputSettingSwitchCell.h */,
+				BA8A23AE14213345002095A2 /* IKOutputSettingSwitchCell.m */,
+				BA8A23AF14213345002095A2 /* IKOutputSettingSwitchCell.xib */,
 				765E63F61420DCEA00BB027D /* IKOutputSetting.h */,
 				765E63F71420DCEB00BB027D /* IKOutputSetting.m */,
 				765E63F81420DCEB00BB027D /* IKOutputSettingCell.h */,
@@ -1920,6 +1928,7 @@
 				BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */,
 				BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */,
 				765E63FD1420DCEE00BB027D /* IKOutputSettingCell.xib in Resources */,
+				BA8A23B114213345002095A2 /* IKOutputSettingSwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2120,6 +2129,7 @@
 				BAB9A5FB140D69CA00741E08 /* ValueBaseOsdViewController.m in Sources */,
 				765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */,
 				765E63FC1420DCEE00BB027D /* IKOutputSettingCell.m in Sources */,
+				BA8A23B014213345002095A2 /* IKOutputSettingSwitchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

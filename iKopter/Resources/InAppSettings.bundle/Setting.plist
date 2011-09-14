@@ -85,8 +85,8 @@
 			<string>Coupling</string>
 			<key>File</key>
 			<string>Coupling</string>
-		</dict>		
-    <dict>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
@@ -94,14 +94,15 @@
 			<key>File</key>
 			<string>Looping</string>
 		</dict>
-<dict>
+		<dict>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Output</string>
+			<string>Outputs</string>
 			<key>File</key>
 			<string>Output</string>
-		</dict>		<dict>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
