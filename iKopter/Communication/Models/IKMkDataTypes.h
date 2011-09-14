@@ -152,10 +152,10 @@ typedef struct
 #define CFG_LOOP_UNTEN           0x02
 #define CFG_LOOP_LINKS           0x04
 #define CFG_LOOP_RECHTS          0x08
-#define CFG_MOTOR_BLINK          0x10
+#define CFG_MOTOR_BLINK1         0x10
 #define CFG_MOTOR_OFF_LED1       0x20
 #define CFG_MOTOR_OFF_LED2       0x40
-#define CFG_RES4                 0x80
+#define CFG_MOTOR_BLINK2         0x80
 
 #define CFG2_HEIGHT_LIMIT        0x01
 #define CFG2_VARIO_BEEP          0x02

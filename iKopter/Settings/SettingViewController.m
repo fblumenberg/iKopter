@@ -31,6 +31,10 @@
 #import "IASKSettingsStoreObject.h"
 #import "IKMkDataTypes.h"
 #import "MKDataConstants.h"
+#import "IASKSpecifier.h"
+#import "IASKSettingsReader.h"
+#import "IKOutputSettingCell.h"
+
 
 @implementation SettingViewController
 
@@ -46,7 +50,7 @@
     self.setting = aSetting;
     self.showCreditsFooter=NO;
     self.showDoneButton=NO;
-    
+    self.delegate=self;
     self.title = NSLocalizedString(@"Setting",nil);
   }
   
@@ -188,5 +192,52 @@
   self.settingsStore = [[[IASKSettingsStoreObject alloc] initWithObject:paramSet]autorelease];
   [_tableView reloadData];
 }
+
+#pragma makr - IASKSettingsDelegate
+
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender{
+  
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {
+  NSLog(@"heightForSpecifier %@",specifier);
+	if ([specifier.key isEqualToString:@"J16Bitmask"] || [specifier.key isEqualToString:@"WARN_J16_Bitmask"] ||
+      [specifier.key isEqualToString:@"J17Bitmask"] || [specifier.key isEqualToString:@"WARN_J17_Bitmask"] ) {
+		return 88;
+	}
+	return 0;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
+	IKOutputSettingCell *cell = (IKOutputSettingCell*)[tableView dequeueReusableCellWithIdentifier:specifier.key];
+	
+	if (!cell) {
+		cell = (IKOutputSettingCell*)[[[NSBundle mainBundle] loadNibNamed:@"IKOutputSettingCell" 
+                                                                owner:self 
+                                                              options:nil] objectAtIndex:0];
+	}
+  
+  [cell.output addTarget:self action:@selector(outputChangedValue:) forControlEvents:UIControlEventValueChanged];
+  cell.output.key = specifier.key;
+  cell.label.text = specifier.title;
+  
+  NSInteger value=0;
+  
+  NSNumber* n=[self.settingsStore objectForKey:specifier.key];
+  if(n)
+    value=[n integerValue];
+  
+  cell.output.value = value;
+  
+	[cell setNeedsLayout];
+	return cell;
+}
+
+- (void)outputChangedValue:(id)sender {
+  IKOutputSetting *output = (IKOutputSetting*)sender;
+  [self.settingsStore setInteger:output.value forKey:output.key];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kIASKAppSettingChanged object:output.key];
+}
+
 
 @end

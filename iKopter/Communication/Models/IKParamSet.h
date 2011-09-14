@@ -149,7 +149,8 @@
 @property(assign) NSNumber* BitConfig_LOOP_UNTEN;
 @property(assign) NSNumber* BitConfig_LOOP_LINKS;
 @property(assign) NSNumber* BitConfig_LOOP_RECHTS;
-@property(assign) NSNumber* BitConfig_MOTOR_BLINK;
+@property(assign) NSNumber* BitConfig_MOTOR_BLINK1;
+@property(assign) NSNumber* BitConfig_MOTOR_BLINK2;
 @property(assign) NSNumber* BitConfig_MOTOR_OFF_LED1;
 @property(assign) NSNumber* BitConfig_MOTOR_OFF_LED2;
 @property(assign) NSNumber* ServoCompInvert;

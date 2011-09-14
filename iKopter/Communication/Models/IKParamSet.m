@@ -57,6 +57,10 @@
 #pragma mark Properties
 //---------------------------------------------------
 
+- (id)valueForUndefinedKey:(NSString *)key{
+  return nil;
+}
+
 - (NSNumber*) Index{
   
   return [NSNumber numberWithUnsignedChar:_parameter.Index];
@@ -797,14 +801,23 @@
   else
      _parameter.BitConfig &= ~CFG_LOOP_RECHTS;
 }
-- (NSNumber*) BitConfig_MOTOR_BLINK{
-  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_BLINK)==CFG_MOTOR_BLINK)];
+- (NSNumber*) BitConfig_MOTOR_BLINK1{
+  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_BLINK1)==CFG_MOTOR_BLINK1)];
 }
-- (void) setBitConfig_MOTOR_BLINK:(NSNumber*) value {
+- (void) setBitConfig_MOTOR_BLINK1:(NSNumber*) value {
   if([value boolValue])
-     _parameter.BitConfig |= CFG_MOTOR_BLINK;
+     _parameter.BitConfig |= CFG_MOTOR_BLINK1;
   else
-     _parameter.BitConfig &= ~CFG_MOTOR_BLINK;
+     _parameter.BitConfig &= ~CFG_MOTOR_BLINK1;
+}
+- (NSNumber*) BitConfig_MOTOR_BLINK2{
+  return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_BLINK2)==CFG_MOTOR_BLINK2)];
+}
+- (void) setBitConfig_MOTOR_BLINK2:(NSNumber*) value {
+  if([value boolValue])
+    _parameter.BitConfig |= CFG_MOTOR_BLINK2;
+  else
+    _parameter.BitConfig &= ~CFG_MOTOR_BLINK2;
 }
 - (NSNumber*) BitConfig_MOTOR_OFF_LED1{
   return [NSNumber numberWithBool:((_parameter.BitConfig&CFG_MOTOR_OFF_LED1)==CFG_MOTOR_OFF_LED1)];
