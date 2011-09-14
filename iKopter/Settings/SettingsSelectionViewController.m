@@ -153,6 +153,7 @@ static NSUInteger kNumberOfSettings = 5;
 }
 
 
+
 - (void) readSettingNotification:(NSNotification *)aNotification {
 
   IKParamSet* paramSet=[[aNotification userInfo] objectForKey:kIKDataKeyParamSet];
@@ -160,6 +161,19 @@ static NSUInteger kNumberOfSettings = 5;
   
   if (activeSetting==0xFF) {
     activeSetting=index;
+    if(![paramSet isValid]){
+      
+      UIAlertView *alert = [[UIAlertView alloc] 
+                            initWithTitle:NSLocalizedString(@"Flight-Ctrl wrong Version", @"Setting read error")
+                            message:NSLocalizedString(@"Flight-Ctrl is NOT compatible to this App!\nPlease update to the lastest App AND firmware versions.",@"Setting read error msg") 
+                            delegate:nil 
+                            cancelButtonTitle:@"Ok" 
+                            otherButtonTitles:nil];
+      [alert show];
+      [alert release];
+      [self.navigationController popViewControllerAnimated:YES]; 
+      return;
+    }
   }
   
   [self.settings replaceObjectAtIndex:index withObject:paramSet];
