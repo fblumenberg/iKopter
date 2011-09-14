@@ -38,7 +38,12 @@
 - (id)initWithData:(NSData*)data{
   self = [super init];
   if (self != nil) {
-    memcpy(&_parameter,[data bytes],sizeof(_parameter));
+    const char * bytes = [data bytes];
+    
+    _parameter.Index = bytes[0];
+    _parameter.Revision = bytes[1];
+    if(_parameter.Revision==EEPARAM_REVISION)
+      memcpy(&_parameter,[data bytes],sizeof(_parameter));
   }
   return self;
 }
@@ -51,6 +56,9 @@
   return [NSData dataWithBytes:payloadData length:sizeof(payloadData)];  
 }
 
+- (BOOL) isValid{
+  return _parameter.Revision==EEPARAM_REVISION;
+}
 
 //---------------------------------------------------
 #pragma mark -

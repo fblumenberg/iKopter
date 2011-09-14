@@ -34,6 +34,7 @@
 + (id)settingWithData:(NSData *)data;
 - (id)initWithData:(NSData*)data;
 - (NSData*) data;
+- (BOOL) isValid;
 
 @property(assign) NSNumber* Index;
 @property(assign) NSNumber* Revision;

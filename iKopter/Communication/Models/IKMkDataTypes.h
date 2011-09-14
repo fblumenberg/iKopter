@@ -434,6 +434,7 @@ typedef struct
 	unsigned char crc;				  // must be the last byte!
 } IKMkParamset88;
 
+#define EEPARAM_REVISION	88 // is count up, if paramater stucture has changed (compatibility)
 
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -492,7 +493,7 @@ typedef struct
   int16_t Bearing;        // course to target in deg
 } __attribute__((packed)) IKMkGPSPosDev;
 
-#define NAVIDATA_VERSION 4
+#define NAVIDATA_VERSION 5
 
 typedef struct
 {
