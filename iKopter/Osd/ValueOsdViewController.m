@@ -172,7 +172,7 @@
   IKMkNaviData*data=value.data.data;
   
   if (data->Errorcode>0 && self.infoView.hidden) {
-    infoView.text = [NSString stringWithFormat:NSLocalizedString(@"Error: %d", @"OSD NC error"),data->Errorcode];
+    infoView.text = [NSString stringWithFormat:NSLocalizedString(@"Error: %d %@", @"OSD NC error"),data->Errorcode,value.currentErrorMessage];
     [self showInfoView];
   }
   else if(data->Errorcode==0 && !self.infoView.hidden) {

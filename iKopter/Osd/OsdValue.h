@@ -58,6 +58,8 @@
   BOOL _followMeCanStart;
 }
 
+
+
 @property(retain) NCLogSession* ncLogSession;
 @property(assign) id<OsdValueDelegate> delegate;
 @property(readonly,retain) IKNaviData* data;
@@ -80,6 +82,8 @@
 @property(readonly) BOOL isCareFreeOn;
 @property(readonly) BOOL isAltControlOn;
 @property(readonly) NSInteger poiIndex;
+
+@property(readonly) const NSString* currentErrorMessage;
 
 @property(assign) BOOL followMe;
 @property(readonly) BOOL canFollowMe;

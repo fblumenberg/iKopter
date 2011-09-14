@@ -33,6 +33,35 @@
 #import "IKDebugData.h"
 #import "IKPoint.h"
 
+static const NSString *errorMsg[25] = {
+  @"No Error",
+  @"FC not compatible",
+  @"MK3Mag not compatible",
+  @"no FC communication ",
+  @"no MK3Mag communication",
+  @"no GPS communication ",
+  @"bad compass value",
+  @"RC Signal lost",
+  @"FC spi rx error",
+  @"ERR: no NC communication",
+  @"ERR: FC Nick Gyro",
+  @"ERR: FC Roll Gyro",
+  @"ERR: FC Yaw Gyro",
+  @"ERR: FC Nick ACC",
+  @"ERR: FC Roll ACC",
+  @"ERR: FC Z-ACC",
+  @"ERR: Pressure sensor",
+  @"ERR: FC I2C",
+  @"ERR: Bl Missing",
+  @"Mixer Error",
+  @"FC: Carefree Error",
+  @"ERR: GPS Fix lost",
+  @"ERR: Magnet Error",
+  @"Motor restart",
+  @"BL limitation"
+};
+
+
 @interface OsdValue() <CLLocationManagerDelegate>
 - (void) sendOsdRefreshRequest;
 - (void) sendFollowMeRequest;
@@ -42,6 +71,7 @@
 
 @property(retain) IKNaviData* data;
 @property(retain) CLLocationManager *lm;
+
 
 @end
 
@@ -95,6 +125,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(const NSString*) currentErrorMessage{
+  if(_data.data->Errorcode>=0 && _data.data->Errorcode<24)
+    return errorMsg[_data.data->Errorcode];
+  
+  return @"";
+}
 
 -(BOOL) areEnginesOn {
   if (!_data.data) 
