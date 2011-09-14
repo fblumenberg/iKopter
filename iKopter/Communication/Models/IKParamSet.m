@@ -57,6 +57,10 @@
 #pragma mark Properties
 //---------------------------------------------------
 
+- (id)valueForUndefinedKey:(NSString *)key{
+  return nil;
+}
+
 - (NSNumber*) Index{
   
   return [NSNumber numberWithUnsignedChar:_parameter.Index];

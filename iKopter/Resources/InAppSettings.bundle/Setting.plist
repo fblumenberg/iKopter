@@ -94,7 +94,14 @@
 			<key>File</key>
 			<string>Looping</string>
 		</dict>
-		<dict>
+<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Output</string>
+			<key>File</key>
+			<string>Output</string>
+		</dict>		<dict>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>

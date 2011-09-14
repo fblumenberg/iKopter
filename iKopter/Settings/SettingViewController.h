@@ -27,7 +27,7 @@
 #import "IKParamSet.h"
 #import "MBProgressHUD.h"
 
-@interface SettingViewController : IASKAppSettingsViewController<MBProgressHUDDelegate> {
+@interface SettingViewController : IASKAppSettingsViewController<MBProgressHUDDelegate,IASKSettingsDelegate> {
 
   IKParamSet* _setting;
   MBProgressHUD *hud;

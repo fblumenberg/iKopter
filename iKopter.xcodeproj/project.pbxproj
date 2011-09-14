@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F71420DCEB00BB027D /* IKOutputSetting.m */; };
+		765E63FC1420DCEE00BB027D /* IKOutputSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F91420DCED00BB027D /* IKOutputSettingCell.m */; };
+		765E63FD1420DCEE00BB027D /* IKOutputSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */; };
 		BA031B24140433B800CD10C8 /* MapOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */; };
 		BA031B2714043D9400CD10C8 /* BaseOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */; };
 		BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */; };
@@ -327,6 +330,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		765E63F61420DCEA00BB027D /* IKOutputSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSetting.h; sourceTree = "<group>"; };
+		765E63F71420DCEB00BB027D /* IKOutputSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSetting.m; sourceTree = "<group>"; };
+		765E63F81420DCEB00BB027D /* IKOutputSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSettingCell.h; sourceTree = "<group>"; };
+		765E63F91420DCED00BB027D /* IKOutputSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSettingCell.m; sourceTree = "<group>"; };
+		765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IKOutputSettingCell.xib; sourceTree = "<group>"; };
 		BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapOsdViewController-iPad.xib"; sourceTree = "<group>"; };
 		BA031B2514043D9400CD10C8 /* BaseOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOsdViewController.h; sourceTree = "<group>"; };
 		BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOsdViewController.m; sourceTree = "<group>"; };
@@ -1604,6 +1612,11 @@
 		BAA4E6BC137EB89D0068E38E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				765E63F61420DCEA00BB027D /* IKOutputSetting.h */,
+				765E63F71420DCEB00BB027D /* IKOutputSetting.m */,
+				765E63F81420DCEB00BB027D /* IKOutputSettingCell.h */,
+				765E63F91420DCED00BB027D /* IKOutputSettingCell.m */,
+				765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */,
 				BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */,
 				BAB97F7E13F84BB200C49BAE /* CoolPatternView.h */,
 				BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */,
@@ -1906,6 +1919,7 @@
 				BAB9A5F6140D654C00741E08 /* FollowMeOsdViewController-iPad.xib in Resources */,
 				BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */,
 				BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */,
+				765E63FD1420DCEE00BB027D /* IKOutputSettingCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2104,6 +2118,8 @@
 				BAA9E1531408F5E70054F123 /* NSString+Parsing.m in Sources */,
 				BAA9E15B140928330054F123 /* FollowMeOsdViewController.m in Sources */,
 				BAB9A5FB140D69CA00741E08 /* ValueBaseOsdViewController.m in Sources */,
+				765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */,
+				765E63FC1420DCEE00BB027D /* IKOutputSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
