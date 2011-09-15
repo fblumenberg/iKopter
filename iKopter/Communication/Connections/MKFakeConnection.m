@@ -42,7 +42,7 @@
 /***************************************************/
 void CommonDefaults(IKParamSet* EE_Parameter)
 {
-	EE_Parameter.Revision = [NSNumber numberWithUnsignedChar:85];
+	EE_Parameter.Revision = [NSNumber numberWithUnsignedChar:88];
   
   EE_Parameter.Gyro_D = [NSNumber numberWithUnsignedChar:10];
   EE_Parameter.Driftkomp = [NSNumber numberWithUnsignedChar:0];
@@ -55,7 +55,7 @@ void CommonDefaults(IKParamSet* EE_Parameter)
   EE_Parameter.WinkelUmschlagNick = [NSNumber numberWithUnsignedChar:85];
   EE_Parameter.WinkelUmschlagRoll = [NSNumber numberWithUnsignedChar:85];
 	EE_Parameter.GlobalConfig = [NSNumber numberWithUnsignedChar:CFG_ACHSENKOPPLUNG_AKTIV | CFG_KOMPASS_AKTIV | CFG_GPS_AKTIV | CFG_HOEHEN_SCHALTER];
-	EE_Parameter.ExtraConfig = [NSNumber numberWithUnsignedChar:CFG2_HEIGHT_LIMIT | CFG2_VARIO_BEEP];
+	EE_Parameter.ExtraConfig = [NSNumber numberWithUnsignedChar:CFG_GPS_AID | CFG2_VARIO_BEEP];
 	EE_Parameter.Receiver = [NSNumber numberWithUnsignedChar:RECEIVER_SPEKTRUM];
 	EE_Parameter.MotorSafetySwitch = [NSNumber numberWithUnsignedChar:0]; 
 	EE_Parameter.ExternalControl = [NSNumber numberWithUnsignedChar:0];
@@ -117,41 +117,46 @@ void CommonDefaults(IKParamSet* EE_Parameter)
 	EE_Parameter.NaviGpsI = [NSNumber numberWithUnsignedChar:90];
 	EE_Parameter.NaviGpsD = [NSNumber numberWithUnsignedChar:90];
 	EE_Parameter.NaviGpsPLimit = [NSNumber numberWithUnsignedChar:75];
-	EE_Parameter.NaviGpsILimit = [NSNumber numberWithUnsignedChar:75];
+	EE_Parameter.NaviGpsILimit = [NSNumber numberWithUnsignedChar:85];
 	EE_Parameter.NaviGpsDLimit = [NSNumber numberWithUnsignedChar:75];
 	EE_Parameter.NaviGpsACC = [NSNumber numberWithUnsignedChar:0];
 	EE_Parameter.NaviGpsMinSat = [NSNumber numberWithUnsignedChar:6];
 	EE_Parameter.NaviStickThreshold = [NSNumber numberWithUnsignedChar:8];
 	EE_Parameter.NaviWindCorrection = [NSNumber numberWithUnsignedChar:90];
-	EE_Parameter.NaviAccCompensation = [NSNumber numberWithUnsignedChar:30];
+	EE_Parameter.NaviAccCompensation = [NSNumber numberWithUnsignedChar:42];
 	EE_Parameter.NaviOperatingRadius = [NSNumber numberWithUnsignedChar:100];
-	EE_Parameter.NaviAngleLimitation = [NSNumber numberWithUnsignedChar:100];
-	EE_Parameter.NaviPH_LoginTime = [NSNumber numberWithUnsignedChar:2];
+	EE_Parameter.NaviAngleLimitation = [NSNumber numberWithUnsignedChar:140];
+	EE_Parameter.NaviPH_LoginTime = [NSNumber numberWithUnsignedChar:5];
 	EE_Parameter.OrientationAngle = [NSNumber numberWithUnsignedChar:0];
 	EE_Parameter.CareFreeModeControl = [NSNumber numberWithUnsignedChar:0];
 	EE_Parameter.UnterspannungsWarnung = [NSNumber numberWithUnsignedChar:33]; // Wert : 0-247 ( Automatische Zellenerkennung bei < 50)
 	EE_Parameter.NotGas = [NSNumber numberWithUnsignedChar:45];                // Wert : 0-247     // Gaswert bei Empangsverlust
 	EE_Parameter.NotGasZeit = [NSNumber numberWithUnsignedChar:90];            // Wert : 0-247     // Zeit bis auf NotGas geschaltet wird, wg. Rx-Problemen
+
+	EE_Parameter.MotorSmooth = [NSNumber numberWithUnsignedChar:0];
+	EE_Parameter.ComingHomeAltitude = [NSNumber numberWithUnsignedChar:0];
+	EE_Parameter.FailSafeTime = [NSNumber numberWithUnsignedChar:0];
+	EE_Parameter.MaxAltitude = [NSNumber numberWithUnsignedChar:150];
+	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
+	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:55];
 }
 
 void ParamSet_DefaultSet1(IKParamSet* EE_Parameter) // sport
 {
 	CommonDefaults(EE_Parameter);
-	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:14];            // Wert : 1-20
+	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:10];            // Wert : 1-20
 	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];            // Wert : 0-20
-	EE_Parameter.StickGier_P = [NSNumber numberWithUnsignedChar:12];             // Wert : 1-20
-	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:80];             // Wert : 0-247
-	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:150];            // Wert : 0-247
-	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:80];        // Wert : 0-247
-	EE_Parameter.Gyro_Gier_I = [NSNumber numberWithUnsignedChar:150];       // Wert : 0-247
+	EE_Parameter.StickGier_P = [NSNumber numberWithUnsignedChar:6];             // Wert : 1-20
+	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:90];             // Wert : 0-247
+	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:120];            // Wert : 0-247
+	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:90];        // Wert : 0-247
+	EE_Parameter.Gyro_Gier_I = [NSNumber numberWithUnsignedChar:120];       // Wert : 0-247
 	EE_Parameter.Gyro_Stability = [NSNumber numberWithUnsignedChar:6]; 	  // Wert : 1-8
 	EE_Parameter.I_Faktor = [NSNumber numberWithUnsignedChar:32];
-	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
-	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:80];
-	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:1];
-	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:16];        // 1/k];
-	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:100];
-	EE_Parameter.Name=@"Sport";
+	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:60];
+	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:32];        // 1/k];
+	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:75];
+	EE_Parameter.Name=@"Fast";
 }
 
 
@@ -161,20 +166,18 @@ void ParamSet_DefaultSet1(IKParamSet* EE_Parameter) // sport
 void ParamSet_DefaultSet2(IKParamSet* EE_Parameter) // normal
 {
 	CommonDefaults(EE_Parameter);
-	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:10];               // Wert : 1-20
+	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:8];               // Wert : 1-20
 	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];               // Wert : 0-20
 	EE_Parameter.StickGier_P = [NSNumber numberWithUnsignedChar:6];                 // Wert : 1-20
-	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:90];                // Wert : 0-247
+	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:100];                // Wert : 0-247
 	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:120];               // Wert : 0-247
-	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:90];           // Wert : 0-247
+	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:100];           // Wert : 0-247
 	EE_Parameter.Gyro_Gier_I = [NSNumber numberWithUnsignedChar:120];          // Wert : 0-247
 	EE_Parameter.Gyro_Stability = [NSNumber numberWithUnsignedChar:6]; 	  	  // Wert : 1-8
-	EE_Parameter.I_Faktor = [NSNumber numberWithUnsignedChar:32];
-	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
-	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:80];
-	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:60];
+	EE_Parameter.I_Faktor = [NSNumber numberWithUnsignedChar:16];
+	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:70];
 	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:32];        // 1/k
-	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:75];
+	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:70];
   EE_Parameter.Name=@"Normal";
 
 }
@@ -186,21 +189,19 @@ void ParamSet_DefaultSet2(IKParamSet* EE_Parameter) // normal
 void ParamSet_DefaultSet3(IKParamSet* EE_Parameter) // beginner
 {
 	CommonDefaults(EE_Parameter);
-	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:8];                // Wert : 1-20
-	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:16];               // Wert : 0-20
-	EE_Parameter.StickGier_P  = [NSNumber numberWithUnsignedChar:6];                // Wert : 1-20
+	EE_Parameter.Stick_P = [NSNumber numberWithUnsignedChar:6];                // Wert : 1-20
+	EE_Parameter.Stick_D = [NSNumber numberWithUnsignedChar:10];               // Wert : 0-20
+	EE_Parameter.StickGier_P  = [NSNumber numberWithUnsignedChar:4];                // Wert : 1-20
 	EE_Parameter.Gyro_P = [NSNumber numberWithUnsignedChar:100];               // Wert : 0-247
 	EE_Parameter.Gyro_I = [NSNumber numberWithUnsignedChar:120];               // Wert : 0-247
 	EE_Parameter.Gyro_Gier_P = [NSNumber numberWithUnsignedChar:100];          // Wert : 0-247
 	EE_Parameter.Gyro_Gier_I = [NSNumber numberWithUnsignedChar:120];          // Wert : 0-247
 	EE_Parameter.Gyro_Stability = [NSNumber numberWithUnsignedChar:6]; 	  	  // Wert : 1-8
 	EE_Parameter.I_Faktor = [NSNumber numberWithUnsignedChar:16];
-	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
-	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:80];
 	EE_Parameter.CouplingYawCorrection = [NSNumber numberWithUnsignedChar:70];
 	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:32];        // 1/k
 	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:70];
-	EE_Parameter.Name=@"Beginner";
+	EE_Parameter.Name=@"Easy";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
