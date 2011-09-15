@@ -287,7 +287,7 @@
   
   IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
   WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-  [self.navigationController pushViewController:hostView animated:YES];
+  [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
   [hostView release];
 }
 
@@ -304,7 +304,7 @@
   
   IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
   WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-  [self.navigationController pushViewController:hostView animated:YES];
+  [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
   [hostView release];
 }
 
