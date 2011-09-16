@@ -10,6 +10,11 @@
 		765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F71420DCEB00BB027D /* IKOutputSetting.m */; };
 		765E63FC1420DCEE00BB027D /* IKOutputSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F91420DCED00BB027D /* IKOutputSettingCell.m */; };
 		765E63FD1420DCEE00BB027D /* IKOutputSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */; };
+		76E8BFE21423898600E05946 /* RootSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E8BFE11423898600E05946 /* RootSplitViewController.m */; };
+		76E8BFEC142389B300E05946 /* APNavigationControllerForSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E8BFE5142389B300E05946 /* APNavigationControllerForSplitController.m */; };
+		76E8BFED142389B300E05946 /* APSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E8BFE7142389B300E05946 /* APSplitViewController.m */; };
+		76E8BFEE142389B300E05946 /* APTabBarControllerForSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E8BFE9142389B300E05946 /* APTabBarControllerForSplitController.m */; };
+		76E8BFEF142389B300E05946 /* split-divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E8BFEB142389B300E05946 /* split-divider.png */; };
 		BA031B24140433B800CD10C8 /* MapOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */; };
 		BA031B2714043D9400CD10C8 /* BaseOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */; };
 		BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */; };
@@ -337,6 +342,15 @@
 		765E63F81420DCEB00BB027D /* IKOutputSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSettingCell.h; sourceTree = "<group>"; };
 		765E63F91420DCED00BB027D /* IKOutputSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSettingCell.m; sourceTree = "<group>"; };
 		765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IKOutputSettingCell.xib; sourceTree = "<group>"; };
+		76E8BFE01423898600E05946 /* RootSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootSplitViewController.h; sourceTree = "<group>"; };
+		76E8BFE11423898600E05946 /* RootSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootSplitViewController.m; sourceTree = "<group>"; };
+		76E8BFE4142389B300E05946 /* APNavigationControllerForSplitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APNavigationControllerForSplitController.h; sourceTree = "<group>"; };
+		76E8BFE5142389B300E05946 /* APNavigationControllerForSplitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APNavigationControllerForSplitController.m; sourceTree = "<group>"; };
+		76E8BFE6142389B300E05946 /* APSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APSplitViewController.h; sourceTree = "<group>"; };
+		76E8BFE7142389B300E05946 /* APSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APSplitViewController.m; sourceTree = "<group>"; };
+		76E8BFE8142389B300E05946 /* APTabBarControllerForSplitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTabBarControllerForSplitController.h; sourceTree = "<group>"; };
+		76E8BFE9142389B300E05946 /* APTabBarControllerForSplitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTabBarControllerForSplitController.m; sourceTree = "<group>"; };
+		76E8BFEB142389B300E05946 /* split-divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "split-divider.png"; sourceTree = "<group>"; };
 		BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapOsdViewController-iPad.xib"; sourceTree = "<group>"; };
 		BA031B2514043D9400CD10C8 /* BaseOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOsdViewController.h; sourceTree = "<group>"; };
 		BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOsdViewController.m; sourceTree = "<group>"; };
@@ -850,6 +864,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76E8BFE3142389B300E05946 /* Split */ = {
+			isa = PBXGroup;
+			children = (
+				76E8BFE4142389B300E05946 /* APNavigationControllerForSplitController.h */,
+				76E8BFE5142389B300E05946 /* APNavigationControllerForSplitController.m */,
+				76E8BFE6142389B300E05946 /* APSplitViewController.h */,
+				76E8BFE7142389B300E05946 /* APSplitViewController.m */,
+				76E8BFE8142389B300E05946 /* APTabBarControllerForSplitController.h */,
+				76E8BFE9142389B300E05946 /* APTabBarControllerForSplitController.m */,
+				76E8BFEA142389B300E05946 /* Resources */,
+			);
+			path = Split;
+			sourceTree = "<group>";
+		};
+		76E8BFEA142389B300E05946 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76E8BFEB142389B300E05946 /* split-divider.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		BA0D4660137C5127001415C3 = {
 			isa = PBXGroup;
 			children = (
@@ -932,6 +968,8 @@
 				BA0D46E5137C60EB001415C3 /* RootViewController.m */,
 				BA0D46E0137C60EB001415C3 /* RootViewController.xib */,
 				BA54FE8A13D6184C0016A56C /* ExternalData.h */,
+				76E8BFE01423898600E05946 /* RootSplitViewController.h */,
+				76E8BFE11423898600E05946 /* RootSplitViewController.m */,
 			);
 			path = "Application Base";
 			sourceTree = "<group>";
@@ -1074,6 +1112,7 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				76E8BFE3142389B300E05946 /* Split */,
 				BAB97F8513F84C0700C49BAE /* InnerShadowDrawing.h */,
 				BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */,
 				BA98EAA113C65866005CF2FA /* SettingsFieldStyle.h */,
@@ -1929,6 +1968,7 @@
 				BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */,
 				765E63FD1420DCEE00BB027D /* IKOutputSettingCell.xib in Resources */,
 				BA8A23B114213345002095A2 /* IKOutputSettingSwitchCell.xib in Resources */,
+				76E8BFEF142389B300E05946 /* split-divider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2130,6 +2170,10 @@
 				765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */,
 				765E63FC1420DCEE00BB027D /* IKOutputSettingCell.m in Sources */,
 				BA8A23B014213345002095A2 /* IKOutputSettingSwitchCell.m in Sources */,
+				76E8BFE21423898600E05946 /* RootSplitViewController.m in Sources */,
+				76E8BFEC142389B300E05946 /* APNavigationControllerForSplitController.m in Sources */,
+				76E8BFED142389B300E05946 /* APSplitViewController.m in Sources */,
+				76E8BFEE142389B300E05946 /* APTabBarControllerForSplitController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
