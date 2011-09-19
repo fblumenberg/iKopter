@@ -28,6 +28,8 @@
 #import "RawOsdViewController.h"
 #import "MapOsdViewController.h"
 
+#import "UIViewController+SplitView.h"
+
 /////////////////////////////////////////////////////////////////////////////////
 @interface OsdViewController()
 - (void)conceal;
@@ -88,6 +90,8 @@
 - (void) viewWillAppear:(BOOL)animated {
   
   [super viewWillAppear:animated];
+  
+  [self.splitViewController toggleMasterView:self];
 
   [osdValue startRequesting];
   
@@ -127,6 +131,8 @@
   {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     self.navigationController.navigationBar.translucent=NO;
+    
+    [self.splitViewController toggleMasterView:self];
   }
   
   osdValue.delegate = nil;
