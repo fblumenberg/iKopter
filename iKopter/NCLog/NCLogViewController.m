@@ -27,6 +27,7 @@
 #import "NCLogDetailViewController.h"
 #import "NCLogSession.h"
 #import "NCLogRecord.h"
+#import "UIViewController+SplitView.h"
 
 @interface NCLogViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -88,6 +89,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
   [super viewWillDisappear:animated];
+
+  if(self.isPad)
+    [self.detailViewController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -129,14 +133,12 @@
   return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (void) setEditing:(BOOL)editing animated:(BOOL)animated {
+  [super setEditing: editing animated: animated];
+  
+  if(self.isPad)
+    [self.detailViewController popToRootViewControllerAnimated:YES];
+}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -189,9 +191,15 @@
   // Navigation logic may go here. Create and push another view controller.
   NCLogDetailViewController *detailViewController = [[NCLogDetailViewController alloc] initWithNibName:@"NCLogDetailViewController" bundle:nil];
   detailViewController.session = managedObject;
-  // ...
-  // Pass the selected object to the new view controller.
-  [self.navigationController pushViewController:detailViewController animated:YES];
+
+  if(self.isPad){
+    BOOL animated=self.isRootForDetailViewController;
+    [self.detailViewController popToRootViewControllerAnimated:NO];
+    [self.detailViewController pushViewController:detailViewController animated:animated];
+  }
+  else
+    [self.navigationController pushViewController:detailViewController animated:YES];
+
   [detailViewController release];
   
 }
