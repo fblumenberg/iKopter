@@ -33,6 +33,8 @@
 #import "MKDataConstants.h"
 #import "IKDeviceVersion.h"
 
+#import "UIViewController+SplitView.h"
+
 @implementation MainViewController
 
 @synthesize host=_host;
@@ -354,6 +356,12 @@
   [_hud removeFromSuperview];
   [_hud release];
   _hud=nil;
+}
+
+#pragma mark - IASKSettingsDelegate
+
+- (UINavigationController*) navigationControllerForChildPaneForKey:(NSString*)key{
+  return self.detailViewController;
 }
 
 
