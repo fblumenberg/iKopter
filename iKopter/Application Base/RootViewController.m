@@ -37,6 +37,8 @@
 #import "DropboxSDK.h"
 #import "IKDropboxLoginController.h"
 
+#import "UIViewController+SplitView.h"
+
 #define kDropBoxAction @"DropBoxAction"
 
 
@@ -63,10 +65,15 @@
   [self updateDropboxButton];
   
   UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController];
-  //[viewController setShowCreditsFooter:NO];   // Uncomment to not display InAppSettingsKit credits for creators.
-  // But we encourage you not to uncomment. Thank you!
   self.appSettingsViewController.showDoneButton = YES;
-  [self presentModalViewController:aNavController animated:YES];
+
+  if( [self isPad]){
+    aNavController.modalPresentationStyle=UIModalPresentationFormSheet;
+    [self.splitViewController presentModalViewController:aNavController animated:YES];
+  }
+  else
+    [self presentModalViewController:aNavController animated:YES];
+  
   [aNavController release];
 }
 
@@ -88,7 +95,11 @@
 
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
-  [self dismissModalViewControllerAnimated:YES];
+  
+  if( [self isPad])
+    [self.splitViewController dismissModalViewControllerAnimated:YES];
+  else
+    [self dismissModalViewControllerAnimated:YES];
 	
   
 # ifndef _LCL_NO_LOGGING

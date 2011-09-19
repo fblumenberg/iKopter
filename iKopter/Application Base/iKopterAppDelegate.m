@@ -53,13 +53,19 @@
 @synthesize managedObjectContext=__managedObjectContext;
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
+
 @synthesize navigationController=_navigationController;
+@synthesize mgSplitViewController=_mgSplitViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  // Override point for customization after application launch.
-  // Add the navigation controller's view to the window and display.
-  self.window.rootViewController = self.navigationController;
+  self.mgSplitViewController.showsMasterInPortrait=YES; 
+
+  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    self.window.rootViewController = self.mgSplitViewController;
+  else
+    self.window.rootViewController = self.navigationController;
+
   [self.window makeKeyAndVisible];
   
   // Load the default values for the user defaults
