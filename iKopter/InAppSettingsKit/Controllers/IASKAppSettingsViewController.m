@@ -662,7 +662,10 @@ CGRect IASKCGRectSwap(CGRect rect);
       if ([self.delegate respondsToSelector:@selector(navigationControllerForChildPaneForKey:)]) 
         navCtrl = [self.delegate navigationControllerForChildPaneForKey:[specifier key]];
       
-      if(!navCtrl) navCtrl=self.navigationController;
+      if(!navCtrl) 
+        navCtrl=self.navigationController;
+      else
+        [navCtrl popToRootViewControllerAnimated:NO];
       
       [navCtrl pushViewController:vc animated:YES];
       [vc release];
@@ -704,7 +707,11 @@ CGRect IASKCGRectSwap(CGRect rect);
     if ([self.delegate respondsToSelector:@selector(navigationControllerForChildPaneForKey:)]) 
       navCtrl = [self.delegate navigationControllerForChildPaneForKey:[specifier key]];
     
-    if(!navCtrl) navCtrl=self.navigationController;
+    if(!navCtrl) 
+      navCtrl=self.navigationController;
+    else
+      [navCtrl popToRootViewControllerAnimated:NO];
+
     [navCtrl pushViewController:targetViewController animated:YES];
     
   } else if ([[specifier type] isEqualToString:kIASKOpenURLSpecifier]) {

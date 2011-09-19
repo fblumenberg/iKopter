@@ -26,6 +26,7 @@
 #import "MKConnectionController.h"
 #import "NSData+MKCommandEncode.h"
 #import "MKDataConstants.h"
+#import "UIViewController+SplitView.h"
 
 #import "TTCorePreprocessorMacros.h"
 
@@ -86,6 +87,10 @@
 - (void) viewWillAppear:(BOOL)animated {
   
   [super viewWillAppear:animated];
+ 
+  
+    if(self.isPad)
+      self.navigationItem.hidesBackButton=YES;
  
   values = [[AnalogValues alloc] init];
   values.delegate = self;

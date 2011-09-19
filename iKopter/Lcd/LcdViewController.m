@@ -29,6 +29,8 @@
 
 #import "IKLcdDisplay.h"
 
+#import "UIViewController+SplitView.h"
+
 @implementation LcdViewController
 
 @synthesize label;
@@ -79,6 +81,11 @@
 // called after this controller's view will appear
 - (void)viewWillAppear:(BOOL)animated
 {	
+  [super viewWillAppear:animated];
+  
+  if(self.isPad)
+    self.navigationItem.hidesBackButton=YES;
+
   [self.navigationController setToolbarHidden:YES animated:NO];
 
 	// for aesthetic reasons (the background is black), make the nav bar black for this particular page
@@ -123,6 +130,8 @@
 	// restore the nav bar and status bar color to default
 	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+  
+  [super viewWillDisappear:animated];
 }
 
 
