@@ -12,8 +12,10 @@
 @interface UIViewController (UIViewController_SplitView)
 
 @property(nonatomic,readonly) BOOL isPad;
+@property(nonatomic,readonly) BOOL isRootForDetailViewController;
 @property(nonatomic,readonly) MGSplitViewController* splitViewController;
 @property(nonatomic,readonly) UINavigationController* detailViewController;
 @property(nonatomic,readonly) UINavigationController* rootViewController;
+
 
 @end

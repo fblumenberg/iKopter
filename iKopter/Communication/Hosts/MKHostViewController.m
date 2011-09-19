@@ -24,6 +24,7 @@
 
 #import "MKHostViewController.h"
 #import "MKHostViewDataSource.h"
+#import "UIViewController+SplitView.h"
 
 #import "BTDiscoveryViewController.h"
 #import "BTDevice.h"
@@ -65,6 +66,13 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+  [super viewWillAppear:animated];
+  if(self.isPad){
+    self.navigationItem.hidesBackButton=YES;
+  }
 }
 
 #pragma mark -

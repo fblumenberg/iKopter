@@ -47,4 +47,8 @@
 #endif
 }
 
+-(BOOL) isRootForDetailViewController{
+  return (self.detailViewController.topViewController == [self.detailViewController.viewControllers objectAtIndex:0] );
+}
+
 @end

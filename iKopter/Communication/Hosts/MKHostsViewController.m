@@ -25,6 +25,7 @@
 #import "MKHostsViewController.h"
 #import "MKHost.h"
 #import "MKHostViewController.h"
+#import "UIViewController+SplitView.h"
 
 
 @implementation MKHostsViewController
@@ -113,6 +114,12 @@
   }
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+  [super viewWillDisappear:animated];
+  if(self.isPad)
+    [self.detailViewController popToRootViewControllerAnimated:YES];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Table view data source
@@ -177,6 +184,9 @@
 - (void) setEditing:(BOOL)editing animated:(BOOL)animated {
   [super setEditing: editing animated: animated];
   
+  if(self.isPad)
+    [self.detailViewController popToRootViewControllerAnimated:YES];
+  
   UIBarButtonItem* spacerButton;
   spacerButton =  [[[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -188,33 +198,8 @@
     [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
 }
 
-//
-//-(void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath{
-//  
-//  UIBarButtonItem* spacerButton;
-//  spacerButton =  [[[UIBarButtonItem alloc]
-//                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-//                    target:nil
-//                    action:nil] autorelease];
-//  
-//  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
-//
-//}
-//
-//- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
-//  
-//  UIBarButtonItem* spacerButton;
-//  spacerButton =  [[[UIBarButtonItem alloc]
-//                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-//                    target:nil
-//                    action:nil] autorelease];
-//  
-//  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
-//}
-//
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Table view delegate
+#pragma mark - Table view delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   if (self.tableView.editing) {
@@ -226,14 +211,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  if(!self.isPad)
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
   if( indexPath.section==0 ){
     MKHost* host=[self.hosts hostAtIndexPath:indexPath];
     if (!self.tableView.editing ) {
       MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
       self.editingHost = indexPath;
-      [self.navigationController pushViewController:hostView animated:YES];
+      
+      if(self.isPad){
+        BOOL animated=self.isRootForDetailViewController;
+        [self.detailViewController popToRootViewControllerAnimated:NO];
+        [self.detailViewController pushViewController:hostView animated:animated];
+      }
+      else
+        [self.navigationController pushViewController:hostView animated:YES];
+      
       [hostView release];
     }
   }
