@@ -39,6 +39,8 @@
 			<string>Settings</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
+            <key>Key</key>
+			<string>Settings</string>
 		</dict>
 		<dict>
 			<key>IASKViewControllerClass</key>
@@ -59,6 +61,8 @@
 			<string>Routes</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
+            <key>Key</key>
+			<string>Routes</string>
 		</dict>
 		<dict>
 			<key>Title</key>

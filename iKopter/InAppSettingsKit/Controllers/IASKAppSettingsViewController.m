@@ -664,8 +664,11 @@ CGRect IASKCGRectSwap(CGRect rect);
       
       if(!navCtrl) 
         navCtrl=self.navigationController;
-      else
+      else{
+        vc.navigationItem.hidesBackButton=YES;
+
         [navCtrl popToRootViewControllerAnimated:NO];
+      }
       
       [navCtrl pushViewController:vc animated:YES];
       [vc release];
@@ -709,8 +712,10 @@ CGRect IASKCGRectSwap(CGRect rect);
     
     if(!navCtrl) 
       navCtrl=self.navigationController;
-    else
+    else{
+      targetViewController.navigationItem.hidesBackButton=YES;
       [navCtrl popToRootViewControllerAnimated:NO];
+    }
 
     [navCtrl pushViewController:targetViewController animated:YES];
     

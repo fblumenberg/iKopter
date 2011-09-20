@@ -147,10 +147,11 @@
   [_hud hide:NO];
   NSNotificationCenter* nc=[NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
-  
-  if(self.isPad)
-    [self.detailViewController popToRootViewControllerAnimated:YES];
-  
+  if (self.navigationController.topViewController != self)
+  {
+    if(self.isPad)
+      [self.detailViewController popToRootViewControllerAnimated:YES];
+  }  
   [super viewWillDisappear:animated];
 }
 
@@ -365,6 +366,9 @@
 #pragma mark - IASKSettingsDelegate
 
 - (UINavigationController*) navigationControllerForChildPaneForKey:(NSString*)key{
+  
+  if([key isEqualToString:@"Settings"])
+    return nil;
   
   self.detailViewController.navigationBar.barStyle=UIBarStyleDefault;
   

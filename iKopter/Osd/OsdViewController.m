@@ -85,13 +85,18 @@
   
   self.tabBar.selectedItem=self.valuesOsdTabBarItem;
   
+  self.navigationItem.hidesBackButton=NO;
+  
 }
 
 - (void) viewWillAppear:(BOOL)animated {
   
   [super viewWillAppear:animated];
   
-  [self.splitViewController toggleMasterView:self];
+  if(self.splitViewController.isShowingMaster)
+    [self.splitViewController toggleMasterView:self];
+
+  self.navigationItem.hidesBackButton=NO;
 
   [osdValue startRequesting];
   
@@ -131,8 +136,9 @@
   {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     self.navigationController.navigationBar.translucent=NO;
-    
-    [self.splitViewController toggleMasterView:self];
+  
+    if(!self.splitViewController.isShowingMaster)
+      [self.splitViewController toggleMasterView:self];
   }
   
   osdValue.delegate = nil;

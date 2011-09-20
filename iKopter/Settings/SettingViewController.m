@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "SettingViewController.h"
+#import "UIViewController+SplitView.h"
 
 #import "MKConnectionController.h"
 #import "NSData+MKCommandEncode.h"
@@ -194,7 +195,16 @@
   [_tableView reloadData];
 }
 
-#pragma makr - IASKSettingsDelegate
+- (UINavigationController*) navigationControllerForChildPaneForKey:(NSString*)key{
+  
+  NSLog(@"Key = %@",key);
+  
+  if(![key hasPrefix:@"Pane"])
+    return nil;
+  
+  self.detailViewController.navigationBar.barStyle=UIBarStyleDefault;
+  return self.detailViewController;
+}
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender{
   

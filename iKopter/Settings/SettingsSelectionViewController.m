@@ -33,6 +33,8 @@
 
 #import "IKParamSet.h"
 
+#import "UIViewController+SplitView.h"
+
 #import "MixerViewController.h"
 #import "ChannelsViewController.h"
 #import "EngineTestViewController.h"
@@ -131,6 +133,18 @@ static NSUInteger kNumberOfSettings = 5;
 //  
 //	[self setToolbarItems:[NSArray arrayWithObject:actionButton] animated:YES];
 }
+
+-(void) viewWillDisappear:(BOOL)animated {
+
+  if (self.navigationController.topViewController != self)
+  {
+    if(self.isPad)
+      [self.detailViewController popToRootViewControllerAnimated:YES];
+  }  
+  
+  [super viewWillDisappear:animated];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
@@ -374,11 +388,11 @@ static NSUInteger kNumberOfSettings = 5;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
   NSUInteger row = [indexPath row];
   
   if (self.tableView.editing ) {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section==0 && newActiveSetting != row) {
       NSArray *row0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:newActiveSetting inSection:0]];  
@@ -393,6 +407,8 @@ static NSUInteger kNumberOfSettings = 5;
   }
   else {
     if( indexPath.section==0 ) {
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
       IKParamSet* setting=[self.settings objectAtIndex:row]; 
       SettingViewController* settingView = [[SettingViewController alloc] initWithSetting:setting];
       
@@ -402,6 +418,10 @@ static NSUInteger kNumberOfSettings = 5;
       [settingView release];
     }
     else {
+
+      if(!self.isPad)
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
       MixerViewController* extraView=nil;
 
       switch (indexPath.row) {
@@ -415,10 +435,18 @@ static NSUInteger kNumberOfSettings = 5;
           extraView = [[ChannelsViewController alloc] initWithStyle:UITableViewStylePlain];
           break;
       }
-      
+
+      if(self.isPad){
+        BOOL animated=self.isRootForDetailViewController;
+        extraView.navigationItem.hidesBackButton=YES;
+        [self.detailViewController popToRootViewControllerAnimated:NO];
+        [self.detailViewController pushViewController:extraView animated:animated];
+      }
+      else
+        [self.navigationController pushViewController:extraView animated:YES];
+
       [self.navigationController setToolbarHidden:NO animated:NO];
       
-      [self.navigationController pushViewController:extraView animated:YES];
       [extraView release];
     }
   }
