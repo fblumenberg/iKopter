@@ -35,6 +35,15 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)aRect{
+    self = [super initWithFrame:aRect];
+    if (self) {
+        [self initControl];
+    }
+    
+    return self;
+}
+
 - (void)dealloc {
     self.frameColor = nil;
     self.insetColorOn = nil;
@@ -46,6 +55,7 @@
 -(void) awakeFromNib{
     [self initControl];
 }
+
 
 #pragma - mark NSCoding
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,7 +164,7 @@
 	CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
 	CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
 	CGContextClip(context);
-	CGContextClosePath(context);
+	//CGContextClosePath(context);
 	
 	
 	size_t num_locations = 2;
@@ -208,7 +218,7 @@
 - (void)drawRect:(CGRect)rect{
     
     CGContextRef context= UIGraphicsGetCurrentContext();
-    
+
     int delta = (int)(self.bounds.size.width/8);
     
     CGRect segment=self.bounds;
