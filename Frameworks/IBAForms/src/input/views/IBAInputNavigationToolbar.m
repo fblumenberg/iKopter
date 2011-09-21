@@ -15,8 +15,8 @@
 #import "IBAInputNavigationToolbar.h"
 #import "IBACommon.h"
 
-#define IBAInputNavigationToolbarNextTitle NSLocalizedString(@"Next", @"IBA Nav next")
-#define IBAInputNavigationToolbarPreviousTitle NSLocalizedString(@"Prevoius", @"IBA Nav prev")
+#define IBAInputNavigationToolbarNextTitle @"Next"
+#define IBAInputNavigationToolbarPreviousTitle @"Previous"
 
 @interface IBAInputNavigationToolbar ()
 @property (nonatomic, retain) UIBarButtonItem *nextPreviousBarButtonItem;
@@ -53,7 +53,6 @@
 		nextPreviousButton_.segmentedControlStyle = UISegmentedControlStyleBar;
 		nextPreviousButton_.tintColor = [UIColor blackColor];
 		nextPreviousButton_.momentary = YES;
-		
 		nextPreviousBarButtonItem_ = [[UIBarButtonItem alloc] initWithCustomView:self.nextPreviousButton];
 		
 		displayDoneButton_ = YES;

@@ -24,12 +24,10 @@
 - (void)releaseViews;
 - (void)registerForNotifications;
 - (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey;
-- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
-- (void)adjustTableViewHeightForCoveringFrameZero;
-
 - (CGRect)rectForOrientationFrame:(CGRect)frame;
 - (void)makeActiveFormFieldVisibleWithAnimation:(BOOL)animate;
 - (void)makeFormFieldVisible:(IBAFormField *)formField animated:(BOOL)animate;
+- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
 
 // Notification methods
 - (void)pushViewController:(NSNotification *)notification;
@@ -52,7 +50,6 @@
 - (void)dealloc {
 	[self releaseViews];
 	IBA_RELEASE_SAFELY(formDataSource_);
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
     [super dealloc];
 }
@@ -65,12 +62,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		self.formDataSource = formDataSource;
-		self.hidesBottomBarWhenPushed = YES;
-		
-		[self registerForNotifications];
 	}
 	
     return self;
+}
+
+- (void)isNavigationToolbarTranslucent:(BOOL)translucent
+{
+    [[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setTranslucent:translucent];
 }
 
 - (void)registerForNotifications {
@@ -119,7 +118,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
+
+    [self registerForNotifications];
+
 	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];	
 	
 	// SW. There is a bug with UIModalPresentationFormSheet where the keyboard won't dismiss even when there is
@@ -151,6 +152,8 @@
 	if ([[IBAInputManager sharedIBAInputManager] inputRequestorDataSource] == self) {
 		[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:nil];
 	}
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -248,18 +251,13 @@
 #pragma mark Responses to IBAInputManager notifications
 
 - (void)inputManagerWillShow:(NSNotification *)notification {
-  
-  [NSObject cancelPreviousPerformRequestsWithTarget:self];
-  
 	NSDictionary* info = [notification userInfo];
 	CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
 	[self adjustTableViewHeightForCoveringFrame:[self rectForOrientationFrame:keyboardFrame]];
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
-  [self performSelector:@selector(adjustTableViewHeightForCoveringFrameZero) withObject:nil afterDelay:0.1];
-  
-//	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
+	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {
@@ -289,10 +287,6 @@
     }
 }
 
-- (void)adjustTableViewHeightForCoveringFrameZero{
-  [self adjustTableViewHeightForCoveringFrame:CGRectZero];
-}
-
 - (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame {
 	if (!CGRectEqualToRect(coveringFrame, self.keyboardFrame)) {
 		self.keyboardFrame = coveringFrame;
@@ -304,7 +298,7 @@
 							 CGFloat height = (CGRectEqualToRect(coveringFrame, CGRectZero)) ? 0 : 
 								coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
 							 UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, height, 0);
-							 NSLog(@"UIEdgeInsets coveringFrame %@ contentInsets bottom %f",NSStringFromCGRect(coveringFrame), contentInsets.bottom);
+							 //NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
 							 self.tableView.contentInset = contentInsets;
 							 self.tableView.scrollIndicatorInsets = contentInsets;
 						 }

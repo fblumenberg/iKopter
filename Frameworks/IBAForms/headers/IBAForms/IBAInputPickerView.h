@@ -11,10 +11,14 @@
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
+//
+//  Created by Sébastien HOUZE on 22/08/11.
+//  Copyright (c) 2011 RezZza. All rights reserved.
+//
 
-#import "IBATextFormFieldCell.h"
+#import <UIKit/UIKit.h>
+#import "IBAInputGenericPickerView.h"
 
-@interface IBADateFormFieldCell : IBATextFormFieldCell{
-}
+@interface IBAInputPickerView : IBAInputGenericPickerView
 
 @end
