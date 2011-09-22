@@ -34,6 +34,7 @@
 - (void)presentModalViewController:(NSNotification *)notification;
 - (void)dismissModalViewController:(NSNotification *)notification;
 
+- (void)adjustTableViewHeightForCoveringFrameZero;
 @end
 
 @implementation IBAFormViewController
@@ -251,13 +252,19 @@
 #pragma mark Responses to IBAInputManager notifications
 
 - (void)inputManagerWillShow:(NSNotification *)notification {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
 	NSDictionary* info = [notification userInfo];
 	CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
 	[self adjustTableViewHeightForCoveringFrame:[self rectForOrientationFrame:keyboardFrame]];
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
-	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
+    [self performSelector:@selector(adjustTableViewHeightForCoveringFrameZero) withObject:nil afterDelay:0.1];
+//	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
+}
+- (void)adjustTableViewHeightForCoveringFrameZero{
+      [self adjustTableViewHeightForCoveringFrame:CGRectZero];
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {

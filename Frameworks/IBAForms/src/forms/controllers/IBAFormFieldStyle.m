@@ -32,6 +32,7 @@
 @synthesize activeColor = activeColor_;
 @synthesize errorColor = errorColor_;
 @synthesize behavior = behavior_;
+@synthesize accessoryType = accessoryType_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(labelTextColor_);
@@ -68,6 +69,8 @@
 
 		self.activeColor = IBAFormFieldActiveColor;
         self.errorColor = IBAFormFieldErrorColor;
+    
+    self.accessoryType=UITableViewCellAccessoryNone;
 	}
 	
 	return self;

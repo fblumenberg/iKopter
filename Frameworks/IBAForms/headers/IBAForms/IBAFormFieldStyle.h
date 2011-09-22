@@ -40,6 +40,8 @@ typedef enum {
 
     UIColor *errorColor_;
 	UIColor *activeColor_;
+  
+  UITableViewCellAccessoryType accessoryType_;
 }
 
 @property (nonatomic, retain) UIColor *labelTextColor;
@@ -60,5 +62,6 @@ typedef enum {
 
 @property (nonatomic, retain) UIColor *activeColor;
 @property (nonatomic, retain) UIColor *errorColor;
+@property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 
 @end

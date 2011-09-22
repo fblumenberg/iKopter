@@ -70,6 +70,8 @@
 			[cell_.cellView addSubview:imageView];
 			[imageView release];
 		}
+    
+    cell_.accessoryType=self.formFieldStyle.accessoryType;
 	}
 
 	return cell_;

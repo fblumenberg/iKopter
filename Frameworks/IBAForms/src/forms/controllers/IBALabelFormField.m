@@ -21,6 +21,9 @@
 	if (cell_ == nil) {
 		cell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell" validator:self.validator];
 	}
+    
+    cell_.label.lineBreakMode = UILineBreakModeWordWrap;
+    cell_.label.numberOfLines = 0;
 	
 	return cell_;
 }
