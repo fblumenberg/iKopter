@@ -31,7 +31,7 @@
 @class MKMapView;
 @class CLLocation;
 
-@interface RouteMapViewController : UIViewController<MKMapViewDelegate,SurrogateViewParent> {
+@interface RouteMapViewController : UIViewController<MKMapViewDelegate,SurrogateViewParent,UIPopoverControllerDelegate> {
     
 }
 

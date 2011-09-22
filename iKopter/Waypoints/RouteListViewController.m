@@ -264,7 +264,8 @@
   if( self.isPad ){
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
     popOverController.popoverContentSize = CGSizeMake(320, 400);
-    
+    popOverController.delegate = self;
+
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.editingPoint];
     [popOverController presentPopoverFromRect:cell.bounds inView:cell.contentView 
@@ -275,6 +276,10 @@
   }
   [hostView release];
   
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  [popoverController release];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
