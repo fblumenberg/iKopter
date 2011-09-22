@@ -24,11 +24,16 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import <MapKit/MapKit.h>
 
 #import "NCLogSession.h"
 
-@interface NCLogDetailViewController : UIViewController<MFMailComposeViewControllerDelegate> {
+@class MKMapView;
+@protocol MKMapViewDelegate; 
+
+@interface NCLogDetailViewController : UIViewController<MKMapViewDelegate,MFMailComposeViewControllerDelegate> {
     
+  MKMapView *mapView;
 }
 
 @property(retain) NCLogSession* session;
@@ -36,5 +41,6 @@
 @property(retain) IBOutlet UILabel* startDate;
 @property(retain) IBOutlet UILabel* endDate;
 @property(retain) IBOutlet UILabel* records;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
 @end

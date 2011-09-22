@@ -26,8 +26,8 @@
 #import <CoreData/CoreData.h>
 
 @class NCLogSession;
-@class IKGpsPos;
-@class IKGpsPosDev;
+@class IKGPSPos;
+@class IKGPSPosDev;
 @class IKNaviData;
 
 @interface NCLogRecord : NSManagedObject {
@@ -35,23 +35,23 @@
 }
 @property (nonatomic, retain) NSDate * timeStamp;
 @property (nonatomic, retain) NSNumber * rcQuality;
-@property (nonatomic, retain) IKGpsPosDev* targetPositionDeviation;
-@property (nonatomic, retain) IKGpsPos* homePosition;
+@property (nonatomic, retain) IKGPSPosDev* targetPositionDeviation;
+@property (nonatomic, retain) IKGPSPos* homePosition;
 @property (nonatomic, retain) NSNumber * targetHoldTime;
 @property (nonatomic, retain) NSNumber * setpointAltitude;
 @property (nonatomic, retain) NSNumber * groundSpeed;
 @property (nonatomic, retain) NSNumber * fcStatusFlags2;
-@property (nonatomic, retain) IKGpsPos* currentPosition;
+@property (nonatomic, retain) IKGPSPos* currentPosition;
 @property (nonatomic, retain) NSNumber * flyingTime;
 @property (nonatomic, retain) NSNumber * version;
 @property (nonatomic, retain) NSNumber * fcStatusFlags;
 @property (nonatomic, retain) NSNumber * angleNick;
-@property (nonatomic, retain) IKGpsPos* targetPosition;
+@property (nonatomic, retain) IKGPSPos* targetPosition;
 @property (nonatomic, retain) NSNumber * heading;
 @property (nonatomic, retain) NSNumber * angleRoll;
 @property (nonatomic, retain) NSNumber * variometer;
 @property (nonatomic, retain) NSNumber * waypointNumber;
-@property (nonatomic, retain) IKGpsPosDev* homePositionDeviation;
+@property (nonatomic, retain) IKGPSPosDev* homePositionDeviation;
 @property (nonatomic, retain) NSNumber * satsInUse;
 @property (nonatomic, retain) NSNumber * errorCode;
 @property (nonatomic, retain) NSNumber * topSpeed;

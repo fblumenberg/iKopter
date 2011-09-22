@@ -24,10 +24,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <MapKit/MapKit.h>
 
 #import "NCLogDetailViewController.h"
 #import "NCLogRecord.h"
+#import "IKNaviData.h"
 #import "CHCSVWriter.h"
+#import "UIViewController+SplitView.h"
 
 @interface NCLogDetailViewController()
 
@@ -38,6 +41,7 @@
 @end
 
 @implementation NCLogDetailViewController
+@synthesize mapView;
 
 @synthesize session;
 @synthesize startDate,endDate,records;
@@ -53,6 +57,7 @@
 
 - (void)dealloc
 {
+  [mapView release];
   [super dealloc];
 }
 
@@ -96,21 +101,63 @@
               action:@selector(uploadSession)] autorelease];
 
  	[self setToolbarItems:[NSArray arrayWithObjects:mail,spacer,delete,spacer,action,nil]];
-
+  self.navigationController.toolbarHidden=NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-
+  
+  if(self.isPad)
+    self.navigationItem.hidesBackButton=YES;
+    
   self.startDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
   self.endDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
   self.records.text=[NSString stringWithFormat:@"%d",[session.records count]];
-
+  
+  
+  
+  // here's where you specify the sort
+  NSSortDescriptor* sortDescriptor = [[[NSSortDescriptor alloc]
+                                       initWithKey:@"timeStamp" ascending:YES]autorelease];
+  NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
+  
+  NSArray* sortedRecords=[[session.records allObjects]sortedArrayUsingDescriptors: sortDescriptors];
+  
+  NSLog(@"%@",sortedRecords);
+  
+  CLLocationCoordinate2D coordinates[[sortedRecords count]];
+  [self.mapView removeOverlays:self.mapView.overlays];
+  
+  int i=0;
+  for (NCLogRecord* r in sortedRecords) {
+    coordinates[i]=r.currentPosition.coordinate;
+    i++;
+  }
+  
+  [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coordinates count:i]];
+  
+  MKMapRect flyTo = MKMapRectNull;
+  
+  for (id <MKOverlay> overlay in mapView.overlays) {
+    if (MKMapRectIsNull(flyTo)) {
+      flyTo = [overlay boundingMapRect];
+    } else {
+      flyTo = MKMapRectUnion(flyTo, [overlay boundingMapRect]);
+    }
+  }
+  
+  flyTo = [mapView mapRectThatFits:flyTo];
+  
+  // Position the map so that all overlays and annotations are visible on screen.
+  [mapView setVisibleMapRect:flyTo animated:YES];
+  
+  
 }
 
 - (void)viewDidUnload
 {
+  [self setMapView:nil];
   [super viewDidUnload];
 }
 
@@ -119,6 +166,19 @@
   return YES;
 }
 
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay{
+	
+	if ([overlay isKindOfClass:[MKPolyline class]]) {
+		
+		MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
+		polylineView.strokeColor = [UIColor blueColor];
+		polylineView.lineWidth = 1.5;
+		return polylineView;
+	}
+	
+	return nil;
+}
 #pragma - Actions
 
 -(void)uploadSession{
