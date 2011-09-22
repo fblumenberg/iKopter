@@ -67,7 +67,7 @@
                                      title:NSLocalizedString(@"Sensitive receiver signal validation",@"MKParam Channels")];
     
 
-    ChannelsViewController* channelsTest = [[ChannelsViewController alloc] initWithStyle:UITableViewStylePlain];
+    ChannelsViewController* channelsTest = [[[ChannelsViewController alloc] initWithStyle:UITableViewStylePlain]autorelease];
     
     IBAButtonFormField* button=[[[IBAButtonFormField alloc]initWithTitle:NSLocalizedString(@"Channels test",@"MKParam Channels button")
                                                                     icon:nil

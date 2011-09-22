@@ -76,7 +76,7 @@
         textField.keyboardType==UIKeyboardTypeDecimalPad || 
         textField.keyboardType==UIKeyboardTypeNumberPad ) {
         
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        NSNumberFormatter *numberFormatter = [[[NSNumberFormatter alloc] init]autorelease];
         [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         
         if (textField.keyboardType==UIKeyboardTypeNumberPad) {

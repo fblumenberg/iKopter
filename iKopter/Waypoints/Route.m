@@ -124,8 +124,8 @@
   
   qltrace(@"%@",self.points);
   
-  int newIndexes[32];
-  int oldIndexes[32];
+  int newIndexes[32]={0};
+  int oldIndexes[32]={0};
 
   int index=0;
   for(IKPoint* p in points){ 

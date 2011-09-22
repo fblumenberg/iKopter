@@ -26,12 +26,12 @@
 	IBAFormFieldStyle *formFieldStyle_;
 	BOOL styleApplied_;
 	BOOL active_;
-    UIButton *clearButton_;
+  UIButton *clearButton_;
 	BOOL nullable_;
-
-	@private
+  
+@private
 	UIView *hiddenCellCache_;
-    IBAInputValidatorGeneric *validator;
+  IBAInputValidatorGeneric *validator_;
 }
 
 @property (readwrite, retain) UIView *inputView;

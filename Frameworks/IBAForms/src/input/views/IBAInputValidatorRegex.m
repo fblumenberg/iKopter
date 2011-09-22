@@ -25,7 +25,7 @@
 - (BOOL)isNotValid:(NSString *)stringToCheck
 {
     BOOL returnValue = NO;
-    NSPredicate *stringTest = [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex] retain];
+    NSPredicate *stringTest = [[[NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex] retain]autorelease];
 
     if ([super isNotValid:stringToCheck])
         returnValue = YES;
