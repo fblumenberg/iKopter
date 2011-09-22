@@ -221,11 +221,11 @@
     WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
     
     if( self.isPad ){
-      UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
+      UIPopoverController* popOverController = [[[UIPopoverController alloc] initWithContentViewController:hostView]autorelease];
       popOverController.popoverContentSize = CGSizeMake(320, 400);
       
       [popOverController presentPopoverFromRect:control.bounds inView:control 
-                       permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+                       permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
     else{
       [self.surrogateParent.navigationController pushViewController:hostView animated:YES];

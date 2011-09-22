@@ -28,7 +28,7 @@
 
 @class CLLocation;
 
-@interface RouteListViewController : UITableViewController<UITextFieldDelegate,SurrogateViewParent> {
+@interface RouteListViewController : UITableViewController<UITextFieldDelegate,SurrogateViewParent,UIPopoverControllerDelegate> {
     
 
 }
