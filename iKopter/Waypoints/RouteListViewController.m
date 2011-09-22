@@ -27,6 +27,7 @@
 #import "IKPoint.h"
 #import "IASKPSTextFieldSpecifierViewCell.h"
 #import "IASKTextField.h"
+#import "UIViewController+SplitView.h"
 
 @implementation RouteListViewController
 
@@ -39,6 +40,7 @@
   if ((self =  [super initWithStyle:UITableViewStyleGrouped])) {
     self.list=aList;
     self.title=NSLocalizedString(@"Route", @"Waypoint Lists title");
+    
   }
   return self;
 }
@@ -256,6 +258,25 @@
   return indexPath;
 }
 
+
+-(void) showViewControllerForPoint:(IKPoint*)point {
+  WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
+  if( self.isPad ){
+    UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
+    popOverController.popoverContentSize = CGSizeMake(320, 400);
+    
+
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.editingPoint];
+    [popOverController presentPopoverFromRect:cell.bounds inView:cell.contentView 
+                     permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+  }
+  else{
+    [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
+  }
+  [hostView release];
+  
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -264,10 +285,8 @@
     IKPoint* point=[self.list pointAtIndexPath:indexPath];
     if (!self.tableView.editing ) {
       
-      WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
       self.editingPoint = indexPath;
-      [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
-      [hostView release];
+      [self showViewControllerForPoint:point];
     }
   }
 }
@@ -286,9 +305,7 @@
   [self.tableView endUpdates];
   
   IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
-  WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-  [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
-  [hostView release];
+  [self showViewControllerForPoint:point];
 }
 
 - (void)addPointWithLocation:(CLLocation*)location{
@@ -303,9 +320,7 @@
   [self.tableView endUpdates];
   
   IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
-  WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-  [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
-  [hostView release];
+  [self showViewControllerForPoint:point];
 }
 
 @end

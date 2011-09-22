@@ -158,6 +158,7 @@
   [newPoint release];
   
   qltrace(@"%@",points);
+  [self.routes save];
 
   return [NSIndexPath indexPathForRow:[points count]-1 inSection:1]; 
 }

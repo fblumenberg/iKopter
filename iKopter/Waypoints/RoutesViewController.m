@@ -289,6 +289,9 @@
   
   Route* newRoute = [self.routes routeAtIndexPath:self.editingRoute];
   newRoute.name=NSLocalizedString(@"Route", @"Route default name");
+  
+  [self.routes save];
+  
   RouteViewController* listView = [[RouteViewController alloc] initWithRoute:newRoute];
   [self.navigationController pushViewController:listView animated:YES];
   [listView release];

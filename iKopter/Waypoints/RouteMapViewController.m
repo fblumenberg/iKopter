@@ -13,6 +13,7 @@
 #import "WaypointViewController.h"
 #import "HeadingOverlayView.h"
 #import "HeadingOverlay.h"
+#import "UIViewController+SplitView.h"
 
 @interface RouteMapViewController()
 
@@ -218,8 +219,17 @@
     IKPoint* point=(IKPoint*)view.annotation;
     
     WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
-    [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
-    [hostView release];
+    
+    if( self.isPad ){
+      UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
+      popOverController.popoverContentSize = CGSizeMake(320, 400);
+      
+      [popOverController presentPopoverFromRect:control.bounds inView:control 
+                       permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    }
+    else{
+      [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
+    }
   }
 }
 
