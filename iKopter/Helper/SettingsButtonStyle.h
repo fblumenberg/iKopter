@@ -10,15 +10,11 @@
 #import <IBAForms/IBAFormFieldStyle.h>
 
 
-@interface SettingsButtonStyle : IBAFormFieldStyle {
-  
-}
-
+@interface SettingsButtonStyle : IBAFormFieldStyle
 @end
 
+@interface SettingsButtonIndicatorStyle : SettingsButtonStyle
+@end
 
-@interface SettingsButtonStyleDisabled : IBAFormFieldStyle {
-  
-}
-
+@interface SettingsButtonStyleDisabled : IBAFormFieldStyle
 @end

@@ -66,8 +66,7 @@
   [super dealloc];
 }
 
-#pragma mark -
-#pragma mark View lifecycle
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];

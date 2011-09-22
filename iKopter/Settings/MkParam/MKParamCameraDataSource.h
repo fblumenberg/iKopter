@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,22 +22,13 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <UIKit/UIKit.h>
-#import "IASKAppSettingsViewController.h"
-#import "IKParamSet.h"
-#import "MBProgressHUD.h"
 
-@interface SettingViewController : IASKAppSettingsViewController<MBProgressHUDDelegate,IASKSettingsDelegate> {
+#import <IBAForms/IBAFormDataSource.h>
 
-  IKParamSet* _setting;
-  MBProgressHUD *hud;
+@interface MKParamCameraDataSource : IBAFormDataSource {
+	
 }
 
-@property(nonatomic,retain) IKParamSet* setting;
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior;
 
-- (id)initWithSetting:(IKParamSet*)aSetting;
-
-- (void)saveSetting:(id)sender;
-- (void)reloadSetting:(id)sender;
-  
 @end

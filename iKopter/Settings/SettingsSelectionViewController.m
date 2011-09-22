@@ -26,6 +26,9 @@
 #import "SettingViewController.h"
 #import "MKConnectionController.h"
 
+#import "MKParamMainController.h"
+#import "MKParamMainDataSource.h"
+
 #import "NSData+MKCommandEncode.h"
 #import "NSData+MKPayloadEncode.h"
 
@@ -410,12 +413,18 @@ static NSUInteger kNumberOfSettings = 5;
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
       IKParamSet* setting=[self.settings objectAtIndex:row]; 
-      SettingViewController* settingView = [[SettingViewController alloc] initWithSetting:setting];
+      
+      MKParamMainDataSource *settingDataSource = [[[MKParamMainDataSource alloc] initWithModel:setting
+                                                                                      andBehavior:IBAFormFieldBehaviorClassic|IBAFormFieldBehaviorNoCancel] autorelease];
+      MKParamMainController *settingView = [[[MKParamMainController alloc] initWithNibName:nil bundle:nil formDataSource:settingDataSource] autorelease];
+      settingView.title = NSLocalizedString(@"MK Setting",@"Settingview title");
+
+//      SettingViewController* settingView = [[SettingViewController alloc] initWithSetting:setting];
       
       [self.navigationController setToolbarHidden:NO animated:NO];
       
       [self.navigationController pushViewController:settingView animated:YES];
-      [settingView release];
+//      [settingView release];
     }
     else {
 

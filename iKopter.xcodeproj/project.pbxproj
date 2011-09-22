@@ -96,6 +96,25 @@
 		BA585C5F13B1547300AE0958 /* MapOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C5E13B1547300AE0958 /* MapOptionsView.m */; };
 		BA585C6113B156AD00AE0958 /* MapOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA585C6013B156AD00AE0958 /* MapOptionsView.xib */; };
 		BA585C6413B15A7C00AE0958 /* FDCurlViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */; };
+		BA59C064142BB05500D40529 /* IBAFormSection+MKParam.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C043142BB05500D40529 /* IBAFormSection+MKParam.m */; };
+		BA59C066142BB05500D40529 /* MKParamAltitudeDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C047142BB05500D40529 /* MKParamAltitudeDataSource.m */; };
+		BA59C067142BB05500D40529 /* MKParamCameraDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C049142BB05500D40529 /* MKParamCameraDataSource.m */; };
+		BA59C068142BB05500D40529 /* MKParamChannelsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C04B142BB05500D40529 /* MKParamChannelsDataSource.m */; };
+		BA59C069142BB05500D40529 /* MKParamCompassDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C04D142BB05500D40529 /* MKParamCompassDataSource.m */; };
+		BA59C06A142BB05500D40529 /* MKParamCouplingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C04F142BB05500D40529 /* MKParamCouplingDataSource.m */; };
+		BA59C06B142BB05500D40529 /* MKParamGyroDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C051142BB05500D40529 /* MKParamGyroDataSource.m */; };
+		BA59C06C142BB05500D40529 /* MKParamLoopingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C053142BB05500D40529 /* MKParamLoopingDataSource.m */; };
+		BA59C06D142BB05500D40529 /* MKParamMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C055142BB05500D40529 /* MKParamMainController.m */; };
+		BA59C06E142BB05500D40529 /* MKParamMainDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C057142BB05500D40529 /* MKParamMainDataSource.m */; };
+		BA59C06F142BB05500D40529 /* MKParamMiscDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C059142BB05500D40529 /* MKParamMiscDataSource.m */; };
+		BA59C070142BB05500D40529 /* MKParamNaviControlDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C05B142BB05500D40529 /* MKParamNaviControlDataSource.m */; };
+		BA59C071142BB05500D40529 /* MKParamOutputDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C05D142BB05500D40529 /* MKParamOutputDataSource.m */; };
+		BA59C072142BB05500D40529 /* MKParamPotiValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C05F142BB05500D40529 /* MKParamPotiValueTransformer.m */; };
+		BA59C073142BB05500D40529 /* MKParamStickDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C061142BB05500D40529 /* MKParamStickDataSource.m */; };
+		BA59C074142BB05500D40529 /* MKParamUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C063142BB05500D40529 /* MKParamUserDataSource.m */; };
+		BA59C082142BB12C00D40529 /* IKOutputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C07F142BB12C00D40529 /* IKOutputCell.m */; };
+		BA59C083142BB12C00D40529 /* IKOutputFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C081142BB12C00D40529 /* IKOutputFormField.m */; };
+		BA59C086142BBABE00D40529 /* MKParamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA59C085142BBABE00D40529 /* MKParamViewController.m */; };
 		BA61017913F868BA00275CB6 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017613F868BA00275CB6 /* battery.png */; };
 		BA61017A13F868BA00275CB6 /* battery30.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017713F868BA00275CB6 /* battery30.png */; };
 		BA61017B13F868BA00275CB6 /* battery30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA61017813F868BA00275CB6 /* battery30@2x.png */; };
@@ -485,6 +504,44 @@
 		BA585C6013B156AD00AE0958 /* MapOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapOptionsView.xib; sourceTree = "<group>"; };
 		BA585C6213B15A7C00AE0958 /* FDCurlViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCurlViewControl.h; sourceTree = "<group>"; };
 		BA585C6313B15A7C00AE0958 /* FDCurlViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCurlViewControl.m; sourceTree = "<group>"; };
+		BA59C042142BB05500D40529 /* IBAFormSection+MKParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IBAFormSection+MKParam.h"; sourceTree = "<group>"; };
+		BA59C043142BB05500D40529 /* IBAFormSection+MKParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IBAFormSection+MKParam.m"; sourceTree = "<group>"; };
+		BA59C046142BB05500D40529 /* MKParamAltitudeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamAltitudeDataSource.h; sourceTree = "<group>"; };
+		BA59C047142BB05500D40529 /* MKParamAltitudeDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamAltitudeDataSource.m; sourceTree = "<group>"; };
+		BA59C048142BB05500D40529 /* MKParamCameraDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamCameraDataSource.h; sourceTree = "<group>"; };
+		BA59C049142BB05500D40529 /* MKParamCameraDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamCameraDataSource.m; sourceTree = "<group>"; };
+		BA59C04A142BB05500D40529 /* MKParamChannelsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamChannelsDataSource.h; sourceTree = "<group>"; };
+		BA59C04B142BB05500D40529 /* MKParamChannelsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamChannelsDataSource.m; sourceTree = "<group>"; };
+		BA59C04C142BB05500D40529 /* MKParamCompassDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamCompassDataSource.h; sourceTree = "<group>"; };
+		BA59C04D142BB05500D40529 /* MKParamCompassDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamCompassDataSource.m; sourceTree = "<group>"; };
+		BA59C04E142BB05500D40529 /* MKParamCouplingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamCouplingDataSource.h; sourceTree = "<group>"; };
+		BA59C04F142BB05500D40529 /* MKParamCouplingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamCouplingDataSource.m; sourceTree = "<group>"; };
+		BA59C050142BB05500D40529 /* MKParamGyroDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamGyroDataSource.h; sourceTree = "<group>"; };
+		BA59C051142BB05500D40529 /* MKParamGyroDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamGyroDataSource.m; sourceTree = "<group>"; };
+		BA59C052142BB05500D40529 /* MKParamLoopingDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamLoopingDataSource.h; sourceTree = "<group>"; };
+		BA59C053142BB05500D40529 /* MKParamLoopingDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamLoopingDataSource.m; sourceTree = "<group>"; };
+		BA59C054142BB05500D40529 /* MKParamMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamMainController.h; sourceTree = "<group>"; };
+		BA59C055142BB05500D40529 /* MKParamMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamMainController.m; sourceTree = "<group>"; };
+		BA59C056142BB05500D40529 /* MKParamMainDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamMainDataSource.h; sourceTree = "<group>"; };
+		BA59C057142BB05500D40529 /* MKParamMainDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamMainDataSource.m; sourceTree = "<group>"; };
+		BA59C058142BB05500D40529 /* MKParamMiscDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamMiscDataSource.h; sourceTree = "<group>"; };
+		BA59C059142BB05500D40529 /* MKParamMiscDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamMiscDataSource.m; sourceTree = "<group>"; };
+		BA59C05A142BB05500D40529 /* MKParamNaviControlDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamNaviControlDataSource.h; sourceTree = "<group>"; };
+		BA59C05B142BB05500D40529 /* MKParamNaviControlDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamNaviControlDataSource.m; sourceTree = "<group>"; };
+		BA59C05C142BB05500D40529 /* MKParamOutputDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamOutputDataSource.h; sourceTree = "<group>"; };
+		BA59C05D142BB05500D40529 /* MKParamOutputDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamOutputDataSource.m; sourceTree = "<group>"; };
+		BA59C05E142BB05500D40529 /* MKParamPotiValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamPotiValueTransformer.h; sourceTree = "<group>"; };
+		BA59C05F142BB05500D40529 /* MKParamPotiValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamPotiValueTransformer.m; sourceTree = "<group>"; };
+		BA59C060142BB05500D40529 /* MKParamStickDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamStickDataSource.h; sourceTree = "<group>"; };
+		BA59C061142BB05500D40529 /* MKParamStickDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamStickDataSource.m; sourceTree = "<group>"; };
+		BA59C062142BB05500D40529 /* MKParamUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamUserDataSource.h; sourceTree = "<group>"; };
+		BA59C063142BB05500D40529 /* MKParamUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamUserDataSource.m; sourceTree = "<group>"; };
+		BA59C07E142BB12C00D40529 /* IKOutputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputCell.h; sourceTree = "<group>"; };
+		BA59C07F142BB12C00D40529 /* IKOutputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputCell.m; sourceTree = "<group>"; };
+		BA59C080142BB12C00D40529 /* IKOutputFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputFormField.h; sourceTree = "<group>"; };
+		BA59C081142BB12C00D40529 /* IKOutputFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputFormField.m; sourceTree = "<group>"; };
+		BA59C084142BBABE00D40529 /* MKParamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKParamViewController.h; sourceTree = "<group>"; };
+		BA59C085142BBABE00D40529 /* MKParamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKParamViewController.m; sourceTree = "<group>"; };
 		BA61017613F868BA00275CB6 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = battery.png; path = OSD/battery.png; sourceTree = "<group>"; };
 		BA61017713F868BA00275CB6 /* battery30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = battery30.png; path = OSD/battery30.png; sourceTree = "<group>"; };
 		BA61017813F868BA00275CB6 /* battery30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery30@2x.png"; path = "OSD/battery30@2x.png"; sourceTree = "<group>"; };
@@ -1255,6 +1312,47 @@
 			name = "BTStack-Client";
 			sourceTree = "<group>";
 		};
+		BA59C041142BB05500D40529 /* MkParam */ = {
+			isa = PBXGroup;
+			children = (
+				BA59C084142BBABE00D40529 /* MKParamViewController.h */,
+				BA59C085142BBABE00D40529 /* MKParamViewController.m */,
+				BA59C042142BB05500D40529 /* IBAFormSection+MKParam.h */,
+				BA59C043142BB05500D40529 /* IBAFormSection+MKParam.m */,
+				BA59C046142BB05500D40529 /* MKParamAltitudeDataSource.h */,
+				BA59C047142BB05500D40529 /* MKParamAltitudeDataSource.m */,
+				BA59C048142BB05500D40529 /* MKParamCameraDataSource.h */,
+				BA59C049142BB05500D40529 /* MKParamCameraDataSource.m */,
+				BA59C04A142BB05500D40529 /* MKParamChannelsDataSource.h */,
+				BA59C04B142BB05500D40529 /* MKParamChannelsDataSource.m */,
+				BA59C04C142BB05500D40529 /* MKParamCompassDataSource.h */,
+				BA59C04D142BB05500D40529 /* MKParamCompassDataSource.m */,
+				BA59C04E142BB05500D40529 /* MKParamCouplingDataSource.h */,
+				BA59C04F142BB05500D40529 /* MKParamCouplingDataSource.m */,
+				BA59C050142BB05500D40529 /* MKParamGyroDataSource.h */,
+				BA59C051142BB05500D40529 /* MKParamGyroDataSource.m */,
+				BA59C052142BB05500D40529 /* MKParamLoopingDataSource.h */,
+				BA59C053142BB05500D40529 /* MKParamLoopingDataSource.m */,
+				BA59C054142BB05500D40529 /* MKParamMainController.h */,
+				BA59C055142BB05500D40529 /* MKParamMainController.m */,
+				BA59C056142BB05500D40529 /* MKParamMainDataSource.h */,
+				BA59C057142BB05500D40529 /* MKParamMainDataSource.m */,
+				BA59C058142BB05500D40529 /* MKParamMiscDataSource.h */,
+				BA59C059142BB05500D40529 /* MKParamMiscDataSource.m */,
+				BA59C05A142BB05500D40529 /* MKParamNaviControlDataSource.h */,
+				BA59C05B142BB05500D40529 /* MKParamNaviControlDataSource.m */,
+				BA59C05C142BB05500D40529 /* MKParamOutputDataSource.h */,
+				BA59C05D142BB05500D40529 /* MKParamOutputDataSource.m */,
+				BA59C05E142BB05500D40529 /* MKParamPotiValueTransformer.h */,
+				BA59C05F142BB05500D40529 /* MKParamPotiValueTransformer.m */,
+				BA59C060142BB05500D40529 /* MKParamStickDataSource.h */,
+				BA59C061142BB05500D40529 /* MKParamStickDataSource.m */,
+				BA59C062142BB05500D40529 /* MKParamUserDataSource.h */,
+				BA59C063142BB05500D40529 /* MKParamUserDataSource.m */,
+			);
+			path = MkParam;
+			sourceTree = "<group>";
+		};
 		BA61017513F8682900275CB6 /* OSD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1640,6 +1738,7 @@
 		BAA4E6B7137EB89D0068E38E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				BA59C041142BB05500D40529 /* MkParam */,
 				BAA4E6B8137EB89D0068E38E /* SettingsSelectionViewController.h */,
 				BAA4E6B9137EB89D0068E38E /* SettingsSelectionViewController.m */,
 				BAA4E6BA137EB89D0068E38E /* SettingViewController.h */,
@@ -1651,6 +1750,10 @@
 		BAA4E6BC137EB89D0068E38E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA59C07E142BB12C00D40529 /* IKOutputCell.h */,
+				BA59C07F142BB12C00D40529 /* IKOutputCell.m */,
+				BA59C080142BB12C00D40529 /* IKOutputFormField.h */,
+				BA59C081142BB12C00D40529 /* IKOutputFormField.m */,
 				BA8A23AD14213345002095A2 /* IKOutputSettingSwitchCell.h */,
 				BA8A23AE14213345002095A2 /* IKOutputSettingSwitchCell.m */,
 				BA8A23AF14213345002095A2 /* IKOutputSettingSwitchCell.xib */,
@@ -2170,6 +2273,25 @@
 				76C591F9142744600043F026 /* MGSplitViewController.m in Sources */,
 				76C591FE142747810043F026 /* DetailViewController.m in Sources */,
 				76C59201142748A70043F026 /* UIViewController+SplitView.m in Sources */,
+				BA59C064142BB05500D40529 /* IBAFormSection+MKParam.m in Sources */,
+				BA59C066142BB05500D40529 /* MKParamAltitudeDataSource.m in Sources */,
+				BA59C067142BB05500D40529 /* MKParamCameraDataSource.m in Sources */,
+				BA59C068142BB05500D40529 /* MKParamChannelsDataSource.m in Sources */,
+				BA59C069142BB05500D40529 /* MKParamCompassDataSource.m in Sources */,
+				BA59C06A142BB05500D40529 /* MKParamCouplingDataSource.m in Sources */,
+				BA59C06B142BB05500D40529 /* MKParamGyroDataSource.m in Sources */,
+				BA59C06C142BB05500D40529 /* MKParamLoopingDataSource.m in Sources */,
+				BA59C06D142BB05500D40529 /* MKParamMainController.m in Sources */,
+				BA59C06E142BB05500D40529 /* MKParamMainDataSource.m in Sources */,
+				BA59C06F142BB05500D40529 /* MKParamMiscDataSource.m in Sources */,
+				BA59C070142BB05500D40529 /* MKParamNaviControlDataSource.m in Sources */,
+				BA59C071142BB05500D40529 /* MKParamOutputDataSource.m in Sources */,
+				BA59C072142BB05500D40529 /* MKParamPotiValueTransformer.m in Sources */,
+				BA59C073142BB05500D40529 /* MKParamStickDataSource.m in Sources */,
+				BA59C074142BB05500D40529 /* MKParamUserDataSource.m in Sources */,
+				BA59C082142BB12C00D40529 /* IKOutputCell.m in Sources */,
+				BA59C083142BB12C00D40529 /* IKOutputFormField.m in Sources */,
+				BA59C086142BBABE00D40529 /* MKParamViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

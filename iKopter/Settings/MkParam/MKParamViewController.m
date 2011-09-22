@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,22 +22,36 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <UIKit/UIKit.h>
-#import "IASKAppSettingsViewController.h"
-#import "IKParamSet.h"
-#import "MBProgressHUD.h"
 
-@interface SettingViewController : IASKAppSettingsViewController<MBProgressHUDDelegate,IASKSettingsDelegate> {
+#import "MKParamViewController.h"
 
-  IKParamSet* _setting;
-  MBProgressHUD *hud;
+
+@implementation MKParamViewController
+
+- (void)loadView {
+	[super loadView];
+
+	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	
+	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	[self setTableView:formTableView];
+	
+	[view addSubview:formTableView];
+	[self setView:view];
+  
+  [self.formDataSource addObserver:self forKeyPath:@"model" options:NSKeyValueObservingOptionNew context:nil];
 }
 
-@property(nonatomic,retain) IKParamSet* setting;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
 
-- (id)initWithSetting:(IKParamSet*)aSetting;
-
-- (void)saveSetting:(id)sender;
-- (void)reloadSetting:(id)sender;
+- (void)viewWillAppear:(BOOL)animated {	
+  [super viewWillAppear:animated];
   
+  self.navigationItem.hidesBackButton=YES;
+}
+
 @end

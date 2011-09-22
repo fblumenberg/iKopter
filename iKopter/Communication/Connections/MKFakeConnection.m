@@ -139,6 +139,19 @@ void CommonDefaults(IKParamSet* EE_Parameter)
 	EE_Parameter.MaxAltitude = [NSNumber numberWithUnsignedChar:150];
 	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
 	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:55];
+  
+  EE_Parameter.Kanalbelegung_00   = [NSNumber numberWithUnsignedChar:1];
+  EE_Parameter.Kanalbelegung_01   = [NSNumber numberWithUnsignedChar:2];
+  EE_Parameter.Kanalbelegung_02   = [NSNumber numberWithUnsignedChar:3];
+  EE_Parameter.Kanalbelegung_03   = [NSNumber numberWithUnsignedChar:4];
+  EE_Parameter.Kanalbelegung_04   = [NSNumber numberWithUnsignedChar:5];
+  EE_Parameter.Kanalbelegung_05   = [NSNumber numberWithUnsignedChar:6];
+  EE_Parameter.Kanalbelegung_06   = [NSNumber numberWithUnsignedChar:7];
+  EE_Parameter.Kanalbelegung_07   = [NSNumber numberWithUnsignedChar:8];
+  EE_Parameter.Kanalbelegung_08   = [NSNumber numberWithUnsignedChar:9];
+  EE_Parameter.Kanalbelegung_09   = [NSNumber numberWithUnsignedChar:10];
+  EE_Parameter.Kanalbelegung_10   = [NSNumber numberWithUnsignedChar:11];
+  EE_Parameter.Kanalbelegung_11   = [NSNumber numberWithUnsignedChar:12];
 }
 
 void ParamSet_DefaultSet1(IKParamSet* EE_Parameter) // sport
