@@ -24,6 +24,7 @@
 
 
 #import "MKParamViewController.h"
+#import "UIViewController+SplitView.h"
 
 
 @implementation MKParamViewController
@@ -51,7 +52,8 @@
 - (void)viewWillAppear:(BOOL)animated {	
   [super viewWillAppear:animated];
   
-  self.navigationItem.hidesBackButton=YES;
+  if(self.isPad)
+    self.navigationItem.hidesBackButton=YES;
 }
 
 @end
