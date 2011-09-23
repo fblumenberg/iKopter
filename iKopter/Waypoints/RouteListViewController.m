@@ -29,6 +29,12 @@
 #import "IASKTextField.h"
 #import "UIViewController+SplitView.h"
 
+@interface RouteListViewController()
+
+- (void) routeChangedNotification:(NSNotification *)aNotification;
+
+@end
+
 @implementation RouteListViewController
 
 @synthesize list;
@@ -82,12 +88,19 @@
   [super viewWillAppear:animated];
   qltrace(@"Reload route list");
   [self.tableView reloadData];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(routeChangedNotification:)
+                                               name:MKRouteChangedNotification
+                                             object:nil];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   
   if( self.editingPoint ) {
     
@@ -311,6 +324,8 @@
   
   IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
   [self showViewControllerForPoint:point];
+  
+  [Route sendChangedNotification:self];
 }
 
 - (void)addPointWithLocation:(CLLocation*)location{
@@ -326,6 +341,13 @@
   
   IKPoint* point = [self.list pointAtIndexPath:self.editingPoint];
   [self showViewControllerForPoint:point];
+
+  [Route sendChangedNotification:self];
+}
+
+- (void) routeChangedNotification:(NSNotification *)aNotification{
+  if( ![aNotification.object isEqual:self] )
+    [self.tableView reloadData];
 }
 
 @end

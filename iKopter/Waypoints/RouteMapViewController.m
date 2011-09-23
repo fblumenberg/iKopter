@@ -17,7 +17,9 @@
 
 @interface RouteMapViewController()
 
--(void)updateRouteOverlay;
+- (void)updateRouteOverlay;
+- (void) routeChangedNotification:(NSNotification *)aNotification;
+- (void) updateMapView;
 
 @end
 
@@ -75,7 +77,18 @@
     self.segmentedControl.selectedSegmentIndex=[[NSUserDefaults standardUserDefaults] integerForKey:@"RouteMapViewType"];
     [self changeMapViewType];
   }
-  
+ 
+  if(self.isPad){
+    self.navigationItem.hidesBackButton=YES;
+    UIBarButtonItem* curlBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                                                                                  target:self.curlBarItem 
+                                                                                  action:@selector(touched)]autorelease];
+    
+    [self setToolbarItems:[NSArray arrayWithObjects:
+                           curlBarButtonItem,nil] animated:YES];
+    
+    self.navigationController.toolbarHidden=NO;
+  }
 }
 
 - (void)viewDidUnload
@@ -95,11 +108,29 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  self.mapView.delegate=self;
+  [self updateMapView];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(routeChangedNotification:)
+                                               name:MKRouteChangedNotification
+                                             object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  self.mapView.delegate=nil;
+  [self.mapView removeAnnotations:self.mapView.annotations];
+}
+
+
+- (void) updateMapView{
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView addAnnotations:route.points];
   [self updateRouteOverlay];
-
+  
   if([route.points count]>1){
     
     MKMapRect flyTo = MKMapRectNull;
@@ -139,13 +170,6 @@
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion animated:YES];
   }
-  
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-  [super viewWillDisappear:animated];
-  [self.mapView removeAnnotations:self.mapView.annotations];
 }
 
 - (void)addPoint{
@@ -280,6 +304,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 
   if(newState==MKAnnotationViewDragStateEnding || newState==MKAnnotationViewDragStateDragging){
     [self updateRouteOverlay]; 
+    [Route sendChangedNotification:self];
   }
 }
 
@@ -340,6 +365,11 @@ didChangeDragState:(MKAnnotationViewDragState)newState
   [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coordinates count:i]];
   
   qltrace(@"Overlays %@",self.mapView.overlays);
+}
+
+- (void) routeChangedNotification:(NSNotification *)aNotification{
+  if( ![aNotification.object isEqual:self] )
+    [self updateMapView];
 }
 
 @end

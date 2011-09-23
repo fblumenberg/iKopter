@@ -26,6 +26,7 @@
 #import "RouteListViewController.h"
 #import "RouteMapViewController.h"
 #import "RouteController.h"
+#import "UIViewController+SplitView.h"
 
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
@@ -135,7 +136,8 @@
   segmentButton =  [[[UIBarButtonItem alloc]
                      initWithCustomView:segment] autorelease];
   
-  [self.navigationItem setRightBarButtonItem:segmentButton animated:NO];
+  if(!self.isPad)
+    [self.navigationItem setRightBarButtonItem:segmentButton animated:NO];
   
   self.spacer =  [[[UIBarButtonItem alloc]
                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -213,11 +215,20 @@
   [self changeView];
   
   self.routeController = [[[RouteController alloc]initWithDelegate:self]autorelease];
+  
+  if(self.isPad){
+    UIViewController *newSelectedViewController = [self.viewControllers objectAtIndex:1];
+    [self.detailViewController pushViewController:newSelectedViewController animated:YES];
+  }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
   self.routeController=nil;
   [self.selectedViewController viewWillDisappear:NO];
+
+  if(self.isPad){
+    [self.detailViewController popViewControllerAnimated:YES];
+  }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

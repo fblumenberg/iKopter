@@ -29,11 +29,17 @@
 #import "TTGlobalCorePaths.h"
 #import "TTCorePreprocessorMacros.h"
 
+NSString * const MKRouteChangedNotification=@"MKRouteChangedNotification";
+
 @implementation Route
 
 @synthesize name;
 @synthesize points;
 @synthesize routes;
+
++ (void) sendChangedNotification:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MKRouteChangedNotification object:sender userInfo:nil];
+}
 
 + (CLLocationCoordinate2D) defaultCoordinate{
   
@@ -175,6 +181,7 @@
   [object release];
   
   [self updatePoints];
+  [Route sendChangedNotification:self];
 }
 
 -(void) deletePointAtIndexPath:(NSIndexPath*)indexPath {
@@ -190,6 +197,7 @@
   }
   
   [self updatePoints];
+  [Route sendChangedNotification:self];
 }
 
 @end

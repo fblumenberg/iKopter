@@ -27,6 +27,8 @@
 #import "StringToNumberTransformer.h"
 #import "SettingsFieldStyle.h"
 
+#import "Route.h"
+
 @interface WaypointViewDataSource()
 @end
 
@@ -126,6 +128,7 @@
 	[super setModelValue:value forKeyPath:keyPath];
 	
 	NSLog(@"%@", [self.model description]);
+  [Route sendChangedNotification:self];
 }
 
 @end

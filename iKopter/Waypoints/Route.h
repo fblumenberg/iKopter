@@ -25,6 +25,8 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+extern NSString * const MKRouteChangedNotification;
+
 @class IKPoint;
 @class Routes;
 
@@ -36,6 +38,8 @@
 @property(retain) NSMutableArray* points;
 @property(assign) Routes* routes;
           
++ (void) sendChangedNotification:(id)sender;
+
 + (CLLocationCoordinate2D) defaultCoordinate;
 
 -(NSUInteger) count;

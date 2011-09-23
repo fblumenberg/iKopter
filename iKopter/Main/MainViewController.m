@@ -367,7 +367,7 @@
 
 - (UINavigationController*) navigationControllerForChildPaneForKey:(NSString*)key{
   
-  if([key isEqualToString:@"Settings"])
+  if([key isEqualToString:@"Settings"]||[key isEqualToString:@"Routes"])
     return nil;
   
   self.detailViewController.navigationBar.barStyle=UIBarStyleDefault;

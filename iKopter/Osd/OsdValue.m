@@ -127,7 +127,7 @@ static const NSString *errorMsg[25] = {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(const NSString*) currentErrorMessage{
-  if(_data.data->Errorcode>=0 && _data.data->Errorcode<24)
+  if(_data.data->Errorcode<24)
     return errorMsg[_data.data->Errorcode];
   
   return @"";
