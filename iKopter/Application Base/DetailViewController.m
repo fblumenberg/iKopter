@@ -18,6 +18,8 @@
   self.navigationController.delegate = self;
   
   self.navigationController.navigationBar.barStyle=UIBarStyleDefault;
+  self.navigationItem.title=@"";
+  
 }
 
 - (void)navigationController:(UINavigationController *)navigationController 

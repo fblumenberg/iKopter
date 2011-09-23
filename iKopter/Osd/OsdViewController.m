@@ -86,7 +86,18 @@
   self.tabBar.selectedItem=self.valuesOsdTabBarItem;
   
   self.navigationItem.hidesBackButton=NO;
-  
+  if(self.isPad){
+    UIBarButtonItem* backItem=[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back",@"OSD BackButton") 
+                                                               style:UIBarButtonItemStyleBordered 
+                                                              target:self 
+                                                              action:@selector(popViewController)];
+    self.navigationItem.leftBarButtonItem = backItem;
+  }
+ 
+}
+
+- (void) popViewController {
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
