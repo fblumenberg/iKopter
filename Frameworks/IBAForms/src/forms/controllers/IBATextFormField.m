@@ -83,12 +83,12 @@
             numberFormatter.maximumFractionDigits=0;
         }
         
-        NSNumber* candidateNumber;
+        NSNumber* candidateNumber=[NSNumber numberWithInt:0];
         NSString* candidateString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        
+        NSError* error=nil;
         range = NSMakeRange(0, [candidateString length]);
         
-        [numberFormatter getObjectValue:&candidateNumber forString:candidateString range:&range error:nil];
+        [numberFormatter getObjectValue:&candidateNumber forString:candidateString range:&range error:&error];
         
         if (([candidateString length] > 0) && (candidateNumber == nil || range.length < [candidateString length])) {
             return NO;
