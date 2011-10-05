@@ -346,7 +346,7 @@
 }
 
 - (void) routeChangedNotification:(NSNotification *)aNotification{
-  if( ![aNotification.object isEqual:self] )
+  if( ![aNotification.object isEqual:self] && ![aNotification.object isEqual:self.list] )
     [self.tableView reloadData];
 }
 
