@@ -31,7 +31,7 @@
 @class MKMapView;
 @protocol MKMapViewDelegate; 
 
-@interface NCLogDetailViewController : UIViewController<MKMapViewDelegate,MFMailComposeViewControllerDelegate> {
+@interface NCLogDetailViewController : UIViewController<MKMapViewDelegate,MFMailComposeViewControllerDelegate,UIActionSheetDelegate> {
     
   MKMapView *mapView;
 }

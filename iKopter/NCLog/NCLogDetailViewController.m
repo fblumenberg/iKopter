@@ -38,6 +38,10 @@
 -(void)uploadSession;
 -(void)deleteSession;
 
+@property(nonatomic,retain) UIActionSheet* deleteQuerySheet;
+@property(nonatomic,retain) UIBarButtonItem* deleteItem;
+- (void)hideActionSheet;
+
 @end
 
 @implementation NCLogDetailViewController
@@ -45,6 +49,8 @@
 
 @synthesize session;
 @synthesize startDate,endDate,records;
+@synthesize deleteQuerySheet;
+@synthesize deleteItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +63,7 @@
 
 - (void)dealloc
 {
+  self.deleteItem=nil;
   [mapView release];
   [super dealloc];
 }
@@ -88,11 +95,10 @@
               target:self
               action:@selector(sendSessionAsEmail)] autorelease];
 
-  UIBarButtonItem* delete;
-  delete =  [[[UIBarButtonItem alloc]
-              initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-              target:self
-              action:@selector(deleteSession)] autorelease];
+  self.deleteItem =  [[[UIBarButtonItem alloc]
+                       initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                       target:self
+                       action:@selector(deleteSession)] autorelease];
 
   UIBarButtonItem* action;
   action =  [[[UIBarButtonItem alloc]
@@ -100,7 +106,7 @@
               target:self
               action:@selector(uploadSession)] autorelease];
 
- 	[self setToolbarItems:[NSArray arrayWithObjects:mail,spacer,delete,spacer,action,nil]];
+ 	[self setToolbarItems:[NSArray arrayWithObjects:mail,spacer,self.deleteItem,spacer,action,nil]];
   self.navigationController.toolbarHidden=NO;
 }
 
@@ -156,6 +162,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
   [super viewWillDisappear:animated];
+  [self hideActionSheet];
   self.mapView.delegate=nil;
 }
 
@@ -191,26 +198,51 @@
 
 -(void)deleteSession{
   
-  // Delete the managed object for the given index path
-  NSManagedObjectContext *context = [self.session managedObjectContext];
-  [context deleteObject:self.session];
+  self.deleteQuerySheet = [[[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:self 
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel Button") 
+                                         destructiveButtonTitle:NSLocalizedString(@"Delete", @"Delete Button") 
+                                              otherButtonTitles:nil, nil] autorelease];
+  self.deleteQuerySheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
   
-  // Save the context.
-  NSError *error = nil;
-  if (![context save:&error])
-  {
-    /*
-     Replace this implementation with code to handle the error appropriately.
-     
-     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-     */
-    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-    abort();
-  }
-
+  [self.deleteQuerySheet showFromBarButtonItem:self.deleteItem animated:YES];
   
-  [self.navigationController popViewControllerAnimated:YES]; 
 }
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  
+  if(buttonIndex==actionSheet.cancelButtonIndex)
+    return;
+  
+  if(buttonIndex == actionSheet.destructiveButtonIndex){
+    // Delete the managed object for the given index path
+    NSManagedObjectContext *context = [self.session managedObjectContext];
+    [context deleteObject:self.session];
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error])
+    {
+      /*
+       Replace this implementation with code to handle the error appropriately.
+       
+       abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+       */
+      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+      abort();
+    }
+    
+    
+    [self.navigationController popViewControllerAnimated:YES]; 
+
+  }
+  self.deleteQuerySheet=nil;
+}
+
+- (void)hideActionSheet{
+  [self.deleteQuerySheet dismissWithClickedButtonIndex:self.deleteQuerySheet.cancelButtonIndex animated:NO];
+}
+
 
 -(void)sendSessionAsEmail{
   if ([MFMailComposeViewController canSendMail]) {
