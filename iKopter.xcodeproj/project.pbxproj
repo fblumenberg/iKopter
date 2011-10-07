@@ -140,7 +140,6 @@
 		BA98EAB113C72A96005CF2FA /* MKHostTypeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAAE13C72A95005CF2FA /* MKHostTypeTransformer.m */; };
 		BA98EAB213C72A96005CF2FA /* MKHostViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB013C72A96005CF2FA /* MKHostViewDataSource.m */; };
 		BA98EAB513C72D18005CF2FA /* SettingsButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */; };
-		BA98EAC913C751A6005CF2FA /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA98EAC813C751A6005CF2FA /* libIBAForms.a */; };
 		BA98EAD513C8F5BD005CF2FA /* RouteController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAD413C8F5BB005CF2FA /* RouteController.m */; };
 		BA9CEE1E13F9463200D073BF /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9CEE1A13F9463200D073BF /* flag.png */; };
 		BA9CEE1F13F9463200D073BF /* flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9CEE1B13F9463200D073BF /* flag@2x.png */; };
@@ -235,7 +234,6 @@
 		BAA4E6DF137EB89D0068E38E /* ValueOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6B4137EB89D0068E38E /* ValueOsdViewController.m */; };
 		BAA4E6E0137EB89D0068E38E /* ValueOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6B5137EB89D0068E38E /* ValueOsdViewController.xib */; };
 		BAA4E6E2137EB89D0068E38E /* SettingsSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6B9137EB89D0068E38E /* SettingsSelectionViewController.m */; };
-		BAA4E6E3137EB89D0068E38E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6BB137EB89D0068E38E /* SettingViewController.m */; };
 		BAA4E6E4137EB89D0068E38E /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6BE137EB89D0068E38E /* Common.m */; };
 		BAA4E6E5137EB89D0068E38E /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6C0137EB89D0068E38E /* CustomBadge.m */; };
 		BAA4E6E6137EB89D0068E38E /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6C2137EB89D0068E38E /* GradientButton.m */; };
@@ -297,6 +295,7 @@
 		BAC8A16A13C1CEF600CA4936 /* HeadingOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC8A16813C1CEF500CA4936 /* HeadingOverlay.m */; };
 		BAD69580137E9ECF006C129D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957E137E9ECF006C129D /* Default.png */; };
 		BAD69581137E9ECF006C129D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD6957F137E9ECF006C129D /* Default@2x.png */; };
+		BADE5E1F143F9796009EAF7E /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA98EA9513C65113005CF2FA /* libIBAForms.a */; };
 		BAE3AFF213A4A76D007E0F2F /* icon-receipt.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFF013A4A76D007E0F2F /* icon-receipt.png */; };
 		BAE3AFF313A4A76D007E0F2F /* icon-receipt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFF113A4A76D007E0F2F /* icon-receipt@2x.png */; };
 		BAE3AFFA13A4AAD5007E0F2F /* icon-map1.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE3AFF813A4AAD5007E0F2F /* icon-map1.png */; };
@@ -751,8 +750,6 @@
 		BAA4E6B5137EB89D0068E38E /* ValueOsdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValueOsdViewController.xib; sourceTree = "<group>"; };
 		BAA4E6B8137EB89D0068E38E /* SettingsSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSelectionViewController.h; sourceTree = "<group>"; };
 		BAA4E6B9137EB89D0068E38E /* SettingsSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSelectionViewController.m; sourceTree = "<group>"; };
-		BAA4E6BA137EB89D0068E38E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		BAA4E6BB137EB89D0068E38E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SettingViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BAA4E6BD137EB89D0068E38E /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		BAA4E6BE137EB89D0068E38E /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		BAA4E6BF137EB89D0068E38E /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
@@ -892,8 +889,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADE5E1F143F9796009EAF7E /* libIBAForms.a in Frameworks */,
 				BA9EAD3613CEE5A2008EC741 /* Security.framework in Frameworks */,
-				BA98EAC913C751A6005CF2FA /* libIBAForms.a in Frameworks */,
 				BAE3B02213A4DCC0007E0F2F /* MapKit.framework in Frameworks */,
 				BAE3B01813A4D2C7007E0F2F /* CoreLocation.framework in Frameworks */,
 				BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */,
@@ -1731,8 +1728,6 @@
 				BA59C041142BB05500D40529 /* MkParam */,
 				BAA4E6B8137EB89D0068E38E /* SettingsSelectionViewController.h */,
 				BAA4E6B9137EB89D0068E38E /* SettingsSelectionViewController.m */,
-				BAA4E6BA137EB89D0068E38E /* SettingViewController.h */,
-				BAA4E6BB137EB89D0068E38E /* SettingViewController.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2161,7 +2156,6 @@
 				BAA4E6DD137EB89D0068E38E /* RawOsdViewController.m in Sources */,
 				BAA4E6DF137EB89D0068E38E /* ValueOsdViewController.m in Sources */,
 				BAA4E6E2137EB89D0068E38E /* SettingsSelectionViewController.m in Sources */,
-				BAA4E6E3137EB89D0068E38E /* SettingViewController.m in Sources */,
 				BAA4E6E4137EB89D0068E38E /* Common.m in Sources */,
 				BAA4E6E5137EB89D0068E38E /* CustomBadge.m in Sources */,
 				BAA4E6E6137EB89D0068E38E /* GradientButton.m in Sources */,
