@@ -23,7 +23,6 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "SettingsSelectionViewController.h"
-#import "SettingViewController.h"
 #import "MKConnectionController.h"
 
 #import "MKParamMainController.h"
