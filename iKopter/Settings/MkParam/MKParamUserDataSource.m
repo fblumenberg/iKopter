@@ -44,14 +44,14 @@
         paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
         paramSection.formFieldStyle.behavior = behavior;
 
-        [paramSection addPotiFieldForKeyPath:@"UserParam1" title:NSLocalizedString(@"Parameter 1",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam2" title:NSLocalizedString(@"Parameter 2",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam3" title:NSLocalizedString(@"Parameter 3",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam4" title:NSLocalizedString(@"Parameter 4",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam5" title:NSLocalizedString(@"Parameter 5",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam6" title:NSLocalizedString(@"Parameter 6",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam7" title:NSLocalizedString(@"Parameter 7",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam8" title:NSLocalizedString(@"Parameter 8",@"MKParam Stick")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam1" title:NSLocalizedString(@"Parameter 1",@"MKParam User")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam2" title:NSLocalizedString(@"Parameter 2",@"MKParam User")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam3" title:NSLocalizedString(@"Parameter 3",@"MKParam User")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam4" title:NSLocalizedString(@"Parameter 4",@"MKParam User")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam5" title:NSLocalizedString(@"Parameter 5",@"MKParam User")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam6" title:NSLocalizedString(@"Parameter 6",@"MKParam User")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam7" title:NSLocalizedString(@"Parameter 7",@"MKParam User")];
+        [paramSection addPotiFieldForKeyPath:@"UserParam8" title:NSLocalizedString(@"Parameter 8",@"MKParam User")];
   }
   
   return self;

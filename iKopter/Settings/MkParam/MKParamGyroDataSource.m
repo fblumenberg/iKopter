@@ -62,6 +62,8 @@
         paramSection.formFieldStyle.behavior = behavior;
 
         [paramSection addPotiFieldForKeyPath:@"DynamicStability" title:NSLocalizedString(@"Dynamic Stability",@"MKParam Gyro")];
+        [paramSection addPotiFieldForKeyPath:@"Gyro_Stability" title:NSLocalizedString(@"Gyro Stability",@"MKParam Gyro")];
+    
         [paramSection addNumberFieldForKeyPath:@"Driftkomp" title:NSLocalizedString(@"Drift compensation",@"MKParam Gyro")];
         [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_DREHRATEN_BEGRENZER" title:NSLocalizedString(@"Rotation limiter",@"MKParam Gyro")];
 

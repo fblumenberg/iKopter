@@ -48,14 +48,14 @@
         [paramSection addNumberFieldForKeyPath:@"Gas_Max" title:NSLocalizedString(@"Max. Gas",@"MKParam Misc")];
 
         NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
-                                                                                     NSLocalizedString(@"3.0 V",@"MKParam Channels"),
-                                                                                     NSLocalizedString(@"3.3 V",@"MKParam Channels"),
+                                                                                     NSLocalizedString(@"3.0 V",@"MKParam Misc"),
+                                                                                     NSLocalizedString(@"3.3 V",@"MKParam Misc"),
 																					 nil]];
         
         IBASingleIndexTransformer *transformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
         
 		[paramSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"ExtraConfig_3_3V_REFERENCE"
-                                                                            title:NSLocalizedString(@"Voltage reference",@"MKParam Channels")
+                                                                            title:NSLocalizedString(@"Voltage reference",@"MKParam Misc")
                                                                  valueTransformer:transformer
                                                                     selectionMode:IBAPickListSelectionModeSingle
                                                                           options:pickListOptions] autorelease]];
