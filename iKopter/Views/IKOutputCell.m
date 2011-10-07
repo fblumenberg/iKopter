@@ -23,30 +23,32 @@
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(settingControl_);
-
+  
 	[super dealloc];
 }
 
 -(id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator
 {
-    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:valueValidator])) {
-        
-        CGRect frame=self.cellView.frame;
-        self.cellView.frame = CGRectMake(frame.origin.x, frame.origin.y, CGRectGetWidth(frame), CGRectGetHeight(frame)*2);;
-        
+  if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:valueValidator])) {
+    
+    CGRect frame=self.cellView.frame;
+    self.cellView.frame = CGRectMake(frame.origin.x, frame.origin.y, CGRectGetWidth(frame), CGRectGetHeight(frame)*2);;
+    
+    self.label.frame = CGRectMake(CGRectGetMinX(self.label.frame),CGRectGetMinY(self.label.frame),CGRectGetWidth(self.cellView.bounds)-20,CGRectGetHeight(self.label.frame));
+    
 		settingControl_ = [[IKOutputSetting alloc] initWithFrame:CGRectZero];
-        
+    
 		[self.cellView addSubview:settingControl_];
 		settingControl_.autoresizingMask = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleWidth;
-        settingControl_.frame = CGRectMake(10 , CGRectGetHeight(self.cellView.bounds)-44, CGRectGetWidth(self.cellView.bounds)-20, 40);
-        self.validator = valueValidator;
+    settingControl_.frame = CGRectMake(10 , CGRectGetHeight(self.cellView.bounds)-44, CGRectGetWidth(self.cellView.bounds)-20, 40);
+    self.validator = valueValidator;
 	}
-    
-    return self;
+  
+  return self;
 }
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:nil];
+  return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:nil];
 }
 
 @end
