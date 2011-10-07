@@ -132,8 +132,17 @@
 {
   [[MKConnectionController sharedMKConnectionController] stop];
 
-  self.navigationController.delegate = nil;
-  [self.navigationController popToRootViewControllerAnimated:NO]; 
+  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+    ((UINavigationController*)[self.mgSplitViewController masterViewController]).delegate=nil;
+    ((UINavigationController*)[self.mgSplitViewController detailViewController]).delegate=nil;
+    
+    [((UINavigationController*)[self.mgSplitViewController masterViewController]) popToRootViewControllerAnimated:NO];
+    [((UINavigationController*)[self.mgSplitViewController detailViewController]) popToRootViewControllerAnimated:NO];
+  }
+  else{
+    self.navigationController.delegate = nil;
+    [self.navigationController popToRootViewControllerAnimated:NO]; 
+  }
 
   [self saveContext];
 }
