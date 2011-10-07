@@ -276,7 +276,7 @@
   WaypointViewController* hostView = [[WaypointViewController alloc] initWithPoint:point];
   if( self.isPad ){
     UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
-    popOverController.popoverContentSize = CGSizeMake(320, 400);
+    popOverController.popoverContentSize = CGSizeMake(320, 500);
     popOverController.delegate = self;
 
 

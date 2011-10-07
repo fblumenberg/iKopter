@@ -247,7 +247,7 @@
     if( self.isPad ){
       UIPopoverController* popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
       popOverController.delegate = self;
-      popOverController.popoverContentSize = CGSizeMake(320, 400);
+      popOverController.popoverContentSize = CGSizeMake(320, 500);
       
       [popOverController presentPopoverFromRect:control.bounds inView:control 
                        permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
