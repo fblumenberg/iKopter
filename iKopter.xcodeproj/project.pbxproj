@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F71420DCEB00BB027D /* IKOutputSetting.m */; };
-		765E63FC1420DCEE00BB027D /* IKOutputSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F91420DCED00BB027D /* IKOutputSettingCell.m */; };
-		765E63FD1420DCEE00BB027D /* IKOutputSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */; };
 		76C591F7142744600043F026 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F2142744600043F026 /* MGSplitCornersView.m */; };
 		76C591F8142744600043F026 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F4142744600043F026 /* MGSplitDividerView.m */; };
 		76C591F9142744600043F026 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F6142744600043F026 /* MGSplitViewController.m */; };
@@ -136,8 +134,6 @@
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
 		BA7613431391338500C86318 /* screenlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7613401391338500C86318 /* screenlock@2x.png */; };
-		BA8A23B014213345002095A2 /* IKOutputSettingSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8A23AE14213345002095A2 /* IKOutputSettingSwitchCell.m */; };
-		BA8A23B114213345002095A2 /* IKOutputSettingSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA8A23AF14213345002095A2 /* IKOutputSettingSwitchCell.xib */; };
 		BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */; };
 		BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */; };
 		BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */; };
@@ -359,9 +355,6 @@
 /* Begin PBXFileReference section */
 		765E63F61420DCEA00BB027D /* IKOutputSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSetting.h; sourceTree = "<group>"; };
 		765E63F71420DCEB00BB027D /* IKOutputSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSetting.m; sourceTree = "<group>"; };
-		765E63F81420DCEB00BB027D /* IKOutputSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSettingCell.h; sourceTree = "<group>"; };
-		765E63F91420DCED00BB027D /* IKOutputSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSettingCell.m; sourceTree = "<group>"; };
-		765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IKOutputSettingCell.xib; sourceTree = "<group>"; };
 		76C591F1142744600043F026 /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitCornersView.h; sourceTree = "<group>"; };
 		76C591F2142744600043F026 /* MGSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSplitCornersView.m; sourceTree = "<group>"; };
 		76C591F3142744600043F026 /* MGSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitDividerView.h; sourceTree = "<group>"; };
@@ -563,9 +556,6 @@
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
 		BA7613401391338500C86318 /* screenlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock@2x.png"; sourceTree = "<group>"; };
-		BA8A23AD14213345002095A2 /* IKOutputSettingSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSettingSwitchCell.h; sourceTree = "<group>"; };
-		BA8A23AE14213345002095A2 /* IKOutputSettingSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSettingSwitchCell.m; sourceTree = "<group>"; };
-		BA8A23AF14213345002095A2 /* IKOutputSettingSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IKOutputSettingSwitchCell.xib; sourceTree = "<group>"; };
 		BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = Frameworks/IBAForms/IBAForms.xcodeproj; sourceTree = "<group>"; };
 		BA98EA9B13C6539D005CF2FA /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
 		BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
@@ -1754,14 +1744,8 @@
 				BA59C07F142BB12C00D40529 /* IKOutputCell.m */,
 				BA59C080142BB12C00D40529 /* IKOutputFormField.h */,
 				BA59C081142BB12C00D40529 /* IKOutputFormField.m */,
-				BA8A23AD14213345002095A2 /* IKOutputSettingSwitchCell.h */,
-				BA8A23AE14213345002095A2 /* IKOutputSettingSwitchCell.m */,
-				BA8A23AF14213345002095A2 /* IKOutputSettingSwitchCell.xib */,
 				765E63F61420DCEA00BB027D /* IKOutputSetting.h */,
 				765E63F71420DCEB00BB027D /* IKOutputSetting.m */,
-				765E63F81420DCEB00BB027D /* IKOutputSettingCell.h */,
-				765E63F91420DCED00BB027D /* IKOutputSettingCell.m */,
-				765E63FA1420DCEE00BB027D /* IKOutputSettingCell.xib */,
 				BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */,
 				BAB97F7E13F84BB200C49BAE /* CoolPatternView.h */,
 				BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */,
@@ -2064,8 +2048,6 @@
 				BAB9A5F6140D654C00741E08 /* FollowMeOsdViewController-iPad.xib in Resources */,
 				BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */,
 				BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */,
-				765E63FD1420DCEE00BB027D /* IKOutputSettingCell.xib in Resources */,
-				BA8A23B114213345002095A2 /* IKOutputSettingSwitchCell.xib in Resources */,
 				76C591FB142747750043F026 /* DetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2266,8 +2248,6 @@
 				BAA9E15B140928330054F123 /* FollowMeOsdViewController.m in Sources */,
 				BAB9A5FB140D69CA00741E08 /* ValueBaseOsdViewController.m in Sources */,
 				765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */,
-				765E63FC1420DCEE00BB027D /* IKOutputSettingCell.m in Sources */,
-				BA8A23B014213345002095A2 /* IKOutputSettingSwitchCell.m in Sources */,
 				76C591F7142744600043F026 /* MGSplitCornersView.m in Sources */,
 				76C591F8142744600043F026 /* MGSplitDividerView.m in Sources */,
 				76C591F9142744600043F026 /* MGSplitViewController.m in Sources */,
