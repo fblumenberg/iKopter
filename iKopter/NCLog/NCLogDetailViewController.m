@@ -32,10 +32,15 @@
 #import "CHCSVWriter.h"
 #import "UIViewController+SplitView.h"
 
-@interface NCLogDetailViewController()
+#import "IKDropboxController.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+RFhelpers.h"
+
+@interface NCLogDetailViewController() <DBRestClientDelegate>
 
 -(void)sendSessionAsEmail;
 -(void)uploadSession;
+-(NSString*)writeCSVForSession;
 -(void)deleteSession;
 
 @property(nonatomic,retain) UIActionSheet* deleteQuerySheet;
@@ -120,9 +125,11 @@
   self.startDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
   self.endDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
   self.records.text=[NSString stringWithFormat:@"%d",[session.records count]];
-  
-  
-  
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+
   // here's where you specify the sort
   NSSortDescriptor* sortDescriptor = [[[NSSortDescriptor alloc]
                                        initWithKey:@"timeStamp" ascending:YES]autorelease];
@@ -157,9 +164,8 @@
   
   // Position the map so that all overlays and annotations are visible on screen.
   [mapView setVisibleMapRect:flyTo animated:YES];
-  
-  
 }
+
 - (void)viewWillDisappear:(BOOL)animated{
   [super viewWillDisappear:animated];
   [self hideActionSheet];
@@ -194,7 +200,28 @@
 
 -(void)uploadSession{
   
+  [[MBProgressHUD sharedProgressHUD] setLabelText:NSLocalizedString(@"Uploading", @"DB upload NC-Log HUD")];
+  [[MBProgressHUD sharedProgressHUD] show:YES];
+
+  NSString *fileName = [self writeCSVForSession];
+  IKDropboxController* dbCtrl=[IKDropboxController sharedIKDropboxController];
+  
+  dbCtrl.restClient.delegate=self;
+  
+  [dbCtrl.restClient uploadFile:[fileName lastPathComponent] toPath:dbCtrl.dataPath fromPath:fileName];
 }
+
+#pragma mark - DBRestClientDelegate
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath{
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error{
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
+  [IKDropboxController showError:error withTitle:NSLocalizedString(@"Upload failed", @"NC-Log upload Error Title")];
+}
+
 
 -(void)deleteSession{
   
@@ -246,59 +273,39 @@
 
 -(void)sendSessionAsEmail{
   if ([MFMailComposeViewController canSendMail]) {
-    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
     
-    [mailViewController setSubject:NSLocalizedString(@"NaviCtrl Log-Data", "NC-Log Subject")];
+    [[MBProgressHUD sharedProgressHUD] showAnimated:YES];
     
-    NSString* bodyText= [NSString stringWithFormat:NSLocalizedString(@"NaviCtlr logging session from %@ to %@  contains %d records",@"NC-Log Body"), 
-                         [NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
-                         [NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
-                         [session.records count]];
-    
-    [mailViewController setMessageBody:bodyText isHTML:NO];
-    
-    NSString *fileName = [NSTemporaryDirectory() stringByAppendingString:@"/CSVFile.csv"];
-    CHCSVWriter* csvWriter=[[[CHCSVWriter alloc] initWithCSVFile:fileName atomic:YES]autorelease];
-    
-    if([session.records count]>0){
-
-      BOOL hasHeader=NO;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
       
-      for (NCLogRecord* record in session.records) {
-        //Get a reference to the entity description for the NSManagedObject subclass - CoreData created entity
-        NSEntityDescription * myEntity = [record entity];
+      dispatch_async(dispatch_get_main_queue(), ^{
         
-        //Get all of the attributes that are defined for the entity - not the relationship properties - just attributes
-        NSDictionary * attributes = [myEntity attributesByName];
-        if(!hasHeader){
-          [csvWriter writeLineWithFields:[attributes allKeys]];
-          hasHeader=YES;
-        }
-    
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         
-        //Loop over the attributes by name  
-        for (NSString * attributeName in [attributes allKeys]) {
-          
-          //Determine if this property is a string
-          SEL selector = NSSelectorFromString(attributeName);
-          id attributeValue = [record performSelector:selector];
-          [csvWriter writeField:[attributeValue description]];
-          
-        }        
-        [csvWriter writeLine];
-      }
-    }
-
-    NSData *csvData = [NSData dataWithContentsOfFile:fileName];
-    [[NSFileManager defaultManager]removeItemAtPath:fileName error:nil];
-    
-    [mailViewController addAttachmentData:csvData mimeType:@"text/csv" fileName:@"CSVFile.csv"];
-    
-    mailViewController.mailComposeDelegate = self;
-    [self presentModalViewController:mailViewController animated:YES];
-    [mailViewController release];
-    
-    
+        [mailViewController setSubject:NSLocalizedString(@"NaviCtrl Log-Data", "NC-Log Subject")];
+        
+        NSString* bodyText= [NSString stringWithFormat:NSLocalizedString(@"NaviCtlr logging session from %@ to %@  contains %d records",@"NC-Log Body"), 
+                             [NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle],
+                             [NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
+                             [session.records count]];
+        
+        [mailViewController setMessageBody:bodyText isHTML:NO];
+        
+        NSString *fileName = [self writeCSVForSession];
+        NSData *csvData = [NSData dataWithContentsOfFile:fileName];
+        [[NSFileManager defaultManager]removeItemAtPath:fileName error:nil];
+        
+        [mailViewController addAttachmentData:csvData mimeType:@"text/csv" fileName:[fileName lastPathComponent]];
+        
+        mailViewController.mailComposeDelegate = self;
+        
+        [[MBProgressHUD sharedProgressHUD] hide:YES];
+        
+        [self presentModalViewController:mailViewController animated:YES];
+        [mailViewController release];
+      });
+      
+    });
     
   } else {
     UIAlertView *alert = [[UIAlertView alloc]
@@ -310,8 +317,50 @@
     [alert show];
     [alert release];
   }
+}
+
+-(NSString*)writeCSVForSession {
   
+  NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+  [dateFormat setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+
+  NSString *fileName=[NSString stringWithFormat:@"NC-Log-%@-%@", 
+                      [dateFormat stringFromDate:session.timeStampStart],
+                      [dateFormat stringFromDate:session.timeStampEnd]];
   
+  NSString *filePath = [NSTemporaryDirectory() stringByAppendingString:fileName];
+  CHCSVWriter* csvWriter=[[[CHCSVWriter alloc] initWithCSVFile:filePath atomic:YES]autorelease];
+  
+  if([session.records count]>0){
+    
+    BOOL hasHeader=NO;
+    
+    for (NCLogRecord* record in session.records) {
+      //Get a reference to the entity description for the NSManagedObject subclass - CoreData created entity
+      NSEntityDescription * myEntity = [record entity];
+      
+      //Get all of the attributes that are defined for the entity - not the relationship properties - just attributes
+      NSDictionary * attributes = [myEntity attributesByName];
+      if(!hasHeader){
+        [csvWriter writeLineWithFields:[attributes allKeys]];
+        hasHeader=YES;
+      }
+      
+      
+      //Loop over the attributes by name  
+      for (NSString * attributeName in [attributes allKeys]) {
+        
+        //Determine if this property is a string
+        SEL selector = NSSelectorFromString(attributeName);
+        id attributeValue = [record performSelector:selector];
+        [csvWriter writeField:[attributeValue description]];
+        
+      }        
+      [csvWriter writeLine];
+    }
+  }
+  
+  return filePath;
 }
 
 

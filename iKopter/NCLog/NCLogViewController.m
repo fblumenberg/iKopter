@@ -175,7 +175,7 @@
   cell.textLabel.text = [NSDateFormatter localizedStringFromDate:managedObject.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:kCFDateFormatterNoStyle];
   
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ –– %@ (%d)", 
-                               [NSDateFormatter localizedStringFromDate:managedObject.timeStampStart dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
+                               [NSDateFormatter localizedStringFromDate:managedObject.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle],
                                [NSDateFormatter localizedStringFromDate:managedObject.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
                                [managedObject.records count]];
   
