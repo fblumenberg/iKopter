@@ -42,15 +42,19 @@
 -(void)uploadSession;
 -(NSString*)writeCSVForSession;
 -(void)deleteSession;
+- (void)removeCsv;
 
 @property(nonatomic,retain) UIActionSheet* deleteQuerySheet;
 @property(nonatomic,retain) UIBarButtonItem* deleteItem;
 - (void)hideActionSheet;
 
+@property(nonatomic,retain) NSString* csvFile;
+
 @end
 
 @implementation NCLogDetailViewController
 @synthesize mapView;
+@synthesize csvFile;
 
 @synthesize session;
 @synthesize startDate,endDate,records;
@@ -70,6 +74,7 @@
 {
   self.deleteItem=nil;
   [mapView release];
+  [self removeCsv];
   [super dealloc];
 }
 
@@ -122,8 +127,8 @@
   if(self.isPad)
     self.navigationItem.hidesBackButton=YES;
     
-  self.startDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
-  self.endDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle];
+  self.startDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+  self.endDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
   self.records.text=[NSString stringWithFormat:@"%d",[session.records count]];
 }
 
@@ -170,6 +175,7 @@
   [super viewWillDisappear:animated];
   [self hideActionSheet];
   self.mapView.delegate=nil;
+  [self removeCsv];
 }
 
 - (void)viewDidUnload
@@ -215,10 +221,12 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath{
   [[MBProgressHUD sharedProgressHUD] hide:YES];
+  [self removeCsv];
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error{
   [[MBProgressHUD sharedProgressHUD] hide:YES];
+  [self removeCsv];
   [IKDropboxController showError:error withTitle:NSLocalizedString(@"Upload failed", @"NC-Log upload Error Title")];
 }
 
@@ -271,6 +279,10 @@
 }
 
 
+- (void)removeCsv {
+  [[NSFileManager defaultManager]removeItemAtPath:self.csvFile error:nil];
+  self.csvFile=nil;
+}
 -(void)sendSessionAsEmail{
   if ([MFMailComposeViewController canSendMail]) {
     
@@ -291,12 +303,13 @@
         
         [mailViewController setMessageBody:bodyText isHTML:NO];
         
-        NSString *fileName = [self writeCSVForSession];
-        NSData *csvData = [NSData dataWithContentsOfFile:fileName];
-        [[NSFileManager defaultManager]removeItemAtPath:fileName error:nil];
+        [self writeCSVForSession];
+        NSData *csvData = [NSData dataWithContentsOfFile:self.csvFile];
         
-        [mailViewController addAttachmentData:csvData mimeType:@"text/csv" fileName:[fileName lastPathComponent]];
-        
+        [mailViewController addAttachmentData:csvData mimeType:@"text/csv" fileName:[self.csvFile lastPathComponent]];
+
+        [self removeCsv];
+
         mailViewController.mailComposeDelegate = self;
         
         [[MBProgressHUD sharedProgressHUD] hide:YES];
@@ -324,12 +337,12 @@
   NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
   [dateFormat setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
 
-  NSString *fileName=[NSString stringWithFormat:@"NC-Log-%@-%@", 
+  NSString *fileName=[NSString stringWithFormat:@"NC-Log-%@-%@.csv", 
                       [dateFormat stringFromDate:session.timeStampStart],
                       [dateFormat stringFromDate:session.timeStampEnd]];
   
-  NSString *filePath = [NSTemporaryDirectory() stringByAppendingString:fileName];
-  CHCSVWriter* csvWriter=[[[CHCSVWriter alloc] initWithCSVFile:filePath atomic:YES]autorelease];
+  self.csvFile = [NSTemporaryDirectory() stringByAppendingString:fileName];
+  CHCSVWriter* csvWriter=[[[CHCSVWriter alloc] initWithCSVFile:self.csvFile atomic:YES]autorelease];
   
   if([session.records count]>0){
     
@@ -360,7 +373,9 @@
     }
   }
   
-  return filePath;
+  [csvWriter closeFile];
+  
+  return self.csvFile;
 }
 
 
