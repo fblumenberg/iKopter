@@ -25,7 +25,6 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStore.h"
-#import "MBProgressHUD.h"
 
 typedef enum{
   MKConnectionStateDisconnected,
@@ -34,13 +33,11 @@ typedef enum{
 } MKConnectionState;
 
 @class MKHost;
-@class MBProgressHUD;
 
-@interface MainViewController : IASKAppSettingsViewController<MBProgressHUDDelegate> {
+@interface MainViewController : IASKAppSettingsViewController {
   
   MKConnectionState connectionState;
   MKHost* _host;
-  MBProgressHUD* _hud;
 }
 
 @property(nonatomic,retain) MKHost* host;

@@ -25,11 +25,9 @@
 #import <UIKit/UIKit.h>
 #import "Routes.h"
 #import "DropboxSDK.h"
-#import "MBProgressHUD.h"
 
-@interface RoutesViewController : UITableViewController<UIActionSheetDelegate,DBRestClientDelegate,MBProgressHUDDelegate>{
+@interface RoutesViewController : UITableViewController<UIActionSheetDelegate,DBRestClientDelegate>{
     
-  MBProgressHUD* hud;
   BOOL isSynActive;
 }
 

@@ -33,6 +33,8 @@
 
 #import "IKMkDataTypes.h"
 #import "MKDataConstants.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+RFhelpers.h"
 
 @interface MKParamMainController()
 
@@ -123,8 +125,6 @@
   
   [super viewWillDisappear:animated];
   
-  [hud hide:NO];  
-  
   NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
   
@@ -132,8 +132,7 @@
 }
 
 
-#pragma mark -
-#pragma mark Save Setting
+#pragma mark - Save Setting
 
 - (void)saveSetting:(id)sender {
   
@@ -146,31 +145,17 @@
 
 - (void) writeSettingNotification:(NSNotification *)aNotification {
   
-  hud = [[MBProgressHUD alloc] initWithView:self.view];
+  MBProgressHUD* hud = [MBProgressHUD sharedNotificationHUD];
   
-  [self.view addSubview:hud];
-  hud.delegate = self;
   hud.customView = [[[UIImageView alloc] initWithImage:
                      [UIImage imageNamed:@"icon-check.png"]] autorelease];
   hud.mode = MBProgressHUDModeCustomView;
   hud.labelText = NSLocalizedString(@"Setting saved",@"Setting saved success");
-  
   [hud show:YES];
-  [hud hide:YES afterDelay:1.0];
+  [hud hide:YES afterDelay:0.7];
 }
 
-#pragma mark MBProgressHUDDelegate methods
-
-- (void)hudWasHidden {
-  
-  [hud removeFromSuperview];
-  [hud release];
-  hud = nil;
-}
-
-
-#pragma mark -
-#pragma mark Reload Setting
+#pragma mark - Reload Setting
 
 - (void)reloadSetting:(id)sender {
   
@@ -194,6 +179,15 @@
   
   [self.detailViewController popToRootViewControllerAnimated:YES];
   [self.tableView reloadData];
+
+  MBProgressHUD* hud = [MBProgressHUD sharedNotificationHUD];
+  
+  hud.customView = [[[UIImageView alloc] initWithImage:
+                     [UIImage imageNamed:@"icon-check.png"]] autorelease];
+  hud.mode = MBProgressHUDModeCustomView;
+  hud.labelText = NSLocalizedString(@"Setting loaded",@"Setting loaded success");
+  [hud show:YES];
+  [hud hide:YES afterDelay:0.7];
 }
 
 

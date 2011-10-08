@@ -24,10 +24,8 @@
 
 #import <IBAForms/IBAFormViewController.h>
 #import "IKParamSet.h"
-#import "MBProgressHUD.h"
 
-@interface MKParamMainController : IBAFormViewController<MBProgressHUDDelegate> {
-  MBProgressHUD *hud;
+@interface MKParamMainController : IBAFormViewController {
 }
 
 @end

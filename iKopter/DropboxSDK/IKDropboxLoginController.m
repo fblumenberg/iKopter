@@ -25,10 +25,11 @@
 #import "IKDropboxLoginController.h"
 #import "DBRestClient.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+RFhelpers.h"
 
-@interface IKDropboxLoginController() <DBRestClientDelegate,MBProgressHUDDelegate>
+@interface IKDropboxLoginController() <DBRestClientDelegate>
 
-- (void)setWorking:(BOOL)working;
+//- (void)setWorking:(BOOL)working;
 - (void)errorWithTitle:(NSString*)title message:(NSString*)message;
 
 @property (nonatomic, readonly) DBRestClient* restClient;
@@ -93,8 +94,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-  hud.delegate=nil;
-  [MBProgressHUD hideHUDForView:self.view animated:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -115,7 +115,9 @@
 
 
 -(void) logInToDropbox:(IKDropboxLoginSource *)dataSource{
-  [self setWorking:YES];
+  
+  [MBProgressHUD sharedProgressHUD].labelText = NSLocalizedString(@"Logging In", @"DB Login HUD");
+  [[MBProgressHUD sharedProgressHUD] show:YES];
   
   qltrace(@"start login");
   IKDropboxLoginData* data = (IKDropboxLoginData*)dataSource.model;
@@ -138,7 +140,7 @@
 #pragma mark DBRestClient methods
 
 - (void)restClientDidLogin:(DBRestClient*)client {
-  [self setWorking:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:NO];
   if(shownModal)
     [self.navigationController.parentViewController dismissModalViewControllerAnimated:YES];
   else
@@ -149,10 +151,9 @@
 
 
 - (void)restClient:(DBRestClient*)client loginFailedWithError:(NSError*)error {
-  [self setWorking:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:NO];
   
   qltrace(@"Login error");
-  
   
   NSString* message;
   if ([error.domain isEqual:NSURLErrorDomain]) {
@@ -174,18 +175,6 @@
 
 #pragma mark private methods
 
-- (void)setWorking:(BOOL)working {
-  
-  if (working) {
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.delegate=self;
-    hud.labelText = NSLocalizedString(@"Logging In", @"DB Login HUD");
-  }
-  else
-    [MBProgressHUD hideHUDForView:self.view animated:!shownModal];
-}
-
-
 - (void)errorWithTitle:(NSString*)title message:(NSString*)message {
   [[[[UIAlertView alloc] 
      initWithTitle:title message:message delegate:nil 
@@ -200,11 +189,6 @@
     restClient.delegate = self;
   }
   return restClient;
-}
-
-#pragma mark MBProgressHUDDelegate methods
-
-- (void)hudWasHidden {
 }
 
 @end

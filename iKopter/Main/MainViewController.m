@@ -24,10 +24,13 @@
 
 #import "MainViewController.h"
 #import "MKHost.h"
-#import "GradientButton.h"
+//#import "GradientButton.h"
+
 #import "IASKSettingsStoreObject.h"
-#import "MBProgressHUD.h"
 #import "IASKSpecifier.h"
+
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+RFhelpers.h"
 
 #import "MKConnectionController.h"
 #import "MKDataConstants.h"
@@ -125,11 +128,8 @@
 
   if( ![[MKConnectionController sharedMKConnectionController] isRunning]) {
     
-    _hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:_hud];
-    _hud.delegate = self;
-    _hud.labelText=NSLocalizedString(@"Connecting",@"HUD connecting");
-    [_hud show:YES];
+    [MBProgressHUD sharedProgressHUD].labelText=NSLocalizedString(@"Connecting",@"HUD connecting");
+    [[MBProgressHUD sharedProgressHUD] show:YES];
     
     _tableView.userInteractionEnabled=NO;
     [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView startAnimating];
@@ -144,11 +144,11 @@
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
-  [_hud hide:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:NO];
   NSNotificationCenter* nc=[NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
-  if (self.navigationController.topViewController != self)
-  {
+  
+  if (self.navigationController.topViewController != self){
     if(self.isPad)
       [self.detailViewController popToRootViewControllerAnimated:YES];
   }  
@@ -304,7 +304,8 @@
 - (void)connectionRequestDidFail:(NSNotification *)aNotification;
 {
   NSError* err = [[aNotification userInfo] objectForKey:@"error"];
-  [_hud hide:YES];
+  [[MBProgressHUD sharedProgressHUD] hideAnimated:NO];
+
   [UIApplication sharedApplication].idleTimerDisabled=NO;
   
   UIAlertView *alert = [[UIAlertView alloc] 
@@ -332,14 +333,15 @@
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
 
-  [_hud hide:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
   
   [UIApplication sharedApplication].idleTimerDisabled=YES;
 }
 
 - (void)disconnected:(NSNotification *)aNotification;
 {
-  [_hud hide:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:NO];
+
   connectionState=MKConnectionStateDisconnected;
   [UIApplication sharedApplication].idleTimerDisabled=NO;
   [self.navigationController popToRootViewControllerAnimated:YES]; 
@@ -348,19 +350,7 @@
 - (void)versionResponse:(NSNotification *)aNotification;
 {
   IKDeviceVersion* version = [[aNotification userInfo] objectForKey:kIKDataKeyVersion];
-  _hud.labelText=[NSString stringWithFormat:NSLocalizedString(@"Found %@",@"HUD device"),version.deviceName];
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark MBProgressHUDDelegate methods
-
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-	NSLog(@"Hud: %@", hud);
-  // Remove HUD from screen when the HUD was hidded
-  [_hud removeFromSuperview];
-  [_hud release];
-  _hud=nil;
+  [MBProgressHUD sharedProgressHUD].labelText=[NSString stringWithFormat:NSLocalizedString(@"Found %@",@"HUD device"),version.deviceName];
 }
 
 #pragma mark - IASKSettingsDelegate

@@ -27,12 +27,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Route.h"
 #import "RouteController.h"
-#import "MBProgressHUD.h"
 
 
-@interface RouteViewController : UIViewController<UITabBarDelegate,CLLocationManagerDelegate,RouteControllerDelegate,MBProgressHUDDelegate> {
-    
-   MBProgressHUD *hud;
+@interface RouteViewController : UIViewController<UITabBarDelegate,CLLocationManagerDelegate,RouteControllerDelegate> {
   
 }
 

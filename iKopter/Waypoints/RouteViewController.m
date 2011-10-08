@@ -32,6 +32,10 @@
 #import "MKDataConstants.h"
 #import "IKPoint.h"
 
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+RFhelpers.h"
+
+
 @interface RouteViewController()
 
 @property (retain) UIBarButtonItem* spacer;
@@ -326,28 +330,14 @@
 
 -(void)routeControllerFinishedUpload:(RouteController *)controller{
   
-  hud = [[MBProgressHUD alloc] initWithView:self.view];
+  MBProgressHUD* hud = [MBProgressHUD sharedNotificationHUD];
   
-  [self.view addSubview:hud];
-  hud.delegate = self;
   hud.customView = [[[UIImageView alloc] initWithImage:
                      [UIImage imageNamed:@"icon-check.png"]] autorelease];
   hud.mode = MBProgressHUDModeCustomView;
   hud.labelText = NSLocalizedString(@"Upload successful",@"Route Upload success");
-  [hud showWhileExecuting:@selector(waitForTwoSeconds) 
-                 onTarget:self withObject:nil animated:YES];
-}
-
-- (void)waitForTwoSeconds {
-  sleep(1);
-}
-
-#pragma mark MBProgressHUDDelegate methods
-
-- (void)hudWasHidden {
-  
-  [hud removeFromSuperview];
-  [hud release];
+  [hud show:YES];
+  [hud hide:YES afterDelay:0.7];
 }
 
 #pragma mark - CLLocationManagerDelegate Methods

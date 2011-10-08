@@ -29,8 +29,12 @@
 #import "IKDropboxController.h"
 #import "NSString+Dropbox.h"
 
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+RFhelpers.h"
+
+
 @interface RoutesViewController() <IKDropboxControllerDelegate>
-- (void)setWorking:(BOOL)working;
+//- (void)setWorking:(BOOL)working;
 
 
 @property(nonatomic,retain) UIActionSheet* backupRestoreSheet;
@@ -158,9 +162,7 @@
   [super viewWillDisappear:animated];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self hideActionSheet];
-
-  hud.delegate=nil;
-  [MBProgressHUD hideHUDForView:self.view animated:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:NO];
 }
 
 - (void)hideActionSheet{
@@ -340,54 +342,33 @@
   
   self.backupRestoreSheet=nil;
   
-  [self setWorking:YES];
+  [[MBProgressHUD sharedProgressHUD] setLabelText:NSLocalizedString(@"Syncing", @"DB Sync routes HUD")];
+  [[MBProgressHUD sharedProgressHUD] show:YES];
 }
 
-
-- (void)setWorking:(BOOL)working {
-  
-  if (working) {
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = NSLocalizedString(@"Syncing", @"DB Sync routes HUD");
-  }
-  else
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
 #pragma mark - DBRestClientDelegate
 
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath {
-  [self setWorking:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
   
   [self.routes load];
   [self.tableView reloadData];
 }
 
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error{
-  [self setWorking:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
   [self.routes save];
   
   [IKDropboxController showError:error withTitle:NSLocalizedString(@"Restore failed", @"Routes Restore Error Title")];
 }
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath{
-  [self setWorking:NO];
-  
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error{
-  [self setWorking:NO];
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
   [IKDropboxController showError:error withTitle:NSLocalizedString(@"Backup failed", @"Routes Backup Error Title")];
 }
-
-#pragma mark MBProgressHUDDelegate methods
-
-- (void)hudWasHidden {
-  
-  [hud removeFromSuperview];
-  [hud release];
-  hud=nil;
-}
-
-
 
 @end

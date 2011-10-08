@@ -28,7 +28,6 @@
 #import "IKDropboxLoginSource.h"
 
 @class DBRestClient;
-@class MBProgressHUD;
 
 @protocol IKDBLoginControllerDelegate;
 
@@ -37,7 +36,6 @@
   BOOL shownModal;
 
   DBRestClient* restClient;
-  MBProgressHUD *hud;
 }
 
 @property (nonatomic, assign) id<IKDBLoginControllerDelegate> delegate;
