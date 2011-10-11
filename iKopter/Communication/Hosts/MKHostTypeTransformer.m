@@ -41,6 +41,7 @@
             @"MKIpConnection", 
             @"MKSerialConnection", 
             @"MKBluetoothConnection", 
+            @"MKRedparkSerialConnection",
             @"MKFakeConnection", 
             nil];
 
@@ -55,6 +56,9 @@
                                                                        font:font] autorelease]];
     [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Bluetooth Connection",@"BT Connection title") 
                                                                   iconImage:[UIImage imageNamed:@"icon-bluetooth.png"] 
+                                                                       font:font] autorelease]];
+    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Redpark Serial Connection",@"Redpark Serial Connection title")
+                                                                  iconImage:[UIImage imageNamed:@"icon-usb.png"] 
                                                                        font:font] autorelease]];
     [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Fake Connection",@"Fake Connection title") 
                                                                   iconImage:[UIImage imageNamed:@"icon-phone.png"] 
