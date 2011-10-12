@@ -27,6 +27,11 @@
 #import "MKHostViewController.h"
 #import "UIViewController+SplitView.h"
 
+@interface MKHostViewController()
+
+- (void) hostChangedNotification:(NSNotification *)aNotification;
+
+@end
 
 @implementation MKHostsViewController
 
@@ -91,6 +96,11 @@
 {
   [super viewWillAppear:animated];
   [self.navigationController setToolbarHidden:NO animated:NO];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(hostChangedNotification:)
+                                               name:MKHostChangedNotification
+                                             object:nil];
 }
 
 
@@ -116,8 +126,17 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
   [super viewWillDisappear:animated];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  
   if(self.isPad)
     [self.detailViewController popToRootViewControllerAnimated:YES];
+}
+
+- (void) hostChangedNotification:(NSNotification *)aNotification{
+  
+  [self.hosts save];
+  [self.tableView reloadData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -248,7 +267,13 @@
   
   MKHost* host=[self.hosts hostAtIndexPath:self.editingHost]; 
   MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
-  [self.navigationController pushViewController:hostView animated:YES];
+  if(self.isPad){
+    BOOL animated=self.isRootForDetailViewController;
+    [self.detailViewController popToRootViewControllerAnimated:NO];
+    [self.detailViewController pushViewController:hostView animated:animated];
+  }
+  else
+    [self.navigationController pushViewController:hostView animated:YES];
   [hostView release];   
 }
 

@@ -29,12 +29,19 @@
 #define    kPinKey              @"pin"
 #define    kConnectionClassKey  @"connectionClass"
 
+NSString * const MKHostChangedNotification=@"MKHostChangedNotification";
+
+
 @implementation MKHost
 
 @synthesize name=_name;
 @synthesize address=_address;
 @synthesize pin=_pin;
 @synthesize connectionClass=_connectionClass;
+
++ (void) sendChangedNotification:(id)sender {
+  [[NSNotificationCenter defaultCenter] postNotificationName:MKHostChangedNotification object:sender userInfo:nil];
+}
 
 - (id) init
 {

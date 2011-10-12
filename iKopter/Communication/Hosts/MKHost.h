@@ -24,6 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const MKHostChangedNotification;
 
 @interface MKHost : NSObject<NSCoding, NSCopying> {
   NSString*  _name;
@@ -37,6 +38,7 @@
 @property(retain) NSString* pin;
 @property(retain) NSString* connectionClass;
 
++ (void) sendChangedNotification:(id)sender;
 -(UIImage*) cellImage;
 
 @end

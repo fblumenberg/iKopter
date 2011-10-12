@@ -26,6 +26,7 @@
 #import "MKHostViewDataSource.h"
 #import "StringToNumberTransformer.h"
 #import "MKHostTypeTransformer.h"
+#import "MKHost.h"
 #import "SettingsButtonStyle.h"
 #import "SettingsFieldStyle.h"
 #import "BTDevice.h"
@@ -77,6 +78,8 @@
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
 	[super setModelValue:value forKeyPath:keyPath];
 	
+  [MKHost sendChangedNotification:self];
+  
 	qltrace(@"%@", [self.model description]);
 }
 
