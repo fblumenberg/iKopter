@@ -74,7 +74,6 @@
 		BA0D478E137D033A001415C3 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D478B137D033A001415C3 /* UIImage+Tint.m */; };
 		BA0D4790137D04E6001415C3 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA0D478F137D04E5001415C3 /* InAppSettings.bundle */; };
 		BA1B8CE8144068710034B3D8 /* MBProgressHUD+RFhelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1B8CE7144068710034B3D8 /* MBProgressHUD+RFhelpers.m */; };
-		BA1B8D871441F75D0034B3D8 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1B8D841441F75D0034B3D8 /* libRscMgrUniv.a */; };
 		BA1B8D8A1441F7710034B3D8 /* MKRedparkSerialConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1B8D891441F7710034B3D8 /* MKRedparkSerialConnection.m */; };
 		BA1B8D8C1444B2410034B3D8 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1B8D8B1444B2410034B3D8 /* ExternalAccessory.framework */; };
 		BA2206881385B31500396AA2 /* analoglabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2206871385B31500396AA2 /* analoglabels.plist */; };
@@ -281,6 +280,7 @@
 		BAB9A5FB140D69CA00741E08 /* ValueBaseOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB9A5FA140D69CA00741E08 /* ValueBaseOsdViewController.m */; };
 		BABCA86D13F14BE3005FF340 /* ValueOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */; };
 		BABCA86F13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */; };
+		BAC3131C1445F81700EE3D73 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAC313191445F81700EE3D73 /* libRscMgrUniv.a */; };
 		BAC81D67139550F000F642FA /* btstack.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D55139550F000F642FA /* btstack.c */; };
 		BAC81D68139550F000F642FA /* hci_cmds.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D57139550F000F642FA /* hci_cmds.c */; };
 		BAC81D69139550F000F642FA /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5C139550F000F642FA /* linked_list.c */; };
@@ -471,9 +471,6 @@
 		BA0D478F137D04E5001415C3 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = InAppSettings.bundle; sourceTree = "<group>"; };
 		BA1B8CE6144068710034B3D8 /* MBProgressHUD+RFhelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+RFhelpers.h"; sourceTree = "<group>"; };
 		BA1B8CE7144068710034B3D8 /* MBProgressHUD+RFhelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+RFhelpers.m"; sourceTree = "<group>"; };
-		BA1B8D841441F75D0034B3D8 /* libRscMgrUniv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRscMgrUniv.a; sourceTree = "<group>"; };
-		BA1B8D851441F75D0034B3D8 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redparkSerial.h; sourceTree = "<group>"; };
-		BA1B8D861441F75D0034B3D8 /* RscMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RscMgr.h; sourceTree = "<group>"; };
 		BA1B8D881441F7710034B3D8 /* MKRedparkSerialConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRedparkSerialConnection.h; sourceTree = "<group>"; };
 		BA1B8D891441F7710034B3D8 /* MKRedparkSerialConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRedparkSerialConnection.m; sourceTree = "<group>"; };
 		BA1B8D8B1444B2410034B3D8 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -818,6 +815,9 @@
 		BAB9A5FA140D69CA00741E08 /* ValueBaseOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueBaseOsdViewController.m; sourceTree = "<group>"; };
 		BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewController-iPad.xib"; sourceTree = "<group>"; };
 		BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
+		BAC313191445F81700EE3D73 /* libRscMgrUniv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRscMgrUniv.a; path = Frameworks/RedparkSDK/libRscMgrUniv.a; sourceTree = SOURCE_ROOT; };
+		BAC3131A1445F81700EE3D73 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = redparkSerial.h; path = Frameworks/RedparkSDK/redparkSerial.h; sourceTree = SOURCE_ROOT; };
+		BAC3131B1445F81700EE3D73 /* RscMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RscMgr.h; path = Frameworks/RedparkSDK/RscMgr.h; sourceTree = SOURCE_ROOT; };
 		BAC81D54139550F000F642FA /* bt_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bt_control.h; sourceTree = "<group>"; };
 		BAC81D55139550F000F642FA /* btstack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = btstack.c; sourceTree = "<group>"; };
 		BAC81D56139550F000F642FA /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
@@ -916,7 +916,7 @@
 				BA0D4670137C5127001415C3 /* UIKit.framework in Frameworks */,
 				BA0D4672137C5127001415C3 /* Foundation.framework in Frameworks */,
 				BA0D4674137C5127001415C3 /* CoreGraphics.framework in Frameworks */,
-				BA1B8D871441F75D0034B3D8 /* libRscMgrUniv.a in Frameworks */,
+				BAC3131C1445F81700EE3D73 /* libRscMgrUniv.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,9 +1294,9 @@
 		BA1B8D831441F3BE0034B3D8 /* RedparkSDK */ = {
 			isa = PBXGroup;
 			children = (
-				BA1B8D841441F75D0034B3D8 /* libRscMgrUniv.a */,
-				BA1B8D851441F75D0034B3D8 /* redparkSerial.h */,
-				BA1B8D861441F75D0034B3D8 /* RscMgr.h */,
+				BAC313191445F81700EE3D73 /* libRscMgrUniv.a */,
+				BAC3131A1445F81700EE3D73 /* redparkSerial.h */,
+				BAC3131B1445F81700EE3D73 /* RscMgr.h */,
 			);
 			name = RedparkSDK;
 			sourceTree = "<group>";
@@ -2414,6 +2414,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/iKopter\"",
+					"\"$(SRCROOT)/Frameworks/RedparkSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -2454,6 +2455,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/iKopter\"",
+					"\"$(SRCROOT)/Frameworks/RedparkSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -2513,6 +2515,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/iKopter\"",
+					"\"$(SRCROOT)/Frameworks/RedparkSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
