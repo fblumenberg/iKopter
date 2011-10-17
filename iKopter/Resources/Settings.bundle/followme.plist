@@ -33,7 +33,18 @@
 			<string>SettingsFollowMeCameraNickControl</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
-		</dict>	</array>
+		</dict>	
+ 		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>FollowMeAccuracyBestForNavigation</string>
+			<key>Title</key>
+			<string>SettingsFollowMeAccuracyBestForNavigation</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>	
+  </array>
 	<key>StringsTable</key>
 	<string>followme</string>
 	<key>Title</key>

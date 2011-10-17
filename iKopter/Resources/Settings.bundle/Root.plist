@@ -51,6 +51,16 @@
 			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>IKOSDSoundActive</string>
+			<key>Title</key>
+			<string>SettingsActivateOSDSound</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string></string>
 			<key>Type</key>

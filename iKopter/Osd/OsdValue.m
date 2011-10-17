@@ -23,6 +23,7 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <CoreLocation/CoreLocation.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "iKopterAppDelegate.h"
 #import "OsdValue.h"
@@ -71,7 +72,7 @@ static const NSString *errorMsg[25] = {
 
 @property(retain) IKNaviData* data;
 @property(retain) CLLocationManager *lm;
-
+@property(retain) AVAudioPlayer* audioPlayer;
 
 @end
 
@@ -88,6 +89,7 @@ static const NSString *errorMsg[25] = {
 @synthesize lm;
 @synthesize canFollowMe;
 @synthesize followMeRequests;
+@synthesize audioPlayer;
 
 -(void)setFollowMe:(BOOL)followMe {
   
@@ -256,7 +258,18 @@ static const NSString *errorMsg[25] = {
       self.ncLogSession = [NSEntityDescription insertNewObjectForEntityForName:@"NCLogSession" inManagedObjectContext:self.managedObjectContext];
       self.ncLogSession.timeStampStart=[NSDate date];
     }
-    
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"IKOSDSoundActive"]) {
+      
+      NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bleep" 
+                                                           ofType:@"mp3"];
+      NSURL* url=[NSURL fileURLWithPath:filePath];
+      
+      NSError *error;
+      self.audioPlayer = [[[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error] autorelease];
+      
+      [self.audioPlayer prepareToPlay];
+    }    
     
     if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
       canFollowMe = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
@@ -271,12 +284,20 @@ static const NSString *errorMsg[25] = {
     
     self.lm = [[[CLLocationManager alloc] init]autorelease];
     self.lm.delegate = self;
-    self.lm.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeAccuracyBestForNavigation"])
+      self.lm.desiredAccuracy = kCLLocationAccuracyBest;
+    else
+      self.lm.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+      
   }
   return self;
 }
 
 - (void) dealloc {
+  
+  [self.audioPlayer stop];
+  self.audioPlayer=nil;
   
   [self.lm stopUpdatingLocation];
   self.lm.delegate = nil;
@@ -315,6 +336,8 @@ static const NSString *errorMsg[25] = {
 }
 
 - (void) stopRequesting {
+  
+  [self.audioPlayer stop];
   
   [requestTimer invalidate];
   requestTimer=nil;
@@ -357,6 +380,11 @@ static const NSString *errorMsg[25] = {
   self.data = [[aNotification userInfo] objectForKey:kIKDataKeyOsd];
   
   [self.delegate newValue:self];
+  
+  if(self.isLowBat)
+    [self.audioPlayer play];
+  else
+    [self.audioPlayer stop];
 }
 
 - (void) debugValueNotification:(NSNotification *)aNotification {

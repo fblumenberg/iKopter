@@ -144,6 +144,8 @@
 		BA98EAB213C72A96005CF2FA /* MKHostViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB013C72A96005CF2FA /* MKHostViewDataSource.m */; };
 		BA98EAB513C72D18005CF2FA /* SettingsButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAB413C72D17005CF2FA /* SettingsButtonStyle.m */; };
 		BA98EAD513C8F5BD005CF2FA /* RouteController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAD413C8F5BB005CF2FA /* RouteController.m */; };
+		BA998D86144C91A900370360 /* Bleep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA998D85144C91A900370360 /* Bleep.mp3 */; };
+		BA998D88144C91D900370360 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA998D87144C91D900370360 /* AVFoundation.framework */; };
 		BA9CEE1E13F9463200D073BF /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9CEE1A13F9463200D073BF /* flag.png */; };
 		BA9CEE1F13F9463200D073BF /* flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9CEE1B13F9463200D073BF /* flag@2x.png */; };
 		BA9CEE2013F9463200D073BF /* poi.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9CEE1C13F9463200D073BF /* poi.png */; };
@@ -580,6 +582,8 @@
 		BA98EAC813C751A6005CF2FA /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIBAForms.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA98EAD313C8F5B9005CF2FA /* RouteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteController.h; sourceTree = "<group>"; };
 		BA98EAD413C8F5BB005CF2FA /* RouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteController.m; sourceTree = "<group>"; };
+		BA998D85144C91A900370360 /* Bleep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bleep.mp3; sourceTree = "<group>"; };
+		BA998D87144C91D900370360 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BA9CEE1A13F9463200D073BF /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flag.png; path = OSD/flag.png; sourceTree = "<group>"; };
 		BA9CEE1B13F9463200D073BF /* flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flag@2x.png"; path = "OSD/flag@2x.png"; sourceTree = "<group>"; };
 		BA9CEE1C13F9463200D073BF /* poi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = poi.png; path = OSD/poi.png; sourceTree = "<group>"; };
@@ -901,6 +905,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA998D88144C91D900370360 /* AVFoundation.framework in Frameworks */,
 				BA1B8D8C1444B2410034B3D8 /* ExternalAccessory.framework in Frameworks */,
 				BADE5E1F143F9796009EAF7E /* libIBAForms.a in Frameworks */,
 				BA9EAD3613CEE5A2008EC741 /* Security.framework in Frameworks */,
@@ -939,7 +944,6 @@
 		BA0D4660137C5127001415C3 = {
 			isa = PBXGroup;
 			children = (
-				BA1B8D8B1444B2410034B3D8 /* ExternalAccessory.framework */,
 				BA0D4675137C5127001415C3 /* iKopter */,
 				BA0D466E137C5127001415C3 /* Frameworks */,
 				BA0D466C137C5127001415C3 /* Products */,
@@ -960,6 +964,8 @@
 		BA0D466E137C5127001415C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA998D87144C91D900370360 /* AVFoundation.framework */,
+				BA1B8D8B1444B2410034B3D8 /* ExternalAccessory.framework */,
 				BA9EAD3513CEE5A1008EC741 /* Security.framework */,
 				BA98EAC813C751A6005CF2FA /* libIBAForms.a */,
 				BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */,
@@ -1030,6 +1036,7 @@
 		BA0D46E6137C60EB001415C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA998D85144C91A900370360 /* Bleep.mp3 */,
 				BAA9E1541408F6560054F123 /* FakeOsd.csv */,
 				BA2206871385B31500396AA2 /* analoglabels.plist */,
 				BAA4E756137EC6160068E38E /* Default-Landscape~ipad.png */,
@@ -2074,6 +2081,7 @@
 				BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */,
 				BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */,
 				76C591FB142747750043F026 /* DetailView.xib in Resources */,
+				BA998D86144C91A900370360 /* Bleep.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2367,7 +2375,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2382,7 +2390,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2482,7 +2490,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;

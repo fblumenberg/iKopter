@@ -16,8 +16,11 @@
 	<integer>20</integer>
 	<key>FollowMeHeigth</key>
 	<integer>1</integer>
-	<key>FollowMeCameraNick
-</key>
+	<key>FollowMeCameraNick</key>
+	<true/>
+	<key>FollowMeAccuracyBestForNavigation</key>
+	<false/>
+	<key>IKOSDSoundActive</key>
 	<true/>
 </dict>
 </plist>
