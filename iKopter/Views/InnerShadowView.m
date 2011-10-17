@@ -68,6 +68,7 @@
                         CGMutablePathRef path=createRoundedRectForRect(rectInner,10);
                         CGContextAddPath(currContext, path);
                         CGContextFillPath(currContext);
+                        CFRelease(path);
                       },
                       ^{
                         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -75,6 +76,7 @@
                         CGMutablePathRef path=createRoundedRectForRect(rectInner,10);
                         CGContextAddPath(context, path);
                         CGContextFillPath(context);
+                        CFRelease(path);
                       });
 }
 
