@@ -230,9 +230,6 @@
 		BAA4E6D4137EB89D0068E38E /* MixerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6A1137EB89C0068E38E /* MixerTableViewCell.xib */; };
 		BAA4E6D5137EB89D0068E38E /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6A3137EB89C0068E38E /* MixerViewController.m */; };
 		BAA4E6D6137EB89D0068E38E /* Data3DValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6A6137EB89C0068E38E /* Data3DValue.m */; };
-		BAA4E6D7137EB89D0068E38E /* HorizonOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6A8137EB89C0068E38E /* HorizonOsdViewController.m */; };
-		BAA4E6D8137EB89D0068E38E /* HorizonOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6A9137EB89C0068E38E /* HorizonOsdViewController.xib */; };
-		BAA4E6D9137EB89D0068E38E /* HorizonOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6AA137EB89C0068E38E /* HorizonOsdViewControllerLandscape.xib */; };
 		BAA4E6DA137EB89D0068E38E /* OsdValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6AC137EB89C0068E38E /* OsdValue.m */; };
 		BAA4E6DB137EB89D0068E38E /* OsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6AE137EB89C0068E38E /* OsdViewController.m */; };
 		BAA4E6DC137EB89D0068E38E /* OsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6AF137EB89C0068E38E /* OsdViewController.xib */; };
@@ -752,10 +749,6 @@
 		BAA4E6A3137EB89C0068E38E /* MixerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerViewController.m; sourceTree = "<group>"; };
 		BAA4E6A5137EB89C0068E38E /* Data3DValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data3DValue.h; sourceTree = "<group>"; };
 		BAA4E6A6137EB89C0068E38E /* Data3DValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data3DValue.m; sourceTree = "<group>"; };
-		BAA4E6A7137EB89C0068E38E /* HorizonOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizonOsdViewController.h; sourceTree = "<group>"; };
-		BAA4E6A8137EB89C0068E38E /* HorizonOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizonOsdViewController.m; sourceTree = "<group>"; };
-		BAA4E6A9137EB89C0068E38E /* HorizonOsdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizonOsdViewController.xib; sourceTree = "<group>"; };
-		BAA4E6AA137EB89C0068E38E /* HorizonOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizonOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
 		BAA4E6AB137EB89C0068E38E /* OsdValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdValue.h; sourceTree = "<group>"; };
 		BAA4E6AC137EB89C0068E38E /* OsdValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdValue.m; sourceTree = "<group>"; };
 		BAA4E6AD137EB89C0068E38E /* OsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdViewController.h; sourceTree = "<group>"; };
@@ -1436,17 +1429,6 @@
 			name = Value;
 			sourceTree = "<group>";
 		};
-		BA9CEE2713F94A5400D073BF /* Horizon */ = {
-			isa = PBXGroup;
-			children = (
-				BAA4E6A7137EB89C0068E38E /* HorizonOsdViewController.h */,
-				BAA4E6A8137EB89C0068E38E /* HorizonOsdViewController.m */,
-				BAA4E6A9137EB89C0068E38E /* HorizonOsdViewController.xib */,
-				BAA4E6AA137EB89C0068E38E /* HorizonOsdViewControllerLandscape.xib */,
-			);
-			name = Horizon;
-			sourceTree = "<group>";
-		};
 		BA9CEE2813F94A6800D073BF /* Raw */ = {
 			isa = PBXGroup;
 			children = (
@@ -1756,7 +1738,6 @@
 				BAE3B02413A4F27B007E0F2F /* MapLocation.m */,
 				BAA4E6A5137EB89C0068E38E /* Data3DValue.h */,
 				BAA4E6A6137EB89C0068E38E /* Data3DValue.m */,
-				BA9CEE2713F94A5400D073BF /* Horizon */,
 				BAA4E6AB137EB89C0068E38E /* OsdValue.h */,
 				BAA4E6AC137EB89C0068E38E /* OsdValue.m */,
 				BAA4E6AD137EB89C0068E38E /* OsdViewController.h */,
@@ -1987,8 +1968,6 @@
 				BAD69581137E9ECF006C129D /* Default@2x.png in Resources */,
 				BAA4E6D1137EB89D0068E38E /* LcdViewController.xib in Resources */,
 				BAA4E6D4137EB89D0068E38E /* MixerTableViewCell.xib in Resources */,
-				BAA4E6D8137EB89D0068E38E /* HorizonOsdViewController.xib in Resources */,
-				BAA4E6D9137EB89D0068E38E /* HorizonOsdViewControllerLandscape.xib in Resources */,
 				BAA4E6DC137EB89D0068E38E /* OsdViewController.xib in Resources */,
 				BAA4E6DE137EB89D0068E38E /* RawOsdViewController.xib in Resources */,
 				BAA4E6E0137EB89D0068E38E /* ValueOsdViewController.xib in Resources */,
@@ -2198,7 +2177,6 @@
 				BAA4E6D3137EB89D0068E38E /* MixerTableViewCell.m in Sources */,
 				BAA4E6D5137EB89D0068E38E /* MixerViewController.m in Sources */,
 				BAA4E6D6137EB89D0068E38E /* Data3DValue.m in Sources */,
-				BAA4E6D7137EB89D0068E38E /* HorizonOsdViewController.m in Sources */,
 				BAA4E6DA137EB89D0068E38E /* OsdValue.m in Sources */,
 				BAA4E6DB137EB89D0068E38E /* OsdViewController.m in Sources */,
 				BAA4E6DD137EB89D0068E38E /* RawOsdViewController.m in Sources */,
