@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		764E8A4C14601B7200579FA4 /* OsdTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764E8A4B14601B7100579FA4 /* OsdTabBarController.m */; };
 		765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F71420DCEB00BB027D /* IKOutputSetting.m */; };
 		76C591F7142744600043F026 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F2142744600043F026 /* MGSplitCornersView.m */; };
 		76C591F8142744600043F026 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F4142744600043F026 /* MGSplitDividerView.m */; };
@@ -359,6 +360,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		764E8A4A14601B7100579FA4 /* OsdTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdTabBarController.h; sourceTree = "<group>"; };
+		764E8A4B14601B7100579FA4 /* OsdTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdTabBarController.m; sourceTree = "<group>"; };
 		765E63F61420DCEA00BB027D /* IKOutputSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSetting.h; sourceTree = "<group>"; };
 		765E63F71420DCEB00BB027D /* IKOutputSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSetting.m; sourceTree = "<group>"; };
 		76C591F1142744600043F026 /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitCornersView.h; sourceTree = "<group>"; };
@@ -1347,6 +1350,7 @@
 				BA59C042142BB05500D40529 /* IBAFormSection+MKParam.h */,
 				BA59C043142BB05500D40529 /* IBAFormSection+MKParam.m */,
 				BA59C046142BB05500D40529 /* MKParamAltitudeDataSource.h */,
+				BA59C058142BB05500D40529 /* MKParamMiscDataSource.h */,
 				BA59C047142BB05500D40529 /* MKParamAltitudeDataSource.m */,
 				BA59C048142BB05500D40529 /* MKParamCameraDataSource.h */,
 				BA59C049142BB05500D40529 /* MKParamCameraDataSource.m */,
@@ -1364,7 +1368,6 @@
 				BA59C055142BB05500D40529 /* MKParamMainController.m */,
 				BA59C056142BB05500D40529 /* MKParamMainDataSource.h */,
 				BA59C057142BB05500D40529 /* MKParamMainDataSource.m */,
-				BA59C058142BB05500D40529 /* MKParamMiscDataSource.h */,
 				BA59C059142BB05500D40529 /* MKParamMiscDataSource.m */,
 				BA59C05A142BB05500D40529 /* MKParamNaviControlDataSource.h */,
 				BA59C05B142BB05500D40529 /* MKParamNaviControlDataSource.m */,
@@ -1745,6 +1748,8 @@
 		BAA4E6A4137EB89C0068E38E /* Osd */ = {
 			isa = PBXGroup;
 			children = (
+				764E8A4A14601B7100579FA4 /* OsdTabBarController.h */,
+				764E8A4B14601B7100579FA4 /* OsdTabBarController.m */,
 				BAA9E15D1409283A0054F123 /* FollowMe */,
 				BA9CEE2613F94A1C00D073BF /* Value */,
 				BAE3B02313A4F27A007E0F2F /* MapLocation.h */,
@@ -2312,6 +2317,7 @@
 				BA1B8CE8144068710034B3D8 /* MBProgressHUD+RFhelpers.m in Sources */,
 				BA1B8D8A1441F7710034B3D8 /* MKRedparkSerialConnection.m in Sources */,
 				BA545665145C20AA006BD0CD /* TPMultiLayoutViewController.m in Sources */,
+				764E8A4C14601B7200579FA4 /* OsdTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

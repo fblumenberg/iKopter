@@ -27,6 +27,7 @@
 //#import "GradientButton.h"
 
 #import "IASKSettingsStoreObject.h"
+#import "IASKPSTitleValueSpecifierViewCell.h"
 #import "IASKSpecifier.h"
 
 #import "MBProgressHUD.h"
@@ -37,6 +38,8 @@
 #import "IKDeviceVersion.h"
 
 #import "UIViewController+SplitView.h"
+
+#import "OsdTabBarController.h"
 
 @implementation MainViewController
 
@@ -217,34 +220,72 @@
 		return 44;
 }
 
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {  
+  
+  UITableViewCell* cell = (UITableViewCell*)(gestureRecognizer.view);
+  [cell setSelected:YES animated:NO];
+  
+  OsdTabBarController* tbc = [[[OsdTabBarController alloc] initWithNibName:nil bundle:nil]autorelease];
+  UINavigationController* nc= [[[UINavigationController alloc] initWithRootViewController:tbc]autorelease];
+  
+  nc.navigationBar.barStyle=UIBarStyleDefault;
+  nc.navigationBar.translucent=YES;
+  
+  if( [self isPad]){
+    [self.splitViewController presentModalViewController:nc animated:YES];
+  }
+  else
+    [self presentModalViewController:nc animated:YES];
+}
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
-  
-  static NSString *CellIdentifier = @"DeviceInfoCell";
-  
-  IKMkAddress address=kIKMkAddressMK3MAg;
-  
-  if( [specifier.key isEqualToString:@"NC"] ) 
-    address=kIKMkAddressNC;
-  else if( [specifier.key isEqualToString:@"FC"] ) 
-    address=kIKMkAddressFC;
-  IKDeviceVersion* v = [[MKConnectionController sharedMKConnectionController] versionForAddress:address];
-
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-  }
-  
-  cell.accessoryType = UITableViewCellAccessoryNone;
-
-  if(v){  
-    cell.textLabel.text = v.versionString;
-    cell.detailTextLabel.text = v.hasError?@"\ue219":@"\ue21a"; 
+  UITableViewCell *cell = nil;
+  if( [specifier.key isEqualToString:@"OSD"] ){
+    static NSString *CellIdentifier = @"OSDCell";
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell) {
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    cell.textLabel.text = NSLocalizedString(@"OSD",@"OSD button link");
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    [cell setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
+    [cell addGestureRecognizer:singleTap];
+    [singleTap release];
+    
   }
   else{
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [specifier title];
-    cell.detailTextLabel.text=NSLocalizedString(@"not available", @"Device not available");
+    static NSString *CellIdentifier = @"DeviceInfoCell";
+    
+    IKMkAddress address=kIKMkAddressMK3MAg;
+    
+    if( [specifier.key isEqualToString:@"NC"] ) 
+      address=kIKMkAddressNC;
+    else if( [specifier.key isEqualToString:@"FC"] ) 
+      address=kIKMkAddressFC;
+    
+    IKDeviceVersion* v = [[MKConnectionController sharedMKConnectionController] versionForAddress:address];
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    if(v){  
+      cell.textLabel.text = v.versionString;
+      cell.detailTextLabel.text = v.hasError?@"\ue219":@"\ue21a"; 
+    }
+    else{
+      cell.selectionStyle = UITableViewCellSelectionStyleNone;
+      cell.textLabel.text = [specifier title];
+      cell.detailTextLabel.text=NSLocalizedString(@"not available", @"Device not available");
+    }
   }
   
 	return cell;

@@ -53,6 +53,14 @@
 			<string>PSChildPaneSpecifier</string>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string>OSD</string>
+			<key>Type</key>
+			<string>IASKCustomViewSpecifier</string>
+			<key>Key</key>
+			<string>OSD</string>
+		</dict>
+		<dict>
 			<key>IASKViewControllerClass</key>
 			<string>RoutesViewController</string>
 			<key>IASKViewControllerSelector</key>
