@@ -92,22 +92,23 @@
 
 - (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
   
-  NSString* nibName=@"ValueOsdViewController";
-  
-  if (UIInterfaceOrientationIsLandscape(orientation)){
-    nibName = [nibName stringByAppendingString:@"Landscape"];
-  }
-  
-  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-    nibName = [nibName stringByAppendingString:@"-iPad"];
-  }
-  
-  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
+//  NSString* nibName=@"ValueOsdViewController";
+//  
+//  if (UIInterfaceOrientationIsLandscape(orientation)){
+//    nibName = [nibName stringByAppendingString:@"Landscape"];
+//  }
+//  
+//  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+//    nibName = [nibName stringByAppendingString:@"-iPad"];
+//  }
+//  
+//  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
   
   [super updateViewWithOrientation:orientation];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+  [super willRotateToInterfaceOrientation:orientation duration:duration];
   [self updateViewWithOrientation: orientation];
 }
 

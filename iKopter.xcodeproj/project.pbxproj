@@ -82,6 +82,7 @@
 		BA41B6F613D4379B00408B18 /* icon-backforth.png in Resources */ = {isa = PBXBuildFile; fileRef = BA41B6F413D4379B00408B18 /* icon-backforth.png */; };
 		BA41B6F713D4379B00408B18 /* icon-backforth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA41B6F513D4379B00408B18 /* icon-backforth@2x.png */; };
 		BA41B6FA13D439C500408B18 /* IKDropboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA41B6F913D439C500408B18 /* IKDropboxController.m */; };
+		BA545665145C20AA006BD0CD /* TPMultiLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA545664145C20AA006BD0CD /* TPMultiLayoutViewController.m */; };
 		BA585C1413B0ED1A00AE0958 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0D13B0ED1A00AE0958 /* Route.m */; };
 		BA585C1513B0ED1A00AE0958 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0F13B0ED1A00AE0958 /* Routes.m */; };
 		BA585C1613B0ED1A00AE0958 /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C1113B0ED1A00AE0958 /* RoutesViewController.m */; };
@@ -483,6 +484,8 @@
 		BA41B6F513D4379B00408B18 /* icon-backforth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-backforth@2x.png"; sourceTree = "<group>"; };
 		BA41B6F813D439C500408B18 /* IKDropboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKDropboxController.h; sourceTree = "<group>"; };
 		BA41B6F913D439C500408B18 /* IKDropboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKDropboxController.m; sourceTree = "<group>"; };
+		BA545663145C20AA006BD0CD /* TPMultiLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMultiLayoutViewController.h; sourceTree = "<group>"; };
+		BA545664145C20AA006BD0CD /* TPMultiLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPMultiLayoutViewController.m; sourceTree = "<group>"; };
 		BA54FE8A13D6184C0016A56C /* ExternalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalData.h; sourceTree = "<group>"; };
 		BA585C0C13B0ED1A00AE0958 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		BA585C0D13B0ED1A00AE0958 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
@@ -1172,6 +1175,8 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BA545663145C20AA006BD0CD /* TPMultiLayoutViewController.h */,
+				BA545664145C20AA006BD0CD /* TPMultiLayoutViewController.m */,
 				BA1B8CE6144068710034B3D8 /* MBProgressHUD+RFhelpers.h */,
 				BA1B8CE7144068710034B3D8 /* MBProgressHUD+RFhelpers.m */,
 				76C591F01427443F0043F026 /* MGSplitView */,
@@ -2306,6 +2311,7 @@
 				BA59C086142BBABE00D40529 /* MKParamViewController.m in Sources */,
 				BA1B8CE8144068710034B3D8 /* MBProgressHUD+RFhelpers.m in Sources */,
 				BA1B8D8A1441F7710034B3D8 /* MKRedparkSerialConnection.m in Sources */,
+				BA545665145C20AA006BD0CD /* TPMultiLayoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

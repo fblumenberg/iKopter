@@ -87,22 +87,23 @@
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+  [super willRotateToInterfaceOrientation:orientation duration:duration];
   [self updateViewWithOrientation: orientation];
 }
 
 - (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
   
-NSString* nibName=@"MapOsdViewController";
-  
-  if (UIInterfaceOrientationIsLandscape(orientation) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-    nibName = [nibName stringByAppendingString:@"Landscape"];
-  }
-  
-  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-    nibName = [nibName stringByAppendingString:@"-iPad"];
-  }
-  
-  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
+//NSString* nibName=@"MapOsdViewController";
+//  
+//  if (UIInterfaceOrientationIsLandscape(orientation) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+//    nibName = [nibName stringByAppendingString:@"Landscape"];
+//  }
+//  
+//  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+//    nibName = [nibName stringByAppendingString:@"-iPad"];
+//  }
+//  
+//  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
   needRegionAdjustment=YES;
 
   [super updateViewWithOrientation:orientation];

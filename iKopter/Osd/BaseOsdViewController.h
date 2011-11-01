@@ -23,12 +23,12 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-
+#import "TPMultiLayoutViewController.h"
 @class CustomBadge;
 @class InnerShadowView;
 @class OsdValue;
 
-@interface BaseOsdViewController : UIViewController{
+@interface BaseOsdViewController : TPMultiLayoutViewController{
   
 }
 

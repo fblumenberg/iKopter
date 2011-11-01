@@ -29,6 +29,7 @@
 #import "IKAttitudeIndicator.h"
 #import "ValueBaseOsdViewController.h"
 
+
 @class InnerShadowView;
 
 @interface ValueOsdViewController : ValueBaseOsdViewController<OsdValueDelegate> {
