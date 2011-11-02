@@ -43,16 +43,6 @@
 			<string>Settings</string>
 		</dict>
 		<dict>
-			<key>IASKViewControllerClass</key>
-			<string>OsdViewController</string>
-			<key>IASKViewControllerSelector</key>
-			<string>init</string>
-			<key>Title</key>
-			<string>OSD</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
 			<key>Title</key>
 			<string>OSD</string>
 			<key>Type</key>
