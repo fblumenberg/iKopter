@@ -279,7 +279,7 @@
     
     if(v){  
       cell.textLabel.text = v.versionString;
-      cell.detailTextLabel.text = v.hasError?@"\ue219":@"\ue21a"; 
+      cell.detailTextLabel.text = v.hasError?@"❤":@"💚"; 
     }
     else{
       cell.selectionStyle = UITableViewCellSelectionStyleNone;

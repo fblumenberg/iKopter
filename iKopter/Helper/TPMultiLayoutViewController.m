@@ -7,6 +7,8 @@
 
 #import "TPMultiLayoutViewController.h"
 
+#import <MapKit/MapKit.h>
+
 #define VERBOSE_MATCH_FAIL 1 // Comment this out to be less verbose when associated views can't be found
 
 @interface TPMultiLayoutViewController ()
@@ -221,6 +223,7 @@
 
 - (BOOL)shouldDescendIntoSubviewsOfView:(UIView*)view {
     if ( [view isKindOfClass:[UISlider class]] ||
+         [view isKindOfClass:[MKMapView class]] ||
          [view isKindOfClass:[UISwitch class]] ||
          [view isKindOfClass:[UITextField class]] ||
          [view isKindOfClass:[UIWebView class]] ||

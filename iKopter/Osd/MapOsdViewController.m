@@ -89,23 +89,11 @@
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
   [super willRotateToInterfaceOrientation:orientation duration:duration];
   [self updateViewWithOrientation: orientation];
+  needRegionAdjustment=YES;
 }
 
 - (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
-  
-//NSString* nibName=@"MapOsdViewController";
-//  
-//  if (UIInterfaceOrientationIsLandscape(orientation) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-//    nibName = [nibName stringByAppendingString:@"Landscape"];
-//  }
-//  
-//  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-//    nibName = [nibName stringByAppendingString:@"-iPad"];
-//  }
-//  
-//  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
   needRegionAdjustment=YES;
-
   [super updateViewWithOrientation:orientation];
 }
 
@@ -207,9 +195,9 @@
   [self updateAnnotationForType:IKMapLocationHomePosition coordinate:gpsPos.coordinate];
   
   if( needRegionAdjustment && gpsPos.status!=0 ){
-     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(gpsPos.coordinate, 500, 500); 
-     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
-     [self.mapView setRegion:adjustedRegion animated:NO];
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(gpsPos.coordinate, 500, 500); 
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
+    [self.mapView setRegion:adjustedRegion animated:NO];
     needRegionAdjustment=NO;
   }
 

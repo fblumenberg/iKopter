@@ -42,6 +42,7 @@
 //- (void)updateSelectedViewFrame;
 
 @property (nonatomic, retain) UIButton *screenLockButton;
+@property (nonatomic, retain) OsdValue *osdValue;
 
 @end
 
@@ -50,6 +51,7 @@
 
 
 @synthesize screenLockButton;
+@synthesize osdValue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -134,6 +136,9 @@
   self.navigationController.navigationBar.barStyle=UIBarStyleBlack;
   self.navigationController.navigationBar.translucent=YES;
   
+
+  self.osdValue = [[[OsdValue alloc] init]autorelease];
+  self.osdValue.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -141,6 +146,7 @@
   [super viewDidUnload];
   
   self.screenLockButton=nil;
+  self.osdValue=nil;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -152,6 +158,9 @@
                                            selector:@selector(dismissView) 
                                                name:UIApplicationWillResignActiveNotification 
                                              object:[UIApplication sharedApplication]];
+
+  osdValue.delegate = self;
+  [osdValue startRequesting];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -164,6 +173,9 @@
   [super viewWillDisappear:animated];
   
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+  
+  osdValue.delegate = nil;
+  [osdValue stopRequesting];
 }
 
 - (void)dismissView {
@@ -196,12 +208,14 @@
 -(void) updateSelectedView {
   
   UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
-  //    if ([self.selectedViewController isKindOfClass:[MapOsdViewController class]]) {
-  //        [((MapOsdViewController*)self.selectedViewController).mapView addGestureRecognizer:singleTap];  
-  //    }
-  //    else{
-  [self.selectedViewController.view addGestureRecognizer:singleTap];
-  //    }
+  if ([self.selectedViewController isKindOfClass:[MapOsdViewController class]]) {
+    [((MapOsdViewController*)self.selectedViewController).mapView addGestureRecognizer:singleTap];  
+  }
+  else{
+    [self.selectedViewController.view addGestureRecognizer:singleTap];
+  }
+  
+  [self newValue:self.osdValue];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -231,6 +245,19 @@
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
   
   [self updateSelectedView];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+#pragma - OsdValueDelegate
+- (void) newValue:(OsdValue*)value {
+  
+  if([self.selectedViewController respondsToSelector:@selector(newValue:)])
+    [(id<OsdValueDelegate>)self.selectedViewController newValue:value];
+}
+
+- (void) noDataAvailable {
+  if([self.selectedViewController respondsToSelector:@selector(noDataAvailable)])
+    [(id<OsdValueDelegate>)self.selectedViewController noDataAvailable];
 }
 
 @end
