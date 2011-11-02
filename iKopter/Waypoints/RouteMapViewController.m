@@ -351,6 +351,9 @@ didChangeDragState:(MKAnnotationViewDragState)newState
             createOverlay=NO;
           }
         }
+        else{
+          angle-=90.0;
+        }
         if(createOverlay){
           HeadingOverlay* h=[HeadingOverlay headingWithCenterCoordinate:p.coordinate radius:10 angle:angle];
           [self.mapView addOverlay:h];
