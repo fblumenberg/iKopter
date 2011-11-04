@@ -93,8 +93,6 @@
                             nil];
     self.selectedViewController = valueViewController;
     
-    [valueViewController release];
-    
   }
   return self;
 }
