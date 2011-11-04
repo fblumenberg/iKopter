@@ -132,11 +132,13 @@ void CommonDefaults(IKParamSet* EE_Parameter)
 	EE_Parameter.UnterspannungsWarnung = [NSNumber numberWithUnsignedChar:33]; // Wert : 0-247 ( Automatische Zellenerkennung bei < 50)
 	EE_Parameter.NotGas = [NSNumber numberWithUnsignedChar:45];                // Wert : 0-247     // Gaswert bei Empangsverlust
 	EE_Parameter.NotGasZeit = [NSNumber numberWithUnsignedChar:90];            // Wert : 0-247     // Zeit bis auf NotGas geschaltet wird, wg. Rx-Problemen
-
-	EE_Parameter.MotorSmooth = [NSNumber numberWithUnsignedChar:0];
-	EE_Parameter.ComingHomeAltitude = [NSNumber numberWithUnsignedChar:0];
-	EE_Parameter.FailSafeTime = [NSNumber numberWithUnsignedChar:0];
-	EE_Parameter.MaxAltitude = [NSNumber numberWithUnsignedChar:150];
+  
+  if(EE_Parameter.Revision.integerValue>=88){
+    EE_Parameter.MotorSmooth = [NSNumber numberWithUnsignedChar:0];
+    EE_Parameter.ComingHomeAltitude = [NSNumber numberWithUnsignedChar:0];
+    EE_Parameter.FailSafeTime = [NSNumber numberWithUnsignedChar:0];
+    EE_Parameter.MaxAltitude = [NSNumber numberWithUnsignedChar:150];
+  }
 	EE_Parameter.AchsKopplung1 = [NSNumber numberWithUnsignedChar:90];
 	EE_Parameter.AchsKopplung2 = [NSNumber numberWithUnsignedChar:55];
   
@@ -192,7 +194,7 @@ void ParamSet_DefaultSet2(IKParamSet* EE_Parameter) // normal
 	EE_Parameter.GyroAccAbgleich = [NSNumber numberWithUnsignedChar:32];        // 1/k
 	EE_Parameter.DynamicStability = [NSNumber numberWithUnsignedChar:70];
   EE_Parameter.Name=@"Normal";
-
+  
 }
 
 
@@ -269,7 +271,7 @@ static NSString * const MKDummyConnectionException = @"MKDummyConnectionExceptio
     self.delegate = theDelegate;
     
     settings = [[NSMutableArray array] retain];
-      
+    
     IKParamSet* p=[[[IKParamSet alloc]init]autorelease];
     ParamSet_DefaultSet1(p);
     [settings addObject:p];
@@ -622,10 +624,10 @@ void fillIKMkGPSPosDevFromString(NSString* data,IKMkGPSPosDev* pos){
 void fillIKMkGPSPosFromString(NSString* data,IKMkGPSPos* pos){
   
   NSArray *components=[data componentsSeparatedByString:@":"];
-
+  
   pos->Latitude = [[components objectAtIndex:0] intValue];
   pos->Longitude = [[components objectAtIndex:1] intValue];
-
+  
   pos->Altitude = [[components objectAtIndex:2] intValue];
   pos->Status = [[components objectAtIndex:3] intValue];
 }

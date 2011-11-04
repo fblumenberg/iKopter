@@ -38,44 +38,45 @@
 - (id)initWithModel:(id)aModel andBehavior:(int)behavior{
 	if (self = [super initWithModel:aModel]) {
     
-        IBAFormSection *paramSection=nil;
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Gyro",@"MKParam Camera") footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addPotiFieldForKeyPath:@"Gyro_P" title:NSLocalizedString(@"Gyro-P",@"MKParam Gyro")];
-        [paramSection addPotiFieldForKeyPath:@"Gyro_I" title:NSLocalizedString(@"Gyro-I",@"MKParam Gyro")];
-        [paramSection addPotiFieldForKeyPath:@"Gyro_D" title:NSLocalizedString(@"Gyro-D",@"MKParam Gyro")];
-        
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Yaw",@"MKParam Camera") footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addPotiFieldForKeyPath:@"Gyro_Gier_P" title:NSLocalizedString(@"Yaw-P",@"MKParam Gyro")];
-        [paramSection addPotiFieldForKeyPath:@"Gyro_Gier_I" title:NSLocalizedString(@"Yaw-I",@"MKParam Gyro")];
-
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addPotiFieldForKeyPath:@"DynamicStability" title:NSLocalizedString(@"Dynamic Stability",@"MKParam Gyro")];
-        [paramSection addPotiFieldForKeyPath:@"Gyro_Stability" title:NSLocalizedString(@"Gyro Stability",@"MKParam Gyro")];
+    IBAFormSection *paramSection=nil;
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Gyro",@"MKParam Camera") footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
     
-        [paramSection addNumberFieldForKeyPath:@"Driftkomp" title:NSLocalizedString(@"Drift compensation",@"MKParam Gyro")];
-        [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_DREHRATEN_BEGRENZER" title:NSLocalizedString(@"Rotation limiter",@"MKParam Gyro")];
-
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addNumberFieldForKeyPath:@"GyroAccFaktor" title:NSLocalizedString(@"ACC/Gyro factor",@"MKParam Gyro")];
-        [paramSection addNumberFieldForKeyPath:@"GyroAccAbgleich" title:NSLocalizedString(@"ACC/Gyro comp.",@"MKParam Gyro")];
-        [paramSection addPotiFieldForKeyPath:@"I_Faktor" title:NSLocalizedString(@"Main I",@"MKParam Gyro")];
-        [paramSection addNumberFieldForKeyPath:@"MotorSmooth" title:NSLocalizedString(@"Motor smooth",@"MKParam Gyro")];
+    [paramSection addPotiFieldForKeyPath:@"Gyro_P" title:NSLocalizedString(@"Gyro-P",@"MKParam Gyro")];
+    [paramSection addPotiFieldForKeyPath:@"Gyro_I" title:NSLocalizedString(@"Gyro-I",@"MKParam Gyro")];
+    [paramSection addPotiFieldForKeyPath:@"Gyro_D" title:NSLocalizedString(@"Gyro-D",@"MKParam Gyro")];
+    
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Yaw",@"MKParam Camera") footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    
+    [paramSection addPotiFieldForKeyPath:@"Gyro_Gier_P" title:NSLocalizedString(@"Yaw-P",@"MKParam Gyro")];
+    [paramSection addPotiFieldForKeyPath:@"Gyro_Gier_I" title:NSLocalizedString(@"Yaw-I",@"MKParam Gyro")];
+    
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    
+    [paramSection addPotiFieldForKeyPath:@"DynamicStability" title:NSLocalizedString(@"Dynamic Stability",@"MKParam Gyro")];
+    [paramSection addPotiFieldForKeyPath:@"Gyro_Stability" title:NSLocalizedString(@"Gyro Stability",@"MKParam Gyro")];
+    
+    [paramSection addNumberFieldForKeyPath:@"Driftkomp" title:NSLocalizedString(@"Drift compensation",@"MKParam Gyro")];
+    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_DREHRATEN_BEGRENZER" title:NSLocalizedString(@"Rotation limiter",@"MKParam Gyro")];
+    
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    
+    [paramSection addNumberFieldForKeyPath:@"GyroAccFaktor" title:NSLocalizedString(@"ACC/Gyro factor",@"MKParam Gyro")];
+    [paramSection addNumberFieldForKeyPath:@"GyroAccAbgleich" title:NSLocalizedString(@"ACC/Gyro comp.",@"MKParam Gyro")];
+    [paramSection addPotiFieldForKeyPath:@"I_Faktor" title:NSLocalizedString(@"Main I",@"MKParam Gyro")];
+    if(((IKParamSet*)aModel).Revision.integerValue>=88)
+      [paramSection addNumberFieldForKeyPath:@"MotorSmooth" title:NSLocalizedString(@"Motor smooth",@"MKParam Gyro")];
   }
   
   return self;

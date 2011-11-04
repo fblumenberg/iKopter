@@ -38,45 +38,49 @@
 - (id)initWithModel:(id)aModel andBehavior:(int)behavior{
 	if (self = [super initWithModel:aModel]) {
     
-        IBAFormSection *paramSection=nil;
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addNumberFieldForKeyPath:@"Gas_Min" title:NSLocalizedString(@"Min. Gas",@"MKParam Misc")];
-        [paramSection addNumberFieldForKeyPath:@"Gas_Max" title:NSLocalizedString(@"Max. Gas",@"MKParam Misc")];
-
-        NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
-                                                                                     NSLocalizedString(@"3.0 V",@"MKParam Misc"),
-                                                                                     NSLocalizedString(@"3.3 V",@"MKParam Misc"),
-																					 nil]];
-        
-        IBASingleIndexTransformer *transformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
-        
-		[paramSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"ExtraConfig_3_3V_REFERENCE"
-                                                                            title:NSLocalizedString(@"Voltage reference",@"MKParam Misc")
-                                                                 valueTransformer:transformer
-                                                                    selectionMode:IBAPickListSelectionModeSingle
-                                                                          options:pickListOptions] autorelease]];
-
+    IBAFormSection *paramSection=nil;
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
     
-        [paramSection addPotiFieldForKeyPath:@"CareFreeModeControl" title:NSLocalizedString(@"Carefree control",@"MKParam Misc")];
-        [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_LEARNABLE_CAREFREE" title:NSLocalizedString(@"Teachable Carefree",@"MKParam Misc")];
-        [paramSection addNumberFieldForKeyPath:@"UnterspannungsWarnung" title:NSLocalizedString(@"Low voltage level",@"MKParam Misc")];
-        [paramSection addNumberFieldForKeyPath:@"NotGasZeit" title:NSLocalizedString(@"Emergency time (0.1s)",@"MKParam Misc")];
-        [paramSection addNumberFieldForKeyPath:@"NotGas" title:NSLocalizedString(@"Emergency-Gas",@"MKParam Misc")];
-        [paramSection addNumberFieldForKeyPath:@"FailSafeTime" title:NSLocalizedString(@"Fail CH time (s)",@"MKParam Misc")];
-
-        [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_NO_RCOFF_BEEPING" title:NSLocalizedString(@"No Beep w.o. active sender",@"MKParam Misc")];
-        [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP" title:NSLocalizedString(@"Ignore magnet error at startup",@"MKParam Misc")];
-
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-        [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_HEADING_HOLD" title:NSLocalizedString(@"Heading Hold",@"MKParam Misc")];
-
+    [paramSection addNumberFieldForKeyPath:@"Gas_Min" title:NSLocalizedString(@"Min. Gas",@"MKParam Misc")];
+    [paramSection addNumberFieldForKeyPath:@"Gas_Max" title:NSLocalizedString(@"Max. Gas",@"MKParam Misc")];
+    
+    NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
+                                                                                 NSLocalizedString(@"3.0 V",@"MKParam Misc"),
+                                                                                 NSLocalizedString(@"3.3 V",@"MKParam Misc"),
+                                                                                 nil]];
+    
+    IBASingleIndexTransformer *transformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
+    
+		[paramSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"ExtraConfig_3_3V_REFERENCE"
+                                                                        title:NSLocalizedString(@"Voltage reference",@"MKParam Misc")
+                                                             valueTransformer:transformer
+                                                                selectionMode:IBAPickListSelectionModeSingle
+                                                                      options:pickListOptions] autorelease]];
+    
+    
+    [paramSection addPotiFieldForKeyPath:@"CareFreeModeControl" title:NSLocalizedString(@"Carefree control",@"MKParam Misc")];
+    if(((IKParamSet*)aModel).Revision.integerValue>=88)
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_LEARNABLE_CAREFREE" title:NSLocalizedString(@"Teachable Carefree",@"MKParam Misc")];
+    [paramSection addNumberFieldForKeyPath:@"UnterspannungsWarnung" title:NSLocalizedString(@"Low voltage level",@"MKParam Misc")];
+    [paramSection addNumberFieldForKeyPath:@"NotGasZeit" title:NSLocalizedString(@"Emergency time (0.1s)",@"MKParam Misc")];
+    [paramSection addNumberFieldForKeyPath:@"NotGas" title:NSLocalizedString(@"Emergency-Gas",@"MKParam Misc")];
+    if(((IKParamSet*)aModel).Revision.integerValue>=88)
+      [paramSection addNumberFieldForKeyPath:@"FailSafeTime" title:NSLocalizedString(@"Fail CH time (s)",@"MKParam Misc")];
+    
+    if(((IKParamSet*)aModel).Revision.integerValue>=88)
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_NO_RCOFF_BEEPING" title:NSLocalizedString(@"No Beep w.o. active sender",@"MKParam Misc")];
+    if(((IKParamSet*)aModel).Revision.integerValue>=88)
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP" title:NSLocalizedString(@"Ignore magnet error at startup",@"MKParam Misc")];
+    
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_HEADING_HOLD" title:NSLocalizedString(@"Heading Hold",@"MKParam Misc")];
+    
     
   }
   

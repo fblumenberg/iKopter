@@ -37,46 +37,47 @@
 
 - (id)initWithModel:(id)aModel andBehavior:(int)behavior{
 	if (self = [super initWithModel:aModel]) {
-
-        IBAFormSection *paramSection=nil;
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_GPS_AKTIV" title:NSLocalizedString(@"Enable GPS",@"MKParam NaviCtrl")];
-
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addPotiFieldForKeyPath:@"NaviGpsModeControl" title:NSLocalizedString(@"GPS Mode control",@"MKParam NaviCtrl")];
-        [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_GPS_AID" title:NSLocalizedString(@"Dynamic PH",@"MKParam NaviCtrl")];
-        [paramSection addPotiFieldForKeyPath:@"ComingHomeAltitude" title:NSLocalizedString(@"CH Altitude",@"MKParam NaviCtrl")];
-
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-
-        [paramSection addPotiFieldForKeyPath:@"NaviGpsGain" title:NSLocalizedString(@"GPS Gain",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviStickThreshold" title:NSLocalizedString(@"GPS stick threshold",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviGpsMinSat" title:NSLocalizedString(@"GPS min. Sat",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviGpsP" title:NSLocalizedString(@"GPS-P",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviGpsPLimit" title:NSLocalizedString(@"GPS-P limit",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviGpsI" title:NSLocalizedString(@"GPS-I",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviGpsILimit" title:NSLocalizedString(@"GPS-I limit",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviGpsD" title:NSLocalizedString(@"GPS-D",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviGpsDLimit" title:NSLocalizedString(@"GPS-D limit",@"MKParam NaviCtrl")];
-
-        [paramSection addPotiFieldForKeyPath:@"NaviGpsACC" title:NSLocalizedString(@"GPS ACC",@"MKParam NaviCtrl")];
-        [paramSection addPotiFieldForKeyPath:@"NaviAccCompensation" title:NSLocalizedString(@"GPS ACC comp.",@"MKParam NaviCtrl")];
-        [paramSection addPotiFieldForKeyPath:@"NaviWindCorrection" title:NSLocalizedString(@"GPS wind corr.",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviOperatingRadius" title:NSLocalizedString(@"GPS max. radius",@"MKParam NaviCtrl")];
-
-        [paramSection addPotiFieldForKeyPath:@"NaviAngleLimitation" title:NSLocalizedString(@"GPS angle limit",@"MKParam NaviCtrl")];
-        [paramSection addNumberFieldForKeyPath:@"NaviPH_LoginTime" title:NSLocalizedString(@"PH login time",@"MKParam NaviCtrl")];
+    
+    IBAFormSection *paramSection=nil;
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    
+    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_GPS_AKTIV" title:NSLocalizedString(@"Enable GPS",@"MKParam NaviCtrl")];
+    
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    
+    [paramSection addPotiFieldForKeyPath:@"NaviGpsModeControl" title:NSLocalizedString(@"GPS Mode control",@"MKParam NaviCtrl")];
+    if(((IKParamSet*)aModel).Revision.integerValue>=88){
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_GPS_AID" title:NSLocalizedString(@"Dynamic PH",@"MKParam NaviCtrl")];
+      [paramSection addPotiFieldForKeyPath:@"ComingHomeAltitude" title:NSLocalizedString(@"CH Altitude",@"MKParam NaviCtrl")];
+    }
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    
+    [paramSection addPotiFieldForKeyPath:@"NaviGpsGain" title:NSLocalizedString(@"GPS Gain",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviStickThreshold" title:NSLocalizedString(@"GPS stick threshold",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviGpsMinSat" title:NSLocalizedString(@"GPS min. Sat",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviGpsP" title:NSLocalizedString(@"GPS-P",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviGpsPLimit" title:NSLocalizedString(@"GPS-P limit",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviGpsI" title:NSLocalizedString(@"GPS-I",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviGpsILimit" title:NSLocalizedString(@"GPS-I limit",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviGpsD" title:NSLocalizedString(@"GPS-D",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviGpsDLimit" title:NSLocalizedString(@"GPS-D limit",@"MKParam NaviCtrl")];
+    
+    [paramSection addPotiFieldForKeyPath:@"NaviGpsACC" title:NSLocalizedString(@"GPS ACC",@"MKParam NaviCtrl")];
+    [paramSection addPotiFieldForKeyPath:@"NaviAccCompensation" title:NSLocalizedString(@"GPS ACC comp.",@"MKParam NaviCtrl")];
+    [paramSection addPotiFieldForKeyPath:@"NaviWindCorrection" title:NSLocalizedString(@"GPS wind corr.",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviOperatingRadius" title:NSLocalizedString(@"GPS max. radius",@"MKParam NaviCtrl")];
+    
+    [paramSection addPotiFieldForKeyPath:@"NaviAngleLimitation" title:NSLocalizedString(@"GPS angle limit",@"MKParam NaviCtrl")];
+    [paramSection addNumberFieldForKeyPath:@"NaviPH_LoginTime" title:NSLocalizedString(@"PH login time",@"MKParam NaviCtrl")];
   }
   
   return self;

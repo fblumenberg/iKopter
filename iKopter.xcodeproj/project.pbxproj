@@ -17,7 +17,6 @@
 		76C59201142748A70043F026 /* UIViewController+SplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C59200142748A70043F026 /* UIViewController+SplitView.m */; };
 		BA031B24140433B800CD10C8 /* MapOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */; };
 		BA031B2714043D9400CD10C8 /* BaseOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */; };
-		BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */; };
 		BA0D4670137C5127001415C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D466F137C5127001415C3 /* UIKit.framework */; };
 		BA0D4672137C5127001415C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4671137C5127001415C3 /* Foundation.framework */; };
 		BA0D4674137C5127001415C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4673137C5127001415C3 /* CoreGraphics.framework */; };
@@ -231,7 +230,6 @@
 		BAA4E6D5137EB89D0068E38E /* MixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6A3137EB89C0068E38E /* MixerViewController.m */; };
 		BAA4E6D6137EB89D0068E38E /* Data3DValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6A6137EB89C0068E38E /* Data3DValue.m */; };
 		BAA4E6DA137EB89D0068E38E /* OsdValue.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6AC137EB89C0068E38E /* OsdValue.m */; };
-		BAA4E6DB137EB89D0068E38E /* OsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6AE137EB89C0068E38E /* OsdViewController.m */; };
 		BAA4E6DC137EB89D0068E38E /* OsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6AF137EB89C0068E38E /* OsdViewController.xib */; };
 		BAA4E6DD137EB89D0068E38E /* RawOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E6B1137EB89D0068E38E /* RawOsdViewController.m */; };
 		BAA4E6DE137EB89D0068E38E /* RawOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E6B2137EB89D0068E38E /* RawOsdViewController.xib */; };
@@ -266,7 +264,6 @@
 		BAA4E759137EC6160068E38E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4E757137EC6160068E38E /* Default-Portrait~ipad.png */; };
 		BAA9E1531408F5E70054F123 /* NSString+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9E1521408F5E70054F123 /* NSString+Parsing.m */; };
 		BAA9E1551408F6560054F123 /* FakeOsd.csv in Resources */ = {isa = PBXBuildFile; fileRef = BAA9E1541408F6560054F123 /* FakeOsd.csv */; };
-		BAA9E157140915FC0054F123 /* MapOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA9E156140915FB0054F123 /* MapOsdViewControllerLandscape-iPad.xib */; };
 		BAA9E15B140928330054F123 /* FollowMeOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9E159140928320054F123 /* FollowMeOsdViewController.m */; };
 		BAA9E15C140928330054F123 /* FollowMeOsdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAA9E15A140928330054F123 /* FollowMeOsdViewController.xib */; };
 		BAA9E16014092A300054F123 /* icon-flying.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA9E15E14092A300054F123 /* icon-flying.png */; };
@@ -276,11 +273,8 @@
 		BAB97F8413F84BB200C49BAE /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F8113F84BB200C49BAE /* InnerShadowView.m */; };
 		BAB97F8713F84C0700C49BAE /* InnerShadowDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */; };
 		BAB9A5F6140D654C00741E08 /* FollowMeOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB9A5F2140D654C00741E08 /* FollowMeOsdViewController-iPad.xib */; };
-		BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB9A5F3140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib */; };
-		BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB9A5F4140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib */; };
 		BAB9A5FB140D69CA00741E08 /* ValueBaseOsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB9A5FA140D69CA00741E08 /* ValueBaseOsdViewController.m */; };
 		BABCA86D13F14BE3005FF340 /* ValueOsdViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */; };
-		BABCA86F13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */; };
 		BAC3131C1445F81700EE3D73 /* libRscMgrUniv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAC313191445F81700EE3D73 /* libRscMgrUniv.a */; };
 		BAC81D67139550F000F642FA /* btstack.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D55139550F000F642FA /* btstack.c */; };
 		BAC81D68139550F000F642FA /* hci_cmds.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D57139550F000F642FA /* hci_cmds.c */; };
@@ -375,7 +369,6 @@
 		BA031B23140433B800CD10C8 /* MapOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapOsdViewController-iPad.xib"; sourceTree = "<group>"; };
 		BA031B2514043D9400CD10C8 /* BaseOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOsdViewController.h; sourceTree = "<group>"; };
 		BA031B2614043D9400CD10C8 /* BaseOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOsdViewController.m; sourceTree = "<group>"; };
-		BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ValueOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
 		BA0D466B137C5127001415C3 /* iKopter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iKopter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0D466F137C5127001415C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BA0D4671137C5127001415C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -751,8 +744,6 @@
 		BAA4E6A6137EB89C0068E38E /* Data3DValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data3DValue.m; sourceTree = "<group>"; };
 		BAA4E6AB137EB89C0068E38E /* OsdValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdValue.h; sourceTree = "<group>"; };
 		BAA4E6AC137EB89C0068E38E /* OsdValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdValue.m; sourceTree = "<group>"; };
-		BAA4E6AD137EB89C0068E38E /* OsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdViewController.h; sourceTree = "<group>"; };
-		BAA4E6AE137EB89C0068E38E /* OsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OsdViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BAA4E6AF137EB89C0068E38E /* OsdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OsdViewController.xib; sourceTree = "<group>"; };
 		BAA4E6B0137EB89C0068E38E /* RawOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RawOsdViewController.h; sourceTree = "<group>"; };
 		BAA4E6B1137EB89D0068E38E /* RawOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RawOsdViewController.m; sourceTree = "<group>"; };
@@ -798,7 +789,6 @@
 		BAA9E1511408F5E70054F123 /* NSString+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Parsing.h"; sourceTree = "<group>"; };
 		BAA9E1521408F5E70054F123 /* NSString+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Parsing.m"; sourceTree = "<group>"; };
 		BAA9E1541408F6560054F123 /* FakeOsd.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FakeOsd.csv; sourceTree = "<group>"; };
-		BAA9E156140915FB0054F123 /* MapOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
 		BAA9E158140928320054F123 /* FollowMeOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowMeOsdViewController.h; sourceTree = "<group>"; };
 		BAA9E159140928320054F123 /* FollowMeOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowMeOsdViewController.m; sourceTree = "<group>"; };
 		BAA9E15A140928330054F123 /* FollowMeOsdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowMeOsdViewController.xib; sourceTree = "<group>"; };
@@ -812,12 +802,9 @@
 		BAB97F8513F84C0700C49BAE /* InnerShadowDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowDrawing.h; sourceTree = "<group>"; };
 		BAB97F8613F84C0700C49BAE /* InnerShadowDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowDrawing.m; sourceTree = "<group>"; };
 		BAB9A5F2140D654C00741E08 /* FollowMeOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FollowMeOsdViewController-iPad.xib"; sourceTree = "<group>"; };
-		BAB9A5F3140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FollowMeOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
-		BAB9A5F4140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowMeOsdViewControllerLandscape.xib; sourceTree = "<group>"; };
 		BAB9A5F9140D69CA00741E08 /* ValueBaseOsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValueBaseOsdViewController.h; sourceTree = "<group>"; };
 		BAB9A5FA140D69CA00741E08 /* ValueBaseOsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValueBaseOsdViewController.m; sourceTree = "<group>"; };
 		BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewController-iPad.xib"; sourceTree = "<group>"; };
-		BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ValueOsdViewControllerLandscape-iPad.xib"; sourceTree = "<group>"; };
 		BAC313191445F81700EE3D73 /* libRscMgrUniv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRscMgrUniv.a; path = Frameworks/RedparkSDK/libRscMgrUniv.a; sourceTree = SOURCE_ROOT; };
 		BAC3131A1445F81700EE3D73 /* redparkSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = redparkSerial.h; path = Frameworks/RedparkSDK/redparkSerial.h; sourceTree = SOURCE_ROOT; };
 		BAC3131B1445F81700EE3D73 /* RscMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RscMgr.h; path = Frameworks/RedparkSDK/RscMgr.h; sourceTree = SOURCE_ROOT; };
@@ -1419,12 +1406,10 @@
 		BA9CEE2613F94A1C00D073BF /* Value */ = {
 			isa = PBXGroup;
 			children = (
-				BABCA86E13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib */,
 				BABCA86C13F14BE3005FF340 /* ValueOsdViewController-iPad.xib */,
 				BAA4E6B3137EB89D0068E38E /* ValueOsdViewController.h */,
 				BAA4E6B4137EB89D0068E38E /* ValueOsdViewController.m */,
 				BAA4E6B5137EB89D0068E38E /* ValueOsdViewController.xib */,
-				BA06275D13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib */,
 			);
 			name = Value;
 			sourceTree = "<group>";
@@ -1442,7 +1427,6 @@
 		BA9CEE2913F94A7400D073BF /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				BAA9E156140915FB0054F123 /* MapOsdViewControllerLandscape-iPad.xib */,
 				BAE3B00013A4B27D007E0F2F /* MapOsdViewController.h */,
 				BAE3B00113A4B27D007E0F2F /* MapOsdViewController.m */,
 				BAE3B00213A4B27D007E0F2F /* MapOsdViewController.xib */,
@@ -1740,8 +1724,6 @@
 				BAA4E6A6137EB89C0068E38E /* Data3DValue.m */,
 				BAA4E6AB137EB89C0068E38E /* OsdValue.h */,
 				BAA4E6AC137EB89C0068E38E /* OsdValue.m */,
-				BAA4E6AD137EB89C0068E38E /* OsdViewController.h */,
-				BAA4E6AE137EB89C0068E38E /* OsdViewController.m */,
 				BAA4E6AF137EB89C0068E38E /* OsdViewController.xib */,
 				BA9CEE2813F94A6800D073BF /* Raw */,
 				BA9CEE2913F94A7400D073BF /* Map */,
@@ -1799,8 +1781,6 @@
 			isa = PBXGroup;
 			children = (
 				BAB9A5F2140D654C00741E08 /* FollowMeOsdViewController-iPad.xib */,
-				BAB9A5F3140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib */,
-				BAB9A5F4140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib */,
 				BAA9E158140928320054F123 /* FollowMeOsdViewController.h */,
 				BAA9E159140928320054F123 /* FollowMeOsdViewController.m */,
 				BAA9E15A140928330054F123 /* FollowMeOsdViewController.xib */,
@@ -2031,9 +2011,7 @@
 				BA41B6F613D4379B00408B18 /* icon-backforth.png in Resources */,
 				BA41B6F713D4379B00408B18 /* icon-backforth@2x.png in Resources */,
 				BAFBEC0313DDD4EA000BA62F /* userDefaults.plist in Resources */,
-				BA06275E13DEDE01008C7000 /* ValueOsdViewControllerLandscape.xib in Resources */,
 				BABCA86D13F14BE3005FF340 /* ValueOsdViewController-iPad.xib in Resources */,
-				BABCA86F13F14E93005FF340 /* ValueOsdViewControllerLandscape-iPad.xib in Resources */,
 				BAB97F8213F84BB200C49BAE /* backgroundSmall.png in Resources */,
 				BA61017913F868BA00275CB6 /* battery.png in Resources */,
 				BA61017A13F868BA00275CB6 /* battery30.png in Resources */,
@@ -2062,13 +2040,10 @@
 				BA9CEE2D13F950D000D073BF /* flightTime@2x.png in Resources */,
 				BA031B24140433B800CD10C8 /* MapOsdViewController-iPad.xib in Resources */,
 				BAA9E1551408F6560054F123 /* FakeOsd.csv in Resources */,
-				BAA9E157140915FC0054F123 /* MapOsdViewControllerLandscape-iPad.xib in Resources */,
 				BAA9E15C140928330054F123 /* FollowMeOsdViewController.xib in Resources */,
 				BAA9E16014092A300054F123 /* icon-flying.png in Resources */,
 				BAA9E16114092A300054F123 /* icon-flying@2x.png in Resources */,
 				BAB9A5F6140D654C00741E08 /* FollowMeOsdViewController-iPad.xib in Resources */,
-				BAB9A5F7140D654C00741E08 /* FollowMeOsdViewControllerLandscape-iPad.xib in Resources */,
-				BAB9A5F8140D654C00741E08 /* FollowMeOsdViewControllerLandscape.xib in Resources */,
 				76C591FB142747750043F026 /* DetailView.xib in Resources */,
 				BA998D86144C91A900370360 /* Bleep.mp3 in Resources */,
 			);
@@ -2178,7 +2153,6 @@
 				BAA4E6D5137EB89D0068E38E /* MixerViewController.m in Sources */,
 				BAA4E6D6137EB89D0068E38E /* Data3DValue.m in Sources */,
 				BAA4E6DA137EB89D0068E38E /* OsdValue.m in Sources */,
-				BAA4E6DB137EB89D0068E38E /* OsdViewController.m in Sources */,
 				BAA4E6DD137EB89D0068E38E /* RawOsdViewController.m in Sources */,
 				BAA4E6DF137EB89D0068E38E /* ValueOsdViewController.m in Sources */,
 				BAA4E6E2137EB89D0068E38E /* SettingsSelectionViewController.m in Sources */,
