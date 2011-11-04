@@ -39,7 +39,18 @@
 
 @implementation IBAInputManager
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
++ (IBAInputManager *)sharedIBAInputManager{
+  
+    static dispatch_once_t once;
+    static IBAInputManager *sharedIBAInputManager__ = nil;
+    
+    dispatch_once(&once, ^ { 
+      sharedIBAInputManager__=[[IBAInputManager alloc]init];
+    });
+    
+    return sharedIBAInputManager__;
+  
+}
 
 @synthesize inputRequestorDataSource = inputRequestorDataSource_;
 @synthesize inputNavigationToolbar = inputNavigationToolbar_;

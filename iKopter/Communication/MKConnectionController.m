@@ -103,7 +103,18 @@ NSString * const MKWritePointNotification = @"MKWritePointNotification";
 
 
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
++(MKConnectionController*) sharedMKConnectionController{
+  static dispatch_once_t once;
+	static MKConnectionController *sharedMKConnectionController__ = nil;
+  
+  dispatch_once(&once, ^ { 
+    sharedMKConnectionController__=[[MKConnectionController alloc]init];
+  });
+  
+	return sharedMKConnectionController__;
+}
+
+//SYNTHESIZE_SINGLETON_FOR_CLASS(MKConnectionController);
 
 // -------------------------------------------------------------------------------
 

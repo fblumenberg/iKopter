@@ -34,7 +34,18 @@
 
 @implementation IKDropboxController
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(IKDropboxController);
++ (IKDropboxController *)sharedIKDropboxController{
+  
+  static dispatch_once_t once;
+  static IKDropboxController *sharedIKDropboxController__ = nil;
+  
+  dispatch_once(&once, ^ { 
+    sharedIKDropboxController__=[[IKDropboxController alloc]init];
+  });
+  
+  return sharedIKDropboxController__;
+  
+}
 
 @synthesize delegate;
 @synthesize metaData;
