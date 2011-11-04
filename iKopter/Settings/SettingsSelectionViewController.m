@@ -430,7 +430,7 @@ static NSUInteger kNumberOfSettings = 5;
       if(!self.isPad)
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-      MixerViewController* extraView=nil;
+      UIViewController* extraView=nil;
 
       switch (indexPath.row) {
         case 0:

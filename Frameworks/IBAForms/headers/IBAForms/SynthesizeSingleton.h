@@ -58,10 +58,6 @@ static classname *shared##classname = nil; \
 	return NSUIntegerMax; \
 } \
  \
-- (void)release \
-{ \
-} \
- \
 - (id)autorelease \
 { \
 	return self; \

@@ -63,25 +63,25 @@
     NSString* nibName;
     nibName=@"ValueOsdViewController";
     if(self.isPad) nibName = [nibName stringByAppendingString:@"-iPad"];
-    ValueOsdViewController* valueViewController=[[ValueOsdViewController alloc]initWithNibName:nibName bundle:nil];
+    ValueOsdViewController* valueViewController=[[[ValueOsdViewController alloc]initWithNibName:nibName bundle:nil]autorelease];
     valueViewController.tabBarItem.title=NSLocalizedString(@"Values", @"Values tab item");
     valueViewController.tabBarItem.image=[UIImage imageNamed:@"tabValues.png"];
     
     nibName=@"RawOsdViewController";
 //    if(self.isPad) nibName = [nibName stringByAppendingString:@"-iPad"];
-    RawOsdViewController* rawViewController=[[RawOsdViewController alloc]initWithNibName:nibName bundle:nil];
+    RawOsdViewController* rawViewController=[[[RawOsdViewController alloc]initWithNibName:nibName bundle:nil]autorelease];
     rawViewController.tabBarItem.title=NSLocalizedString(@"Raw Values", @"Raw Values tab item");
     rawViewController.tabBarItem.image=[UIImage imageNamed:@"icon-receipt.png"];
     
     nibName=@"MapOsdViewController";
     if(self.isPad) nibName = [nibName stringByAppendingString:@"-iPad"];
-    MapOsdViewController* mapViewController=[[MapOsdViewController alloc]initWithNibName:nibName bundle:nil];
+    MapOsdViewController* mapViewController=[[[MapOsdViewController alloc]initWithNibName:nibName bundle:nil]autorelease];
     mapViewController.tabBarItem.title=NSLocalizedString(@"Map", @"Map tab item");
     mapViewController.tabBarItem.image=[UIImage imageNamed:@"icon-map1.png"];
     
     nibName=@"FollowMeOsdViewController";
     if(self.isPad) nibName = [nibName stringByAppendingString:@"-iPad"];
-    FollowMeOsdViewController* followMeViewController=[[FollowMeOsdViewController alloc]initWithNibName:nibName bundle:nil];
+    FollowMeOsdViewController* followMeViewController=[[[FollowMeOsdViewController alloc]initWithNibName:nibName bundle:nil]autorelease];
     followMeViewController.tabBarItem.title=NSLocalizedString(@"Follow Me", @"Follow me tab item");
     followMeViewController.tabBarItem.image=[UIImage imageNamed:@"icon-flying.png"];
     
