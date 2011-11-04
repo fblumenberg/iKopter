@@ -220,11 +220,8 @@
 		return 44;
 }
 
-- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {  
-  
-  UITableViewCell* cell = (UITableViewCell*)(gestureRecognizer.view);
-  [cell setSelected:YES animated:NO];
-  
+
+-(void) showOsd {
   OsdTabBarController* tbc = [[[OsdTabBarController alloc] initWithNibName:nil bundle:nil]autorelease];
   UINavigationController* nc= [[[UINavigationController alloc] initWithRootViewController:tbc]autorelease];
   
@@ -236,6 +233,14 @@
   }
   else
     [self presentModalViewController:nc animated:YES];
+}
+
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {  
+  
+  UITableViewCell* cell = (UITableViewCell*)(gestureRecognizer.view);
+  [cell setSelected:YES animated:NO];
+
+  [self performSelector:@selector(showOsd) withObject:nil afterDelay:0.0];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
