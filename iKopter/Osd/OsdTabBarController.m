@@ -68,7 +68,7 @@
     valueViewController.tabBarItem.image=[UIImage imageNamed:@"tabValues.png"];
     
     nibName=@"RawOsdViewController";
-    if(self.isPad) nibName = [nibName stringByAppendingString:@"-iPad"];
+//    if(self.isPad) nibName = [nibName stringByAppendingString:@"-iPad"];
     RawOsdViewController* rawViewController=[[RawOsdViewController alloc]initWithNibName:nibName bundle:nil];
     rawViewController.tabBarItem.title=NSLocalizedString(@"Raw Values", @"Raw Values tab item");
     rawViewController.tabBarItem.image=[UIImage imageNamed:@"icon-receipt.png"];
