@@ -43,7 +43,7 @@
 
 @property (nonatomic, retain) UIButton *screenLockButton;
 @property (nonatomic, retain) OsdValue *osdValue;
-
+@property (nonatomic, retain) FollowMeOsdViewController* followMeViewController;
 @end
 
 
@@ -52,6 +52,7 @@
 
 @synthesize screenLockButton;
 @synthesize osdValue;
+@synthesize followMeViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,14 +82,14 @@
     
     nibName=@"FollowMeOsdViewController";
     if(self.isPad) nibName = [nibName stringByAppendingString:@"-iPad"];
-    FollowMeOsdViewController* followMeViewController=[[[FollowMeOsdViewController alloc]initWithNibName:nibName bundle:nil]autorelease];
-    followMeViewController.tabBarItem.title=NSLocalizedString(@"Follow Me", @"Follow me tab item");
-    followMeViewController.tabBarItem.image=[UIImage imageNamed:@"icon-flying.png"];
-    
+    self.followMeViewController=[[[FollowMeOsdViewController alloc]initWithNibName:nibName bundle:nil]autorelease];
+    self.followMeViewController.tabBarItem.title=NSLocalizedString(@"Follow Me", @"Follow me tab item");
+    self.followMeViewController.tabBarItem.image=[UIImage imageNamed:@"icon-flying.png"];
+    self.followMeViewController.osdValue = self.osdValue;
     self.viewControllers = [NSArray arrayWithObjects:
                             valueViewController, 
                             mapViewController,
-                            followMeViewController,
+                            self.followMeViewController,
                             rawViewController,
                             nil];
     self.selectedViewController = valueViewController;
@@ -137,6 +138,8 @@
 
   self.osdValue = [[[OsdValue alloc] init]autorelease];
   self.osdValue.delegate = self;
+  
+  self.followMeViewController.osdValue = self.osdValue;
 }
 
 - (void)viewDidUnload
@@ -145,6 +148,7 @@
   
   self.screenLockButton=nil;
   self.osdValue=nil;
+  self.followMeViewController=nil;
 }
 
 - (void) viewWillAppear:(BOOL)animated {

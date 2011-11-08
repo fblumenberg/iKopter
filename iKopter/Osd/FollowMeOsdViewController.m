@@ -81,7 +81,7 @@
   self.followMeSwitch.enabled = value.canFollowMe;
   self.followMeRequests.text=[NSString stringWithFormat:@"%d",value.followMeRequests];
 
-  self.followMeActive.text = value.followMeActive?@"\ue21a":@"\ue219";
+  self.followMeActive.text = value.followMeActive?@"💚":@"🔴";
   
   //-----------------------------------------------------------------------
   [self updateHeightView:value];

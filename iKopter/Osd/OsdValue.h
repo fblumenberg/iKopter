@@ -89,6 +89,7 @@
 @property(readonly) BOOL canFollowMe;
 @property(readonly) NSInteger followMeRequests;
 @property(readonly) BOOL followMeActive;
+@property(readonly) double followMeHorizontalAccuracy;
 
 - (void) startRequesting;
 - (void) stopRequesting;

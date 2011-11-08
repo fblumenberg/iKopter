@@ -126,6 +126,10 @@ static const NSString *errorMsg[25] = {
   return _followMe && _followMeCanStart;
 }
 
+-(double) followMeHorizontalAccuracy{
+  return self.lm.location.horizontalAccuracy;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(const NSString*) currentErrorMessage{
@@ -284,11 +288,12 @@ static const NSString *errorMsg[25] = {
     
     self.lm = [[[CLLocationManager alloc] init]autorelease];
     self.lm.delegate = self;
-    
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeAccuracyBestForNavigation"])
-      self.lm.desiredAccuracy = kCLLocationAccuracyBest;
-    else
+
+    BOOL b=[[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeAccuracyBestForNavigation"];
+    if(b)
       self.lm.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    else
+      self.lm.desiredAccuracy = kCLLocationAccuracyBest;
       
   }
   return self;
@@ -376,6 +381,8 @@ static const NSString *errorMsg[25] = {
 
 - (void) osdNotification:(NSNotification *)aNotification {
 
+  _followMeCanStart=self.lm.location.horizontalAccuracy>=0.0;
+  
   requestCount=0;
   self.data = [[aNotification userInfo] objectForKey:kIKDataKeyOsd];
   
@@ -410,12 +417,6 @@ static const NSString *errorMsg[25] = {
 - (void)locationManager:(CLLocationManager *)manager 
     didUpdateToLocation:(CLLocation *)newLocation 
            fromLocation:(CLLocation *)oldLocation {
-  
-  if ([newLocation.timestamp timeIntervalSince1970] < [NSDate timeIntervalSinceReferenceDate] - 60)
-    return;
-  
-  _followMeCanStart=YES;
-
 }
 
 - (void)locationManager:(CLLocationManager *)manager 
