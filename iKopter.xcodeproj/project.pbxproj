@@ -794,6 +794,8 @@
 		BAA9E15A140928330054F123 /* FollowMeOsdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowMeOsdViewController.xib; sourceTree = "<group>"; };
 		BAA9E15E14092A300054F123 /* icon-flying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-flying.png"; sourceTree = "<group>"; };
 		BAA9E15F14092A300054F123 /* icon-flying@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-flying@2x.png"; sourceTree = "<group>"; };
+		BAB3F20F1466FB9D0058F153 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		BAB3F2101466FBA50058F153 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		BAB97F7D13F84BB200C49BAE /* backgroundSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundSmall.png; sourceTree = "<group>"; };
 		BAB97F7E13F84BB200C49BAE /* CoolPatternView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolPatternView.h; sourceTree = "<group>"; };
 		BAB97F7F13F84BB200C49BAE /* CoolPatternView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoolPatternView.m; sourceTree = "<group>"; };
@@ -2288,6 +2290,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BA0D46DD137C60EB001415C3 /* en */,
+				BAB3F20F1466FB9D0058F153 /* de */,
 			);
 			name = "MainWindow-iPad.xib";
 			sourceTree = "<group>";
@@ -2296,6 +2299,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BA0D46DF137C60EB001415C3 /* en */,
+				BAB3F2101466FBA50058F153 /* de */,
 			);
 			name = MainWindow.xib;
 			sourceTree = "<group>";
