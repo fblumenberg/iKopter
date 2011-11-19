@@ -375,7 +375,15 @@
   [alert show];
   [alert release];
   
-  self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized);
+  
+  if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
+    self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
+                                     [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+  }
+  else{
+    self.addWithGpsButton.enabled = [CLLocationManager locationServicesEnabled];
+  }
+  
   self.lm = nil;
 }
 
