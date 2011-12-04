@@ -38,6 +38,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include <btstack/hci_cmds.h>
 #include <btstack/utils.h>
 #include "hci_transport.h"
@@ -52,21 +54,49 @@
 extern "C" {
 #endif
     
-// packet header lenghts
-#define HCI_CMD_DATA_PKT_HDR	  0x03
-#define HCI_ACL_DATA_PKT_HDR	  0x04
-#define HCI_SCO_DATA_PKT_HDR	  0x03
-#define HCI_EVENT_PKT_HDR         0x02
+// packet header sizes
+#define HCI_CMD_HEADER_SIZE          3
+#define HCI_ACL_HEADER_SIZE   	     4
+#define HCI_SCO_HEADER_SIZE  	     3
+#define HCI_EVENT_HEADER_SIZE        2
 
-// packet sizes
-#define HCI_ACL_3DH5_SIZE         1021
+// packet sizes (max payload)
+#define HCI_ACL_DM1_SIZE            17
+#define HCI_ACL_DH1_SIZE            27
+#define HCI_ACL_2DH1_SIZE           54
+#define HCI_ACL_3DH1_SIZE           83
+#define HCI_ACL_DM3_SIZE           121
+#define HCI_ACL_DH3_SIZE           183
+#define HCI_ACL_DM5_SIZE           224
 #define HCI_ACL_DH5_SIZE           339
-
+#define HCI_ACL_2DH3_SIZE          367
+#define HCI_ACL_3DH3_SIZE          552
+#define HCI_ACL_2DH5_SIZE          679
+#define HCI_ACL_3DH5_SIZE         1021
+       
+#define HCI_EVENT_PAYLOAD_SIZE     255
+#define HCI_CMD_PAYLOAD_SIZE       255
+    
+// packet buffer sizes
+// HCI_ACL_PAYLOAD_SIZE is configurable and defined in config.h
+#define HCI_EVENT_BUFFER_SIZE      (HCI_EVENT_HEADER_SIZE + HCI_EVENT_PAYLOAD_SIZE)
+#define HCI_CMD_BUFFER_SIZE        (HCI_CMD_HEADER_SIZE   + HCI_CMD_PAYLOAD_SIZE)
+#define HCI_ACL_BUFFER_SIZE        (HCI_ACL_HEADER_SIZE   + HCI_ACL_PAYLOAD_SIZE)
+    
+// size of hci buffers, big enough for command, event, or acl packet without H4 packet type
+// @note cmd buffer is bigger than event buffer
+#if HCI_ACL_BUFFER_SIZE > HCI_CMD_BUFFER_SIZE
+#define HCI_PACKET_BUFFER_SIZE HCI_ACL_BUFFER_SIZE
+#else
+#define HCI_PACKET_BUFFER_SIZE HCI_CMD_BUFFER_SIZE
+#endif
+    
 // OGFs
 #define OGF_LINK_CONTROL          0x01
 #define OGF_LINK_POLICY           0x02
 #define OGF_CONTROLLER_BASEBAND   0x03
 #define OGF_INFORMATIONAL_PARAMETERS 0x04
+#define OGF_LE_CONTROLLER 0x08
 #define OGF_BTSTACK 0x3d
 #define OGF_VENDOR  0x3f
 
@@ -130,32 +160,41 @@ extern "C" {
 #define RFCOMM_ACCEPT_CONNECTION    0x44
 #define RFCOMM_DECLINE_CONNECTION   0x45
 #define RFCOMM_PERSISTENT_CHANNEL   0x46
+#define RFCOMM_CREATE_CHANNEL_WITH_CREDITS   0x47
+#define RFCOMM_REGISTER_SERVICE_WITH_CREDITS 0x48
+#define RFCOMM_GRANT_CREDITS                 0x49
     
 // 
 #define IS_COMMAND(packet, command) (READ_BT_16(packet,0) == command.opcode)
 
 // data: event(8)
-#define DAEMON_EVENT_CONNECTION_OPENED                     0x70
+#define DAEMON_EVENT_CONNECTION_OPENED                     0x50
 
 // data: event(8)
-#define DAEMON_EVENT_CONNECTION_CLOSED                     0x71
+#define DAEMON_EVENT_CONNECTION_CLOSED                     0x51
 
 // data: event(8), nr_connections(8)
-#define DAEMON_NR_CONNECTIONS_CHANGED                      0x72
+#define DAEMON_NR_CONNECTIONS_CHANGED                      0x52
 
+// data: event(8)
+#define DAEMON_EVENT_NEW_RFCOMM_CREDITS                    0x53
 
-
+// data: event()
+#define DAEMON_EVENT_HCI_PACKET_SENT                       0x54
+    
 /**
  * Connection State 
  */
 typedef enum {
+    AUTH_FLAGS_NONE                = 0x00,
     RECV_LINK_KEY_REQUEST          = 0x01,
-    SENT_LINK_KEY_REPLY            = 0x02,
-    SENT_LINK_KEY_NEGATIVE_REQUEST = 0x04,
-    RECV_LINK_KEY_NOTIFICATION     = 0x08,
-    RECV_PIN_CODE_REQUEST          = 0x10,
-    SENT_PIN_CODE_REPLY            = 0x20, 
-    SENT_PIN_CODE_NEGATIVE_REPLY   = 0x40 
+    HANDLE_LINK_KEY_REQUEST        = 0x02,
+    SENT_LINK_KEY_REPLY            = 0x04,
+    SENT_LINK_KEY_NEGATIVE_REQUEST = 0x08,
+    RECV_LINK_KEY_NOTIFICATION     = 0x10,
+    RECV_PIN_CODE_REQUEST          = 0x20,
+    SENT_PIN_CODE_REPLY            = 0x40, 
+    SENT_PIN_CODE_NEGATIVE_REPLY   = 0x80 
 } hci_authentication_flags_t;
 
 typedef enum {
@@ -188,15 +227,19 @@ typedef struct {
     
     // errands
     hci_authentication_flags_t authentication_flags;
+
+    timer_source_t timeout;
     
 #ifdef HAVE_TIME
     // timer
-    timer_source_t timeout;
     struct timeval timestamp;
 #endif
-
-    // ACL packet recombination
-    uint8_t  acl_recombination_buffer[HCI_ACL_3DH5_SIZE]; // max packet: DH5 = header(4) + payload (339)
+#ifdef HAVE_TICK
+    uint32_t timestamp; // timeout in system ticks
+#endif
+    
+    // ACL packet recombination - ACL Header + ACL payload
+    uint8_t  acl_recombination_buffer[4 + HCI_ACL_BUFFER_SIZE];
     uint16_t acl_recombination_pos;
     uint16_t acl_recombination_length;
     
@@ -220,7 +263,7 @@ typedef struct {
     linked_list_t     connections;
 
     // single buffer for HCI Command assembly
-    uint8_t          * hci_cmd_buffer;
+    uint8_t          hci_packet_buffer[HCI_PACKET_BUFFER_SIZE]; // opcode (16), len(8)
     
     /* host to controller flow control */
     uint8_t  num_cmd_packets;
@@ -228,19 +271,29 @@ typedef struct {
     uint8_t  total_num_acl_packets;
     uint16_t acl_data_packet_length;
 
+    // usable packet types given acl_data_packet_length and HCI_ACL_BUFFER_SIZE
+    uint16_t packet_types;
+    
     /* callback to L2CAP layer */
     void (*packet_handler)(uint8_t packet_type, uint8_t *packet, uint16_t size);
 
     /* remote device db */
-    remote_device_db_t *remote_device_db;
+    remote_device_db_t const*remote_device_db;
     
     /* hci state machine */
     HCI_STATE state;
     uint8_t   substate;
     uint8_t   cmds_ready;
     
-    /* */
     uint8_t   discoverable;
+    uint8_t   connectable;
+    
+    /* buffer for scan enable cmd - 0xff no change */
+    uint8_t   new_scan_enable_value;
+    
+    // buffer for single connection decline
+    uint8_t   decline_reason;
+    bd_addr_t decline_addr;
     
 } hci_stack_t;
 
@@ -249,13 +302,14 @@ uint16_t hci_create_cmd(uint8_t *hci_cmd_buffer, hci_cmd_t *cmd, ...);
 uint16_t hci_create_cmd_internal(uint8_t *hci_cmd_buffer, const hci_cmd_t *cmd, va_list argptr);
 
 // set up HCI
-void hci_init(hci_transport_t *transport, void *config, bt_control_t *control, remote_device_db_t * remote_device_db);
+void hci_init(hci_transport_t *transport, void *config, bt_control_t *control, remote_device_db_t const* remote_device_db);
 void hci_register_packet_handler(void (*handler)(uint8_t packet_type, uint8_t *packet, uint16_t size));
 void hci_close(void);
 
 // power and inquriy scan control
-int hci_power_control(HCI_POWER_MODE mode);
+int  hci_power_control(HCI_POWER_MODE mode);
 void hci_discoverable_control(uint8_t enable);
+void hci_connectable_control(uint8_t enable);
 
 /**
  * run the hci control loop once
@@ -271,17 +325,21 @@ int hci_send_cmd_packet(uint8_t *packet, int size);
 // send ACL packet
 int hci_send_acl_packet(uint8_t *packet, int size);
 
+// non-blocking UART driver needs
+int hci_can_send_packet_now(uint8_t packet_type);
+    
 hci_connection_t * connection_for_handle(hci_con_handle_t con_handle);
-uint8_t hci_number_outgoing_packets(hci_con_handle_t handle);
-uint8_t hci_number_free_acl_slots(void);
-int     hci_ready_to_send(hci_con_handle_t handle);
-int     hci_authentication_active_for_handle(hci_con_handle_t handle);
-void    hci_drop_link_key_for_bd_addr(bd_addr_t *addr);
+uint8_t  hci_number_outgoing_packets(hci_con_handle_t handle);
+uint8_t  hci_number_free_acl_slots(void);
+int      hci_authentication_active_for_handle(hci_con_handle_t handle);
+void     hci_drop_link_key_for_bd_addr(bd_addr_t *addr);
 uint16_t hci_max_acl_data_packet_length(void);
+uint16_t hci_usable_acl_packet_types(void);
+uint8_t* hci_get_outgoing_acl_packet_buffer(void);
 
 // 
 void hci_emit_state(void);
-void hci_emit_connection_complete(hci_connection_t *conn);
+void hci_emit_connection_complete(hci_connection_t *conn, uint8_t status);
 void hci_emit_l2cap_check_timeout(hci_connection_t *conn);
 void hci_emit_disconnection_complete(uint16_t handle, uint8_t reason);
 void hci_emit_nr_connections_changed(void);

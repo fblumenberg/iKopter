@@ -55,6 +55,8 @@ typedef struct {
     const char * (*get_transport_name)(void);
     // custom extension for UART transport implementations
     int    (*set_baudrate)(uint32_t baudrate);
+    // support async transport layers, e.g. IRQ driven without buffers
+    int    (*can_send_packet_now)(uint8_t packet_type);
 } hci_transport_t;
 
 typedef struct {
@@ -65,18 +67,15 @@ typedef struct {
 } hci_uart_config_t;
 
 
-#if 0
-typedef struct {
-    // unique usb device identifier
-} hci_libusb_config_t;
-#endif
-
 // inline various hci_transport_X.h files
 extern hci_transport_t * hci_transport_h4_instance(void);
 extern hci_transport_t * hci_transport_h4_dma_instance(void);
 extern hci_transport_t * hci_transport_h5_instance(void);
 extern hci_transport_t * hci_transport_usb_instance(void);
 
+// support for "enforece wake device" in h4 - used by iOS power management
+extern void hci_transport_h4_set_enforce_wake_device(char *path);
+    
 #if defined __cplusplus
 }
 #endif

@@ -39,6 +39,7 @@
 
 #include <btstack/run_loop.h>
 #include "run_loop_private.h"
+#include "debug.h"
 
 #import <Foundation/Foundation.h>
 #import <CoreFoundation/CoreFoundation.h>
@@ -71,7 +72,7 @@ void cocoa_add_data_source(data_source_t *dataSource){
 	
 	// store our dataSource in socket context
 	CFSocketContext socketContext;
-	bzero(&socketContext, sizeof(CFSocketContext));
+	memset(&socketContext, 0, sizeof(CFSocketContext));
 	socketContext.info = dataSource;
 
 	// create CFSocket from file descriptor
@@ -141,11 +142,11 @@ void cocoa_execute(void)
 }
 
 void cocoa_dump_timer(void){
-    fprintf(stderr, "WARNING: run_loop_dump_timer not implemented yet!");
+    log_error("WARNING: run_loop_dump_timer not implemented!");
 	return;
 }
 
-const run_loop_t run_loop_cocoa = {
+run_loop_t run_loop_cocoa = {
     &cocoa_init,
     &cocoa_add_data_source,
     &cocoa_remove_data_source,

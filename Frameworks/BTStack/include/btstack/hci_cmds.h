@@ -97,8 +97,15 @@ extern "C" {
 #define HCI_EVENT_PACKET_TYPE_CHANGED                      0x1D
 #define HCI_EVENT_INQUIRY_RESULT_WITH_RSSI		      	   0x22
 #define HCI_EVENT_EXTENDED_INQUIRY_RESPONSE                0x2F
+#define HCI_EVENT_LE_META                                  0x3E
 #define HCI_EVENT_VENDOR_SPECIFIC				           0xFF
 
+#define HCI_SUBEVENT_LE_CONNECTION_COMPLETE                0x01
+#define HCI_SUBEVENT_LE_ADVERTISING_REPORT                 0x02
+#define HCI_SUBEVENT_LE_CONNECTION_UPDATE_COMPLETE         0x03
+#define HCI_SUBEVENT_LE_READ_REMOTE_USED_FEATURES_COMPLETE 0x04
+#define HCI_SUBEVENT_LE_LONG_TERM_KEY_REQUEST              0x05
+    
 // last used HCI_EVENT in 2.1 is 0x3d
 
 // events 0x50-0x5f are used internally
@@ -128,7 +135,7 @@ extern "C" {
 
 // L2CAP EVENTS
 	
-// data: event (8), len(8), status (8), address(48), handle (16), psm (16), local_cid(16), remote_cid (16) 
+// data: event (8), len(8), status (8), address(48), handle (16), psm (16), local_cid(16), remote_cid (16), local_mtu(16), remote_mtu(16) 
 #define L2CAP_EVENT_CHANNEL_OPENED                         0x70
 
 // data: event (8), len(8), channel (16)
@@ -143,20 +150,16 @@ extern "C" {
 // data: event(8), len(8), local_cid(16), credits(8)
 #define L2CAP_EVENT_CREDITS								   0x74
 
+// data: event(8), len(8), status (8), psm (16)
+#define L2CAP_EVENT_SERVICE_REGISTERED                     0x75
+
 
 // RFCOMM EVENTS
 	
-// The current BTstack-0.3-50x in Cydia uses
-// data: event(8), len(8), status (8), address (48), server channel(8), rfcomm_cid(16), max frame size(16)
-
-// The SVN version and the next update will use
 // data: event(8), len(8), status (8), address (48), handle (16), server channel(8), rfcomm_cid(16), max frame size(16)
-    
-// status: 0 = OK
 #define RFCOMM_EVENT_OPEN_CHANNEL_COMPLETE                 0x80
 	
-// data: event(8), len(8), channelID(8)
-// status: 0 = OK
+// data: event(8), len(8), rfcomm_cid(16)
 #define RFCOMM_EVENT_CHANNEL_CLOSED                        0x81
 	
 // data: event (8), len(8), address(48), channel (8), rfcomm_cid (16)
@@ -165,14 +168,17 @@ extern "C" {
 // data: event (8), len(8), rfcommid (16), ...
 #define RFCOMM_EVENT_REMOTE_LINE_STATUS                    0x83
 	
-// data: event(8), len(8), local_cid(16), credits(8)
+// data: event(8), len(8), rfcomm_cid(16), credits(8)
 #define RFCOMM_EVENT_CREDITS			                   0x84
 	
-// data: event(8), len(8), status (8), registration id(16), rfcomm server channel id (8) 
+// data: event(8), len(8), status (8), rfcomm server channel id (8) 
 #define RFCOMM_EVENT_SERVICE_REGISTERED                    0x85
     
-
-// data: event(8), len(8), service_record_handle(32)
+// data: event(8), len(8), status (8), rfcomm server channel id (8) 
+#define RFCOMM_EVENT_PERSISTENT_CHANNEL                    0x86
+    
+    
+// data: event(8), len(8), status(8), service_record_handle(32)
 #define SDP_SERVICE_REGISTERED                             0x90
 
 	
@@ -185,6 +191,7 @@ extern "C" {
 #define BTSTACK_NOT_ACTIVATED							   0x54
 #define BTSTACK_BUSY									   0x55
 #define BTSTACK_MEMORY_ALLOC_FAILED                        0x56
+#define BTSTACK_ACL_BUFFERS_FULL                           0x57
 
 // l2cap errors - enumeration by the command that created them
 #define L2CAP_COMMAND_REJECT_REASON_COMMAND_NOT_UNDERSTOOD 0x60
@@ -201,9 +208,14 @@ extern "C" {
 #define L2CAP_CONFIG_RESPONSE_RESULT_UNACCEPTABLE_PARAMS   0x67
 #define L2CAP_CONFIG_RESPONSE_RESULT_REJECTED              0x68
 #define L2CAP_CONFIG_RESPONSE_RESULT_UNKNOWN_OPTIONS       0x69
-
-#define RFCOMM_MULTIPLEXER_STOPPED                         0x70
+#define L2CAP_SERVICE_ALREADY_REGISTERED                   0x6a
     
+#define RFCOMM_MULTIPLEXER_STOPPED                         0x70
+#define RFCOMM_CHANNEL_ALREADY_REGISTERED                  0x71
+#define RFCOMM_NO_OUTGOING_CREDITS                         0x72
+
+#define SDP_HANDLE_ALREADY_REGISTERED                      0x80
+ 
 /**
  * Default INQ Mode
  */
@@ -265,19 +277,24 @@ extern const hci_cmd_t hci_pin_code_request_negative_reply;
 extern const hci_cmd_t hci_qos_setup;
 extern const hci_cmd_t hci_read_bd_addr;
 extern const hci_cmd_t hci_read_buffer_size;
+extern const hci_cmd_t hci_read_le_host_supported;
 extern const hci_cmd_t hci_read_link_policy_settings;
 extern const hci_cmd_t hci_read_link_supervision_timeout;
+extern const hci_cmd_t hci_read_local_supported_features;
+extern const hci_cmd_t hci_reject_connection_request;
 extern const hci_cmd_t hci_remote_name_request;
 extern const hci_cmd_t hci_remote_name_request_cancel;
 extern const hci_cmd_t hci_reset;
 extern const hci_cmd_t hci_role_discovery;
 extern const hci_cmd_t hci_set_event_mask;
 extern const hci_cmd_t hci_set_connection_encryption;
+extern const hci_cmd_t hci_sniff_mode;
 extern const hci_cmd_t hci_switch_role_command;
 extern const hci_cmd_t hci_write_authentication_enable;
 extern const hci_cmd_t hci_write_class_of_device;
 extern const hci_cmd_t hci_write_extended_inquiry_response;
 extern const hci_cmd_t hci_write_inquiry_mode;
+extern const hci_cmd_t hci_write_le_host_supported;
 extern const hci_cmd_t hci_write_link_policy_settings;
 extern const hci_cmd_t hci_write_link_supervision_timeout;
 extern const hci_cmd_t hci_write_local_name;
@@ -285,6 +302,37 @@ extern const hci_cmd_t hci_write_page_timeout;
 extern const hci_cmd_t hci_write_scan_enable;
 extern const hci_cmd_t hci_write_simple_pairing_mode;
 
+extern const hci_cmd_t hci_le_add_device_to_whitelist;
+extern const hci_cmd_t hci_le_clear_white_list;
+extern const hci_cmd_t hci_le_connection_update;
+extern const hci_cmd_t hci_le_create_connection;
+extern const hci_cmd_t hci_le_create_connection_cancel;
+extern const hci_cmd_t hci_le_encrypt;
+extern const hci_cmd_t hci_le_long_term_key_negative_reply;
+extern const hci_cmd_t hci_le_long_term_key_request_reply;
+extern const hci_cmd_t hci_le_rand;
+extern const hci_cmd_t hci_le_read_advertising_channel_tx_power;
+extern const hci_cmd_t hci_le_read_buffer_size ;
+extern const hci_cmd_t hci_le_read_channel_map;
+extern const hci_cmd_t hci_le_read_remote_used_features;
+extern const hci_cmd_t hci_le_read_supported_features;
+extern const hci_cmd_t hci_le_read_supported_states;
+extern const hci_cmd_t hci_le_read_white_list_size;
+extern const hci_cmd_t hci_le_receiver_test;
+extern const hci_cmd_t hci_le_remove_device_from_whitelist;
+extern const hci_cmd_t hci_le_set_advertise_enable;
+extern const hci_cmd_t hci_le_set_advertising_data;
+extern const hci_cmd_t hci_le_set_advertising_parameters;
+extern const hci_cmd_t hci_le_set_event_mask;
+extern const hci_cmd_t hci_le_set_host_channel_classification;
+extern const hci_cmd_t hci_le_set_random_address;
+extern const hci_cmd_t hci_le_set_scan_enable;
+extern const hci_cmd_t hci_le_set_scan_parameters;
+extern const hci_cmd_t hci_le_set_scan_response_data;
+extern const hci_cmd_t hci_le_start_encryption;
+extern const hci_cmd_t hci_le_test_end;
+extern const hci_cmd_t hci_le_transmitter_test;
+    
 extern const hci_cmd_t l2cap_accept_connection;
 extern const hci_cmd_t l2cap_create_channel;
 extern const hci_cmd_t l2cap_create_channel_mtu;
@@ -296,13 +344,25 @@ extern const hci_cmd_t l2cap_unregister_service;
 extern const hci_cmd_t sdp_register_service_record;
 extern const hci_cmd_t sdp_unregister_service_record;
 
+// accept connection @param bd_addr(48), rfcomm_cid (16)
 extern const hci_cmd_t rfcomm_accept_connection;
+// create rfcomm channel: @param bd_addr(48), channel (8)
 extern const hci_cmd_t rfcomm_create_channel;
+// create rfcomm channel: @param bd_addr(48), channel (8), mtu (16), credits (8)
+extern const hci_cmd_t rfcomm_create_channel_with_initial_credits;
+// decline rfcomm disconnect,@param bd_addr(48), rfcomm cid (16), reason(8)
 extern const hci_cmd_t rfcomm_decline_connection;
+// disconnect rfcomm disconnect, @param rfcomm_cid(8), reason(8)
 extern const hci_cmd_t rfcomm_disconnect;
+// register rfcomm service: @param channel(8), mtu (16)
 extern const hci_cmd_t rfcomm_register_service;
+// register rfcomm service: @param channel(8), mtu (16), initial credits (8)
+extern const hci_cmd_t rfcomm_register_service_with_initial_credits;
+// unregister rfcomm service, @param service_channel(16)
 extern const hci_cmd_t rfcomm_unregister_service;
-
+// request persisten rfcomm channel for service name: serive name (char*) 
+extern const hci_cmd_t rfcomm_persistent_channel_for_service;
+    
 #if defined __cplusplus
 }
 #endif

@@ -37,22 +37,43 @@
  *  individually. Calling ds->isReady() before calling ds->process() doesn't 
  *  make sense, so we just poll each data source round robin.
  *
+ *  To support an idle state, where an MCU could go to sleep, the process function
+ *  has to return if it has to called again as soon as possible
+ *
+ *  After calling process() on every data source and evaluating the pending timers,
+ *  the idle hook gets called if no data source did indicate that it needs to be
+ *  called right away.
+ *
  */
 
 
 #include <btstack/run_loop.h>
 #include <btstack/linked_list.h>
+#include <btstack/hal_tick.h>
+#include <btstack/hal_cpu.h>
 
 #include "run_loop_private.h"
 #include "debug.h"
 
 #include <stddef.h> // NULL
 
-// #define HAVE_TIME
-
 // the run loop
 static linked_list_t data_sources;
+
 static linked_list_t timers;
+
+#ifdef HAVE_TICK
+static uint32_t system_ticks;
+#endif
+
+static int trigger_event_received = 0;
+
+/**
+ * trigger run loop iteration
+ */
+void embedded_trigger(void){
+    trigger_event_received = 1;
+}
 
 /**
  * Add data_source to run_loop
@@ -72,19 +93,16 @@ int embedded_remove_data_source(data_source_t *ds){
  * Add timer to run_loop (keep list sorted)
  */
 void embedded_add_timer(timer_source_t *ts){
-#ifdef HAVE_TIME
-  
-  int run_loop_timer_compare(timer_source_t *a, timer_source_t *b);
-
+#ifdef HAVE_TICK
     linked_item_t *it;
     for (it = (linked_item_t *) &timers; it->next ; it = it->next){
-        if (run_loop_timer_compare( (timer_source_t *) it->next, ts) >= 0) {
+        if (ts->timeout < ((timer_source_t *) it->next)->timeout) {
             break;
         }
     }
     ts->item.next = it->next;
     it->next = (linked_item_t *) ts;
-    // log_dbg("Added timer %x at %u\n", (int) ts, (unsigned int) ts->timeout.tv_sec);
+    // log_info("Added timer %x at %u\n", (int) ts, (unsigned int) ts->timeout.tv_sec);
     // embedded_dump_timer();
 #endif
 }
@@ -93,19 +111,21 @@ void embedded_add_timer(timer_source_t *ts){
  * Remove timer from run loop
  */
 int embedded_remove_timer(timer_source_t *ts){
-#ifdef HAVE_TIME
-    // log_dbg("Removed timer %x at %u\n", (int) ts, (unsigned int) ts->timeout.tv_sec);
+#ifdef HAVE_TICK    
+    // log_info("Removed timer %x at %u\n", (int) ts, (unsigned int) ts->timeout.tv_sec);
     return linked_list_remove(&timers, (linked_item_t *) ts);
+#else
+    return 0;
 #endif
 }
 
 void embedded_dump_timer(void){
-#ifndef EMBEDDED
+#ifdef ENABLE_LOG_INFO 
     linked_item_t *it;
     int i = 0;
     for (it = (linked_item_t *) timers; it ; it = it->next){
         timer_source_t *ts = (timer_source_t*) it;
-        log_dbg("timer %u, timeout %u\n", i, (unsigned int) ts->timeout.tv_sec);
+        log_info("timer %u, timeout %u\n", i, (unsigned int) ts->timeout.tv_sec);
     }
 #endif
 }
@@ -115,11 +135,7 @@ void embedded_dump_timer(void){
  */
 void embedded_execute(void) {
     data_source_t *ds;
-#ifdef HAVE_TIME
-    timer_source_t       *ts;
-    struct timeval current_tv;
-#endif
-    
+
     while (1) {
 
         // process data sources
@@ -129,25 +145,58 @@ void embedded_execute(void) {
             ds->process(ds);
         }
         
-#ifdef HAVE_TIME
+#ifdef HAVE_TICK
         // process timers
-        // pre: 0 <= tv_usec < 1000000
         while (timers) {
-            gettimeofday(&current_tv, NULL);
-            ts = (timer_source_t *) timers;
-            if (ts->timeout.tv_sec  > current_tv.tv_sec) break;
-            if (ts->timeout.tv_sec == current_tv.tv_sec && ts->timeout.tv_usec > current_tv.tv_usec) break;
+            timer_source_t *ts = (timer_source_t *) timers;
+            if (ts->timeout > system_ticks) break;
             run_loop_remove_timer(ts);
             ts->process(ts);
         }
 #endif
         
+        // disable IRQs and check if run loop iteration has been requested. if not, go to sleep
+        hal_cpu_disable_irqs();
+        if (trigger_event_received){
+            hal_cpu_enable_irqs_and_sleep();
+            continue;
+        }
+        hal_cpu_enable_irqs();
     }
 }
 
+#ifdef HAVE_TICK
+static void embedded_tick_handler(void){
+    system_ticks++;
+    trigger_event_received = 1;
+}
+
+uint32_t embedded_get_ticks(void){
+    return system_ticks;
+}
+
+uint32_t embedded_ticks_for_ms(uint32_t time_in_ms){
+    return time_in_ms / hal_tick_get_tick_period_in_ms();
+}
+
+// set timer
+void run_loop_set_timer(timer_source_t *ts, uint32_t timeout_in_ms){
+    uint32_t ticks = embedded_ticks_for_ms(timeout_in_ms);
+    if (ticks == 0) ticks++;
+    ts->timeout = system_ticks + ticks; 
+}
+#endif
+
 void embedded_init(void){
+
     data_sources = NULL;
+
+#ifdef HAVE_TICK
     timers = NULL;
+    system_ticks = 0;
+    hal_tick_init();
+    hal_tick_set_handler(&embedded_tick_handler);
+#endif
 }
 
 const run_loop_t run_loop_embedded = {

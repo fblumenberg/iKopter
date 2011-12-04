@@ -39,12 +39,13 @@
 
 #pragma once
 
-#include <stdint.h>
 
 #if defined __cplusplus
 extern "C" {
 #endif
-	
+
+#include <stdint.h>
+
 /**
  * @brief hci connection handle type
  */
@@ -103,19 +104,19 @@ void net_store_32(uint8_t *buffer, uint16_t pos, uint32_t value);
 
 void hexdump(void *data, int size);
 void printUUID(uint8_t *uuid);
-void print_bd_addr(bd_addr_t addr);
-int sscan_bd_addr(uint8_t * addr_string, bd_addr_t addr);
 
+// @deprecated please use more convenient bd_addr_to_str
+void print_bd_addr( bd_addr_t addr);
+char * bd_addr_to_str(bd_addr_t addr);
+
+int sscan_bd_addr(uint8_t * addr_string, bd_addr_t addr);
+    
 uint8_t crc8_check(uint8_t *data, uint16_t len, uint8_t check_sum);
 uint8_t crc8_calc(uint8_t *data, uint16_t len);
 
 #define BD_ADDR_CMP(a,b) memcmp(a,b, BD_ADDR_LEN)
 #define BD_ADDR_COPY(dest,src) memcpy(dest,src,BD_ADDR_LEN)
 
-#ifdef EMBEDDED
-void bzero(void *s, uint32_t n);
-#endif
-	
 #if defined __cplusplus
 }
 #endif

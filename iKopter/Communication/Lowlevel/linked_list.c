@@ -36,13 +36,28 @@
  */
 
 #include <btstack/linked_list.h>
-
+#include <stdlib.h>
 /**
  * tests if list is empty
  */
 int  linked_list_empty(linked_list_t * list){
     return *list == (void *) 0;
 }
+
+/**
+ * linked_list_get_last_item
+ */
+linked_item_t * linked_list_get_last_item(linked_list_t * list){        // <-- find the last item in the list
+    linked_item_t *lastItem = NULL;
+    linked_item_t *it;
+    for (it = *list; it ; it = it->next){
+        if (it) {
+            lastItem = it;
+        }
+    }
+    return lastItem;
+}
+
 
 /**
  * linked_list_add
@@ -68,7 +83,7 @@ void linked_list_add_tail(linked_list_t * list, linked_item_t *item){   // <-- a
             return;
         }
     }
-    item->next = (void*) 0;
+    item->next = (linked_item_t*) 0;
     it->next = item;
 }
 
@@ -89,7 +104,7 @@ int  linked_list_remove(linked_list_t * list, linked_item_t *item){    // <-- re
 }
 
 void linked_item_set_user(linked_item_t *item, void *user_data){
-    item->next = (void *) 0;
+    item->next = (linked_item_t *) 0;
     item->user_data = user_data;
 }
 

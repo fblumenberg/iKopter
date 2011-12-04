@@ -35,18 +35,24 @@
  *  allow to funnel debug & error messages 
  */
 
-#include "../config.h"
-
-#ifdef EMBEDDED
-
-#define log_dbg(...)
-#define log_err(...)
-
-#else
+#include "config.h"
 
 #include <stdio.h>
 
-#define log_dbg(format, ...)  printf(format,  ## __VA_ARGS__)
-#define log_err(format, ...) fprintf(stderr, format,  ## __VA_ARGS__)
+#ifdef ENABLE_LOG_DEBUG
+#define log_debug(format, ...)  printf(format,  ## __VA_ARGS__)
+#else
+#define log_debug(...)
+#endif
 
+#ifdef ENABLE_LOG_INFO
+#define log_info(format, ...)  printf(format,  ## __VA_ARGS__)
+#else
+#define log_info(...)
+#endif
+
+#ifdef ENABLE_LOG_ERROR
+#define log_error(format, ...)  printf(format,  ## __VA_ARGS__)
+#else
+#define log_error(...)
 #endif

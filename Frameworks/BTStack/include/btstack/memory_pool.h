@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 by Matthias Ringwald
+ * Copyright (C) 2011 by Matthias Ringwald
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -30,42 +30,25 @@
  */
 
 /*
- *  bt_control.h
+ *  memory_pool.h
  *
- *  BT Control API -- allows BT Daemon to initialize and control differnt hardware
+ *  @Brief Fixed-size block allocation
  *
- *  Created by Matthias Ringwald on 5/19/09.
+ *  @Assumption block_size >= sizeof(void *)
+ *  @Assumption size of storage >= count * block_size
  *
+ *  @Note minimal implementation, no error checking/handling
  */
 
 #pragma once
 
-#include <stdint.h>
+typedef void * memory_pool_t;
 
-typedef enum {
-    POWER_WILL_SLEEP = 1,
-    POWER_WILL_WAKE_UP
-} POWER_NOTIFICATION_t;
+// initialize memory pool with with given storage, block size and count
+void   memory_pool_create(memory_pool_t *pool, void * storage, int count, int block_size);
 
-typedef struct {
-    int          (*on)   (void *config);  // <-- turn BT module on and configure
-    int          (*off)  (void *config);  // <-- turn BT module off
-    int          (*sleep)(void *config);  // <-- put BT module to sleep    - only to be called after ON
-    int          (*wake) (void *config);  // <-- wake BT module from sleep - only to be called after SLEEP
-    int          (*valid)(void *config);  // <-- test if hardware can be supported
-    const char * (*name) (void *config);  // <-- return hardware name
+// get free block from pool, @returns NULL or pointer to block
+void * memory_pool_get(memory_pool_t *pool);
 
-    /** support for UART baud rate changes - cmd has to be stored in hci_cmd_buffer
-     * @return have command
-     */
-    int          (*baudrate_cmd)(void * config, uint32_t baudrate, uint8_t *hci_cmd_buffer); 
-    
-    /** support custom init sequences after RESET command - cmd has to be stored in hci_cmd_buffer
-      * @return have command
-      */
-    int          (*next_cmd)(void *config, uint8_t * hci_cmd_buffer); 
-
-    void         (*register_for_power_notifications)(void (*cb)(POWER_NOTIFICATION_t event));
-
-    void         (*hw_error)(void); 
-} bt_control_t;
+// return previously reserved block to memory pool
+void   memory_pool_free(memory_pool_t *pool, void * block);
