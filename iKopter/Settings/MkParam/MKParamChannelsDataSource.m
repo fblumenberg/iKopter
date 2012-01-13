@@ -81,10 +81,10 @@
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     paramSection.formFieldStyle.behavior = behavior;
     
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_00" title:NSLocalizedString(@"Gas",@"MKParam Channels")];
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_01" title:NSLocalizedString(@"Yaw",@"MKParam Channels")];
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_02" title:NSLocalizedString(@"Nick",@"MKParam Channels")];
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_03" title:NSLocalizedString(@"Roll",@"MKParam Channels")];
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_02" title:NSLocalizedString(@"Gas",@"MKParam Channels")];
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_03" title:NSLocalizedString(@"Yaw",@"MKParam Channels")];
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_00" title:NSLocalizedString(@"Nick",@"MKParam Channels")];
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_01" title:NSLocalizedString(@"Roll",@"MKParam Channels")];
     [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_04" title:NSLocalizedString(@"Poti 1",@"MKParam Channels")];
     [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_05" title:NSLocalizedString(@"Poti 2",@"MKParam Channels")];
     [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_06" title:NSLocalizedString(@"Poti 3",@"MKParam Channels")];
