@@ -280,7 +280,6 @@
 		BAC81D68139550F000F642FA /* hci_cmds.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D57139550F000F642FA /* hci_cmds.c */; };
 		BAC81D69139550F000F642FA /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5C139550F000F642FA /* linked_list.c */; };
 		BAC81D6A139550F000F642FA /* run_loop_cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5E139550F000F642FA /* run_loop_cocoa.m */; };
-		BAC81D6B139550F000F642FA /* run_loop_embedded.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D5F139550F000F642FA /* run_loop_embedded.c */; };
 		BAC81D6C139550F000F642FA /* run_loop_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D60139550F000F642FA /* run_loop_posix.c */; };
 		BAC81D6D139550F000F642FA /* run_loop.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D62139550F000F642FA /* run_loop.c */; };
 		BAC81D6E139550F000F642FA /* sdp_util.c in Sources */ = {isa = PBXBuildFile; fileRef = BAC81D63139550F000F642FA /* sdp_util.c */; };
@@ -2170,7 +2169,6 @@
 				BAC81D68139550F000F642FA /* hci_cmds.c in Sources */,
 				BAC81D69139550F000F642FA /* linked_list.c in Sources */,
 				BAC81D6A139550F000F642FA /* run_loop_cocoa.m in Sources */,
-				BAC81D6B139550F000F642FA /* run_loop_embedded.c in Sources */,
 				BAC81D6C139550F000F642FA /* run_loop_posix.c in Sources */,
 				BAC81D6D139550F000F642FA /* run_loop.c in Sources */,
 				BAC81D6E139550F000F642FA /* sdp_util.c in Sources */,
