@@ -51,7 +51,7 @@
         }
 
         for(int i=248;i<256;i++){
-            [values addObject:[NSString stringWithFormat:@"Poti %d",i-247]];
+            [values addObject:[NSString stringWithFormat:@"Poti %d",256-i]];
         }
 
         self.pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:values];
