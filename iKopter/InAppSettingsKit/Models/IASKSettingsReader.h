@@ -43,7 +43,6 @@
 #define kIASKMailComposeSubject               @"IASKMailComposeSubject"
 #define kIASKMailComposeBody                  @"IASKMailComposeBody"
 #define kIASKMailComposeBodyIsHTML            @"IASKMailComposeBodyIsHTML"
-#define kIASKMailComposeAttachment            @"IASKMailComposeAttachment"
 #define kIASKKeyboardAlphabet                 @"Alphabet"
 #define kIASKKeyboardNumbersAndPunctuation    @"NumbersAndPunctuation"
 #define kIASKKeyboardNumberPad                @"NumberPad"
@@ -60,7 +59,6 @@
 #define kIASKAutoCorrYes                      @"Yes"
 #define kIASKMinimumValueImage                @"MinimumValueImage"
 #define kIASKMaximumValueImage                @"MaximumValueImage"
-#define kIASKIsNumber                         @"IASKIsNumber"
 
 #define kIASKPSGroupSpecifier                 @"PSGroupSpecifier"
 #define kIASKPSToggleSwitchSpecifier          @"PSToggleSwitchSpecifier"
@@ -68,7 +66,6 @@
 #define kIASKPSSliderSpecifier                @"PSSliderSpecifier"
 #define kIASKPSTitleValueSpecifier            @"PSTitleValueSpecifier"
 #define kIASKPSTextFieldSpecifier             @"PSTextFieldSpecifier"
-#define kIASKPotiTextFieldSpecifier           @"IASKPotiTextFieldSpecifier"
 #define kIASKPSChildPaneSpecifier             @"PSChildPaneSpecifier"
 #define kIASKOpenURLSpecifier                 @"IASKOpenURLSpecifier"
 #define kIASKButtonSpecifier                  @"IASKButtonSpecifier"
@@ -78,6 +75,7 @@
 #define kIASKBundleFolder                     @"Settings.bundle"
 #define kIASKBundleFolderAlt                  @"InAppSettings.bundle"
 #define kIASKBundleFilename                   @"Root.plist"
+#define KIASKBundleLocaleFolderExtension      @".lproj"
 
 #define kIASKAppSettingChanged                @"kAppSettingChanged"
 

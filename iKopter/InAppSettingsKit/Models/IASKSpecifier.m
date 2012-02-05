@@ -181,13 +181,9 @@
     return [[_specifierDict objectForKey:kIASKIsSecure] boolValue];
 }
 
-- (BOOL)isNumber {
-  return [[_specifierDict objectForKey:kIASKIsNumber] boolValue];
-}
-
 - (UIKeyboardType)keyboardType {
     if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardAlphabet]) {
-        return UIKeyboardTypeASCIICapable;
+        return UIKeyboardTypeDefault;
     }
     else if ([[_specifierDict objectForKey:KIASKKeyboardType] isEqualToString:kIASKKeyboardNumbersAndPunctuation]) {
         return UIKeyboardTypeNumbersAndPunctuation;

@@ -134,7 +134,7 @@
     [MBProgressHUD sharedProgressHUD].labelText=NSLocalizedString(@"Connecting",@"HUD connecting");
     [[MBProgressHUD sharedProgressHUD] show:YES];
     
-    _tableView.userInteractionEnabled=NO;
+    self.tableView.userInteractionEnabled=NO;
     [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView startAnimating];
     [[MKConnectionController sharedMKConnectionController] start:self.host];
     
@@ -143,7 +143,7 @@
     [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];
   }
   
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
+  [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -344,7 +344,7 @@
 {
   [[MKConnectionController sharedMKConnectionController] stop];
   connectionState=MKConnectionStateDisconnected;
-  [_tableView reloadData];
+  [self.tableView reloadData];
 }
 
 - (void)connectionRequestDidFail:(NSNotification *)aNotification;
@@ -370,11 +370,11 @@
 - (void)connectionRequestDidSucceed:(NSNotification *)aNotification;
 {
   qltrace(@"Got connected");
-  _tableView.userInteractionEnabled=YES;
+  self.tableView.userInteractionEnabled=YES;
 
   connectionState=MKConnectionStateConnected;
 
-  [_tableView reloadData];
+  [self.tableView reloadData];
   
   [(UIActivityIndicatorView *)[self navigationItem].rightBarButtonItem.customView stopAnimating];
   [[MKConnectionController sharedMKConnectionController] activateNaviCtrl];

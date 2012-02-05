@@ -33,53 +33,37 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier;
 
 - (NSString*)mailComposeBody;
-- (void)mailComposeAttachment:(MFMailComposeViewController*)mailViewController;
-
 - (UIViewController<MFMailComposeViewControllerDelegate>*)viewControllerForMailComposeView;
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error;
 
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key;
-
-- (UINavigationController*) navigationControllerForChildPaneForKey:(NSString*)key;
 @end
 
 
-@interface IASKAppSettingsViewController : UIViewController <UITextFieldDelegate, 
-UINavigationControllerDelegate, 
-UITableViewDataSource,UITableViewDelegate,
-MFMailComposeViewControllerDelegate> {
+@interface IASKAppSettingsViewController : UITableViewController <UITextFieldDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate> {
 	id<IASKSettingsDelegate>  _delegate;
-  UITableView    			*_tableView;
-  
-  NSMutableArray          *_viewList;
-  NSIndexPath             *_currentIndexPath;
-	NSIndexPath				*_topmostRowBeforeKeyboardWasShown;
+    
+    NSMutableArray          *_viewList;
+    NSIndexPath             *_currentIndexPath;
 	
 	IASKSettingsReader		*_settingsReader;
-  id<IASKSettingsStore>  _settingsStore;
+    id<IASKSettingsStore>  _settingsStore;
 	NSString				*_file;
 	
 	id                      _currentFirstResponder;
-  
-  BOOL                    _showCreditsFooter;
-  BOOL                    _showDoneButton;
+    
+    BOOL                    _showCreditsFooter;
+    BOOL                    _showDoneButton;
 }
 
 @property (nonatomic, assign) IBOutlet id delegate;
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) NSIndexPath   *currentIndexPath;
 @property (nonatomic, retain) IASKSettingsReader *settingsReader;
 @property (nonatomic, retain) id<IASKSettingsStore> settingsStore;
 @property (nonatomic, copy) NSString *file;
-@property (nonatomic, retain) id currentFirstResponder;
 @property (nonatomic, assign) BOOL showCreditsFooter;
 @property (nonatomic, assign) BOOL showDoneButton;
 
 - (void)synchronizeSettings;
 - (IBAction)dismiss:(id)sender;
 
-// subclassing: optionally override these methods to customize appearance and functionality
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-- (UIView *)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section;
 @end

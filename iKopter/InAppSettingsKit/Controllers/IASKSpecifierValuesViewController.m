@@ -83,7 +83,7 @@
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait) || (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
+	return YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,6 +141,7 @@
 	
     if (!cell) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellValue] autorelease];
+		cell.backgroundColor = [UIColor whiteColor];
     }
 	
 	if ([indexPath isEqual:[self checkedItem]]) {
