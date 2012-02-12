@@ -74,6 +74,8 @@
   [super viewWillAppear:animated];
   
   engineValues = [[EngineValues alloc] init];
+
+  self.navigationController.toolbarHidden=NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
