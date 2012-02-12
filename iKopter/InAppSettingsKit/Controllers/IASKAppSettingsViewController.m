@@ -597,22 +597,34 @@ CGRect IASKCGRectSwap(CGRect rect);
         
         Class vcClass = [specifier viewControllerClass];
         if (vcClass) {
-            SEL initSelector = [specifier viewControllerSelector];
-            if (!initSelector) {
-                initSelector = @selector(init);
-            }
-            UIViewController * vc = [vcClass performSelector:@selector(alloc)];
-            [vc performSelector:initSelector withObject:[specifier file] withObject:[specifier key]];
-			if ([vc respondsToSelector:@selector(setDelegate:)]) {
-				[vc performSelector:@selector(setDelegate:) withObject:self.delegate];
-			}
-			if ([vc respondsToSelector:@selector(setSettingsStore:)]) {
-				[vc performSelector:@selector(setSettingsStore:) withObject:self.settingsStore];
-			}
-			self.navigationController.delegate = nil;
-            [self.navigationController pushViewController:vc animated:YES];
-            [vc performSelector:@selector(release)];
-            return;
+          SEL initSelector = [specifier viewControllerSelector];
+          if (!initSelector) {
+            initSelector = @selector(init);
+          }
+          UIViewController * vc = [vcClass performSelector:@selector(alloc)];
+          [vc performSelector:initSelector withObject:[specifier file] withObject:[specifier key]];
+          if ([vc respondsToSelector:@selector(setDelegate:)]) {
+            [vc performSelector:@selector(setDelegate:) withObject:self.delegate];
+          }
+          if ([vc respondsToSelector:@selector(setSettingsStore:)]) {
+            [vc performSelector:@selector(setSettingsStore:) withObject:self.settingsStore];
+          }
+          
+          UINavigationController* navCtrl=nil;
+          if ([self.delegate respondsToSelector:@selector(navigationControllerForChildPaneForKey:)])
+            navCtrl = [self.delegate navigationControllerForChildPaneForKey:[specifier key]];
+          
+          if(!navCtrl)
+            navCtrl=self.navigationController;
+          else{
+            vc.navigationItem.hidesBackButton=YES;
+            [navCtrl popToRootViewControllerAnimated:NO];
+          }
+          
+          navCtrl.delegate = nil;
+          [navCtrl pushViewController:vc animated:YES];
+          [vc performSelector:@selector(release)];
+          return;
         }
         
         if (nil == [specifier file]) {

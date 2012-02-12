@@ -37,6 +37,8 @@
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error;
 
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key;
+
+- (UINavigationController*) navigationControllerForChildPaneForKey:(NSString*)key;
 @end
 
 
