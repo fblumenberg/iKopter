@@ -12,6 +12,7 @@
 
 -(void)addNumberFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
 -(void)addSwitchFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
+-(void)addSwitchFieldForKeyPath:(NSString*)keyPath title:(NSString*)title style:(IBAFormFieldStyle*)style;
 -(void)addTextFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
 -(void)addPotiFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
 

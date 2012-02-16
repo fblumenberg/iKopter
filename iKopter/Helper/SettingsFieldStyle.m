@@ -24,11 +24,14 @@
 		self.labelTextColor = [UIColor blackColor];
 		self.labelFont = [UIFont boldSystemFontOfSize:18];
 		self.labelTextAlignment = UITextAlignmentLeft;
-		self.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 140, IBAFormFieldLabelHeight);
+		self.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 190, IBAFormFieldLabelHeight);
+    self.labelAutoresizingMask = UIViewAutoresizingFlexibleWidth;
+
 		self.valueTextAlignment = UITextAlignmentLeft;
 		self.valueTextColor = [UIColor colorWithRed:0.220 green:0.329 blue:0.529 alpha:1.0];
 		self.valueFont = [UIFont systemFontOfSize:16];
-		self.valueFrame = CGRectMake(160, 13, 150, IBAFormFieldValueHeight);
+		self.valueFrame = CGRectMake(210, 13, 100, IBAFormFieldValueHeight);
+    self.valueAutoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
   }
   return self;
 }
@@ -43,7 +46,30 @@
 		self.labelTextColor = [UIColor grayColor];
 		self.labelFont = [UIFont boldSystemFontOfSize:18];
 		self.labelTextAlignment = UITextAlignmentLeft;
-		self.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 140, IBAFormFieldLabelHeight);
+		self.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 190, IBAFormFieldLabelHeight);
+    self.labelAutoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+		self.valueTextAlignment = UITextAlignmentLeft;
+		self.valueTextColor = [UIColor colorWithRed:0.220 green:0.329 blue:0.529 alpha:1.0];
+		self.valueFont = [UIFont systemFontOfSize:16];
+		self.valueFrame = CGRectMake(210, 13, 100, IBAFormFieldValueHeight);
+  }
+  return self;
+}
+
+@end
+
+@implementation SettingsFieldStyleSwitch
+
+- (id)init {
+  self = [super init];
+  if (self) {
+		self.labelTextColor = [UIColor blackColor];
+		self.labelFont = [UIFont boldSystemFontOfSize:18];
+		self.labelTextAlignment = UITextAlignmentLeft;
+		self.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 210, IBAFormFieldLabelHeight);
+		self.labelAutoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
 		self.valueTextAlignment = UITextAlignmentLeft;
 		self.valueTextColor = [UIColor colorWithRed:0.220 green:0.329 blue:0.529 alpha:1.0];
 		self.valueFont = [UIFont systemFontOfSize:16];

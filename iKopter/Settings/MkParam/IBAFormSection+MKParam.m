@@ -23,8 +23,14 @@
 }
 
 -(void)addSwitchFieldForKeyPath:(NSString*)keyPath title:(NSString*)title{
-    
-    [self addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:keyPath title:title] autorelease]];
+  [self addSwitchFieldForKeyPath:keyPath title:title style:nil];
+}
+-(void)addSwitchFieldForKeyPath:(NSString*)keyPath title:(NSString*)title style:(IBAFormFieldStyle *)style{
+  IBABooleanFormField* f=[[[IBABooleanFormField alloc] initWithKeyPath:keyPath title:title] autorelease];
+  if (style) {
+    f.formFieldStyle=style;
+  }
+  [self addFormField:f];
 }
 
 -(void)addTextFieldForKeyPath:(NSString*)keyPath title:(NSString*)title{

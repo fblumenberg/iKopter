@@ -25,3 +25,6 @@
 }
 
 @end
+
+@interface SettingsFieldStyleSwitch : IBAFormFieldStyle 
+@end
