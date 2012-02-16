@@ -689,7 +689,9 @@ typedef struct
 	uint8_t     Type;             // typeof Waypoint
 	uint8_t     WP_EventChannelValue;  //
 	uint8_t     AltitudeRate;     // rate to change the setpoint
-	uint8_t     reserve[8];		    // reserve
+	uint8_t     Speed;            // rate to change the Position
+	uint8_t     CamAngle;		      // Camera servo angle
+	uint8_t     reserve[6];		    // reserve
 } __attribute__((packed)) IKMkPoint;
 
 // FC STATUS FLAGS2

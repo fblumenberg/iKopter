@@ -39,6 +39,8 @@
 @synthesize type;                 // typeof Waypoint
 @synthesize wpEventChannelValue; //
 @synthesize altitudeRate;         // rate to change the setpoint
+@synthesize speed;
+@synthesize camAngle;
 
 -(NSInteger) altitude{
   return [super altitude];
@@ -111,6 +113,8 @@
     self.type = _point.Type;                
     self.wpEventChannelValue = _point.WP_EventChannelValue;
     self.altitudeRate = _point.AltitudeRate;  
+    self.speed = _point.Speed;  
+    self.camAngle = _point.CamAngle;  
 
     if(self.type==POINT_TYPE_POI)
       self.altitude/=100;
@@ -133,6 +137,8 @@
   _point.Type = self.type;                
   _point.WP_EventChannelValue = self.wpEventChannelValue;
   _point.AltitudeRate = self.altitudeRate;    
+  _point.Speed = self.speed;    
+  _point.CamAngle = self.camAngle;    
 
   memset(_point.reserve, 0, 8);
   
@@ -158,6 +164,10 @@
     self.type = POINT_TYPE_WP;                
     self.wpEventChannelValue = 0;
     self.altitudeRate = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultAltitudeRate"] integerValue];
+    self.speed = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultSpeed"] integerValue];
+    self.camAngle = 0;
+    self.eventFlag = 0;          
+    self.index = 0;               
     
     self.coordinate=theCoordinate;
 
@@ -186,6 +196,8 @@
   [aCoder encodeInteger:self.type forKey:@"type"];
   [aCoder encodeInteger:self.wpEventChannelValue forKey:@"wpEventChannelValue"];
   [aCoder encodeInteger:self.altitudeRate forKey:@"altitudeRate"];
+  [aCoder encodeInteger:self.speed forKey:@"speed"];
+  [aCoder encodeInteger:self.camAngle forKey:@"camAngle"];
   
 }
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -199,6 +211,8 @@
     self.type = [aDecoder decodeIntegerForKey:@"type"];
     self.wpEventChannelValue = [aDecoder decodeIntegerForKey:@"wpEventChannelValue"];
     self.altitudeRate = [aDecoder decodeIntegerForKey:@"altitudeRate"];
+    self.speed = [aDecoder decodeIntegerForKey:@"speed"];
+    self.camAngle = [aDecoder decodeIntegerForKey:@"camAngle"];
   }
   return self;
 }

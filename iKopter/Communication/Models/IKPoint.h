@@ -42,6 +42,8 @@
 @property(assign) NSInteger type;             // typeof Waypoint
 @property(assign) NSInteger wpEventChannelValue;  //
 @property(assign) NSInteger altitudeRate;     // rate to change the setpoint
+@property(assign) NSInteger speed;            // rate to change the Position
+@property(assign) NSInteger camAngle;         // Camera servo angle
 @property(assign) BOOL cameraNickControl;
 
 @property(assign) CLLocationDegrees posLatitude;

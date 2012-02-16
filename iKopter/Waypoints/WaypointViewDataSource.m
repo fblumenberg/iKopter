@@ -117,6 +117,20 @@
 		[attributeSection addFormField:[numberField autorelease]];
 		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
+    numberField = [[IBATextFormField alloc] initWithKeyPath:@"speed"
+                                                      title:NSLocalizedString(@"Speed", @"WP event title")
+                                           valueTransformer:[StringToNumberTransformer instance]];
+    
+		[attributeSection addFormField:[numberField autorelease]];
+		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    //------------------------------------------------------------------------------------------------------------------------
+    numberField = [[IBATextFormField alloc] initWithKeyPath:@"camAngle"
+                                                      title:NSLocalizedString(@"Camera nick angle", @"WP event title")
+                                           valueTransformer:[StringToNumberTransformer instance]];
+    
+		[attributeSection addFormField:[numberField autorelease]];
+		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    //------------------------------------------------------------------------------------------------------------------------
 		[attributeSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"cameraNickControl" 
                                                                           title:NSLocalizedString(@"Camera nick control", @"cameraNickControl title")] autorelease]];
     
