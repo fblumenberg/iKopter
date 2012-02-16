@@ -28,6 +28,7 @@
 
 @interface IKParamSet: NSObject {
 
+  IKMkParamset90 _parameter90;
   IKMkParamset88 _parameter88;
   IKMkParamset85 _parameter85;
 }
@@ -150,6 +151,9 @@
 @property(assign) NSNumber* ComingHomeAltitude;
 @property(assign) NSNumber* FailSafeTime;
 @property(assign) NSNumber* MaxAltitude;
+@property(assign) NSNumber* FailsafeChannel;
+@property(assign) NSNumber* ServoFilterNick;
+@property(assign) NSNumber* ServoFilterRoll;
 @property(assign) NSNumber* BitConfig;
 @property(assign) NSNumber* BitConfig_LOOP_OBEN;
 @property(assign) NSNumber* BitConfig_LOOP_UNTEN;
@@ -171,6 +175,10 @@
 @property(assign) NSNumber* ExtraConfig_GPS_AID;
 @property(assign) NSNumber* ExtraConfig_LEARNABLE_CAREFREE;
 @property(assign) NSNumber* ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP;
+@property(assign) NSNumber* GlobalConfig3;
+@property(assign) NSNumber* GlobalConfig3_CFG3_NO_SDCARD_NO_START;
+@property(assign) NSNumber* GlobalConfig3_CFG3_DPH_MAX_RADIUS;
+@property(assign) NSNumber* GlobalConfig3_CFG3_VARIO_FAILSAFE;
 
 @property(assign) NSString*  Name;
 

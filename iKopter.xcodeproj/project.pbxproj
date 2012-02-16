@@ -318,6 +318,12 @@
 		BAE3B09D13ACE978007E0F2F /* IKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09C13ACE978007E0F2F /* IKPoint.m */; };
 		BAE3B0A413AE5124007E0F2F /* MKHostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */; };
 		BAE3B12013AFEA51007E0F2F /* WaypointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */; };
+		BAE66E0E14EC355A0009D43D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE66E0D14EC355A0009D43D /* SenTestingKit.framework */; };
+		BAE66E0F14EC355A0009D43D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D466F137C5127001415C3 /* UIKit.framework */; };
+		BAE66E1014EC355A0009D43D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4671137C5127001415C3 /* Foundation.framework */; };
+		BAE66E1614EC355A0009D43D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BAE66E1414EC355A0009D43D /* InfoPlist.strings */; };
+		BAE66E1914EC355A0009D43D /* iKopterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE66E1814EC355A0009D43D /* iKopterTests.m */; };
+		BAE66E2814EC41D40009D43D /* IKParamSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E672137EB5BA0068E38E /* IKParamSet.m */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
 		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
@@ -869,6 +875,13 @@
 		BAE3B0A213AE5123007E0F2F /* MKHostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHostsViewController.m; sourceTree = "<group>"; };
 		BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointViewController.h; sourceTree = "<group>"; };
 		BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointViewController.m; sourceTree = "<group>"; };
+		BAE66E0C14EC355A0009D43D /* iKopterTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iKopterTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAE66E0D14EC355A0009D43D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		BAE66E1314EC355A0009D43D /* iKopterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iKopterTests-Info.plist"; sourceTree = "<group>"; };
+		BAE66E1514EC355A0009D43D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BAE66E1714EC355A0009D43D /* iKopterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iKopterTests.h; sourceTree = "<group>"; };
+		BAE66E1814EC355A0009D43D /* iKopterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iKopterTests.m; sourceTree = "<group>"; };
+		BAE66E1A14EC355A0009D43D /* iKopterTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iKopterTests-Prefix.pch"; sourceTree = "<group>"; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iKopter.xcdatamodel; sourceTree = "<group>"; };
 		BAEEFBDB139D6FF90003860E /* NCLogRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogRecord.h; sourceTree = "<group>"; };
@@ -913,6 +926,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BAE66E0814EC355A0009D43D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE66E0E14EC355A0009D43D /* SenTestingKit.framework in Frameworks */,
+				BAE66E0F14EC355A0009D43D /* UIKit.framework in Frameworks */,
+				BAE66E1014EC355A0009D43D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -933,6 +956,7 @@
 			isa = PBXGroup;
 			children = (
 				BA0D4675137C5127001415C3 /* iKopter */,
+				BAE66E1114EC355A0009D43D /* iKopterTests */,
 				BA0D466E137C5127001415C3 /* Frameworks */,
 				BA0D466C137C5127001415C3 /* Products */,
 			);
@@ -945,6 +969,7 @@
 			isa = PBXGroup;
 			children = (
 				BA0D466B137C5127001415C3 /* iKopter.app */,
+				BAE66E0C14EC355A0009D43D /* iKopterTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -969,6 +994,7 @@
 				BA0D466F137C5127001415C3 /* UIKit.framework */,
 				BA0D4671137C5127001415C3 /* Foundation.framework */,
 				BA0D4673137C5127001415C3 /* CoreGraphics.framework */,
+				BAE66E0D14EC355A0009D43D /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1833,6 +1859,26 @@
 			path = Waypoints;
 			sourceTree = "<group>";
 		};
+		BAE66E1114EC355A0009D43D /* iKopterTests */ = {
+			isa = PBXGroup;
+			children = (
+				BAE66E1714EC355A0009D43D /* iKopterTests.h */,
+				BAE66E1814EC355A0009D43D /* iKopterTests.m */,
+				BAE66E1214EC355A0009D43D /* Supporting Files */,
+			);
+			path = iKopterTests;
+			sourceTree = "<group>";
+		};
+		BAE66E1214EC355A0009D43D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BAE66E1314EC355A0009D43D /* iKopterTests-Info.plist */,
+				BAE66E1414EC355A0009D43D /* InfoPlist.strings */,
+				BAE66E1A14EC355A0009D43D /* iKopterTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BAEEFBC7139D6E160003860E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1880,6 +1926,24 @@
 			productReference = BA0D466B137C5127001415C3 /* iKopter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BAE66E0B14EC355A0009D43D /* iKopterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAE66E1B14EC355A0009D43D /* Build configuration list for PBXNativeTarget "iKopterTests" */;
+			buildPhases = (
+				BAE66E0714EC355A0009D43D /* Sources */,
+				BAE66E0814EC355A0009D43D /* Frameworks */,
+				BAE66E0914EC355A0009D43D /* Resources */,
+				BAE66E0A14EC355A0009D43D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iKopterTests;
+			productName = iKopterTests;
+			productReference = BAE66E0C14EC355A0009D43D /* iKopterTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1908,6 +1972,7 @@
 			projectRoot = "";
 			targets = (
 				BA0D466A137C5127001415C3 /* iKopter */,
+				BAE66E0B14EC355A0009D43D /* iKopterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2052,6 +2117,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BAE66E0914EC355A0009D43D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE66E1614EC355A0009D43D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2080,6 +2153,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "echo \"Prepare Package\"\necho $CONFIGURATION\necho $TARGET_BUILD_DIR/$EXECUTABLE_PATH\nif [[ \"${CONFIGURATION}\" = \"Release Distribution\" ]] \nthen\necho \"do ldid\"\n/usr/bin/ldid -S \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\nls \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\nrm -R \"$PROJECT_DIR/Cydia/iKopter/Applications/$EXECUTABLE_FOLDER_PATH\"\ncp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\necho cp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\nrm -R \"$PROJECT_DIR/build/\"\ncp -R \"$TARGET_BUILD_DIR/\" \"$PROJECT_DIR/build/\"\nfi";
+		};
+		BAE66E0A14EC355A0009D43D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2275,6 +2361,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BAE66E0714EC355A0009D43D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE66E1914EC355A0009D43D /* iKopterTests.m in Sources */,
+				BAE66E2814EC41D40009D43D /* IKParamSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2329,6 +2424,14 @@
 				BAA4E725137EBA780068E38E /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		BAE66E1414EC355A0009D43D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAE66E1514EC355A0009D43D /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2511,6 +2614,70 @@
 			};
 			name = "Release Distribution";
 		};
+		BAE66E1C14EC355A0009D43D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterTests/iKopterTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "iKopterTests/iKopterTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		BAE66E1D14EC355A0009D43D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterTests/iKopterTests-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "iKopterTests/iKopterTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		BAE66E1E14EC355A0009D43D /* Release Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterTests/iKopterTests-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "iKopterTests/iKopterTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release Distribution";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2530,6 +2697,16 @@
 				BA0D468D137C5127001415C3 /* Debug */,
 				BA0D468E137C5127001415C3 /* Release */,
 				BAD69591137EA8DE006C129D /* Release Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAE66E1B14EC355A0009D43D /* Build configuration list for PBXNativeTarget "iKopterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAE66E1C14EC355A0009D43D /* Debug */,
+				BAE66E1D14EC355A0009D43D /* Release */,
+				BAE66E1E14EC355A0009D43D /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

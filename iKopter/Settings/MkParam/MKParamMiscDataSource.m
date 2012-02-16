@@ -38,6 +38,8 @@
 - (id)initWithModel:(id)aModel andBehavior:(int)behavior{
 	if (self = [super initWithModel:aModel]) {
     
+    IBAFormFieldStyle* switchStyle = [[[SettingsFieldStyleSwitch alloc] init] autorelease];
+
     IBAFormSection *paramSection=nil;
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
@@ -63,23 +65,41 @@
     
     [paramSection addPotiFieldForKeyPath:@"CareFreeModeControl" title:NSLocalizedString(@"Carefree control",@"MKParam Misc")];
     if(((IKParamSet*)aModel).Revision.integerValue>=88)
-      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_LEARNABLE_CAREFREE" title:NSLocalizedString(@"Teachable Carefree",@"MKParam Misc")];
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_LEARNABLE_CAREFREE" title:NSLocalizedString(@"Teachable Carefree",@"MKParam Misc") 
+                                       style:switchStyle];
+    
     [paramSection addNumberFieldForKeyPath:@"UnterspannungsWarnung" title:NSLocalizedString(@"Low voltage level",@"MKParam Misc")];
     [paramSection addNumberFieldForKeyPath:@"NotGasZeit" title:NSLocalizedString(@"Emergency time (0.1s)",@"MKParam Misc")];
     [paramSection addNumberFieldForKeyPath:@"NotGas" title:NSLocalizedString(@"Emergency-Gas",@"MKParam Misc")];
-    if(((IKParamSet*)aModel).Revision.integerValue>=88)
-      [paramSection addNumberFieldForKeyPath:@"FailSafeTime" title:NSLocalizedString(@"Fail CH time (s)",@"MKParam Misc")];
     
     if(((IKParamSet*)aModel).Revision.integerValue>=88)
-      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_NO_RCOFF_BEEPING" title:NSLocalizedString(@"No Beep w.o. active sender",@"MKParam Misc")];
+      [paramSection addNumberFieldForKeyPath:@"FailSafeTime" title:NSLocalizedString(@"Failsafe CH time (s)",@"MKParam Misc")];
+    
+    if(((IKParamSet*)aModel).Revision.integerValue>=90){
+      [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_VARIO_FAILSAFE" title:NSLocalizedString(@"Use vario for failsafe",@"MKParam Misc") 
+                                       style:switchStyle];
+      [paramSection addNumberFieldForKeyPath:@"FailsafeChannel" title:NSLocalizedString(@"Failsafe channel - 0 off",@"MKParam Misc")];
+    }
+    
+    
     if(((IKParamSet*)aModel).Revision.integerValue>=88)
-      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP" title:NSLocalizedString(@"Ignore magnet error at startup",@"MKParam Misc")];
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_NO_RCOFF_BEEPING" title:NSLocalizedString(@"No Beep w.o. active sender",@"MKParam Misc") 
+                                       style:switchStyle];
+    if(((IKParamSet*)aModel).Revision.integerValue>=88)
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP" 
+                                       title:NSLocalizedString(@"Ignore magnet error at startup",@"MKParam Misc") 
+                                       style:switchStyle];
+    if(((IKParamSet*)aModel).Revision.integerValue>=90){
+      [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_NO_SDCARD_NO_START" title:NSLocalizedString(@"No start without SD card",@"MKParam Misc") 
+                                       style:switchStyle];
+    }
     
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     paramSection.formFieldStyle.behavior = behavior;
-    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_HEADING_HOLD" title:NSLocalizedString(@"Heading Hold",@"MKParam Misc")];
+    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_HEADING_HOLD" title:NSLocalizedString(@"Heading Hold",@"MKParam Misc") 
+                                     style:switchStyle];
     
     
   }

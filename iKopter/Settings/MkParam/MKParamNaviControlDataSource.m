@@ -38,13 +38,16 @@
 - (id)initWithModel:(id)aModel andBehavior:(int)behavior{
 	if (self = [super initWithModel:aModel]) {
     
+    IBAFormFieldStyle* switchStyle = [[[SettingsFieldStyleSwitch alloc] init] autorelease];
+    
     IBAFormSection *paramSection=nil;
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     paramSection.formFieldStyle.behavior = behavior;
     
-    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_GPS_AKTIV" title:NSLocalizedString(@"Enable GPS",@"MKParam NaviCtrl")];
+    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_GPS_AKTIV" title:NSLocalizedString(@"Enable GPS",@"MKParam NaviCtrl") 
+                                     style:switchStyle];
     
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
@@ -53,7 +56,13 @@
     
     [paramSection addPotiFieldForKeyPath:@"NaviGpsModeControl" title:NSLocalizedString(@"GPS Mode control",@"MKParam NaviCtrl")];
     if(((IKParamSet*)aModel).Revision.integerValue>=88){
-      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_GPS_AID" title:NSLocalizedString(@"Dynamic PH",@"MKParam NaviCtrl")];
+      [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_GPS_AID" title:NSLocalizedString(@"Dynamic PH",@"MKParam NaviCtrl") 
+                                       style:switchStyle];
+      if(((IKParamSet*)aModel).Revision.integerValue>=90){
+        [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_DPH_MAX_RADIUS" 
+                                         title:NSLocalizedString(@"Use GPS max. raduis for dPH ",@"MKParam NaviCtrl") 
+                                         style:switchStyle];
+      }
       [paramSection addPotiFieldForKeyPath:@"ComingHomeAltitude" title:NSLocalizedString(@"CH Altitude",@"MKParam NaviCtrl")];
     }
     //------------------------------------------------------------------------------------------------------------------------

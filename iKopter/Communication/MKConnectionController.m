@@ -622,9 +622,6 @@ NSString * const MKWritePointNotification = @"MKWritePointNotification";
       break;
   }
   
-  if (d)
-    qltrace(@"(%d) %@", [d retainCount],d );
-  
   [[NSNotificationCenter defaultCenter] postNotificationName:n object:self userInfo:d];
 }
 
