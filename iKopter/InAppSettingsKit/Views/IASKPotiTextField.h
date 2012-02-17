@@ -22,6 +22,6 @@
   UIPickerView* _valuePicker; 
 }
 @property (nonatomic, retain) NSString *key;
-@property (assign) NSInteger value;
+@property (nonatomic, assign) NSInteger value;
 
 @end

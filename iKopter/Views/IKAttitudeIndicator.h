@@ -22,8 +22,8 @@
   IKLayerDelegateProxy* _layerProxy;
 }
 
-@property(assign) float pitch;
-@property(assign) float roll;
+@property(nonatomic, assign) float pitch;
+@property(nonatomic, assign) float roll;
 
 
 @end

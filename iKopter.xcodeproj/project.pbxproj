@@ -189,6 +189,10 @@
 		BA9EAD3913CF0503008EC741 /* IKDropboxLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9EAD3813CF0500008EC741 /* IKDropboxLoginController.m */; };
 		BA9EAD3C13CF0B50008EC741 /* IKDropboxLoginSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9EAD3B13CF0B4E008EC741 /* IKDropboxLoginSource.m */; };
 		BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */; };
+		BAA07D3F14ED631500FCE08F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA07D3C14ED630E00FCE08F /* NSData+Base64.m */; };
+		BAA07D4A14ED638C00FCE08F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9EAD3513CEE5A1008EC741 /* Security.framework */; };
+		BAA07D4F14ED808E00FCE08F /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA07D4E14ED808E00FCE08F /* JSONKit.m */; };
+		BAA07D5014ED809400FCE08F /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA07D4E14ED808E00FCE08F /* JSONKit.m */; };
 		BAA4E630137EB11B0068E38E /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E62F137EB11B0068E38E /* BTDevice.m */; };
 		BAA4E63F137EB34D0068E38E /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E634137EB34D0068E38E /* AMSerialPort.m */; };
 		BAA4E640137EB34D0068E38E /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E636137EB34D0068E38E /* AMSerialPortAdditions.m */; };
@@ -324,6 +328,10 @@
 		BAE66E1614EC355A0009D43D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BAE66E1414EC355A0009D43D /* InfoPlist.strings */; };
 		BAE66E1914EC355A0009D43D /* iKopterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE66E1814EC355A0009D43D /* iKopterTests.m */; };
 		BAE66E2814EC41D40009D43D /* IKParamSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E672137EB5BA0068E38E /* IKParamSet.m */; };
+		BAE66E5A14ED51650009D43D /* WaypointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE66E5814ED4F710009D43D /* WaypointTest.m */; };
+		BAE66E5C14ED52160009D43D /* IKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09C13ACE978007E0F2F /* IKPoint.m */; };
+		BAE66E5D14ED52160009D43D /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E670137EB5BA0068E38E /* IKNaviData.m */; };
+		BAE66E5E14ED52490009D43D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */; };
 		BAEEFBB3139D3B680003860E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
 		BAEEFBCA139D6E170003860E /* iKopter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBC8139D6E170003860E /* iKopter.xcdatamodeld */; };
 		BAEEFBE5139D6FF90003860E /* NCLogRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEEFBDC139D6FF90003860E /* NCLogRecord.m */; };
@@ -665,6 +673,10 @@
 		BA9EAD3B13CF0B4E008EC741 /* IKDropboxLoginSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKDropboxLoginSource.m; sourceTree = "<group>"; };
 		BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
 		BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
+		BAA07D3B14ED630E00FCE08F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		BAA07D3C14ED630E00FCE08F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		BAA07D4D14ED808E00FCE08F /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		BAA07D4E14ED808E00FCE08F /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		BAA4E62E137EB11B0068E38E /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
 		BAA4E62F137EB11B0068E38E /* BTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDevice.m; sourceTree = "<group>"; };
 		BAA4E631137EB34C0068E38E /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
@@ -882,6 +894,8 @@
 		BAE66E1714EC355A0009D43D /* iKopterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iKopterTests.h; sourceTree = "<group>"; };
 		BAE66E1814EC355A0009D43D /* iKopterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iKopterTests.m; sourceTree = "<group>"; };
 		BAE66E1A14EC355A0009D43D /* iKopterTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iKopterTests-Prefix.pch"; sourceTree = "<group>"; };
+		BAE66E5714ED4F700009D43D /* WaypointTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointTest.h; sourceTree = "<group>"; };
+		BAE66E5814ED4F710009D43D /* WaypointTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointTest.m; sourceTree = "<group>"; };
 		BAEEFBB2139D3B680003860E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BAEEFBC9139D6E170003860E /* iKopter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iKopter.xcdatamodel; sourceTree = "<group>"; };
 		BAEEFBDB139D6FF90003860E /* NCLogRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogRecord.h; sourceTree = "<group>"; };
@@ -930,6 +944,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAA07D4A14ED638C00FCE08F /* Security.framework in Frameworks */,
+				BAE66E5E14ED52490009D43D /* CoreLocation.framework in Frameworks */,
 				BAE66E0E14EC355A0009D43D /* SenTestingKit.framework in Frameworks */,
 				BAE66E0F14EC355A0009D43D /* UIKit.framework in Frameworks */,
 				BAE66E1014EC355A0009D43D /* Foundation.framework in Frameworks */,
@@ -1186,6 +1202,8 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				BAA07D4D14ED808E00FCE08F /* JSONKit.h */,
+				BAA07D4E14ED808E00FCE08F /* JSONKit.m */,
 				BA545663145C20AA006BD0CD /* TPMultiLayoutViewController.h */,
 				BA545664145C20AA006BD0CD /* TPMultiLayoutViewController.m */,
 				BA1B8CE6144068710034B3D8 /* MBProgressHUD+RFhelpers.h */,
@@ -1862,8 +1880,12 @@
 		BAE66E1114EC355A0009D43D /* iKopterTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAA07D3B14ED630E00FCE08F /* NSData+Base64.h */,
+				BAA07D3C14ED630E00FCE08F /* NSData+Base64.m */,
 				BAE66E1714EC355A0009D43D /* iKopterTests.h */,
 				BAE66E1814EC355A0009D43D /* iKopterTests.m */,
+				BAE66E5714ED4F700009D43D /* WaypointTest.h */,
+				BAE66E5814ED4F710009D43D /* WaypointTest.m */,
 				BAE66E1214EC355A0009D43D /* Supporting Files */,
 			);
 			path = iKopterTests;
@@ -2358,6 +2380,7 @@
 				BA1B8D8A1441F7710034B3D8 /* MKRedparkSerialConnection.m in Sources */,
 				BA545665145C20AA006BD0CD /* TPMultiLayoutViewController.m in Sources */,
 				764E8A4C14601B7200579FA4 /* OsdTabBarController.m in Sources */,
+				BAA07D4F14ED808E00FCE08F /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2365,8 +2388,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE66E5C14ED52160009D43D /* IKPoint.m in Sources */,
+				BAE66E5D14ED52160009D43D /* IKNaviData.m in Sources */,
 				BAE66E1914EC355A0009D43D /* iKopterTests.m in Sources */,
 				BAE66E2814EC41D40009D43D /* IKParamSet.m in Sources */,
+				BAE66E5A14ED51650009D43D /* WaypointTest.m in Sources */,
+				BAA07D3F14ED631500FCE08F /* NSData+Base64.m in Sources */,
+				BAA07D5014ED809400FCE08F /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
