@@ -39,6 +39,7 @@
 - (NSDictionary *) decodeMixerWriteResponse;
 - (NSDictionary *) decodePointReadResponse;
 - (NSDictionary *) decodePointWriteResponse;
+- (NSDictionary *) decodeMotorDataResponse;
 
 @end
 

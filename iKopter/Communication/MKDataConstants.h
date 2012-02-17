@@ -45,6 +45,7 @@
 #define kIKDataKeyData3D       @"IKData3D"
 #define kIKDataKeyOsd          @"IKOsdData"
 #define kIKDataKeyPoint        @"IKPoint"
+#define kIKDataKeyMotorData    @"IKMotorData"
 
 
 

@@ -28,6 +28,8 @@
 #import "OsdValue.h"
 #import "InnerShadowView.h"
 #import "CustomBadge.h"
+#import "IKNaviData.h"
+
 
 @implementation BaseOsdViewController
 
@@ -60,6 +62,15 @@
 @synthesize current;
 @synthesize usedCapacity;
 
+@synthesize motorData1;
+@synthesize motorData2;
+@synthesize motorData3;
+@synthesize motorData4;
+@synthesize motorData5;
+@synthesize motorData6;
+@synthesize motorData7;
+@synthesize motorData8;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -83,7 +94,11 @@
     return self;
 }
 
+
 - (void)dealloc {
+
+  [motorLabels release];
+  
   self.satelites=nil;
   self.careFree=nil;
   self.altitudeControl=nil;
@@ -112,6 +127,15 @@
   self.battery=nil;
   self.current=nil;
   self.usedCapacity=nil;
+
+  self.motorData1=nil;
+  self.motorData2=nil;
+  self.motorData3=nil;
+  self.motorData4=nil;
+  self.motorData5=nil;
+  self.motorData6=nil;
+  self.motorData7=nil;
+  self.motorData8=nil;
   
   [super dealloc];
 }
@@ -217,6 +241,12 @@
   self.heigthSetpoint.text=[NSString stringWithFormat:@"%0.1f m",data->SetpointAltitude/20.0];  
 }
 
+-(void) viewDidLoad{
+  [super viewDidLoad];
+  motorLabels = [[NSArray alloc] initWithObjects:self.motorData1,self.motorData2,self.motorData3,self.motorData4,
+                 self.motorData5,self.motorData6,self.motorData7,self.motorData8,nil];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -225,6 +255,13 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (void) updateMotorData:(OsdValue*) value {
+  
+  for(int i=0;i<8;i++){
+    ((UILabel*)[motorLabels objectAtIndex:i]).text = [value motorDataForIndex:i];
+  }
 }
 
 @end

@@ -160,6 +160,17 @@
   return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex, nil];
 }
 
+
+- (NSDictionary *) decodeMotorDataResponse{
+  const char * bytes = [self bytes];
+  NSNumber * theIndex = [NSNumber numberWithChar:bytes[0]];
+
+  IKMotorData* thePoint = [IKMotorData dataWithData:self];
+  return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex,
+            thePoint,kIKDataKeyMotorData,nil];
+}
+
+
 @end
 
 /////////////////////////////////////////////////////////////////////////////////

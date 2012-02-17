@@ -24,12 +24,15 @@
 
 #import <UIKit/UIKit.h>
 #import "TPMultiLayoutViewController.h"
+
+@class IKMotorData;
 @class CustomBadge;
 @class InnerShadowView;
 @class OsdValue;
 
 @interface BaseOsdViewController : TPMultiLayoutViewController{
-  
+ 
+  NSArray* motorLabels;
 }
 
 @property (nonatomic, retain) IBOutlet CustomBadge* satelites;
@@ -59,10 +62,21 @@
 @property (nonatomic, retain) IBOutlet UILabel* variometer;
 @property (nonatomic, retain) IBOutlet UILabel* heigthSetpoint;
 
+@property (nonatomic, retain) IBOutlet UILabel* motorData1;
+@property (nonatomic, retain) IBOutlet UILabel* motorData2;
+@property (nonatomic, retain) IBOutlet UILabel* motorData3;
+@property (nonatomic, retain) IBOutlet UILabel* motorData4;
+@property (nonatomic, retain) IBOutlet UILabel* motorData5;
+@property (nonatomic, retain) IBOutlet UILabel* motorData6;
+@property (nonatomic, retain) IBOutlet UILabel* motorData7;
+@property (nonatomic, retain) IBOutlet UILabel* motorData8;
+
+
 @property(nonatomic, retain) IBOutlet UILabel* flightTime;
 
 - (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation;
 
+- (void) updateMotorData:(OsdValue*) value;
 - (void) updateStateView:(OsdValue*)value;
 - (void) updateBatteryView:(OsdValue*)value;
 - (void) updateHeightView:(OsdValue*)value;

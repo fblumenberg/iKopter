@@ -33,6 +33,7 @@
 #import "NCLogRecord.h"
 #import "IKDebugData.h"
 #import "IKPoint.h"
+#import "IKNaviData.h"
 
 static const NSString *errorMsg[25] = {
   @"No Error",
@@ -69,6 +70,7 @@ static const NSString *errorMsg[25] = {
 - (void) logNCData;
 - (void) osdNotification:(NSNotification *)aNotification;
 - (void) debugValueNotification:(NSNotification *)aNotification;
+- (void) motorDataNotification:(NSNotification *)aNotification;
 
 @property(retain) IKNaviData* data;
 @property(retain) CLLocationManager *lm;
@@ -275,6 +277,10 @@ static const NSString *errorMsg[25] = {
       [self.audioPlayer prepareToPlay];
     }    
     
+
+    for(int i=0;i<12;i++)
+      motorData[i]=nil;
+    
     if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
       canFollowMe = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
                                        [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
@@ -294,6 +300,7 @@ static const NSString *errorMsg[25] = {
       self.lm.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     else
       self.lm.desiredAccuracy = kCLLocationAccuracyBest;
+    
       
   }
   return self;
@@ -325,6 +332,11 @@ static const NSString *errorMsg[25] = {
   [nc addObserver:self
          selector:@selector(debugValueNotification:)
              name:MKDebugDataNotification
+           object:nil];
+
+  [nc addObserver:self
+         selector:@selector(motorDataNotification:)
+             name:MKMotorDataNotification
            object:nil];
 
 
@@ -377,6 +389,7 @@ static const NSString *errorMsg[25] = {
   requestCount++;
   
   [[MKConnectionController sharedMKConnectionController] requestDebugValueForInterval:40];
+  [[MKConnectionController sharedMKConnectionController] requestMotorDataForInterval:40];
 }
 
 - (void) osdNotification:(NSNotification *)aNotification {
@@ -398,6 +411,20 @@ static const NSString *errorMsg[25] = {
   IKDebugData* debugData = [[aNotification userInfo] objectForKey:kIKDataKeyDebugData];
   poiIndex=[[debugData analogValueAtIndex:16] integerValue];
 }
+
+
+- (void) motorDataNotification:(NSNotification *)aNotification{
+  NSInteger index = [[[aNotification userInfo] objectForKey:kMKDataKeyIndex] integerValue];
+  
+  IKMotorData* motorValue=[[aNotification userInfo] objectForKey:kIKDataKeyMotorData];
+  [motorData[index] release]; 
+  motorData[index]=nil;
+  if((motorValue.state & 0x80) == 0x80)
+    motorData[index]=[[NSString stringWithFormat:@"BL%-2d: %d°C %.0fA",index,motorValue.temperature,
+                       motorValue.current/10.0,motorValue.maxPWM,motorValue.state]retain];
+}
+
+
 
 - (void) logNCData {
   
@@ -485,5 +512,12 @@ static const NSString *errorMsg[25] = {
   [targetPoint release];
 }
 
+
+-(NSString*) motorDataForIndex:(NSUInteger)index{
+  if(index>11) 
+    return nil;
+  
+  return motorData[index];
+}
 
 @end

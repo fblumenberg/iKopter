@@ -62,6 +62,8 @@ NSString * const MKData3DNotification = @"MKData3DNotification";
 NSString * const MKReadPointNotification = @"MKReadPointNotification";
 NSString * const MKWritePointNotification = @"MKWritePointNotification";
 
+NSString * const MKMotorDataNotification=@"MKMotorDataNotification";
+
 
 // ///////////////////////////////////////////////////////////////////////////////
 
@@ -324,6 +326,17 @@ NSString * const MKWritePointNotification = @"MKWritePointNotification";
 - (void) requestDebugValueForInterval:(NSUInteger)interval {
   uint8_t iv = interval;
   NSData * data = [NSData dataWithCommand:MKCommandDebugValueRequest
+                               forAddress:kIKMkAddressAll
+                         payloadWithBytes:&iv
+                                   length:1];
+  
+  [self sendRequest:data];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) requestMotorDataForInterval:(NSUInteger)interval {
+  uint8_t iv = interval;
+  NSData * data = [NSData dataWithCommand:MKCommandMotorDataRequest
                                forAddress:kIKMkAddressAll
                          payloadWithBytes:&iv
                                    length:1];
@@ -612,6 +625,10 @@ NSString * const MKWritePointNotification = @"MKWritePointNotification";
     case MKCommandWritePointResponse:
       n = MKWritePointNotification;
       d = [payload decodePointWriteResponse];
+      break;
+    case MKCommandMotorDataResponse:
+      n = MKMotorDataNotification;
+      d = [payload decodeMotorDataResponse];
       break;
     case MKCommandVersionResponse:
       n = MKVersionNotification;

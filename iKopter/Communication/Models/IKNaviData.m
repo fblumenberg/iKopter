@@ -196,3 +196,28 @@
 
 @end
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark IKMotorData
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation IKMotorData : NSObject 
+
+@synthesize current,temperature,maxPWM,state;
+
++ (id)dataWithData:(NSData *)data {
+  return [[[IKMotorData alloc] initWithData:data]autorelease];
+}
+
+- (id)initWithData:(NSData*)data {
+  self = [super init];
+  if (self != nil) {
+    IKMkMotor* motorData=(IKMkMotor*)[data bytes];
+    self.current=motorData->Current;
+    self.temperature=motorData->Temperature;
+    self.maxPWM=motorData->MaxPWM;
+    self.state=motorData->State;
+  }
+  return self;
+}
+
+@end

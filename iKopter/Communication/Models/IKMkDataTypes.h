@@ -65,6 +65,8 @@ typedef enum {
   MKCommandWritePointRequest='w',
   MKCommandWritePointResponse='W',
   MKCommandSendPointRequest='s',
+  MKCommandMotorDataRequest='k',
+  MKCommandMotorDataResponse='K',
   
 } MKCommandId;
 
@@ -697,3 +699,13 @@ typedef struct
 // FC STATUS FLAGS2
 #define FC_STATUS2_CAREFREE           0x01
 #define FC_STATUS2_ALTITUDE_CONTROL   0x02
+
+
+typedef struct
+{
+  uint8_t Index;
+  uint8_t Current;
+  uint8_t Temperature;
+  uint8_t MaxPWM;
+  uint8_t State;
+} __attribute__((packed)) IKMkMotor;

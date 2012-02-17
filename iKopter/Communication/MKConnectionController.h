@@ -32,6 +32,8 @@ extern NSString * const MKConnectedNotification;
 extern NSString * const MKDisconnectedNotification;
 extern NSString * const MKDisconnectErrorNotification;
 
+extern NSString * const MKMotorDataNotification;
+
 extern NSString * const MKVersionNotification;
 extern NSString * const MKDebugDataNotification;
 extern NSString * const MKDebugLabelNotification;
@@ -105,6 +107,7 @@ extern NSString * const MKWritePointNotification;
 
 - (void) requestData3DForInterval:(NSUInteger)interval;
 - (void) requestDebugValueForInterval:(NSUInteger)interval;
+- (void) requestMotorDataForInterval:(NSUInteger)interval;
 - (void) requestOsdDataForInterval:(NSUInteger)interval;
 
 - (void) requestPointForIndex:(NSInteger)interval;

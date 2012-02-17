@@ -72,3 +72,15 @@
 
 @end
 
+
+@interface IKMotorData : NSObject 
+
+@property(assign) NSInteger current;   
+@property(assign) NSInteger temperature;
+@property(assign) NSInteger maxPWM;     
+@property(assign) NSInteger state;     
+  
++ (id)dataWithData:(NSData *)data;
+- (id)initWithData:(NSData*)data;
+
+@end

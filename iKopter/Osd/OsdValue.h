@@ -31,6 +31,7 @@
 @protocol OsdValueDelegate
 
 - (void) newValue:(OsdValue*)value;
+- (void) newValue:(OsdValue*)value;
 
 @optional - (void) noDataAvailable;
 
@@ -56,6 +57,9 @@
 
   BOOL _followMe;
   BOOL _followMeCanStart;
+  
+  
+  NSString* motorData[12];
 }
 
 
@@ -93,5 +97,7 @@
 
 - (void) startRequesting;
 - (void) stopRequesting;
+
+-(NSString*) motorDataForIndex:(NSUInteger)index;
 
 @end
