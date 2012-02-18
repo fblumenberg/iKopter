@@ -35,7 +35,7 @@
 #import "IKPoint.h"
 #import "IKNaviData.h"
 
-static const NSString *errorMsg[25] = {
+static const NSString *errorMsg[30] = {
   @"No Error",
   @"FC not compatible",
   @"MK3Mag not compatible",
@@ -61,8 +61,12 @@ static const NSString *errorMsg[25] = {
   @"ERR: Magnet Error",
   @"Motor restart",
   @"BL limitation"
+  @"ERR:GPS range",
+  @"ERR:No SD-Card",
+  @"ERR:SD Logging aborted",
+  @"ERR:",
+  @"ERR:Max Altitude"
 };
-
 
 @interface OsdValue() <CLLocationManagerDelegate>
 - (void) sendOsdRefreshRequest;
@@ -135,7 +139,7 @@ static const NSString *errorMsg[25] = {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(const NSString*) currentErrorMessage{
-  if(_data.data->Errorcode<24)
+  if(_data.data->Errorcode<30)
     return errorMsg[_data.data->Errorcode];
   
   return @"";
@@ -227,6 +231,24 @@ static const NSString *errorMsg[25] = {
   return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_ALTITUDE_CONTROL) == FC_STATUS2_ALTITUDE_CONTROL);
 }
 
+
+-(BOOL) isFailsafeOn{
+  if (!_data.data) 
+    return NO;
+  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_RC_FAILSAVE_ACTIVE) == FC_STATUS2_RC_FAILSAVE_ACTIVE);
+}
+
+-(BOOL) isOut1On{
+  if (!_data.data) 
+    return NO;
+  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_OUT1_ACTIVE) == FC_STATUS2_OUT1_ACTIVE);
+}
+
+-(BOOL) isOut2On{
+  if (!_data.data) 
+    return NO;
+  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_OUT2_ACTIVE) == FC_STATUS2_OUT2_ACTIVE);
+}
 
 
 
@@ -420,7 +442,7 @@ static const NSString *errorMsg[25] = {
   [motorData[index] release]; 
   motorData[index]=nil;
   if((motorValue.state & 0x80) == 0x80)
-    motorData[index]=[[NSString stringWithFormat:@"BL%-2d: %d°C %.0fA",index,motorValue.temperature,
+    motorData[index]=[[NSString stringWithFormat:@"BL%-2d: %d°C %.0fA",index+1,motorValue.temperature,
                        motorValue.current/10.0,motorValue.maxPWM,motorValue.state]retain];
 }
 

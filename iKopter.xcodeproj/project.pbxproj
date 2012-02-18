@@ -160,8 +160,6 @@
 		BA9F3BFC13A412CF00D98C55 /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F3BFA13A412CF00D98C55 /* UIColor+ColorWithHex.m */; };
 		BAA07D3F14ED631500FCE08F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA07D3C14ED630E00FCE08F /* NSData+Base64.m */; };
 		BAA07D4A14ED638C00FCE08F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9EAD3513CEE5A1008EC741 /* Security.framework */; };
-		BAA07D4F14ED808E00FCE08F /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA07D4E14ED808E00FCE08F /* JSONKit.m */; };
-		BAA07D5014ED809400FCE08F /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA07D4E14ED808E00FCE08F /* JSONKit.m */; };
 		BAA4E630137EB11B0068E38E /* BTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E62F137EB11B0068E38E /* BTDevice.m */; };
 		BAA4E63F137EB34D0068E38E /* AMSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E634137EB34D0068E38E /* AMSerialPort.m */; };
 		BAA4E640137EB34D0068E38E /* AMSerialPortAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E636137EB34D0068E38E /* AMSerialPortAdditions.m */; };
@@ -576,8 +574,6 @@
 		BA9F3BFB13A412CF00D98C55 /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
 		BAA07D3B14ED630E00FCE08F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		BAA07D3C14ED630E00FCE08F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		BAA07D4D14ED808E00FCE08F /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		BAA07D4E14ED808E00FCE08F /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		BAA4E62E137EB11B0068E38E /* BTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDevice.h; sourceTree = "<group>"; };
 		BAA4E62F137EB11B0068E38E /* BTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDevice.m; sourceTree = "<group>"; };
 		BAA4E631137EB34C0068E38E /* AMSDKCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSDKCompatibility.h; sourceTree = "<group>"; };
@@ -1105,8 +1101,6 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				BAA07D4D14ED808E00FCE08F /* JSONKit.h */,
-				BAA07D4E14ED808E00FCE08F /* JSONKit.m */,
 				BA545663145C20AA006BD0CD /* TPMultiLayoutViewController.h */,
 				BA545664145C20AA006BD0CD /* TPMultiLayoutViewController.m */,
 				BA1B8CE6144068710034B3D8 /* MBProgressHUD+RFhelpers.h */,
@@ -2158,7 +2152,6 @@
 				BA545665145C20AA006BD0CD /* TPMultiLayoutViewController.m in Sources */,
 				764E8A4C14601B7200579FA4 /* OsdTabBarController.m in Sources */,
 				BA1AAED814EE877900F8773E /* IKDropboxController.m in Sources */,
-				BAA07D4F14ED808E00FCE08F /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2172,7 +2165,6 @@
 				BAE66E2814EC41D40009D43D /* IKParamSet.m in Sources */,
 				BAE66E5A14ED51650009D43D /* WaypointTest.m in Sources */,
 				BAA07D3F14ED631500FCE08F /* NSData+Base64.m in Sources */,
-				BAA07D5014ED809400FCE08F /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

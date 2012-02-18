@@ -40,8 +40,6 @@
 
 - (void)awakeFromNib
 {
-//	self = [super initWithFrame:CGRectMake(0, 0, 25, 25)];
-//	if(self!=nil) {
 		self.contentScaleFactor = [[UIScreen mainScreen] scale];
 		self.backgroundColor = [UIColor clearColor];
 		self.badgeText = @"1";
@@ -52,9 +50,7 @@
 		self.badgeCornerRoundness = 0.4;
 		self.badgeScaleFactor = 1.0;;
 		self.badgeShining = YES;
-		[self autoBadgeSizeWithString:self.badgeText];		
-//	}
-//	return self;
+		//[self autoBadgeSizeWithString:self.badgeText];		
 }
 
 // I recommend to use the allocator customBadgeWithString
@@ -108,9 +104,9 @@
 	if ([badgeString length]>=2) {
 		flexSpace = [badgeString length];
 		rectWidth = 25 + (stringSize.width + flexSpace); rectHeight = 25;
-		retValue = CGSizeMake(rectWidth*badgeScaleFactor, rectHeight*badgeScaleFactor);
+		retValue = CGSizeMake(floorf(rectWidth*badgeScaleFactor), floorf(rectHeight*badgeScaleFactor));
 	} else {
-		retValue = CGSizeMake(25*badgeScaleFactor, 25*badgeScaleFactor);
+		retValue = CGSizeMake(floorf(25*badgeScaleFactor), floorf(25*badgeScaleFactor));
 	}
 	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, retValue.width, retValue.height);
 	self.badgeText = badgeString;
@@ -207,6 +203,9 @@
 // Draws the Badge Frame with Quartz
 -(void) drawFrameWithContext:(CGContextRef)context withRect:(CGRect)rect
 {
+  
+//  CGContextFillRect(context, rect);
+  
 	CGFloat radius = CGRectGetMaxY(rect)*self.badgeCornerRoundness;
 	CGFloat puffer = CGRectGetMaxY(rect)*0.10;
 	

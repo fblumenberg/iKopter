@@ -140,7 +140,7 @@
   _point.Speed = self.speed;    
   _point.CamAngle = self.camAngle;    
 
-  memset(_point.reserve, 0, 8);
+  memset(_point.reserve, 0, 6);
   
   _point.Position.Altitude = self.type==POINT_TYPE_POI?self.altitude*100:self.altitude*10;
   _point.Position.Longitude = self.longitude;

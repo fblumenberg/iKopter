@@ -697,8 +697,11 @@ typedef struct
 } __attribute__((packed)) IKMkPoint;
 
 // FC STATUS FLAGS2
-#define FC_STATUS2_CAREFREE           0x01
-#define FC_STATUS2_ALTITUDE_CONTROL   0x02
+#define FC_STATUS2_CAREFREE             0x01
+#define FC_STATUS2_ALTITUDE_CONTROL     0x02
+#define FC_STATUS2_RC_FAILSAVE_ACTIVE   0x04
+#define FC_STATUS2_OUT1_ACTIVE       		0x08
+#define FC_STATUS2_OUT2_ACTIVE       		0x10
 
 
 typedef struct

@@ -37,6 +37,9 @@
 @synthesize careFree;
 @synthesize altitudeControl;
 @synthesize gpsMode;
+@synthesize failSafe;
+@synthesize out1;
+@synthesize out2;
 
 @synthesize flightTime;
 
@@ -103,6 +106,9 @@
   self.careFree=nil;
   self.altitudeControl=nil;
   self.gpsMode=nil;
+  self.failSafe=nil;
+  self.out1=nil;
+  self.out2=nil;
   
   self.flightTime=nil;
   
@@ -154,23 +160,42 @@
     self.careFree.badgeScaleFactor=1.5;
     self.gpsMode.badgeScaleFactor=1.5;
     self.satelites.badgeScaleFactor=1.5;
+    self.failSafe.badgeScaleFactor=1.5;
+    self.out1.badgeScaleFactor=1.5;
+    self.out2.badgeScaleFactor=1.5;
   }
   else{
     self.altitudeControl.badgeScaleFactor=1.0;
     self.careFree.badgeScaleFactor=1.0;
     self.gpsMode.badgeScaleFactor=1.0;
     self.satelites.badgeScaleFactor=1.0;
+    self.failSafe.badgeScaleFactor=1.0;
+    self.out1.badgeScaleFactor=1.0;
+    self.out2.badgeScaleFactor=1.0;
   }
   
   self.altitudeControl.badgeInsetColor=self.functionOffColor;
-  [self.altitudeControl autoBadgeSizeWithString:@"ALT"];
+//  [self.altitudeControl autoBadgeSizeWithString:@"ALT"];
   
   self.careFree.badgeInsetColor=self.functionOffColor;
-  [self.careFree autoBadgeSizeWithString:@"ALT"];
+//  [self.careFree autoBadgeSizeWithString:@"ALT"];
   
   self.gpsMode.badgeInsetColor=self.functionOffColor;
-  [self.gpsMode autoBadgeSizeWithString:@"FREE"];
+//  [self.gpsMode autoBadgeSizeWithString:@"FREE"];
 
+  self.failSafe.badgeInsetColor=self.functionOffColor;
+//  [self.failSafe autoBadgeSizeWithString:@"FAILSAFE"];
+
+//  CGRect frame=self.failSafe.frame;
+//  CGRect frameAlt=self.altitudeControl.frame;
+//  CGFloat rectWidth = CGRectGetMaxX(frameAlt)-CGRectGetMinX(frame);
+//  self.failSafe.frame = CGRectMake(frame.origin.x, frame.origin.y, rectWidth, frame.size.height);
+
+  self.out1.badgeInsetColor=self.functionOffColor;
+//  [self.out1 autoBadgeSizeWithString:@"ALT"];
+
+  self.out1.badgeInsetColor=self.functionOffColor;
+//  [self.out2 autoBadgeSizeWithString:@"ALT"];
 }
 
 - (void) updateStateView:(OsdValue*)value {
@@ -187,6 +212,19 @@
   self.careFree.badgeInsetColor=value.isCareFreeOn?self.functionOnColor:self.functionOffColor;
   self.careFree.badgeText=@"CF";
   [self.careFree setNeedsDisplay];
+
+  self.failSafe.badgeInsetColor=value.isFailsafeOn?[UIColor redColor]:self.functionOffColor;
+  self.failSafe.badgeText=@"FAILSAFE";
+  [self.failSafe setNeedsDisplay];
+
+  self.out1.badgeInsetColor=value.isOut1On?self.functionOnColor:self.functionOffColor;
+  self.out1.badgeText=@"Out1";
+  [self.out1 setNeedsDisplay];
+
+  self.out2.badgeInsetColor=value.isOut2On?self.functionOnColor:self.functionOffColor;
+  self.out2.badgeText=@"Out1";
+  [self.out2 setNeedsDisplay];
+
   
   if(value.isFreeModeEnabled){
     self.gpsMode.badgeInsetColor = self.functionOffColor;
@@ -258,9 +296,10 @@
 }
 
 - (void) updateMotorData:(OsdValue*) value {
-  
-  for(int i=0;i<8;i++){
-    ((UILabel*)[motorLabels objectAtIndex:i]).text = [value motorDataForIndex:i];
+  NSInteger i=0;
+  for (UILabel* l in motorLabels) {
+    l.text = [value motorDataForIndex:i];
+    i++;
   }
 }
 

@@ -210,7 +210,12 @@
     [attributes setObject:[NSValue valueWithCGRect:view.bounds] forKey:@"bounds"];
     [attributes setObject:[NSNumber numberWithBool:view.hidden] forKey:@"hidden"];
     [attributes setObject:[NSNumber numberWithInteger:view.autoresizingMask] forKey:@"autoresizingMask"];
-    
+    if ( [view isKindOfClass:[UILabel class]]){
+      UILabel* label=(UILabel*)view;
+      [attributes setObject:label.font forKey:@"font"];
+      [attributes setObject:label.textColor forKey:@"textColor"];
+      [attributes setObject:[NSNumber numberWithInteger:label.textAlignment] forKey:@"textAlignment"];
+    }
     return attributes;
 }
 
@@ -219,6 +224,12 @@
     view.bounds = [[attributes objectForKey:@"bounds"] CGRectValue];
     view.hidden = [[attributes objectForKey:@"hidden"] boolValue];
     view.autoresizingMask = [[attributes objectForKey:@"autoresizingMask"] integerValue];
+    if ( [view isKindOfClass:[UILabel class]]){
+      UILabel* label=(UILabel*)view;
+      label.font=[attributes objectForKey:@"font"];
+      label.textColor=[attributes objectForKey:@"textColor"];
+      label.textAlignment = [[attributes objectForKey:@"textAlignment"] integerValue];
+    }
 }
 
 - (BOOL)shouldDescendIntoSubviewsOfView:(UIView*)view {

@@ -85,6 +85,11 @@
 @property(readonly) BOOL isGpsOk;
 @property(readonly) BOOL isCareFreeOn;
 @property(readonly) BOOL isAltControlOn;
+
+@property(readonly) BOOL isFailsafeOn;
+@property(readonly) BOOL isOut1On;
+@property(readonly) BOOL isOut2On;
+
 @property(readonly) NSInteger poiIndex;
 
 @property(readonly) const NSString* currentErrorMessage;
