@@ -25,15 +25,14 @@
 #import <Foundation/Foundation.h>
 #import "SynthesizeSingleton.h"
 
-#import "DropboxSDK.h"
-#import "IKDropboxLoginController.h"
+#import "DropboxSDK/DropboxSDK.h"
 
 @class DBRestClient;
 @class DBMetadata;
 
 @protocol IKDropboxControllerDelegate;
 
-@interface IKDropboxController : NSObject<IKDBLoginControllerDelegate> {
+@interface IKDropboxController : NSObject {
   
   DBRestClient* restClient;
 }

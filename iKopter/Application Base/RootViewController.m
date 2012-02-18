@@ -35,14 +35,13 @@
 #import "MKHostsViewController.h"
 #import "RoutesViewController.h"
 #import "DropboxSDK.h"
-#import "IKDropboxLoginController.h"
 
 #import "UIViewController+SplitView.h"
 
 #define kDropBoxAction @"DropBoxAction"
 
 
-@interface RootViewController() <IKDBLoginControllerDelegate>
+@interface RootViewController()
 
 - (void)updateDropboxButton;
 
@@ -134,23 +133,20 @@
 - (void)showDropboxLogin {  
   if (![[DBSession sharedSession] isLinked]) {
     
-    IKDropboxLoginController* controller = [[[IKDropboxLoginController alloc] initWithNibName:nil bundle:nil] autorelease];
-//    DBLoginController* controller = [[DBLoginController new] autorelease];
-//    controller.delegate = self;
-    self.appSettingsViewController.navigationController.delegate=nil;
-    [self.appSettingsViewController.navigationController pushViewController:controller animated:YES];
+    [[DBSession sharedSession] link];
   } 
   else {
-    [[DBSession sharedSession] unlink];
-    [self updateDropboxButton];
+    [[DBSession sharedSession] unlinkAll];
   }
+  [self updateDropboxButton];
 }
 
 - (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {  
   
   UITableViewCell* cell = (UITableViewCell*)(gestureRecognizer.view);
   [cell setSelected:YES animated:NO];
-  [self performSelector:@selector(showDropboxLogin) withObject:nil afterDelay:0.0];
+  
+  [self performSelector:@selector(showDropboxLogin) withObject:nil afterDelay:0.25];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
@@ -177,9 +173,6 @@
       cell.textLabel.text = NSLocalizedString(@"Unlink from Dropbox",@"Dropbox button link");
     }
 
-    if (![[DBSession sharedSession] isLinked])
-      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
     [cell setUserInteractionEnabled:YES];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
@@ -188,16 +181,6 @@
   }
   
   return cell;
-}
-
-#pragma mark - DBLoginControllerDelegate methods
-
-- (void)loginControllerDidLogin:(IKDropboxLoginController*)controller {
-  [self updateDropboxButton];
-}
-
-- (void)loginControllerDidCancel:(IKDropboxLoginController*)controller {
-  [self updateDropboxButton];
 }
 
 #pragma mark - View life cycle

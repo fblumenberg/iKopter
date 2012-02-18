@@ -24,8 +24,7 @@
 
 #import "iKopterAppDelegate.h"
 #import "MKConnectionController.h"
-#import "DropboxSDK.h"
-#import "IKDropboxLoginController.h"
+#import "DropboxSDK/DropboxSDK.h"
 
 // Here we import the Dropbox credentials. You have to get your own to compile.
 #import "ExternalData.h"
@@ -89,35 +88,28 @@
   [self saveContext];
   
   // Set these variables before launching the app
-  NSString* consumerKey = kDROPBOX_CONSUMER_KEY;
-	NSString* consumerSecret = kDROPBOX_CONSUMER_SECRET;
+  NSString* appKey = kDROPBOX_CONSUMER_KEY;
+	NSString* appSecret = kDROPBOX_CONSUMER_SECRET;
+	NSString *root = kDBRootDropbox;
+
 	
-	// Look below where the DBSession is created to understand how to use DBSession in your app
-	
-	NSString* errorMsg = nil;
-	if ([consumerKey rangeOfCharacterFromSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]].location != NSNotFound) {
-		errorMsg = @"Make sure you set the consumer key correctly";
-	} else if ([consumerSecret rangeOfCharacterFromSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]].location != NSNotFound) {
-		errorMsg = @"Make sure you set the consumer secret correctly";
-	}
-	
-	DBSession* session = 
-  [[DBSession alloc] initWithConsumerKey:consumerKey consumerSecret:consumerSecret];
-	session.delegate = self; // DBSessionDelegate methods allow you to handle re-authenticating
+	DBSession* session = [[DBSession alloc] initWithAppKey:appKey appSecret:appSecret root:root];
+	session.delegate = self;
 	[DBSession setSharedSession:session];
   [session release];
 	
-	if (errorMsg != nil) {
-		[[[[UIAlertView alloc]
-		   initWithTitle:@"Error Configuring Session" message:errorMsg 
-		   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
-		  autorelease]
-		 show];
-	}
-  
-  
-  
   return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+	if ([[DBSession sharedSession] handleOpenURL:url]) {
+//		if ([[DBSession sharedSession] isLinked]) {
+//			[navigationController pushViewController:rootViewController.photoViewController animated:YES];
+//		}
+		return YES;
+	}
+	
+	return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -294,11 +286,10 @@
   return __persistentStoreCoordinator;
 }
 
-#pragma mark DBSessionDelegate methods
+#pragma mark - DBSessionDelegate methods
 
-- (void)sessionDidReceiveAuthorizationFailure:(DBSession*)session {
-	IKDropboxLoginController* loginController = [[IKDropboxLoginController new] autorelease];
-	[loginController presentFromController:self.navigationController];
+- (void)sessionDidReceiveAuthorizationFailure:(DBSession*)session userId:(NSString *)userId {
+  [[DBSession sharedSession] linkUserId:userId];
 }
 
 @end

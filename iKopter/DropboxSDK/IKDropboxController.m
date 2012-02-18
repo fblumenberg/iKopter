@@ -70,10 +70,7 @@
 
   NSLog(@"Delegate %@",self.delegate);
   if (![[DBSession sharedSession] isLinked]) {
-    IKDropboxLoginController* loginController = [[[IKDropboxLoginController alloc] initWithNibName:nil bundle:nil] autorelease];
-    loginController.delegate=self;
-    UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-    [loginController presentFromController:rootViewController];
+    [[DBSession sharedSession] link];
   }
   else {
     [self.restClient loadMetadata:kIKDropboxPath withHash:[self.metaData hash]];
@@ -160,18 +157,6 @@
   else{
     [IKDropboxController showError:error withTitle:NSLocalizedString(@"Getting iKopter data folder failed" , @"Getting Data Folder Error Title")]; 
   }
-}
-
-#pragma mark - DBLoginControllerDelegate methods
-
-- (void)loginControllerDidLogin:(IKDropboxLoginController*)controller {
-  controller.delegate=nil;
-  
-  [self performSelector:@selector(connectAndPrepareMetadata) withObject:self afterDelay:0.1];
-}
-
-- (void)loginControllerDidCancel:(IKDropboxLoginController*)controller {
-  controller.delegate=nil;
 }
 
 #pragma mark - 
