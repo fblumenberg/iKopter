@@ -38,8 +38,11 @@
 @property (nonatomic, retain) IBOutlet UISwitch* followMeSwitch;
 @property (nonatomic, retain) IBOutlet UILabel* followMeRequests;
 @property (nonatomic, retain) IBOutlet UILabel *followMeActive;
+@property (nonatomic, retain) IBOutlet CustomBadge *followMeBadge;
 
 
 - (IBAction) followMeChanged;
+
+-(void) updateFollowMe:(OsdValue*)value;
 
 @end
