@@ -3080,7 +3080,7 @@ Failed:
 			[self closeWithError: [self errorFromCFStreamError:err]];
 			break;
 		default:
-			NSLog (@"AsyncSocket %p received unexpected CFReadStream callback, CFStreamEventType %d.", self, type);
+			NSLog (@"AsyncSocket %p received unexpected CFReadStream callback, CFStreamEventType %lu.", self, type);
 	}
 }
 

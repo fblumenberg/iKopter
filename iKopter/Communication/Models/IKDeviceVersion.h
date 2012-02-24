@@ -36,9 +36,9 @@
 
 @property(assign,readonly) IKMkAddress address;
 
-@property(assign,readonly) NSString* versionString;
-@property(assign,readonly) NSString* versionStringShort;
-@property(assign,readonly) NSString* deviceName;
+@property(readonly) NSString* versionString;
+@property(readonly) NSString* versionStringShort;
+@property(readonly) NSString* deviceName;
 
 @property(readonly) BOOL hasError;
 

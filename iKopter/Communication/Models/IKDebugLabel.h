@@ -35,7 +35,7 @@
 
 @property(assign,readonly) IKMkAddress address;
 @property(assign,readonly) NSUInteger  index;
-@property(assign,readonly) NSString*   label;
+@property(readonly) NSString*   label;
 
 + (id)labelWithData:(NSData *)data forAddress:(IKMkAddress)address;
 - (id)initWithData:(NSData*)data forAddress:(IKMkAddress)address;
