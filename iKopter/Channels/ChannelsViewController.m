@@ -80,6 +80,10 @@
   [super viewDidDisappear:animated];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return YES;
+}
+
 #pragma mark -
 #pragma mark Memory management
 
@@ -128,22 +132,41 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return sizeof(channelValues);
+  return 25;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString * CellIdentifier = @"ChannelsTableCell";
-
-  UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-  if (cell == nil) {
-    cell = [[[ChannelsViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+  UITableViewCell * cell;
+  if(indexPath.row==0){
+    static NSString * CellIdentifier = @"ChannelsRSSITableCell";
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    cell.textLabel.text = NSLocalizedString(@"RSSI", @"Channels Test");
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",channelValues[indexPath.row]];
   }
-
-  cell.textLabel.text = [NSString stringWithFormat:@"Channel %d",indexPath.row];
-  [(ChannelsViewCell*)cell setChannelValue:channelValues[indexPath.row]];
-  cell.detailTextLabel.hidden = YES;//.text = [NSString stringWithFormat:@"%d",channelValues[indexPath.row]];
-
+  else {
+    
+    static NSString * CellIdentifier = @"ChannelsTableCell";
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+      cell = [[[ChannelsViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    if(indexPath.row<13)
+      cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"RC Channel %d","Channel test"),indexPath.row];
+    else     
+      cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Serial %d","Channel test"),indexPath.row];
+    
+    [(ChannelsViewCell*)cell setChannelValue:channelValues[indexPath.row]];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",channelValues[indexPath.row]];
+  }
   return cell;
 }
 

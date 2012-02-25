@@ -16,10 +16,17 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
 
-    CGRect frame = CGRectMake(126.0, 20.0, kUIProgressBarWidth, kUIProgressBarHeight);
+    CGRect frame = self.contentView.frame;
+    CGFloat height = frame.size.height;
+    
+    self.textLabel.frame = CGRectMake(20.0, 0.0, 100, height);
+    self.detailTextLabel.frame = CGRectMake(20.0, 0.0, 100, height);
+
+    frame = CGRectMake(128.0, 17, 135, 9);
     progressBar = [[UIProgressView alloc] initWithFrame:frame];
     progressBar.progressViewStyle = UIProgressViewStyleDefault;
     progressBar.progress = 0.5;    // Initialization code
+    progressBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     [self.contentView addSubview:progressBar];
   }
@@ -35,7 +42,8 @@
 
 -(void)setChannelValue:(int16_t)value {
   
-  progressBar.progress = (value+125)/250.0f;
+  progressBar.progress = (value+127)/255.0f;
+  self.detailTextLabel.text = [NSString stringWithFormat:@"%d",value+127];
 }
 
 
