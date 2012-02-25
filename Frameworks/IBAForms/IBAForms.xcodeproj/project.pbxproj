@@ -534,6 +534,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IBAForms_Prefix.pch;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				"OTHER_CFLAGS[arch=armv6]" = "-mno-thumb";
+				"OTHER_CFLAGS[arch=armv7]" = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = IBAForms;
 				TARGETED_DEVICE_FAMILY = "1,2";
