@@ -37,6 +37,7 @@ static NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"M
 @synthesize address;
 @synthesize versionString;
 @synthesize versionStringShort;
+@synthesize versionMainStringShort;
 
 - (BOOL)hasError {
   return (_version.HardwareError[0]>0||_version.HardwareError[1]>0);
@@ -74,6 +75,9 @@ static NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"M
                            _version.SWMinor, 
                            (_version.SWPatch + 'a')] retain];
     
+    versionMainStringShort = [[NSString stringWithFormat:@"%d.%d", 
+                           _version.SWMajor, 
+                           _version.SWMinor] retain];
   }
   return self;
 }
@@ -82,6 +86,8 @@ static NSString * HardwareType[] = { @"Default", @"FlightCtrl", @"NaviCtrl", @"M
 {
 	[versionString release];
 	[versionStringShort release];
+	[versionMainStringShort release];
+ 
 	[super dealloc];
 }
 

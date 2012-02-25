@@ -38,6 +38,7 @@
 
 @property(readonly) NSString* versionString;
 @property(readonly) NSString* versionStringShort;
+@property(readonly) NSString* versionMainStringShort;
 @property(readonly) NSString* deviceName;
 
 @property(readonly) BOOL hasError;

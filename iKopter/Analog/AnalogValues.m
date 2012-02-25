@@ -169,6 +169,9 @@
   NSDictionary* devArrays=[analogLabels objectAtIndex:[cCtrl currentDevice]];
   
   currAnalogLabels = [devArrays objectForKey:v.versionStringShort];
+  if(!currAnalogLabels){
+    currAnalogLabels = [devArrays objectForKey:v.versionMainStringShort];
+  }
   if(!currAnalogLabels)
     currAnalogLabels = [devArrays objectForKey:@"UNK"];
 }
