@@ -44,7 +44,7 @@
     
 		IBAFormSection *hostSection = [self addSectionWithHeaderTitle:nil
                                     footerTitle:NSLocalizedString(@"WLAN - Hostname:Port\nBluetooth - aa:bb:cc:dd:ee:ff", @"Host footer")];
-    hostSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    hostSection.formFieldStyle = [[[SettingsFieldStyleText alloc] init] autorelease];
     
     //------------------------------------------------------------------------------------------------------------------------
     [hostSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"name" title:NSLocalizedString(@"Name",@"Host name")] autorelease]];
