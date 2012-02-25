@@ -34,15 +34,10 @@
   UIFont* landscapeFont;
   
   UISegmentedControl* segment;
-  
-  CGPoint    gestureStartPoint;    
-  BOOL       canProcessNextGesture;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel * label;
 @property (nonatomic, retain) IBOutlet UISegmentedControl* segment;
-
-@property CGPoint gestureStartPoint;
 
 - (IBAction) nextScreen;
 - (IBAction) prevScreen;

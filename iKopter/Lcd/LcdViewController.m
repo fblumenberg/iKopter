@@ -35,12 +35,20 @@
 
 @synthesize label;
 @synthesize segment;
-@synthesize gestureStartPoint;
 
 - (void) viewDidLoad {
   label.text = NSLocalizedString(@"Not connected\r\nNo data\r\n\r\n",@"NOT CONNECTED LCD");
   lcdCount = 0;
   [super viewDidLoad];
+  
+  UISwipeGestureRecognizer *swipe;
+  swipe = [[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(nextScreen)] autorelease];
+  swipe.direction =UISwipeGestureRecognizerDirectionLeft;
+  [[self view] addGestureRecognizer:swipe];
+  swipe = [[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(prevScreen)] autorelease];
+  swipe.direction =UISwipeGestureRecognizerDirectionRight;
+  [[self view] addGestureRecognizer:swipe];
+
 }
 
 #pragma mark -
@@ -102,8 +110,6 @@
 
 - (void) viewDidAppear:(BOOL)animated {
   
-  canProcessNextGesture=YES;
-
  	// for aesthetic reasons (the background is black), make the nav bar black for this particular page
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
@@ -238,52 +244,6 @@
 
 - (void) dealloc {
   [super dealloc];
-}
-
-#pragma mark -
-
-#define kMinimumGestureLength       25
-#define kMaximumVariance            5
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  
-  UITouch *touch = [touches anyObject];
-  gestureStartPoint = [touch locationInView:self.view];
-  
-}
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  
-  if (!canProcessNextGesture)
-    return;
-  
-  UITouch *touch = [touches anyObject];
-  CGPoint currentPosition = [touch locationInView:self.view];
-  
-  CGFloat deltaX = (gestureStartPoint.x - currentPosition.x);
-  CGFloat deltaY = (gestureStartPoint.y - currentPosition.y);
-  
-  BOOL leftToRight=(deltaX<0);
-  
-  NSLog(@"%f",deltaX);
-  deltaX = fabsf(deltaX);
-  deltaY = fabsf(deltaY);
-  
-  if (deltaX >= kMinimumGestureLength && deltaY <= kMaximumVariance) {
-    if (leftToRight)
-      [self prevScreen];
-    else 
-      [self nextScreen];
-    
-    canProcessNextGesture=NO;
-    
-  }
-  else if (deltaY >= kMinimumGestureLength && deltaX <= kMaximumVariance){
-  }
-  
-}
-
--(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  canProcessNextGesture=YES;
 }
 
 @end
