@@ -53,6 +53,8 @@
                                                                                  NSLocalizedString(@"Jeti Sattelite",@"MKParam Channels"),
                                                                                  NSLocalizedString(@"ACT DSL",@"MKParam Channels"),
                                                                                  NSLocalizedString(@"Graupner HoTT",@"MKParam Channels"),
+                                                                                 NSLocalizedString(@"Futaba S.BUS",@"MKParam Channels"),
+                                                                                 NSLocalizedString(@"User",@"MKParam Channels"),
                                                                                  nil]];
     
     IBASingleIndexTransformer *transformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
