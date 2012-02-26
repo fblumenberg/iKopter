@@ -29,18 +29,18 @@
 #import "NCLogSession.h"
 
 @class MKMapView;
-@protocol MKMapViewDelegate; 
+@protocol MKMapViewDelegate;
 
-@interface NCLogDetailViewController : UIViewController<MKMapViewDelegate,MFMailComposeViewControllerDelegate,UIActionSheetDelegate> {
-    
+@interface NCLogDetailViewController : UIViewController <MKMapViewDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate> {
+
   MKMapView *mapView;
 }
 
-@property(retain) NCLogSession* session;
+@property(retain) NCLogSession *session;
 
-@property(retain) IBOutlet UILabel* startDate;
-@property(retain) IBOutlet UILabel* endDate;
-@property(retain) IBOutlet UILabel* records;
-@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property(retain) IBOutlet UILabel *startDate;
+@property(retain) IBOutlet UILabel *endDate;
+@property(retain) IBOutlet UILabel *records;
+@property(nonatomic, retain) IBOutlet MKMapView *mapView;
 
 @end

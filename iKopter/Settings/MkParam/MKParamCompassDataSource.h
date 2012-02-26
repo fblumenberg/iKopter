@@ -26,7 +26,7 @@
 #import <IBAForms/IBAFormDataSource.h>
 
 @interface MKParamCompassDataSource : IBAFormDataSource {
-	
+
 }
 
 - (id)initWithModel:(id)aModel andBehavior:(int)behavior;

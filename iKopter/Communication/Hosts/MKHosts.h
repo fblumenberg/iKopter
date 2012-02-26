@@ -28,16 +28,16 @@
 
 @interface MKHosts : NSObject {
 
-  NSMutableArray* hosts;
+  NSMutableArray *hosts;
 }
 
--(void) save; 
--(NSUInteger) count;
+- (void)save;
+- (NSUInteger)count;
 
--(MKHost*) hostAtIndexPath:(NSIndexPath *)indexPath;
+- (MKHost *)hostAtIndexPath:(NSIndexPath *)indexPath;
 
--(NSIndexPath*) addHost;
--(void) moveHostAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
--(void) deleteHostAtIndexPath:(NSIndexPath*)indexPath;
+- (NSIndexPath *)addHost;
+- (void)moveHostAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
+- (void)deleteHostAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

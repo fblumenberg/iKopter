@@ -29,36 +29,33 @@
 // ///////////////////////////////////////////////////////////////////////////////
 #pragma mark Helper funktions
 
-static NSData * decode64(const char * inBuffer, int length)
-{
+static NSData *decode64(const char *inBuffer, int length) {
   unsigned char a, b, c, d;
   unsigned char x, y, z;
-  
+
   int srcIdx = 0;
   int dstIdx = 0;
-  
-  NSMutableData * outData = [NSMutableData dataWithLength:length];
-  unsigned char * outBuffer = [outData mutableBytes];
-  
-  if (inBuffer[srcIdx] != 0) 
-  {
-    while (length != 0) 
-    {
+
+  NSMutableData *outData = [NSMutableData dataWithLength:length];
+  unsigned char *outBuffer = [outData mutableBytes];
+
+  if (inBuffer[srcIdx] != 0) {
+    while (length != 0) {
       a = inBuffer[srcIdx++] - '=';
       b = inBuffer[srcIdx++] - '=';
       c = inBuffer[srcIdx++] - '=';
       d = inBuffer[srcIdx++] - '=';
-      
+
       x = (a << 2) | (b >> 4);
       y = ((b & 0x0f) << 4) | (c >> 2);
       z = ((c & 0x03) << 6) | d;
-      
+
       if (length--) outBuffer[dstIdx++] = x; else break;
       if (length--) outBuffer[dstIdx++] = y; else break;
       if (length--) outBuffer[dstIdx++] = z; else break;
     }
   }
-  
+
   [outData setLength:dstIdx];
   return outData;
 }
@@ -66,93 +63,84 @@ static NSData * decode64(const char * inBuffer, int length)
 // ///////////////////////////////////////////////////////////////////////////////
 @implementation NSData (MKCommandDecode)
 
-- (NSUInteger) frameLength;
-{
-  NSUInteger frameLength =  [self length];
-  const char * frameBytes = [self bytes];
-  
+- (NSUInteger)frameLength; {
+  NSUInteger frameLength = [self length];
+  const char *frameBytes = [self bytes];
+
   if (frameLength > 0 && frameBytes[frameLength - 1] == '\r')
     frameLength--;
-  
+
   return frameLength;
 }
 
 
-- (BOOL) isMkData 
-{
-  NSUInteger frameLength =  [self frameLength];
-  const char * frameBytes = [self bytes];
-  
-  if ( frameLength < 5) 
-  {
+- (BOOL)isMkData {
+  NSUInteger frameLength = [self frameLength];
+  const char *frameBytes = [self bytes];
+
+  if (frameLength < 5) {
     NSLog(@"The frame length is to short %d. Frame is invalid", frameLength);
     return NO;
   }
-  
-  if (frameBytes[0] != '#') 
-  {
+
+  if (frameBytes[0] != '#') {
     NSLog(@"The frame is no MK frame");
     return NO;
   }
-  
+
   return YES;
 }
 
 
-- (BOOL) isCrcOk 
-{
-  
+- (BOOL)isCrcOk {
+
   if (![self isMkData])
     return NO;
-  
-  NSUInteger frameLength =  [self frameLength];
-  const uint8_t * frameBytes = [self bytes];
-  
+
+  NSUInteger frameLength = [self frameLength];
+  const uint8_t *frameBytes = [self bytes];
+
   uint8_t crc2 = frameBytes[frameLength - 1];
   uint8_t crc1 = frameBytes[frameLength - 2];
-  
+
   int crc = 0;
-  for (int i = 0; i < frameLength - 2; i++) 
-  {
+  for (int i = 0; i < frameLength - 2; i++) {
     crc += frameBytes[i];
   }
-  
+
   crc %= 4096;
-  
+
   if (crc1 == ('=' + (crc / 64)) && crc2 == ('=' + crc % 64))
     return YES;
-  
+
   return NO;
 }
 
-- (IKMkAddress) address 
-{
+- (IKMkAddress)address {
   if (![self isCrcOk])
     [NSException raise:kInvalidMKCommand format:@"cannot get the address from a invalid MK frame"];
-  
-  const char * frameBytes = [self bytes];
-  
+
+  const char *frameBytes = [self bytes];
+
   return (IKMkAddress)(frameBytes[1] - 'a');
 }
 
-- (MKCommandId) command 
-{
+- (MKCommandId)command {
   if (![self isCrcOk])
     [NSException raise:kInvalidMKCommand format:@"cannot get the address from a invalid MK frame"];
-  
-  const char * frameBytes = [self bytes];
+
+  const char *frameBytes = [self bytes];
   return frameBytes[2];
 }
 
 
-- (NSData *) payload;
-{
-  NSUInteger frameLength =  [self frameLength];
-  const char * frameBytes = [self bytes];
-  
+- (NSData *)payload; {
+  NSUInteger frameLength = [self frameLength];
+  const char *frameBytes = [self bytes];
+
   int startIndex = 3;
   int frameDataLength = frameLength - startIndex - 2;
-  
+
   return decode64(frameBytes + startIndex, frameDataLength);
 }
 

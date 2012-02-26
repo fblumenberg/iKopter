@@ -32,13 +32,13 @@
 
 @class CustomBadge;
 
-@interface MapOsdViewController : BaseOsdViewController<OsdValueDelegate,MKMapViewDelegate,RouteControllerDelegate> {
-    
+@interface MapOsdViewController : BaseOsdViewController <OsdValueDelegate, MKMapViewDelegate, RouteControllerDelegate> {
+
   BOOL needRegionAdjustment;
-  
+
 }
 
-@property(retain) RouteController* routeController;
-@property(retain) IBOutlet MKMapView* mapView;
+@property(retain) RouteController *routeController;
+@property(retain) IBOutlet MKMapView *mapView;
 
 @end

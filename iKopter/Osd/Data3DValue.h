@@ -28,7 +28,7 @@
 
 @protocol Data3DValueDelegate
 
-- (void) newValue:(IKData3D*)data;
+- (void)newValue:(IKData3D *)data;
 
 @end
 
@@ -37,12 +37,12 @@
 @interface Data3DValue : NSObject {
 
   int lcdCount;
-   
-  id<Data3DValueDelegate> _delegate;
-  IKData3D* _data;
+
+  id <Data3DValueDelegate> _delegate;
+  IKData3D *_data;
 }
 
-@property(assign) id<Data3DValueDelegate> delegate;
-@property(readonly,retain) IKData3D* data;
+@property(assign) id <Data3DValueDelegate> delegate;
+@property(readonly, retain) IKData3D *data;
 
 @end

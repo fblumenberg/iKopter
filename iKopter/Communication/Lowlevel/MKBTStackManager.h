@@ -29,26 +29,26 @@
 @protocol MKBTStackManagerDelegate;
 
 @interface MKBTStackManager : NSObject {
-      
-	id<MKBTStackManagerDelegate> _delegate;
-	BOOL connectedToDaemon;
+
+  id <MKBTStackManagerDelegate> _delegate;
+  BOOL connectedToDaemon;
 }
 
-@property (nonatomic, assign) id<MKBTStackManagerDelegate> delegate;
+@property(nonatomic, assign) id <MKBTStackManagerDelegate> delegate;
 
 // shared instance
-+(MKBTStackManager *) sharedInstance;
++ (MKBTStackManager *)sharedInstance;
 
 @end
 
 @protocol MKBTStackManagerDelegate
 
 // direct access
--(void) btstackManager:(MKBTStackManager*) manager
-  handlePacketWithType:(uint8_t) packet_type
-            forChannel:(uint16_t) channel
+- (void)btstackManager:(MKBTStackManager *)manager
+  handlePacketWithType:(uint8_t)packet_type
+            forChannel:(uint16_t)channel
                andData:(uint8_t *)packet
-               withLen:(uint16_t) size;
+               withLen:(uint16_t)size;
 
 @end
 

@@ -25,44 +25,44 @@
 
 #import "MKBTStackManager.h"
 
-static MKBTStackManager * btstackManager = nil;
+static MKBTStackManager *btstackManager = nil;
 
 @interface MKBTStackManager (privat)
-- (void)handlePacketWithType:(uint8_t) packet_type forChannel:(uint16_t) channel andData:(uint8_t *)packet withLen:(uint16_t) size;
+- (void)handlePacketWithType:(uint8_t)packet_type forChannel:(uint16_t)channel andData:(uint8_t *)packet withLen:(uint16_t)size;
 @end
 
 // needed for libBTstack
-static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packet, uint16_t size){
-	[btstackManager handlePacketWithType:packet_type forChannel:channel andData:packet withLen:size];
+static void packet_handler(uint8_t packet_type, uint16_t channel, uint8_t *packet, uint16_t size) {
+  [btstackManager handlePacketWithType:packet_type forChannel:channel andData:packet withLen:size];
 }
 
 @implementation MKBTStackManager
 
 @synthesize delegate = _delegate;
 
--(MKBTStackManager *) init {
-	self = [super init];
-	if (!self) return self;
-	
-	connectedToDaemon = NO;
+- (MKBTStackManager *)init {
+  self = [super init];
+  if (!self) return self;
 
-	// Use Cocoa run loop
-	run_loop_init(RUN_LOOP_COCOA);
-	
-	// our packet handler
-	bt_register_packet_handler(packet_handler);
-	
-	return self;
+  connectedToDaemon = NO;
+
+  // Use Cocoa run loop
+  run_loop_init(RUN_LOOP_COCOA);
+
+  // our packet handler
+  bt_register_packet_handler(packet_handler);
+
+  return self;
 }
 
-+(MKBTStackManager *) sharedInstance {
-	if (!btstackManager) {
-		btstackManager = [[MKBTStackManager alloc] init];
-	}
-	return btstackManager;
++ (MKBTStackManager *)sharedInstance {
+  if (!btstackManager) {
+    btstackManager = [[MKBTStackManager alloc] init];
+  }
+  return btstackManager;
 }
 
--(void) handlePacketWithType:(uint8_t)packet_type forChannel:(uint16_t)channel andData:(uint8_t *)packet withLen:(uint16_t) size {
+- (void)handlePacketWithType:(uint8_t)packet_type forChannel:(uint16_t)channel andData:(uint8_t *)packet withLen:(uint16_t)size {
   [_delegate btstackManager:self handlePacketWithType:packet_type forChannel:channel andData:packet withLen:size];
 }
 

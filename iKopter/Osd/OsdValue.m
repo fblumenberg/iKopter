@@ -36,49 +36,49 @@
 #import "IKNaviData.h"
 
 static const NSString *errorMsg[30] = {
-  @"No Error",
-  @"FC not compatible",
-  @"MK3Mag not compatible",
-  @"no FC communication ",
-  @"no MK3Mag communication",
-  @"no GPS communication ",
-  @"bad compass value",
-  @"RC Signal lost",
-  @"FC spi rx error",
-  @"ERR: no NC communication",
-  @"ERR: FC Nick Gyro",
-  @"ERR: FC Roll Gyro",
-  @"ERR: FC Yaw Gyro",
-  @"ERR: FC Nick ACC",
-  @"ERR: FC Roll ACC",
-  @"ERR: FC Z-ACC",
-  @"ERR: Pressure sensor",
-  @"ERR: FC I2C",
-  @"ERR: Bl Missing",
-  @"Mixer Error",
-  @"FC: Carefree Error",
-  @"ERR: GPS Fix lost",
-  @"ERR: Magnet Error",
-  @"Motor restart",
-  @"BL limitation"
-  @"ERR:GPS range",
-  @"ERR:No SD-Card",
-  @"ERR:SD Logging aborted",
-  @"ERR:",
-  @"ERR:Max Altitude"
+        @"No Error",
+        @"FC not compatible",
+        @"MK3Mag not compatible",
+        @"no FC communication ",
+        @"no MK3Mag communication",
+        @"no GPS communication ",
+        @"bad compass value",
+        @"RC Signal lost",
+        @"FC spi rx error",
+        @"ERR: no NC communication",
+        @"ERR: FC Nick Gyro",
+        @"ERR: FC Roll Gyro",
+        @"ERR: FC Yaw Gyro",
+        @"ERR: FC Nick ACC",
+        @"ERR: FC Roll ACC",
+        @"ERR: FC Z-ACC",
+        @"ERR: Pressure sensor",
+        @"ERR: FC I2C",
+        @"ERR: Bl Missing",
+        @"Mixer Error",
+        @"FC: Carefree Error",
+        @"ERR: GPS Fix lost",
+        @"ERR: Magnet Error",
+        @"Motor restart",
+        @"BL limitation",
+        @"ERR:GPS range",
+        @"ERR:No SD-Card",
+        @"ERR:SD Logging aborted",
+        @"ERR:",
+        @"ERR:Max Altitude"
 };
 
-@interface OsdValue() <CLLocationManagerDelegate>
-- (void) sendOsdRefreshRequest;
-- (void) sendFollowMeRequest;
-- (void) logNCData;
-- (void) osdNotification:(NSNotification *)aNotification;
-- (void) debugValueNotification:(NSNotification *)aNotification;
-- (void) motorDataNotification:(NSNotification *)aNotification;
+@interface OsdValue () <CLLocationManagerDelegate>
+- (void)sendOsdRefreshRequest;
+- (void)sendFollowMeRequest;
+- (void)logNCData;
+- (void)osdNotification:(NSNotification *)aNotification;
+- (void)debugValueNotification:(NSNotification *)aNotification;
+- (void)motorDataNotification:(NSNotification *)aNotification;
 
-@property(retain) IKNaviData* data;
+@property(retain) IKNaviData *data;
 @property(retain) CLLocationManager *lm;
-@property(retain) AVAudioPlayer* audioPlayer;
+@property(retain) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -86,9 +86,9 @@ static const NSString *errorMsg[30] = {
 
 @implementation OsdValue
 
-@synthesize delegate=_delegate;
-@synthesize data=_data;
-@synthesize ncLogSession=_ncLogSession;
+@synthesize delegate = _delegate;
+@synthesize data = _data;
+@synthesize ncLogSession = _ncLogSession;
 @synthesize managedObjectContext;
 @synthesize poiIndex;
 
@@ -97,255 +97,258 @@ static const NSString *errorMsg[30] = {
 @synthesize followMeRequests;
 @synthesize audioPlayer;
 
--(void)setFollowMe:(BOOL)followMe {
-  
-  if (_followMe!=followMe) {
-    
+- (void)setFollowMe:(BOOL)followMe {
+
+  if (_followMe != followMe) {
+
     [self willChangeValueForKey:@"followMe"];
     _followMe = followMe;
     [self didChangeValueForKey:@"followMe"];
-    
+
     if (_followMe) {
       [self.lm startUpdatingLocation];
-      _followMeCanStart=NO;
-      followMeRequests=0;
+      _followMeCanStart = NO;
+      followMeRequests = 0;
 
-      followMeTimer=[NSTimer scheduledTimerWithTimeInterval: 0.2 target:self selector:
-                    @selector(sendFollowMeRequest) userInfo:nil repeats:YES];
+      followMeTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:
+              @selector(sendFollowMeRequest)         userInfo:nil repeats:YES];
 
     } else {
-      followMeRequests=0;
+      followMeRequests = 0;
       [followMeTimer invalidate];
-      followMeTimer=nil;
-      _followMeCanStart=NO;
+      followMeTimer = nil;
+      _followMeCanStart = NO;
       [self.lm stopUpdatingLocation];
     }
   }
 }
 
--(BOOL) followMe{
+- (BOOL)followMe {
 
   return _followMe;
 }
 
--(BOOL) followMeActive{
+- (BOOL)followMeActive {
   return _followMe && _followMeCanStart;
 }
 
--(double) followMeHorizontalAccuracy{
+- (double)followMeHorizontalAccuracy {
   return self.lm.location.horizontalAccuracy;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
--(const NSString*) currentErrorMessage{
-  if(_data.data->Errorcode<30)
+- (const NSString *)currentErrorMessage {
+  if (_data.data->Errorcode < 30)
     return errorMsg[_data.data->Errorcode];
-  
+
   return @"";
 }
 
--(BOOL) areEnginesOn {
-  if (!_data.data) 
+- (BOOL)areEnginesOn {
+  if (!_data.data)
     return NO;
-  return ((_data.data->FCStatusFlags&FC_STATUS_MOTOR_RUN) == FC_STATUS_MOTOR_RUN);
-}
--(BOOL) isFlying{
-  if (!_data.data) 
-    return NO;
-  return ((_data.data->FCStatusFlags&FC_STATUS_FLY) == FC_STATUS_FLY);
-}
--(BOOL) isCalibrating{
-  if (!_data.data) 
-    return NO;
-  return ((_data.data->FCStatusFlags&FC_STATUS_CALIBRATE) == FC_STATUS_CALIBRATE);
-}
--(BOOL) isStarting{
-  if (!_data.data) 
-    return NO;
-  return ((_data.data->FCStatusFlags&FC_STATUS_START) == FC_STATUS_START);
+  return ((_data.data->FCStatusFlags & FC_STATUS_MOTOR_RUN) == FC_STATUS_MOTOR_RUN);
 }
 
--(BOOL) isEmergencyLanding;{
-  if (!_data.data) 
+- (BOOL)isFlying {
+  if (!_data.data)
     return NO;
-  return ((_data.data->FCStatusFlags&FC_STATUS_EMERGENCY_LANDING) == FC_STATUS_EMERGENCY_LANDING);
+  return ((_data.data->FCStatusFlags & FC_STATUS_FLY) == FC_STATUS_FLY);
 }
 
--(BOOL) isLowBat;{
-  if (!_data.data) 
+- (BOOL)isCalibrating {
+  if (!_data.data)
     return NO;
-  return ((_data.data->FCStatusFlags&FC_STATUS_LOWBAT) == FC_STATUS_LOWBAT);
+  return ((_data.data->FCStatusFlags & FC_STATUS_CALIBRATE) == FC_STATUS_CALIBRATE);
 }
 
--(BOOL) isFreeModeEnabled;{
-  if (!_data.data) 
+- (BOOL)isStarting {
+  if (!_data.data)
     return NO;
-  return ((_data.data->NCFlags&NC_FLAG_FREE) == NC_FLAG_FREE);
+  return ((_data.data->FCStatusFlags & FC_STATUS_START) == FC_STATUS_START);
 }
 
--(BOOL) isPositionHoldEnabled;{
-  if (!_data.data) 
+- (BOOL)isEmergencyLanding; {
+  if (!_data.data)
     return NO;
-  return ((_data.data->NCFlags&NC_FLAG_PH) == NC_FLAG_PH);
+  return ((_data.data->FCStatusFlags & FC_STATUS_EMERGENCY_LANDING) == FC_STATUS_EMERGENCY_LANDING);
 }
 
--(BOOL) isComingHomeEnabled;{
-  if (!_data.data) 
+- (BOOL)isLowBat; {
+  if (!_data.data)
     return NO;
-  return ((_data.data->NCFlags&NC_FLAG_CH) == NC_FLAG_CH);
+  return ((_data.data->FCStatusFlags & FC_STATUS_LOWBAT) == FC_STATUS_LOWBAT);
 }
 
--(BOOL) isRangeLimitReached;{
-  if (!_data.data) 
+- (BOOL)isFreeModeEnabled; {
+  if (!_data.data)
     return NO;
-  return ((_data.data->NCFlags&NC_FLAG_RANGE_LIMIT) == NC_FLAG_RANGE_LIMIT);
+  return ((_data.data->NCFlags & NC_FLAG_FREE) == NC_FLAG_FREE);
 }
 
--(BOOL) isTargetReached;{
-  if (!_data.data) 
+- (BOOL)isPositionHoldEnabled; {
+  if (!_data.data)
     return NO;
-  return ((_data.data->NCFlags&NC_FLAG_TARGET_REACHED) == NC_FLAG_TARGET_REACHED);
+  return ((_data.data->NCFlags & NC_FLAG_PH) == NC_FLAG_PH);
 }
 
--(BOOL) isManualControlEnabled;{
-  if (!_data.data) 
+- (BOOL)isComingHomeEnabled; {
+  if (!_data.data)
     return NO;
-  return ((_data.data->NCFlags&NC_FLAG_MANUAL_CONTROL) == NC_FLAG_MANUAL_CONTROL);
-}
--(BOOL) isGpsOk{
-  if (!_data.data) 
-    return NO;
-  return ((_data.data->NCFlags&NC_FLAG_GPS_OK) == NC_FLAG_GPS_OK);
+  return ((_data.data->NCFlags & NC_FLAG_CH) == NC_FLAG_CH);
 }
 
--(BOOL) isCareFreeOn{
-  if (!_data.data) 
+- (BOOL)isRangeLimitReached; {
+  if (!_data.data)
     return NO;
-  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_CAREFREE) == FC_STATUS2_CAREFREE);
+  return ((_data.data->NCFlags & NC_FLAG_RANGE_LIMIT) == NC_FLAG_RANGE_LIMIT);
 }
 
--(BOOL) isAltControlOn{
-  if (!_data.data) 
+- (BOOL)isTargetReached; {
+  if (!_data.data)
     return NO;
-  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_ALTITUDE_CONTROL) == FC_STATUS2_ALTITUDE_CONTROL);
+  return ((_data.data->NCFlags & NC_FLAG_TARGET_REACHED) == NC_FLAG_TARGET_REACHED);
+}
+
+- (BOOL)isManualControlEnabled; {
+  if (!_data.data)
+    return NO;
+  return ((_data.data->NCFlags & NC_FLAG_MANUAL_CONTROL) == NC_FLAG_MANUAL_CONTROL);
+}
+
+- (BOOL)isGpsOk {
+  if (!_data.data)
+    return NO;
+  return ((_data.data->NCFlags & NC_FLAG_GPS_OK) == NC_FLAG_GPS_OK);
+}
+
+- (BOOL)isCareFreeOn {
+  if (!_data.data)
+    return NO;
+  return (_data.data->Version == 5 && (_data.data->FCStatusFlags2 & FC_STATUS2_CAREFREE) == FC_STATUS2_CAREFREE);
+}
+
+- (BOOL)isAltControlOn {
+  if (!_data.data)
+    return NO;
+  return (_data.data->Version == 5 && (_data.data->FCStatusFlags2 & FC_STATUS2_ALTITUDE_CONTROL) == FC_STATUS2_ALTITUDE_CONTROL);
 }
 
 
--(BOOL) isFailsafeOn{
-  if (!_data.data) 
+- (BOOL)isFailsafeOn {
+  if (!_data.data)
     return NO;
-  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_RC_FAILSAVE_ACTIVE) == FC_STATUS2_RC_FAILSAVE_ACTIVE);
+  return (_data.data->Version == 5 && (_data.data->FCStatusFlags2 & FC_STATUS2_RC_FAILSAVE_ACTIVE) == FC_STATUS2_RC_FAILSAVE_ACTIVE);
 }
 
--(BOOL) isOut1On{
-  if (!_data.data) 
+- (BOOL)isOut1On {
+  if (!_data.data)
     return NO;
-  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_OUT1_ACTIVE) == FC_STATUS2_OUT1_ACTIVE);
+  return (_data.data->Version == 5 && (_data.data->FCStatusFlags2 & FC_STATUS2_OUT1_ACTIVE) == FC_STATUS2_OUT1_ACTIVE);
 }
 
--(BOOL) isOut2On{
-  if (!_data.data) 
+- (BOOL)isOut2On {
+  if (!_data.data)
     return NO;
-  return (_data.data->Version==5 && (_data.data->FCStatusFlags2&FC_STATUS2_OUT2_ACTIVE) == FC_STATUS2_OUT2_ACTIVE);
+  return (_data.data->Version == 5 && (_data.data->FCStatusFlags2 & FC_STATUS2_OUT2_ACTIVE) == FC_STATUS2_OUT2_ACTIVE);
 }
 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id) init
-{
+- (id)init {
   self = [super init];
   if (self != nil) {
-    
-    self.data=[IKNaviData data];
-    
-    _logActive=NO;
-    _logInterval=1.0;
 
-    
-    NSLog(@"Def:%@",[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]);
-    
+    self.data = [IKNaviData data];
+
+    _logActive = NO;
+    _logInterval = 1.0;
+
+
+    NSLog(@"Def:%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+
     NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingActive];
     if (testValue) {
       _logActive = [[NSUserDefaults standardUserDefaults] boolForKey:kIKNCLoggingActive];
     }
-    
+
     testValue = nil;
     testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingInterval];
     if (testValue) {
       _logInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:kIKNCLoggingInterval];
-      _logInterval /=1000.0;
+      _logInterval /= 1000.0;
     }
-    
+
     if (_logActive) {
-      iKopterAppDelegate* appDelegate =(iKopterAppDelegate*)[[UIApplication sharedApplication] delegate];
-      self.managedObjectContext=appDelegate.managedObjectContext;
-      
+      iKopterAppDelegate *appDelegate = (iKopterAppDelegate *) [[UIApplication sharedApplication] delegate];
+      self.managedObjectContext = appDelegate.managedObjectContext;
+
       self.ncLogSession = [NSEntityDescription insertNewObjectForEntityForName:@"NCLogSession" inManagedObjectContext:self.managedObjectContext];
-      self.ncLogSession.timeStampStart=[NSDate date];
+      self.ncLogSession.timeStampStart = [NSDate date];
     }
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"IKOSDSoundActive"]) {
-      
-      NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bleep" 
+
+      NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bleep"
                                                            ofType:@"mp3"];
-      NSURL* url=[NSURL fileURLWithPath:filePath];
-      
+      NSURL *url = [NSURL fileURLWithPath:filePath];
+
       NSError *error;
       self.audioPlayer = [[[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error] autorelease];
-      
-      [self.audioPlayer prepareToPlay];
-    }    
-    
 
-    for(int i=0;i<12;i++)
-      motorData[i]=nil;
-    
-    if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
-      canFollowMe = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
-                                       [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+      [self.audioPlayer prepareToPlay];
     }
-    else{
+
+
+    for (int i = 0; i < 12; i++)
+      motorData[i] = nil;
+
+    if ([[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]) {
+      canFollowMe = ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized ||
+              [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined);
+    }
+    else {
       canFollowMe = [CLLocationManager locationServicesEnabled];
     }
 
-    _followMe=NO;
-    _followMeCanStart=NO;
-    
-    self.lm = [[[CLLocationManager alloc] init]autorelease];
+    _followMe = NO;
+    _followMeCanStart = NO;
+
+    self.lm = [[[CLLocationManager alloc] init] autorelease];
     self.lm.delegate = self;
 
-    BOOL b=[[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeAccuracyBestForNavigation"];
-    if(b)
+    BOOL b = [[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeAccuracyBestForNavigation"];
+    if (b)
       self.lm.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     else
       self.lm.desiredAccuracy = kCLLocationAccuracyBest;
-    
-      
+
+
   }
   return self;
 }
 
-- (void) dealloc {
-  
+- (void)dealloc {
+
   [self.audioPlayer stop];
-  self.audioPlayer=nil;
-  
+  self.audioPlayer = nil;
+
   [self.lm stopUpdatingLocation];
   self.lm.delegate = nil;
   self.lm = nil;
 
-  self.data=nil;
+  self.data = nil;
   [super dealloc];
 }
 
 
-- (void) startRequesting {
+- (void)startRequesting {
 
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-  
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
   [nc addObserver:self
          selector:@selector(osdNotification:)
              name:MKOsdNotification
@@ -362,172 +365,169 @@ static const NSString *errorMsg[30] = {
            object:nil];
 
 
-  requestTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
-                @selector(sendOsdRefreshRequest) userInfo:nil repeats:YES];
-  
-  requestCount=0;
+  requestTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:
+          @selector(sendOsdRefreshRequest)      userInfo:nil repeats:YES];
+
+  requestCount = 0;
   [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
-  
-  if( _logActive ){
-    logTimer=[NSTimer scheduledTimerWithTimeInterval: _logInterval target:self selector:
-              @selector(logNCData) userInfo:nil repeats:YES];
+
+  if (_logActive) {
+    logTimer = [NSTimer scheduledTimerWithTimeInterval:_logInterval target:self selector:
+            @selector(logNCData)              userInfo:nil repeats:YES];
   }
 }
 
-- (void) stopRequesting {
-  
+- (void)stopRequesting {
+
   [self.audioPlayer stop];
-  
+
   [requestTimer invalidate];
-  requestTimer=nil;
+  requestTimer = nil;
 
   [logTimer invalidate];
-  logTimer=nil;
-  
+  logTimer = nil;
+
   [followMeTimer invalidate];
-  followMeTimer=nil;
-  
-  if( _logActive ){
-    self.ncLogSession.timeStampEnd=[NSDate date];
-    
+  followMeTimer = nil;
+
+  if (_logActive) {
+    self.ncLogSession.timeStampEnd = [NSDate date];
+
     NSError *error = nil;
-    if(![self.managedObjectContext save:&error]){
-      qlcritical(@"Could not save the NC-Log records %@",error);
+    if (![self.managedObjectContext save:&error]) {
+      qlcritical(@"Could not save the NC-Log records %@", error);
     }
   }
 
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
-  
+
 }
 
 
-- (void) sendOsdRefreshRequest {
-  
-  if(requestCount>3)
+- (void)sendOsdRefreshRequest {
+
+  if (requestCount > 3)
     [self.delegate noDataAvailable];
-  
+
   [[MKConnectionController sharedMKConnectionController] requestOsdDataForInterval:40];
   requestCount++;
-  
+
   [[MKConnectionController sharedMKConnectionController] requestDebugValueForInterval:40];
   [[MKConnectionController sharedMKConnectionController] requestMotorDataForInterval:40];
 }
 
-- (void) osdNotification:(NSNotification *)aNotification {
+- (void)osdNotification:(NSNotification *)aNotification {
 
-  _followMeCanStart=self.lm.location.horizontalAccuracy>=0.0;
-  
-  requestCount=0;
+  _followMeCanStart = self.lm.location.horizontalAccuracy >= 0.0;
+
+  requestCount = 0;
   self.data = [[aNotification userInfo] objectForKey:kIKDataKeyOsd];
-  
+
   [self.delegate newValue:self];
-  
-  if(self.isLowBat)
+
+  if (self.isLowBat)
     [self.audioPlayer play];
   else
     [self.audioPlayer stop];
 }
 
-- (void) debugValueNotification:(NSNotification *)aNotification {
-  IKDebugData* debugData = [[aNotification userInfo] objectForKey:kIKDataKeyDebugData];
-  poiIndex=[[debugData analogValueAtIndex:16] integerValue];
+- (void)debugValueNotification:(NSNotification *)aNotification {
+  IKDebugData *debugData = [[aNotification userInfo] objectForKey:kIKDataKeyDebugData];
+  poiIndex = [[debugData analogValueAtIndex:16] integerValue];
 }
 
 
-- (void) motorDataNotification:(NSNotification *)aNotification{
+- (void)motorDataNotification:(NSNotification *)aNotification {
   NSInteger index = [[[aNotification userInfo] objectForKey:kMKDataKeyIndex] integerValue];
-  
-  IKMotorData* motorValue=[[aNotification userInfo] objectForKey:kIKDataKeyMotorData];
-  [motorData[index] release]; 
-  motorData[index]=nil;
-  if((motorValue.state & 0x80) == 0x80)
-    motorData[index]=[[NSString stringWithFormat:@"BL%-2d: %d°C %.0fA",index+1,motorValue.temperature,
-                       motorValue.current/10.0,motorValue.maxPWM,motorValue.state]retain];
+
+  IKMotorData *motorValue = [[aNotification userInfo] objectForKey:kIKDataKeyMotorData];
+  [motorData[index] release];
+  motorData[index] = nil;
+  if ((motorValue.state & 0x80) == 0x80)
+    motorData[index] = [[NSString stringWithFormat:@"BL%-2d: %d°C %.0fA", index + 1, motorValue.temperature,
+                                                   motorValue.current / 10.0, motorValue.maxPWM, motorValue.state] retain];
 }
 
 
+- (void)logNCData {
 
-- (void) logNCData {
-  
-  NCLogRecord* record=[NSEntityDescription insertNewObjectForEntityForName:@"NCLogRecord" inManagedObjectContext:self.managedObjectContext];
-  record.timeStamp=[NSDate date];
-  
+  NCLogRecord *record = [NSEntityDescription insertNewObjectForEntityForName:@"NCLogRecord" inManagedObjectContext:self.managedObjectContext];
+  record.timeStamp = [NSDate date];
+
   [record fillFromNCData:self.data];
-  
+
   NSMutableSet *relationshipSet = [self.ncLogSession mutableSetValueForKey:@"records"];
   [relationshipSet addObject:record];
-  
+
   qltrace(@"log");
 }
 
 #pragma mark - Location Manager Stuff
 
-- (void)locationManager:(CLLocationManager *)manager 
-    didUpdateToLocation:(CLLocation *)newLocation 
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
 }
 
-- (void)locationManager:(CLLocationManager *)manager 
+- (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-  
-  NSString *errorType = (error.code == kCLErrorDenied) ? 
-  NSLocalizedString(@"Access Denied", @"Access Denied") : 
-  NSLocalizedString(@"Unknown Error", @"Unknown Error");
-  
-  UIAlertView *alert = [[UIAlertView alloc] 
-                        initWithTitle:NSLocalizedString(@"Error getting Location", @"Error getting Location")
-                        message:errorType 
-                        delegate:self 
-                        cancelButtonTitle:NSLocalizedString(@"Okay", @"Okay") 
-                        otherButtonTitles:nil];
+
+  NSString *errorType = (error.code == kCLErrorDenied) ?
+          NSLocalizedString(@"Access Denied", @"Access Denied") :
+          NSLocalizedString(@"Unknown Error", @"Unknown Error");
+
+  UIAlertView *alert = [[UIAlertView alloc]
+          initWithTitle:NSLocalizedString(@"Error getting Location", @"Error getting Location") message:errorType
+               delegate:self
+      cancelButtonTitle:NSLocalizedString(@"Okay", @"Okay") otherButtonTitles:nil];
   [alert show];
   [alert release];
   self.lm = nil;
 }
 
 
--(NSInteger) calccurrentAltitude {
+- (NSInteger)calccurrentAltitude {
 
-  IKNaviData* d=self.data;
+  IKNaviData *d = self.data;
 
-  NSInteger altitudeAir = d.data->Altimeter/20;
+  NSInteger altitudeAir = d.data->Altimeter / 20;
 
   NSInteger altitudeGPS = altitudeAir;
-  
-  if(d.data->CurrentPosition.Status != INVALID && d.data->HomePosition.Status != INVALID ){
+
+  if (d.data->CurrentPosition.Status != INVALID && d.data->HomePosition.Status != INVALID) {
     altitudeGPS = d.data->CurrentPosition.Altitude - d.data->HomePosition.Altitude;
   }
-  
-  NSInteger altitude = ( 4 * altitudeAir + altitudeGPS ) / 5;
-  
+
+  NSInteger altitude = (4 * altitudeAir + altitudeGPS) / 5;
+
   return altitude * 10;
 }
 
-- (void) sendFollowMeRequest{
+- (void)sendFollowMeRequest {
   if (!_followMeCanStart) return;
-  
-  IKPoint* targetPoint = [[IKPoint alloc]initWithCoordinate:self.lm.location.coordinate];
-  
-  targetPoint.index=1;
-  targetPoint.type=POINT_TYPE_WP;
-  targetPoint.heading=-1;
-  targetPoint.holdTime=60;
-  targetPoint.eventFlag=1;
-  targetPoint.wpEventChannelValue=100;
-  targetPoint.altitudeRate=0;
-  targetPoint.cameraNickControl=[[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeCameraNick"];
-  
+
+  IKPoint *targetPoint = [[IKPoint alloc] initWithCoordinate:self.lm.location.coordinate];
+
+  targetPoint.index = 1;
+  targetPoint.type = POINT_TYPE_WP;
+  targetPoint.heading = -1;
+  targetPoint.holdTime = 60;
+  targetPoint.eventFlag = 1;
+  targetPoint.wpEventChannelValue = 100;
+  targetPoint.altitudeRate = 0;
+  targetPoint.cameraNickControl = [[NSUserDefaults standardUserDefaults] boolForKey:@"FollowMeCameraNick"];
+
   switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"FollowMeHeigth"]) {
     case 1:
-      targetPoint.altitude=1;
+      targetPoint.altitude = 1;
       break;
     default:
-      targetPoint.altitude=[self calccurrentAltitude];
+      targetPoint.altitude = [self calccurrentAltitude];
       break;
-  }  
-  
-  qldebug("Now sending the target %@",targetPoint);
+  }
+
+  qldebug("Now sending the target %@", targetPoint);
   [[MKConnectionController sharedMKConnectionController] sendPoint:targetPoint];
   followMeRequests++;
 
@@ -535,10 +535,10 @@ static const NSString *errorMsg[30] = {
 }
 
 
--(NSString*) motorDataForIndex:(NSUInteger)index{
-  if(index>11) 
+- (NSString *)motorDataForIndex:(NSUInteger)index {
+  if (index > 11)
     return nil;
-  
+
   return motorData[index];
 }
 

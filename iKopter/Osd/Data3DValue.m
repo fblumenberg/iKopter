@@ -24,14 +24,13 @@
 
 #import "Data3DValue.h"
 #import "MKConnectionController.h"
-#import "NSData+MKCommandEncode.h"
 #import "MKDataConstants.h"
 
-@interface Data3DValue()
-- (void) sendRefreshRequest;
-- (void) dataNotification:(NSNotification *)aNotification;
+@interface Data3DValue ()
+- (void)sendRefreshRequest;
+- (void)dataNotification:(NSNotification *)aNotification;
 
-@property(retain) IKData3D* data;
+@property(retain) IKData3D *data;
 
 @end
 
@@ -39,49 +38,47 @@
 
 @implementation Data3DValue
 
-@synthesize delegate=_delegate;
-@synthesize data=_data;
+@synthesize delegate = _delegate;
+@synthesize data = _data;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id) init
-{
+- (id)init {
   self = [super init];
   if (self != nil) {
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
     [nc addObserver:self
            selector:@selector(dataNotification:)
                name:MKData3DNotification
              object:nil];
-    
+
     [self performSelector:@selector(sendOsdRefreshRequest) withObject:self afterDelay:0.1];
-    
+
   }
   return self;
 }
 
-- (void) dealloc
-{
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+- (void)dealloc {
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
   [_data release];
   [super dealloc];
 }
 
 
-- (void) sendRefreshRequest {
+- (void)sendRefreshRequest {
   [[MKConnectionController sharedMKConnectionController] requestData3DForInterval:50];
 }
 
-- (void) dataNotification:(NSNotification *)aNotification {
-  
+- (void)dataNotification:(NSNotification *)aNotification {
+
   self.data = [[aNotification userInfo] objectForKey:kIKDataKeyData3D];
 
   [self.delegate newValue:self.data];
-  
-  NSLog(@"osdCount=%d",lcdCount);
-  if (lcdCount++ >= 7 ) {
+
+  NSLog(@"osdCount=%d", lcdCount);
+  if (lcdCount++ >= 7) {
     [self sendRefreshRequest];
     lcdCount = 0;
   }

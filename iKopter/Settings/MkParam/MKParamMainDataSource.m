@@ -48,145 +48,120 @@
 #import "SettingsFieldStyle.h"
 #import "SettingsButtonStyle.h"
 
-@interface MKParamMainDataSource()
+@interface MKParamMainDataSource ()
 
--(void)showDetailViewForKey:(Class)nsclass withTitle:(NSString*)title;
+- (void)showDetailViewForKey:(Class)nsclass withTitle:(NSString *)title;
 
 @end
 
 @implementation MKParamMainDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
-    
-		// Some basic form fields that accept text input
-		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
+
+    // Some basic form fields that accept text input
+    IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     basicFieldSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     basicFieldSection.formFieldStyle.behavior = behavior;
-    
-		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"Name" title:NSLocalizedString(@"Name",@"MKParam Name")] autorelease]];
-    
+
+    [basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"Name" title:NSLocalizedString(@"Name", @"MKParam Name")] autorelease]];
+
     //------------------------------------------------------------------------------------------------------------------------
-    
-		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+
+    IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     buttonsSection.formFieldStyle = [[[SettingsButtonIndicatorStyle alloc] init] autorelease];
-    
-		buttonsSection.formFieldStyle.behavior = behavior;
-    
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Channels",@"MKParam Channels button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamChannelsDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Channels",@"MKParam Channels button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Compass",@"MKParam Compass button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamCompassDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Compass",@"MKParam Compass button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Navi Control",@"MKParam Navi Control button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamNaviControlDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Navi Control",@"MKParam Navi Control button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Stick",@"MKParam Stick button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamStickDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Stick",@"MKParam Stick button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Altitude",@"MKParam Altitude button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamAltitudeDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Altitude",@"MKParam Altitude button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Camera",@"MKParam Camera button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamCameraDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Camera",@"MKParam Camera button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Gyro",@"MKParam Gyro button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamGyroDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Gyro",@"MKParam Gyro button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Coupling",@"MKParam Coupling button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamCouplingDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Coupling",@"MKParam Coupling button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Looping",@"MKParam Looping button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamLoopingDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Looping",@"MKParam Looping button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Output",@"MKParam Output button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamOutputDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Output",@"MKParam Output button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Misc",@"MKParam Misc button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamMiscDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"Misc",@"MKParam Misc button")];
-                                                             }] autorelease]];
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"User",@"MKParam User button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDetailViewForKey:[MKParamUserDataSource class] 
-                                                                                withTitle:NSLocalizedString(@"User",@"MKParam User button")];
-                                                             }] autorelease]];
+
+    buttonsSection.formFieldStyle.behavior = behavior;
+
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Channels", @"MKParam Channels button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamChannelsDataSource class]
+                       withTitle:NSLocalizedString(@"Channels", @"MKParam Channels button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Compass", @"MKParam Compass button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamCompassDataSource class]
+                       withTitle:NSLocalizedString(@"Compass", @"MKParam Compass button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Navi Control", @"MKParam Navi Control button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamNaviControlDataSource class]
+                       withTitle:NSLocalizedString(@"Navi Control", @"MKParam Navi Control button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Stick", @"MKParam Stick button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamStickDataSource class]
+                       withTitle:NSLocalizedString(@"Stick", @"MKParam Stick button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Altitude", @"MKParam Altitude button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamAltitudeDataSource class]
+                       withTitle:NSLocalizedString(@"Altitude", @"MKParam Altitude button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Camera", @"MKParam Camera button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamCameraDataSource class]
+                       withTitle:NSLocalizedString(@"Camera", @"MKParam Camera button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Gyro", @"MKParam Gyro button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamGyroDataSource class]
+                       withTitle:NSLocalizedString(@"Gyro", @"MKParam Gyro button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Coupling", @"MKParam Coupling button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamCouplingDataSource class]
+                       withTitle:NSLocalizedString(@"Coupling", @"MKParam Coupling button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Looping", @"MKParam Looping button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamLoopingDataSource class]
+                       withTitle:NSLocalizedString(@"Looping", @"MKParam Looping button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Output", @"MKParam Output button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamOutputDataSource class]
+                       withTitle:NSLocalizedString(@"Output", @"MKParam Output button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Misc", @"MKParam Misc button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamMiscDataSource class]
+                       withTitle:NSLocalizedString(@"Misc", @"MKParam Misc button")];
+    }] autorelease]];
+    [buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"User", @"MKParam User button") icon:nil executionBlock:^{
+      [self showDetailViewForKey:[MKParamUserDataSource class]
+                       withTitle:NSLocalizedString(@"User", @"MKParam User button")];
+    }] autorelease]];
   }
-  
+
   return self;
 }
 
 
--(void)showDetailViewForKey:(Class)nsclass withTitle:(NSString*)title{
-  
-  IBAFormDataSource* dataSource = [[[nsclass alloc] initWithModel:self.model
-                                                      andBehavior:IBAFormFieldBehaviorClassic|IBAFormFieldBehaviorNoCancel] autorelease];
-  
-	MKParamViewController *settingsFormController = [[[MKParamViewController alloc] initWithNibName:nil 
-                                                                                           bundle:nil 
-                                                                                   formDataSource:dataSource] autorelease];
-	settingsFormController.title = title;
-	
+- (void)showDetailViewForKey:(Class)nsclass withTitle:(NSString *)title {
+
+  IBAFormDataSource *dataSource = [[[nsclass alloc] initWithModel:self.model
+                                                      andBehavior:IBAFormFieldBehaviorClassic | IBAFormFieldBehaviorNoCancel] autorelease];
+
+  MKParamViewController *settingsFormController = [[[MKParamViewController alloc] initWithNibName:nil bundle:nil formDataSource:dataSource] autorelease];
+  settingsFormController.title = title;
+
   [[IBAInputManager sharedIBAInputManager] setInputNavigationToolbarEnabled:YES];
-  
-	UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-  
+
+  UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+
   if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-    [(UINavigationController *)rootViewController pushViewController:settingsFormController animated:YES];
+    [(UINavigationController *) rootViewController pushViewController:settingsFormController animated:YES];
   }
   else if ([rootViewController isKindOfClass:[MGSplitViewController class]]) {
-    
-    MGSplitViewController* splitViewController =(MGSplitViewController*)rootViewController;
-    
-    UIViewController* controller=splitViewController.detailViewController;
-    if( [controller isKindOfClass:[UINavigationController class]] ){
-      controller.navigationItem.hidesBackButton=YES;
-      
-      [(UINavigationController *)controller popToRootViewControllerAnimated:NO];
-      [(UINavigationController *)controller pushViewController:settingsFormController animated:YES];
+
+    MGSplitViewController *splitViewController = (MGSplitViewController *) rootViewController;
+
+    UIViewController *controller = splitViewController.detailViewController;
+    if ([controller isKindOfClass:[UINavigationController class]]) {
+      controller.navigationItem.hidesBackButton = YES;
+
+      [(UINavigationController *) controller popToRootViewControllerAnimated:NO];
+      [(UINavigationController *) controller pushViewController:settingsFormController animated:YES];
     }
   }
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

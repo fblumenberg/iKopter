@@ -36,48 +36,49 @@
 
 @implementation MKParamOutputDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
-    
-        IBAFormSection *paramSection=nil;
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Output 1 (J16 / SV2.1)",@"MKParam Output") footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
 
-        [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"J16Bitmask" 
-                                                                         title:NSLocalizedString(@"Bitmask",@"MKParam Output")] autorelease]];
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_OFF_LED1" title:NSLocalizedString(@"Motor off, LED level",@"MKParam Output")];
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_BLINK1" title:NSLocalizedString(@"Active after Motor start",@"MKParam Output")];
-        [paramSection addPotiFieldForKeyPath:@"J16Timing" title:NSLocalizedString(@"Timing",@"MKParam Output")];
+    IBAFormSection *paramSection = nil;
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Output 1 (J16 / SV2.1)", @"MKParam Output") footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
 
-        [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"WARN_J16_Bitmask" 
-                                                                         title:NSLocalizedString(@"Untervoltage warn. Bitmask",@"MKParam Output")] autorelease]];
-        
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Output 2 (J17 / SV2.5)",@"MKParam Output") footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-        
-        [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"J17Bitmask" 
-                                                                         title:NSLocalizedString(@"Bitmask",@"MKParam Output")] autorelease]];
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_OFF_LED2" title:NSLocalizedString(@"Motor off, LED level",@"MKParam Output")];
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_BLINK2" title:NSLocalizedString(@"Active after Motor start",@"MKParam Output")];
-        [paramSection addPotiFieldForKeyPath:@"J17Timing" title:NSLocalizedString(@"Timing",@"MKParam Output")];
-        
-        [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"WARN_J17_Bitmask" 
-                                                                         title:NSLocalizedString(@"Untervoltage warn. Bitmask",@"MKParam Output")] autorelease]];
-        
+    [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"J16Bitmask"
+                                                                     title:NSLocalizedString(@"Bitmask", @"MKParam Output")] autorelease]];
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_OFF_LED1" title:NSLocalizedString(@"Motor off, LED level", @"MKParam Output")];
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_BLINK1" title:NSLocalizedString(@"Active after Motor start", @"MKParam Output")];
+    [paramSection addPotiFieldForKeyPath:@"J16Timing" title:NSLocalizedString(@"Timing", @"MKParam Output")];
+
+    [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"WARN_J16_Bitmask"
+                                                                     title:NSLocalizedString(@"Untervoltage warn. Bitmask", @"MKParam Output")] autorelease]];
+
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Output 2 (J17 / SV2.5)", @"MKParam Output") footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+
+    [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"J17Bitmask"
+                                                                     title:NSLocalizedString(@"Bitmask", @"MKParam Output")] autorelease]];
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_OFF_LED2" title:NSLocalizedString(@"Motor off, LED level", @"MKParam Output")];
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_BLINK2" title:NSLocalizedString(@"Active after Motor start", @"MKParam Output")];
+    [paramSection addPotiFieldForKeyPath:@"J17Timing" title:NSLocalizedString(@"Timing", @"MKParam Output")];
+
+    [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"WARN_J17_Bitmask"
+                                                                     title:NSLocalizedString(@"Untervoltage warn. Bitmask", @"MKParam Output")] autorelease]];
+
   }
-    
+
   return self;
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

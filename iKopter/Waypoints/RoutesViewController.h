@@ -26,15 +26,15 @@
 #import "Routes.h"
 #import "DropboxSDK/DropboxSDK.h"
 
-@interface RoutesViewController : UITableViewController<UIActionSheetDelegate,DBRestClientDelegate>{
-    
+@interface RoutesViewController : UITableViewController <UIActionSheetDelegate, DBRestClientDelegate> {
+
   BOOL isSynActive;
 }
 
-@property(retain) Routes* routes;
-@property(retain) UIBarButtonItem* addButton;
-@property(retain) UIBarButtonItem* syncButton;
-@property(retain) NSIndexPath* editingRoute;
+@property(retain) Routes *routes;
+@property(retain) UIBarButtonItem *addButton;
+@property(retain) UIBarButtonItem *syncButton;
+@property(retain) NSIndexPath *editingRoute;
 
 - (id)init;
 

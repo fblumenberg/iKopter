@@ -28,23 +28,23 @@
 
 #include <btstack/btstack.h>
 
-@interface MKBluetoothConnection : NSObject<MKConnection,MKBTStackManagerDelegate> {
+@interface MKBluetoothConnection : NSObject <MKConnection, MKBTStackManagerDelegate> {
 
   BOOL opened;
-  
-  MKBTStackManager* btManager;
-  
+
+  MKBTStackManager *btManager;
+
   bd_addr_t address;
   uint16_t rfcomm_channel_id;
   timer_source_t connectionTimeout;
-  
+
   char pin[17];
 
-  NSMutableData* mkData;
+  NSMutableData *mkData;
 
-  id<MKConnectionDelegate> delegate;
+  id <MKConnectionDelegate> delegate;
 }
 
-@property(nonatomic,retain) NSMutableData* mkData;
+@property(nonatomic, retain) NSMutableData *mkData;
 
 @end

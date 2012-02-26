@@ -27,23 +27,23 @@
 @implementation StringToNumberTransformer
 
 + (id)instance {
-	return [[[[self class] alloc] init] autorelease];
+  return [[[[self class] alloc] init] autorelease];
 }
 
 + (BOOL)allowsReverseTransformation {
-	return YES;
+  return YES;
 }
 
 + (Class)transformedValueClass {
-	return [NSNumber class];
+  return [NSNumber class];
 }
 
 - (NSNumber *)transformedValue:(NSString *)value {
-	return [NSNumber numberWithInteger:[value integerValue]];
+  return [NSNumber numberWithInteger:[value integerValue]];
 }
 
 - (NSString *)reverseTransformedValue:(NSNumber *)value {
-	return [value stringValue];
+  return [value stringValue];
 }
 
 @end
@@ -51,13 +51,13 @@
 @implementation StringToDoubleNumberTransformer
 
 + (id)instance {
-	return [[[[self class] alloc] init] autorelease];
+  return [[[[self class] alloc] init] autorelease];
 }
 
 - (id)init {
   self = [super init];
   if (self) {
-    formatter=[[NSNumberFormatter alloc] init];
+    formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setMaximumFractionDigits:6];
     [formatter setMinimumFractionDigits:6];
@@ -71,19 +71,19 @@
 }
 
 + (BOOL)allowsReverseTransformation {
-	return YES;
+  return YES;
 }
 
 + (Class)transformedValueClass {
-	return [NSNumber class];
+  return [NSNumber class];
 }
 
 - (NSNumber *)transformedValue:(NSString *)value {
-	return [formatter numberFromString:value];
+  return [formatter numberFromString:value];
 }
 
 - (NSString *)reverseTransformedValue:(NSNumber *)value {
-	return [formatter stringFromNumber:value];
+  return [formatter stringFromNumber:value];
 }
 
 @end

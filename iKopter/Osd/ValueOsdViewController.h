@@ -32,14 +32,14 @@
 
 @class InnerShadowView;
 
-@interface ValueOsdViewController : ValueBaseOsdViewController<OsdValueDelegate> {
+@interface ValueOsdViewController : ValueBaseOsdViewController <OsdValueDelegate> {
 
-  UILabel* noData;
-  
+  UILabel *noData;
+
 }
 
 
-@property(nonatomic, retain) IBOutlet UILabel* infoView;
-@property(nonatomic, retain) IBOutlet UILabel* noData;
+@property(nonatomic, retain) IBOutlet UILabel *infoView;
+@property(nonatomic, retain) IBOutlet UILabel *noData;
 
 @end

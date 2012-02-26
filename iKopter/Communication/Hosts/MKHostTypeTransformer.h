@@ -28,11 +28,11 @@
 
 
 @interface MKHostTypeTransformer : NSValueTransformer {
-    
-  NSArray* keys;
+
+  NSArray *keys;
 }
 
-@property(nonatomic,readonly) NSMutableArray* pickListOptions;
+@property(nonatomic, readonly) NSMutableArray *pickListOptions;
 
 + (id)instance;
 

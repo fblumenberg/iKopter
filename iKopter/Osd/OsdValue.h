@@ -30,10 +30,10 @@
 
 @protocol OsdValueDelegate
 
-- (void) newValue:(OsdValue*)value;
-- (void) newValue:(OsdValue*)value;
+- (void)newValue:(OsdValue *)value;
+- (void)newValue:(OsdValue *)value;
 
-@optional - (void) noDataAvailable;
+@optional - (void)noDataAvailable;
 
 @end
 
@@ -43,32 +43,31 @@
 @class IKDebugData;
 
 @interface OsdValue : NSObject {
-  
+
   int requestCount;
-  NSTimer* requestTimer;
-  NSTimer* logTimer;
-  NSTimer* followMeTimer;
-  
-  id<OsdValueDelegate> _delegate;
-  IKNaviData* _data;
-  NCLogSession* _ncLogSession;
+  NSTimer *requestTimer;
+  NSTimer *logTimer;
+  NSTimer *followMeTimer;
+
+  id <OsdValueDelegate> _delegate;
+  IKNaviData *_data;
+  NCLogSession *_ncLogSession;
   NSTimeInterval _logInterval;
   BOOL _logActive;
 
   BOOL _followMe;
   BOOL _followMeCanStart;
-  
-  
-  NSString* motorData[12];
+
+
+  NSString *motorData[12];
 }
 
 
+@property(retain) NCLogSession *ncLogSession;
+@property(assign) id <OsdValueDelegate> delegate;
+@property(readonly, retain) IKNaviData *data;
 
-@property(retain) NCLogSession* ncLogSession;
-@property(assign) id<OsdValueDelegate> delegate;
-@property(readonly,retain) IKNaviData* data;
-
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property(readonly) BOOL areEnginesOn;
 @property(readonly) BOOL isFlying;
@@ -92,7 +91,7 @@
 
 @property(readonly) NSInteger poiIndex;
 
-@property(readonly) const NSString* currentErrorMessage;
+@property(readonly) const NSString *currentErrorMessage;
 
 @property(assign) BOOL followMe;
 @property(readonly) BOOL canFollowMe;
@@ -100,9 +99,9 @@
 @property(readonly) BOOL followMeActive;
 @property(readonly) double followMeHorizontalAccuracy;
 
-- (void) startRequesting;
-- (void) stopRequesting;
+- (void)startRequesting;
+- (void)stopRequesting;
 
--(NSString*) motorDataForIndex:(NSUInteger)index;
+- (NSString *)motorDataForIndex:(NSUInteger)index;
 
 @end

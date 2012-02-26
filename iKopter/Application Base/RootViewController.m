@@ -41,7 +41,7 @@
 #define kDropBoxAction @"DropBoxAction"
 
 
-@interface RootViewController()
+@interface RootViewController ()
 
 - (void)updateDropboxButton;
 
@@ -51,182 +51,177 @@
 
 @synthesize appSettingsViewController;
 
-- (IASKAppSettingsViewController*)appSettingsViewController {
-	if (!appSettingsViewController) {
-		appSettingsViewController = [[IASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
-		appSettingsViewController.delegate = self;
-	}
-	return appSettingsViewController;
+- (IASKAppSettingsViewController *)appSettingsViewController {
+  if (!appSettingsViewController) {
+    appSettingsViewController = [[IASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
+    appSettingsViewController.delegate = self;
+  }
+  return appSettingsViewController;
 }
 
 - (IBAction)showSettingsModal:(id)sender {
-  
+
   [self updateDropboxButton];
-  
+
   UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController];
   self.appSettingsViewController.showDoneButton = YES;
 
-  if( [self isPad]){
-    aNavController.modalPresentationStyle=UIModalPresentationFormSheet;
+  if ([self isPad]) {
+    aNavController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self.splitViewController presentModalViewController:aNavController animated:YES];
   }
   else
     [self presentModalViewController:aNavController animated:YES];
-  
+
   [aNavController release];
 }
 
 #pragma mark -
 #pragma mark IASKAppSettingsViewControllerDelegate protocol
 
-- (void) updateDropboxButton{
-  
+- (void)updateDropboxButton {
+
   [self.appSettingsViewController.tableView reloadData];
 }
 
-- (void)mailComposeAttachment:(MFMailComposeViewController*)mailViewController{
-  
+- (void)mailComposeAttachment:(MFMailComposeViewController *)mailViewController {
+
   NSString *csv = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:nil];
   NSData *csvData = [csv dataUsingEncoding:NSUTF8StringEncoding];
-  
+
   [mailViewController addAttachmentData:csvData mimeType:@"text/plain" fileName:@"ikopter.log"];
 }
 
 
-- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
-  
-  if( [self isPad])
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender {
+
+  if ([self isPad])
     [self.splitViewController dismissModalViewControllerAnimated:YES];
   else
     [self dismissModalViewControllerAnimated:YES];
-	
-  
+
+
 # ifndef _LCL_NO_LOGGING
-  
-  BOOL logActive=NO;
-  _lcl_level_t level=lcl_vCritical;
-  
+
+  BOOL logActive = NO;
+  _lcl_level_t level = lcl_vCritical;
+
   NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKLoggingActive];
   if (testValue) {
     logActive = [[NSUserDefaults standardUserDefaults] boolForKey:kIKLoggingActive];
   }
-  
+
   testValue = nil;
   testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKLoggingLevel];
   if (testValue) {
     level = [[NSUserDefaults standardUserDefaults] integerForKey:kIKLoggingLevel];
   }
-  
-  if(!logActive)  
-    level=lcl_vOff;
-  
+
+  if (!logActive)
+    level = lcl_vOff;
+
   lcl_configure_by_identifier("*", level);
-  
+
 # endif
 
 }
 
-- (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {
-		return 44;
+- (CGFloat)tableView:(UITableView *)tableView heightForSpecifier:(IASKSpecifier *)specifier {
+  return 44;
 }
 
-- (void)showDropboxLogin {  
+- (void)showDropboxLogin {
   if (![[DBSession sharedSession] isLinked]) {
-    
+
     [[DBSession sharedSession] link];
-  } 
+  }
   else {
     [[DBSession sharedSession] unlinkAll];
   }
   [self updateDropboxButton];
 }
 
-- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {  
-  
-  UITableViewCell* cell = (UITableViewCell*)(gestureRecognizer.view);
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {
+
+  UITableViewCell *cell = (UITableViewCell *) (gestureRecognizer.view);
   [cell setSelected:YES animated:NO];
-  
+
   [self performSelector:@selector(showDropboxLogin) withObject:nil afterDelay:0.25];
 }
 
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
-  
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForSpecifier:(IASKSpecifier *)specifier {
+
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[specifier key]];
-  
+
   if (!cell) {
     cell = [[[IASKPSTitleValueSpecifierViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:[specifier key]] autorelease];
   }
 
   cell.accessoryType = UITableViewCellAccessoryNone;
-  
-	if ([[specifier key] isEqualToString:@"customCell"]) {
-    cell.textLabel.text = NSLocalizedString(@"Version",nil);
+
+  if ([[specifier key] isEqualToString:@"customCell"]) {
+    cell.textLabel.text = NSLocalizedString(@"Version", nil);
     cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     [cell setUserInteractionEnabled:NO];
   }
   else if ([[specifier key] isEqualToString:@"dropboxActionCell"]) {
-    
+
     if (![[DBSession sharedSession] isLinked]) {
-      cell.textLabel.text = NSLocalizedString(@"Link with Dropbox",@"Dropbox button link");
+      cell.textLabel.text = NSLocalizedString(@"Link with Dropbox", @"Dropbox button link");
     }
     else {
-      cell.textLabel.text = NSLocalizedString(@"Unlink from Dropbox",@"Dropbox button link");
+      cell.textLabel.text = NSLocalizedString(@"Unlink from Dropbox", @"Dropbox button link");
     }
 
     [cell setUserInteractionEnabled:YES];
-    
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];  
+
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [cell addGestureRecognizer:singleTap];
     [singleTap release];
   }
-  
+
   return cell;
 }
 
 #pragma mark - View life cycle
 
-- (void)viewDidLoad
-{
-  self.title = NSLocalizedString(@"iKopter",@"Root Title");
-  
-  hosts=[[MKHosts alloc]init];
-  
-  UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight]; 
+- (void)viewDidLoad {
+  self.title = NSLocalizedString(@"iKopter", @"Root Title");
+
+  hosts = [[MKHosts alloc] init];
+
+  UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
   [infoButton addTarget:self action:@selector(showSettingsModal:) forControlEvents:UIControlEventTouchUpInside];
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:infoButton] autorelease];
-  
-  self.tableView.allowsSelectionDuringEditing=YES;
-  
+
+  self.tableView.allowsSelectionDuringEditing = YES;
+
   [self.navigationController setNavigationBarHidden:NO animated:NO];
-  self.navigationController.navigationBar.translucent=NO;
+  self.navigationController.navigationBar.translucent = NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
-	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-  
+
+  self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+
   [self.navigationController setToolbarHidden:NO animated:NO];
   [[MKConnectionController sharedMKConnectionController] stop];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade]; 
-  
+  [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
 }
 
 
@@ -242,74 +237,74 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if(section==0)
-    return [hosts count]+1;
-  
+  if (section == 0)
+    return [hosts count] + 1;
+
   return 2;
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-- (UITableViewCell *) cellForExtra: (UITableView *) tableView indexPath: (NSIndexPath *) indexPath  {
+- (UITableViewCell *)cellForExtra:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"RootExtraCell";
-  
+
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
   }
-  
+
   switch (indexPath.row) {
     case 0:
-      cell.textLabel.text = NSLocalizedString(@"NC Log",@"NC-LOG cell");
+      cell.textLabel.text = NSLocalizedString(@"NC Log", @"NC-LOG cell");
       break;
     case 1:
-      cell.textLabel.text = NSLocalizedString(@"Routes",@"Waypointlist cell");
+      cell.textLabel.text = NSLocalizedString(@"Routes", @"Waypointlist cell");
       break;
     case 2:
-      cell.textLabel.text = NSLocalizedString(@"Channels",@"Channels cell");
+      cell.textLabel.text = NSLocalizedString(@"Channels", @"Channels cell");
       break;
   }
   cell.accessoryView = nil;
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   cell.imageView.image = nil;
-  
-  
+
+
   return cell;
-  
+
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  NSLog(@"cellForRowAtIndexPath %@",indexPath);
-  
-  static NSString *CellIdentifier = @"MKHostCell";
-  
-  if(indexPath.section==1)
-    return [self cellForExtra: tableView indexPath: indexPath];
 
-  
+  NSLog(@"cellForRowAtIndexPath %@", indexPath);
+
+  static NSString *CellIdentifier = @"MKHostCell";
+
+  if (indexPath.section == 1)
+    return [self cellForExtra:tableView indexPath:indexPath];
+
+
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
   }
-  
-  if( indexPath.row<[hosts count] ){
-    MKHost* host = [hosts hostAtIndexPath:indexPath];
-    
+
+  if (indexPath.row < [hosts count]) {
+    MKHost *host = [hosts hostAtIndexPath:indexPath];
+
     cell.imageView.image = [host cellImage];
     cell.textLabel.text = host.name;
     cell.detailTextLabel.text = host.address;
     cell.accessoryType = UITableViewCellAccessoryNone;
   }
-  else{
+  else {
     cell.imageView.image = nil;
     cell.textLabel.text = NSLocalizedString(@"Edit Connections", "Root edit hosts");
     cell.detailTextLabel.text = nil;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
-  
+
   return cell;
 }
 
@@ -319,37 +314,37 @@
 #pragma mark Table view delegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (self.tableView.editing && indexPath.section!=0) {
+  if (self.tableView.editing && indexPath.section != 0) {
     return nil;
   }
-  
+
   return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
-  if( indexPath.section==0 ){
-    
-    if( indexPath.row<[hosts count] ){
-      
-      MKHost* host=[hosts hostAtIndexPath:indexPath];
-      MainViewController* mainView = [[MainViewController alloc] initWithHost:host];
+
+  if (indexPath.section == 0) {
+
+    if (indexPath.row < [hosts count]) {
+
+      MKHost *host = [hosts hostAtIndexPath:indexPath];
+      MainViewController *mainView = [[MainViewController alloc] initWithHost:host];
       [self.navigationController pushViewController:mainView animated:YES];
-      [mainView release];   
+      [mainView release];
     }
-    else{
-      MKHostsViewController* extraView = [[MKHostsViewController alloc] initWithHosts:hosts];
-      
+    else {
+      MKHostsViewController *extraView = [[MKHostsViewController alloc] initWithHosts:hosts];
+
       [self.navigationController setToolbarHidden:NO animated:NO];
       [self.navigationController pushViewController:extraView animated:YES];
       [extraView release];
     }
   }
-  else{
-    UIViewController* extraView=nil;
-    
+  else {
+    UIViewController *extraView = nil;
+
     switch (indexPath.row) {
       case 0:
         extraView = [[NCLogViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -358,7 +353,7 @@
         extraView = [[RoutesViewController alloc] init];
         break;
     }
-    
+
     [self.navigationController setToolbarHidden:NO animated:NO];
     [self.navigationController pushViewController:extraView animated:YES];
     [extraView release];
@@ -372,7 +367,7 @@
 - (void)didReceiveMemoryWarning {
   // Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
-  
+
   // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 

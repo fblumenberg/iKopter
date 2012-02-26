@@ -28,11 +28,11 @@
 
 @class MKHost;
 
-@interface MKHostViewController : IBAFormViewController<BTDiscoveryDelegate> {
-  
+@interface MKHostViewController : IBAFormViewController <BTDiscoveryDelegate> {
+
 }
 
-- (id)initWithHost:(MKHost*)theHost;
+- (id)initWithHost:(MKHost *)theHost;
 
 
 @end

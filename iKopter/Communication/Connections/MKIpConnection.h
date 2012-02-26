@@ -27,11 +27,11 @@
 
 @class AsyncSocket;
 
-@interface MKIpConnection : NSObject<MKConnection> {
+@interface MKIpConnection : NSObject <MKConnection> {
 
-  AsyncSocket * asyncSocket;
+  AsyncSocket *asyncSocket;
 
-  id<MKConnectionDelegate> delegate;
+  id <MKConnectionDelegate> delegate;
 }
 
 @end

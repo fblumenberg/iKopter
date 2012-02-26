@@ -34,8 +34,8 @@
 @interface NCLogSession : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSDate * timeStampStart;
-@property (nonatomic, retain) NSDate * timeStampEnd;
-@property (nonatomic, retain) NSSet* records;
+@property(nonatomic, retain) NSDate *timeStampStart;
+@property(nonatomic, retain) NSDate *timeStampEnd;
+@property(nonatomic, retain) NSSet *records;
 
 @end

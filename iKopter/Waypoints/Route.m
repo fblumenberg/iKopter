@@ -26,10 +26,7 @@
 #import "Routes.h"
 #import "Route.h"
 
-#import "TTGlobalCorePaths.h"
-#import "TTCorePreprocessorMacros.h"
-
-NSString * const MKRouteChangedNotification=@"MKRouteChangedNotification";
+NSString *const MKRouteChangedNotification = @"MKRouteChangedNotification";
 
 @implementation Route
 
@@ -37,20 +34,19 @@ NSString * const MKRouteChangedNotification=@"MKRouteChangedNotification";
 @synthesize points;
 @synthesize routes;
 
-+ (void) sendChangedNotification:(id)sender {
++ (void)sendChangedNotification:(id)sender {
   [[NSNotificationCenter defaultCenter] postNotificationName:MKRouteChangedNotification object:sender userInfo:nil];
 }
 
-+ (CLLocationCoordinate2D) defaultCoordinate{
-  
++ (CLLocationCoordinate2D)defaultCoordinate {
+
   double latitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultCoordLat"] doubleValue];
   double longitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultCoordLong"] doubleValue];
-  
+
   return CLLocationCoordinate2DMake(latitude, longitude);
 }
 
-- (id) init
-{
+- (id)init {
   self = [super init];
   if (self != nil) {
     self.points = [NSMutableArray array];
@@ -58,8 +54,7 @@ NSString * const MKRouteChangedNotification=@"MKRouteChangedNotification";
   return self;
 }
 
-- (void) dealloc
-{
+- (void)dealloc {
   self.name = nil;
   self.points = nil;
   [super dealloc];
@@ -69,11 +64,12 @@ NSString * const MKRouteChangedNotification=@"MKRouteChangedNotification";
 #pragma - mark NSCoding
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)encodeWithCoder:(NSCoder *)aCoder{
+- (void)encodeWithCoder:(NSCoder *)aCoder {
   [aCoder encodeObject:self.name forKey:@"name"];
   [aCoder encodeObject:self.points forKey:@"points"];
 }
-- (id)initWithCoder:(NSCoder *)aDecoder{
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
   if ((self = [super init])) {
     self.name = [aDecoder decodeObjectForKey:@"name"];
     self.points = [aDecoder decodeObjectForKey:@"points"];
@@ -81,121 +77,121 @@ NSString * const MKRouteChangedNotification=@"MKRouteChangedNotification";
   return self;
 }
 
--(NSString*) description{
-  return [NSString stringWithFormat:@"Route:%@",self.name];
+- (NSString *)description {
+  return [NSString stringWithFormat:@"Route:%@", self.name];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
--(NSUInteger) count {
+- (NSUInteger)count {
   return [points count];
 }
 
--(IKPoint*) pointAtIndexPath:(NSIndexPath *)indexPath {
+- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath {
   NSUInteger row = [indexPath row];
   return [points objectAtIndex:row];
 }
 
 
--(NSIndexPath*) addPointAtDefault {
+- (NSIndexPath *)addPointAtDefault {
   return [self addPointAtCoordinate:[Route defaultCoordinate]];
 }
 
--(NSIndexPath*) addPointAtCenter {
-  
-  if([self.points count]>1){
-    CLLocationDegrees latMin=360.0;
-    CLLocationDegrees latMax=-360.0;
-    CLLocationDegrees longMin=360.0;
-    CLLocationDegrees longMax=-360.0;
-    
-    for (IKPoint* p in self.points) {
-      latMax=MAX(latMax, p.coordinate.latitude);
-      latMin=MIN(latMin, p.coordinate.latitude);
-      longMax=MAX(longMax, p.coordinate.longitude);
-      longMin=MIN(longMin, p.coordinate.longitude);
+- (NSIndexPath *)addPointAtCenter {
+
+  if ([self.points count] > 1) {
+    CLLocationDegrees latMin = 360.0;
+    CLLocationDegrees latMax = -360.0;
+    CLLocationDegrees longMin = 360.0;
+    CLLocationDegrees longMax = -360.0;
+
+    for (IKPoint *p in self.points) {
+      latMax = MAX(latMax, p.coordinate.latitude);
+      latMin = MIN(latMin, p.coordinate.latitude);
+      longMax = MAX(longMax, p.coordinate.longitude);
+      longMin = MIN(longMin, p.coordinate.longitude);
     }
-    
-    CLLocationCoordinate2D coordinate=CLLocationCoordinate2DMake(latMin+(latMax-latMin)/2.0, longMin+(longMax-longMin)/2.0);
+
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latMin + (latMax - latMin) / 2.0, longMin + (longMax - longMin) / 2.0);
     return [self addPointAtCoordinate:coordinate];
   }
-  else if([self.points count]==1){
-    IKPoint* p=[self.points objectAtIndex:0];
+  else if ([self.points count] == 1) {
+    IKPoint *p = [self.points objectAtIndex:0];
     return [self addPointAtCoordinate:p.coordinate];
   }
-  
+
   return [self addPointAtDefault];
 }
 
--(void)updatePoints{
-  
-  qltrace(@"%@",self.points);
-  
-  int newIndexes[32]={0};
-  int oldIndexes[32]={0};
+- (void)updatePoints {
 
-  int index=0;
-  for(IKPoint* p in points){ 
-    newIndexes[index]=index+1;
-    oldIndexes[index]=p.index;
-    p.index=index+1;
+  qltrace(@"%@", self.points);
+
+  int newIndexes[32] = {0};
+  int oldIndexes[32] = {0};
+
+  int index = 0;
+  for (IKPoint *p in points) {
+    newIndexes[index] = index + 1;
+    oldIndexes[index] = p.index;
+    p.index = index + 1;
     index++;
   };
 
-  for(IKPoint* pointToMove in self.points){ 
-    for(int i=0;i<[self.points count];i++){
-      qltrace(@"Check if %d==%d",pointToMove.heading,-oldIndexes[i]);
-      if( pointToMove.heading<0 && pointToMove.heading == -oldIndexes[i] ){
+  for (IKPoint *pointToMove in self.points) {
+    for (int i = 0; i < [self.points count]; i++) {
+      qltrace(@"Check if %d==%d", pointToMove.heading, -oldIndexes[i]);
+      if (pointToMove.heading < 0 && pointToMove.heading == -oldIndexes[i]) {
         pointToMove.heading = -newIndexes[i];
-        qltrace(@"Update heading to %d",pointToMove.heading)
+        qltrace(@"Update heading to %d", pointToMove.heading)
       }
     }
   }
-  
+
   [self.routes save];
-  qltrace(@"%@",points);
+  qltrace(@"%@", points);
 }
 
--(NSIndexPath*) addPointAtCoordinate:(CLLocationCoordinate2D)coordinate {
-  IKPoint* newPoint = [[IKPoint alloc]initWithCoordinate:coordinate];
+- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate {
+  IKPoint *newPoint = [[IKPoint alloc] initWithCoordinate:coordinate];
 
-  newPoint.index=[points count]+1;
+  newPoint.index = [points count] + 1;
 
   [points addObject:newPoint];
   [newPoint release];
-  
-  qltrace(@"%@",points);
+
+  qltrace(@"%@", points);
   [self.routes save];
 
-  return [NSIndexPath indexPathForRow:[points count]-1 inSection:1]; 
+  return [NSIndexPath indexPathForRow:[points count] - 1 inSection:1];
 }
 
--(void) movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-  qltrace(@"movePointAtIndexPath %@ -> %@",fromIndexPath,toIndexPath);
-  
+- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+  qltrace(@"movePointAtIndexPath %@ -> %@", fromIndexPath, toIndexPath);
+
   NSUInteger fromRow = [fromIndexPath row];
   NSUInteger toRow = [toIndexPath row];
-  
-  id object = [[points objectAtIndex:fromRow] retain]; 
-  [points removeObjectAtIndex:fromRow]; 
-  [points insertObject:object atIndex:toRow]; 
+
+  id object = [[points objectAtIndex:fromRow] retain];
+  [points removeObjectAtIndex:fromRow];
+  [points insertObject:object atIndex:toRow];
   [object release];
-  
+
   [self updatePoints];
   [Route sendChangedNotification:self];
 }
 
--(void) deletePointAtIndexPath:(NSIndexPath*)indexPath {
-  
-  int oldIndex=((IKPoint*)[points objectAtIndex:[indexPath row]]).index; 
-  [points removeObjectAtIndex:[indexPath row]]; 
-  
-  for(IKPoint* p in points){ 
-    if( p.heading<0 && p.heading == -oldIndex ){
+- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath {
+
+  int oldIndex = ((IKPoint *) [points objectAtIndex:[indexPath row]]).index;
+  [points removeObjectAtIndex:[indexPath row]];
+
+  for (IKPoint *p in points) {
+    if (p.heading < 0 && p.heading == -oldIndex) {
       p.heading = 0;
-      qltrace(@"Update heading to %d",p.heading)
+      qltrace(@"Update heading to %d", p.heading)
     }
   }
-  
+
   [self updatePoints];
   [Route sendChangedNotification:self];
 }

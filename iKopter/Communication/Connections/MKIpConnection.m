@@ -26,7 +26,7 @@
 #import "MKIpConnection.h"
 #import "AsyncSocket.h"
 
-static NSString * const MKIpConnectionException = @"MKIpConnectionException";
+static NSString *const MKIpConnectionException = @"MKIpConnectionException";
 
 @implementation MKIpConnection
 
@@ -36,24 +36,23 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 
 #pragma mark Initialization
 
-- (id) init {
+- (id)init {
   return [self initWithDelegate:nil];
 }
 
-- (id) initWithDelegate:(id<MKConnectionDelegate>)theDelegate;
-{
+- (id)initWithDelegate:(id <MKConnectionDelegate>)theDelegate; {
   self = [super init];
   if (self) {
-    
+
     asyncSocket = [[AsyncSocket alloc] init];
-    [asyncSocket setDelegate:self];   
-                   
+    [asyncSocket setDelegate:self];
+
     self.delegate = theDelegate;
   }
   return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
   qltrace("dealloc");
   [asyncSocket release];
   [super dealloc];
@@ -62,61 +61,56 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
 #pragma mark -
 #pragma mark MKInput
 
-- (BOOL) connectTo:(MKHost*)hostOrDevice error:(NSError **)err;
-{
+- (BOOL)connectTo:(MKHost *)hostOrDevice error:(NSError **)err; {
   if (delegate == nil) {
     [NSException raise:MKIpConnectionException
                 format:@"Attempting to connect without a delegate. Set a delegate first."];
   }
 
-  NSArray * hostItems = [hostOrDevice.address componentsSeparatedByString:@":"];
-  if ( [hostItems count] != 2 ) {
+  NSArray *hostItems = [hostOrDevice.address componentsSeparatedByString:@":"];
+  if ([hostItems count] != 2) {
     qlcritical(@"Attempting to connect without a port. Set a port first.");
     return NO;
   }
 
   int port = [[hostItems objectAtIndex:1] intValue];
-  NSString * host = [hostItems objectAtIndex:0];
+  NSString *host = [hostItems objectAtIndex:0];
 
   qltrace(@"Try to connect to %@ on port %d", host, port);
   return [asyncSocket connectToHost:host onPort:port withTimeout:30 error:err];
 }
 
-- (BOOL) isConnected;
-{
+- (BOOL)isConnected; {
   return [asyncSocket isConnected];
 }
 
-- (void) disconnect;
-{
+- (void)disconnect; {
   qltrace(@"Try to disconnect from %@ on port %d", [asyncSocket connectedHost], [asyncSocket connectedPort]);
   [asyncSocket disconnect];
 }
 
-- (void) writeMkData:(NSData *)data;
-{
+- (void)writeMkData:(NSData *)data; {
 //  NSMutableData * newData = [data mutableCopy];
 //
 //  [newData appendBytes:"\n" length:1];
 
   [asyncSocket writeData:data withTimeout:-1 tag:0];
-  
+
 //  [newData release];
 }
 
 #pragma mark -
 #pragma mark AsyncSocketDelegate
 
-- (BOOL) onSocketWillConnect:(AsyncSocket *)sock {
+- (BOOL)onSocketWillConnect:(AsyncSocket *)sock {
   qltrace(@"About to connect to %@", [sock connectedHost]);
   return TRUE;
 }
 
-- (void) onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port;
-{
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port; {
   qltrace(@"Did connect to %@ on port %d", host, port);
 
-  if ( [delegate respondsToSelector:@selector(didConnectTo:)] ) {
+  if ([delegate respondsToSelector:@selector(didConnectTo:)]) {
     [delegate didConnectTo:host];
   }
 
@@ -125,9 +119,8 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
   [sock readDataToData:[AsyncSocket CRData] withTimeout:-1 tag:0];
 }
 
-- (void) onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
-{
-  if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag; {
+  if ([delegate respondsToSelector:@selector(didReadMkData:)]) {
     [delegate didReadMkData:data];
   }
 //  qltrace(@"Did read data %@",data);
@@ -136,24 +129,21 @@ static NSString * const MKIpConnectionException = @"MKIpConnectionException";
   [sock readDataToData:[AsyncSocket CRData] withTimeout:-1 tag:0];
 }
 
-- (void) onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag;
-{
+- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag; {
   qltrace(@"Finished writing the next data frame");
 }
 
-- (void) onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err;
-{
+- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err; {
   qlerror(@"Disconnet with an error %@", err);
-  if ( [delegate respondsToSelector:@selector(willDisconnectWithError:)] ) {
+  if ([delegate respondsToSelector:@selector(willDisconnectWithError:)]) {
     [delegate willDisconnectWithError:err];
   }
 }
 
-- (void) onSocketDidDisconnect:(AsyncSocket *)sock;
-{
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock; {
   qltrace(@"Disconnect from %@ on port %d", [asyncSocket connectedHost], [asyncSocket connectedPort]);
 
-  if ( [delegate respondsToSelector:@selector(didDisconnect)] ) {
+  if ([delegate respondsToSelector:@selector(didDisconnect)]) {
     [delegate didDisconnect];
   }
 }

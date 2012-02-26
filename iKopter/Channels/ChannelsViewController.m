@@ -31,8 +31,8 @@
 #define kAnalogLabelFile @"AnalogLables.plist"
 
 @interface ChannelsViewController (Private)
-- (void) channelsValueNotification:(NSNotification *)aNotification;
-- (void) requestChannelData;
+- (void)channelsValueNotification:(NSNotification *)aNotification;
+- (void)requestChannelData;
 @end
 
 // ///////////////////////////////////////////////////////////////////////////////
@@ -44,37 +44,35 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
   [super viewDidLoad];
-    
-  
+
+
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-  
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+- (void)viewWillAppear:(BOOL)animated {
+
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc addObserver:self
          selector:@selector(channelsValueNotification:)
              name:MKChannelValuesNotification
            object:nil];
 
   [super viewWillAppear:animated];
-  
-  self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 
-                                                      target:self 
-                                                    selector:@selector(requestChannelData) 
-                                                    userInfo:nil 
-                                                     repeats:YES];
+
+  self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                                      target:self
+                                                    selector:@selector(requestChannelData)
+                                                    userInfo:nil repeats:YES];
   [self requestChannelData];
 }
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated {
 
   [self.updateTimer invalidate];
-  self.updateTimer=nil;
-  [_updateTimer release];
-  
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  self.updateTimer = nil;
+
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
 
   [super viewDidDisappear:animated];
@@ -87,38 +85,40 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void) didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
-- (void) viewDidUnload {
+- (void)viewDidUnload {
 }
 
-- (void) dealloc {
+- (void)dealloc {
+  [self.updateTimer invalidate];
+  self.updateTimer = nil;
+
   [super dealloc];
 }
 
 // ////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
-- (void) requestChannelData {
-  
-  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
-  NSData * data = [NSData dataWithCommand:MKCommandChannelsValueRequest
-                               forAddress:kIKMkAddressFC
-                         payloadWithBytes:NULL
-                                   length:0];
+- (void)requestChannelData {
+
+  MKConnectionController *cCtrl = [MKConnectionController sharedMKConnectionController];
+  NSData *data = [NSData dataWithCommand:MKCommandChannelsValueRequest
+                              forAddress:kIKMkAddressFC
+                        payloadWithBytes:NULL length:0];
 
   [cCtrl sendRequest:data];
 }
 
-- (void) channelsValueNotification:(NSNotification *)aNotification {
-  
-  NSData* data = [[aNotification userInfo] objectForKey:kMKDataKeyChannels];
-  
-  if([data length]>=sizeof(channelValues))
-    memcpy(channelValues, [data bytes], sizeof(channelValues));
-  
+- (void)channelsValueNotification:(NSNotification *)aNotification {
+
+  NSData *data = [[aNotification userInfo] objectForKey:kMKDataKeyChannels];
+
+  if ([data length] >= sizeof(channelValues))
+  memcpy(channelValues, [data bytes], sizeof(channelValues));
+
   [self.tableView reloadData];
 }
 
@@ -126,45 +126,45 @@
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   // Return the number of sections.
   return 1;
 }
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return 25;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell * cell;
-  if(indexPath.row==0){
-    static NSString * CellIdentifier = @"ChannelsRSSITableCell";
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  UITableViewCell *cell;
+  if (indexPath.row == 0) {
+    static NSString *CellIdentifier = @"ChannelsRSSITableCell";
+
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
       cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+
     cell.textLabel.text = NSLocalizedString(@"RSSI", @"Channels Test");
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",channelValues[indexPath.row]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", channelValues[indexPath.row]];
   }
   else {
-    
-    static NSString * CellIdentifier = @"ChannelsTableCell";
-    
+
+    static NSString *CellIdentifier = @"ChannelsTableCell";
+
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
       cell = [[[ChannelsViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    if(indexPath.row<13)
-      cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"RC Channel %d","Channel test"),indexPath.row];
-    else     
-      cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Serial %d","Channel test"),indexPath.row];
-    
-    [(ChannelsViewCell*)cell setChannelValue:channelValues[indexPath.row]];
+
+    if (indexPath.row < 13)
+      cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"RC Channel %d", "Channel test"), indexPath.row];
+    else
+      cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Serial %d", "Channel test"), indexPath.row];
+
+    [(ChannelsViewCell *) cell setChannelValue:channelValues[indexPath.row]];
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",channelValues[indexPath.row]];
   }
   return cell;
@@ -173,7 +173,7 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-- (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   return nil;
 }
 

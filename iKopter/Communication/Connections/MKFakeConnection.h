@@ -28,29 +28,29 @@
 
 @class AsyncSocket;
 
-@interface MKFakeConnection : NSObject<MKConnection> {
+@interface MKFakeConnection : NSObject <MKConnection> {
 
-  id<MKConnectionDelegate> delegate;
-  
+  id <MKConnectionDelegate> delegate;
+
   BOOL isConnected;
   int lcdDataCounter;
   int dbgDataCounter;
   int menuCounter;
   int menuPage;
   int activeSetting;
-  
-  NSMutableArray* settings;
-  
+
+  NSMutableArray *settings;
+
   IKMkNaviData naviData;
   NSInteger dataRow;
-  
-  NSTimer* osdTimer;
+
+  NSTimer *osdTimer;
 
 }
 
-@property (assign) id<MKConnectionDelegate> delegate;
+@property(assign) id <MKConnectionDelegate> delegate;
 
-- (id) init;
-- (id) initWithDelegate:(id)delegate;
+- (id)init;
+- (id)initWithDelegate:(id)delegate;
 
 @end

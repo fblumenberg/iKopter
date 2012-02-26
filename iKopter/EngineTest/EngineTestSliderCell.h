@@ -25,10 +25,10 @@
 #import <UIKit/UIKit.h>
 
 @interface EngineTestSliderCell : UITableViewCell {
-    UISlider *valueSlider;
+  UISlider *valueSlider;
 }
 
-@property (nonatomic, retain) UISlider *valueSlider;
+@property(nonatomic, retain) UISlider *valueSlider;
 
 - (void)slideAction;
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;

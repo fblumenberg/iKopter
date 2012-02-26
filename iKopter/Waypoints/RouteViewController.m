@@ -36,22 +36,22 @@
 #import "MBProgressHUD+RFhelpers.h"
 
 
-@interface RouteViewController()
+@interface RouteViewController ()
 
-@property (retain) UIBarButtonItem* spacer;
-@property (retain) UIBarButtonItem* addButton;
-@property (retain) UIBarButtonItem* addWithGpsButton;
-@property (retain) UIBarButtonItem* ulButton;
-@property (retain) UIBarButtonItem* dlButton;
+@property(retain) UIBarButtonItem *spacer;
+@property(retain) UIBarButtonItem *addButton;
+@property(retain) UIBarButtonItem *addWithGpsButton;
+@property(retain) UIBarButtonItem *ulButton;
+@property(retain) UIBarButtonItem *dlButton;
 @property(retain) CLLocationManager *lm;
-@property (retain) RouteController* routeController;
+@property(retain) RouteController *routeController;
 
 
--(void) updateSelectedViewFrame;
--(void) changeView;
--(void) uploadRoute;
--(void) downloadRoute;
--(void) addPointWithGps;
+- (void)updateSelectedViewFrame;
+- (void)changeView;
+- (void)uploadRoute;
+- (void)downloadRoute;
+- (void)addPointWithGps;
 
 
 @end
@@ -72,11 +72,11 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 
-- (id)initWithRoute:(Route*) theRoute {
+- (id)initWithRoute:(Route *)theRoute {
   self = [super initWithNibName:@"RouteViewController" bundle:nil];
   if (self) {
-    self.route=theRoute;
-    self.title=NSLocalizedString(@"Route", @"Waypoint Lists title");
+    self.route = theRoute;
+    self.title = NSLocalizedString(@"Route", @"Waypoint Lists title");
   }
   return self;
 }
@@ -85,127 +85,124 @@
   self.selectedViewController = nil;
   self.viewControllers = nil;
   self.route = nil;
-  self.addButton=nil;
-  self.addWithGpsButton=nil;
-  self.spacer=nil;
-  self.dlButton=nil;
-  self.ulButton=nil;
+  self.addButton = nil;
+  self.addWithGpsButton = nil;
+  self.spacer = nil;
+  self.dlButton = nil;
+  self.ulButton = nil;
+  self.routeController = nil;
+  self.segment = nil;
 
   [self.lm stopUpdatingLocation];
   self.lm.delegate = nil;
   self.lm = nil;
-  
+
   [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  
-  RouteListViewController*  listViewController=[[RouteListViewController alloc] initWithRoute:self.route];
-  listViewController.surrogateParent=self;
-  RouteMapViewController* mapViewController=[[RouteMapViewController alloc] initWithRoute:self.route];
-  mapViewController.surrogateParent=self;
-  
+
+  RouteListViewController *listViewController = [[RouteListViewController alloc] initWithRoute:self.route];
+  listViewController.surrogateParent = self;
+  RouteMapViewController *mapViewController = [[RouteMapViewController alloc] initWithRoute:self.route];
+  mapViewController.surrogateParent = self;
+
   NSArray *array = [[NSArray alloc] initWithObjects:listViewController, mapViewController, nil];
   self.viewControllers = array;
   [array release];
-  
+
   [listViewController release];
   [mapViewController release];
-  
-  NSArray* segmentItems = [NSArray arrayWithObjects:@"List",@"Map",nil];
+
+  NSArray *segmentItems = [NSArray arrayWithObjects:@"List", @"Map", nil];
   segment = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
-  segment.segmentedControlStyle=UISegmentedControlStyleBar;
-  
+  segment.segmentedControlStyle = UISegmentedControlStyleBar;
+
   segment.tintColor = [UIColor darkGrayColor];
   [segment setImage:[UIImage imageNamed:@"list-mode.png"] forSegmentAtIndex:0];
   [segment setWidth:50.0 forSegmentAtIndex:0];
   [segment setWidth:50.0 forSegmentAtIndex:1];
   [segment setImage:[UIImage imageNamed:@"map-mode.png"] forSegmentAtIndex:1];
-  
-  
+
+
   [segment addTarget:self
               action:@selector(changeView)
     forControlEvents:UIControlEventValueChanged];
-  
-  UIBarButtonItem* segmentButton;
-  segmentButton =  [[[UIBarButtonItem alloc]
-                     initWithCustomView:segment] autorelease];
-  
-  if(!self.isPad)
+
+  UIBarButtonItem *segmentButton;
+  segmentButton = [[[UIBarButtonItem alloc]
+          initWithCustomView:segment] autorelease];
+
+  if (!self.isPad)
     [self.navigationItem setRightBarButtonItem:segmentButton animated:NO];
-  
-  self.spacer =  [[[UIBarButtonItem alloc]
-                   initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                   target:nil
-                   action:nil] autorelease];
-  
-  
-  self.addButton =  [[[UIBarButtonItem alloc]
-                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                      target:nil
-                      action:@selector(addPoint)] autorelease];
+
+  self.spacer = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                               target:nil action:nil] autorelease];
+
+
+  self.addButton = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                               target:nil action:@selector(addPoint)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
 
-  self.addWithGpsButton =  [[[UIBarButtonItem alloc]
-                     initWithImage:[UIImage imageNamed:@"icon-add-gps.png"] 
-                     style:UIBarButtonItemStyleBordered
-                     target:self
-                     action:@selector(addPointWithGps)] autorelease];
+  self.addWithGpsButton = [[[UIBarButtonItem alloc]
+          initWithImage:[UIImage imageNamed:@"icon-add-gps.png"]
+                  style:UIBarButtonItemStyleBordered
+                 target:self
+                 action:@selector(addPointWithGps)] autorelease];
 
-  
+
   if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
-    
-    self.ulButton =  [[[UIBarButtonItem alloc]
-                       initWithImage:[UIImage imageNamed:@"icon-ul1.png"] 
-                       style:UIBarButtonItemStyleBordered
-                       target:self
-                       action:@selector(uploadRoute)] autorelease];
-    
-    self.dlButton =  [[[UIBarButtonItem alloc]
-                       initWithImage:[UIImage imageNamed:@"icon-dl1.png"] 
-                       style:UIBarButtonItemStyleBordered
-                       target:self
-                       action:@selector(downloadRoute)] autorelease];
+
+    self.ulButton = [[[UIBarButtonItem alloc]
+            initWithImage:[UIImage imageNamed:@"icon-ul1.png"]
+                    style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(uploadRoute)] autorelease];
+
+    self.dlButton = [[[UIBarButtonItem alloc]
+            initWithImage:[UIImage imageNamed:@"icon-dl1.png"]
+                    style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(downloadRoute)] autorelease];
   }
-  
-  
-  self.lm = [[[CLLocationManager alloc] init]autorelease];
+
+
+  self.lm = [[[CLLocationManager alloc] init] autorelease];
   self.lm.delegate = self;
   self.lm.desiredAccuracy = kCLLocationAccuracyBest;
-  
-  if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
-    self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
-                                     [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+
+  if ([[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]) {
+    self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized ||
+            [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined);
   }
-  else{
+  else {
     self.addWithGpsButton.enabled = [CLLocationManager locationServicesEnabled];
   }
-  
-  segment.selectedSegmentIndex=0;
+
+  segment.selectedSegmentIndex = 0;
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
   [super viewDidUnload];
 
   self.route = nil;
   self.selectedViewController = nil;
-  
+
   self.viewControllers = nil;
-  self.addButton=nil;
-  self.addWithGpsButton=nil;
-  self.spacer=nil;
-  self.dlButton=nil;
-  self.ulButton=nil;
+  self.addButton = nil;
+  self.addWithGpsButton = nil;
+  self.spacer = nil;
+  self.dlButton = nil;
+  self.ulButton = nil;
 
   [self.lm stopUpdatingLocation];
   self.lm.delegate = nil;
@@ -213,24 +210,24 @@
 
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
+
   [self changeView];
-  
-  self.routeController = [[[RouteController alloc]initWithDelegate:self]autorelease];
-  
-  if(self.isPad){
+
+  self.routeController = [[[RouteController alloc] initWithDelegate:self] autorelease];
+
+  if (self.isPad) {
     UIViewController *newSelectedViewController = [self.viewControllers objectAtIndex:1];
     [self.detailViewController pushViewController:newSelectedViewController animated:YES];
   }
 }
 
-- (void) viewWillDisappear:(BOOL)animated {
-  self.routeController=nil;
+- (void)viewWillDisappear:(BOOL)animated {
+  self.routeController = nil;
   [self.selectedViewController viewWillDisappear:NO];
 
-  if(self.isPad){
+  if (self.isPad) {
     [self.detailViewController popViewControllerAnimated:YES];
   }
 }
@@ -239,55 +236,54 @@
   [self updateSelectedViewFrame];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
 }
 
--(void) updateSelectedViewFrame {
-  self.selectedViewController.view.frame=CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), 
-                                                    CGRectGetHeight(self.view.bounds));
-  
+- (void)updateSelectedViewFrame {
+  self.selectedViewController.view.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds),
+          CGRectGetHeight(self.view.bounds));
+
   self.addButton.target = self.selectedViewController;
-  
-  if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]){
+
+  if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]) {
     if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
-      [self setToolbarItems:[NSArray arrayWithObjects:
-                             self.selectedViewController.editButtonItem,
-                             self.spacer,
-                             self.ulButton,
-                             //self.dlButton,
-                             self.spacer,
-                             self.addWithGpsButton,
-                             self.addButton,nil] animated:YES];
+      [self                 setToolbarItems:[NSArray arrayWithObjects:
+              self.selectedViewController.editButtonItem,
+              self.spacer,
+              self.ulButton,
+                                                    //self.dlButton,
+              self.spacer,
+              self.addWithGpsButton,
+              self.addButton, nil] animated:YES];
     }
-    else{
-      [self setToolbarItems:[NSArray arrayWithObjects:
-                             self.selectedViewController.editButtonItem,
-                             self.spacer,self.addWithGpsButton,
-                             self.addButton,nil] animated:YES];
+    else {
+      [self                 setToolbarItems:[NSArray arrayWithObjects:
+              self.selectedViewController.editButtonItem,
+              self.spacer, self.addWithGpsButton,
+              self.addButton, nil] animated:YES];
     }
   } else {
-    UIBarButtonItem* curlBarItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
-                                                                                  target:((RouteMapViewController*)self.selectedViewController).curlBarItem 
-                                                                                  action:@selector(touched)]autorelease];
-    
+    UIBarButtonItem *curlBarItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
+                                                                                  target:((RouteMapViewController *) self.selectedViewController).curlBarItem
+                                                                                  action:@selector(touched)] autorelease];
+
     if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
-      [self setToolbarItems:[NSArray arrayWithObjects:
-                             curlBarItem,
-                             self.spacer,
-                             self.ulButton,
-                             //self.dlButton,
-                             self.spacer,
-                             self.addWithGpsButton,
-                             self.addButton, nil] animated:YES];
+      [self                 setToolbarItems:[NSArray arrayWithObjects:
+              curlBarItem,
+              self.spacer,
+              self.ulButton,
+                                                    //self.dlButton,
+              self.spacer,
+              self.addWithGpsButton,
+              self.addButton, nil] animated:YES];
     }
-    else{
-      [self setToolbarItems:[NSArray arrayWithObjects:
-                             curlBarItem,
-                             self.spacer,
-                             self.addWithGpsButton,
-                             self.addButton, nil] animated:YES];
+    else {
+      [self                 setToolbarItems:[NSArray arrayWithObjects:
+              curlBarItem,
+              self.spacer,
+              self.addWithGpsButton,
+              self.addButton, nil] animated:YES];
     }
   }
 }
@@ -296,13 +292,13 @@
 /////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITabBarDelegate
 
--(void) changeView{
+- (void)changeView {
   UIViewController *newSelectedViewController = [self.viewControllers objectAtIndex:segment.selectedSegmentIndex];
-  
+
   [self.selectedViewController setEditing:NO animated:YES];
   [self.selectedViewController viewWillDisappear:NO];
   [self.selectedViewController.view removeFromSuperview];
-  
+
   [self.view addSubview:newSelectedViewController.view];
   self.selectedViewController = newSelectedViewController;
   [self.selectedViewController viewWillAppear:NO];
@@ -312,78 +308,76 @@
 
 #pragma mark - Upload
 
-- (void) downloadRoute {
+- (void)downloadRoute {
   [routeController downloadRouteFromNaviCtrl];
 }
 
 #pragma mark - RouteControllerDelegate
 
--(void) routeControllerFinishedDownload:(RouteController *)controller{
-  qldebug(@"Downloaded route from NC %@",routeController.route);
-  qldebug(@"Downloaded route from NC %@",controller.route.points);
+- (void)routeControllerFinishedDownload:(RouteController *)controller {
+  qldebug(@"Downloaded route from NC %@", routeController.route);
+  qldebug(@"Downloaded route from NC %@", controller.route.points);
 }
 
 
--(void) uploadRoute{
+- (void)uploadRoute {
   [self.routeController uploadRouteToNaviCtrl:self.route];
 }
 
--(void)routeControllerFinishedUpload:(RouteController *)controller{
-  
-  MBProgressHUD* hud = [MBProgressHUD sharedNotificationHUD];
-  
+- (void)routeControllerFinishedUpload:(RouteController *)controller {
+
+  MBProgressHUD *hud = [MBProgressHUD sharedNotificationHUD];
+
   hud.customView = [[[UIImageView alloc] initWithImage:
-                     [UIImage imageNamed:@"icon-check.png"]] autorelease];
+          [UIImage imageNamed:@"icon-check.png"]] autorelease];
   hud.mode = MBProgressHUDModeCustomView;
-  hud.labelText = NSLocalizedString(@"Upload successful",@"Route Upload success");
+  hud.labelText = NSLocalizedString(@"Upload successful", @"Route Upload success");
   [hud show:YES];
   [hud hide:YES afterDelay:0.7];
 }
 
 #pragma mark - CLLocationManagerDelegate Methods
 
--(void) addPointWithGps{
+- (void)addPointWithGps {
   [self.lm startUpdatingLocation];
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager 
-    didUpdateToLocation:(CLLocation *)newLocation 
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
-  
+
   if ([newLocation.timestamp timeIntervalSince1970] < [NSDate timeIntervalSinceReferenceDate] - 60)
     return;
-  
+
   [manager stopUpdatingLocation];
-  if([self.selectedViewController respondsToSelector:@selector(addPointWithLocation:)])
+  if ([self.selectedViewController respondsToSelector:@selector(addPointWithLocation:)])
     [self.selectedViewController addPointWithLocation:newLocation];
 }
 
-- (void)locationManager:(CLLocationManager *)manager 
+- (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-  
-  NSString *errorType = (error.code == kCLErrorDenied) ? 
-  NSLocalizedString(@"Access Denied", @"Access Denied") : 
-  NSLocalizedString(@"Unknown Error", @"Unknown Error");
-  
-  UIAlertView *alert = [[UIAlertView alloc] 
-                        initWithTitle:NSLocalizedString(@"Error getting Location", @"Error getting Location")
-                        message:errorType 
-                        delegate:self 
-                        cancelButtonTitle:NSLocalizedString(@"Okay", @"Okay") 
-                        otherButtonTitles:nil];
+
+  NSString *errorType = (error.code == kCLErrorDenied) ?
+          NSLocalizedString(@"Access Denied", @"Access Denied") :
+          NSLocalizedString(@"Unknown Error", @"Unknown Error");
+
+  UIAlertView *alert = [[UIAlertView alloc]
+          initWithTitle:NSLocalizedString(@"Error getting Location", @"Error getting Location") message:errorType
+               delegate:self
+      cancelButtonTitle:NSLocalizedString(@"Okay", @"Okay") otherButtonTitles:nil];
   [alert show];
   [alert release];
-  
-  
-  if( [[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]){
-    self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorized ||
-                                     [CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined);
+
+
+  if ([[CLLocationManager class] respondsToSelector:@selector(authorizationStatus)]) {
+    self.addWithGpsButton.enabled = ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized ||
+            [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined);
   }
-  else{
+  else {
     self.addWithGpsButton.enabled = [CLLocationManager locationServicesEnabled];
   }
-  
+
   self.lm = nil;
 }
 

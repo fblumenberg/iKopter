@@ -37,34 +37,33 @@ typedef enum {
 @interface RouteController : NSObject {
 
   RouteControllerState state;
-  
+
   NSInteger currIndex;
 }
 
 @property(readonly) RouteControllerState state;
-@property(assign) id<RouteControllerDelegate> delegate;
-@property(retain) Route* route;
+@property(assign) id <RouteControllerDelegate> delegate;
+@property(retain) Route *route;
 
--(id) initWithDelegate:(id<RouteControllerDelegate>)delegate;
+- (id)initWithDelegate:(id <RouteControllerDelegate>)delegate;
 
--(void) uploadRouteToNaviCtrl:(Route*)aRoute;
--(void) downloadRouteFromNaviCtrl;
+- (void)uploadRouteToNaviCtrl:(Route *)aRoute;
+- (void)downloadRouteFromNaviCtrl;
 
 @end
 
 @protocol RouteControllerDelegate <NSObject>
 
 @optional
--(void)routeControllerStartDownload:(RouteController*)controller forIndex:(NSInteger) index;
--(void)routeControllerFinishedDownload:(RouteController*)controller forIndex:(NSInteger) index of:(NSInteger) count;
--(void)routeControllerFinishedDownload:(RouteController*)controller;
--(void)routeControllerFailedDownload:(RouteController*)controller WithError:(NSError *)error;
+- (void)routeControllerStartDownload:(RouteController *)controller forIndex:(NSInteger)index;
+- (void)routeControllerFinishedDownload:(RouteController *)controller forIndex:(NSInteger)index of:(NSInteger)count;
+- (void)routeControllerFinishedDownload:(RouteController *)controller;
+- (void)routeControllerFailedDownload:(RouteController *)controller WithError:(NSError *)error;
 
--(void)routeControllerStartUpload:(RouteController*)controller forIndex:(NSInteger) index;
--(void)routeControllerFinishedUpload:(RouteController*)controller forIndex:(NSInteger) index of:(NSInteger) count;
--(void)routeControllerFinishedUpload:(RouteController*)controller;
--(void)routeControllerFailedUpload:(RouteController*)controller WithError:(NSError *)error;
-
+- (void)routeControllerStartUpload:(RouteController *)controller forIndex:(NSInteger)index;
+- (void)routeControllerFinishedUpload:(RouteController *)controller forIndex:(NSInteger)index of:(NSInteger)count;
+- (void)routeControllerFinishedUpload:(RouteController *)controller;
+- (void)routeControllerFailedUpload:(RouteController *)controller WithError:(NSError *)error;
 
 
 @end

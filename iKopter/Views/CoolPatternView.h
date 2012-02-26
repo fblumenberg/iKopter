@@ -10,7 +10,7 @@
 
 
 @interface CoolPatternView : UIView {
-    NSTimeInterval totalDrawTime;
+  NSTimeInterval totalDrawTime;
 }
 
 @end

@@ -20,9 +20,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 
-    [super setSelected:selected animated:animated];
+  [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+  // Configure the view for the selected state
 }
 
 
@@ -35,17 +35,16 @@
   [super dealloc];
 }
 
-+ (NSString *)reuseIdentifier
-{
-  return (NSString *)TABLE_CELL_IDENTIFIER;
++ (NSString *)reuseIdentifier {
+  return (NSString *) TABLE_CELL_IDENTIFIER;
 }
-- (NSString *)reuseIdentifier
-{
+
+- (NSString *)reuseIdentifier {
   return [[self class] reuseIdentifier];
 }
 
 
--(IBAction) exitEditing:(id)sender {
+- (IBAction)exitEditing:(id)sender {
   NSLog(@"exit editing");
   [sender resignFirstResponder];
 }

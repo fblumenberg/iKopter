@@ -27,10 +27,10 @@
 
 @interface EngineTestViewController : UITableViewController {
 
-  EngineValues* engineValues;
-  UISegmentedControl* segment;
+  EngineValues *engineValues;
+  UISegmentedControl *segment;
 }
 
-- (IBAction) changeDevice;
+- (IBAction)changeDevice;
 
 @end

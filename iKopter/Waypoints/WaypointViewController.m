@@ -31,13 +31,13 @@
 
 #pragma mark -
 
-- (id)initWithPoint:(IKPoint*)theWayPoint {
-  
+- (id)initWithPoint:(IKPoint *)theWayPoint {
+
   WaypointViewDataSource *dataSource = [[[WaypointViewDataSource alloc] initWithModel:theWayPoint] autorelease];
 
-  if ((self =  [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
+  if ((self = [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
     self.hidesBottomBarWhenPushed = NO;
-    self.title=NSLocalizedString(@"Waypoint", @"Waypoint view title");
+    self.title = NSLocalizedString(@"Waypoint", @"Waypoint view title");
   }
   return self;
 }
@@ -49,21 +49,21 @@
 #pragma mark -
 
 - (void)loadView {
-	[super loadView];
-  
-	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:formTableView];
-	
-	[view addSubview:formTableView];
-	[self setView:view];
+  [super loadView];
+
+  UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+
+  UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+  [formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [self setTableView:formTableView];
+
+  [view addSubview:formTableView];
+  [self setView:view];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+  return YES;
 }
 
 

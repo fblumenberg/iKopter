@@ -26,15 +26,15 @@
 #import "MKHosts.h"
 
 @interface MKHostsViewController : UITableViewController {
-    
+
 
 }
 
-@property(retain) MKHosts* hosts;
-@property(retain) UIBarButtonItem* addButton;
-@property(retain) NSIndexPath* editingHost;
+@property(retain) MKHosts *hosts;
+@property(retain) UIBarButtonItem *addButton;
+@property(retain) NSIndexPath *editingHost;
 
-- (id)initWithHosts:(MKHosts*)theHostList;
+- (id)initWithHosts:(MKHosts *)theHostList;
 
 
 @end

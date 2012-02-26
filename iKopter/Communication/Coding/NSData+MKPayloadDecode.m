@@ -50,17 +50,15 @@
 //  return [label stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 //}
 
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
-{
-  IKDebugLabel* label = [IKDebugLabel labelWithData:self forAddress:address];
+- (NSDictionary *)decodeAnalogLabelResponseForAddress:(IKMkAddress)address; {
+  IKDebugLabel *label = [IKDebugLabel labelWithData:self forAddress:address];
   return [NSDictionary dictionaryWithObjectsAndKeys:label, kIKDataKeyDebugLabel, nil];
 }
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
-{
-  IKDebugData* debugData = [IKDebugData dataWithData:self forAddress:address];
-  return [NSDictionary dictionaryWithObjectsAndKeys:debugData,kIKDataKeyDebugData, nil];
+- (NSDictionary *)decodeDebugDataResponseForAddress:(IKMkAddress)address; {
+  IKDebugData *debugData = [IKDebugData dataWithData:self forAddress:address];
+  return [NSDictionary dictionaryWithObjectsAndKeys:debugData, kIKDataKeyDebugData, nil];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -92,82 +90,79 @@
 //}
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
-{
-  IKLcdDisplay* lcdData=[IKLcdDisplay menuWithData:self forAddress:address];
-  NSDictionary* d=[NSDictionary dictionaryWithObjectsAndKeys:lcdData, kIKDataKeyLcdDisplay, nil];
-  
-  return d; 
+- (NSDictionary *)decodeLcdResponseForAddress:(IKMkAddress)address; {
+  IKLcdDisplay *lcdData = [IKLcdDisplay menuWithData:self forAddress:address];
+  NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:lcdData, kIKDataKeyLcdDisplay, nil];
+
+  return d;
 }
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)address;
-{
-  IKDeviceVersion* dv=[IKDeviceVersion versionWithData:self forAddress:(IKMkAddress)address];
+- (NSDictionary *)decodeVersionResponseForAddress:(IKMkAddress)address; {
+  IKDeviceVersion *dv = [IKDeviceVersion versionWithData:self forAddress:(IKMkAddress) address];
   return [NSDictionary dictionaryWithObjectsAndKeys:dv, kIKDataKeyVersion, nil];
 }
 
-- (NSDictionary *) decodeChannelsDataResponse {
+- (NSDictionary *)decodeChannelsDataResponse {
 
   return [NSDictionary dictionaryWithObjectsAndKeys:self, kMKDataKeyChannels, nil];
 }
 
 
 //-------------------------------------------------------------------------------------------
-- (NSDictionary *) decodeData3DResponse;
-{
-  IKData3D* data3D=[IKData3D dataWithData:self];
-  NSDictionary* d=[NSDictionary dictionaryWithObjectsAndKeys:data3D, kIKDataKeyData3D, nil];
-  
-  return d; 
+- (NSDictionary *)decodeData3DResponse; {
+  IKData3D *data3D = [IKData3D dataWithData:self];
+  NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:data3D, kIKDataKeyData3D, nil];
+
+  return d;
 }
 
 //-------------------------------------------------------------------------------------------
 
-- (NSDictionary *) decodeOsdResponse {
-  IKNaviData* data3D=[IKNaviData dataWithData:self];
-  NSDictionary* d=[NSDictionary dictionaryWithObjectsAndKeys:data3D, kIKDataKeyOsd, nil];
-  
-  return d; 
+- (NSDictionary *)decodeOsdResponse {
+  IKNaviData *data3D = [IKNaviData dataWithData:self];
+  NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:data3D, kIKDataKeyOsd, nil];
+
+  return d;
 }
 
-- (NSDictionary *) decodeMixerReadResponse {
+- (NSDictionary *)decodeMixerReadResponse {
   return [NSDictionary dictionary];
 }
 
-- (NSDictionary *) decodeMixerWriteResponse {
+- (NSDictionary *)decodeMixerWriteResponse {
   return [NSDictionary dictionary];
 }
 
-- (NSDictionary *) decodePointReadResponse {
-  const char * bytes = [self bytes];
+- (NSDictionary *)decodePointReadResponse {
+  const char *bytes = [self bytes];
 
-  NSNumber * totalNumber = [NSNumber numberWithChar:bytes[0]];
-  
-  if ([self length]>1) {
-    NSNumber * theIndex = [NSNumber numberWithChar:bytes[1]];
-    IKPoint* thePoint = [IKPoint pointWithData:self];
+  NSNumber *totalNumber = [NSNumber numberWithChar:bytes[0]];
+
+  if ([self length] > 1) {
+    NSNumber *theIndex = [NSNumber numberWithChar:bytes[1]];
+    IKPoint *thePoint = [IKPoint pointWithData:self];
     return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex,
-            totalNumber,kMKDataKeyMaxItem,thePoint,kIKDataKeyPoint,nil];
+                                                      totalNumber, kMKDataKeyMaxItem, thePoint, kIKDataKeyPoint, nil];
   }
 
-  return [NSDictionary dictionaryWithObjectsAndKeys:totalNumber,kMKDataKeyMaxItem,nil];
+  return [NSDictionary dictionaryWithObjectsAndKeys:totalNumber, kMKDataKeyMaxItem, nil];
 }
 
-- (NSDictionary *) decodePointWriteResponse {
-  const char * bytes = [self bytes];
-  NSNumber * theIndex = [NSNumber numberWithChar:bytes[0]];
+- (NSDictionary *)decodePointWriteResponse {
+  const char *bytes = [self bytes];
+  NSNumber *theIndex = [NSNumber numberWithChar:bytes[0]];
   return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex, nil];
 }
 
 
-- (NSDictionary *) decodeMotorDataResponse{
-  const char * bytes = [self bytes];
-  NSNumber * theIndex = [NSNumber numberWithChar:bytes[0]];
+- (NSDictionary *)decodeMotorDataResponse {
+  const char *bytes = [self bytes];
+  NSNumber *theIndex = [NSNumber numberWithChar:bytes[0]];
 
-  IKMotorData* thePoint = [IKMotorData dataWithData:self];
+  IKMotorData *thePoint = [IKMotorData dataWithData:self];
   return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex,
-            thePoint,kIKDataKeyMotorData,nil];
+                                                    thePoint, kIKDataKeyMotorData, nil];
 }
 
 
@@ -179,20 +174,20 @@
 
 @implementation NSData (MKPayloadDecodeSetting)
 
-- (NSDictionary *) decodeReadSettingResponse {
-  IKParamSet* paramSet=[IKParamSet settingWithData:self];
+- (NSDictionary *)decodeReadSettingResponse {
+  IKParamSet *paramSet = [IKParamSet settingWithData:self];
   return [NSDictionary dictionaryWithObjectsAndKeys:paramSet, kIKDataKeyParamSet, nil];
 }
 
-- (NSDictionary *) decodeWriteSettingResponse {
-  const char * bytes = [self bytes];
-  NSNumber * theIndex = [NSNumber numberWithChar:bytes[0]];
+- (NSDictionary *)decodeWriteSettingResponse {
+  const char *bytes = [self bytes];
+  NSNumber *theIndex = [NSNumber numberWithChar:bytes[0]];
   return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex, nil];
 }
 
-- (NSDictionary *) decodeChangeSettingResponse {
-  const char * bytes = [self bytes];
-  NSNumber * theIndex = [NSNumber numberWithChar:bytes[0]];
+- (NSDictionary *)decodeChangeSettingResponse {
+  const char *bytes = [self bytes];
+  NSNumber *theIndex = [NSNumber numberWithChar:bytes[0]];
   return [NSDictionary dictionaryWithObjectsAndKeys:theIndex, kMKDataKeyIndex, nil];
 }
 

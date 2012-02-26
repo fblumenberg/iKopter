@@ -29,119 +29,108 @@
 
 #import "Route.h"
 
-@interface WaypointViewDataSource()
+@interface WaypointViewDataSource ()
 @end
 
 @implementation WaypointViewDataSource
 
 - (id)initWithModel:(id)aModel {
-	if ((self = [super initWithModel:aModel])) {
-    
+  if ((self = [super initWithModel:aModel])) {
+
     IBATextFormField *numberField;
 
-		IBAFormSection *positionSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Position", @"WP Pos Title") footerTitle:nil];
+    IBAFormSection *positionSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Position", @"WP Pos Title") footerTitle:nil];
     positionSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"posLatitude"
-                                                      title:NSLocalizedString(@"Lat.", @"WP Latitude title")
-                                           valueTransformer:[StringToDoubleNumberTransformer instance]];
-    
-		[positionSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+                                                      title:NSLocalizedString(@"Lat.", @"WP Latitude title") valueTransformer:[StringToDoubleNumberTransformer instance]];
+
+    [positionSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"posLongitude"
-                                                      title:NSLocalizedString(@"Long.", @"WP Longitude title")
-                                           valueTransformer:[StringToDoubleNumberTransformer instance]];
-    
+                                                      title:NSLocalizedString(@"Long.", @"WP Longitude title") valueTransformer:[StringToDoubleNumberTransformer instance]];
+
     [positionSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-		IBAFormSection *attributeSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+
+    IBAFormSection *attributeSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     attributeSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
-    
+
     NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
-                                                                                 NSLocalizedString(@"Waypoint", nil),
-                                                                                 NSLocalizedString(@"POI", nil),
-                                                                                 nil] font:[UIFont boldSystemFontOfSize:18]];
-    
-		IBASingleIndexTransformer *singleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
-    
-		[attributeSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"type"
-                                                                            title:NSLocalizedString(@"Type", @"type title")
-                                                                 valueTransformer:singleTransformer
+            NSLocalizedString(@"Waypoint", nil),
+            NSLocalizedString(@"POI", nil),
+            nil]                                                           font:[UIFont boldSystemFontOfSize:18]];
+
+    IBASingleIndexTransformer *singleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
+
+    [attributeSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"type"
+                                                                            title:NSLocalizedString(@"Type", @"type title") valueTransformer:singleTransformer
                                                                     selectionMode:IBAPickListSelectionModeSingle
                                                                           options:pickListOptions] autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"altitude"
-                                                      title:NSLocalizedString(@"Altitude", @"WP Altitude title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                                                      title:NSLocalizedString(@"Altitude", @"WP Altitude title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"heading"
-                                                      title:NSLocalizedString(@"Heading", @"WP Heading title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+                                                      title:NSLocalizedString(@"Heading", @"WP Heading title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"toleranceRadius"
-                                                      title:NSLocalizedString(@"Radius", @"WP toleranceRadius title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                                                      title:NSLocalizedString(@"Radius", @"WP toleranceRadius title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"holdTime"
-                                                      title:NSLocalizedString(@"HaltTime", @"WP holdTime title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                                                      title:NSLocalizedString(@"HaltTime", @"WP holdTime title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"wpEventChannelValue"
-                                                      title:NSLocalizedString(@"Event", @"WP event title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                                                      title:NSLocalizedString(@"Event", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"altitudeRate"
-                                                      title:NSLocalizedString(@"Climb rate", @"WP event title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                                                      title:NSLocalizedString(@"Climb rate", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"speed"
-                                                      title:NSLocalizedString(@"Speed", @"WP event title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                                                      title:NSLocalizedString(@"Speed", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
     numberField = [[IBATextFormField alloc] initWithKeyPath:@"camAngle"
-                                                      title:NSLocalizedString(@"Camera nick angle", @"WP event title")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    
-		[attributeSection addFormField:[numberField autorelease]];
-		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                                                      title:NSLocalizedString(@"Camera nick angle", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
+
+    [attributeSection addFormField:[numberField autorelease]];
+    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
     //------------------------------------------------------------------------------------------------------------------------
-		[attributeSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"cameraNickControl" 
-                                                                          title:NSLocalizedString(@"Camera nick control", @"cameraNickControl title")] autorelease]];
-    
+    [attributeSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"cameraNickControl"
+                                                                           title:NSLocalizedString(@"Camera nick control", @"cameraNickControl title")] autorelease]];
+
   }
   return self;
 }
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
   [Route sendChangedNotification:self];
 }
 

@@ -25,6 +25,6 @@
 #import <UIKit/UIKit.h>
 #import "OsdValue.h"
 
-@interface OsdTabBarController : UITabBarController<UITabBarControllerDelegate, OsdValueDelegate>
+@interface OsdTabBarController : UITabBarController <UITabBarControllerDelegate, OsdValueDelegate>
 
 @end

@@ -35,40 +35,41 @@
 
 @implementation MKParamLoopingDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
-    
-        IBAFormSection *paramSection=nil;
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
 
-        [paramSection addPotiFieldForKeyPath:@"LoopGasLimit" title:NSLocalizedString(@"Gas limit",@"MKParam Looping")];
-        [paramSection addNumberFieldForKeyPath:@"LoopThreshold" title:NSLocalizedString(@"Response threshold",@"MKParam Looping")];
-        [paramSection addNumberFieldForKeyPath:@"LoopHysterese" title:NSLocalizedString(@"Hysteresis",@"MKParam Looping")];
-        [paramSection addNumberFieldForKeyPath:@"WinkelUmschlagNick" title:NSLocalizedString(@"Turn over Nick",@"MKParam Looping")];
-        [paramSection addNumberFieldForKeyPath:@"WinkelUmschlagRoll" title:NSLocalizedString(@"Turn over Roll",@"MKParam Looping")];
+    IBAFormSection *paramSection = nil;
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
 
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Loop while stick is",@"MKParam Looping") footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
+    [paramSection addPotiFieldForKeyPath:@"LoopGasLimit" title:NSLocalizedString(@"Gas limit", @"MKParam Looping")];
+    [paramSection addNumberFieldForKeyPath:@"LoopThreshold" title:NSLocalizedString(@"Response threshold", @"MKParam Looping")];
+    [paramSection addNumberFieldForKeyPath:@"LoopHysterese" title:NSLocalizedString(@"Hysteresis", @"MKParam Looping")];
+    [paramSection addNumberFieldForKeyPath:@"WinkelUmschlagNick" title:NSLocalizedString(@"Turn over Nick", @"MKParam Looping")];
+    [paramSection addNumberFieldForKeyPath:@"WinkelUmschlagRoll" title:NSLocalizedString(@"Turn over Roll", @"MKParam Looping")];
 
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_OBEN" title:NSLocalizedString(@"Up",@"MKParam Looping")];
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_UNTEN" title:NSLocalizedString(@"Down",@"MKParam Looping")];
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_LINKS" title:NSLocalizedString(@"Left",@"MKParam Looping")];
-        [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_RECHTS" title:NSLocalizedString(@"Right",@"MKParam Looping")];
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Loop while stick is", @"MKParam Looping") footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_OBEN" title:NSLocalizedString(@"Up", @"MKParam Looping")];
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_UNTEN" title:NSLocalizedString(@"Down", @"MKParam Looping")];
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_LINKS" title:NSLocalizedString(@"Left", @"MKParam Looping")];
+    [paramSection addSwitchFieldForKeyPath:@"BitConfig_LOOP_RECHTS" title:NSLocalizedString(@"Right", @"MKParam Looping")];
   }
-  
+
   return self;
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

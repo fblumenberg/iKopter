@@ -43,28 +43,27 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  UIBarButtonItem* spacer;
-  spacer =  [[[UIBarButtonItem alloc]
-              initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-              target:nil
-              action:nil] autorelease];
-  
-  NSArray* segmentItems = [NSArray arrayWithObjects:@"Quadro",@"Hexa",@"Okto",nil];
+
+  UIBarButtonItem *spacer;
+  spacer = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                               target:nil action:nil] autorelease];
+
+  NSArray *segmentItems = [NSArray arrayWithObjects:@"Quadro", @"Hexa", @"Okto", nil];
   segment = [[UISegmentedControl alloc] initWithItems:segmentItems];
-  segment.segmentedControlStyle=UISegmentedControlStyleBar;
-  
+  segment.segmentedControlStyle = UISegmentedControlStyleBar;
+
   [segment addTarget:self
               action:@selector(changeDevice)
     forControlEvents:UIControlEventValueChanged];
-  
-  UIBarButtonItem* segmentButton;
-  segmentButton =  [[[UIBarButtonItem alloc]
-                     initWithCustomView:segment] autorelease];
-  
- 	[self setToolbarItems:[NSArray arrayWithObjects:spacer,segmentButton,spacer,nil]];
-  
-  segment.selectedSegmentIndex=0;
+
+  UIBarButtonItem *segmentButton;
+  segmentButton = [[[UIBarButtonItem alloc]
+          initWithCustomView:segment] autorelease];
+
+  [self setToolbarItems:[NSArray arrayWithObjects:spacer, segmentButton, spacer, nil]];
+
+  segment.selectedSegmentIndex = 0;
 }
 
 
@@ -72,10 +71,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
+
   engineValues = [[EngineValues alloc] init];
 
-  self.navigationController.toolbarHidden=NO;
+  self.navigationController.toolbarHidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,46 +107,46 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  
-  if(section==0)
+
+  if (section == 0)
     return 1;
-  
+
   // Return the number of rows in the section.
-  static NSInteger numberOfRows[3]={4,6,8};
+  static NSInteger numberOfRows[3] = {4, 6, 8};
   return numberOfRows[segment.selectedSegmentIndex];
 }
 
-- (IBAction) changeDevice {
+- (IBAction)changeDevice {
   [self.tableView reloadData];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+
   static NSString *CellIdentifier = @"MotorTestSliderCell";
-  
-  EngineTestSliderCell *cell = (EngineTestSliderCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+  EngineTestSliderCell *cell = (EngineTestSliderCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     cell = [[[EngineTestSliderCell alloc] initWithReuseIdentifier:CellIdentifier] autorelease];
   }
-  
-  if(indexPath.section==0 ) {
+
+  if (indexPath.section == 0) {
     cell.textLabel.text = [NSString stringWithFormat:@"All", [indexPath row]];
-    
-    [cell.valueSlider addTarget:self 
-                         action:@selector(engineValueChangedForAllAction:) 
-               forControlEvents:UIControlEventValueChanged ];
-  }
-  else {
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"Motor %d", [indexPath row]+1];
-    cell.valueSlider.tag = indexPath.row;
-    
-    [cell.valueSlider addTarget:self 
-                         action:@selector(engineValueChangedAction:) 
+
+    [cell.valueSlider addTarget:self
+                         action:@selector(engineValueChangedForAllAction:)
                forControlEvents:UIControlEventValueChanged];
   }
-  
+  else {
+
+    cell.textLabel.text = [NSString stringWithFormat:@"Motor %d", [indexPath row] + 1];
+    cell.valueSlider.tag = indexPath.row;
+
+    [cell.valueSlider addTarget:self
+                         action:@selector(engineValueChangedAction:)
+               forControlEvents:UIControlEventValueChanged];
+  }
+
   return cell;
 }
 
@@ -155,12 +154,12 @@
 #pragma mark -
 
 - (IBAction)engineValueChangedForAllAction:(UISlider *)sender {
-  [engineValues setValueForAllEngines:(uint8_t)(sender.value*255.0)];
+  [engineValues setValueForAllEngines:(uint8_t) (sender.value * 255.0)];
 }
 
 - (IBAction)engineValueChangedAction:(UISlider *)sender {
-  NSInteger theEngine=sender.tag;
-  [engineValues setValueForEngine:theEngine value:(uint8_t)(sender.value*255.0)];
+  NSInteger theEngine = sender.tag;
+  [engineValues setValueForEngine:theEngine value:(uint8_t) (sender.value * 255.0)];
 }
 
 

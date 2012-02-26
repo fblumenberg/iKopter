@@ -25,8 +25,8 @@
 #import "EngineTestSliderCell.h"
 
 
-#define kUISliderWidth	160.0
-#define kUISliderHeight	 24.0
+#define kUISliderWidth  160.0
+#define kUISliderHeight   24.0
 
 #define InAppSettingsScreenWidth                  320
 #define InAppSettingsTotalCellPadding             InAppSettingsCellPadding * 2
@@ -38,14 +38,14 @@
 
 @synthesize valueSlider;
 
-- (void)slideAction{
+- (void)slideAction {
 }
 
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier{
-  
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+
   self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
-  
-  if(self) {
+
+  if (self) {
 
     CGRect frame = CGRectMake(126.0, 20.0, kUISliderWidth, kUISliderHeight);
     valueSlider = [[UISlider alloc] initWithFrame:frame];
@@ -53,13 +53,13 @@
     self.valueSlider.minimumValue = 0;
     self.valueSlider.maximumValue = 1;
     self.valueSlider.value = 0;
-    
+
     CGRect valueSliderFrame = self.valueSlider.frame;
-    valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f));
+    valueSliderFrame.origin.y = (CGFloat) round((self.contentView.frame.size.height * 0.5f) - (valueSliderFrame.size.height * 0.5f));
     valueSliderFrame.origin.x = 85;
-    valueSliderFrame.size.width = InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding+85);
+    valueSliderFrame.size.width = InAppSettingsScreenWidth - (InAppSettingsTotalTablePadding+ InAppSettingsCellPadding + 85);
     self.valueSlider.frame = valueSliderFrame;
-    
+
     [self.valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.valueSlider];
 
@@ -68,9 +68,9 @@
   return self;
 }
 
-- (void)dealloc{
-    [valueSlider release];
-    [super dealloc];
+- (void)dealloc {
+  [valueSlider release];
+  [super dealloc];
 }
 
 @end

@@ -31,19 +31,19 @@
 @class MKMapView;
 @class CLLocation;
 
-@interface RouteMapViewController : UIViewController<MKMapViewDelegate,SurrogateViewParent,UIPopoverControllerDelegate> {
-    
+@interface RouteMapViewController : UIViewController <MKMapViewDelegate, SurrogateViewParent, UIPopoverControllerDelegate> {
+
 }
 
-@property (retain) Route* route;
-@property (retain) IBOutlet MKMapView *mapView;
-@property (retain) FDCurlViewControl* curlBarItem;
-@property (retain) IBOutlet UISegmentedControl *segmentedControl;
+@property(retain) Route *route;
+@property(retain) IBOutlet MKMapView *mapView;
+@property(retain) FDCurlViewControl *curlBarItem;
+@property(retain) IBOutlet UISegmentedControl *segmentedControl;
 
-- (id)initWithRoute:(Route*) theRoute;
-- (IBAction) changeMapViewType;
+- (id)initWithRoute:(Route *)theRoute;
+- (IBAction)changeMapViewType;
 - (void)addPoint;
-- (void)addPointWithLocation:(CLLocation*)location;
+- (void)addPointWithLocation:(CLLocation *)location;
 
 
 @end

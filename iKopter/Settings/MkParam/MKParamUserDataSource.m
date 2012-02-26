@@ -35,33 +35,34 @@
 
 @implementation MKParamUserDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
-    
-        IBAFormSection *paramSection=nil;
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
 
-        [paramSection addPotiFieldForKeyPath:@"UserParam1" title:NSLocalizedString(@"Parameter 1",@"MKParam User")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam2" title:NSLocalizedString(@"Parameter 2",@"MKParam User")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam3" title:NSLocalizedString(@"Parameter 3",@"MKParam User")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam4" title:NSLocalizedString(@"Parameter 4",@"MKParam User")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam5" title:NSLocalizedString(@"Parameter 5",@"MKParam User")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam6" title:NSLocalizedString(@"Parameter 6",@"MKParam User")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam7" title:NSLocalizedString(@"Parameter 7",@"MKParam User")];
-        [paramSection addPotiFieldForKeyPath:@"UserParam8" title:NSLocalizedString(@"Parameter 8",@"MKParam User")];
+    IBAFormSection *paramSection = nil;
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+
+    [paramSection addPotiFieldForKeyPath:@"UserParam1" title:NSLocalizedString(@"Parameter 1", @"MKParam User")];
+    [paramSection addPotiFieldForKeyPath:@"UserParam2" title:NSLocalizedString(@"Parameter 2", @"MKParam User")];
+    [paramSection addPotiFieldForKeyPath:@"UserParam3" title:NSLocalizedString(@"Parameter 3", @"MKParam User")];
+    [paramSection addPotiFieldForKeyPath:@"UserParam4" title:NSLocalizedString(@"Parameter 4", @"MKParam User")];
+    [paramSection addPotiFieldForKeyPath:@"UserParam5" title:NSLocalizedString(@"Parameter 5", @"MKParam User")];
+    [paramSection addPotiFieldForKeyPath:@"UserParam6" title:NSLocalizedString(@"Parameter 6", @"MKParam User")];
+    [paramSection addPotiFieldForKeyPath:@"UserParam7" title:NSLocalizedString(@"Parameter 7", @"MKParam User")];
+    [paramSection addPotiFieldForKeyPath:@"UserParam8" title:NSLocalizedString(@"Parameter 8", @"MKParam User")];
   }
-  
+
   return self;
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

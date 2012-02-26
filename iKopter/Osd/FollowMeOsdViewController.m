@@ -33,23 +33,23 @@
 @synthesize osdValue;
 @synthesize followMeBadge;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
   }
   return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   [followMeRequests release];
   [followMeActive release];
+  self.followMeSwitch = nil;
+  self.followMeBadge = nil;
+  self.osdValue = nil;
   [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
@@ -57,7 +57,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
+
   [self updateViewWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
 }
 
@@ -65,28 +65,28 @@
   return YES;
 }
 
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
   [super willRotateToInterfaceOrientation:orientation duration:duration];
-  [self updateViewWithOrientation: orientation];
+  [self updateViewWithOrientation:orientation];
 }
 
-- (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
-  
+- (void)updateViewWithOrientation:(UIInterfaceOrientation)orientation {
+
   [super updateViewWithOrientation:orientation];
 
-  BOOL f=self.osdValue.followMe;
+  BOOL f = self.osdValue.followMe;
   [self.followMeSwitch setOn:f];
   [self updateFollowMe:self.osdValue];
 }
 
-- (void) newValue:(OsdValue*)value {
-  
+- (void)newValue:(OsdValue *)value {
+
   self.followMeSwitch.enabled = value.canFollowMe;
   [self updateFollowMe:value];
-  
-  self.followMeRequests.text=[NSString stringWithFormat:@"%d",value.followMeRequests];
-  self.followMeActive.text = value.followMeActive?@"💚":@"🔴";
-  
+
+  self.followMeRequests.text = [NSString stringWithFormat:@"%d", value.followMeRequests];
+  self.followMeActive.text = value.followMeActive ? @"💚" : @"🔴";
+
   //-----------------------------------------------------------------------
   [self updateHeightView:value];
   //-----------------------------------------------------------------------
@@ -106,27 +106,27 @@
   //-----------------------------------------------------------------------
 }
 
--(void) updateFollowMe:(OsdValue*)value {
-  if(value.canFollowMe){
-    self.followMeBadge.badgeText=[NSString stringWithFormat:@"%d",value.followMeRequests];
-    self.followMeBadge.badgeInsetColor = value.followMeActive? self.gpsOkColor:[UIColor redColor];
+- (void)updateFollowMe:(OsdValue *)value {
+  if (value.canFollowMe) {
+    self.followMeBadge.badgeText = [NSString stringWithFormat:@"%d", value.followMeRequests];
+    self.followMeBadge.badgeInsetColor = value.followMeActive ? self.gpsOkColor : [UIColor redColor];
   }
   else {
     self.followMeBadge.badgeInsetColor = self.functionOffColor;
-    self.followMeBadge.badgeText=@"OFF";    
+    self.followMeBadge.badgeText = @"OFF";
   }
   [self.followMeBadge setNeedsDisplay];
 }
 
 
-- (IBAction) followMeChanged {
+- (IBAction)followMeChanged {
   self.osdValue.followMe = followMeSwitch.on;
 }
 
 - (void)viewDidUnload {
   [self setFollowMeRequests:nil];
   [self setFollowMeActive:nil];
-  self.followMeBadge=nil;
+  self.followMeBadge = nil;
   [super viewDidUnload];
 }
 @end

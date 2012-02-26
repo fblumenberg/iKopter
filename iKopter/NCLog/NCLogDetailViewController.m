@@ -37,19 +37,19 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+RFhelpers.h"
 
-@interface NCLogDetailViewController() <DBRestClientDelegate>
+@interface NCLogDetailViewController () <DBRestClientDelegate>
 
--(void)sendSessionAsEmail;
--(void)uploadSession;
--(NSString*)writeCSVForSession;
--(void)deleteSession;
+- (void)sendSessionAsEmail;
+- (void)uploadSession;
+- (NSString *)writeCSVForSession;
+- (void)deleteSession;
 - (void)removeCsv;
 
-@property(nonatomic,retain) UIActionSheet* deleteQuerySheet;
-@property(nonatomic,retain) UIBarButtonItem* deleteItem;
+@property(nonatomic, retain) UIActionSheet *deleteQuerySheet;
+@property(nonatomic, retain) UIBarButtonItem *deleteItem;
 - (void)hideActionSheet;
 
-@property(nonatomic,retain) NSString* csvFile;
+@property(nonatomic, retain) NSString *csvFile;
 
 @end
 
@@ -58,12 +58,11 @@
 @synthesize csvFile;
 
 @synthesize session;
-@synthesize startDate,endDate,records;
+@synthesize startDate, endDate, records;
 @synthesize deleteQuerySheet;
 @synthesize deleteItem;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     // Custom initialization
@@ -71,93 +70,88 @@
   return self;
 }
 
-- (void)dealloc
-{
-  self.deleteItem=nil;
+- (void)dealloc {
+  self.deleteItem = nil;
   [mapView release];
   [self removeCsv];
   [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
   // Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
-  
+
   // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  
-  UIBarButtonItem* spacer;
-  spacer =  [[[UIBarButtonItem alloc]
-              initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-              target:nil
-              action:nil] autorelease];
 
-  UIBarButtonItem* mail;
-  mail =  [[[UIBarButtonItem alloc]
-              initWithImage:[UIImage imageNamed:@"icon-mail1.png"] 
-              style:UIBarButtonItemStylePlain
-              target:self
-              action:@selector(sendSessionAsEmail)] autorelease];
+  UIBarButtonItem *spacer;
+  spacer = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                               target:nil action:nil] autorelease];
 
-  self.deleteItem =  [[[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                       target:self
-                       action:@selector(deleteSession)] autorelease];
+  UIBarButtonItem *mail;
+  mail = [[[UIBarButtonItem alloc]
+          initWithImage:[UIImage imageNamed:@"icon-mail1.png"]
+                  style:UIBarButtonItemStylePlain
+                 target:self
+                 action:@selector(sendSessionAsEmail)] autorelease];
 
-  UIBarButtonItem* action;
-  action =  [[[UIBarButtonItem alloc]
-              initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-              target:self
-              action:@selector(uploadSession)] autorelease];
+  self.deleteItem = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                               target:self
+                               action:@selector(deleteSession)] autorelease];
 
- 	[self setToolbarItems:[NSArray arrayWithObjects:mail,spacer,self.deleteItem,spacer,action,nil]];
-  self.navigationController.toolbarHidden=NO;
+  UIBarButtonItem *action;
+  action = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                               target:self
+                               action:@selector(uploadSession)] autorelease];
+
+  [self setToolbarItems:[NSArray arrayWithObjects:mail, spacer, self.deleteItem, spacer, action, nil]];
+  self.navigationController.toolbarHidden = NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
-  if(self.isPad)
-    self.navigationItem.hidesBackButton=YES;
-    
-  self.startDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
-  self.endDate.text=[NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
-  self.records.text=[NSString stringWithFormat:@"%d",[session.records count]];
+
+  if (self.isPad)
+    self.navigationItem.hidesBackButton = YES;
+
+  self.startDate.text = [NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+  self.endDate.text = [NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+  self.records.text = [NSString stringWithFormat:@"%d", [session.records count]];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
   // here's where you specify the sort
-  NSSortDescriptor* sortDescriptor = [[[NSSortDescriptor alloc]
-                                       initWithKey:@"timeStamp" ascending:YES]autorelease];
-  NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
-  
-  NSArray* sortedRecords=[[session.records allObjects]sortedArrayUsingDescriptors: sortDescriptors];
-  
-  NSLog(@"%@",sortedRecords);
-  
+  NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc]
+          initWithKey:@"timeStamp" ascending:YES] autorelease];
+  NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:sortDescriptor, nil] autorelease];
+
+  NSArray *sortedRecords = [[session.records allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+
+  NSLog(@"%@", sortedRecords);
+
   CLLocationCoordinate2D coordinates[[sortedRecords count]];
   [self.mapView removeOverlays:self.mapView.overlays];
-  
-  int i=0;
-  for (NCLogRecord* r in sortedRecords) {
-    coordinates[i]=r.currentPosition.coordinate;
+
+  int i = 0;
+  for (NCLogRecord *r in sortedRecords) {
+    coordinates[i] = r.currentPosition.coordinate;
     i++;
   }
-  
+
   [self.mapView addOverlay:[MKPolyline polylineWithCoordinates:coordinates count:i]];
-  
+
   MKMapRect flyTo = MKMapRectNull;
-  
+
   for (id <MKOverlay> overlay in mapView.overlays) {
     if (MKMapRectIsNull(flyTo)) {
       flyTo = [overlay boundingMapRect];
@@ -165,100 +159,94 @@
       flyTo = MKMapRectUnion(flyTo, [overlay boundingMapRect]);
     }
   }
-  
+
   flyTo = [mapView mapRectThatFits:flyTo];
-  
+
   // Position the map so that all overlays and annotations are visible on screen.
   [mapView setVisibleMapRect:flyTo animated:YES];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [self hideActionSheet];
-  self.mapView.delegate=nil;
+  self.mapView.delegate = nil;
   [self removeCsv];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
   [self setMapView:nil];
   [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
 }
 
 
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay{
-	
-	if ([overlay isKindOfClass:[MKPolyline class]]) {
-		
-		MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
-		polylineView.strokeColor = [UIColor blueColor];
-		polylineView.lineWidth = 1.5;
-		return polylineView;
-	}
-	
-	return nil;
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+
+  if ([overlay isKindOfClass:[MKPolyline class]]) {
+
+    MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
+    polylineView.strokeColor = [UIColor blueColor];
+    polylineView.lineWidth = 1.5;
+    return polylineView;
+  }
+
+  return nil;
 }
 #pragma - Actions
 
--(void)uploadSession{
-  
+- (void)uploadSession {
+
   [[MBProgressHUD sharedProgressHUD] setLabelText:NSLocalizedString(@"Uploading", @"DB upload NC-Log HUD")];
   [[MBProgressHUD sharedProgressHUD] show:YES];
 
   NSString *fileName = [self writeCSVForSession];
-  IKDropboxController* dbCtrl=[IKDropboxController sharedIKDropboxController];
-  
-  dbCtrl.restClient.delegate=self;
-  
+  IKDropboxController *dbCtrl = [IKDropboxController sharedIKDropboxController];
+
+  dbCtrl.restClient.delegate = self;
+
   [dbCtrl.restClient uploadFile:[fileName lastPathComponent] toPath:dbCtrl.dataPath fromPath:fileName];
 }
 
 #pragma mark - DBRestClientDelegate
 
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath{
+- (void)restClient:(DBRestClient *)client uploadedFile:(NSString *)destPath from:(NSString *)srcPath {
   [[MBProgressHUD sharedProgressHUD] hide:YES];
   [self removeCsv];
 }
 
-- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error{
+- (void)restClient:(DBRestClient *)client uploadFileFailedWithError:(NSError *)error {
   [[MBProgressHUD sharedProgressHUD] hide:YES];
   [self removeCsv];
   [IKDropboxController showError:error withTitle:NSLocalizedString(@"Upload failed", @"NC-Log upload Error Title")];
 }
 
 
--(void)deleteSession{
-  
-  self.deleteQuerySheet = [[[UIActionSheet alloc] initWithTitle:nil
-                                                       delegate:self 
-                                              cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel Button") 
-                                         destructiveButtonTitle:NSLocalizedString(@"Delete", @"Delete Button") 
-                                              otherButtonTitles:nil, nil] autorelease];
+- (void)deleteSession {
+
+  self.deleteQuerySheet = [[[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel Button") destructiveButtonTitle:NSLocalizedString(@"Delete", @"Delete Button") otherButtonTitles:nil, nil] autorelease];
   self.deleteQuerySheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-  
+
   [self.deleteQuerySheet showFromBarButtonItem:self.deleteItem animated:YES];
-  
+
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  
-  if(buttonIndex==actionSheet.cancelButtonIndex)
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+  if (buttonIndex == actionSheet.cancelButtonIndex)
     return;
-  
-  if(buttonIndex == actionSheet.destructiveButtonIndex){
+
+  if (buttonIndex == actionSheet.destructiveButtonIndex) {
     // Delete the managed object for the given index path
     NSManagedObjectContext *context = [self.session managedObjectContext];
     [context deleteObject:self.session];
-    
+
     // Save the context.
     NSError *error = nil;
-    if (![context save:&error])
-    {
+    if (![context save:&error]) {
       /*
        Replace this implementation with code to handle the error appropriately.
        
@@ -267,115 +255,112 @@
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
     }
-    
-    
-    [self.navigationController popViewControllerAnimated:YES]; 
+
+
+    [self.navigationController popViewControllerAnimated:YES];
 
   }
-  self.deleteQuerySheet=nil;
+  self.deleteQuerySheet = nil;
 }
 
-- (void)hideActionSheet{
+- (void)hideActionSheet {
   [self.deleteQuerySheet dismissWithClickedButtonIndex:self.deleteQuerySheet.cancelButtonIndex animated:NO];
 }
 
 
 - (void)removeCsv {
-  [[NSFileManager defaultManager]removeItemAtPath:self.csvFile error:nil];
-  self.csvFile=nil;
+  [[NSFileManager defaultManager] removeItemAtPath:self.csvFile error:nil];
+  self.csvFile = nil;
 }
--(void)sendSessionAsEmail{
+
+- (void)sendSessionAsEmail {
   if ([MFMailComposeViewController canSendMail]) {
-    
+
     [[MBProgressHUD sharedProgressHUD] showAnimated:YES];
-    
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
       dispatch_async(dispatch_get_main_queue(), ^{
-        
+
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-        
+
         [mailViewController setSubject:NSLocalizedString(@"NaviCtrl Log-Data", "NC-Log Subject")];
-        
-        NSString* bodyText= [NSString stringWithFormat:NSLocalizedString(@"NaviCtlr logging session from %@ to %@  contains %d records",@"NC-Log Body"), 
-                             [NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle],
-                             [NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
-                             [session.records count]];
-        
+
+        NSString *bodyText = [NSString stringWithFormat:NSLocalizedString(@"NaviCtlr logging session from %@ to %@  contains %d records", @"NC-Log Body"),
+                                                        [NSDateFormatter localizedStringFromDate:session.timeStampStart dateStyle:kCFDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle],
+                                                        [NSDateFormatter localizedStringFromDate:session.timeStampEnd dateStyle:kCFDateFormatterNoStyle timeStyle:NSDateFormatterLongStyle],
+                                                        [session.records count]];
+
         [mailViewController setMessageBody:bodyText isHTML:NO];
-        
+
         [self writeCSVForSession];
         NSData *csvData = [NSData dataWithContentsOfFile:self.csvFile];
-        
+
         [mailViewController addAttachmentData:csvData mimeType:@"text/csv" fileName:[self.csvFile lastPathComponent]];
 
         [self removeCsv];
 
         mailViewController.mailComposeDelegate = self;
-        
+
         [[MBProgressHUD sharedProgressHUD] hide:YES];
-        
+
         [self presentModalViewController:mailViewController animated:YES];
         [mailViewController release];
       });
-      
+
     });
-    
+
   } else {
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:NSLocalizedString(@"Mail not configured", @"InAppSettingsKit")
-                          message:NSLocalizedString(@"This device is not configured for sending Email. Please configure the Mail settings in the Settings app.", @"InAppSettingsKit")
-                          delegate: nil
-                          cancelButtonTitle:NSLocalizedString(@"OK", @"InAppSettingsKit")
-                          otherButtonTitles:nil];
+            initWithTitle:NSLocalizedString(@"Mail not configured", @"InAppSettingsKit") message:NSLocalizedString(@"This device is not configured for sending Email. Please configure the Mail settings in the Settings app.", @"InAppSettingsKit") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"InAppSettingsKit") otherButtonTitles:nil];
     [alert show];
     [alert release];
   }
 }
 
--(NSString*)writeCSVForSession {
-  
+- (NSString *)writeCSVForSession {
+
   NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
   [dateFormat setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
 
-  NSString *fileName=[NSString stringWithFormat:@"NC-Log-%@-%@.csv", 
-                      [dateFormat stringFromDate:session.timeStampStart],
-                      [dateFormat stringFromDate:session.timeStampEnd]];
-  
+  NSString *fileName = [NSString stringWithFormat:@"NC-Log-%@-%@.csv",
+                                                  [dateFormat stringFromDate:session.timeStampStart],
+                                                  [dateFormat stringFromDate:session.timeStampEnd]];
+
   self.csvFile = [NSTemporaryDirectory() stringByAppendingString:fileName];
-  CHCSVWriter* csvWriter=[[[CHCSVWriter alloc] initWithCSVFile:self.csvFile atomic:YES]autorelease];
-  
-  if([session.records count]>0){
-    
-    BOOL hasHeader=NO;
-    
-    for (NCLogRecord* record in session.records) {
+  CHCSVWriter *csvWriter = [[[CHCSVWriter alloc] initWithCSVFile:self.csvFile atomic:YES] autorelease];
+
+  if ([session.records count] > 0) {
+
+    BOOL hasHeader = NO;
+
+    for (NCLogRecord *record in session.records) {
       //Get a reference to the entity description for the NSManagedObject subclass - CoreData created entity
-      NSEntityDescription * myEntity = [record entity];
-      
+      NSEntityDescription *myEntity = [record entity];
+
       //Get all of the attributes that are defined for the entity - not the relationship properties - just attributes
-      NSDictionary * attributes = [myEntity attributesByName];
-      if(!hasHeader){
+      NSDictionary *attributes = [myEntity attributesByName];
+      if (!hasHeader) {
         [csvWriter writeLineWithFields:[attributes allKeys]];
-        hasHeader=YES;
+        hasHeader = YES;
       }
-      
-      
+
+
       //Loop over the attributes by name  
-      for (NSString * attributeName in [attributes allKeys]) {
-        
+      for (NSString *attributeName in [attributes allKeys]) {
+
         //Determine if this property is a string
         SEL selector = NSSelectorFromString(attributeName);
         id attributeValue = [record performSelector:selector];
         [csvWriter writeField:[attributeValue description]];
-        
-      }        
+
+      }
       [csvWriter writeLine];
     }
   }
-  
+
   [csvWriter closeFile];
-  
+
   return self.csvFile;
 }
 
@@ -383,7 +368,7 @@
 #pragma mark -
 #pragma mark MFMailComposeViewControllerDelegate Function
 
--(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
   // NOTE: No error handling is done here
   [self dismissModalViewControllerAnimated:YES];
 }

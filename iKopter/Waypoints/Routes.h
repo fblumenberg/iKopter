@@ -28,19 +28,19 @@
 
 @interface Routes : NSObject {
 
-  NSMutableArray* routes;
+  NSMutableArray *routes;
 }
 
-@property(nonatomic,readonly) NSString* routesFile;
+@property(nonatomic, readonly) NSString *routesFile;
 
--(void) load; 
--(void) save; 
--(NSUInteger) count;
+- (void)load;
+- (void)save;
+- (NSUInteger)count;
 
--(Route*) routeAtIndexPath:(NSIndexPath *)indexPath;
+- (Route *)routeAtIndexPath:(NSIndexPath *)indexPath;
 
--(NSIndexPath*) addRoute;
--(void) moveRouteAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
--(void) deleteRouteAtIndexPath:(NSIndexPath*)indexPath;
+- (NSIndexPath *)addRoute;
+- (void)moveRouteAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
+- (void)deleteRouteAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

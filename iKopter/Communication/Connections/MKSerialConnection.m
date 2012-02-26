@@ -27,12 +27,12 @@
 #import "AMSerialPort.h"
 #import "AMSerialPortAdditions.h"
 
-static NSString * const MKSerialConnectionException = @"MKSerialConnectionException";
+static NSString *const MKSerialConnectionException = @"MKSerialConnectionException";
 
-@interface MKSerialConnection()
+@interface MKSerialConnection ()
 
--(void)didDisconnect;
--(void)didConnect;
+- (void)didDisconnect;
+- (void)didConnect;
 
 @end
 
@@ -47,12 +47,11 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 
 #pragma mark Initialization
 
-- (id) init {
+- (id)init {
   return [self initWithDelegate:nil];
 }
 
-- (id) initWithDelegate:(id<MKConnectionDelegate>)theDelegate;
-{
+- (id)initWithDelegate:(id <MKConnectionDelegate>)theDelegate; {
   self = [super init];
   if (self) {
     self.delegate = theDelegate;
@@ -60,10 +59,10 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
   return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
   qltrace("dealloc");
-  self.mkData=nil;
-  self.port=nil;
+  self.mkData = nil;
+  self.port = nil;
   [super dealloc];
 }
 
@@ -71,14 +70,14 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 #pragma mark MKInput
 
 
--(void)didDisconnect {
-  if ( [delegate respondsToSelector:@selector(didDisconnect)] ) {
+- (void)didDisconnect {
+  if ([delegate respondsToSelector:@selector(didDisconnect)]) {
     [delegate didDisconnect];
   }
 }
 
--(void)didConnect {
-  if ( [delegate respondsToSelector:@selector(didConnectTo:)] ) {
+- (void)didConnect {
+  if ([delegate respondsToSelector:@selector(didConnectTo:)]) {
     [delegate didConnectTo:[self.port bsdPath]];
   }
 }
@@ -92,81 +91,77 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 //}
 //
 
-- (void) openPort{
-  
+- (void)openPort {
+
   qltrace(@"Try to connect to %@", [self.port bsdPath]);
-  
-  if ([[self.port bsdPath]length]==0) {
-    if ( [delegate respondsToSelector:@selector(willDisconnectWithError:)] ) {
+
+  if ([[self.port bsdPath] length] == 0) {
+    if ([delegate respondsToSelector:@selector(willDisconnectWithError:)]) {
       [delegate willDisconnectWithError:[NSError errorWithDomain:AMSerialErrorDomain code:-2 userInfo:nil]];
     }
     return;
   }
-  
-  if([self.port open]){
-    
+
+  if ([self.port open]) {
+
     [self.port setSpeed:57600];
     [self.port setDataBits:8];
     [self.port setStopBits:kAMSerialStopBitsOne];
     [self.port setEchoEnabled:NO];
-    if( ![self.port commitChanges] ){
-      if ( [delegate respondsToSelector:@selector(willDisconnectWithError:)] ) {
+    if (![self.port commitChanges]) {
+      if ([delegate respondsToSelector:@selector(willDisconnectWithError:)]) {
         [delegate willDisconnectWithError:[NSError errorWithDomain:AMSerialErrorDomain code:-1 userInfo:nil]];
       }
       return;
     }
-    
-    self.mkData=[NSMutableData dataWithCapacity:512];
-    
+
+    self.mkData = [NSMutableData dataWithCapacity:512];
+
     qltrace(@"Did connect to %@", [self.port bsdPath]);
     [self performSelector:@selector(didConnect) withObject:self afterDelay:0.1];
     [self.port performSelector:@selector(readDataInBackground) withObject:self afterDelay:0.1];
   }
   else {
     qlerror(@"Could not open %@", [self.port bsdPath]);
-    
+
     [self performSelector:@selector(didDisconnect) withObject:self afterDelay:0.5];
   }
 }
 
-- (BOOL) connectTo:(MKHost *)hostOrDevice error:(NSError **)err;
-{
+- (BOOL)connectTo:(MKHost *)hostOrDevice error:(NSError **)err; {
   if (delegate == nil) {
     [NSException raise:MKSerialConnectionException
                 format:@"Attempting to connect without a delegate. Set a delegate first."];
   }
-  
-  if([self.port isOpen])
+
+  if ([self.port isOpen])
     [self.port close];
-  
-  self.port=[[[AMSerialPort alloc] init:hostOrDevice.address withName:hostOrDevice.address type:(NSString*)CFSTR(kIOSerialBSDRS232Type)] autorelease];
+
+  self.port = [[[AMSerialPort alloc] init:hostOrDevice.address withName:hostOrDevice.address type:(NSString *) CFSTR(kIOSerialBSDRS232Type)] autorelease];
   [self.port setDelegate:self];
-  
+
   [self performSelector:@selector(openPort) withObject:self afterDelay:0.0];
-  
+
   return YES;
 }
 
-- (BOOL) isConnected;
-{
+- (BOOL)isConnected; {
   return [self.port isOpen];
 }
 
-- (void) disconnect;
-{
+- (void)disconnect; {
   qltrace(@"Try to disconnect from %@", [self.port bsdPath]);
-  if([self.port isOpen]){
+  if ([self.port isOpen]) {
     [self.port close];
-    self.port=nil;
-    if ( [delegate respondsToSelector:@selector(didDisconnect)] ) {
+    self.port = nil;
+    if ([delegate respondsToSelector:@selector(didDisconnect)]) {
       [delegate didDisconnect];
     }
   }
 }
 
-- (void) writeMkData:(NSData *)data;
-{
-  if([self.port isOpen]){
+- (void)writeMkData:(NSData *)data; {
+  if ([self.port isOpen]) {
 //    [self.port writeDataInBackground:data];
     [self.port writeData:data error:NULL];
   }
@@ -175,43 +170,42 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 #pragma mark -
 #pragma mark AMSerialDelegate
 
-- (void)serialPortReadData:(NSDictionary *)dataDictionary
-{
-	// this method is called if data arrives 
-	// @"data" is the actual data, @"serialPort" is the sending port
-	AMSerialPort *sendPort = [dataDictionary objectForKey:@"serialPort"];
-  
-	NSData *data = [dataDictionary objectForKey:@"data"];
-	if ([data length] > 0) {
-    
+- (void)serialPortReadData:(NSDictionary *)dataDictionary {
+  // this method is called if data arrives
+  // @"data" is the actual data, @"serialPort" is the sending port
+  AMSerialPort *sendPort = [dataDictionary objectForKey:@"serialPort"];
+
+  NSData *data = [dataDictionary objectForKey:@"data"];
+  if ([data length] > 0) {
+
     /*
-     * The new data, which may only be partial, gets appended to the previously
-     * collected buffer in self.mkData.
-     * Then a line delimiter is searched, and any complete lines are passed
-     * to the delegate, and removed from the local buffer in self.mkData.
-     * We repeat this search for lines until no more are found.
-     */
-    
+    * The new data, which may only be partial, gets appended to the previously
+    * collected buffer in self.mkData.
+    * Then a line delimiter is searched, and any complete lines are passed
+    * to the delegate, and removed from the local buffer in self.mkData.
+    * We repeat this search for lines until no more are found.
+    */
+
     [self.mkData appendData:data];
-    
+
     Boolean again;
     do {
       again = false;
 
-      const char* haystackBytes = [self.mkData bytes];
-      static char needle='\r';
-      
-      for (int i=0; i < [self.mkData length]; i++) {
-        if( haystackBytes[i]==needle ) { // check for line delimiter
-          
+      const char *haystackBytes = [self.mkData bytes];
+      static char needle = '\r';
+
+      for (int i = 0; i < [self.mkData length]; i++) {
+        if (haystackBytes[i] == needle) { // check for line delimiter
+
           // extract the line
-          NSRange r={0,i+1};
-          NSData* cmdData=[self.mkData subdataWithRange:r];
-          
+          NSRange r = {0, i + 1};
+          NSData *cmdData = [self.mkData subdataWithRange:r];
+
           // remove the line from the receive buffer
           [self.mkData replaceBytesInRange:r withBytes:NULL length:0];
-          
-          if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
+
+          if ([delegate respondsToSelector:@selector(didReadMkData:)]) {
             [delegate didReadMkData:cmdData];
           }
           again = true; // see if there are more lines to process
@@ -219,23 +213,23 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
         }
       }
     } while (again);
-    
-		[sendPort readDataInBackground];
-	} 
-  else { 
-    
+
+    [sendPort readDataInBackground];
+  }
+  else {
+
     // port closed
     NSLog(@"port closed\r");
-    
-    self.port=nil;
-    if ( [delegate respondsToSelector:@selector(didDisconnect)] ) {
+
+    self.port = nil;
+    if ([delegate respondsToSelector:@selector(didDisconnect)]) {
       [delegate didDisconnect];
     }
-	}
+  }
 }
 
 - (void)serialPortWriteProgress:(NSDictionary *)dataDictionary {
-  
+
 }
 
 @end

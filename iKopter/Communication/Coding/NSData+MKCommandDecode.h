@@ -28,11 +28,11 @@
 
 @interface NSData (MKCommandDecode)
 
-- (BOOL) isMkData;
-- (BOOL) isCrcOk;
-- (IKMkAddress) address;
-- (MKCommandId) command;
+- (BOOL)isMkData;
+- (BOOL)isCrcOk;
+- (IKMkAddress)address;
+- (MKCommandId)command;
 
-- (NSData *) payload;
+- (NSData *)payload;
 
 @end

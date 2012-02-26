@@ -23,27 +23,23 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "AnalogValues.h"
-#import "TTGlobalCorePaths.h"
-#import "TTCorePreprocessorMacros.h"
 
 #import "MKConnectionController.h"
 #import "NSData+MKCommandEncode.h"
 #import "IKMkDatatypes.h"
 #import "MKDataConstants.h"
 #import "IKDebugData.h"
-#import "IKDebugLabel.h"
 #import "IKDeviceVersion.h"
 
 #define kAnalogLabelFile @"analoglabels"
 
 @interface AnalogValues (Private)
-- (void) debugValueNotification:(NSNotification *)aNotification;
-- (void) deviceChangedNotification:(NSNotification *)aNotification;
 
-- (void) requestDebugData;
-
-- (void) loadLabels;
-- (void) initNotifications;
+- (void)debugValueNotification:(NSNotification *)aNotification;
+- (void)deviceChangedNotification:(NSNotification *)aNotification;
+- (void)requestDebugData;
+- (void)loadLabels;
+- (void)initNotifications;
 
 @end
 
@@ -51,82 +47,80 @@
 
 @synthesize delegate = _delegate;
 
-- (id) init
-{
+- (id)init {
   self = [super init];
   if (self != nil) {
-    
+
     debugData = [[NSMutableArray alloc] initWithCapacity:kMaxDebugDataAnalog];
     for (int i = 0; i < kMaxDebugDataAnalog; i++) {
       [debugData addObject:[NSNumber numberWithInt:0]];
     }
-    
+
     [self loadLabels];
     [self initNotifications];
     [self reloadLabels];
   }
-  
-  return self;
-}  
 
-- (void) dealloc {
-  
+  return self;
+}
+
+- (void)dealloc {
+
   [self stopRequesting];
-  
+
   [analogLabels release];
   [debugData release];
   [super dealloc];
 }
 
--(void) loadLabels {
-  
-  NSString *filePath = [[NSBundle mainBundle] pathForResource:kAnalogLabelFile 
-                                  ofType:@"plist"];
-  
+- (void)loadLabels {
+
+  NSString *filePath = [[NSBundle mainBundle] pathForResource:kAnalogLabelFile ofType:@"plist"];
+
   analogLabels = [[NSArray alloc] initWithContentsOfFile:filePath];
 }
 
--(void) initNotifications {
-  
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-  
+- (void)initNotifications {
+
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
   [nc addObserver:self
          selector:@selector(debugValueNotification:)
              name:MKDebugDataNotification
            object:nil];
-  
+
   [nc addObserver:self
          selector:@selector(deviceChangedNotification:)
              name:MKDeviceChangedNotification
            object:nil];
-  
-  
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
-- (void) startRequesting {
-  
+- (void)startRequesting {
+
   [self initNotifications];
-  
-  requestTimer=[NSTimer scheduledTimerWithTimeInterval: 1 target:self selector:
-                @selector(requestDebugData) userInfo:nil repeats:YES];
-  
+
+  requestTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:
+          @selector(requestDebugData)           userInfo:nil repeats:YES];
+
   [self performSelector:@selector(requestDebugData) withObject:self afterDelay:0.1];
 }
 
-- (void) stopRequesting {
-  
+- (void)stopRequesting {
+
   [requestTimer invalidate];
-  requestTimer=nil;
-  
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  requestTimer = nil;
+
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
 }
 
 
-- (void) deviceChangedNotification:(NSNotification *)aNotification {
+- (void)deviceChangedNotification:(NSNotification *)aNotification {
   [self reloadLabels];
   [self.delegate didReceiveValues];
 }
@@ -134,57 +128,57 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
-- (void) requestDebugData {
-  
-  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
+- (void)requestDebugData {
+
+  MKConnectionController *cCtrl = [MKConnectionController sharedMKConnectionController];
   uint8_t interval = 50;
-  
-  NSData * data = [NSData dataWithCommand:MKCommandDebugValueRequest
-                               forAddress:kIKMkAddressAll
-                         payloadWithBytes:&interval
-                                   length:1];
- 
+
+  NSData *data = [NSData dataWithCommand:MKCommandDebugValueRequest
+                              forAddress:kIKMkAddressAll
+                        payloadWithBytes:&interval
+                                  length:1];
+
   [cCtrl sendRequest:data];
 }
 
-- (void) debugValueNotification:(NSNotification *)aNotification {
-  IKDebugData* newDebugData = [[aNotification userInfo] objectForKey:kIKDataKeyDebugData];
-  
+- (void)debugValueNotification:(NSNotification *)aNotification {
+  IKDebugData *newDebugData = [[aNotification userInfo] objectForKey:kIKDataKeyDebugData];
+
   for (int i = 0; i < kMaxDebugDataAnalog; i++) {
     [debugData replaceObjectAtIndex:i withObject:[newDebugData analogValueAtIndex:i]];
   }
-  
+
   [self.delegate didReceiveValues];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
--(void) reloadLabels {
-  
-  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
-  
-  IKDeviceVersion* v=[cCtrl versionForAddress:[cCtrl currentDevice]];
+- (void)reloadLabels {
 
-  NSDictionary* devArrays=[analogLabels objectAtIndex:[cCtrl currentDevice]];
-  
+  MKConnectionController *cCtrl = [MKConnectionController sharedMKConnectionController];
+
+  IKDeviceVersion *v = [cCtrl versionForAddress:[cCtrl currentDevice]];
+
+  NSDictionary *devArrays = [analogLabels objectAtIndex:[cCtrl currentDevice]];
+
   currAnalogLabels = [devArrays objectForKey:v.versionStringShort];
-  if(!currAnalogLabels){
+  if (!currAnalogLabels) {
     currAnalogLabels = [devArrays objectForKey:v.versionMainStringShort];
   }
-  if(!currAnalogLabels)
+  if (!currAnalogLabels)
     currAnalogLabels = [devArrays objectForKey:@"UNK"];
 }
 
--(NSUInteger) count {
+- (NSUInteger)count {
   return [debugData count];
 }
 
--(NSString*) labelAtIndexPath:(NSIndexPath *)indexPath {
+- (NSString *)labelAtIndexPath:(NSIndexPath *)indexPath {
   return [currAnalogLabels objectAtIndex:indexPath.row];
 }
 
--(NSString*) valueAtIndexPath:(NSIndexPath *)indexPath {
+- (NSString *)valueAtIndexPath:(NSIndexPath *)indexPath {
   return [[debugData objectAtIndex:indexPath.row] description];
 }
 

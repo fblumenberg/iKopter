@@ -60,7 +60,7 @@
 @dynamic waypointIndex;
 @dynamic session;
 
--(void) fillFromNCData:(IKNaviData*)ncData{
+- (void)fillFromNCData:(IKNaviData *)ncData {
   self.version = [NSNumber numberWithInt:ncData.data->Version];            // version of the data structure
   self.currentPosition = [IKGPSPos positionWithMkPos:&(ncData.data->CurrentPosition)];    // see ubx.h for details
   self.targetPosition = [IKGPSPos positionWithMkPos:&(ncData.data->TargetPosition)];
@@ -85,7 +85,7 @@
   self.operatingRadius = [NSNumber numberWithInt:ncData.data->OperatingRadius];      // current operation radius around the Home Position in m
   self.topSpeed = [NSNumber numberWithInt:ncData.data->TopSpeed];         // velocity in vertical direction in cm/s
   self.targetHoldTime = [NSNumber numberWithInt:ncData.data->TargetHoldTime];       // time in s to stay at the given target, counts down to 0 if target has been reached
-  self.fcStatusFlags2 = [NSNumber numberWithInt:ncData.data->FCStatusFlags2];				// StatusFlags2 (since version 5 added)
+  self.fcStatusFlags2 = [NSNumber numberWithInt:ncData.data->FCStatusFlags2];        // StatusFlags2 (since version 5 added)
   self.setpointAltitude = [NSNumber numberWithInt:ncData.data->SetpointAltitude];     // setpoint for altitude
   self.gas = [NSNumber numberWithInt:ncData.data->Gas];            // for future use
   self.current = [NSNumber numberWithInt:ncData.data->Current];          // actual current in 0.1A steps

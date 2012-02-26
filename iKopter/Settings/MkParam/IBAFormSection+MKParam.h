@@ -10,14 +10,14 @@
 
 @interface IBAFormSection (IBAFormSection_MKParam)
 
--(void)addNumberFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
--(void)addSwitchFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
--(void)addSwitchFieldForKeyPath:(NSString*)keyPath title:(NSString*)title style:(IBAFormFieldStyle*)style;
--(void)addTextFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
--(void)addPotiFieldForKeyPath:(NSString*)keyPath title:(NSString*)title;
+- (void)addNumberFieldForKeyPath:(NSString *)keyPath title:(NSString *)title;
+- (void)addSwitchFieldForKeyPath:(NSString *)keyPath title:(NSString *)title;
+- (void)addSwitchFieldForKeyPath:(NSString *)keyPath title:(NSString *)title style:(IBAFormFieldStyle *)style;
+- (void)addTextFieldForKeyPath:(NSString *)keyPath title:(NSString *)title;
+- (void)addPotiFieldForKeyPath:(NSString *)keyPath title:(NSString *)title;
 
--(void)addChannelsForKeyPath:(NSString*)keyPath title:(NSString*)title;
--(void)addChannelsPlusForKeyPath:(NSString*)keyPath title:(NSString*)title;
+- (void)addChannelsForKeyPath:(NSString *)keyPath title:(NSString *)title;
+- (void)addChannelsPlusForKeyPath:(NSString *)keyPath title:(NSString *)title;
 
 
 @end

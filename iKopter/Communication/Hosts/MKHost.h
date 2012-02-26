@@ -24,21 +24,21 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const MKHostChangedNotification;
+extern NSString *const MKHostChangedNotification;
 
-@interface MKHost : NSObject<NSCoding, NSCopying> {
-  NSString*  _name;
-  NSString*  _address;
-  NSString*  _pin;
-  NSString*  _connectionClass;
+@interface MKHost : NSObject <NSCoding, NSCopying> {
+  NSString *_name;
+  NSString *_address;
+  NSString *_pin;
+  NSString *_connectionClass;
 }
 
-@property(retain) NSString* name;
-@property(retain) NSString* address;
-@property(retain) NSString* pin;
-@property(retain) NSString* connectionClass;
+@property(retain) NSString *name;
+@property(retain) NSString *address;
+@property(retain) NSString *pin;
+@property(retain) NSString *connectionClass;
 
-+ (void) sendChangedNotification:(id)sender;
--(UIImage*) cellImage;
++ (void)sendChangedNotification:(id)sender;
+- (UIImage *)cellImage;
 
 @end

@@ -30,60 +30,59 @@
 @class InnerShadowView;
 @class OsdValue;
 
-@interface BaseOsdViewController : TPMultiLayoutViewController{
- 
-  NSArray* motorLabels;
+@interface BaseOsdViewController : TPMultiLayoutViewController {
+
+  NSArray *motorLabels;
 }
 
-@property (nonatomic, retain) IBOutlet CustomBadge* satelites;
-@property (nonatomic, retain) IBOutlet CustomBadge* careFree;
-@property (nonatomic, retain) IBOutlet CustomBadge* altitudeControl;
-@property (nonatomic, retain) IBOutlet CustomBadge* gpsMode;
-@property (nonatomic, retain) IBOutlet CustomBadge* failSafe;
-@property (nonatomic, retain) IBOutlet CustomBadge* out1;
-@property (nonatomic, retain) IBOutlet CustomBadge* out2;
+@property(nonatomic, retain) IBOutlet CustomBadge *satelites;
+@property(nonatomic, retain) IBOutlet CustomBadge *careFree;
+@property(nonatomic, retain) IBOutlet CustomBadge *altitudeControl;
+@property(nonatomic, retain) IBOutlet CustomBadge *gpsMode;
+@property(nonatomic, retain) IBOutlet CustomBadge *failSafe;
+@property(nonatomic, retain) IBOutlet CustomBadge *out1;
+@property(nonatomic, retain) IBOutlet CustomBadge *out2;
 
-@property (nonatomic, retain) UIColor* gpsOkColor;
-@property (nonatomic, retain) UIColor* functionOffColor;
-@property (nonatomic, retain) UIColor* functionOnColor;
-@property (nonatomic, retain) UIColor* gpsPHColor;
-@property (nonatomic, retain) UIColor* gpsCHColor;
+@property(nonatomic, retain) UIColor *gpsOkColor;
+@property(nonatomic, retain) UIColor *functionOffColor;
+@property(nonatomic, retain) UIColor *functionOnColor;
+@property(nonatomic, retain) UIColor *gpsPHColor;
+@property(nonatomic, retain) UIColor *gpsCHColor;
 
-@property (nonatomic, retain) IBOutlet InnerShadowView *batteryView;
-@property (nonatomic, retain) IBOutlet UIImageView* batteryIcon;
-@property (nonatomic, retain) UIImage* batteryOk;
-@property (nonatomic, retain) UIImage* batteryLow;
-@property (nonatomic, retain) IBOutlet UILabel* battery;
-@property (nonatomic, retain) IBOutlet UILabel* current;
-@property (nonatomic, retain) IBOutlet UILabel* usedCapacity;
+@property(nonatomic, retain) IBOutlet InnerShadowView *batteryView;
+@property(nonatomic, retain) IBOutlet UIImageView *batteryIcon;
+@property(nonatomic, retain) UIImage *batteryOk;
+@property(nonatomic, retain) UIImage *batteryLow;
+@property(nonatomic, retain) IBOutlet UILabel *battery;
+@property(nonatomic, retain) IBOutlet UILabel *current;
+@property(nonatomic, retain) IBOutlet UILabel *usedCapacity;
 
-@property (nonatomic, retain) IBOutlet UIImageView* gpsSatelite;
-@property (nonatomic, retain) UIImage* gpsSateliteOk;
-@property (nonatomic, retain) UIImage* gpsSateliteErr;
+@property(nonatomic, retain) IBOutlet UIImageView *gpsSatelite;
+@property(nonatomic, retain) UIImage *gpsSateliteOk;
+@property(nonatomic, retain) UIImage *gpsSateliteErr;
 
-@property (nonatomic, retain) IBOutlet UILabel* heigth;
-@property (nonatomic, retain) IBOutlet UILabel* variometer;
-@property (nonatomic, retain) IBOutlet UILabel* heigthSetpoint;
+@property(nonatomic, retain) IBOutlet UILabel *heigth;
+@property(nonatomic, retain) IBOutlet UILabel *variometer;
+@property(nonatomic, retain) IBOutlet UILabel *heigthSetpoint;
 
-@property (nonatomic, retain) IBOutlet UILabel* motorData1;
-@property (nonatomic, retain) IBOutlet UILabel* motorData2;
-@property (nonatomic, retain) IBOutlet UILabel* motorData3;
-@property (nonatomic, retain) IBOutlet UILabel* motorData4;
-@property (nonatomic, retain) IBOutlet UILabel* motorData5;
-@property (nonatomic, retain) IBOutlet UILabel* motorData6;
-@property (nonatomic, retain) IBOutlet UILabel* motorData7;
-@property (nonatomic, retain) IBOutlet UILabel* motorData8;
+@property(nonatomic, retain) IBOutlet UILabel *motorData1;
+@property(nonatomic, retain) IBOutlet UILabel *motorData2;
+@property(nonatomic, retain) IBOutlet UILabel *motorData3;
+@property(nonatomic, retain) IBOutlet UILabel *motorData4;
+@property(nonatomic, retain) IBOutlet UILabel *motorData5;
+@property(nonatomic, retain) IBOutlet UILabel *motorData6;
+@property(nonatomic, retain) IBOutlet UILabel *motorData7;
+@property(nonatomic, retain) IBOutlet UILabel *motorData8;
 
 
-@property(nonatomic, retain) IBOutlet UILabel* flightTime;
+@property(nonatomic, retain) IBOutlet UILabel *flightTime;
 
-- (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation;
+- (void)updateViewWithOrientation:(UIInterfaceOrientation)orientation;
 
-- (void) updateMotorData:(OsdValue*) value;
-- (void) updateStateView:(OsdValue*)value;
-- (void) updateBatteryView:(OsdValue*)value;
-- (void) updateHeightView:(OsdValue*)value;
-
+- (void)updateMotorData:(OsdValue *)value;
+- (void)updateStateView:(OsdValue *)value;
+- (void)updateBatteryView:(OsdValue *)value;
+- (void)updateHeightView:(OsdValue *)value;
 
 
 @end

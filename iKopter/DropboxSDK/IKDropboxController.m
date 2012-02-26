@@ -27,24 +27,24 @@
 
 #define kIKDropboxPath @"/iKopterData"
 
-@interface IKDropboxController() <DBRestClientDelegate>
+@interface IKDropboxController () <DBRestClientDelegate>
 
 
 @end
 
 @implementation IKDropboxController
 
-+ (IKDropboxController *)sharedIKDropboxController{
-  
++ (IKDropboxController *)sharedIKDropboxController {
+
   static dispatch_once_t once;
   static IKDropboxController *sharedIKDropboxController__ = nil;
-  
-  dispatch_once(&once, ^ { 
-    sharedIKDropboxController__=[[IKDropboxController alloc]init];
+
+  dispatch_once(&once, ^{
+    sharedIKDropboxController__ = [[IKDropboxController alloc] init];
   });
-  
+
   return sharedIKDropboxController__;
-  
+
 }
 
 @synthesize delegate;
@@ -54,7 +54,7 @@
 - (id)init {
   self = [super init];
   if (self) {
-    dataPath=kIKDropboxPath;
+    dataPath = kIKDropboxPath;
   }
   return self;
 }
@@ -64,11 +64,11 @@
   [super dealloc];
 }
 
--(void) connectAndPrepareMetadata{
+- (void)connectAndPrepareMetadata {
 
   restClient.delegate = self;
 
-  NSLog(@"Delegate %@",self.delegate);
+  NSLog(@"Delegate %@", self.delegate);
   if (![[DBSession sharedSession] isLinked]) {
     [[DBSession sharedSession] link];
   }
@@ -77,91 +77,90 @@
   }
 }
 
--(BOOL) metadataContainsPath:(NSString*)path {
-  NSString* testPath=[self.dataPath stringByAppendingPathComponent:path];
-  
-  for (DBMetadata* child in self.metaData.contents) {
-    qltrace(@"Check path %@",child.path);
-    if([testPath isEqualToDropboxPath:child.path])
+- (BOOL)metadataContainsPath:(NSString *)path {
+  NSString *testPath = [self.dataPath stringByAppendingPathComponent:path];
+
+  for (DBMetadata *child in self.metaData.contents) {
+    qltrace(@"Check path %@", child.path);
+    if ([testPath isEqualToDropboxPath:child.path])
       return YES;
   }
-  
+
   return NO;
 }
 
 
-+(void)showError:(NSError *)error withTitle:(NSString *)title{
++ (void)showError:(NSError *)error withTitle:(NSString *)title {
 
-  NSString* message;
+  NSString *message;
   if ([error.domain isEqual:NSURLErrorDomain]) {
-    message = NSLocalizedString(@"There was an error connecting to Dropbox.",@"DB Login Err Msg");
+    message = NSLocalizedString(@"There was an error connecting to Dropbox.", @"DB Login Err Msg");
   } else {
-    NSObject* errorResponse = [[error userInfo] objectForKey:@"error"];
+    NSObject *errorResponse = [[error userInfo] objectForKey:@"error"];
     if ([errorResponse isKindOfClass:[NSString class]]) {
-      message = [[NSBundle mainBundle] localizedStringForKey:(NSString*)errorResponse value:@"" table:nil];
+      message = [[NSBundle mainBundle] localizedStringForKey:(NSString *) errorResponse value:@"" table:nil];
     } else if ([errorResponse isKindOfClass:[NSDictionary class]]) {
-      NSDictionary* errorDict = (NSDictionary*)errorResponse;
+      NSDictionary *errorDict = (NSDictionary *) errorResponse;
       message = [[NSBundle mainBundle] localizedStringForKey:([errorDict objectForKey:[[errorDict allKeys] objectAtIndex:0]]) value:@"" table:nil];
     } else {
-      message = NSLocalizedString(@"An unknown error has occurred.",@"DB Login Err Unknown Msg");
+      message = NSLocalizedString(@"An unknown error has occurred.", @"DB Login Err Unknown Msg");
     }
   }
-  
-  [[[[UIAlertView alloc] 
-     initWithTitle:title message:message delegate:nil 
-     cancelButtonTitle:@"OK" otherButtonTitles:nil]
-    autorelease]
-   show];
+
+  [[[[UIAlertView alloc]
+          initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
+          autorelease]
+          show];
 }
 
 
 #pragma mark - DBRestClientDelegate methods
 
-- (void) restClient:(DBRestClient *)client createdFolder:(DBMetadata *)folder{
-  if([folder.path isEqualToDropboxPath:kIKDropboxPath]){
+- (void)restClient:(DBRestClient *)client createdFolder:(DBMetadata *)folder {
+  if ([folder.path isEqualToDropboxPath:kIKDropboxPath]) {
     [metaData release];
     metaData = [folder retain];
-    qlinfo(@"Created the Dropbox folder %@",folder.path);
-    
+    qlinfo(@"Created the Dropbox folder %@", folder.path);
+
     restClient.delegate = self.delegate;
     [self.delegate dropboxReady:self];
   }
 }
 
-- (void) restClient:(DBRestClient *)client createFolderFailedWithError:(NSError *)error{
-  [IKDropboxController showError:error withTitle:NSLocalizedString(@"Creating iKopter data folder failed" , @"Create Data Folder Error Title")]; 
+- (void)restClient:(DBRestClient *)client createFolderFailedWithError:(NSError *)error {
+  [IKDropboxController showError:error withTitle:NSLocalizedString(@"Creating iKopter data folder failed", @"Create Data Folder Error Title")];
 }
 
-- (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)newMetadata {
-  if([newMetadata.path isEqualToDropboxPath:kIKDropboxPath]){
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)newMetadata {
+  if ([newMetadata.path isEqualToDropboxPath:kIKDropboxPath]) {
     [metaData release];
     metaData = [newMetadata retain];
-    qlinfo(@"Loaded the meta data for the Dropbox folder %@ call delegate %@",newMetadata.path,self.delegate);
+    qlinfo(@"Loaded the meta data for the Dropbox folder %@ call delegate %@", newMetadata.path, self.delegate);
     restClient.delegate = self.delegate;
     [self.delegate dropboxReady:self];
   }
 }
 
-- (void)restClient:(DBRestClient*)client metadataUnchangedAtPath:(NSString*)path {
+- (void)restClient:(DBRestClient *)client metadataUnchangedAtPath:(NSString *)path {
   restClient.delegate = self.delegate;
   [self.delegate dropboxReady:self];
 }
 
-- (void)restClient:(DBRestClient*)client loadMetadataFailedWithError:(NSError*)error {
+- (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error {
   qlinfo(@"restClient:loadMetadataFailedWithError: %@", [error localizedDescription]);
-  
-  if([error code]==404 ){
+
+  if ([error code] == 404) {
     qlinfo(@"The Dropbox path for iKopter is not there, create one");
     [self.restClient createFolder:kIKDropboxPath];
   }
-  else{
-    [IKDropboxController showError:error withTitle:NSLocalizedString(@"Getting iKopter data folder failed" , @"Getting Data Folder Error Title")]; 
+  else {
+    [IKDropboxController showError:error withTitle:NSLocalizedString(@"Getting iKopter data folder failed", @"Getting Data Folder Error Title")];
   }
 }
 
 #pragma mark - 
 
-- (DBRestClient*)restClient {
+- (DBRestClient *)restClient {
   if (restClient == nil) {
     restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
     restClient.delegate = self;

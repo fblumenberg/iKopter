@@ -25,25 +25,25 @@
 #import <UIKit/UIKit.h>
 
 @interface LcdViewController : UIViewController {
-  UILabel * label;
+  UILabel *label;
   int lcdCount;
-  
-  NSTimer* requestTimer;
-  
-  UIFont* portraitFont;
-  UIFont* landscapeFont;
-  
-  UISegmentedControl* segment;
+
+  NSTimer *requestTimer;
+
+  UIFont *portraitFont;
+  UIFont *landscapeFont;
+
+  UISegmentedControl *segment;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel * label;
-@property (nonatomic, retain) IBOutlet UISegmentedControl* segment;
+@property(nonatomic, retain) IBOutlet UILabel *label;
+@property(nonatomic, retain) IBOutlet UISegmentedControl *segment;
 
-- (IBAction) nextScreen;
-- (IBAction) prevScreen;
-- (IBAction) changeDevice;
+- (IBAction)nextScreen;
+- (IBAction)prevScreen;
+- (IBAction)changeDevice;
 
-- (void) startRequesting;
-- (void) stopRequesting;
+- (void)startRequesting;
+- (void)stopRequesting;
 
 @end

@@ -33,13 +33,13 @@
 
 #pragma mark -
 
-- (id)initWithHost:(MKHost*)theHost {
-  
+- (id)initWithHost:(MKHost *)theHost {
+
   MKHostViewDataSource *dataSource = [[[MKHostViewDataSource alloc] initWithModel:theHost] autorelease];
-  
-  if ((self =  [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
+
+  if ((self = [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
     self.hidesBottomBarWhenPushed = NO;
-    self.title=NSLocalizedString(@"MK Connection", @"MKHost title");
+    self.title = NSLocalizedString(@"MK Connection", @"MKHost title");
   }
   return self;
 }
@@ -51,47 +51,47 @@
 #pragma mark -
 
 - (void)loadView {
-	[super loadView];
-  
-	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:formTableView];
-	
-	[view addSubview:formTableView];
-	[self setView:view];
+  [super loadView];
+
+  UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+
+  UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+  [formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [self setTableView:formTableView];
+
+  [view addSubview:formTableView];
+  [self setView:view];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+  return YES;
 }
 
--(void) viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  if(self.isPad){
-    self.navigationItem.hidesBackButton=YES;
+  if (self.isPad) {
+    self.navigationItem.hidesBackButton = YES;
   }
 }
 
 #pragma mark -
 
--(void)settingsViewController:(id)sender buttonTappedForKey:(NSString*)key {
-	BTDiscoveryViewController *controller = [[BTDiscoveryViewController alloc] init];
-  
-  UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:controller];
-	
-	navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-  controller.delegate=self;
-	[self presentModalViewController:navController animated:YES];
-	
-	[controller release];  
-	[navController release];  
+- (void)settingsViewController:(id)sender buttonTappedForKey:(NSString *)key {
+  BTDiscoveryViewController *controller = [[BTDiscoveryViewController alloc] init];
+
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  controller.delegate = self;
+  [self presentModalViewController:navController animated:YES];
+
+  [controller release];
+  [navController release];
 }
 
--(BOOL) discoveryView:(BTDiscoveryViewController*)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
-  
+- (BOOL)discoveryView:(BTDiscoveryViewController *)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
+
 //  BTDevice* device=[discoveryView.bt deviceAtIndex:deviceIndex];
 //  
 //  self.da

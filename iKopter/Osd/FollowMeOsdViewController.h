@@ -28,21 +28,21 @@
 #import "OsdValue.h"
 #import "ValueBaseOsdViewController.h"
 
-@interface FollowMeOsdViewController : ValueBaseOsdViewController<OsdValueDelegate> {
+@interface FollowMeOsdViewController : ValueBaseOsdViewController <OsdValueDelegate> {
 
   UILabel *followMeRequests;
   UILabel *followMeActive;
 }
 
-@property (nonatomic, retain) OsdValue* osdValue;
-@property (nonatomic, retain) IBOutlet UISwitch* followMeSwitch;
-@property (nonatomic, retain) IBOutlet UILabel* followMeRequests;
-@property (nonatomic, retain) IBOutlet UILabel *followMeActive;
-@property (nonatomic, retain) IBOutlet CustomBadge *followMeBadge;
+@property(nonatomic, retain) OsdValue *osdValue;
+@property(nonatomic, retain) IBOutlet UISwitch *followMeSwitch;
+@property(nonatomic, retain) IBOutlet UILabel *followMeRequests;
+@property(nonatomic, retain) IBOutlet UILabel *followMeActive;
+@property(nonatomic, retain) IBOutlet CustomBadge *followMeBadge;
 
 
-- (IBAction) followMeChanged;
+- (IBAction)followMeChanged;
 
--(void) updateFollowMe:(OsdValue*)value;
+- (void)updateFollowMe:(OsdValue *)value;
 
 @end

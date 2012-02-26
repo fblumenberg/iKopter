@@ -26,75 +26,74 @@
 #import <IBAForms/IBAForms.h>
 #import "MKParamPotiValueTransformer.h"
 
-@interface MKParamPotiValueTransformer()
+@interface MKParamPotiValueTransformer ()
 
-@property (nonatomic, readwrite,retain) NSArray *pickListOptions;
+@property(nonatomic, readwrite, retain) NSArray *pickListOptions;
 
 @end
 
 @implementation MKParamPotiValueTransformer
 
-@synthesize pickListOptions=pickListOptions_;
+@synthesize pickListOptions = pickListOptions_;
 
-+(MKParamPotiValueTransformer*) transformer{
-    return [[MKParamPotiValueTransformer new]autorelease];
++ (MKParamPotiValueTransformer *)transformer {
+  return [[MKParamPotiValueTransformer new] autorelease];
 }
 
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        NSMutableArray* values = [NSMutableArray arrayWithCapacity:256];
-        for(int i=0;i<248;i++){
-            [values addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-
-        for(int i=248;i<256;i++){
-            [values addObject:[NSString stringWithFormat:@"Poti %d",256-i]];
-        }
-
-        self.pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:values];
+- (id)init {
+  self = [super init];
+  if (self) {
+    NSMutableArray *values = [NSMutableArray arrayWithCapacity:256];
+    for (int i = 0; i < 248; i++) {
+      [values addObject:[NSString stringWithFormat:@"%d", i]];
     }
-    
-    return self;
+
+    for (int i = 248; i < 256; i++) {
+      [values addObject:[NSString stringWithFormat:@"Poti %d", 256 - i]];
+    }
+
+    self.pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:values];
+  }
+
+  return self;
 }
 
 - (void)dealloc {
-    self.pickListOptions=nil;
-    [super dealloc];
+  self.pickListOptions = nil;
+  [super dealloc];
 }
 
 + (Class)transformedValueClass {
-	return [NSNumber class];
+  return [NSNumber class];
 }
 
 + (BOOL)allowsReverseTransformation {
-	return YES;
+  return YES;
 }
 
 - (id)transformedValue:(id)value {
-	// Assume we're given a set with a single IBAPickListFormOption and convert it to an NSNumber representing the option
-	// index in to pickListOptions
-	IBAPickListFormOption *option = [value anyObject];
-	NSNumber *index = [NSNumber numberWithInt:[self.pickListOptions indexOfObject:option]];
-	
-	return index;
+  // Assume we're given a set with a single IBAPickListFormOption and convert it to an NSNumber representing the option
+  // index in to pickListOptions
+  IBAPickListFormOption *option = [value anyObject];
+  NSNumber *index = [NSNumber numberWithInt:[self.pickListOptions indexOfObject:option]];
+
+  return index;
 }
 
 - (id)reverseTransformedValue:(id)value {
-	// Assume we're given an NSNumber representing an index in to pickListOptions and convert it to a set with a 
-	// single IBAPickListFormOption
-	NSMutableSet *options = [[[NSMutableSet alloc] init] autorelease];
-	int index = [(NSNumber *)value intValue];
-	if ((index >= 0) && (index < [self.pickListOptions count])) {
-		IBAPickListFormOption *option = [self.pickListOptions objectAtIndex:index];
-		if (option != nil) {
-			[options addObject:option];
-		}
-	}
-	
-	return options;
+  // Assume we're given an NSNumber representing an index in to pickListOptions and convert it to a set with a
+  // single IBAPickListFormOption
+  NSMutableSet *options = [[[NSMutableSet alloc] init] autorelease];
+  int index = [(NSNumber *) value intValue];
+  if ((index >= 0) && (index < [self.pickListOptions count])) {
+    IBAPickListFormOption *option = [self.pickListOptions objectAtIndex:index];
+    if (option != nil) {
+      [options addObject:option];
+    }
+  }
+
+  return options;
 }
 
 

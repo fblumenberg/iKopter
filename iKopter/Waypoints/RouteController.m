@@ -30,31 +30,31 @@
 #import "IKPoint.h"
 
 
-@interface RouteController() 
+@interface RouteController ()
 
--(void) uploadClearPoint;
--(void) uploadPoint:(NSUInteger)index;
+- (void)uploadClearPoint;
+- (void)uploadPoint:(NSUInteger)index;
 
--(void) downloadPoint:(NSUInteger)index;
+- (void)downloadPoint:(NSUInteger)index;
 
 
 @end
 
-@implementation RouteController 
+@implementation RouteController
 
 @synthesize delegate;
 @synthesize route;
 @synthesize state;
 
--(id) initWithDelegate:(id<RouteControllerDelegate>)aDelegate{
+- (id)initWithDelegate:(id <RouteControllerDelegate>)aDelegate {
   self = [super init];
   if (self) {
-    self.delegate=aDelegate;
-    
-    currIndex=0;
-    state=RouteControllerIsIdle;
-    
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    self.delegate = aDelegate;
+
+    currIndex = 0;
+    state = RouteControllerIsIdle;
+
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
            selector:@selector(writePointNotification:)
                name:MKWritePointNotification
@@ -68,10 +68,10 @@
 }
 
 - (void)dealloc {
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
 
-  self.route=nil;
+  self.route = nil;
   [super dealloc];
 }
 
@@ -79,54 +79,54 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Upload 
 
--(void) uploadRouteToNaviCtrl:(Route*)aRoute{
-  self.route=aRoute;
+- (void)uploadRouteToNaviCtrl:(Route *)aRoute {
+  self.route = aRoute;
 
-  currIndex=0;
+  currIndex = 0;
   state = RouteControllerIsUploading;
   [self uploadClearPoint];
-  
+
 }
 
--(void) uploadClearPoint{
-  
-  IKPoint* p=[[[IKPoint alloc]init]autorelease];
-  
+- (void)uploadClearPoint {
+
+  IKPoint *p = [[[IKPoint alloc] init] autorelease];
+
   p.status = INVALID;
   p.index = 0;
-  
-  qlinfo(@"Upload clear list point %@",p);
+
+  qlinfo(@"Upload clear list point %@", p);
   [[MKConnectionController sharedMKConnectionController] writePoint:p];
 }
 
--(void) uploadPoint:(NSUInteger)index{
-  
-  IKPoint* p=(IKPoint*)[self.route.points objectAtIndex:index];
-  qlinfo(@"Upload point (%d) %@",index,p);
+- (void)uploadPoint:(NSUInteger)index {
+
+  IKPoint *p = (IKPoint *) [self.route.points objectAtIndex:index];
+  qlinfo(@"Upload point (%d) %@", index, p);
   [[MKConnectionController sharedMKConnectionController] writePoint:p];
 
-  if( [self.delegate respondsToSelector:@selector(routeControllerStartUpload:forIndex:)])
+  if ([self.delegate respondsToSelector:@selector(routeControllerStartUpload:forIndex:)])
     [self.delegate routeControllerStartUpload:self forIndex:index];
 }
 
-- (void) writePointNotification:(NSNotification *)aNotification {
+- (void)writePointNotification:(NSNotification *)aNotification {
 
-  NSDictionary* d=[aNotification userInfo];
-  NSInteger index = [[d objectForKey:kMKDataKeyIndex] integerValue]-1;
-  qlinfo(@"Upload point (%d) finished",index);
+  NSDictionary *d = [aNotification userInfo];
+  NSInteger index = [[d objectForKey:kMKDataKeyIndex] integerValue] - 1;
+  qlinfo(@"Upload point (%d) finished", index);
 
-  if( [self.delegate respondsToSelector:@selector(routeControllerFinishedUpload:forIndex:of:)])
+  if ([self.delegate respondsToSelector:@selector(routeControllerFinishedUpload:forIndex:of:)])
     [self.delegate routeControllerFinishedUpload:self forIndex:index of:[self.route.points count]];
-  
-  if (state==RouteControllerIsUploading && currIndex<[self.route.points count]) {
+
+  if (state == RouteControllerIsUploading && currIndex < [self.route.points count]) {
     [self uploadPoint:currIndex++];
   }
   else {
-    if( [self.delegate respondsToSelector:@selector(routeControllerFinishedUpload:)])
+    if ([self.delegate respondsToSelector:@selector(routeControllerFinishedUpload:)])
       [self.delegate routeControllerFinishedUpload:self];
-    
-    if (state==RouteControllerIsUploading) {
-      state=RouteControllerIsIdle;
+
+    if (state == RouteControllerIsUploading) {
+      state = RouteControllerIsIdle;
     }
   }
 }
@@ -134,61 +134,61 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Download 
 
--(void) downloadPoint:(NSUInteger)index{
-  
-  qlinfo(@"Download point (%d)",index);
-  [[MKConnectionController sharedMKConnectionController] requestPointForIndex:index+1];
-  
-  if( [self.delegate respondsToSelector:@selector(routeControllerStartDownload:forIndex:)])
+- (void)downloadPoint:(NSUInteger)index {
+
+  qlinfo(@"Download point (%d)", index);
+  [[MKConnectionController sharedMKConnectionController] requestPointForIndex:index + 1];
+
+  if ([self.delegate respondsToSelector:@selector(routeControllerStartDownload:forIndex:)])
     [self.delegate routeControllerStartDownload:self forIndex:index];
 }
 
--(void) downloadRouteFromNaviCtrl{
+- (void)downloadRouteFromNaviCtrl {
   self.route = [[[Route alloc] init] autorelease];
-  
-  currIndex=0;
+
+  currIndex = 0;
   state = RouteControllerIsDownloading;
-  
-  [self downloadPoint:currIndex++];  
+
+  [self downloadPoint:currIndex++];
 }
 
-- (void) readPointNotification:(NSNotification *)aNotification {
+- (void)readPointNotification:(NSNotification *)aNotification {
 
-  NSDictionary* d=[aNotification userInfo];
+  NSDictionary *d = [aNotification userInfo];
   NSInteger count = [[d objectForKey:kMKDataKeyMaxItem] integerValue];
-  
-  BOOL downloadFinished=NO;
-  
-  if ([d objectForKey:kMKDataKeyIndex]) {
-    NSInteger index = [[d objectForKey:kMKDataKeyIndex] integerValue]-1;
-    qlinfo(@"Download point (NC index %d) finished",index);
 
-    if( [self.delegate respondsToSelector:@selector(routeControllerFinishedUpload:forIndex:of:)])
+  BOOL downloadFinished = NO;
+
+  if ([d objectForKey:kMKDataKeyIndex]) {
+    NSInteger index = [[d objectForKey:kMKDataKeyIndex] integerValue] - 1;
+    qlinfo(@"Download point (NC index %d) finished", index);
+
+    if ([self.delegate respondsToSelector:@selector(routeControllerFinishedUpload:forIndex:of:)])
       [self.delegate routeControllerFinishedUpload:self forIndex:index of:[self.route.points count]];
 
-    IKPoint* p=[d objectForKey:kIKDataKeyPoint];
+    IKPoint *p = [d objectForKey:kIKDataKeyPoint];
     [self.route.points addObject:p];
-    
-    qltrace(@"Route is now %@",self.route.points);
-    
-    if (state==RouteControllerIsDownloading && currIndex<count) {
-      [self downloadPoint:currIndex++];  
+
+    qltrace(@"Route is now %@", self.route.points);
+
+    if (state == RouteControllerIsDownloading && currIndex < count) {
+      [self downloadPoint:currIndex++];
     }
-    else{
-      downloadFinished=YES;
+    else {
+      downloadFinished = YES;
     }
-  } 
-  else {
-    qlerror(@"No point for the NC index %d. Count is %d",currIndex,count);
-    downloadFinished=YES;
   }
-  
-  if(downloadFinished){
-    if( [self.delegate respondsToSelector:@selector(routeControllerFinishedDownload:)])
+  else {
+    qlerror(@"No point for the NC index %d. Count is %d", currIndex, count);
+    downloadFinished = YES;
+  }
+
+  if (downloadFinished) {
+    if ([self.delegate respondsToSelector:@selector(routeControllerFinishedDownload:)])
       [self.delegate routeControllerFinishedDownload:self];
-    
-    if (state==RouteControllerIsDownloading) {
-      state=RouteControllerIsIdle;
+
+    if (state == RouteControllerIsDownloading) {
+      state = RouteControllerIsIdle;
     }
   }
 }

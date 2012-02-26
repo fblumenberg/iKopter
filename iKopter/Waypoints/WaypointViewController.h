@@ -28,10 +28,10 @@
 @class IKPoint;
 
 @interface WaypointViewController : IBAFormViewController {
-  
+
 }
 
-- (id)initWithPoint:(IKPoint*)theWayPoint;
+- (id)initWithPoint:(IKPoint *)theWayPoint;
 
 
 @end

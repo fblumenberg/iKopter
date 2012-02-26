@@ -31,79 +31,75 @@
 #import "SettingsFieldStyle.h"
 #import "BTDevice.h"
 
-@interface MKHostViewDataSource()
+@interface MKHostViewDataSource ()
 
--(void)showDiscoveryView;
+- (void)showDiscoveryView;
 
 @end
 
 @implementation MKHostViewDataSource
 
 - (id)initWithModel:(id)aModel {
-	if ((self = [super initWithModel:aModel])) {
-    
-		IBAFormSection *hostSection = [self addSectionWithHeaderTitle:nil
-                                    footerTitle:NSLocalizedString(@"WLAN - Hostname:Port\nBluetooth - aa:bb:cc:dd:ee:ff", @"Host footer")];
+  if ((self = [super initWithModel:aModel])) {
+
+    IBAFormSection *hostSection = [self addSectionWithHeaderTitle:nil footerTitle:NSLocalizedString(@"WLAN - Hostname:Port\nBluetooth - aa:bb:cc:dd:ee:ff", @"Host footer")];
     hostSection.formFieldStyle = [[[SettingsFieldStyleText alloc] init] autorelease];
-    
+
     //------------------------------------------------------------------------------------------------------------------------
-    [hostSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"name" title:NSLocalizedString(@"Name",@"Host name")] autorelease]];
-    [hostSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"address" title:NSLocalizedString(@"Address",@"Host address")] autorelease]];
-    [hostSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"pin" title:NSLocalizedString(@"Pin",@"Host pin")] autorelease]];
+    [hostSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"name" title:NSLocalizedString(@"Name", @"Host name")] autorelease]];
+    [hostSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"address" title:NSLocalizedString(@"Address", @"Host address")] autorelease]];
+    [hostSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"pin" title:NSLocalizedString(@"Pin", @"Host pin")] autorelease]];
 
     MKHostTypeTransformer *hostTransformer = [MKHostTypeTransformer instance];
-    
-		[hostSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"connectionClass"
-                                                                           title:NSLocalizedString(@"Type", @"Host type")
-                                                                valueTransformer:hostTransformer
-                                                                   selectionMode:IBAPickListSelectionModeSingle
-                                                                         options:hostTransformer.pickListOptions] autorelease]];
 
-    
+    [hostSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"connectionClass"
+                                                                       title:NSLocalizedString(@"Type", @"Host type") valueTransformer:hostTransformer
+                                                               selectionMode:IBAPickListSelectionModeSingle
+                                                                     options:hostTransformer.pickListOptions] autorelease]];
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-		IBAFormSection *btSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+
+    IBAFormSection *btSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
 
     btSection.formFieldStyle = [[[SettingsButtonStyle alloc] init] autorelease];
-		
-		[btSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Search Bluetooth",@"BT search button")
-                                                                       icon:nil
-                                                             executionBlock:^{
-                                                               [self showDiscoveryView];
-                                                             }] autorelease]];
+
+    [btSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Search Bluetooth", @"BT search button") icon:nil executionBlock:^{
+      [self showDiscoveryView];
+    }] autorelease]];
   }
   return self;
 }
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
+  [super setModelValue:value forKeyPath:keyPath];
+
   [MKHost sendChangedNotification:self];
-  
-	qltrace(@"%@", [self.model description]);
+
+  qltrace(@"%@", [self.model description]);
 }
 
--(void)showDiscoveryView{
-  
-	BTDiscoveryViewController *controller = [[BTDiscoveryViewController alloc] init];
-  
-	UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-  UINavigationController* navController = [[UINavigationController alloc]initWithRootViewController:controller];
+- (void)showDiscoveryView {
+
+  BTDiscoveryViewController *controller = [[BTDiscoveryViewController alloc] init];
+
+  UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
 
 
-	navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-  controller.delegate=self;
+  navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  controller.delegate = self;
   [rootViewController presentModalViewController:navController animated:YES];
-	
-	[controller release];  
-	[navController release];  
+
+  [controller release];
+  [navController release];
 }
 
 
--(BOOL) discoveryView:(BTDiscoveryViewController*)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
-  
-  BTDevice* device=[discoveryView.bt deviceAtIndex:deviceIndex];
-  
+- (BOOL)discoveryView:(BTDiscoveryViewController *)discoveryView willSelectDeviceAtIndex:(int)deviceIndex {
+
+  BTDevice *device = [discoveryView.bt deviceAtIndex:deviceIndex];
+
   [self.model setValue:[device nameOrAddress] forKey:@"name"];
   [self.model setValue:[device addressString] forKey:@"address"];
 

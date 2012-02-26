@@ -25,33 +25,33 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-extern NSString * const MKRouteChangedNotification;
+extern NSString *const MKRouteChangedNotification;
 
 @class IKPoint;
 @class Routes;
 
-@interface Route : NSObject<NSCoding> {
+@interface Route : NSObject <NSCoding> {
 
 }
 
-@property(retain) NSString* name;
-@property(retain) NSMutableArray* points;
-@property(assign) Routes* routes;
-          
-+ (void) sendChangedNotification:(id)sender;
+@property(retain) NSString *name;
+@property(retain) NSMutableArray *points;
+@property(assign) Routes *routes;
 
-+ (CLLocationCoordinate2D) defaultCoordinate;
++ (void)sendChangedNotification:(id)sender;
 
--(NSUInteger) count;
++ (CLLocationCoordinate2D)defaultCoordinate;
 
--(IKPoint*) pointAtIndexPath:(NSIndexPath *)indexPath;
+- (NSUInteger)count;
 
--(NSIndexPath*) addPointAtDefault;
--(NSIndexPath*) addPointAtCenter;
--(NSIndexPath*) addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
+- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSIndexPath *)addPointAtDefault;
+- (NSIndexPath *)addPointAtCenter;
+- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
 
 
--(void) movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
--(void) deletePointAtIndexPath:(NSIndexPath*)indexPath;
+- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
+- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

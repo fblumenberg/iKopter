@@ -26,10 +26,10 @@
 #import "OsdValue.h"
 
 
-@interface RawOsdViewController : UIViewController<OsdValueDelegate> {
-  UITextView* osdText;
+@interface RawOsdViewController : UIViewController <OsdValueDelegate> {
+  UITextView *osdText;
 }
 
-@property(retain) IBOutlet UITextView* osdText;
+@property(retain) IBOutlet UITextView *osdText;
 
 @end

@@ -35,35 +35,36 @@
 
 @implementation MKParamCouplingDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
-    
-        //------------------------------------------------------------------------------------------------------------------------
-		IBAFormSection *paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
 
-        [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_ACHSENKOPPLUNG_AKTIV" 
-                                              title:NSLocalizedString(@"Axis coupling",@"MKParam Coupling")];
+    //------------------------------------------------------------------------------------------------------------------------
+    IBAFormSection *paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
 
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
+    [paramSection addSwitchFieldForKeyPath:@"GlobalConfig_ACHSENKOPPLUNG_AKTIV"
+                                     title:NSLocalizedString(@"Axis coupling", @"MKParam Coupling")];
 
-        [paramSection addPotiFieldForKeyPath:@"AchsKopplung1" title:NSLocalizedString(@"Yaw pos. feedbak",@"MKParam Coupling")];
-        [paramSection addPotiFieldForKeyPath:@"AchsKopplung2" title:NSLocalizedString(@"Nick/Roll feedback",@"MKParam Coupling")];
-        [paramSection addPotiFieldForKeyPath:@"CouplingYawCorrection" title:NSLocalizedString(@"Yaw correction",@"MKParam Coupling")];
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+
+    [paramSection addPotiFieldForKeyPath:@"AchsKopplung1" title:NSLocalizedString(@"Yaw pos. feedbak", @"MKParam Coupling")];
+    [paramSection addPotiFieldForKeyPath:@"AchsKopplung2" title:NSLocalizedString(@"Nick/Roll feedback", @"MKParam Coupling")];
+    [paramSection addPotiFieldForKeyPath:@"CouplingYawCorrection" title:NSLocalizedString(@"Yaw correction", @"MKParam Coupling")];
   }
-  
+
   return self;
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

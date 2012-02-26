@@ -25,11 +25,11 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NCLogViewController : UITableViewController<NSFetchedResultsControllerDelegate> {
-    
+@interface NCLogViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+
 }
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -30,30 +30,30 @@
 @implementation MKParamViewController
 
 - (void)loadView {
-	[super loadView];
+  [super loadView];
 
-	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:formTableView];
-	
-	[view addSubview:formTableView];
-	[self setView:view];
-  
+  UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+
+  UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+  [formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [self setTableView:formTableView];
+
+  [view addSubview:formTableView];
+  [self setView:view];
+
   [self.formDataSource addObserver:self forKeyPath:@"model" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+  return YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated {	
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
-  if(self.isPad)
-    self.navigationItem.hidesBackButton=YES;
+
+  if (self.isPad)
+    self.navigationItem.hidesBackButton = YES;
 }
 
 @end

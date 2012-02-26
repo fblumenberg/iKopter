@@ -27,14 +27,14 @@
 
 @interface SettingsSelectionViewController : UITableViewController {
 
-  NSMutableArray* _settings;
+  NSMutableArray *_settings;
   int activeSetting;
   int newActiveSetting;
 }
 
-@property (nonatomic, retain) NSMutableArray* settings;
+@property(nonatomic, retain) NSMutableArray *settings;
 
-- (IBAction) reloadAllSettings;
+- (IBAction)reloadAllSettings;
 
 - (void)saveActiveSetting:(id)sender;
 - (void)editActiveSetting:(id)sender;

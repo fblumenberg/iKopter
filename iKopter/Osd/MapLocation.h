@@ -33,12 +33,12 @@ typedef enum {
   IKMapLocationTargetPosition,
   IKMapLocationWayPoint,
   IKMapLocationPOI
-  } IKMapLocationType;
+} IKMapLocationType;
 
 @interface MapLocation : NSObject <MKAnnotation, NSCoding> {
   IKMapLocationType type;
   CLLocationCoordinate2D coordinate;
 }
-@property (nonatomic, assign) IKMapLocationType type;
-@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+@property(nonatomic, assign) IKMapLocationType type;
+@property(nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 @end

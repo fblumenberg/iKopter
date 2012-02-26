@@ -36,7 +36,7 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+RFhelpers.h"
 
-@interface MKParamMainController()
+@interface MKParamMainController ()
 
 - (void)saveSetting:(id)sender;
 - (void)reloadSetting:(id)sender;
@@ -46,75 +46,71 @@
 @implementation MKParamMainController
 
 - (void)loadView {
-	[super loadView];
+  [super loadView];
 
-	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:formTableView];
-	
-	[view addSubview:formTableView];
-	[self setView:view];
+  UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+
+  UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+  [formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [self setTableView:formTableView];
+
+  [view addSubview:formTableView];
+  [self setView:view];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+  return YES;
 }
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  UIBarButtonItem* renameButton;
-  renameButton =  [[[UIBarButtonItem alloc]
-                    initWithTitle:NSLocalizedString(@"Save",@"Save toolbar item")
-                    style:UIBarButtonItemStyleDone
-                    target:self
-                    action:@selector(saveSetting:)] autorelease];
-  
-  
-  UIBarButtonItem* spacer;
-  spacer =  [[[UIBarButtonItem alloc]
-              initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-              target:nil
-              action:nil] autorelease];
-  
-  UIBarButtonItem* reloadButton;
-  reloadButton =  [[[UIBarButtonItem alloc]
-                    initWithTitle:NSLocalizedString(@"Reload", @"Reload toolbar item")
-                    style:UIBarButtonItemStyleBordered
-                    target:self
-                    action:@selector(reloadSetting:)] autorelease];
-  
- 	[self setToolbarItems:[NSArray arrayWithObjects:renameButton,spacer,reloadButton,nil]];
-  
+
+  UIBarButtonItem *renameButton;
+  renameButton = [[[UIBarButtonItem alloc]
+          initWithTitle:NSLocalizedString(@"Save", @"Save toolbar item") style:UIBarButtonItemStyleDone
+                 target:self
+                 action:@selector(saveSetting:)] autorelease];
+
+
+  UIBarButtonItem *spacer;
+  spacer = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                               target:nil action:nil] autorelease];
+
+  UIBarButtonItem *reloadButton;
+  reloadButton = [[[UIBarButtonItem alloc]
+          initWithTitle:NSLocalizedString(@"Reload", @"Reload toolbar item") style:UIBarButtonItemStyleBordered
+                 target:self
+                 action:@selector(reloadSetting:)] autorelease];
+
+  [self setToolbarItems:[NSArray arrayWithObjects:renameButton, spacer, reloadButton, nil]];
+
 }
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
-  qltrace(@"unload");  
+  qltrace(@"unload");
 }
 
 #pragma mark -
 
 // called after this controller's view will appear
-- (void)viewWillAppear:(BOOL)animated
-{	
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.navigationController setToolbarHidden:NO animated:NO];
-  
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc addObserver:self
          selector:@selector(readSettingNotification:)
              name:MKReadSettingNotification
            object:nil];
-  
+
   [nc addObserver:self
          selector:@selector(writeSettingNotification:)
              name:MKWriteSettingNotification
@@ -122,12 +118,12 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  
+
   [super viewWillDisappear:animated];
-  
-  NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc removeObserver:self];
-  
+
   [self.detailViewController popToRootViewControllerAnimated:YES];
 }
 
@@ -135,22 +131,22 @@
 #pragma mark - Save Setting
 
 - (void)saveSetting:(id)sender {
-  
+
   qltrace(@"save setting");
-  
-  IKParamSet* setting = self.formDataSource.model; 
-  
-  [[MKConnectionController sharedMKConnectionController]saveSetting:setting];
+
+  IKParamSet *setting = self.formDataSource.model;
+
+  [[MKConnectionController sharedMKConnectionController] saveSetting:setting];
 }
 
-- (void) writeSettingNotification:(NSNotification *)aNotification {
-  
-  MBProgressHUD* hud = [MBProgressHUD sharedNotificationHUD];
-  
+- (void)writeSettingNotification:(NSNotification *)aNotification {
+
+  MBProgressHUD *hud = [MBProgressHUD sharedNotificationHUD];
+
   hud.customView = [[[UIImageView alloc] initWithImage:
-                     [UIImage imageNamed:@"icon-check.png"]] autorelease];
+          [UIImage imageNamed:@"icon-check.png"]] autorelease];
   hud.mode = MBProgressHUDModeCustomView;
-  hud.labelText = NSLocalizedString(@"Setting saved",@"Setting saved success");
+  hud.labelText = NSLocalizedString(@"Setting saved", @"Setting saved success");
   [hud show:YES];
   [hud hide:YES afterDelay:0.7];
 }
@@ -158,34 +154,34 @@
 #pragma mark - Reload Setting
 
 - (void)reloadSetting:(id)sender {
-  
-  MKConnectionController * cCtrl = [MKConnectionController sharedMKConnectionController];
-  IKParamSet* setting = self.formDataSource.model; 
- 
+
+  MKConnectionController *cCtrl = [MKConnectionController sharedMKConnectionController];
+  IKParamSet *setting = self.formDataSource.model;
+
   uint8_t index = [setting.Index unsignedCharValue];
-  
-  NSData * data = [NSData dataWithCommand:MKCommandReadSettingsRequest
-                               forAddress:kIKMkAddressFC
-                         payloadWithBytes:&index
-                                   length:1];
-  
+
+  NSData *data = [NSData dataWithCommand:MKCommandReadSettingsRequest
+                              forAddress:kIKMkAddressFC
+                        payloadWithBytes:&index
+                                  length:1];
+
   [cCtrl sendRequest:data];
 }
 
-- (void) readSettingNotification:(NSNotification *)aNotification {
-  
-  IKParamSet* paramSet=[[aNotification userInfo] objectForKey:kIKDataKeyParamSet];
+- (void)readSettingNotification:(NSNotification *)aNotification {
+
+  IKParamSet *paramSet = [[aNotification userInfo] objectForKey:kIKDataKeyParamSet];
   self.formDataSource.model = paramSet;
-  
+
   [self.detailViewController popToRootViewControllerAnimated:YES];
   [self.tableView reloadData];
 
-  MBProgressHUD* hud = [MBProgressHUD sharedNotificationHUD];
-  
+  MBProgressHUD *hud = [MBProgressHUD sharedNotificationHUD];
+
   hud.customView = [[[UIImageView alloc] initWithImage:
-                     [UIImage imageNamed:@"icon-check.png"]] autorelease];
+          [UIImage imageNamed:@"icon-check.png"]] autorelease];
   hud.mode = MBProgressHUDModeCustomView;
-  hud.labelText = NSLocalizedString(@"Setting loaded",@"Setting loaded success");
+  hud.labelText = NSLocalizedString(@"Setting loaded", @"Setting loaded success");
   [hud show:YES];
   [hud hide:YES afterDelay:0.7];
 }

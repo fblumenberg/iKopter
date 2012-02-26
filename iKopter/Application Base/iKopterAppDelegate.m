@@ -1,4 +1,4 @@
-    // ///////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2010, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
@@ -48,146 +48,137 @@
 
 @implementation iKopterAppDelegate
 
-@synthesize window=_window;
-@synthesize managedObjectContext=__managedObjectContext;
-@synthesize managedObjectModel=__managedObjectModel;
-@synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
+@synthesize window = _window;
+@synthesize managedObjectContext = __managedObjectContext;
+@synthesize managedObjectModel = __managedObjectModel;
+@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
-@synthesize navigationController=_navigationController;
-@synthesize mgSplitViewController=_mgSplitViewController;
+@synthesize navigationController = _navigationController;
+@synthesize mgSplitViewController = _mgSplitViewController;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  self.mgSplitViewController.showsMasterInPortrait=YES; 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  self.mgSplitViewController.showsMasterInPortrait = YES;
 
-  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     self.window.rootViewController = self.mgSplitViewController;
   else
     self.window.rootViewController = self.navigationController;
 
   [self.window makeKeyAndVisible];
-  
+
   // Load the default values for the user defaults
-  NSString* pathToUserDefaultsValues = [[NSBundle mainBundle]
-                                        pathForResource:@"userDefaults" 
-                                        ofType:@"plist"];
-  NSDictionary* userDefaultsValues = [NSDictionary dictionaryWithContentsOfFile:pathToUserDefaultsValues];
-  
+  NSString *pathToUserDefaultsValues = [[NSBundle mainBundle]
+          pathForResource:@"userDefaults"
+                   ofType:@"plist"];
+  NSDictionary *userDefaultsValues = [NSDictionary dictionaryWithContentsOfFile:pathToUserDefaultsValues];
+
   // Set them in the standard user defaults
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsValues];
 
-  NSLog(@"Def:%@",[[NSUserDefaults standardUserDefaults]dictionaryRepresentation]);
+  NSLog(@"Def:%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 
-  
-  
+
   qlinfo(@"Initializing the crash log manager");
   [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"http://frankblumenberg.de/crashlog/crash_v200.php"];
   [[BWQuincyManager sharedQuincyManager] setDelegate:self];
-  
-  
-  [self saveContext];
-  
-  // Set these variables before launching the app
-  NSString* appKey = kDROPBOX_CONSUMER_KEY;
-	NSString* appSecret = kDROPBOX_CONSUMER_SECRET;
-	NSString *root = kDBRootDropbox;
 
-	
-	DBSession* session = [[DBSession alloc] initWithAppKey:appKey appSecret:appSecret root:root];
-	session.delegate = self;
-	[DBSession setSharedSession:session];
+
+  [self saveContext];
+
+  // Set these variables before launching the app
+  NSString *appKey = kDROPBOX_CONSUMER_KEY;
+  NSString *appSecret = kDROPBOX_CONSUMER_SECRET;
+  NSString *root = kDBRootDropbox;
+
+
+  DBSession *session = [[DBSession alloc] initWithAppKey:appKey appSecret:appSecret root:root];
+  session.delegate = self;
+  [DBSession setSharedSession:session];
   [session release];
-	
+
   return YES;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	if ([[DBSession sharedSession] handleOpenURL:url]) {
+  if ([[DBSession sharedSession] handleOpenURL:url]) {
 //		if ([[DBSession sharedSession] isLinked]) {
 //			[navigationController pushViewController:rootViewController.photoViewController animated:YES];
 //		}
-		return YES;
-	}
-	
-	return NO;
+    return YES;
+  }
+
+  return NO;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
   /*
    Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
    Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
    */
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application {
   [[MKConnectionController sharedMKConnectionController] stop];
 
-  if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-    ((UINavigationController*)[self.mgSplitViewController masterViewController]).delegate=nil;
-    ((UINavigationController*)[self.mgSplitViewController detailViewController]).delegate=nil;
-    
-    [((UINavigationController*)[self.mgSplitViewController masterViewController]) popToRootViewControllerAnimated:NO];
-    [((UINavigationController*)[self.mgSplitViewController detailViewController]) popToRootViewControllerAnimated:NO];
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    ((UINavigationController *) [self.mgSplitViewController masterViewController]).delegate = nil;
+    ((UINavigationController *) [self.mgSplitViewController detailViewController]).delegate = nil;
+
+    [((UINavigationController *) [self.mgSplitViewController masterViewController]) popToRootViewControllerAnimated:NO];
+    [((UINavigationController *) [self.mgSplitViewController detailViewController]) popToRootViewControllerAnimated:NO];
   }
-  else{
+  else {
     self.navigationController.delegate = nil;
-    [self.navigationController popToRootViewControllerAnimated:NO]; 
+    [self.navigationController popToRootViewControllerAnimated:NO];
   }
 
   [self saveContext];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
   /*
    Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
    */
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
   /*
    Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
    */
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
   // Saves changes in the application's managed object context before the application terminates.
   [self saveContext];
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   [_window release];
   [_navigationController release];
+  [_mgSplitViewController release];
   [__managedObjectContext release];
   [__managedObjectModel release];
   [__persistentStoreCoordinator release];
+
   [super dealloc];
 }
 
 #pragma mark CrashReportSenderDelegate
 
--(void)connectionOpened {
+- (void)connectionOpened {
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 
--(void)connectionClosed {
+- (void)connectionClosed {
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
-- (void)saveContext
-{
+- (void)saveContext {
   NSError *error = nil;
   NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-  if (managedObjectContext != nil)
-  {
-    if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
-    {
+  if (managedObjectContext != nil) {
+    if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
       /*
        Replace this implementation with code to handle the error appropriately.
        
@@ -195,7 +186,7 @@
        */
       qlcritical(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
-    } 
+    }
   }
 }
 
@@ -205,16 +196,13 @@
  Returns the managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
-- (NSManagedObjectContext *)managedObjectContext
-{
-  if (__managedObjectContext != nil)
-  {
+- (NSManagedObjectContext *)managedObjectContext {
+  if (__managedObjectContext != nil) {
     return __managedObjectContext;
   }
-  
+
   NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-  if (coordinator != nil)
-  {
+  if (coordinator != nil) {
     __managedObjectContext = [[NSManagedObjectContext alloc] init];
     [__managedObjectContext setPersistentStoreCoordinator:coordinator];
   }
@@ -225,16 +213,14 @@
  Returns the managed object model for the application.
  If the model doesn't already exist, it is created from the application's model.
  */
-- (NSManagedObjectModel *)managedObjectModel
-{
-  if (__managedObjectModel != nil)
-  {
+- (NSManagedObjectModel *)managedObjectModel {
+  if (__managedObjectModel != nil) {
     return __managedObjectModel;
   }
   NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"iKopter" withExtension:@"momd"];
-  
-  qlinfo(@"URL for managed model %@",modelURL);
-  __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+
+  qlinfo(@"URL for managed model %@", modelURL);
+  __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
   return __managedObjectModel;
 }
 
@@ -242,20 +228,17 @@
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-  if (__persistentStoreCoordinator != nil)
-  {
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+  if (__persistentStoreCoordinator != nil) {
     return __persistentStoreCoordinator;
   }
 
   NSURL *storeURL = [NSURL fileURLWithPath:TTPathForDocumentsResource(@"ikopter.sqlite")];
-  qlinfo(@"URL for core data store %@",storeURL);
+  qlinfo(@"URL for core data store %@", storeURL);
 
   NSError *error = nil;
   __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-  if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
-  {
+  if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
     /*
      Replace this implementation with code to handle the error appropriately.
      
@@ -281,14 +264,14 @@
      */
     qlcritical(@"Unresolved error %@, %@", error, [error userInfo]);
     abort();
-  }    
-  
+  }
+
   return __persistentStoreCoordinator;
 }
 
 #pragma mark - DBSessionDelegate methods
 
-- (void)sessionDidReceiveAuthorizationFailure:(DBSession*)session userId:(NSString *)userId {
+- (void)sessionDidReceiveAuthorizationFailure:(DBSession *)session userId:(NSString *)userId {
   [[DBSession sharedSession] linkUserId:userId];
 }
 

@@ -30,7 +30,7 @@
 @synthesize coordinate;
 #pragma mark -
 - (NSString *)title {
-    return NSLocalizedString(@"You are Here!", @"You are Here!");
+  return NSLocalizedString(@"You are Here!", @"You are Here!");
 }
 
 //- (NSString *)subtitle {
@@ -54,17 +54,18 @@
 
 #pragma mark -
 - (void)dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 #pragma mark -
 #pragma mark NSCoding Methods
-- (void) encodeWithCoder: (NSCoder *)encoder {
-    [encoder encodeObject: [NSNumber numberWithInt:self.type] forKey: @"type"];
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [encoder encodeObject:[NSNumber numberWithInt:self.type] forKey:@"type"];
 }
-- (id) initWithCoder: (NSCoder *)decoder  {
-    if ((self = [super init])) {
-      self.type = [[decoder decodeObjectForKey: @"type"] intValue];
-    }
-    return self;
+
+- (id)initWithCoder:(NSCoder *)decoder {
+  if ((self = [super init])) {
+    self.type = [[decoder decodeObjectForKey:@"type"] intValue];
+  }
+  return self;
 }
 @end

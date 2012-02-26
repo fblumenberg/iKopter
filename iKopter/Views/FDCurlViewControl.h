@@ -34,30 +34,30 @@
 
 @interface FDCurlViewControl : UIBarButtonItem {
 @private
-	UIView *targetView_;
-	BOOL isTargetViewCurled_;
-	BOOL isAnimating_;
-	BOOL hidesWhenAnimating_; // Default to YES
-	BOOL hidesTargetViewWhileCurled_; // Default to YES
-	
-	id <FDCurlViewControlDelegate> delegate_;
-	
-	NSTimer *animationTimer_;
-	NSTimeInterval curlAnimationDuration_;
-	NSTimeInterval curlAnimationShouldStopAfter_;
-	
-	NSTimer *timer_;
+  UIView *targetView_;
+  BOOL isTargetViewCurled_;
+  BOOL isAnimating_;
+  BOOL hidesWhenAnimating_; // Default to YES
+  BOOL hidesTargetViewWhileCurled_; // Default to YES
+
+  id <FDCurlViewControlDelegate> delegate_;
+
+  NSTimer *animationTimer_;
+  NSTimeInterval curlAnimationDuration_;
+  NSTimeInterval curlAnimationShouldStopAfter_;
+
+  NSTimer *timer_;
 }
 
-@property (nonatomic, retain) UIView *targetView;
-@property (nonatomic, assign, readonly) BOOL isTargetViewCurled;
-@property (nonatomic, assign) BOOL hidesWhenAnimating;
-@property (nonatomic, assign) BOOL hidesTargetViewWhileCurled;
+@property(nonatomic, retain) UIView *targetView;
+@property(nonatomic, assign, readonly) BOOL isTargetViewCurled;
+@property(nonatomic, assign) BOOL hidesWhenAnimating;
+@property(nonatomic, assign) BOOL hidesTargetViewWhileCurled;
 
-@property (nonatomic, assign) id <FDCurlViewControlDelegate> delegate;
+@property(nonatomic, assign) id <FDCurlViewControlDelegate> delegate;
 
-@property (nonatomic, assign) NSTimeInterval curlAnimationDuration;
-@property (nonatomic, assign) NSTimeInterval curlAnimationShouldStopAfter;
+@property(nonatomic, assign) NSTimeInterval curlAnimationDuration;
+@property(nonatomic, assign) NSTimeInterval curlAnimationShouldStopAfter;
 
 - (id)initWithBarButtonSystemItem:(UIBarButtonSystemItem)item;
 - (void)curlViewUp;

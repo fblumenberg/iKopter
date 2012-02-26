@@ -36,24 +36,22 @@
 
 @synthesize routesFile;
 
-- (id) init
-{
+- (id)init {
   self = [super init];
   if (self != nil) {
     [self load];
-    
-    if(!routes) {
-      routes = [[NSMutableArray alloc]init];
+
+    if (!routes) {
+      routes = [[NSMutableArray alloc] init];
       [self save];
     }
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(save) name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
   }
   return self;
 }
 
-- (void) dealloc
-{
+- (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
 
   [routesFile release];
@@ -67,99 +65,99 @@
 #define kDataKey         @"Data"
 #define kNameKey         @"Name"
 
--(void) load {
-  
+- (void)load {
+
   [routesFile release];
   routesFile = [TTPathForDocumentsResource(kFilename) retain];
-  
-  NSString* oldRoutesFile = [routesFile stringByDeletingPathExtension];
+
+  NSString *oldRoutesFile = [routesFile stringByDeletingPathExtension];
   if ([[NSFileManager defaultManager] fileExistsAtPath:oldRoutesFile]) {
-    NSError * err = NULL;
+    NSError *err = NULL;
     [[NSFileManager defaultManager] moveItemAtPath:oldRoutesFile toPath:routesFile error:&err];
-    qlinfo(@"Move route file form %@ to %@ : %@",oldRoutesFile,routesFile,err);
-  }  
-  
+    qlinfo(@"Move route file form %@ to %@ : %@", oldRoutesFile, routesFile, err);
+  }
+
   if ([[NSFileManager defaultManager] fileExistsAtPath:routesFile]) {
-    
-    qlinfo(@"Load the point lists from %@",routesFile);
-    
+
+    qlinfo(@"Load the point lists from %@", routesFile);
+
     NSData *data = [[NSMutableData alloc] initWithContentsOfFile:routesFile];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    
+
     TT_RELEASE_SAFELY(routes);
     routes = [unarchiver decodeObjectForKey:kDataKey];
     [routes retain];
-    
+
     [unarchiver finishDecoding];
     [unarchiver release];
-    [data release];        
+    [data release];
 
     [routes enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
-      Route* r=object;
-      r.routes=self;
+      Route *r = object;
+      r.routes = self;
     }];
 
-    qldebug(@"Loaded the routes %@",routes);
+    qldebug(@"Loaded the routes %@", routes);
 
   }
 }
 
--(void) save {
+- (void)save {
 
-  qldebug(@"Save the routes %@",routes);
-  
+  qldebug(@"Save the routes %@", routes);
+
   NSString *filePath = TTPathForDocumentsResource(kFilename);
   NSMutableData *data = [[NSMutableData alloc] init];
   NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
 
   [archiver encodeObject:routes forKey:kDataKey];
   [archiver finishEncoding];
-  if(![data writeToFile:filePath atomically:YES]){
-    qlerror(@"Failed to save the routes to %@",filePath);
+  if (![data writeToFile:filePath atomically:YES]) {
+    qlerror(@"Failed to save the routes to %@", filePath);
   }
 
   [archiver release];
-  [data release];    
+  [data release];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
--(NSUInteger) count {
+- (NSUInteger)count {
   return [routes count];
 }
 
--(Route*) routeAtIndexPath:(NSIndexPath *)indexPath {
+- (Route *)routeAtIndexPath:(NSIndexPath *)indexPath {
   NSUInteger row = [indexPath row];
   return [routes objectAtIndex:row];
 }
 
--(NSIndexPath*) addRoute {
-  Route* h = [[Route alloc]init];
+- (NSIndexPath *)addRoute {
+  Route *h = [[Route alloc] init];
   [routes addObject:h];
   [h release];
 
   [self save];
-  return [NSIndexPath indexPathForRow:[routes count]-1 inSection:0]; 
+  return [NSIndexPath indexPathForRow:[routes count] - 1 inSection:0];
 }
 
--(void) moveRouteAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-  qltrace(@"moveRouteAtIndexPath %@ -> %@",fromIndexPath,toIndexPath);
-  qltrace(@"%@",routes);
+- (void)moveRouteAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+  qltrace(@"moveRouteAtIndexPath %@ -> %@", fromIndexPath, toIndexPath);
+  qltrace(@"%@", routes);
 
   NSUInteger fromRow = [fromIndexPath row];
   NSUInteger toRow = [toIndexPath row];
-  
-  id object = [[routes objectAtIndex:fromRow] retain]; 
-  [routes removeObjectAtIndex:fromRow]; 
-  [routes insertObject:object atIndex:toRow]; 
+
+  id object = [[routes objectAtIndex:fromRow] retain];
+  [routes removeObjectAtIndex:fromRow];
+  [routes insertObject:object atIndex:toRow];
   [object release];
-    
-  qltrace(@"%@",routes);
+
+  qltrace(@"%@", routes);
   [self save];
 }
 
--(void) deleteRouteAtIndexPath:(NSIndexPath*)indexPath {
-  [routes removeObjectAtIndex:[indexPath row]]; 
+- (void)deleteRouteAtIndexPath:(NSIndexPath *)indexPath {
+  [routes removeObjectAtIndex:[indexPath row]];
   [self save];
 }
 

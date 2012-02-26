@@ -35,34 +35,35 @@
 
 @implementation MKParamStickDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
-    
-        IBAFormSection *paramSection=nil;
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
 
-        [paramSection addNumberFieldForKeyPath:@"Stick_P" title:NSLocalizedString(@"Nick-/Roll-P",@"MKParam Stick")];
-        [paramSection addNumberFieldForKeyPath:@"Stick_D" title:NSLocalizedString(@"Nick-/Roll-D",@"MKParam Stick")];
-        [paramSection addPotiFieldForKeyPath:@"StickGier_P" title:NSLocalizedString(@"Yaw-P",@"MKParam Stick")];
+    IBAFormSection *paramSection = nil;
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
 
-        //------------------------------------------------------------------------------------------------------------------------
-        paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        paramSection.formFieldStyle.behavior = behavior;
-        [paramSection addPotiFieldForKeyPath:@"ExternalControl" title:NSLocalizedString(@"External control",@"MKParam Stick")];
+    [paramSection addNumberFieldForKeyPath:@"Stick_P" title:NSLocalizedString(@"Nick-/Roll-P", @"MKParam Stick")];
+    [paramSection addNumberFieldForKeyPath:@"Stick_D" title:NSLocalizedString(@"Nick-/Roll-D", @"MKParam Stick")];
+    [paramSection addPotiFieldForKeyPath:@"StickGier_P" title:NSLocalizedString(@"Yaw-P", @"MKParam Stick")];
+
+    //------------------------------------------------------------------------------------------------------------------------
+    paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    paramSection.formFieldStyle.behavior = behavior;
+    [paramSection addPotiFieldForKeyPath:@"ExternalControl" title:NSLocalizedString(@"External control", @"MKParam Stick")];
   }
-  
+
   return self;
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

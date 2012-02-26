@@ -25,33 +25,33 @@
 
 @protocol AnalogValuesDelegate
 
-- (void) didReceiveValues;
-- (void) didReceiveLabelForIndexPath:(NSIndexPath *)indexPath;
-- (void) changed;
+- (void)didReceiveValues;
+- (void)didReceiveLabelForIndexPath:(NSIndexPath *)indexPath;
+- (void)changed;
 
 @end
 
 @interface AnalogValues : NSObject {
 
-  NSArray * analogLabels;
-  
-  NSArray * currAnalogLabels;
-  NSMutableArray * debugData;
-  
+  NSArray *analogLabels;
+
+  NSArray *currAnalogLabels;
+  NSMutableArray *debugData;
+
   int debugResponseCounter;
-  NSTimer* requestTimer;
-  
-  id<AnalogValuesDelegate> _delegate;
+  NSTimer *requestTimer;
+
+  id <AnalogValuesDelegate> _delegate;
 }
 
-@property(assign) id<AnalogValuesDelegate> delegate;
+@property(assign) id <AnalogValuesDelegate> delegate;
 
--(NSUInteger) count;
--(NSString*) labelAtIndexPath:(NSIndexPath *)indexPath;
--(NSString*) valueAtIndexPath:(NSIndexPath *)indexPath;
--(void) reloadLabels;
+- (NSUInteger)count;
+- (NSString *)labelAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)valueAtIndexPath:(NSIndexPath *)indexPath;
+- (void)reloadLabels;
 
-- (void) startRequesting;
-- (void) stopRequesting;
+- (void)startRequesting;
+- (void)stopRequesting;
 
 @end

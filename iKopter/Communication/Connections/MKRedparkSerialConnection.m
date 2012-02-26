@@ -26,14 +26,14 @@
 #import "MKRedparkSerialConnection.h"
 #import "RscMgr.h"
 
-static NSString * const MKSerialConnectionException = @"MKSerialConnectionException";
+static NSString *const MKSerialConnectionException = @"MKSerialConnectionException";
 
-@interface MKRedparkSerialConnection()
+@interface MKRedparkSerialConnection ()
 
--(void)didDisconnect;
--(void)didConnect;
+- (void)didDisconnect;
+- (void)didConnect;
 
-+(RscMgr*) sharedRscMgr;
++ (RscMgr *)sharedRscMgr;
 
 @end
 
@@ -49,24 +49,23 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 
 #pragma mark Initialization
 
-+(RscMgr*) sharedRscMgr{
++ (RscMgr *)sharedRscMgr {
   static dispatch_once_t once;
-	static RscMgr *sharedRscMgr__ = nil;
-  
-  dispatch_once(&once, ^ { 
-    sharedRscMgr__=[[RscMgr alloc]init];
+  static RscMgr *sharedRscMgr__ = nil;
+
+  dispatch_once(&once, ^{
+    sharedRscMgr__ = [[RscMgr alloc] init];
   });
-  
-	return sharedRscMgr__;
+
+  return sharedRscMgr__;
 }
 
 
-- (id) init {
+- (id)init {
   return [self initWithDelegate:nil];
 }
 
-- (id) initWithDelegate:(id<MKConnectionDelegate>)theDelegate;
-{
+- (id)initWithDelegate:(id <MKConnectionDelegate>)theDelegate; {
   self = [super init];
   if (self) {
     self.delegate = theDelegate;
@@ -76,11 +75,11 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
   return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
   qltrace("dealloc");
-  self.mkData=nil;
-  self.rscMgr=nil;
-  self.protocol=nil;
+  self.mkData = nil;
+  self.rscMgr = nil;
+  self.protocol = nil;
   [super dealloc];
 }
 
@@ -88,14 +87,14 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 #pragma mark MKInput
 
 
--(void)didDisconnect {
-  if ( [delegate respondsToSelector:@selector(didDisconnect)] ) {
+- (void)didDisconnect {
+  if ([delegate respondsToSelector:@selector(didDisconnect)]) {
     [delegate didDisconnect];
   }
 }
 
--(void)didConnect {
-  if ( [delegate respondsToSelector:@selector(didConnectTo:)] ) {
+- (void)didConnect {
+  if ([delegate respondsToSelector:@selector(didConnectTo:)]) {
     [delegate didConnectTo:self.protocol];
   }
 }
@@ -109,58 +108,54 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 //}
 //
 
-- (void) openPort{
-  
+- (void)openPort {
+
   qltrace(@"Try to connect to %@", self.protocol);
-  
-  
+
+
   [self.rscMgr setBaud:57600];
   [self.rscMgr setDataSize:SERIAL_DATABITS_8];
   [self.rscMgr setStopBits:STOPBITS_1];
   [self.rscMgr setParity:SERIAL_PARITY_NONE];
-  
+
   [self.rscMgr open];
-  
-  self.mkData=[NSMutableData dataWithCapacity:512];
-  
+
+  self.mkData = [NSMutableData dataWithCapacity:512];
+
   qltrace(@"Did connect to %@", self.protocol);
   [self performSelector:@selector(didConnect) withObject:self afterDelay:0.1];
 }
 
-- (BOOL) connectTo:(MKHost *)hostOrDevice error:(NSError **)err;
-{
+- (BOOL)connectTo:(MKHost *)hostOrDevice error:(NSError **)err; {
   if (delegate == nil) {
     [NSException raise:MKSerialConnectionException
                 format:@"Attempting to connect without a delegate. Set a delegate first."];
   }
-  
-  opened=YES;
+
+  opened = YES;
 
   [self performSelector:@selector(openPort) withObject:self afterDelay:0.0];
-  
+
   return YES;
 }
 
-- (BOOL) isConnected;
-{
+- (BOOL)isConnected; {
   return opened;
 }
 
-- (void) disconnect;
-{
-  if([self isConnected]){
+- (void)disconnect; {
+  if ([self isConnected]) {
     qlinfo(@"Try to disconnect from %@", [self protocol]);
-    
-    opened=NO;
+
+    opened = NO;
   }
-  
+
   [self didDisconnect];
 }
 
-- (void) writeMkData:(NSData *)data;
-{
-  if([self isConnected]){
-    [self.rscMgr write:(UInt8 *)[data bytes] Length:[data length]];
+- (void)writeMkData:(NSData *)data; {
+  if ([self isConnected]) {
+    [self.rscMgr write:(UInt8 *) [data bytes] Length:[data length]];
   }
 }
 
@@ -168,59 +163,59 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
 
 // Redpark Serial Cable has been connected and/or application moved to foreground.
 // protocol is the string which matched from the protocol list passed to initWithProtocol:
-- (void) cableConnected:(NSString *)aProtocol{
+- (void)cableConnected:(NSString *)aProtocol {
   self.protocol = aProtocol;
 //  cableIsConnected=YES;
 }
 
 // Redpark Serial Cable was disconnected and/or application moved to background
-- (void) cableDisconnected{
+- (void)cableDisconnected {
   self.protocol = nil;
 //  cableIsConnected=NO;
 }
 
 // serial port status has changed
 // user can call getModemStatus or getPortStatus to get current state
-- (void) portStatusChanged{
-  
+- (void)portStatusChanged {
+
 }
 
 // bytes are available to be read (user calls read:)
-- (void) readBytesAvailable:(UInt32)length{
-  
+- (void)readBytesAvailable:(UInt32)length {
+
   int bytesRead = [rscMgr read:(rxBuff) Length:length];
 
   NSData *data = [NSData dataWithBytes:rxBuff length:bytesRead];
-	if ([data length] > 0) {
-    
+  if ([data length] > 0) {
+
     /*
-     * The new data, which may only be partial, gets appended to the previously
-     * collected buffer in self.mkData.
-     * Then a line delimiter is searched, and any complete lines are passed
-     * to the delegate, and removed from the local buffer in self.mkData.
-     * We repeat this search for lines until no more are found.
-     */
-    
+    * The new data, which may only be partial, gets appended to the previously
+    * collected buffer in self.mkData.
+    * Then a line delimiter is searched, and any complete lines are passed
+    * to the delegate, and removed from the local buffer in self.mkData.
+    * We repeat this search for lines until no more are found.
+    */
+
     [self.mkData appendData:data];
-    
+
     Boolean again;
     do {
       again = false;
-      
-      const char* haystackBytes = [self.mkData bytes];
-      static char needle='\r';
-      
-      for (int i=0; i < [self.mkData length]; i++) {
-        if( haystackBytes[i]==needle ) { // check for line delimiter
-          
+
+      const char *haystackBytes = [self.mkData bytes];
+      static char needle = '\r';
+
+      for (int i = 0; i < [self.mkData length]; i++) {
+        if (haystackBytes[i] == needle) { // check for line delimiter
+
           // extract the line
-          NSRange r={0,i+1};
-          NSData* cmdData=[self.mkData subdataWithRange:r];
-          
+          NSRange r = {0, i + 1};
+          NSData *cmdData = [self.mkData subdataWithRange:r];
+
           // remove the line from the receive buffer
           [self.mkData replaceBytesInRange:r withBytes:NULL length:0];
-          
-          if ( [delegate respondsToSelector:@selector(didReadMkData:)] ) {
+
+          if ([delegate respondsToSelector:@selector(didReadMkData:)]) {
             [delegate didReadMkData:cmdData];
           }
           again = true; // see if there are more lines to process
@@ -228,8 +223,8 @@ static NSString * const MKSerialConnectionException = @"MKSerialConnectionExcept
         }
       }
     } while (again);
-    
-	} 
+
+  }
 
 }
 

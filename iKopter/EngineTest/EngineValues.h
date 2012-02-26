@@ -27,16 +27,16 @@
 @interface EngineValues : NSObject {
 
   uint8_t values[16];
-  NSTimer* updateTimer;
+  NSTimer *updateTimer;
 
 }
 
--(void)start;
--(void)stop;
--(void)setValueForEngine:(NSInteger)theEngine value:(uint8_t)newValue;
--(void)setValueForAllEngines:(uint8_t)newValue;
+- (void)start;
+- (void)stop;
+- (void)setValueForEngine:(NSInteger)theEngine value:(uint8_t)newValue;
+- (void)setValueForAllEngines:(uint8_t)newValue;
 
--(uint8_t) valueAtIndexPath:(NSIndexPath *)indexPath;
--(uint8_t) valueForEngine:(NSInteger)theEngine;
+- (uint8_t)valueAtIndexPath:(NSIndexPath *)indexPath;
+- (uint8_t)valueForEngine:(NSInteger)theEngine;
 
 @end

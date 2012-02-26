@@ -27,15 +27,15 @@
 
 @class AMSerialPort;
 
-@interface MKSerialConnection : NSObject<MKConnection> {
+@interface MKSerialConnection : NSObject <MKConnection> {
 
-  AMSerialPort* port;
-  NSMutableData* mkData;
+  AMSerialPort *port;
+  NSMutableData *mkData;
 
-  id<MKConnectionDelegate> delegate;
+  id <MKConnectionDelegate> delegate;
 }
 
-@property(nonatomic,retain) AMSerialPort* port;
-@property(nonatomic,retain) NSMutableData* mkData;
+@property(nonatomic, retain) AMSerialPort *port;
+@property(nonatomic, retain) NSMutableData *mkData;
 
 @end

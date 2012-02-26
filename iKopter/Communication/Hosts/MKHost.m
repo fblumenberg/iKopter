@@ -29,54 +29,52 @@
 #define    kPinKey              @"pin"
 #define    kConnectionClassKey  @"connectionClass"
 
-NSString * const MKHostChangedNotification=@"MKHostChangedNotification";
+NSString *const MKHostChangedNotification = @"MKHostChangedNotification";
 
 
 @implementation MKHost
 
-@synthesize name=_name;
-@synthesize address=_address;
-@synthesize pin=_pin;
-@synthesize connectionClass=_connectionClass;
+@synthesize name = _name;
+@synthesize address = _address;
+@synthesize pin = _pin;
+@synthesize connectionClass = _connectionClass;
 
-+ (void) sendChangedNotification:(id)sender {
++ (void)sendChangedNotification:(id)sender {
   [[NSNotificationCenter defaultCenter] postNotificationName:MKHostChangedNotification object:sender userInfo:nil];
 }
 
-- (id) init
-{
+- (id)init {
   self = [super init];
   if (self != nil) {
-    self.name = NSLocalizedString(@"New host",@"Default host name");
-    self.address =@"";
-    self.pin =@"";
+    self.name = NSLocalizedString(@"New host", @"Default host name");
+    self.address = @"";
+    self.pin = @"";
   }
   return self;
 }
 
-- (void) dealloc
-{
-  self.name=nil;
-  self.address=nil;
-  self.connectionClass=nil;
-  self.pin=nil;
-  
+- (void)dealloc {
+  self.name = nil;
+  self.address = nil;
+  self.connectionClass = nil;
+  self.pin = nil;
+
   [super dealloc];
 }
 
--(NSString*) description {
-  return [NSString stringWithFormat:@"%@-%@-%@",self.name,self.address,self.connectionClass];
+- (NSString *)description {
+  return [NSString stringWithFormat:@"%@-%@-%@", self.name, self.address, self.connectionClass];
 }
 
--(UIImage*) cellImage{
-  if([self.connectionClass isEqualToString:@"MKIpConnection"])
+- (UIImage *)cellImage {
+  if ([self.connectionClass isEqualToString:@"MKIpConnection"])
     return [UIImage imageNamed:@"icon-wifi.png"];
-  if([self.connectionClass isEqualToString:@"MKSerialConnection"])
+  if ([self.connectionClass isEqualToString:@"MKSerialConnection"])
     return [UIImage imageNamed:@"icon-usb.png"];
-  if([self.connectionClass isEqualToString:@"MKBluetoothConnection"])
+  if ([self.connectionClass isEqualToString:@"MKBluetoothConnection"])
     return [UIImage imageNamed:@"icon-bluetooth.png"];
-  
-  
+
+
   return [UIImage imageNamed:@"icon-phone.png"];
 }
 
@@ -88,6 +86,7 @@ NSString * const MKHostChangedNotification=@"MKHostChangedNotification";
   [encoder encodeObject:_pin forKey:kPinKey];
   [encoder encodeObject:_connectionClass forKey:kConnectionClassKey];
 }
+
 - (id)initWithCoder:(NSCoder *)decoder {
   if ((self = [super init])) {
     self.name = [decoder decodeObjectForKey:kNameKey];
@@ -100,12 +99,12 @@ NSString * const MKHostChangedNotification=@"MKHostChangedNotification";
 #pragma mark -
 #pragma mark NSCopying
 - (id)copyWithZone:(NSZone *)zone {
-  MKHost *copy = [[[self class] allocWithZone: zone] init];
+  MKHost *copy = [[[self class] allocWithZone:zone] init];
   copy.name = [[self.name copyWithZone:zone] autorelease];
   copy.address = [[self.address copyWithZone:zone] autorelease];
   copy.pin = [[self.pin copyWithZone:zone] autorelease];
   copy.connectionClass = [[self.connectionClass copyWithZone:zone] autorelease];
-  
+
   return copy;
 }
 

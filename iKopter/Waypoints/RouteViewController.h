@@ -29,17 +29,17 @@
 #import "RouteController.h"
 
 
-@interface RouteViewController : UIViewController<UITabBarDelegate,CLLocationManagerDelegate,RouteControllerDelegate> {
-  
+@interface RouteViewController : UIViewController <UITabBarDelegate, CLLocationManagerDelegate, RouteControllerDelegate> {
+
 }
 
-@property (retain) UISegmentedControl* segment;
-@property (retain) Route* route;
+@property(retain) UISegmentedControl *segment;
+@property(retain) Route *route;
 
-@property (retain) NSArray *viewControllers;
+@property(retain) NSArray *viewControllers;
 
-@property (assign) UIViewController *selectedViewController;
+@property(assign) UIViewController *selectedViewController;
 
-- (id)initWithRoute:(Route*) list;
+- (id)initWithRoute:(Route *)list;
 
 @end

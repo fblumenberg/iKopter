@@ -28,17 +28,17 @@
 
 @class CLLocation;
 
-@interface RouteListViewController : UITableViewController<UITextFieldDelegate,SurrogateViewParent,UIPopoverControllerDelegate> {
-    
+@interface RouteListViewController : UITableViewController <UITextFieldDelegate, SurrogateViewParent, UIPopoverControllerDelegate> {
+
 
 }
 
-@property(retain) Route* list;
-@property(retain) NSIndexPath* editingPoint;
+@property(retain) Route *list;
+@property(retain) NSIndexPath *editingPoint;
 
-- (id)initWithRoute:(Route*) list;
+- (id)initWithRoute:(Route *)list;
 - (void)addPoint;
-- (void)addPointWithLocation:(CLLocation*)location;
+- (void)addPointWithLocation:(CLLocation *)location;
 
 
 @end

@@ -22,21 +22,15 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-
 #import "ValueOsdViewController.h"
-#import "UIImage+Tint.h"
-#import "UIColor+ColorWithHex.h"
-#import "InnerShadowView.h"
-
 
 /////////////////////////////////////////////////////////////////////////////////
-@interface ValueOsdViewController()
+@interface ValueOsdViewController ()
 
-- (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation;
-- (void) hideInfoViewAnimated;
-- (void) hideInfoView:(BOOL)animated;
-- (void) showInfoView;
-
+- (void)updateViewWithOrientation:(UIInterfaceOrientation)orientation;
+- (void)hideInfoViewAnimated;
+- (void)hideInfoView:(BOOL)animated;
+- (void)showInfoView;
 
 
 @end
@@ -57,31 +51,29 @@
 }
 
 - (void)dealloc {
-  self.noData=nil;
-  self.infoView=nil;
+  self.noData = nil;
+  self.infoView = nil;
 
   [super dealloc];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  
+
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
   [super viewDidUnload];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
+
   [self updateViewWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
-  
+
   [self hideInfoViewAnimated];
 }
 
@@ -90,8 +82,8 @@
   return YES;
 }
 
-- (void) updateViewWithOrientation: (UIInterfaceOrientation) orientation  {
-  
+- (void)updateViewWithOrientation:(UIInterfaceOrientation)orientation {
+
 //  NSString* nibName=@"ValueOsdViewController";
 //  
 //  if (UIInterfaceOrientationIsLandscape(orientation)){
@@ -103,83 +95,80 @@
 //  }
 //  
 //  [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
-  
+
   [super updateViewWithOrientation:orientation];
 }
 
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
   [super willRotateToInterfaceOrientation:orientation duration:duration];
-  [self updateViewWithOrientation: orientation];
+  [self updateViewWithOrientation:orientation];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Navigation bar Hideing 
 
-- (void)showInfoView{
-  
+- (void)showInfoView {
+
   CGRect frame = infoView.bounds;
-  
+
   frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height - frame.size.height;
-  
-  self.infoView.hidden=NO;
-  
+
+  self.infoView.hidden = NO;
+
   [UIView animateWithDuration:0.75
-                   animations:^ {
+                   animations:^{
                      self.infoView.frame = frame;
                    }];
-  
-  
-  
-  
+
+
 }
 
-- (void)hideInfoView:(BOOL)animated{
-  
+- (void)hideInfoView:(BOOL)animated {
+
   CGRect frame = infoView.bounds;
   frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height;
-  
-  if(!animated){
+
+  if (!animated) {
     infoView.frame = frame;
-    infoView.hidden=YES;
+    infoView.hidden = YES;
   }
-  else{
+  else {
     [UIView animateWithDuration:0.75
-                     animations:^ {
+                     animations:^{
                        self.infoView.frame = frame;
                      }
                      completion:^(BOOL finished) {
-                       infoView.hidden=YES;
+                       infoView.hidden = YES;
                      }];
   }
 }
 
-- (void)hideInfoViewAnimated{
+- (void)hideInfoViewAnimated {
   [self hideInfoView:YES];
 }
 
-- (void)hideInfoViewAfterDelay:(NSTimeInterval)delay
-{
+- (void)hideInfoViewAfterDelay:(NSTimeInterval)delay {
   [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideInfoViewAnimated) object:nil];
-  qltrace(@"Calling performSelector with delay %f",delay);
+  qltrace(@"Calling performSelector with delay %f", delay);
   [self performSelector:@selector(hideInfoViewAnimated) withObject:nil afterDelay:delay];
 }
 
 #pragma mark OsdValueDelegate implementation
-- (void) newValue:(OsdValue*)value {
-  
-  self.noData.hidden=YES;
-  
-  IKMkNaviData*data=value.data.data;
-  
-  if (data->Errorcode>0 && self.infoView.hidden) {
-    infoView.text = [NSString stringWithFormat:NSLocalizedString(@"Error: %d %@", @"OSD NC error"),data->Errorcode,value.currentErrorMessage];
+- (void)newValue:(OsdValue *)value {
+
+  self.noData.hidden = YES;
+
+  IKMkNaviData *data = value.data.data;
+
+  if (data->Errorcode > 0 && self.infoView.hidden) {
+    infoView.text = [NSString stringWithFormat:NSLocalizedString(@"Error: %d %@", @"OSD NC error"), data->Errorcode, value.currentErrorMessage];
     [self showInfoView];
   }
-  else if(data->Errorcode==0 && !self.infoView.hidden) {
+  else if (data->Errorcode == 0 && !self.infoView.hidden) {
     [self hideInfoViewAnimated];
   }
-  
+
   //-----------------------------------------------------------------------
   [self updateHeightView:value];
   //-----------------------------------------------------------------------
@@ -198,10 +187,10 @@
   [self updateMotorData:value];
   //-----------------------------------------------------------------------
 
-}  
+}
 
-- (void) noDataAvailable {
-  self.noData.hidden=NO;
+- (void)noDataAvailable {
+  self.noData.hidden = NO;
 }
 
 @end

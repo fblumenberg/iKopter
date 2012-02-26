@@ -31,21 +31,21 @@
 #define kFC_MAX_SENDE_BUFF     170
 
 
-@interface MKRedparkSerialConnection : NSObject<MKConnection,RscMgrDelegate> {
+@interface MKRedparkSerialConnection : NSObject <MKConnection, RscMgrDelegate> {
 
-	RscMgr *rscMgr;
-  NSMutableData* mkData;
+  RscMgr *rscMgr;
+  NSMutableData *mkData;
 
-  id<MKConnectionDelegate> delegate;
-  
+  id <MKConnectionDelegate> delegate;
+
   BOOL opened;
 
-	UInt8 rxBuff[kFC_MAX_SENDE_BUFF];
+  UInt8 rxBuff[kFC_MAX_SENDE_BUFF];
 
 }
 
-@property(nonatomic,retain) RscMgr *rscMgr;
-@property(nonatomic,retain) NSMutableData* mkData;
-@property(nonatomic,retain) NSString* protocol;
+@property(nonatomic, retain) RscMgr *rscMgr;
+@property(nonatomic, retain) NSMutableData *mkData;
+@property(nonatomic, retain) NSString *protocol;
 
 @end

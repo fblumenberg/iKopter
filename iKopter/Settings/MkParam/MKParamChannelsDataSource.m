@@ -38,73 +38,71 @@
 
 @implementation MKParamChannelsDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
     //------------------------------------------------------------------------------------------------------------------------
-		IBAFormSection *paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    IBAFormSection *paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     paramSection.formFieldStyle.behavior = behavior;
-    
+
     NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
-                                                                                 NSLocalizedString(@"Multisignal(PPM)",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"Spectrum",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"Spectrum (HighRes)",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"Spectrum (LowRes)",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"Jeti Sattelite",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"ACT DSL",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"Graupner HoTT",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"Futaba S.BUS",@"MKParam Channels"),
-                                                                                 NSLocalizedString(@"User",@"MKParam Channels"),
-                                                                                 nil]];
-    
+            NSLocalizedString(@"Multisignal(PPM)", @"MKParam Channels"),
+            NSLocalizedString(@"Spectrum", @"MKParam Channels"),
+            NSLocalizedString(@"Spectrum (HighRes)", @"MKParam Channels"),
+            NSLocalizedString(@"Spectrum (LowRes)", @"MKParam Channels"),
+            NSLocalizedString(@"Jeti Sattelite", @"MKParam Channels"),
+            NSLocalizedString(@"ACT DSL", @"MKParam Channels"),
+            NSLocalizedString(@"Graupner HoTT", @"MKParam Channels"),
+            NSLocalizedString(@"Futaba S.BUS", @"MKParam Channels"),
+            NSLocalizedString(@"User", @"MKParam Channels"),
+            nil]];
+
     IBASingleIndexTransformer *transformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
-    
-		[paramSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"Receiver"
-                                                                        title:NSLocalizedString(@"Receiver",@"MKParam Channels")
-                                                             valueTransformer:transformer
+
+    [paramSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"Receiver"
+                                                                        title:NSLocalizedString(@"Receiver", @"MKParam Channels") valueTransformer:transformer
                                                                 selectionMode:IBAPickListSelectionModeSingle
                                                                       options:pickListOptions] autorelease]];
-    
-    [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_SENSITIVE_RC" 
-                                     title:NSLocalizedString(@"Sensitive receiver signal validation",@"MKParam Channels")];
-    
 
-    ChannelsViewController* channelsTest = [[[ChannelsViewController alloc] initWithStyle:UITableViewStylePlain]autorelease];
-    
-    IBAButtonFormField* button=[[[IBAButtonFormField alloc]initWithTitle:NSLocalizedString(@"Channels test",@"MKParam Channels button")
-                                                                    icon:nil
-                                                    detailViewController:channelsTest]autorelease];
+    [paramSection addSwitchFieldForKeyPath:@"ExtraConfig_SENSITIVE_RC"
+                                     title:NSLocalizedString(@"Sensitive receiver signal validation", @"MKParam Channels")];
+
+
+    ChannelsViewController *channelsTest = [[[ChannelsViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+
+    IBAButtonFormField *button = [[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Channels test", @"MKParam Channels button") icon:nil detailViewController:channelsTest] autorelease];
     button.formFieldStyle = [[[SettingsButtonIndicatorStyle alloc] init] autorelease];
     [paramSection addFormField:button];
-    [paramSection addChannelsForKeyPath:@"MotorSafetySwitch" title:NSLocalizedString(@"Motor safety swich",@"MKParam Channels")];
-    
+    [paramSection addChannelsForKeyPath:@"MotorSafetySwitch" title:NSLocalizedString(@"Motor safety swich", @"MKParam Channels")];
+
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     paramSection.formFieldStyle.behavior = behavior;
-    
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_02" title:NSLocalizedString(@"Gas",@"MKParam Channels")];
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_03" title:NSLocalizedString(@"Yaw",@"MKParam Channels")];
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_00" title:NSLocalizedString(@"Nick",@"MKParam Channels")];
-    [paramSection addChannelsForKeyPath:@"Kanalbelegung_01" title:NSLocalizedString(@"Roll",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_04" title:NSLocalizedString(@"Poti 1",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_05" title:NSLocalizedString(@"Poti 2",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_06" title:NSLocalizedString(@"Poti 3",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_07" title:NSLocalizedString(@"Poti 4",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_08" title:NSLocalizedString(@"Poti 5",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_09" title:NSLocalizedString(@"Poti 6",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_10" title:NSLocalizedString(@"Poti 7",@"MKParam Channels")];
-    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_11" title:NSLocalizedString(@"Poti 8",@"MKParam Channels")];
+
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_02" title:NSLocalizedString(@"Gas", @"MKParam Channels")];
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_03" title:NSLocalizedString(@"Yaw", @"MKParam Channels")];
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_00" title:NSLocalizedString(@"Nick", @"MKParam Channels")];
+    [paramSection addChannelsForKeyPath:@"Kanalbelegung_01" title:NSLocalizedString(@"Roll", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_04" title:NSLocalizedString(@"Poti 1", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_05" title:NSLocalizedString(@"Poti 2", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_06" title:NSLocalizedString(@"Poti 3", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_07" title:NSLocalizedString(@"Poti 4", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_08" title:NSLocalizedString(@"Poti 5", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_09" title:NSLocalizedString(@"Poti 6", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_10" title:NSLocalizedString(@"Poti 7", @"MKParam Channels")];
+    [paramSection addChannelsPlusForKeyPath:@"Kanalbelegung_11" title:NSLocalizedString(@"Poti 8", @"MKParam Channels")];
   }
-  
+
   return self;
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

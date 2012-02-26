@@ -31,14 +31,13 @@
 
 @interface EngineValues ()
 
-- (IBAction) writeValues;
+- (IBAction)writeValues;
 
 @end
 
 @implementation EngineValues
 
-- (id) init
-{
+- (id)init {
   self = [super init];
   if (self != nil) {
     [self setValueForAllEngines:0];
@@ -47,65 +46,63 @@
   return self;
 }
 
-- (void) dealloc
-{
+- (void)dealloc {
   [self setValueForAllEngines:0];
   [self writeValues];
   qltrace(@"dealloc");
   [super dealloc];
 }
 
--(void)start {
+- (void)start {
   [self stop];
-  
-  updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 
-                                                 target:self 
-                                               selector:@selector(writeValues) 
-                                               userInfo:nil 
-                                                repeats:YES];
-  
+
+  updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                                 target:self
+                                               selector:@selector(writeValues)
+                                               userInfo:nil repeats:YES];
+
 }
 
--(void)stop {
+- (void)stop {
   TT_INVALIDATE_TIMER(updateTimer);
 }
 
--(void)setValueForEngine:(NSInteger)theEngine value:(uint8_t)newValue {
-  if (theEngine<0 || theEngine>=16 )
+- (void)setValueForEngine:(NSInteger)theEngine value:(uint8_t)newValue {
+  if (theEngine < 0 || theEngine >= 16)
     return;
-  
-  qltrace("New value for engine %d = %d",theEngine,newValue);
-  values[theEngine]=newValue;
+
+  qltrace("New value for engine %d = %d", theEngine, newValue);
+  values[theEngine] = newValue;
 }
 
--(void)setValueForAllEngines:(uint8_t)newValue {
-  qltrace("New value for all %d",newValue);
-  memset(values,newValue,sizeof(values));
+- (void)setValueForAllEngines:(uint8_t)newValue {
+  qltrace("New value for all %d", newValue);
+  memset(values, newValue, sizeof(values));
 }
 
--(uint8_t) valueAtIndexPath:(NSIndexPath *)indexPath {
+- (uint8_t)valueAtIndexPath:(NSIndexPath *)indexPath {
   return [self valueForEngine:indexPath.row];
 }
 
--(uint8_t) valueForEngine:(NSInteger)theEngine {
-  
-  if (theEngine<0 || theEngine>=16 )
+- (uint8_t)valueForEngine:(NSInteger)theEngine {
+
+  if (theEngine < 0 || theEngine >= 16)
     return 0;
-  
+
   return values[theEngine];
 }
 
-- (IBAction) writeValues {
-  
-  MKConnectionController* cCtrl=[MKConnectionController sharedMKConnectionController];
-  
-  qltrace("values e[0] = %d",values[0]);
-  
-  NSData * data = [NSData dataWithCommand:MKCommandEngineTestRequest
-                               forAddress:kIKMkAddressAll
-                         payloadWithBytes:values
-                                   length:16];
-  
+- (IBAction)writeValues {
+
+  MKConnectionController *cCtrl = [MKConnectionController sharedMKConnectionController];
+
+  qltrace("values e[0] = %d", values[0]);
+
+  NSData *data = [NSData dataWithCommand:MKCommandEngineTestRequest
+                              forAddress:kIKMkAddressAll
+                        payloadWithBytes:values
+                                  length:16];
+
   [cCtrl sendRequest:data];
 }
 

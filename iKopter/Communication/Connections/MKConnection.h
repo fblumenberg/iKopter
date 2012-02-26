@@ -25,25 +25,25 @@
 #import <Foundation/Foundation.h>
 #import "MKHost.h"
 
-@protocol MKConnectionDelegate < NSObject >
+@protocol MKConnectionDelegate <NSObject>
 @optional
 
-- (void) didConnectTo:(NSString *)hostOrDevice;
-- (void) willDisconnectWithError:(NSError *)err;
-- (void) didDisconnect;
-- (void) didReadMkData:(NSData *)data;
+- (void)didConnectTo:(NSString *)hostOrDevice;
+- (void)willDisconnectWithError:(NSError *)err;
+- (void)didDisconnect;
+- (void)didReadMkData:(NSData *)data;
 
 @end
 
 @protocol MKConnection
 
-@property(assign) id<MKConnectionDelegate> delegate;
+@property(assign) id <MKConnectionDelegate> delegate;
 
-- (id) initWithDelegate:(id<MKConnectionDelegate>)delegate;
+- (id)initWithDelegate:(id <MKConnectionDelegate>)delegate;
 
-- (BOOL) connectTo:(MKHost*)hostOrDevice error:(NSError **)err;
-- (BOOL) isConnected;
-- (void) disconnect;
+- (BOOL)connectTo:(MKHost *)hostOrDevice error:(NSError **)err;
+- (BOOL)isConnected;
+- (void)disconnect;
 
-- (void) writeMkData:(NSData *)data;
+- (void)writeMkData:(NSData *)data;
 @end

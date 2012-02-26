@@ -10,20 +10,20 @@
 
 
 @interface MixerTableViewCell : UITableViewCell {
-  UILabel     *cellLabel;
+  UILabel *cellLabel;
   UITextField *cellTextGas;
   UITextField *cellTextNick;
   UITextField *cellTextRoll;
   UITextField *cellTextYaw;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel     *cellLabel;
-@property (nonatomic, retain) IBOutlet UITextField *cellTextGas;
-@property (nonatomic, retain) IBOutlet UITextField *cellTextNick;
-@property (nonatomic, retain) IBOutlet UITextField *cellTextRoll;
-@property (nonatomic, retain) IBOutlet UITextField *cellTextYaw;
+@property(nonatomic, retain) IBOutlet UILabel *cellLabel;
+@property(nonatomic, retain) IBOutlet UITextField *cellTextGas;
+@property(nonatomic, retain) IBOutlet UITextField *cellTextNick;
+@property(nonatomic, retain) IBOutlet UITextField *cellTextRoll;
+@property(nonatomic, retain) IBOutlet UITextField *cellTextYaw;
 
 + (NSString *)reuseIdentifier;
--(IBAction) exitEditing:(id)sender;
+- (IBAction)exitEditing:(id)sender;
 
 @end

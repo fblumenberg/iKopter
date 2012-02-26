@@ -27,8 +27,8 @@
 
 @interface MKParamPotiValueTransformer : NSValueTransformer
 
-@property (nonatomic, readonly, retain) NSArray *pickListOptions;
+@property(nonatomic, readonly, retain) NSArray *pickListOptions;
 
-+(MKParamPotiValueTransformer*) transformer;
++ (MKParamPotiValueTransformer *)transformer;
 
 @end

@@ -31,37 +31,32 @@
 @synthesize pickListOptions;
 
 + (id)instance {
-	return [[[[self class] alloc] init] autorelease];
+  return [[[[self class] alloc] init] autorelease];
 }
 
 - (id)init {
   self = [super init];
   if (self) {
     keys = [[NSArray alloc] initWithObjects:
-            @"MKIpConnection", 
-            @"MKSerialConnection", 
-            @"MKBluetoothConnection", 
+            @"MKIpConnection",
+            @"MKSerialConnection",
+            @"MKBluetoothConnection",
             @"MKRedparkSerialConnection",
-            @"MKFakeConnection", 
+            @"MKFakeConnection",
             nil];
 
-    pickListOptions = [[NSMutableArray array]retain];
-    UIFont* font=[UIFont boldSystemFontOfSize:18];
-    
-    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"WLAN Connection",@"WLAN Connection title") 
-                                                                  iconImage:[UIImage imageNamed:@"icon-wifi.png"] 
+    pickListOptions = [[NSMutableArray array] retain];
+    UIFont *font = [UIFont boldSystemFontOfSize:18];
+
+    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"WLAN Connection", @"WLAN Connection title") iconImage:[UIImage imageNamed:@"icon-wifi.png"]
                                                                        font:font] autorelease]];
-    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Serial Connection",@"Serial Connection title")
-                                                                  iconImage:[UIImage imageNamed:@"icon-usb.png"] 
+    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Serial Connection", @"Serial Connection title") iconImage:[UIImage imageNamed:@"icon-usb.png"]
                                                                        font:font] autorelease]];
-    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Bluetooth Connection",@"BT Connection title") 
-                                                                  iconImage:[UIImage imageNamed:@"icon-bluetooth.png"] 
+    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Bluetooth Connection", @"BT Connection title") iconImage:[UIImage imageNamed:@"icon-bluetooth.png"]
                                                                        font:font] autorelease]];
-    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Redpark Serial Connection",@"Redpark Serial Connection title")
-                                                                  iconImage:[UIImage imageNamed:@"icon-usb.png"] 
+    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Redpark Serial Connection", @"Redpark Serial Connection title") iconImage:[UIImage imageNamed:@"icon-usb.png"]
                                                                        font:font] autorelease]];
-    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Fake Connection",@"Fake Connection title") 
-                                                                  iconImage:[UIImage imageNamed:@"icon-phone.png"] 
+    [pickListOptions addObject:[[[IBAPickListFormOption alloc] initWithName:NSLocalizedString(@"Fake Connection", @"Fake Connection title") iconImage:[UIImage imageNamed:@"icon-phone.png"]
                                                                        font:font] autorelease]];
   }
   return self;
@@ -75,39 +70,39 @@
 
 
 + (BOOL)allowsReverseTransformation {
-	return YES;
+  return YES;
 }
 
 + (Class)transformedValueClass {
-	return [NSString class];
+  return [NSString class];
 }
 
 - (id)transformedValue:(id)value {
-  
-	IBAPickListFormOption *option = [value anyObject];
+
+  IBAPickListFormOption *option = [value anyObject];
 
   int idx = [self.pickListOptions indexOfObject:option];
 
-  return idx!=NSNotFound?[keys objectAtIndex:idx]:nil;
+  return idx != NSNotFound ? [keys objectAtIndex:idx] : nil;
 }
 
 - (id)reverseTransformedValue:(id)value {
   // Assume we're given an NSString representing an index in to pickListOptions and convert it to a set with a 
-	// single IBAPickListFormOption
-	NSMutableSet *options = [[[NSMutableSet alloc] init] autorelease];
-	
-  int index = [keys indexOfObject:value];
-  
-	if ((index >= 0) && (index < [self.pickListOptions count])) {
-		IBAPickListFormOption *option = [self.pickListOptions objectAtIndex:index];
-		if (option != nil) {
-			[options addObject:option];
-		}
-	}
-	
-	return options;
+  // single IBAPickListFormOption
+  NSMutableSet *options = [[[NSMutableSet alloc] init] autorelease];
 
-  
+  int index = [keys indexOfObject:value];
+
+  if ((index >= 0) && (index < [self.pickListOptions count])) {
+    IBAPickListFormOption *option = [self.pickListOptions objectAtIndex:index];
+    if (option != nil) {
+      [options addObject:option];
+    }
+  }
+
+  return options;
+
+
 }
 
 @end

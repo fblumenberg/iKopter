@@ -35,7 +35,7 @@
 
 @interface StringToDoubleNumberTransformer : NSValueTransformer {
 
-  NSNumberFormatter* formatter;
+  NSNumberFormatter *formatter;
 }
 
 + (id)instance;

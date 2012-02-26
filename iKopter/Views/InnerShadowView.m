@@ -27,7 +27,7 @@
 #import "Common.h"
 #import "InnerShadowDrawing.h"
 
-@interface InnerShadowView()
+@interface InnerShadowView ()
 
 - (void)initLayers;
 
@@ -39,7 +39,7 @@
 
 
 - (id)initWithFrame:(CGRect)frame {
-  
+
   self = [super initWithFrame:frame];
   if (self) {
     [self initLayers];
@@ -48,7 +48,7 @@
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-  
+
   self = [super initWithCoder:decoder];
   if (self) {
     [self initLayers];
@@ -57,36 +57,36 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-  CGSize shadowSize={3.0,3.0};
-  
-  
+  CGSize shadowSize = {3.0, 3.0};
+
+
   CGRect rectInner = CGRectInset(rect, 3, 3);
-  drawWithInnerShadow(rect,shadowSize,2.0, 
-                           [[UIColor blackColor] colorWithAlphaComponent:0.5], 
-                      ^{
-                          CGContextRef currContext = UIGraphicsGetCurrentContext();
-                        CGMutablePathRef path=createRoundedRectForRect(rectInner,10);
-                        CGContextAddPath(currContext, path);
-                        CGContextFillPath(currContext);
-                        CFRelease(path);
-                      },
-                      ^{
-                        CGContextRef context = UIGraphicsGetCurrentContext();
-                        [self.innerBackgroundColor setFill];
-                        CGMutablePathRef path=createRoundedRectForRect(rectInner,10);
-                        CGContextAddPath(context, path);
-                        CGContextFillPath(context);
-                        CFRelease(path);
-                      });
+  drawWithInnerShadow(rect, shadowSize, 2.0,
+          [[UIColor blackColor] colorWithAlphaComponent:0.5],
+          ^{
+            CGContextRef currContext = UIGraphicsGetCurrentContext();
+            CGMutablePathRef path = createRoundedRectForRect(rectInner, 10);
+            CGContextAddPath(currContext, path);
+            CGContextFillPath(currContext);
+            CFRelease(path);
+          },
+          ^{
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            [self.innerBackgroundColor setFill];
+            CGMutablePathRef path = createRoundedRectForRect(rectInner, 10);
+            CGContextAddPath(context, path);
+            CGContextFillPath(context);
+            CFRelease(path);
+          });
 }
 
-- (void)initLayers{
-  
-  self.backgroundColor=[UIColor clearColor];
-  self.innerBackgroundColor=[UIColor whiteColor];
-  
+- (void)initLayers {
+
+  self.backgroundColor = [UIColor clearColor];
+  self.innerBackgroundColor = [UIColor whiteColor];
+
   [self addObserver:self forKeyPath:@"innerBackgroundColor" options:0 context:NULL];
-  
+
 //  CGRect rectInner = CGRectInset(self.bounds, 3, 3);
 //  CAShapeLayer* shapeLayer=[CAShapeLayer new];
 //  shapeLayer.path=createRoundedRectForRect(rectInner,10);
@@ -98,7 +98,7 @@
 
 - (void)dealloc {
   [self removeObserver:self forKeyPath:@"innerBackgroundColor"];
-  self.innerBackgroundColor=nil;
+  self.innerBackgroundColor = nil;
   [super dealloc];
 }
 

@@ -34,31 +34,32 @@
 
 @implementation MKParamCompassDataSource
 
-- (id)initWithModel:(id)aModel andBehavior:(int)behavior{
-	if (self = [super initWithModel:aModel]) {
-        
-        //------------------------------------------------------------------------------------------------------------------------
-		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-        basicFieldSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
-        basicFieldSection.formFieldStyle.behavior = behavior;
-        
-        [basicFieldSection addSwitchFieldForKeyPath:@"GlobalConfig_KOMPASS_AKTIV" 
-                                              title:NSLocalizedString(@"Compass active",@"MKParam Compass")];
-        [basicFieldSection addSwitchFieldForKeyPath:@"GlobalConfig_KOMPASS_FIX" 
-                                              title:NSLocalizedString(@"Orientation fixed",@"MKParam Compass")];
-        
-        [basicFieldSection addNumberFieldForKeyPath:@"KompassWirkung" 
-                                              title:NSLocalizedString(@"Compass effect", @"MKParam Compass")];
-    }
-    
-    return self;
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior {
+  self = [super initWithModel:aModel];
+  if (self) {
+
+    //------------------------------------------------------------------------------------------------------------------------
+    IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    basicFieldSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    basicFieldSection.formFieldStyle.behavior = behavior;
+
+    [basicFieldSection addSwitchFieldForKeyPath:@"GlobalConfig_KOMPASS_AKTIV"
+                                          title:NSLocalizedString(@"Compass active", @"MKParam Compass")];
+    [basicFieldSection addSwitchFieldForKeyPath:@"GlobalConfig_KOMPASS_FIX"
+                                          title:NSLocalizedString(@"Orientation fixed", @"MKParam Compass")];
+
+    [basicFieldSection addNumberFieldForKeyPath:@"KompassWirkung"
+                                          title:NSLocalizedString(@"Compass effect", @"MKParam Compass")];
+  }
+
+  return self;
 }
 
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setModelValue:value forKeyPath:keyPath];
-	
-	NSLog(@"%@", [self.model description]);
+  [super setModelValue:value forKeyPath:keyPath];
+
+  NSLog(@"%@", [self.model description]);
 }
 
 @end

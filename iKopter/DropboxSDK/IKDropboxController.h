@@ -33,27 +33,27 @@
 @protocol IKDropboxControllerDelegate;
 
 @interface IKDropboxController : NSObject {
-  
-  DBRestClient* restClient;
+
+  DBRestClient *restClient;
 }
 
-+(IKDropboxController*) sharedIKDropboxController;
++ (IKDropboxController *)sharedIKDropboxController;
 
--(void) connectAndPrepareMetadata;
+- (void)connectAndPrepareMetadata;
 
-@property(nonatomic,readonly) DBRestClient* restClient;
-@property(nonatomic,readonly) DBMetadata* metaData;
-@property(nonatomic,assign) id<IKDropboxControllerDelegate> delegate;
-@property(nonatomic,readonly) NSString* dataPath;
+@property(nonatomic, readonly) DBRestClient *restClient;
+@property(nonatomic, readonly) DBMetadata *metaData;
+@property(nonatomic, assign) id <IKDropboxControllerDelegate> delegate;
+@property(nonatomic, readonly) NSString *dataPath;
 
-+(void)showError:(NSError*)error withTitle:(NSString*)title;
++ (void)showError:(NSError *)error withTitle:(NSString *)title;
 
--(BOOL) metadataContainsPath:(NSString*)path;
+- (BOOL)metadataContainsPath:(NSString *)path;
 
 @end
 
 @protocol IKDropboxControllerDelegate <DBRestClientDelegate>
 
--(void) dropboxReady:(IKDropboxController*)controller;
+- (void)dropboxReady:(IKDropboxController *)controller;
 
 @end

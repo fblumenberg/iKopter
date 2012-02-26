@@ -28,23 +28,23 @@
 @interface NSData (MKPayloadDecode)
 
 //- (NSDictionary *) decodeLcdMenuResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeLcdResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeVersionResponseForAddress:(IKMkAddress)theAddress;
-- (NSDictionary *) decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeDebugDataResponseForAddress:(IKMkAddress)address;
-- (NSDictionary *) decodeChannelsDataResponse;
-- (NSDictionary *) decodeOsdResponse;
-- (NSDictionary *) decodeData3DResponse;
-- (NSDictionary *) decodeMixerReadResponse;
-- (NSDictionary *) decodeMixerWriteResponse;
-- (NSDictionary *) decodePointReadResponse;
-- (NSDictionary *) decodePointWriteResponse;
-- (NSDictionary *) decodeMotorDataResponse;
+- (NSDictionary *)decodeLcdResponseForAddress:(IKMkAddress)address;
+- (NSDictionary *)decodeVersionResponseForAddress:(IKMkAddress)theAddress;
+- (NSDictionary *)decodeAnalogLabelResponseForAddress:(IKMkAddress)address;
+- (NSDictionary *)decodeDebugDataResponseForAddress:(IKMkAddress)address;
+- (NSDictionary *)decodeChannelsDataResponse;
+- (NSDictionary *)decodeOsdResponse;
+- (NSDictionary *)decodeData3DResponse;
+- (NSDictionary *)decodeMixerReadResponse;
+- (NSDictionary *)decodeMixerWriteResponse;
+- (NSDictionary *)decodePointReadResponse;
+- (NSDictionary *)decodePointWriteResponse;
+- (NSDictionary *)decodeMotorDataResponse;
 
 @end
 
 @interface NSData (MKPayloadDecodeSetting)
-- (NSDictionary *) decodeReadSettingResponse;
-- (NSDictionary *) decodeWriteSettingResponse;
-- (NSDictionary *) decodeChangeSettingResponse;
+- (NSDictionary *)decodeReadSettingResponse;
+- (NSDictionary *)decodeWriteSettingResponse;
+- (NSDictionary *)decodeChangeSettingResponse;
 @end

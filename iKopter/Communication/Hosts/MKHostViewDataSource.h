@@ -26,7 +26,7 @@
 #import <IBAForms/IBAFormDataSource.h>
 #import "BTDiscoveryViewController.h"
 
-@interface MKHostViewDataSource : IBAFormDataSource<BTDiscoveryDelegate> {
+@interface MKHostViewDataSource : IBAFormDataSource <BTDiscoveryDelegate> {
 
 }
 

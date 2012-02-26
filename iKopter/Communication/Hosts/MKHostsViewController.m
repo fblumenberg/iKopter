@@ -27,9 +27,9 @@
 #import "MKHostViewController.h"
 #import "UIViewController+SplitView.h"
 
-@interface MKHostViewController()
+@interface MKHostViewController ()
 
-- (void) hostChangedNotification:(NSNotification *)aNotification;
+- (void)hostChangedNotification:(NSNotification *)aNotification;
 
 @end
 
@@ -40,60 +40,53 @@
 @synthesize editingHost;
 
 - (id)initWithHosts:(MKHosts *)theHostList {
-  if ((self =  [super initWithStyle:UITableViewStylePlain])) {
-    self.hosts=theHostList;
-    self.title=NSLocalizedString(@"MK Connections", @"MKHost List title");
+  if ((self = [super initWithStyle:UITableViewStylePlain])) {
+    self.hosts = theHostList;
+    self.title = NSLocalizedString(@"MK Connections", @"MKHost List title");
   }
   return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   self.hosts = nil;
-  self.editingHost=nil;
+  self.editingHost = nil;
   [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  
-  self.addButton =  [[[UIBarButtonItem alloc]
-                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                 target:self
-                 action:@selector(addHost)] autorelease];
+
+  self.addButton = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                               target:self
+                               action:@selector(addHost)] autorelease];
   self.addButton.style = UIBarButtonItemStyleBordered;
-  
-  UIBarButtonItem* spacerButton;
-  spacerButton =  [[[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil
-                    action:nil] autorelease];
-  
-  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil]];
-  self.tableView.allowsSelectionDuringEditing=YES;
+
+  UIBarButtonItem *spacerButton;
+  spacerButton = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                               target:nil action:nil] autorelease];
+
+  [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem, spacerButton, self.addButton, nil]];
+  self.tableView.allowsSelectionDuringEditing = YES;
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
   [super viewDidUnload];
   self.hosts = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.navigationController setToolbarHidden:NO animated:NO];
 
@@ -104,37 +97,36 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  
-  if( self.editingHost ) {
-    
-    NSArray* indexPaths=[NSArray arrayWithObject:self.editingHost];
-    
-    NSLog(@"appear reload %@",indexPaths);
+
+  if (self.editingHost) {
+
+    NSArray *indexPaths = [NSArray arrayWithObject:self.editingHost];
+
+    NSLog(@"appear reload %@", indexPaths);
     [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:indexPaths 
+    [self.tableView reloadRowsAtIndexPaths:indexPaths
                           withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
-    
-    self.editingHost=nil;
-    
+
+    self.editingHost = nil;
+
     [self.hosts save];
   }
 }
 
--(void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
-  
+
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  
-  if(self.isPad)
+
+  if (self.isPad)
     [self.detailViewController popToRootViewControllerAnimated:YES];
 }
 
-- (void) hostChangedNotification:(NSNotification *)aNotification{
-  
+- (void)hostChangedNotification:(NSNotification *)aNotification {
+
   [self.hosts save];
   [self.tableView reloadData];
 }
@@ -153,21 +145,21 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+
   static NSString *CellIdentifier = @"MKHostCell";
-  
+
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
   }
-  
-  MKHost* host = [self.hosts hostAtIndexPath:indexPath];
-  
+
+  MKHost *host = [self.hosts hostAtIndexPath:indexPath];
+
   cell.imageView.image = [host cellImage];
   cell.textLabel.text = host.name;
   cell.detailTextLabel.text = host.address;
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
+
   return cell;
 }
 
@@ -175,21 +167,21 @@
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-  return indexPath.section==0;
+  return indexPath.section == 0;
 }
 
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     // Delete the row from the data source.
     [self.hosts deleteHostAtIndexPath:indexPath];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-  }   
+  }
   else if (editingStyle == UITableViewCellEditingStyleInsert) {
     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-  }   
+  }
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -197,24 +189,23 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-  return indexPath.section==0;
+  return indexPath.section == 0;
 }
 
-- (void) setEditing:(BOOL)editing animated:(BOOL)animated {
-  [super setEditing: editing animated: animated];
-  
-  if(self.isPad)
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+  [super setEditing:editing animated:animated];
+
+  if (self.isPad)
     [self.detailViewController popToRootViewControllerAnimated:YES];
-  
-  UIBarButtonItem* spacerButton;
-  spacerButton =  [[[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil
-                    action:nil] autorelease];
-  if(editing)
-    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,nil] animated:YES];
+
+  UIBarButtonItem *spacerButton;
+  spacerButton = [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                               target:nil action:nil] autorelease];
+  if (editing)
+    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem, spacerButton, nil] animated:YES];
   else
-    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem,spacerButton,self.addButton,nil] animated:YES];
+    [self setToolbarItems:[NSArray arrayWithObjects:self.editButtonItem, spacerButton, self.addButton, nil] animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -224,29 +215,29 @@
   if (self.tableView.editing) {
     return nil;
   }
-  
+
   return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  if(!self.isPad)
+
+  if (!self.isPad)
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
-  if( indexPath.section==0 ){
-    MKHost* host=[self.hosts hostAtIndexPath:indexPath];
-    if (!self.tableView.editing ) {
-      MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
+
+  if (indexPath.section == 0) {
+    MKHost *host = [self.hosts hostAtIndexPath:indexPath];
+    if (!self.tableView.editing) {
+      MKHostViewController *hostView = [[MKHostViewController alloc] initWithHost:host];
       self.editingHost = indexPath;
-      
-      if(self.isPad){
-        BOOL animated=self.isRootForDetailViewController;
+
+      if (self.isPad) {
+        BOOL animated = self.isRootForDetailViewController;
         [self.detailViewController popToRootViewControllerAnimated:NO];
         [self.detailViewController pushViewController:hostView animated:animated];
       }
       else
         [self.navigationController pushViewController:hostView animated:YES];
-      
+
       [hostView release];
     }
   }
@@ -255,26 +246,26 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)addHost {
-  
-  self.editingHost=[self.hosts addHost];
-  
-  NSArray* indexPaths=[NSArray arrayWithObject:self.editingHost];
-  
+
+  self.editingHost = [self.hosts addHost];
+
+  NSArray *indexPaths = [NSArray arrayWithObject:self.editingHost];
+
   [self.tableView beginUpdates];
-  [self.tableView insertRowsAtIndexPaths:indexPaths 
+  [self.tableView insertRowsAtIndexPaths:indexPaths
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
-  
-  MKHost* host=[self.hosts hostAtIndexPath:self.editingHost]; 
-  MKHostViewController* hostView = [[MKHostViewController alloc] initWithHost:host];
-  if(self.isPad){
-    BOOL animated=self.isRootForDetailViewController;
+
+  MKHost *host = [self.hosts hostAtIndexPath:self.editingHost];
+  MKHostViewController *hostView = [[MKHostViewController alloc] initWithHost:host];
+  if (self.isPad) {
+    BOOL animated = self.isRootForDetailViewController;
     [self.detailViewController popToRootViewControllerAnimated:NO];
     [self.detailViewController pushViewController:hostView animated:animated];
   }
   else
     [self.navigationController pushViewController:hostView animated:YES];
-  [hostView release];   
+  [hostView release];
 }
 
 @end

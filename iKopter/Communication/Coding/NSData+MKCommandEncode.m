@@ -27,44 +27,47 @@
 /////////////////////////////////////////////////////////////////////////////////
 #pragma mark Helper funktions
 
-static NSData * encode64(NSData * inData){
+static NSData *encode64(NSData *inData) {
   unsigned int dstIdx = 0;
   unsigned int srcIdx = 0;
-  
-  const unsigned char * inBuffer = [inData bytes];
+
+  const unsigned char *inBuffer = [inData bytes];
   unsigned int length = [inData length];
-  
+
   unsigned char a, b, c;
-  
+
   int outDataLength = (length * 4) / 3;
-  
+
   if (outDataLength % 4)
     outDataLength += 4 - (outDataLength % 4);
-  
-  NSMutableData * outData = [NSMutableData dataWithLength:outDataLength];
-  
-  
-  char * outBuffer = [outData mutableBytes];
-  
+
+  NSMutableData *outData = [NSMutableData dataWithLength:outDataLength];
+
+
+  char *outBuffer = [outData mutableBytes];
+
   while (length > 0) {
     if (length) {
-      a = inBuffer[srcIdx++]; length--;
+      a = inBuffer[srcIdx++];
+      length--;
     } else a = 0;
     if (length) {
-      b = inBuffer[srcIdx++]; length--;
+      b = inBuffer[srcIdx++];
+      length--;
     } else b = 0;
     if (length) {
-      c = inBuffer[srcIdx++]; length--;
+      c = inBuffer[srcIdx++];
+      length--;
     } else c = 0;
-    
+
     outBuffer[dstIdx++] = '=' + (a >> 2);
     outBuffer[dstIdx++] = '=' + (((a & 0x03) << 4) | ((b & 0xf0) >> 4));
     outBuffer[dstIdx++] = '=' + (((b & 0x0f) << 2) | ((c & 0xc0) >> 6));
-    outBuffer[dstIdx++] = '=' + ( c & 0x3f);
+    outBuffer[dstIdx++] = '=' + (c & 0x3f);
   }
-  
+
   [outData setLength:dstIdx];
-  
+
   return outData;
 }
 
@@ -72,47 +75,46 @@ static NSData * encode64(NSData * inData){
 
 @implementation NSData (MKCommandEncode)
 
-- (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(IKMkAddress)aAddress;
-{
-  NSMutableData * frameData = [NSMutableData dataWithLength:3];
-  
-  char * frameBytes = [frameData mutableBytes];
+- (NSData *)dataWithCommand:(MKCommandId)aCommand forAddress:(IKMkAddress)aAddress; {
+  NSMutableData *frameData = [NSMutableData dataWithLength:3];
+
+  char *frameBytes = [frameData mutableBytes];
   frameBytes[0] = '#';
   frameBytes[1] = 'a' + aAddress;
   frameBytes[2] = aCommand;
-  
+
   [frameData appendData:encode64(self)];
-  
-  NSUInteger frameLength =  [frameData length];
+
+  NSUInteger frameLength = [frameData length];
   frameBytes = [frameData mutableBytes];
-  
+
   int crc = 0;
   for (int i = 0; i < frameLength; i++) {
     crc += frameBytes[i];
   }
-  
+
   crc %= 4096;
-  
+
   char tmpCrc1 = '=' + (crc / 64);
   char tmpCrc2 = ('=' + crc % 64);
-  
+
   [frameData appendBytes:&tmpCrc1 length:1];
   [frameData appendBytes:&tmpCrc2 length:1];
   [frameData appendBytes:"\r" length:1];
-  
+
   return frameData;
 }
 
-+ (NSData *) dataWithCommand:(MKCommandId)aCommand forAddress:(IKMkAddress)aAddress payloadForByte:(uint8_t)byte {
-  NSData * payload = [NSData dataWithBytes:&byte length:1];
++ (NSData *)dataWithCommand:(MKCommandId)aCommand forAddress:(IKMkAddress)aAddress payloadForByte:(uint8_t)byte {
+  NSData *payload = [NSData dataWithBytes:&byte length:1];
   return [payload dataWithCommand:aCommand forAddress:aAddress];
 }
 
-+ (NSData *) dataWithCommand:(MKCommandId)aCommand
-                  forAddress:(IKMkAddress)aAddress
-            payloadWithBytes:(const void *)bytes
-                      length:(NSUInteger)length {
-  NSData * payload = [NSData dataWithBytes:bytes length:length];
++ (NSData *)dataWithCommand:(MKCommandId)aCommand
+                 forAddress:(IKMkAddress)aAddress
+           payloadWithBytes:(const void *)bytes
+                     length:(NSUInteger)length {
+  NSData *payload = [NSData dataWithBytes:bytes length:length];
   return [payload dataWithCommand:aCommand forAddress:aAddress];
 }
 
