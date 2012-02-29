@@ -62,7 +62,7 @@
 @synthesize selectedViewController;
 @synthesize route;
 @synthesize routeController;
-@synthesize segment;
+@synthesize segment=_segment;
 @synthesize addButton;
 @synthesize addWithGpsButton;
 @synthesize spacer;
@@ -122,23 +122,23 @@
   [mapViewController release];
 
   NSArray *segmentItems = [NSArray arrayWithObjects:@"List", @"Map", nil];
-  segment = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
-  segment.segmentedControlStyle = UISegmentedControlStyleBar;
+  self.segment = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
+  self.segment.segmentedControlStyle = UISegmentedControlStyleBar;
 
-  segment.tintColor = [UIColor darkGrayColor];
-  [segment setImage:[UIImage imageNamed:@"list-mode.png"] forSegmentAtIndex:0];
-  [segment setWidth:50.0 forSegmentAtIndex:0];
-  [segment setWidth:50.0 forSegmentAtIndex:1];
-  [segment setImage:[UIImage imageNamed:@"map-mode.png"] forSegmentAtIndex:1];
+  self.segment.tintColor = [UIColor darkGrayColor];
+  [self.segment setImage:[UIImage imageNamed:@"list-mode.png"] forSegmentAtIndex:0];
+  [self.segment setWidth:50.0 forSegmentAtIndex:0];
+  [self.segment setWidth:50.0 forSegmentAtIndex:1];
+  [self.segment setImage:[UIImage imageNamed:@"map-mode.png"] forSegmentAtIndex:1];
 
 
-  [segment addTarget:self
+  [self.segment addTarget:self
               action:@selector(changeView)
     forControlEvents:UIControlEventValueChanged];
 
   UIBarButtonItem *segmentButton;
   segmentButton = [[[UIBarButtonItem alloc]
-          initWithCustomView:segment] autorelease];
+          initWithCustomView:self.segment] autorelease];
 
   if (!self.isPad)
     [self.navigationItem setRightBarButtonItem:segmentButton animated:NO];
@@ -188,7 +188,7 @@
     self.addWithGpsButton.enabled = [CLLocationManager locationServicesEnabled];
   }
 
-  segment.selectedSegmentIndex = 0;
+  self.segment.selectedSegmentIndex = 0;
 }
 
 - (void)viewDidUnload {
@@ -293,7 +293,7 @@
 #pragma mark - UITabBarDelegate
 
 - (void)changeView {
-  UIViewController *newSelectedViewController = [self.viewControllers objectAtIndex:segment.selectedSegmentIndex];
+  UIViewController *newSelectedViewController = [self.viewControllers objectAtIndex:self.segment.selectedSegmentIndex];
 
   [self.selectedViewController setEditing:NO animated:YES];
   [self.selectedViewController viewWillDisappear:NO];

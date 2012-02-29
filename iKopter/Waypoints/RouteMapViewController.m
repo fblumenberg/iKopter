@@ -37,6 +37,7 @@
 - (void)updateRouteOverlay;
 - (void)routeChangedNotification:(NSNotification *)aNotification;
 - (void)updateMapView;
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
 
 @end
 
@@ -92,14 +93,20 @@
     [self changeMapViewType];
   }
 
+  
+  UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+
+  [self.mapView addGestureRecognizer:longTap];
+  [longTap release];
+  
   if (self.isPad) {
     self.navigationItem.hidesBackButton = YES;
     UIBarButtonItem *curlBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
                                                                                         target:self.curlBarItem
                                                                                         action:@selector(touched)] autorelease];
 
-    [self                    setToolbarItems:[NSArray arrayWithObjects:
-            curlBarButtonItem, nil] animated:YES];
+    [self setToolbarItems:[NSArray arrayWithObjects:curlBarButtonItem, nil] 
+                 animated:YES];
 
     self.navigationController.toolbarHidden = NO;
   }
@@ -198,6 +205,20 @@
   IKPoint *point = [self.route pointAtIndexPath:editingPoint];
   [mapView addAnnotation:point];
   [self updateRouteOverlay];
+}
+
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer{
+  CGPoint p = [gestureRecognizer locationInView:self.mapView];
+  NSLog(@"Long press %@ %d",NSStringFromCGPoint(p),gestureRecognizer.state);
+  
+  if(gestureRecognizer.state == UIGestureRecognizerStateBegan){
+    CLLocationCoordinate2D coordinate=[self.mapView convertPoint:p toCoordinateFromView:self.mapView];
+    NSIndexPath *editingPoint = [self.route addPointAtCoordinate:coordinate];
+    
+    IKPoint *point = [self.route pointAtIndexPath:editingPoint];
+    [mapView addAnnotation:point];
+    [self updateRouteOverlay];
+  }
 }
 
 #pragma mark - Page Curl stuff
