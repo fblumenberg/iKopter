@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,38 +22,28 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import <IBAForms/IBAForms.h>
+#import "WPGenPanoramaDataSource.h"
+#import "StringToNumberTransformer.h"
+#import "SettingsFieldStyle.h"
 
-extern NSString *const MKRouteChangedNotification;
+@interface WPGenPanoramaDataSource ()
+@end
 
-@class IKPoint;
-@class Routes;
+@implementation WPGenPanoramaDataSource
 
-@interface Route : NSObject <NSCoding> {
+- (id)initWithModel:(id)aModel {
+  if ((self = [super initWithModel:aModel])) {
 
+    [self addAttributeSection];
+  }
+  return self;
 }
 
-@property(retain) NSString *name;
-@property(retain) NSMutableArray *points;
-@property(assign) Routes *routes;
+- (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
+  [super setModelValue:value forKeyPath:keyPath];
 
-+ (void)sendChangedNotification:(id)sender;
-
-+ (CLLocationCoordinate2D)defaultCoordinate;
-
-- (NSUInteger)count;
-
-- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSIndexPath *)addPointAtDefault;
-- (NSIndexPath *)addPointAtCenter;
-- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
-
-- (void) removeAllPoints;
-- (void) addPoints:(NSArray*)newPoints;
-
-- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
-- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
+  NSLog(@"%@", [self.model description]);
+}
 
 @end

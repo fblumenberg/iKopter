@@ -39,6 +39,7 @@
 @property(retain) IBOutlet MKMapView *mapView;
 @property(retain) FDCurlViewControl *curlBarItem;
 @property(retain) IBOutlet UISegmentedControl *segmentedControl;
+@property(retain) IBOutlet UILabel *scaleLabel;
 
 - (id)initWithRoute:(Route *)theRoute;
 - (IBAction)changeMapViewType;

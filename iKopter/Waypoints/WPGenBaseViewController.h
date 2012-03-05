@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,38 +22,43 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
+
+#import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-extern NSString *const MKRouteChangedNotification;
+IK_DECLARE_KEY(WPaltitude);
+IK_DECLARE_KEY(WPtoleranceRadius);
+IK_DECLARE_KEY(WPholdTime);
+IK_DECLARE_KEY(WPcamAngle);
+IK_DECLARE_KEY(WPheading);
+IK_DECLARE_KEY(WPaltitudeRate);
+IK_DECLARE_KEY(WPspeed);
+IK_DECLARE_KEY(WPwpEventChannelValue);
+IK_DECLARE_KEY(WPclearWpList);
 
-@class IKPoint;
-@class Routes;
+@protocol WPGenBaseViewControllerDelegate;
 
-@interface Route : NSObject <NSCoding> {
+@interface WPGenBaseViewController : UIViewController
 
-}
+- (id)initWithShapeView:(UIView *)shapeView forMapView:(MKMapView*)mapView;
 
-@property(retain) NSString *name;
-@property(retain) NSMutableArray *points;
-@property(assign) Routes *routes;
+@property(nonatomic, readonly) NSMutableDictionary *wpData;
+@property(nonatomic, assign) id<WPGenBaseViewControllerDelegate> delegate;
+@property(nonatomic, retain) MKMapView* mapView;
 
-+ (void)sendChangedNotification:(id)sender;
+@property(retain, nonatomic) IBOutlet UIView *shapeView;
 
-+ (CLLocationCoordinate2D)defaultCoordinate;
+- (NSArray*) generatePointsList;
 
-- (NSUInteger)count;
+- (IBAction)closeView:(id)sender;
 
-- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
+- (IBAction)generatePoints:(id)sender;
 
-- (NSIndexPath *)addPointAtDefault;
-- (NSIndexPath *)addPointAtCenter;
-- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
+@end
 
-- (void) removeAllPoints;
-- (void) addPoints:(NSArray*)newPoints;
+@protocol WPGenBaseViewControllerDelegate
 
-- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
-- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
+- (void) controllerWillClose:(WPGenBaseViewController*)controller; 
+- (void) controller:(WPGenBaseViewController*)controller generatedPoints:(NSArray*)points clearList:(BOOL)clear;
 
 @end

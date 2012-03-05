@@ -60,10 +60,9 @@
     attributeSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
 
-    NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
-            NSLocalizedString(@"Waypoint", nil),
-            NSLocalizedString(@"POI", nil),
-            nil]                                                           font:[UIFont boldSystemFontOfSize:18]];
+    NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects: NSLocalizedString(@"Waypoint", nil),
+                                                                                                           NSLocalizedString(@"POI", nil), nil]
+                                                                           font:[UIFont boldSystemFontOfSize:18]];
 
     IBASingleIndexTransformer *singleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
 

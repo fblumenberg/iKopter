@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,38 +22,16 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
 
-extern NSString *const MKRouteChangedNotification;
+#import <UIKit/UIKit.h>
+#import "WPGenBaseViewController.h"
 
-@class IKPoint;
-@class Routes;
+IK_DECLARE_KEY(WPnoPointsX);
+IK_DECLARE_KEY(WPnoPointsY);
 
-@interface Route : NSObject <NSCoding> {
+@interface WPGenAreaViewController : WPGenBaseViewController
 
-}
+- (id)initForMapView:(MKMapView*)mapView;
 
-@property(retain) NSString *name;
-@property(retain) NSMutableArray *points;
-@property(assign) Routes *routes;
-
-+ (void)sendChangedNotification:(id)sender;
-
-+ (CLLocationCoordinate2D)defaultCoordinate;
-
-- (NSUInteger)count;
-
-- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSIndexPath *)addPointAtDefault;
-- (NSIndexPath *)addPointAtCenter;
-- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
-
-- (void) removeAllPoints;
-- (void) addPoints:(NSArray*)newPoints;
-
-- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
-- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

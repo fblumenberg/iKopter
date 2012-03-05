@@ -22,38 +22,11 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import <UIKit/UIKit.h>
+#import <IBAForms/IBAFormViewController.h>
 
-extern NSString *const MKRouteChangedNotification;
+@interface WPGenConfigViewController : IBAFormViewController
 
-@class IKPoint;
-@class Routes;
-
-@interface Route : NSObject <NSCoding> {
-
-}
-
-@property(retain) NSString *name;
-@property(retain) NSMutableArray *points;
-@property(assign) Routes *routes;
-
-+ (void)sendChangedNotification:(id)sender;
-
-+ (CLLocationCoordinate2D)defaultCoordinate;
-
-- (NSUInteger)count;
-
-- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSIndexPath *)addPointAtDefault;
-- (NSIndexPath *)addPointAtCenter;
-- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
-
-- (void) removeAllPoints;
-- (void) addPoints:(NSArray*)newPoints;
-
-- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
-- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
+- (id)initWithFormDataSource:(IBAFormDataSource *)formDataSource;
 
 @end

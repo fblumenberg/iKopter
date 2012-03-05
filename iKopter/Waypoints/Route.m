@@ -196,5 +196,23 @@ NSString *const MKRouteChangedNotification = @"MKRouteChangedNotification";
   [Route sendChangedNotification:self];
 }
 
+- (void) removeAllPoints{
+  
+  [self.points removeAllObjects];
+  [self.routes save];
+}
+
+- (void) addPoints:(NSArray*)newPoints{
+  
+  if( [newPoints count]>0){
+    for (IKPoint *p in newPoints) {
+      p.index = [points count] + 1;
+      [points addObject:p];
+    }
+    
+    [self.routes save];
+  }
+}
+
 @end
 

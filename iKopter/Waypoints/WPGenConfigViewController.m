@@ -22,38 +22,38 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import "WPGenConfigViewController.h"
 
-extern NSString *const MKRouteChangedNotification;
+@interface WPGenConfigViewController ()
 
-@class IKPoint;
-@class Routes;
+@end
 
-@interface Route : NSObject <NSCoding> {
+@implementation WPGenConfigViewController
 
+- (id)initWithFormDataSource:(IBAFormDataSource *)formDataSource
+{
+  if ((self = [super initWithNibName:nil bundle:nil formDataSource:formDataSource])) {
+    self.title = NSLocalizedString(@"Waypoint", @"Waypoint view title");
+  }
+  return self;
 }
 
-@property(retain) NSString *name;
-@property(retain) NSMutableArray *points;
-@property(assign) Routes *routes;
+- (void)loadView{
+  [super loadView];
+  
+  UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  
+  UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+  [formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [self setTableView:formTableView];
+  
+  [view addSubview:formTableView];
+  [self setView:view];
+}
 
-+ (void)sendChangedNotification:(id)sender;
-
-+ (CLLocationCoordinate2D)defaultCoordinate;
-
-- (NSUInteger)count;
-
-- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSIndexPath *)addPointAtDefault;
-- (NSIndexPath *)addPointAtCenter;
-- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
-
-- (void) removeAllPoints;
-- (void) addPoints:(NSArray*)newPoints;
-
-- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
-- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return YES;
+}
 
 @end

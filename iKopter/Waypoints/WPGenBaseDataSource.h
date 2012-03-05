@@ -1,5 +1,5 @@
 // ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+// Copyright (C) 2011, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,38 +22,23 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import <IBAForms/IBAFormDataSource.h>
 
-extern NSString *const MKRouteChangedNotification;
+@protocol WPGenBaseDataSourceDelegate;
 
-@class IKPoint;
-@class Routes;
-
-@interface Route : NSObject <NSCoding> {
+@interface WPGenBaseDataSource : IBAFormDataSource {
 
 }
 
-@property(retain) NSString *name;
-@property(retain) NSMutableArray *points;
-@property(assign) Routes *routes;
+- (void)addAttributeSection;
 
-+ (void)sendChangedNotification:(id)sender;
+@property(nonatomic,assign) id<WPGenBaseDataSourceDelegate> delegate;
 
-+ (CLLocationCoordinate2D)defaultCoordinate;
+@end
 
-- (NSUInteger)count;
+@protocol WPGenBaseDataSourceDelegate
 
-- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
+- (void) dataSource:(WPGenBaseDataSource*) changed;
 
-- (NSIndexPath *)addPointAtDefault;
-- (NSIndexPath *)addPointAtCenter;
-- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
-
-- (void) removeAllPoints;
-- (void) addPoints:(NSArray*)newPoints;
-
-- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
-- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
