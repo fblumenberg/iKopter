@@ -90,6 +90,22 @@
 		BA3472C21503ECE80097A06F /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472C11503ECE80097A06F /* close.png */; };
 		BA3472C41503F0430097A06F /* resize.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472C31503F0430097A06F /* resize.png */; };
 		BA3472C71503F66B0097A06F /* WPGenConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3472C61503F66A0097A06F /* WPGenConfigViewController.m */; };
+		BA3472D015068B4A0097A06F /* WPGenCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3472CD15068B480097A06F /* WPGenCircleView.m */; };
+		BA3472D115068B4A0097A06F /* WPGenCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3472CF15068B490097A06F /* WPGenCircleViewController.m */; };
+		BA3472FA150AC5530097A06F /* UIStepperLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472EB150AC5530097A06F /* UIStepperLeft.png */; };
+		BA3472FB150AC5530097A06F /* UIStepperLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472EC150AC5530097A06F /* UIStepperLeft@2x.png */; };
+		BA3472FC150AC5530097A06F /* UIStepperLeftPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472ED150AC5530097A06F /* UIStepperLeftPressed.png */; };
+		BA3472FD150AC5530097A06F /* UIStepperLeftPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472EE150AC5530097A06F /* UIStepperLeftPressed@2x.png */; };
+		BA3472FE150AC5530097A06F /* UIStepperMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472EF150AC5530097A06F /* UIStepperMiddle.png */; };
+		BA3472FF150AC5530097A06F /* UIStepperMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F0150AC5530097A06F /* UIStepperMiddle@2x.png */; };
+		BA347300150AC5530097A06F /* UIStepperMinus.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F1150AC5530097A06F /* UIStepperMinus.png */; };
+		BA347301150AC5530097A06F /* UIStepperMinus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F2150AC5530097A06F /* UIStepperMinus@2x.png */; };
+		BA347302150AC5530097A06F /* UIStepperPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F3150AC5530097A06F /* UIStepperPlus.png */; };
+		BA347303150AC5530097A06F /* UIStepperPlus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F4150AC5530097A06F /* UIStepperPlus@2x.png */; };
+		BA347304150AC5530097A06F /* UIStepperRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F5150AC5530097A06F /* UIStepperRight.png */; };
+		BA347305150AC5530097A06F /* UIStepperRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F6150AC5530097A06F /* UIStepperRight@2x.png */; };
+		BA347306150AC5530097A06F /* UIStepperRightPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F7150AC5530097A06F /* UIStepperRightPressed.png */; };
+		BA347307150AC5530097A06F /* UIStepperRightPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3472F8150AC5530097A06F /* UIStepperRightPressed@2x.png */; };
 		BA3B69B713CA07B9000491EB /* icon-check.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3B69B513CA07B9000491EB /* icon-check.png */; };
 		BA3B69B813CA07B9000491EB /* icon-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3B69B613CA07B9000491EB /* icon-check@2x.png */; };
 		BA41B6F613D4379B00408B18 /* icon-backforth.png in Resources */ = {isa = PBXBuildFile; fileRef = BA41B6F413D4379B00408B18 /* icon-backforth.png */; };
@@ -484,6 +500,24 @@
 		BA3472C31503F0430097A06F /* resize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = resize.png; path = Images/resize.png; sourceTree = "<group>"; };
 		BA3472C51503F66A0097A06F /* WPGenConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGenConfigViewController.h; sourceTree = "<group>"; };
 		BA3472C61503F66A0097A06F /* WPGenConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGenConfigViewController.m; sourceTree = "<group>"; };
+		BA3472CC15068B470097A06F /* WPGenCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGenCircleView.h; sourceTree = "<group>"; };
+		BA3472CD15068B480097A06F /* WPGenCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGenCircleView.m; sourceTree = "<group>"; };
+		BA3472CE15068B490097A06F /* WPGenCircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGenCircleViewController.h; sourceTree = "<group>"; };
+		BA3472CF15068B490097A06F /* WPGenCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGenCircleViewController.m; sourceTree = "<group>"; };
+		BA3472EB150AC5530097A06F /* UIStepperLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIStepperLeft.png; sourceTree = "<group>"; };
+		BA3472EC150AC5530097A06F /* UIStepperLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIStepperLeft@2x.png"; sourceTree = "<group>"; };
+		BA3472ED150AC5530097A06F /* UIStepperLeftPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIStepperLeftPressed.png; sourceTree = "<group>"; };
+		BA3472EE150AC5530097A06F /* UIStepperLeftPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIStepperLeftPressed@2x.png"; sourceTree = "<group>"; };
+		BA3472EF150AC5530097A06F /* UIStepperMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIStepperMiddle.png; sourceTree = "<group>"; };
+		BA3472F0150AC5530097A06F /* UIStepperMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIStepperMiddle@2x.png"; sourceTree = "<group>"; };
+		BA3472F1150AC5530097A06F /* UIStepperMinus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIStepperMinus.png; sourceTree = "<group>"; };
+		BA3472F2150AC5530097A06F /* UIStepperMinus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIStepperMinus@2x.png"; sourceTree = "<group>"; };
+		BA3472F3150AC5530097A06F /* UIStepperPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIStepperPlus.png; sourceTree = "<group>"; };
+		BA3472F4150AC5530097A06F /* UIStepperPlus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIStepperPlus@2x.png"; sourceTree = "<group>"; };
+		BA3472F5150AC5530097A06F /* UIStepperRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIStepperRight.png; sourceTree = "<group>"; };
+		BA3472F6150AC5530097A06F /* UIStepperRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIStepperRight@2x.png"; sourceTree = "<group>"; };
+		BA3472F7150AC5530097A06F /* UIStepperRightPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIStepperRightPressed.png; sourceTree = "<group>"; };
+		BA3472F8150AC5530097A06F /* UIStepperRightPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIStepperRightPressed@2x.png"; sourceTree = "<group>"; };
 		BA3B69B513CA07B9000491EB /* icon-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-check.png"; sourceTree = "<group>"; };
 		BA3B69B613CA07B9000491EB /* icon-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-check@2x.png"; sourceTree = "<group>"; };
 		BA41B6F413D4379B00408B18 /* icon-backforth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-backforth.png"; sourceTree = "<group>"; };
@@ -899,6 +933,10 @@
 		BA069E931503CA430017DBD6 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
+				BA3472CC15068B470097A06F /* WPGenCircleView.h */,
+				BA3472CD15068B480097A06F /* WPGenCircleView.m */,
+				BA3472CE15068B490097A06F /* WPGenCircleViewController.h */,
+				BA3472CF15068B490097A06F /* WPGenCircleViewController.m */,
 				BA3472BE1503E1490097A06F /* WPGenAreaViewController.h */,
 				BA3472BF1503E1490097A06F /* WPGenAreaViewController.m */,
 				BA3472BB1503DEB80097A06F /* WPGenAreaView.h */,
@@ -1304,6 +1342,27 @@
 			name = RedparkSDK;
 			sourceTree = "<group>";
 		};
+		BA3472E8150AC5190097A06F /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				BA3472EB150AC5530097A06F /* UIStepperLeft.png */,
+				BA3472EC150AC5530097A06F /* UIStepperLeft@2x.png */,
+				BA3472ED150AC5530097A06F /* UIStepperLeftPressed.png */,
+				BA3472EE150AC5530097A06F /* UIStepperLeftPressed@2x.png */,
+				BA3472EF150AC5530097A06F /* UIStepperMiddle.png */,
+				BA3472F0150AC5530097A06F /* UIStepperMiddle@2x.png */,
+				BA3472F1150AC5530097A06F /* UIStepperMinus.png */,
+				BA3472F2150AC5530097A06F /* UIStepperMinus@2x.png */,
+				BA3472F3150AC5530097A06F /* UIStepperPlus.png */,
+				BA3472F4150AC5530097A06F /* UIStepperPlus@2x.png */,
+				BA3472F5150AC5530097A06F /* UIStepperRight.png */,
+				BA3472F6150AC5530097A06F /* UIStepperRight@2x.png */,
+				BA3472F7150AC5530097A06F /* UIStepperRightPressed.png */,
+				BA3472F8150AC5530097A06F /* UIStepperRightPressed@2x.png */,
+			);
+			name = Stepper;
+			sourceTree = "<group>";
+		};
 		BA4E544413955043005CE4D2 /* BTStack-Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -1652,6 +1711,7 @@
 		BAA4E6BC137EB89D0068E38E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA3472E8150AC5190097A06F /* Stepper */,
 				BA59C07E142BB12C00D40529 /* IKOutputCell.h */,
 				BA59C07F142BB12C00D40529 /* IKOutputCell.m */,
 				BA59C080142BB12C00D40529 /* IKOutputFormField.h */,
@@ -2000,6 +2060,20 @@
 				BA069E981503CA720017DBD6 /* WPGenBaseViewController.xib in Resources */,
 				BA3472C21503ECE80097A06F /* close.png in Resources */,
 				BA3472C41503F0430097A06F /* resize.png in Resources */,
+				BA3472FA150AC5530097A06F /* UIStepperLeft.png in Resources */,
+				BA3472FB150AC5530097A06F /* UIStepperLeft@2x.png in Resources */,
+				BA3472FC150AC5530097A06F /* UIStepperLeftPressed.png in Resources */,
+				BA3472FD150AC5530097A06F /* UIStepperLeftPressed@2x.png in Resources */,
+				BA3472FE150AC5530097A06F /* UIStepperMiddle.png in Resources */,
+				BA3472FF150AC5530097A06F /* UIStepperMiddle@2x.png in Resources */,
+				BA347300150AC5530097A06F /* UIStepperMinus.png in Resources */,
+				BA347301150AC5530097A06F /* UIStepperMinus@2x.png in Resources */,
+				BA347302150AC5530097A06F /* UIStepperPlus.png in Resources */,
+				BA347303150AC5530097A06F /* UIStepperPlus@2x.png in Resources */,
+				BA347304150AC5530097A06F /* UIStepperRight.png in Resources */,
+				BA347305150AC5530097A06F /* UIStepperRight@2x.png in Resources */,
+				BA347306150AC5530097A06F /* UIStepperRightPressed.png in Resources */,
+				BA347307150AC5530097A06F /* UIStepperRightPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2220,6 +2294,8 @@
 				BA3472BD1503DEB80097A06F /* WPGenAreaView.m in Sources */,
 				BA3472C01503E14A0097A06F /* WPGenAreaViewController.m in Sources */,
 				BA3472C71503F66B0097A06F /* WPGenConfigViewController.m in Sources */,
+				BA3472D015068B4A0097A06F /* WPGenCircleView.m in Sources */,
+				BA3472D115068B4A0097A06F /* WPGenCircleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,8 +23,10 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <IBAForms/IBAForms.h>
+#import "WPGenCircleViewController.h"
 #import "WPGenCircleDataSource.h"
 #import "StringToNumberTransformer.h"
+#import "SettingsButtonStyle.h"
 #import "SettingsFieldStyle.h"
 
 @interface WPGenCircleDataSource ()
@@ -34,6 +36,29 @@
 
 - (id)initWithModel:(id)aModel {
   if ((self = [super initWithModel:aModel])) {
+
+    IBAStepperFormField* stepperField;
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    configSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    //------------------------------------------------------------------------------------------------------------------------
+
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:WPnoPoints
+                                                      title:NSLocalizedString(@"#WP", @"WP Numbers")
+                                           valueTransformer:nil];
+    
+    stepperField.maximumValue = 100;
+    stepperField.minimumValue = 2;
+    
+    [configSection addFormField:[stepperField autorelease]];
+    
+    [configSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:WPclockwise
+                                                                        title:NSLocalizedString(@"Clockwise", @"WPclockwise")] autorelease]];
+    
+    [configSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:WPclearWpList
+                                                                        title:NSLocalizedString(@"Clear Waipoints", @"WPclearWpList title")] autorelease]];
+    
     [self addAttributeSection];
   }
   return self;

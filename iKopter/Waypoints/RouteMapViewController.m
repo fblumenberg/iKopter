@@ -33,6 +33,7 @@
 #import "UIViewController+SplitView.h"
 
 #import "WPGenAreaViewController.h"
+#import "WPGenCircleViewController.h"
 
 @interface RouteMapViewController ()<WPGenBaseViewControllerDelegate>
 
@@ -41,13 +42,15 @@
 - (void)updateMapView;
 - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
 
-- (void)showWpGen;
+- (void)showWpGen:(id)sender;
 - (void)generateWayPoints;
+- (void)configWayPoints:(id)sender;
 - (void)updateWpToolbar;
 
 @property(nonatomic,retain)WPGenBaseViewController *wpgenController;
 @property(retain) IBOutlet UISegmentedControl *wpGeneratorSelection;
 @property(retain) IBOutlet UIBarButtonItem *wpGenerateItem;
+@property(retain) IBOutlet UIBarButtonItem *wpGenerateConfigItem;
 
 @end
 
@@ -64,6 +67,7 @@
 @synthesize wpgenController;
 @synthesize wpGenerateItem;
 @synthesize wpGeneratorSelection;
+@synthesize wpGenerateConfigItem;
 
 - (id)initWithRoute:(Route *)theRoute {
   self = [super initWithNibName:@"RouteMapViewController" bundle:nil];
@@ -83,7 +87,7 @@
   self.wpgenController = nil;
   self.wpGenerateItem=nil;
   self.wpGeneratorSelection=nil;
-  
+  self.wpGenerateConfigItem=nil;
   [super dealloc];
 }
 
@@ -130,6 +134,11 @@
                                                                            style:UIBarButtonItemStyleBordered 
                                                                           target:self action:@selector(generateWayPoints)] autorelease];
 
+
+    self.wpGenerateConfigItem  = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"CFG", @"Gernerate WP")  
+                                                            style:UIBarButtonItemStyleBordered 
+                                                                  target:self action:@selector(configWayPoints:)] autorelease];
+
     NSArray *segmentItems = [NSArray arrayWithObjects:@"AREA", @"CIRCLE", @"PANO", nil];
     self.wpGeneratorSelection = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
     self.wpGeneratorSelection.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -142,14 +151,14 @@
     self.wpGeneratorSelection.momentary = YES;
     
     [self.wpGeneratorSelection addTarget:self
-                     action:@selector(showWpGen)
+                                  action:@selector(showWpGen:)
            forControlEvents:UIControlEventValueChanged];
     
     UIBarButtonItem *segmentButton;
     segmentButton = [[[UIBarButtonItem alloc]
                       initWithCustomView:self.wpGeneratorSelection] autorelease];
 
-    [self setToolbarItems:[NSArray arrayWithObjects:curlBarButtonItem, spacer, self.wpGenerateItem, segmentButton, nil] 
+    [self setToolbarItems:[NSArray arrayWithObjects:curlBarButtonItem, spacer, self.wpGenerateConfigItem, self.wpGenerateItem, segmentButton, nil] 
                  animated:YES];
 
     self.navigationController.toolbarHidden = NO;
@@ -166,6 +175,7 @@
   self.wpGenerateItem=nil;
   self.wpGeneratorSelection=nil;
   self.wpgenController=nil;
+  self.wpGenerateConfigItem=nil;
   [super viewDidUnload];
 }
 
@@ -328,8 +338,12 @@
       popOverController.delegate = self;
       popOverController.popoverContentSize = CGSizeMake(320, 500);
 
-      [popOverController presentPopoverFromRect:control.bounds inView:control
+
+      CGRect rect = CGRectMake(CGRectGetMidX(view.bounds)+view.calloutOffset.x-3, 0, 3, 1);
+      [popOverController presentPopoverFromRect:rect inView:view
                        permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+      [self.mapView deselectAnnotation:[view annotation] animated:NO];
     }
     else {
       [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
@@ -509,9 +523,21 @@ didChangeDragState:(MKAnnotationViewDragState)newState
   self.wpGeneratorSelection.enabled = self.wpgenController==nil;
 }
 
-- (void)showWpGen{
+- (void)showWpGen:(id)sender{
 
-  self.wpgenController = [[WPGenAreaViewController alloc] initForMapView:self.mapView];
+  switch (self.wpGeneratorSelection.selectedSegmentIndex) {
+    case 0:
+      self.wpgenController = [[WPGenAreaViewController alloc] initForMapView:self.mapView];
+      break;
+      
+    case 1:
+      self.wpgenController = [[WPGenCircleViewController alloc] initForMapView:self.mapView];
+      break;
+
+    default:
+      self.wpgenController = nil;
+      break;
+  }
   self.wpgenController.delegate = self;
   
   [self updateWpToolbar];
@@ -521,6 +547,10 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 
 - (void) generateWayPoints {
   [self.wpgenController generatePoints:self];
+}
+
+- (void)configWayPoints:(id)sender{
+  [self.wpgenController showConfig:sender];
 }
 
 #pragma mark - Waypoint Generator Delegate
@@ -543,5 +573,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 
   [Route sendChangedNotification:self];
 }
+
 
 @end

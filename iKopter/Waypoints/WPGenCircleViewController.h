@@ -24,44 +24,15 @@
 
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
-#import "WPGenBaseDataSource.h"
+#import "WPGenBaseViewController.h"
 
-IK_DECLARE_KEY(WPaltitude);
-IK_DECLARE_KEY(WPtoleranceRadius);
-IK_DECLARE_KEY(WPholdTime);
-IK_DECLARE_KEY(WPcamAngle);
-IK_DECLARE_KEY(WPheading);
-IK_DECLARE_KEY(WPaltitudeRate);
-IK_DECLARE_KEY(WPspeed);
-IK_DECLARE_KEY(WPwpEventChannelValue);
-IK_DECLARE_KEY(WPclearWpList);
+IK_DECLARE_KEY(WPnoPoints);
+IK_DECLARE_KEY(WPclockwise);
+IK_DECLARE_KEY(WPstartangle);
 
-@protocol WPGenBaseViewControllerDelegate;
+@interface WPGenCircleViewController : WPGenBaseViewController
 
-@interface WPGenBaseViewController : UIViewController
+- (id)initForMapView:(MKMapView*)mapView;
 
-- (id)initWithShapeView:(UIView *)shapeView forMapView:(MKMapView*)mapView;
-
-@property(nonatomic, readonly) NSMutableDictionary *wpData;
-@property(nonatomic, assign) id<WPGenBaseViewControllerDelegate> delegate;
-@property(nonatomic, retain) MKMapView* mapView;
-
-@property(retain, nonatomic) IBOutlet UIView *shapeView;
-@property(retain) WPGenBaseDataSource* dataSource;
-
-- (NSArray*) generatePointsList;
-
-- (IBAction)closeView:(id)sender;
-
-- (IBAction)generatePoints:(id)sender;
-- (IBAction)showConfig:(id)sender;
-
-@end
-
-@protocol WPGenBaseViewControllerDelegate
-
-- (void) controllerWillClose:(WPGenBaseViewController*)controller; 
-- (void) controller:(WPGenBaseViewController*)controller generatedPoints:(NSArray*)points clearList:(BOOL)clear;
 
 @end

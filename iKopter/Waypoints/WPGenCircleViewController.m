@@ -26,38 +26,41 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MapKit/MapKit.h>
 
-#import "WPGenAreaViewController.h"
-#import "WPGenAreaDataSource.h"
+#import "WPGenCircleViewController.h"
+#import "WPGenCircleDataSource.h"
 #import "WPGenConfigViewController.h"
-#import "WPGenAreaView.h"
+#import "WPGenCircleView.h"
 
 #import "IKPoint.h"
 
-IK_DEFINE_KEY_WITH_VALUE(WPnoPointsX, @"noPointsX");
-IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
+IK_DEFINE_KEY_WITH_VALUE(WPnoPoints, @"noPoints");
+IK_DEFINE_KEY_WITH_VALUE(WPstartangle, @"startangle");
+IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
 
-@interface WPGenAreaViewController () <UIPopoverControllerDelegate,WPGenBaseDataSourceDelegate,UIGestureRecognizerDelegate> {
+@interface WPGenCircleViewController () <UIPopoverControllerDelegate,WPGenBaseDataSourceDelegate,UIGestureRecognizerDelegate> {
 }
 
-@property(retain) WPGenAreaDataSource* dataSource;
+@property(retain) WPGenCircleDataSource* dataSource;
 
 @end
 
-@implementation WPGenAreaViewController
+@implementation WPGenCircleViewController
 
 @synthesize dataSource;
 
 - (id)initForMapView:(MKMapView*)mapView {
 
-  WPGenAreaView* shapeView = [[WPGenAreaView alloc] initWithFrame:CGRectZero];
+  WPGenCircleView* shapeView = [[WPGenCircleView alloc] initWithFrame:CGRectZero];
+  
+  
   
   self = [super initWithShapeView:shapeView forMapView:mapView];
   if (self) {
 
-    [self.wpData setValue:[NSNumber numberWithInteger:2] forKey:WPnoPointsX];
-    [self.wpData setValue:[NSNumber numberWithInteger:2] forKey:WPnoPointsY];
+    [self.wpData setValue:[NSNumber numberWithInteger:shapeView.noPoints] forKey:WPnoPoints];
+    [self.wpData setValue:[NSNumber numberWithBool:NO] forKey:WPclockwise];
 
-    self.dataSource = [[WPGenAreaDataSource alloc] initWithModel:self.wpData];
+    self.dataSource = [[WPGenCircleDataSource alloc] initWithModel:self.wpData];
     self.dataSource.delegate = self;
   }
   return self;
@@ -85,38 +88,52 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
 }
 
 -(void)tapped:(UITapGestureRecognizer*)gestureRecognizer {
+  
   [self showConfig:self.shapeView];
 }
 
 
 -(void) dataSource:(WPGenBaseDataSource *)changed {
   
-  WPGenAreaView* v=(WPGenAreaView*)self.shapeView;
+  WPGenCircleView* v=(WPGenCircleView*)self.shapeView;
   
-  v.noPointsX = [[self.wpData objectForKey:WPnoPointsX] integerValue];
-  v.noPointsY = [[self.wpData objectForKey:WPnoPointsY] integerValue];
+  v.noPoints = [[self.wpData objectForKey:WPnoPoints] integerValue];
+  v.clockwise= [[self.wpData objectForKey:WPclockwise] boolValue];
   [v updatePoints];
   [v setNeedsDisplay];
 }
 
 -(NSArray*) generatePointsList{
   
-  WPGenAreaView* v = (WPGenAreaView*)self.shapeView;
-  
+  WPGenCircleView* v = (WPGenCircleView*)self.shapeView;
+
   NSMutableArray* points=[NSMutableArray arrayWithCapacity:[v.points count]];
   
-  [v.points enumerateObjectsUsingBlock:^(id obj, NSUInteger idxY, BOOL *stop){
+  CLLocationCoordinate2D coordinate = [self.mapView convertPoint:v.poi toCoordinateFromView:self.shapeView];
+  
+  IKPoint *newPoint = [[IKPoint alloc] initWithCoordinate:coordinate];
+  
+  newPoint.heading=[[self.wpData objectForKey:WPheading] integerValue];
+  newPoint.toleranceRadius=[[self.wpData objectForKey:WPtoleranceRadius] integerValue];    
+  newPoint.holdTime=[[self.wpData objectForKey:WPholdTime] integerValue];
+  newPoint.eventFlag=0;
+  newPoint.index=255;
+  newPoint.type=POINT_TYPE_POI;
+  newPoint.wpEventChannelValue=[[self.wpData objectForKey:WPaltitude] integerValue];
+  newPoint.altitudeRate=[[self.wpData objectForKey:WPaltitudeRate] integerValue];
+  newPoint.speed=[[self.wpData objectForKey:WPspeed] integerValue];
+  newPoint.camAngle=[[self.wpData objectForKey:WPcamAngle] integerValue];
+  
+  [points addObject:newPoint];
 
-    NSArray* x=obj;    
-    if(idxY % 2)
-      x = [[x reverseObjectEnumerator]allObjects];
-    
-    [x enumerateObjectsUsingBlock:^(id obj, NSUInteger idxX, BOOL *stop){
-      CGPoint p = [[x objectAtIndex:idxX] CGPointValue];
+  
+  [v.points enumerateObjectsUsingBlock:^(NSValue* obj, NSUInteger idx, BOOL *stop){
+
+      CGPoint p = [obj CGPointValue];
       
       CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
       
-      NSLog(@"%d,%d lat:%f long:%f",idxX,idxY,coordinate.latitude,coordinate.longitude);
+      NSLog(@"%d lat:%f long:%f",idx,coordinate.latitude,coordinate.longitude);
       
       IKPoint *newPoint = [[IKPoint alloc] initWithCoordinate:coordinate];
 
@@ -134,7 +151,6 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
       [points addObject:newPoint];
 
       [newPoint release];
-    }];
   }];
 
   return points;

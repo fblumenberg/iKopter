@@ -26,6 +26,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "WPGenBaseViewController.h"
+#import "WPGenConfigViewController.h"
 
 IK_DEFINE_KEY_WITH_VALUE(WPaltitude, @"altitude");
 IK_DEFINE_KEY_WITH_VALUE(WPtoleranceRadius, @"toleranceRadius");
@@ -50,6 +51,8 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 
 @property(retain, nonatomic) IBOutlet UIView *resizeHandle;
 
+@property(retain, nonatomic) UIPopoverController *popOverController;
+
 - (void)resize:(UIPanGestureRecognizer *)gestureRecognizer;
 - (void)scale:(UIPinchGestureRecognizer *)gestureRecognizer;
 - (void)rotate:(UIRotationGestureRecognizer *)gestureRecognizer;
@@ -65,6 +68,8 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 @synthesize mapView = _mapView;
 @synthesize wpData;
 @synthesize delegate;
+@synthesize dataSource = _dataSource;
+@synthesize popOverController;
 
 - (id)initWithShapeView:(UIView *)shapeView forMapView:(MKMapView *)mapView {
   self = [super initWithNibName:@"WPGenBaseViewController" bundle:nil];
@@ -92,6 +97,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   self.wpData = nil;
   self.resizeHandle = nil;
   self.mapView = nil;
+  self.popOverController = nil;
 
   [super dealloc];
 }
@@ -139,6 +145,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 - (void)viewDidUnload {
   self.resizeHandle = nil;
   self.mapView = nil;
+  self.popOverController = nil;
 
   [super viewDidUnload];
 }
@@ -212,7 +219,8 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   }
   if ([(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateEnded ||
           [(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateCancelled) {
-    [self.view setNeedsDisplay];
+    [self.shapeView setNeedsLayout];
+    [self.shapeView setNeedsDisplay];
   }
 }
 
@@ -258,6 +266,40 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   NSArray* points = [self generatePointsList];
   BOOL clearList = [[self.wpData objectForKey:WPclearWpList] boolValue];
   [self.delegate controller:self generatedPoints:points clearList:clearList];
+}
+
+- (IBAction)showConfig:(id)sender{
+  
+  if(self.popOverController){
+    [self.popOverController dismissPopoverAnimated:YES];
+    self.popOverController = nil;
+    return;
+  }
+  
+  WPGenConfigViewController* controller = [[WPGenConfigViewController alloc] initWithFormDataSource:self.dataSource];
+  
+
+  self.popOverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  self.popOverController.delegate = self;
+  self.popOverController.popoverContentSize = CGSizeMake(320, 500);
+
+  if( [sender isKindOfClass:[UIBarButtonItem class]] ){
+    [self.popOverController presentPopoverFromBarButtonItem:sender
+                     permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+  }
+  else if ([sender isKindOfClass:[UIView class]]) {
+    [self.popOverController presentPopoverFromRect:((UIView*)sender).frame inView:(UIView*)sender
+                     permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+  }     
+  else {
+    [self.popOverController presentPopoverFromRect:self.shapeView.frame inView:self.shapeView
+                     permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+  }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  self.popOverController = nil;
 }
 
 @end

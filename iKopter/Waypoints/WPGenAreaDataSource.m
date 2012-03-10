@@ -39,31 +39,33 @@
 - (id)initWithModel:(id)aModel {
   if ((self = [super initWithModel:aModel])) {
     
-    IBATextFormField *numberField;
-    
+    IBAStepperFormField* stepperField;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     configSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:WPnoPointsX
-                                                      title:NSLocalizedString(@"#WP-X", @"WP Numbers X")
-                                           valueTransformer:[StringToNumberTransformer instance]];
 
-    [configSection addFormField:[numberField autorelease]];
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:WPnoPointsX
+                                                          title:NSLocalizedString(@"#WP-X", @"WP Numbers")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 100;
+    stepperField.minimumValue = 0;
+    
+    [configSection addFormField:[stepperField autorelease]];
 
-    numberField = [[IBATextFormField alloc] initWithKeyPath:WPnoPointsY
-                                                      title:NSLocalizedString(@"#WP-Y", @"WP Numbers Y")
-                                           valueTransformer:[StringToNumberTransformer instance]];
-    [configSection addFormField:[numberField autorelease]];
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:WPnoPointsY
+                                                          title:NSLocalizedString(@"#WP-Y", @"WP Numbers")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 100;
+    stepperField.minimumValue = 0;
+    
+    [configSection addFormField:[stepperField autorelease]];
 
     [configSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:WPclearWpList
                                                                            title:NSLocalizedString(@"Clear Waipoints", @"WPclearWpList title")] autorelease]];
-
-    IBAButtonFormField *button = [[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Generate Waypoints", @"WPGen button") icon:nil executionBlock:^(void){
-      
-    }] autorelease];
-    
-    button.formFieldStyle = [[[SettingsButtonIndicatorStyle alloc] init] autorelease];
 
     
     [self addAttributeSection];
