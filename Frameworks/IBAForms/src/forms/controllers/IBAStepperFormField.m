@@ -47,48 +47,19 @@
   return ((BFStepper *) _stepperCell.stepperControl).value;
 }
 
-//- (void)setMinimumValue:(double)minimumValue {
-//  NSAssert(_stepperCell != nil, @"Cell must exist");
-//  if ([_stepperCell.stepperControl isKindOfClass:[UIStepper class]])
-//    ((UIStepper *) _stepperCell.stepperControl).minimumValue = minimumValue;
-//  else
-//    ((BFStepper *) _stepperCell.stepperControl).minimumValue = minimumValue;
-//}
-//
-//- (double)minimumValue {
-//  NSAssert(_stepperCell != nil, @"Cell must exist");
-//  if ([_stepperCell.stepperControl isKindOfClass:[UIStepper class]])
-//    return ((UIStepper *) _stepperCell.stepperControl).minimumValue;
-//
-//  return ((BFStepper *) _stepperCell.stepperControl).minimumValue;
-//}
-//
-//- (void)setMaximumValue:(double)maximumValue {
-//  NSAssert(_stepperCell != nil, @"Cell must exist");
-//  if ([_stepperCell.stepperControl isKindOfClass:[UIStepper class]])
-//    ((UIStepper *) _stepperCell.stepperControl).maximumValue = maximumValue;
-//  else
-//    ((BFStepper *) _stepperCell.stepperControl).maximumValue = maximumValue;
-//}
-//
-//- (double)maximumValue {
-//  NSAssert(_stepperCell != nil, @"Cell must exist");
-//  if ([_stepperCell.stepperControl isKindOfClass:[UIStepper class]])
-//    return ((UIStepper *) _stepperCell.stepperControl).maximumValue;
-//
-//  return ((BFStepper *) _stepperCell.stepperControl).maximumValue;
-//}
-
 @synthesize stepperCell =_stepperCell;
 @synthesize minimumValue = _minimumValue;
 @synthesize maximumValue = _maximumValue;
 @synthesize stepValue = _stepValue;
 @synthesize autorepeat = _autorepeat;
 @synthesize wraps = _wraps;
+@synthesize displayValueTransformer = _displayValueTransformer;
 
 - (void)dealloc {
   IBA_RELEASE_SAFELY(_stepperCell);
-
+  
+  self.displayValueTransformer = nil;
+  
   [super dealloc];
 }
 
@@ -146,13 +117,20 @@
 - (void)updateCellContents {
   self.stepperCell.label.text = self.title;
   self.value = [[self formFieldValue] integerValue];
-  self.stepperCell.valueLabel.text = [NSString stringWithFormat:@"%d", (NSInteger) self.value];
+  if( self.displayValueTransformer)
+    self.stepperCell.valueLabel.text = [[self.displayValueTransformer transformedValue:[NSNumber numberWithInteger:(NSInteger) self.value]] description];
+  else
+    self.stepperCell.valueLabel.text = [NSString stringWithFormat:@"%d", (NSInteger) self.value];
 }
 
 - (void)switchValueChanged:(id)sender {
   if (sender == self.stepperCell.stepperControl) {
     [self setFormFieldValue:[NSNumber numberWithInteger:(NSInteger) self.value]];
-    self.stepperCell.valueLabel.text = [NSString stringWithFormat:@"%d", (NSInteger) self.value];
+    
+    if( self.displayValueTransformer)
+      self.stepperCell.valueLabel.text = [[self.displayValueTransformer transformedValue:[NSNumber numberWithInteger:(NSInteger) self.value]] description];
+    else
+      self.stepperCell.valueLabel.text = [NSString stringWithFormat:@"%d", (NSInteger) self.value];
   }
 }
 
