@@ -22,40 +22,63 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <IBAForms/IBAForms.h>
-#import "WPGenAreaDataSource.h"
-#import "WPGenAreaViewController.h"
 
-#import "IBAFormSection+MKParam.h"
-#import "SettingsFieldStyle.h"
+#import "WPGenBaseView.h"
 
+@interface WPGenBaseView()
 
-@interface WPGenAreaDataSource ()
 @end
 
-@implementation WPGenAreaDataSource
+@implementation WPGenBaseView
 
-- (id)initWithModel:(id)aModel {
-  if ((self = [super initWithModel:aModel])) {
-    
-    IBAStepperFormField* stepperField;
+@synthesize points = _points;
+@synthesize wpTextFont = _wpTextFont;
+@synthesize wpColor = _wpColor;
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-    configSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
-    //------------------------------------------------------------------------------------------------------------------------
-
-    stepperField = [configSection addStepperFieldForKeyPath:WPnoPointsX title:NSLocalizedString(@"#WP-X", @"WP Numbers")];
-    stepperField.maximumValue = 100;
-    stepperField.minimumValue = 0;
-    
-    stepperField = [configSection addStepperFieldForKeyPath:WPnoPointsY title:NSLocalizedString(@"#WP-Y", @"WP Numbers")];
-    stepperField.maximumValue = 100;
-    stepperField.minimumValue = 0;
-    
-    [self addAttributeSection];
+- (id)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    self.backgroundColor = [UIColor clearColor];
+    self.wpTextFont = [UIFont boldSystemFontOfSize:10];
+    self.wpColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.25 alpha:1.0];
   }
   return self;
+}
+
+- (void)dealloc
+{
+  self.wpColor = nil;
+  self.wpTextFont = nil;
+  self.points = nil;
+
+  [super dealloc];
+}
+
+- (void)drawWaypointAt:(CGPoint)p index:(NSUInteger)idx withContext:(CGContextRef) context{
+  
+  CGContextSaveGState(context);
+  
+  CGRect pointRect = CGRectMake(p.x - 7, p.y - 7, 14, 14);
+  if(idx==0)
+    [[UIColor redColor] set];
+  else
+    [self.wpColor set];
+  
+  CGContextFillEllipseInRect(context, pointRect);
+
+  [[UIColor whiteColor] set];
+  CGContextAddEllipseInRect(context, pointRect);
+  CGContextStrokePath(context);
+  NSString* text = [NSString stringWithFormat:@"%d",idx+1];
+
+  CGSize textSize = [text sizeWithFont:self.wpTextFont];
+  CGRect textRect  = CGRectMake(p.x, p.y, textSize.width, textSize.height);
+  
+  textRect  = CGRectOffset(textRect, -textSize.width / 2, -textSize.height / 2);
+  
+  [text drawAtPoint:textRect.origin withFont:self.wpTextFont];
+
+  CGContextRestoreGState(context);
 }
 
 @end

@@ -25,9 +25,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WPGenCircleView : UIView
+#import "WPGenBaseView.h"
 
-@property(retain, readonly, nonatomic) NSMutableArray *points;
+@interface WPGenCircleView : WPGenBaseView
+
 @property(assign) NSInteger noPoints;
 @property(assign) BOOL clockwise;
 @property(assign) BOOL closed;

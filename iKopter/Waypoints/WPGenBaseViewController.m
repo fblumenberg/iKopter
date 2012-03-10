@@ -25,6 +25,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "IKPoint.h"
 #import "WPGenBaseViewController.h"
 #import "WPGenConfigViewController.h"
 
@@ -76,7 +77,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   if (self) {
     self.mapView = mapView;
     self.shapeView = shapeView;
-    self.wpData = [[NSMutableDictionary alloc] initWithCapacity:8];
+    self.wpData = [[[NSMutableDictionary alloc] initWithCapacity:8]autorelease];
 
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     [self.wpData setValue:[NSNumber numberWithInteger:0] forKey:WPheading];
@@ -139,6 +140,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 	[tapRecognizer setNumberOfTapsRequired:1];
   [tapRecognizer setNumberOfTouchesRequired:2];
 	[self.view addGestureRecognizer:tapRecognizer];
+  [tapRecognizer release];
 
 }
 
@@ -154,6 +156,22 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   return YES;
 }
 
+-(IKPoint*) pointOfType:(NSInteger)type forCoordinate:(CLLocationCoordinate2D)coordinate{
+  IKPoint *newPoint = [[[IKPoint alloc] initWithCoordinate:coordinate] autorelease];
+  
+  newPoint.heading=[[self.wpData objectForKey:WPheading] integerValue];
+  newPoint.toleranceRadius=[[self.wpData objectForKey:WPtoleranceRadius] integerValue];    
+  newPoint.holdTime=[[self.wpData objectForKey:WPholdTime] integerValue];
+  newPoint.eventFlag=0;
+  newPoint.index=255;
+  newPoint.type=type;
+  newPoint.wpEventChannelValue=[[self.wpData objectForKey:WPaltitude] integerValue];
+  newPoint.altitudeRate=[[self.wpData objectForKey:WPaltitudeRate] integerValue];
+  newPoint.speed=[[self.wpData objectForKey:WPspeed] integerValue];
+  newPoint.camAngle=[[self.wpData objectForKey:WPcamAngle] integerValue];
+  
+  return newPoint;
+}
 
 #pragma mark - Gesture handling
 
@@ -276,10 +294,10 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
     return;
   }
   
-  WPGenConfigViewController* controller = [[WPGenConfigViewController alloc] initWithFormDataSource:self.dataSource];
+  WPGenConfigViewController* controller = [[[WPGenConfigViewController alloc] initWithFormDataSource:self.dataSource]autorelease];
   
 
-  self.popOverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  self.popOverController = [[[UIPopoverController alloc] initWithContentViewController:controller] autorelease];
   self.popOverController.delegate = self;
   self.popOverController.popoverContentSize = CGSizeMake(320, 500);
 

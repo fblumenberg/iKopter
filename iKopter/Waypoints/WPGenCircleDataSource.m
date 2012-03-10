@@ -25,9 +25,9 @@
 #import <IBAForms/IBAForms.h>
 #import "WPGenCircleViewController.h"
 #import "WPGenCircleDataSource.h"
-#import "StringToNumberTransformer.h"
-#import "SettingsButtonStyle.h"
+
 #import "SettingsFieldStyle.h"
+#import "IBAFormSection+MKParam.h"
 
 @interface WPGenCircleDataSource ()
 @end
@@ -41,24 +41,22 @@
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-    configSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    configSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
 
-    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:WPnoPoints
-                                                      title:NSLocalizedString(@"#WP", @"WP Numbers")
-                                           valueTransformer:nil];
-    
+    stepperField = [configSection addStepperFieldForKeyPath:WPnoPoints title:NSLocalizedString(@"#WP", @"WP Numbers")];
     stepperField.maximumValue = 100;
+    stepperField.minimumValue = 0;
     stepperField.minimumValue = 2;
     
-    [configSection addFormField:[stepperField autorelease]];
-    
-    [configSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:WPclockwise
-                                                                        title:NSLocalizedString(@"Clockwise", @"WPclockwise")] autorelease]];
-    
-    [configSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:WPclearWpList
-                                                                        title:NSLocalizedString(@"Clear Waipoints", @"WPclearWpList title")] autorelease]];
-    
+    [configSection addSwitchFieldForKeyPath:WPclockwise 
+                                      title:NSLocalizedString(@"Clockwise", @"WPclockwise")
+                                      style:[SettingsFieldStyleSwitch style]];
+
+    [configSection addSwitchFieldForKeyPath:WPclosed 
+                                      title:NSLocalizedString(@"Add Point To close", @"WPclosed")
+                                      style:[SettingsFieldStyleSwitch style]];
+
     [self addAttributeSection];
   }
   return self;

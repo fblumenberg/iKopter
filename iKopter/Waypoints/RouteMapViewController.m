@@ -308,6 +308,12 @@
     ((MKPinAnnotationView *) annotationView).animatesDrop = NO;
     ((MKPinAnnotationView *) annotationView).pinColor = ((IKPoint *) annotation).type == POINT_TYPE_WP ? MKPinAnnotationColorGreen : MKPinAnnotationColorPurple;
 
+    UIButton* closeButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    closeButton.frame = CGRectMake(0, 0, 29, 29);
+    [closeButton setImage:[UIImage imageNamed:@"CloseButton.png"] forState:UIControlStateNormal];
+    [closeButton setImage:[UIImage imageNamed:@"CloseButtonPressed.png"] forState:UIControlStateHighlighted];
+
+    annotationView.leftCalloutAccessoryView = closeButton;
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     annotationView.enabled = YES;
     annotationView.canShowCallout = YES;
@@ -328,25 +334,31 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+  
   if ([view.annotation isKindOfClass:[IKPoint class]]) {
     IKPoint *point = (IKPoint *) view.annotation;
-
-    WaypointViewController *hostView = [[WaypointViewController alloc] initWithPoint:point];
-
-    if (self.isPad) {
-      UIPopoverController *popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
-      popOverController.delegate = self;
-      popOverController.popoverContentSize = CGSizeMake(320, 500);
-
-
-      CGRect rect = CGRectMake(CGRectGetMidX(view.bounds)+view.calloutOffset.x-3, 0, 3, 1);
-      [popOverController presentPopoverFromRect:rect inView:view
-                       permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-
-      [self.mapView deselectAnnotation:[view annotation] animated:NO];
+    
+    if( view.rightCalloutAccessoryView==control){
+      WaypointViewController *hostView = [[[WaypointViewController alloc] initWithPoint:point] autorelease];
+      
+      if (self.isPad) {
+        UIPopoverController *popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
+        popOverController.delegate = self;
+        popOverController.popoverContentSize = CGSizeMake(320, 500);
+        
+        
+        CGRect rect = CGRectMake(CGRectGetMidX(view.bounds)+view.calloutOffset.x-3, 0, 3, 1);
+        [popOverController presentPopoverFromRect:rect inView:view
+                         permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+        [self.mapView deselectAnnotation:[view annotation] animated:NO];
+      }
+      else {
+        [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
+      }
     }
     else {
-      [self.surrogateParent.navigationController pushViewController:hostView animated:YES];
+      [self.route deletePointAtIndexPath:[NSIndexPath indexPathForRow:(point.index-1) inSection:0]];
     }
   }
 }
@@ -527,11 +539,11 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 
   switch (self.wpGeneratorSelection.selectedSegmentIndex) {
     case 0:
-      self.wpgenController = [[WPGenAreaViewController alloc] initForMapView:self.mapView];
+      self.wpgenController = [[[WPGenAreaViewController alloc] initForMapView:self.mapView]autorelease];
       break;
       
     case 1:
-      self.wpgenController = [[WPGenCircleViewController alloc] initForMapView:self.mapView];
+      self.wpgenController = [[[WPGenCircleViewController alloc] initForMapView:self.mapView]autorelease];
       break;
 
     default:

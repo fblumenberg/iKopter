@@ -49,7 +49,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
 
 - (id)initForMapView:(MKMapView*)mapView {
 
-  WPGenAreaView* shapeView = [[WPGenAreaView alloc] initWithFrame:CGRectZero];
+  WPGenAreaView* shapeView = [[[WPGenAreaView alloc] initWithFrame:CGRectZero] autorelease];
   
   self = [super initWithShapeView:shapeView forMapView:mapView];
   if (self) {
@@ -57,15 +57,15 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
     [self.wpData setValue:[NSNumber numberWithInteger:2] forKey:WPnoPointsX];
     [self.wpData setValue:[NSNumber numberWithInteger:2] forKey:WPnoPointsY];
 
-    self.dataSource = [[WPGenAreaDataSource alloc] initWithModel:self.wpData];
+    self.dataSource = [[[WPGenAreaDataSource alloc] initWithModel:self.wpData]autorelease];
     self.dataSource.delegate = self;
   }
   return self;
 }
 
 - (void)dealloc {
-  [super dealloc];
   self.dataSource = nil;
+  [super dealloc];
 }
 
 - (void)viewDidLoad {
@@ -74,6 +74,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
 	[tapRecognizer setNumberOfTapsRequired:1];
 	[self.shapeView addGestureRecognizer:tapRecognizer];
+  [tapRecognizer release];
 } 
 
 - (void)viewDidUnload {

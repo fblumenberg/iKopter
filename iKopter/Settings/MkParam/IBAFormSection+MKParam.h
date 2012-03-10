@@ -10,6 +10,7 @@
 
 @interface IBAFormSection (IBAFormSection_MKParam)
 
+- (IBAStepperFormField*)addStepperFieldForKeyPath:(NSString *)keyPath title:(NSString *)title;
 - (void)addNumberFieldForKeyPath:(NSString *)keyPath title:(NSString *)title;
 - (void)addSwitchFieldForKeyPath:(NSString *)keyPath title:(NSString *)title;
 - (void)addSwitchFieldForKeyPath:(NSString *)keyPath title:(NSString *)title style:(IBAFormFieldStyle *)style;

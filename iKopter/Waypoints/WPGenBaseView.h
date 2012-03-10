@@ -22,40 +22,15 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <IBAForms/IBAForms.h>
-#import "WPGenAreaDataSource.h"
-#import "WPGenAreaViewController.h"
 
-#import "IBAFormSection+MKParam.h"
-#import "SettingsFieldStyle.h"
+#import <UIKit/UIKit.h>
 
+@interface WPGenBaseView : UIView
 
-@interface WPGenAreaDataSource ()
-@end
+@property(nonatomic, retain) NSMutableArray *points;
+@property(nonatomic, retain) UIFont* wpTextFont;
+@property(nonatomic, retain) UIColor *wpColor;
 
-@implementation WPGenAreaDataSource
-
-- (id)initWithModel:(id)aModel {
-  if ((self = [super initWithModel:aModel])) {
-    
-    IBAStepperFormField* stepperField;
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-    configSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
-    //------------------------------------------------------------------------------------------------------------------------
-
-    stepperField = [configSection addStepperFieldForKeyPath:WPnoPointsX title:NSLocalizedString(@"#WP-X", @"WP Numbers")];
-    stepperField.maximumValue = 100;
-    stepperField.minimumValue = 0;
-    
-    stepperField = [configSection addStepperFieldForKeyPath:WPnoPointsY title:NSLocalizedString(@"#WP-Y", @"WP Numbers")];
-    stepperField.maximumValue = 100;
-    stepperField.minimumValue = 0;
-    
-    [self addAttributeSection];
-  }
-  return self;
-}
+- (void) drawWaypointAt: (CGPoint) p index: (NSUInteger) idx withContext: (CGContextRef) context ;
 
 @end

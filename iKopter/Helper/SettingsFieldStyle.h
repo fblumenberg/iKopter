@@ -24,20 +24,22 @@
 
 #import <IBAForms/IBAFormFieldStyle.h>
 
-@interface SettingsFieldStyle : IBAFormFieldStyle {
-
-}
-
+@interface SettingsFieldStyle : IBAFormFieldStyle 
++(in)style;
 @end
 
-@interface SettingsFieldStyleDisabled : IBAFormFieldStyle {
-  
-}
+@interface SettingsFieldStyleStepper : IBAFormFieldStyle 
++(in)style;
+@end
 
+@interface SettingsFieldStyleDisabled : IBAFormFieldStyle
++(in)style;
 @end
 
 @interface SettingsFieldStyleSwitch : IBAFormFieldStyle 
++(in)style;
 @end
 
 @interface SettingsFieldStyleText : IBAFormFieldStyle 
++(in)style;
 @end

@@ -25,9 +25,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WPGenAreaView : UIView
+#import "WPGenBaseView.h"
 
-@property(retain, readonly, nonatomic) NSMutableArray *points;
+@interface WPGenAreaView : WPGenBaseView
+
 @property(assign) NSInteger noPointsX;
 @property(assign) NSInteger noPointsY;
 

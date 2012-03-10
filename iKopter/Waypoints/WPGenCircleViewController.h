@@ -28,6 +28,7 @@
 
 IK_DECLARE_KEY(WPnoPoints);
 IK_DECLARE_KEY(WPclockwise);
+IK_DECLARE_KEY(WPclosed);
 IK_DECLARE_KEY(WPstartangle);
 
 @interface WPGenCircleViewController : WPGenBaseViewController

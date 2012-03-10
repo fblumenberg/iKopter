@@ -166,6 +166,12 @@
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
 		BA7613431391338500C86318 /* screenlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7613401391338500C86318 /* screenlock@2x.png */; };
+		BA86B992150BB03600234271 /* WPGenBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA86B991150BB03600234271 /* WPGenBaseView.m */; };
+		BA86B995150BBF2300234271 /* WPCamAngleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA86B994150BBF2200234271 /* WPCamAngleTransformer.m */; };
+		BA86B99C150BD8C000234271 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86B99A150BD8C000234271 /* CloseButton.png */; };
+		BA86B99D150BD8C000234271 /* CloseButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86B99B150BD8C000234271 /* CloseButtonPressed.png */; };
+		BA86B9A0150BD92600234271 /* CloseButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86B99E150BD92600234271 /* CloseButton@2x.png */; };
+		BA86B9A1150BD92600234271 /* CloseButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86B99F150BD92600234271 /* CloseButtonPressed@2x.png */; };
 		BA98EA9D13C6539D005CF2FA /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */; };
 		BA98EAA013C65445005CF2FA /* WaypointViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */; };
 		BA98EAA313C65866005CF2FA /* SettingsFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98EAA213C65866005CF2FA /* SettingsFieldStyle.m */; };
@@ -607,6 +613,14 @@
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
 		BA7613401391338500C86318 /* screenlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock@2x.png"; sourceTree = "<group>"; };
+		BA86B990150BB03600234271 /* WPGenBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = WPGenBaseView.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 0; };
+		BA86B991150BB03600234271 /* WPGenBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = WPGenBaseView.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 0; };
+		BA86B993150BBF2100234271 /* WPCamAngleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCamAngleTransformer.h; sourceTree = "<group>"; };
+		BA86B994150BBF2200234271 /* WPCamAngleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPCamAngleTransformer.m; sourceTree = "<group>"; };
+		BA86B99A150BD8C000234271 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
+		BA86B99B150BD8C000234271 /* CloseButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButtonPressed.png; sourceTree = "<group>"; };
+		BA86B99E150BD92600234271 /* CloseButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloseButton@2x.png"; sourceTree = "<group>"; };
+		BA86B99F150BD92600234271 /* CloseButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloseButtonPressed@2x.png"; sourceTree = "<group>"; };
 		BA98EA8D13C65113005CF2FA /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = Frameworks/IBAForms/IBAForms.xcodeproj; sourceTree = "<group>"; };
 		BA98EA9B13C6539D005CF2FA /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
 		BA98EA9C13C6539D005CF2FA /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
@@ -933,8 +947,17 @@
 		BA069E931503CA430017DBD6 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
+				BA86B990150BB03600234271 /* WPGenBaseView.h */,
+				BA86B991150BB03600234271 /* WPGenBaseView.m */,
+				BA069E991503CB9E0017DBD6 /* WPGenBaseDataSource.h */,
+				BA069E9A1503CB9E0017DBD6 /* WPGenBaseDataSource.m */,
+				BA069E941503CA720017DBD6 /* WPGenBaseViewController.h */,
+				BA069E951503CA720017DBD6 /* WPGenBaseViewController.m */,
+				BA069E961503CA720017DBD6 /* WPGenBaseViewController.xib */,
 				BA3472CC15068B470097A06F /* WPGenCircleView.h */,
 				BA3472CD15068B480097A06F /* WPGenCircleView.m */,
+				BA069E9E1503CFB70017DBD6 /* WPGenCircleDataSource.h */,
+				BA069E9F1503CFB70017DBD6 /* WPGenCircleDataSource.m */,
 				BA3472CE15068B490097A06F /* WPGenCircleViewController.h */,
 				BA3472CF15068B490097A06F /* WPGenCircleViewController.m */,
 				BA3472BE1503E1490097A06F /* WPGenAreaViewController.h */,
@@ -943,15 +966,8 @@
 				BA3472BC1503DEB80097A06F /* WPGenAreaView.m */,
 				BA069E9C1503CFB70017DBD6 /* WPGenAreaDataSource.h */,
 				BA069E9D1503CFB70017DBD6 /* WPGenAreaDataSource.m */,
-				BA069E9E1503CFB70017DBD6 /* WPGenCircleDataSource.h */,
-				BA069E9F1503CFB70017DBD6 /* WPGenCircleDataSource.m */,
 				BA069EA01503CFB70017DBD6 /* WPGenPanoramaDataSource.h */,
 				BA069EA11503CFB70017DBD6 /* WPGenPanoramaDataSource.m */,
-				BA069E991503CB9E0017DBD6 /* WPGenBaseDataSource.h */,
-				BA069E9A1503CB9E0017DBD6 /* WPGenBaseDataSource.m */,
-				BA069E941503CA720017DBD6 /* WPGenBaseViewController.h */,
-				BA069E951503CA720017DBD6 /* WPGenBaseViewController.m */,
-				BA069E961503CA720017DBD6 /* WPGenBaseViewController.xib */,
 				BA3472C51503F66A0097A06F /* WPGenConfigViewController.h */,
 				BA3472C61503F66A0097A06F /* WPGenConfigViewController.m */,
 			);
@@ -1231,6 +1247,10 @@
 		BA0D4766137C9272001415C3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA86B99E150BD92600234271 /* CloseButton@2x.png */,
+				BA86B99F150BD92600234271 /* CloseButtonPressed@2x.png */,
+				BA86B99A150BD8C000234271 /* CloseButton.png */,
+				BA86B99B150BD8C000234271 /* CloseButtonPressed.png */,
 				BA3472C11503ECE80097A06F /* close.png */,
 				BAA9E15E14092A300054F123 /* icon-flying.png */,
 				BAA9E15F14092A300054F123 /* icon-flying@2x.png */,
@@ -1794,6 +1814,8 @@
 				BAC8A16613C1C55300CA4936 /* HeadingOverlayView.m */,
 				BA98EAD313C8F5B9005CF2FA /* RouteController.h */,
 				BA98EAD413C8F5BB005CF2FA /* RouteController.m */,
+				BA86B993150BBF2100234271 /* WPCamAngleTransformer.h */,
+				BA86B994150BBF2200234271 /* WPCamAngleTransformer.m */,
 			);
 			path = Waypoints;
 			sourceTree = "<group>";
@@ -2074,6 +2096,10 @@
 				BA347305150AC5530097A06F /* UIStepperRight@2x.png in Resources */,
 				BA347306150AC5530097A06F /* UIStepperRightPressed.png in Resources */,
 				BA347307150AC5530097A06F /* UIStepperRightPressed@2x.png in Resources */,
+				BA86B99C150BD8C000234271 /* CloseButton.png in Resources */,
+				BA86B99D150BD8C000234271 /* CloseButtonPressed.png in Resources */,
+				BA86B9A0150BD92600234271 /* CloseButton@2x.png in Resources */,
+				BA86B9A1150BD92600234271 /* CloseButtonPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2296,6 +2322,8 @@
 				BA3472C71503F66B0097A06F /* WPGenConfigViewController.m in Sources */,
 				BA3472D015068B4A0097A06F /* WPGenCircleView.m in Sources */,
 				BA3472D115068B4A0097A06F /* WPGenCircleViewController.m in Sources */,
+				BA86B992150BB03600234271 /* WPGenBaseView.m in Sources */,
+				BA86B995150BBF2300234271 /* WPCamAngleTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,18 @@
 
 @implementation IBAFormSection (IBAFormSection_MKParam)
 
+- (IBAStepperFormField*)addStepperFieldForKeyPath:(NSString *)keyPath title:(NSString *)title {
+
+  IBAStepperFormField *stepperField;
+  stepperField = [[IBAStepperFormField alloc] initWithKeyPath:keyPath
+                                                        title:title
+                                             valueTransformer:nil];
+  
+  [self addFormField:[stepperField autorelease]];
+  return stepperField;
+}
+
+
 - (void)addNumberFieldForKeyPath:(NSString *)keyPath title:(NSString *)title {
 
   IBATextFormField *numberField;

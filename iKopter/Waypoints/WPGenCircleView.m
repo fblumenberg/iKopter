@@ -30,18 +30,9 @@
   CGRect circleRect;
 }
 
-@property(nonatomic, retain) UIFont* wpTextFont;
-@property(nonatomic, retain) UIColor *wpColor;
-
-@property(retain, readwrite, nonatomic) NSMutableArray *points;
-
 @end
 
 @implementation WPGenCircleView
-
-@synthesize points = _points;
-@synthesize wpTextFont = _wpTextFont;
-@synthesize wpColor = _wpColor;
 
 @synthesize noPoints, clockwise,closed;
 
@@ -57,8 +48,6 @@
     noPoints = 10;
     closed = NO;
     clockwise = NO;
-    self.wpTextFont = [UIFont boldSystemFontOfSize:10];
-    self.wpColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.25 alpha:1.0];
 
     [self updatePoints];
   }
@@ -66,15 +55,12 @@
 }
 
 - (void)dealloc {
-  self.points = nil;
-  self.wpTextFont = nil;
-  self.wpColor = nil;
   [super dealloc];
 }
 
 -(void) updatePoints{
   
-  self.points = [[NSMutableArray arrayWithCapacity:noPoints] retain];
+  self.points = [NSMutableArray arrayWithCapacity:noPoints];
   for (int x = 0; x < noPoints; x++) {
     NSValue *v = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
     [self.points addObject:v];
@@ -128,33 +114,6 @@
   CGContextRestoreGState(context);
 }
 
-- (void)drawWaypointAt:(CGPoint)p index:(NSUInteger)idx withContext:(CGContextRef) context{
-  
-  CGContextSaveGState(context);
-  
-  
-  CGRect pointRect = CGRectMake(p.x - 7, p.y - 7, 14, 14);
-  if(idx==0)
-    [[UIColor redColor] set];
-  else
-    [self.wpColor set];
-  
-  CGContextFillEllipseInRect(context, pointRect);
-
-  [[UIColor whiteColor] set];
-  CGContextAddEllipseInRect(context, pointRect);
-  CGContextStrokePath(context);
-  NSString* text = [NSString stringWithFormat:@"%d",idx+1];
-
-  CGSize textSize = [text sizeWithFont:self.wpTextFont];
-  CGRect textRect  = CGRectMake(p.x, p.y, textSize.width, textSize.height);
-  
-  textRect  = CGRectOffset(textRect, -textSize.width / 2, -textSize.height / 2);
-  
-  [text drawAtPoint:textRect.origin withFont:self.wpTextFont];
-
-  CGContextRestoreGState(context);
-}
 
 - (void)drawPOIAt:(CGPoint)p withContext:(CGContextRef) context{
   

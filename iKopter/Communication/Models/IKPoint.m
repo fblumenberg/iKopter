@@ -76,6 +76,24 @@
   [super setStatus:NEWDATA]; 
 };
 
+//-(NSInteger) camAngle{
+//  if(self.cameraNickControl)
+//    return -1;
+//  
+//  return camAngle;
+//}
+//
+//-(void) setCamAngle:(NSInteger)angle{
+//  if( angle < 0 ){
+//    camAngle=0;
+//    self.cameraNickControl=YES;
+//  }
+//  else {
+//    camAngle = angle;
+//    self.cameraNickControl=YES;
+//  }
+//}
+
 -(BOOL) cameraNickControl{
   return (self.eventFlag&WP_EVFLAG_CAMERA_NICK_CONTROL)==WP_EVFLAG_CAMERA_NICK_CONTROL;
 }

@@ -36,6 +36,7 @@
 IK_DEFINE_KEY_WITH_VALUE(WPnoPoints, @"noPoints");
 IK_DEFINE_KEY_WITH_VALUE(WPstartangle, @"startangle");
 IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
+IK_DEFINE_KEY_WITH_VALUE(WPclosed, @"closed");
 
 @interface WPGenCircleViewController () <UIPopoverControllerDelegate,WPGenBaseDataSourceDelegate,UIGestureRecognizerDelegate> {
 }
@@ -50,9 +51,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
 
 - (id)initForMapView:(MKMapView*)mapView {
 
-  WPGenCircleView* shapeView = [[WPGenCircleView alloc] initWithFrame:CGRectZero];
-  
-  
+  WPGenCircleView* shapeView = [[[WPGenCircleView alloc] initWithFrame:CGRectZero] autorelease];
   
   self = [super initWithShapeView:shapeView forMapView:mapView];
   if (self) {
@@ -60,15 +59,16 @@ IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
     [self.wpData setValue:[NSNumber numberWithInteger:shapeView.noPoints] forKey:WPnoPoints];
     [self.wpData setValue:[NSNumber numberWithBool:NO] forKey:WPclockwise];
 
-    self.dataSource = [[WPGenCircleDataSource alloc] initWithModel:self.wpData];
+    self.dataSource = [[[WPGenCircleDataSource alloc] initWithModel:self.wpData]autorelease];
     self.dataSource.delegate = self;
   }
   return self;
 }
 
 - (void)dealloc {
-  [super dealloc];
   self.dataSource = nil;
+
+  [super dealloc];
 }
 
 - (void)viewDidLoad {
@@ -77,6 +77,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
 	[tapRecognizer setNumberOfTapsRequired:1];
 	[self.shapeView addGestureRecognizer:tapRecognizer];
+  [tapRecognizer release];
 } 
 
 - (void)viewDidUnload {
@@ -103,6 +104,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
   [v setNeedsDisplay];
 }
 
+
 -(NSArray*) generatePointsList{
   
   WPGenCircleView* v = (WPGenCircleView*)self.shapeView;
@@ -111,48 +113,24 @@ IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
   
   CLLocationCoordinate2D coordinate = [self.mapView convertPoint:v.poi toCoordinateFromView:self.shapeView];
   
-  IKPoint *newPoint = [[IKPoint alloc] initWithCoordinate:coordinate];
   
-  newPoint.heading=[[self.wpData objectForKey:WPheading] integerValue];
-  newPoint.toleranceRadius=[[self.wpData objectForKey:WPtoleranceRadius] integerValue];    
-  newPoint.holdTime=[[self.wpData objectForKey:WPholdTime] integerValue];
-  newPoint.eventFlag=0;
-  newPoint.index=255;
-  newPoint.type=POINT_TYPE_POI;
-  newPoint.wpEventChannelValue=[[self.wpData objectForKey:WPaltitude] integerValue];
-  newPoint.altitudeRate=[[self.wpData objectForKey:WPaltitudeRate] integerValue];
-  newPoint.speed=[[self.wpData objectForKey:WPspeed] integerValue];
-  newPoint.camAngle=[[self.wpData objectForKey:WPcamAngle] integerValue];
-  
-  [points addObject:newPoint];
+  [points addObject:[self pointOfType:POINT_TYPE_POI forCoordinate:coordinate]];
 
   
   [v.points enumerateObjectsUsingBlock:^(NSValue* obj, NSUInteger idx, BOOL *stop){
 
       CGPoint p = [obj CGPointValue];
-      
       CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
-      
       NSLog(@"%d lat:%f long:%f",idx,coordinate.latitude,coordinate.longitude);
-      
-      IKPoint *newPoint = [[IKPoint alloc] initWithCoordinate:coordinate];
-
-      newPoint.heading=[[self.wpData objectForKey:WPheading] integerValue];
-      newPoint.toleranceRadius=[[self.wpData objectForKey:WPtoleranceRadius] integerValue];    
-      newPoint.holdTime=[[self.wpData objectForKey:WPholdTime] integerValue];
-      newPoint.eventFlag=0;
-      newPoint.index=255;
-      newPoint.type=POINT_TYPE_WP;
-      newPoint.wpEventChannelValue=[[self.wpData objectForKey:WPaltitude] integerValue];
-      newPoint.altitudeRate=[[self.wpData objectForKey:WPaltitudeRate] integerValue];
-      newPoint.speed=[[self.wpData objectForKey:WPspeed] integerValue];
-      newPoint.camAngle=[[self.wpData objectForKey:WPcamAngle] integerValue];
-
-      [points addObject:newPoint];
-
-      [newPoint release];
+      [points addObject:[self pointOfType:POINT_TYPE_WP forCoordinate:coordinate]];
   }];
 
+  if( [[self.wpData objectForKey:WPclosed] boolValue]){
+    CGPoint p = [[v.points objectAtIndex:0] CGPointValue];
+    CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
+    [points addObject:[self pointOfType:POINT_TYPE_WP forCoordinate:coordinate]];
+  }
+  
   return points;
 }
 

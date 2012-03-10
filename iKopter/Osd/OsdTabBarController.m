@@ -115,6 +115,7 @@
                                                               target:self
                                                               action:@selector(dismissView)];
   self.navigationItem.leftBarButtonItem = backItem;
+  [backItem release];
 
   self.screenLockButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
   [self.screenLockButton setImage:[UIImage imageNamed:@"screenlock.png"] forState:UIControlStateNormal];
@@ -211,7 +212,8 @@
   else {
     [self.selectedViewController.view addGestureRecognizer:singleTap];
   }
-
+  [singleTap release];
+  
   [self newValue:self.osdValue];
 }
 

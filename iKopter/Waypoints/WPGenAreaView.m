@@ -28,20 +28,15 @@
 
 }
 
-@property(retain, readwrite, nonatomic) NSMutableArray *points;
-
 @end
 
 @implementation WPGenAreaView
 
-@synthesize points = _points;
 @synthesize noPointsX, noPointsY;
 
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    self.backgroundColor = [UIColor clearColor];
-
     noPointsX = 2;
     noPointsY = 2;
 
@@ -50,14 +45,9 @@
   return self;
 }
 
-- (void)dealloc {
-  self.points = nil;
-  [super dealloc];
-}
-
 -(void) updatePoints{
   
-  self.points = [[NSMutableArray arrayWithCapacity:noPointsY] retain];
+  self.points = [NSMutableArray arrayWithCapacity:noPointsY];
   for (int y = 0; y < noPointsY; y++) {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:noPointsX];
     for (int x = 0; x < noPointsX; x++) {
@@ -94,10 +84,9 @@
 
   CGContextRef context = UIGraphicsGetCurrentContext();
 
-  CGMutablePathRef path = CGPathCreateMutable();
-
-  [[UIColor clearColor] setFill];
-  CGContextFillRect(context, self.bounds);
+  NSMutableArray *points = [NSMutableArray arrayWithCapacity:self.noPointsX*self.noPointsY];
+  
+  [[UIColor whiteColor] set];
 
   [self.points enumerateObjectsUsingBlock:^(id obj, NSUInteger idxY, BOOL *stop) {
     NSArray *x = obj;
@@ -107,21 +96,24 @@
 
     [x enumerateObjectsUsingBlock:^(id objx, NSUInteger idxX, BOOL *stopx) {
 
+      [points addObject:objx];
+      
       CGPoint p = [[x objectAtIndex:idxX] CGPointValue];
 
       if (idxY == 0 && idxX == 0)
         CGContextMoveToPoint(context, p.x, p.y);
       else
         CGContextAddLineToPoint(context, p.x, p.y);
-
-      CGPathAddEllipseInRect(path, NULL, CGRectMake(p.x - 5, p.y - 5, 10, 10));
     }];
   }];
 
-  CGContextAddPath(context, path);
   CGContextStrokePath(context);
 
-  CGPathRelease(path);
+  [points enumerateObjectsUsingBlock:^(NSValue *obj, NSUInteger idxY, BOOL *stop) {
+    CGPoint p = [obj CGPointValue];
+    [self drawWaypointAt:p index:idxY withContext:context];
+  }];
+
 }
 
 

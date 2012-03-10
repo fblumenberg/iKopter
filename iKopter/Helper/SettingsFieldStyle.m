@@ -28,6 +28,10 @@
 
 @implementation SettingsFieldStyleText
 
++ (id)style {
+  return [[[[self class] alloc] init] autorelease];
+}
+
 - (id)init {
   self = [super init];
   if (self) {
@@ -46,7 +50,35 @@
 
 @end
 
+@implementation SettingsFieldStyleStepper
++ (id)style {
+  return [[[[self class] alloc] init] autorelease];
+}
+
+- (id)init {
+  self = [super init];
+  if (self) {
+    self.labelTextColor = [UIColor blackColor];
+    self.labelFont = [UIFont boldSystemFontOfSize:18];
+    self.labelTextAlignment = UITextAlignmentLeft;
+    self.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 150, IBAFormFieldLabelHeight);
+    self.labelAutoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    self.valueTextAlignment = UITextAlignmentLeft;
+    self.valueTextColor = [UIColor colorWithRed:0.220 green:0.329 blue:0.529 alpha:1.0];
+    self.valueFont = [UIFont systemFontOfSize:16];
+    self.valueFrame = CGRectMake(210, 13, 100, IBAFormFieldValueHeight);
+    self.valueAutoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+  }
+  return self;
+}
+
+@end
+
 @implementation SettingsFieldStyle
++ (id)style {
+  return [[[[self class] alloc] init] autorelease];
+}
 
 - (id)init {
   self = [super init];
@@ -69,6 +101,9 @@
 @end
 
 @implementation SettingsFieldStyleDisabled
++ (id)style {
+  return [[[[self class] alloc] init] autorelease];
+}
 
 - (id)init {
   self = [super init];
@@ -90,6 +125,9 @@
 @end
 
 @implementation SettingsFieldStyleSwitch
++ (id)style {
+  return [[[[self class] alloc] init] autorelease];
+}
 
 - (id)init {
   self = [super init];

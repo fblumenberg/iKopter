@@ -37,6 +37,7 @@ IK_DECLARE_KEY(WPspeed);
 IK_DECLARE_KEY(WPwpEventChannelValue);
 IK_DECLARE_KEY(WPclearWpList);
 
+@class IKPoint;
 @protocol WPGenBaseViewControllerDelegate;
 
 @interface WPGenBaseViewController : UIViewController
@@ -56,6 +57,7 @@ IK_DECLARE_KEY(WPclearWpList);
 
 - (IBAction)generatePoints:(id)sender;
 - (IBAction)showConfig:(id)sender;
+- (IKPoint*) pointOfType:(NSInteger)type forCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end
 
