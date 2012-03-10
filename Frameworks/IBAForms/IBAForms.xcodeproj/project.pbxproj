@@ -71,6 +71,12 @@
 		753A7EFD13B36BCF003931DA /* IBATitleFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A7EFB13B36BCF003931DA /* IBATitleFormField.m */; };
 		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		BA3472E0150AB27D0097A06F /* IBAStepperCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BA3472DF150AB27C0097A06F /* IBAStepperCell.h */; };
+		BA3472E3150AB28C0097A06F /* IBAStepperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3472E2150AB28C0097A06F /* IBAStepperCell.m */; };
+		BA3472E5150AB5F30097A06F /* IBAStepperFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3472E4150AB5F30097A06F /* IBAStepperFormField.m */; };
+		BA3472E7150AB6030097A06F /* IBAStepperFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = BA3472E6150AB6030097A06F /* IBAStepperFormField.h */; };
+		BA347309150AC5F50097A06F /* BFStepper.h in Headers */ = {isa = PBXBuildFile; fileRef = BA347308150AC5F50097A06F /* BFStepper.h */; };
+		BA34730B150AC6110097A06F /* BFStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = BA34730A150AC6110097A06F /* BFStepper.m */; };
 		BE8D9A5D14165855009EBDEB /* IBAInputValidatorGeneric.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8D9A5B14165855009EBDEB /* IBAInputValidatorGeneric.m */; };
 		BE8D9A6D14167869009EBDEB /* IBAInputValidatorGeneric.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8D9A6C14167868009EBDEB /* IBAInputValidatorGeneric.h */; };
 		BE8D9A711417B289009EBDEB /* IBAInputValidatorRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8D9A6F1417B287009EBDEB /* IBAInputValidatorRegex.m */; };
@@ -150,6 +156,12 @@
 		753A7EFB13B36BCF003931DA /* IBATitleFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBATitleFormField.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAForms_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BA3472DF150AB27C0097A06F /* IBAStepperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAStepperCell.h; sourceTree = "<group>"; };
+		BA3472E2150AB28C0097A06F /* IBAStepperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAStepperCell.m; sourceTree = "<group>"; };
+		BA3472E4150AB5F30097A06F /* IBAStepperFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAStepperFormField.m; sourceTree = "<group>"; };
+		BA3472E6150AB6030097A06F /* IBAStepperFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAStepperFormField.h; sourceTree = "<group>"; };
+		BA347308150AC5F50097A06F /* BFStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFStepper.h; sourceTree = "<group>"; };
+		BA34730A150AC6110097A06F /* BFStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFStepper.m; sourceTree = "<group>"; };
 		BE8D9A5B14165855009EBDEB /* IBAInputValidatorGeneric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputValidatorGeneric.m; sourceTree = "<group>"; };
 		BE8D9A6C14167868009EBDEB /* IBAInputValidatorGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputValidatorGeneric.h; sourceTree = "<group>"; };
 		BE8D9A6F1417B287009EBDEB /* IBAInputValidatorRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputValidatorRegex.m; sourceTree = "<group>"; };
@@ -234,6 +246,7 @@
 		7512408113A8F6BE007BF2B5 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BA3472E4150AB5F30097A06F /* IBAStepperFormField.m */,
 				7512408213A8F6BE007BF2B5 /* IBABooleanFormField.m */,
 				7512408313A8F6BE007BF2B5 /* IBAButtonFormField.m */,
 				7512408513A8F6BE007BF2B5 /* IBAFormDataSource.m */,
@@ -256,6 +269,8 @@
 		7512409013A8F6BE007BF2B5 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				BA34730A150AC6110097A06F /* BFStepper.m */,
+				BA3472E2150AB28C0097A06F /* IBAStepperCell.m */,
 				7512409113A8F6BE007BF2B5 /* IBABooleanSwitchCell.m */,
 				7512409213A8F6BE007BF2B5 /* IBADateFormFieldCell.m */,
 				7512409413A8F6BE007BF2B5 /* IBALabelFormCell.m */,
@@ -311,6 +326,9 @@
 		751240B913A8F6CF007BF2B5 /* IBAForms */ = {
 			isa = PBXGroup;
 			children = (
+				BA347308150AC5F50097A06F /* BFStepper.h */,
+				BA3472E6150AB6030097A06F /* IBAStepperFormField.h */,
+				BA3472DF150AB27C0097A06F /* IBAStepperCell.h */,
 				BE8D9A781417BD31009EBDEB /* IBAInputValidatorEmail.h */,
 				BE8D9A7A1417BD65009EBDEB /* IBAInputValidatorRegex.h */,
 				BE8D9A6C14167868009EBDEB /* IBAInputValidatorGeneric.h */,
@@ -407,6 +425,9 @@
 				BE8D9A6D14167869009EBDEB /* IBAInputValidatorGeneric.h in Headers */,
 				BE8D9A791417BD33009EBDEB /* IBAInputValidatorEmail.h in Headers */,
 				BE8D9A7B1417BD66009EBDEB /* IBAInputValidatorRegex.h in Headers */,
+				BA3472E0150AB27D0097A06F /* IBAStepperCell.h in Headers */,
+				BA3472E7150AB6030097A06F /* IBAStepperFormField.h in Headers */,
+				BA347309150AC5F50097A06F /* BFStepper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +513,9 @@
 				BE8D9A5D14165855009EBDEB /* IBAInputValidatorGeneric.m in Sources */,
 				BE8D9A711417B289009EBDEB /* IBAInputValidatorRegex.m in Sources */,
 				BE8D9A771417BCEE009EBDEB /* IBAInputValidatorEmail.m in Sources */,
+				BA3472E3150AB28C0097A06F /* IBAStepperCell.m in Sources */,
+				BA3472E5150AB5F30097A06F /* IBAStepperFormField.m in Sources */,
+				BA34730B150AC6110097A06F /* BFStepper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

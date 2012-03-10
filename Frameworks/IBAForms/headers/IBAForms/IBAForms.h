@@ -14,6 +14,8 @@
 
 #import <IBAForms/IBABooleanFormField.h>
 #import <IBAForms/IBABooleanSwitchCell.h>
+#import <IBAForms/IBAStepperCell.h>
+#import <IBAForms/IBAStepperFormField.h>
 #import <IBAForms/IBAButtonFormField.h>
 #import <IBAForms/IBACommon.h>
 #import <IBAForms/IBADateFormField.h>
