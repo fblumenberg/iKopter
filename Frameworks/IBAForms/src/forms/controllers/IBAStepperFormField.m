@@ -28,6 +28,7 @@
   double _stepValue;
   BOOL _autorepeat;
   BOOL _wraps;
+  BOOL _continuous;
 }
 
 - (void)setValue:(double)value {
@@ -54,7 +55,7 @@
 @synthesize autorepeat = _autorepeat;
 @synthesize wraps = _wraps;
 @synthesize displayValueTransformer = _displayValueTransformer;
-
+@synthesize continuous = _continuous;
 - (void)dealloc {
   IBA_RELEASE_SAFELY(_stepperCell);
   
@@ -71,6 +72,7 @@
     _stepValue = 1;
     _autorepeat = YES;
     _wraps = NO;
+    _continuous = NO;
   }
 
   return self;
@@ -98,6 +100,7 @@
       ((UIStepper *) _stepperCell.stepperControl).stepValue = _stepValue;
       ((UIStepper *) _stepperCell.stepperControl).autorepeat = _autorepeat;
       ((UIStepper *) _stepperCell.stepperControl).wraps = _wraps;
+      ((UIStepper *) _stepperCell.stepperControl).continuous = _continuous;
     }
     else {
       ((BFStepper *) _stepperCell.stepperControl).value = _value;
@@ -106,6 +109,7 @@
       ((BFStepper *) _stepperCell.stepperControl).stepValue = _stepValue;
       ((BFStepper *) _stepperCell.stepperControl).autorepeat = _autorepeat;
       ((BFStepper *) _stepperCell.stepperControl).wraps = _wraps;
+      ((BFStepper *) _stepperCell.stepperControl).continuous = _continuous;
     }
 
     [_stepperCell.stepperControl addTarget:self action:@selector(switchValueChanged:)

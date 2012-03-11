@@ -33,5 +33,6 @@
 @property(nonatomic) double stepValue;                    // default 1. must be greater than 0
 @property(nonatomic) BOOL autorepeat;                     // if YES, press & hold repeatedly alters value. default = YES
 @property(nonatomic) BOOL wraps;                          // if YES, value wraps from min <-> max. default = NO
+@property(nonatomic,getter=isContinuous) BOOL continuous; // if YES, value change events are sent any time the value changes during interaction. default = YES
 
 @end

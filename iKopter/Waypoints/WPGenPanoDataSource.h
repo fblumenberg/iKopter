@@ -22,14 +22,11 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
+#import <IBAForms/IBAFormDataSource.h>
+#import "WPGenBaseDataSource.h"
 
-#import <UIKit/UIKit.h>
-#import "WPGenBaseViewController.h"
+@interface WPGenPanoDataSource : WPGenBaseDataSource {
 
-
-@interface WPGenCircleViewController : WPGenBaseViewController
-
-- (id)initForMapView:(MKMapView*)mapView;
-
+}
 
 @end

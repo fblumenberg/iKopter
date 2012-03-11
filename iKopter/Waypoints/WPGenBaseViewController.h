@@ -36,6 +36,12 @@ IK_DECLARE_KEY(WPaltitudeRate);
 IK_DECLARE_KEY(WPspeed);
 IK_DECLARE_KEY(WPwpEventChannelValue);
 IK_DECLARE_KEY(WPclearWpList);
+IK_DECLARE_KEY(WPnoPointsX);
+IK_DECLARE_KEY(WPnoPointsY);
+IK_DECLARE_KEY(WPnoPoints);
+IK_DECLARE_KEY(WPclockwise);
+IK_DECLARE_KEY(WPclosed);
+IK_DECLARE_KEY(WPstartangle);
 
 @class IKPoint;
 @protocol WPGenBaseViewControllerDelegate;

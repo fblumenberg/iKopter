@@ -26,8 +26,6 @@
 #import <UIKit/UIKit.h>
 #import "WPGenBaseViewController.h"
 
-IK_DECLARE_KEY(WPnoPointsX);
-IK_DECLARE_KEY(WPnoPointsY);
 
 @interface WPGenAreaViewController : WPGenBaseViewController
 

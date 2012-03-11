@@ -22,11 +22,17 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <IBAForms/IBAFormDataSource.h>
-#import "WPGenBaseDataSource.h"
 
-@interface WPGenPanoramaDataSource : WPGenBaseDataSource {
+#import <UIKit/UIKit.h>
 
-}
+#import "WPGenBaseView.h"
+
+@interface WPGenPanoView : WPGenBaseView
+
+@property(assign) NSInteger noPoints;
+@property(assign) BOOL clockwise;
+
+-(void) updatePoints;
+-(CGPoint)poi;
 
 @end

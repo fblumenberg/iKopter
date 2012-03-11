@@ -44,6 +44,7 @@ const CGSize BFStepperFrame = {94.0, 27.0};
 @synthesize maximumValue = _maximumValue, minimumValue = _minimumValue, stepValue = _stepValue;
 @synthesize autorepeat = _autorepeat;
 @synthesize wraps = _wraps;
+@synthesize continuous;
 
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];

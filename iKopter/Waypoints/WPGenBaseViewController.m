@@ -142,7 +142,13 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 	[self.view addGestureRecognizer:tapRecognizer];
   [tapRecognizer release];
 
+  [self performSelector:@selector(myViewDidLoad) withObject:nil afterDelay:0.0];
 }
+
+- (void)myViewDidLoad {
+  CGSize size = self.view.superview.frame.size;
+  [self.view setCenter:CGPointMake(size.width/2, size.height/2)];
+} 
 
 - (void)viewDidUnload {
   self.resizeHandle = nil;

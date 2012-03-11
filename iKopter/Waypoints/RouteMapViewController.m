@@ -34,7 +34,7 @@
 
 #import "WPGenAreaViewController.h"
 #import "WPGenCircleViewController.h"
-
+#import "WPGenPanoViewController.h"
 @interface RouteMapViewController ()<WPGenBaseViewControllerDelegate>
 
 - (void)updateRouteOverlay;
@@ -135,13 +135,18 @@
                                                                           target:self action:@selector(generateWayPoints)] autorelease];
 
 
-    self.wpGenerateConfigItem  = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"CFG", @"Gernerate WP")  
+    self.wpGenerateConfigItem  = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-settings3.png"]
                                                             style:UIBarButtonItemStyleBordered 
                                                                   target:self action:@selector(configWayPoints:)] autorelease];
 
     NSArray *segmentItems = [NSArray arrayWithObjects:@"AREA", @"CIRCLE", @"PANO", nil];
+    
     self.wpGeneratorSelection = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
     self.wpGeneratorSelection.segmentedControlStyle = UISegmentedControlStyleBar;
+
+    [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-area.png"] forSegmentAtIndex:0];
+    [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-circle.png"] forSegmentAtIndex:1];
+    [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-pano.png"] forSegmentAtIndex:2];
     
 //    [self.segment setImage:[UIImage imageNamed:@"list-mode.png"] forSegmentAtIndex:0];
 //    [self.segment setWidth:50.0 forSegmentAtIndex:0];
@@ -531,8 +536,10 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 #pragma mark - Waypoint Generator
 
 - (void)updateWpToolbar{
-  self.wpGenerateItem.enabled = self.wpgenController!=nil;
-  self.wpGeneratorSelection.enabled = self.wpgenController==nil;
+  BOOL wpgen = self.wpgenController!=nil;
+  self.wpGenerateItem.enabled = wpgen;
+  self.wpGenerateConfigItem.enabled = wpgen;
+  self.wpGeneratorSelection.enabled = !wpgen;
 }
 
 - (void)showWpGen:(id)sender{
@@ -544,6 +551,10 @@ didChangeDragState:(MKAnnotationViewDragState)newState
       
     case 1:
       self.wpgenController = [[[WPGenCircleViewController alloc] initForMapView:self.mapView]autorelease];
+      break;
+
+    case 2:
+      self.wpgenController = [[[WPGenPanoViewController alloc] initForMapView:self.mapView]autorelease];
       break;
 
     default:

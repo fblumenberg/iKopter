@@ -26,8 +26,7 @@
 #import <UIKit/UIKit.h>
 #import "WPGenBaseViewController.h"
 
-
-@interface WPGenCircleViewController : WPGenBaseViewController
+@interface WPGenPanoViewController : WPGenBaseViewController
 
 - (id)initForMapView:(MKMapView*)mapView;
 

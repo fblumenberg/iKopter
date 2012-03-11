@@ -23,22 +23,41 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import <IBAForms/IBAForms.h>
-#import "WPGenPanoramaDataSource.h"
-#import "StringToNumberTransformer.h"
-#import "SettingsFieldStyle.h"
+#import "WPGenPanoViewController.h"
+#import "WPGenPanoDataSource.h"
 
-@interface WPGenPanoramaDataSource ()
+#import "SettingsFieldStyle.h"
+#import "IBAFormSection+MKParam.h"
+
+@interface WPGenPanoDataSource ()
 @end
 
-@implementation WPGenPanoramaDataSource
+@implementation WPGenPanoDataSource
 
 - (id)initWithModel:(id)aModel {
   if ((self = [super initWithModel:aModel])) {
+
+    IBAStepperFormField* stepperField;
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+    configSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
+    //------------------------------------------------------------------------------------------------------------------------
+
+    stepperField = [configSection addStepperFieldForKeyPath:WPnoPoints title:NSLocalizedString(@"#WP", @"WP Numbers")];
+    stepperField.maximumValue = 100;
+    stepperField.minimumValue = 0;
+    stepperField.minimumValue = 2;
+    
+    [configSection addSwitchFieldForKeyPath:WPclockwise 
+                                      title:NSLocalizedString(@"Clockwise", @"WPclockwise")
+                                      style:[SettingsFieldStyleSwitch style]];
 
     [self addAttributeSection];
   }
   return self;
 }
+
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
   [super setModelValue:value forKeyPath:keyPath];
