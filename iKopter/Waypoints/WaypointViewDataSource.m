@@ -26,6 +26,7 @@
 #import "WaypointViewDataSource.h"
 #import "StringToNumberTransformer.h"
 #import "SettingsFieldStyle.h"
+#import "WPCamAngleTransformer.h"
 
 #import "Route.h"
 
@@ -38,6 +39,7 @@
   if ((self = [super initWithModel:aModel])) {
 
     IBATextFormField *numberField;
+    IBAStepperFormField* stepperField;
 
     IBAFormSection *positionSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Position", @"WP Pos Title") footerTitle:nil];
     positionSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
@@ -57,7 +59,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     IBAFormSection *attributeSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-    attributeSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
+    attributeSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
 
     NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects: NSLocalizedString(@"Waypoint", nil),
@@ -71,57 +73,79 @@
                                                                     selectionMode:IBAPickListSelectionModeSingle
                                                                           options:pickListOptions] autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"altitude"
-                                                      title:NSLocalizedString(@"Altitude", @"WP Altitude title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"altitude"
+                                                          title:NSLocalizedString(@"Altitude", @"WP Altitude title")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 500;
+    stepperField.minimumValue = 0;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"heading"
-                                                      title:NSLocalizedString(@"Heading", @"WP Heading title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"heading"
+                                                          title:NSLocalizedString(@"Heading", @"WP Heading title")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 360;
+    stepperField.minimumValue = -100;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"toleranceRadius"
-                                                      title:NSLocalizedString(@"Radius", @"WP toleranceRadius title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"toleranceRadius"
+                                                          title:NSLocalizedString(@"Radius", @"WP toleranceRadius title")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 100;
+    stepperField.minimumValue = 0;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"holdTime"
-                                                      title:NSLocalizedString(@"HaltTime", @"WP holdTime title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"holdTime"
+                                                          title:NSLocalizedString(@"HaltTime", @"WP holdTime title")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 3600;
+    stepperField.minimumValue = 0;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"wpEventChannelValue"
-                                                      title:NSLocalizedString(@"Event", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"wpEventChannelValue"
+                                                          title:NSLocalizedString(@"Event", @"WP event title")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 255;
+    stepperField.minimumValue = 0;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"altitudeRate"
-                                                      title:NSLocalizedString(@"Climb rate", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"altitudeRate"
+                                                          title:NSLocalizedString(@"Climb rate", @"WP event title")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 255;
+    stepperField.minimumValue = 0;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"speed"
-                                                      title:NSLocalizedString(@"Speed", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"speed"
+                                                          title:NSLocalizedString(@"Speed", @"WP event title")
+                                               valueTransformer:nil];
+    
+    stepperField.maximumValue = 255;
+    stepperField.minimumValue = 0;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
-    numberField = [[IBATextFormField alloc] initWithKeyPath:@"camAngle"
-                                                      title:NSLocalizedString(@"Camera nick angle", @"WP event title") valueTransformer:[StringToNumberTransformer instance]];
-
-    [attributeSection addFormField:[numberField autorelease]];
-    numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
-    //------------------------------------------------------------------------------------------------------------------------
-    [attributeSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"cameraNickControl"
-                                                                           title:NSLocalizedString(@"Camera nick control", @"cameraNickControl title")] autorelease]];
-
+    stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"camAngle"
+                                                          title:NSLocalizedString(@"Camera nick angle", @"WP event title")
+                                               valueTransformer:nil];
+    
+    stepperField.displayValueTransformer = [WPCamAngleTransformer instance];
+    stepperField.maximumValue = 254;
+    stepperField.minimumValue = -1;
+    
+    [attributeSection addFormField:[stepperField autorelease]];
+    
   }
   return self;
 }

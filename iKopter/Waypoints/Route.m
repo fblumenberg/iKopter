@@ -126,29 +126,21 @@ NSString *const MKRouteChangedNotification = @"MKRouteChangedNotification";
 
   qltrace(@"%@", self.points);
 
-  int newIndexes[32] = {0};
-  int oldIndexes[32] = {0};
-
-  int index = 0;
-  for (IKPoint *p in points) {
-    newIndexes[index] = index + 1;
-    oldIndexes[index] = p.index;
-    p.index = index + 1;
-    index++;
-  };
+  NSMutableDictionary *headingMap=[NSMutableDictionary dictionaryWithCapacity:[points count]];
+  
+  [points enumerateObjectsUsingBlock:^(IKPoint* p, NSUInteger idx, BOOL* stop){
+    [headingMap setObject:[NSNumber numberWithInteger:(idx+1)] forKey:[NSNumber numberWithInteger:p.index]];
+    p.index = idx+1;
+  }];
 
   for (IKPoint *pointToMove in self.points) {
-    for (int i = 0; i < [self.points count]; i++) {
-      qltrace(@"Check if %d==%d", pointToMove.heading, -oldIndexes[i]);
-      if (pointToMove.heading < 0 && pointToMove.heading == -oldIndexes[i]) {
-        pointToMove.heading = -newIndexes[i];
-        qltrace(@"Update heading to %d", pointToMove.heading)
-      }
+    if (pointToMove.heading < 0){
+      NSNumber* key = [NSNumber numberWithInteger:-pointToMove.heading];
+      pointToMove.heading = -[[headingMap objectForKey:key] integerValue];
     }
   }
 
   [self.routes save];
-  qltrace(@"%@", points);
 }
 
 - (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate {
@@ -171,10 +163,7 @@ NSString *const MKRouteChangedNotification = @"MKRouteChangedNotification";
   NSUInteger fromRow = [fromIndexPath row];
   NSUInteger toRow = [toIndexPath row];
 
-  id object = [[points objectAtIndex:fromRow] retain];
-  [points removeObjectAtIndex:fromRow];
-  [points insertObject:object atIndex:toRow];
-  [object release];
+  [points exchangeObjectAtIndex:fromRow withObjectAtIndex:toRow];
 
   [self updatePoints];
   [Route sendChangedNotification:self];

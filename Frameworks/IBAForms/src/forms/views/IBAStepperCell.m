@@ -66,7 +66,6 @@
     _valueLabel.font = style.valueFont;
     _valueLabel.textColor = style.valueTextColor;
     _valueLabel.adjustsFontSizeToFitWidth=YES;
-    _valueLabel.backgroundColor = [UIColor yellowColor];
     
     self.validator = valueValidator;
 	}

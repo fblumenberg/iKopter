@@ -947,25 +947,9 @@
 		BA069E931503CA430017DBD6 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
-				BA86B990150BB03600234271 /* WPGenBaseView.h */,
-				BA86B991150BB03600234271 /* WPGenBaseView.m */,
-				BA069E991503CB9E0017DBD6 /* WPGenBaseDataSource.h */,
-				BA069E9A1503CB9E0017DBD6 /* WPGenBaseDataSource.m */,
-				BA069E941503CA720017DBD6 /* WPGenBaseViewController.h */,
-				BA069E951503CA720017DBD6 /* WPGenBaseViewController.m */,
-				BA069E961503CA720017DBD6 /* WPGenBaseViewController.xib */,
-				BA3472CC15068B470097A06F /* WPGenCircleView.h */,
-				BA3472CD15068B480097A06F /* WPGenCircleView.m */,
-				BA069E9E1503CFB70017DBD6 /* WPGenCircleDataSource.h */,
-				BA069E9F1503CFB70017DBD6 /* WPGenCircleDataSource.m */,
-				BA3472CE15068B490097A06F /* WPGenCircleViewController.h */,
-				BA3472CF15068B490097A06F /* WPGenCircleViewController.m */,
-				BA3472BE1503E1490097A06F /* WPGenAreaViewController.h */,
-				BA3472BF1503E1490097A06F /* WPGenAreaViewController.m */,
-				BA3472BB1503DEB80097A06F /* WPGenAreaView.h */,
-				BA3472BC1503DEB80097A06F /* WPGenAreaView.m */,
-				BA069E9C1503CFB70017DBD6 /* WPGenAreaDataSource.h */,
-				BA069E9D1503CFB70017DBD6 /* WPGenAreaDataSource.m */,
+				BA86B9A4150CD4A100234271 /* Area */,
+				BA86B9A3150CD49400234271 /* Circle */,
+				BA86B9A2150CD46300234271 /* Base */,
 				BA069EA01503CFB70017DBD6 /* WPGenPanoramaDataSource.h */,
 				BA069EA11503CFB70017DBD6 /* WPGenPanoramaDataSource.m */,
 				BA3472C51503F66A0097A06F /* WPGenConfigViewController.h */,
@@ -1481,6 +1465,46 @@
 				BA61017813F868BA00275CB6 /* battery30@2x.png */,
 			);
 			name = OSD;
+			sourceTree = "<group>";
+		};
+		BA86B9A2150CD46300234271 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BA86B990150BB03600234271 /* WPGenBaseView.h */,
+				BA86B991150BB03600234271 /* WPGenBaseView.m */,
+				BA069E991503CB9E0017DBD6 /* WPGenBaseDataSource.h */,
+				BA069E9A1503CB9E0017DBD6 /* WPGenBaseDataSource.m */,
+				BA069E941503CA720017DBD6 /* WPGenBaseViewController.h */,
+				BA069E951503CA720017DBD6 /* WPGenBaseViewController.m */,
+				BA069E961503CA720017DBD6 /* WPGenBaseViewController.xib */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		BA86B9A3150CD49400234271 /* Circle */ = {
+			isa = PBXGroup;
+			children = (
+				BA3472CC15068B470097A06F /* WPGenCircleView.h */,
+				BA3472CD15068B480097A06F /* WPGenCircleView.m */,
+				BA069E9E1503CFB70017DBD6 /* WPGenCircleDataSource.h */,
+				BA069E9F1503CFB70017DBD6 /* WPGenCircleDataSource.m */,
+				BA3472CE15068B490097A06F /* WPGenCircleViewController.h */,
+				BA3472CF15068B490097A06F /* WPGenCircleViewController.m */,
+			);
+			name = Circle;
+			sourceTree = "<group>";
+		};
+		BA86B9A4150CD4A100234271 /* Area */ = {
+			isa = PBXGroup;
+			children = (
+				BA3472BE1503E1490097A06F /* WPGenAreaViewController.h */,
+				BA3472BF1503E1490097A06F /* WPGenAreaViewController.m */,
+				BA3472BB1503DEB80097A06F /* WPGenAreaView.h */,
+				BA3472BC1503DEB80097A06F /* WPGenAreaView.m */,
+				BA069E9C1503CFB70017DBD6 /* WPGenAreaDataSource.h */,
+				BA069E9D1503CFB70017DBD6 /* WPGenAreaDataSource.m */,
+			);
+			name = Area;
 			sourceTree = "<group>";
 		};
 		BA98EA8E13C65113005CF2FA /* Products */ = {
