@@ -49,6 +49,8 @@
 @property(assign) CLLocationDegrees posLatitude;
 @property(assign) CLLocationDegrees posLongitude;
 
+-(NSString*) formatHeading;
+
 + (id)pointWithData:(NSData *)data;
 - (id)initWithData:(NSData*)data;
 - (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate;

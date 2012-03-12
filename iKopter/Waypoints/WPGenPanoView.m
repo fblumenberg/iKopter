@@ -59,11 +59,11 @@
 
 -(void) updatePoints{
   
-//  self.points = [NSMutableArray arrayWithCapacity:noPoints];
-//  for (int x = 0; x < noPoints; x++) {
-//    NSValue *v = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
-//    [self.points addObject:v];
-//  }
+  self.points = [NSMutableArray arrayWithCapacity:noPoints];
+  for (int x = 0; x < noPoints; x++) {
+    NSValue *v = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
+    [self.points addObject:v];
+  }
   
   [self setNeedsLayout];
 }
@@ -78,28 +78,10 @@
   
   circleRect = CGRectInset(rect, 10, 10);
   
-//  if( noPoints>1 ){
-//    
-//    
-//    CGFloat ddeg = 360.0 / noPoints;
-//    if(clockwise)
-//      ddeg*=-1;
-//    
-//    
-//    CGFloat radius = CGRectGetWidth(circleRect)/2-40;
-//    
-//    for (int n = 0; n < noPoints; n++) {
-//      CGFloat angle = ((n * ddeg+180)*M_PI)/180;
-//      
-//      CGFloat x  = radius * sin(angle) + CGRectGetMidX(circleRect);
-//      CGFloat y  = radius * cos(angle) + CGRectGetMidY(circleRect);
-//      
-//      CGPoint newPoint = CGPointMake(x,y);
-//      NSValue *v = [NSValue valueWithCGPoint:newPoint];
-//      [self.points replaceObjectAtIndex:n withObject:v];
-//    }
-//  }
-  
+    for (int n = 0; n < noPoints; n++) {
+      NSValue *v = [NSValue valueWithCGPoint:self.poi];
+      [self.points replaceObjectAtIndex:n withObject:v];
+    }
 }
 
 
@@ -148,7 +130,6 @@
     if(clockwise)
       ddeg*=-1;
     
-    
     CGFloat radius = CGRectGetWidth(circleRect)/2-40;
     
     for (int n = 0; n < noPoints; n++) {
@@ -166,11 +147,12 @@
       CGPoint endPoint = CGPointMake(0.0, radius);
       
       CGContextSetLineWidth(context, 1.0);
-      
       CGContextMoveToPoint(context, 0, 0);
       CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
       CGContextStrokePath(context);
-      
+
+      [self drawWaypointAt:endPoint index:n withContext:context];
+
       CGContextRestoreGState(context);
     }
   }
@@ -179,7 +161,7 @@
   [self drawPOIAt:center withContext:context];
   
   [[UIColor whiteColor] set];
-  [@"C" drawAtPoint:center withFont:self.wpTextFont];
+//  [@"" drawAtPoint:center withFont:self.wpTextFont];
   CGContextStrokePath(context);
 }
 

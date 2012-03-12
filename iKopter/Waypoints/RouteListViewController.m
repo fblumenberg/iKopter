@@ -203,7 +203,10 @@
     cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d - POI", @"POI cell"), point.index];
   }
 
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m - %d s - %d (0.1m/s) - %d°", point.altitude, point.holdTime, point.speed,point.camAngle];
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m - %d s - %.0f m/s - %@", 
+                               point.altitude, point.holdTime, 
+                               (point.speed*0.1),[point formatHeading]];
+
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
   return cell;

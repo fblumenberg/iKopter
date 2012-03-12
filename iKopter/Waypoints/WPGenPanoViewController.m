@@ -104,28 +104,38 @@
   
   WPGenPanoView* v = (WPGenPanoView*)self.shapeView;
 
+  CGPoint p1 = CGPointMake(CGRectGetMidX(v.bounds), 0);
+  CGPoint p2 = CGPointMake(CGRectGetMidX(v.bounds), CGRectGetMidY(v.bounds));
+ 
+  p1 = [self.mapView convertPoint:p1 fromView:v];
+  p2 = [self.mapView convertPoint:p2 fromView:v];
+  
+  CGFloat radiants = acos((p2.y-p1.y)/(CGRectGetHeight(v.bounds)/2));
+
+  CGFloat startAngle = (radiants*180)/M_PI;
+
+  NSLog(@"startAngle = %f",startAngle);
+
+  CGFloat ddeg = 360.0 / [v.points count];
+  if(v.clockwise)
+    ddeg*=-1;
+
   NSMutableArray* points=[NSMutableArray arrayWithCapacity:[v.points count]];
   
-  CLLocationCoordinate2D coordinate = [self.mapView convertPoint:v.poi toCoordinateFromView:self.shapeView];
-  
-  
-  [points addObject:[self pointOfType:POINT_TYPE_POI forCoordinate:coordinate]];
-
-  
   [v.points enumerateObjectsUsingBlock:^(NSValue* obj, NSUInteger idx, BOOL *stop){
-
-      CGPoint p = [obj CGPointValue];
-      CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
-      NSLog(@"%d lat:%f long:%f",idx,coordinate.latitude,coordinate.longitude);
-      [points addObject:[self pointOfType:POINT_TYPE_WP forCoordinate:coordinate]];
+    
+    CGPoint p = [obj CGPointValue];
+    CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
+    NSLog(@"%d lat:%f long:%f",idx,coordinate.latitude,coordinate.longitude);
+    
+    IKPoint *newPoint = [self pointOfType:POINT_TYPE_WP forCoordinate:coordinate];
+    newPoint.heading = (int)(idx*ddeg);
+    if(newPoint.heading<=0)
+      newPoint.heading += 360;
+    
+    [points addObject:newPoint];
   }];
 
-  if( [[self.wpData objectForKey:WPclosed] boolValue]){
-    CGPoint p = [[v.points objectAtIndex:0] CGPointValue];
-    CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
-    [points addObject:[self pointOfType:POINT_TYPE_WP forCoordinate:coordinate]];
-  }
-  
   return points;
 }
 

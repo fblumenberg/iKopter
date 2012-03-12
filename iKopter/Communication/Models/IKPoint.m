@@ -252,4 +252,14 @@
   return  [NSString stringWithFormat:NSLocalizedString(@"Invalid - Index %d", @"INvalid WP Annotation callout"),self.index];
 }
 
+-(NSString*) formatHeading{
+  if(heading>0)
+    return [NSString stringWithFormat:@"%d°",heading];
+  
+  if(heading<0)
+    return [NSString stringWithFormat:@"P%d°",-heading];
+  
+  return @"--";
+}
+
 @end
