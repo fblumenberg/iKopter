@@ -39,7 +39,7 @@
   if ((self = [super initWithModel:aModel])) {
 
     IBATextFormField *numberField;
-    IBAStepperFormField* stepperField;
+    IBAStepperFormField *stepperField;
 
     IBAFormSection *positionSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Position", @"WP Pos Title") footerTitle:nil];
     positionSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
@@ -62,8 +62,8 @@
     attributeSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
 
-    NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects: NSLocalizedString(@"Waypoint", nil),
-                                                                                                           NSLocalizedString(@"POI", nil), nil]
+    NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:NSLocalizedString(@"Waypoint", nil),
+                                                                                                          NSLocalizedString(@"POI", nil), nil]
                                                                            font:[UIFont boldSystemFontOfSize:18]];
 
     IBASingleIndexTransformer *singleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:pickListOptions] autorelease];
@@ -74,78 +74,70 @@
                                                                           options:pickListOptions] autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"altitude"
-                                                          title:NSLocalizedString(@"Altitude", @"WP Altitude title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"Altitude", @"WP Altitude title") valueTransformer:nil];
+
     stepperField.maximumValue = 500;
     stepperField.minimumValue = 0;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"heading"
-                                                          title:NSLocalizedString(@"Heading", @"WP Heading title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"Heading", @"WP Heading title") valueTransformer:nil];
+
     stepperField.maximumValue = 360;
     stepperField.minimumValue = -100;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"toleranceRadius"
-                                                          title:NSLocalizedString(@"Radius", @"WP toleranceRadius title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"Radius", @"WP toleranceRadius title") valueTransformer:nil];
+
     stepperField.maximumValue = 100;
     stepperField.minimumValue = 0;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"holdTime"
-                                                          title:NSLocalizedString(@"HaltTime", @"WP holdTime title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"HaltTime", @"WP holdTime title") valueTransformer:nil];
+
     stepperField.maximumValue = 3600;
     stepperField.minimumValue = 0;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"wpEventChannelValue"
-                                                          title:NSLocalizedString(@"Event", @"WP event title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"Event", @"WP event title") valueTransformer:nil];
+
     stepperField.maximumValue = 255;
     stepperField.minimumValue = 0;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"altitudeRate"
-                                                          title:NSLocalizedString(@"Climb rate", @"WP event title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"Climb rate", @"WP event title") valueTransformer:nil];
+
     stepperField.maximumValue = 255;
     stepperField.minimumValue = 0;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"speed"
-                                                          title:NSLocalizedString(@"Speed", @"WP event title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"Speed", @"WP event title") valueTransformer:nil];
+
     stepperField.maximumValue = 255;
     stepperField.minimumValue = 0;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
     //------------------------------------------------------------------------------------------------------------------------
     stepperField = [[IBAStepperFormField alloc] initWithKeyPath:@"camAngle"
-                                                          title:NSLocalizedString(@"Camera nick angle", @"WP event title")
-                                               valueTransformer:nil];
-    
+                                                          title:NSLocalizedString(@"Camera nick angle", @"WP event title") valueTransformer:nil];
+
     stepperField.displayValueTransformer = [WPCamAngleTransformer instance];
     stepperField.maximumValue = 254;
     stepperField.minimumValue = -1;
-    
+
     [attributeSection addFormField:[stepperField autorelease]];
-    
+
   }
   return self;
 }

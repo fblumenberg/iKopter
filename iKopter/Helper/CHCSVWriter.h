@@ -27,41 +27,41 @@
 
 
 @interface CHCSVWriter : NSObject {
-	NSString * destinationFile;
-	NSString * handleFile;
-	NSFileHandle * outputHandle;
-	BOOL atomically;
-    NSMutableString *stringValue;
-	BOOL hasStarted;
-	
-	NSUInteger currentField;
-	NSStringEncoding encoding;
-	NSString *delimiter;
-	
-	NSCharacterSet * illegalCharacters;
-	
-	NSError * error;
+  NSString *destinationFile;
+  NSString *handleFile;
+  NSFileHandle *outputHandle;
+  BOOL atomically;
+  NSMutableString *stringValue;
+  BOOL hasStarted;
+
+  NSUInteger currentField;
+  NSStringEncoding encoding;
+  NSString *delimiter;
+
+  NSCharacterSet *illegalCharacters;
+
+  NSError *error;
 }
 
-@property (nonatomic) NSStringEncoding encoding; //defaults to NSUTF8StringEncoding
-@property (nonatomic, copy) NSString *delimiter; //defaults to ,
+@property(nonatomic) NSStringEncoding encoding; //defaults to NSUTF8StringEncoding
+@property(nonatomic, copy) NSString *delimiter; //defaults to ,
 
-- (id) initWithCSVFile:(NSString *)outputFile atomic:(BOOL)atomicWrite;
+- (id)initWithCSVFile:(NSString *)outputFile atomic:(BOOL)atomicWrite;
 
-- (id) initForWritingToString;
-- (NSString *) stringValue;
+- (id)initForWritingToString;
+- (NSString *)stringValue;
 
-- (NSError *) error;
+- (NSError *)error;
 
-- (void) writeField:(id)field;
-- (void) writeFields:(id)field, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)writeField:(id)field;
+- (void)writeFields:(id)field, ... NS_REQUIRES_NIL_TERMINATION;
 
-- (void) writeLine;
-- (void) writeLineOfFields:(id)field, ... NS_REQUIRES_NIL_TERMINATION;
-- (void) writeLineWithFields:(NSArray *)fields;
+- (void)writeLine;
+- (void)writeLineOfFields:(id)field, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)writeLineWithFields:(NSArray *)fields;
 
-- (void) writeCommentLine:(id)comment;
+- (void)writeCommentLine:(id)comment;
 
-- (void) closeFile;
+- (void)closeFile;
 
 @end

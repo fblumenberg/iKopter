@@ -22,7 +22,6 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import "SynthesizeSingleton.h"
 #import "MKConnectionController.h"
 #import "NSData+MKCommandDecode.h"
 #import "NSData+MKCommandEncode.h"

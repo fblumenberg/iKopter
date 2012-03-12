@@ -37,8 +37,8 @@
 
 @implementation MapOsdViewController
 
-@synthesize mapView;
-@synthesize routeController;
+@synthesize mapView = _mapView;
+@synthesize routeController = _routeController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -112,7 +112,7 @@
       annotationView.canShowCallout = YES;
     }
     else {
-      annotationView = (MKAnnotationView *) [theMapView dequeueReusableAnnotationViewWithIdentifier:placemarkIdentifier];
+      annotationView = [theMapView dequeueReusableAnnotationViewWithIdentifier:placemarkIdentifier];
       if (annotationView == nil)
         annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:placemarkIdentifier] autorelease];
       else
@@ -169,7 +169,7 @@
     MapLocation *annotation = [[MapLocation alloc] init];
     annotation.type = type;
     annotation.coordinate = coordinate;
-    [mapView addAnnotation:annotation];
+    [self.mapView addAnnotation:annotation];
     [annotation release];
   }
 }
@@ -194,7 +194,7 @@
   }
 
   if (value.data.data->WaypointNumber > 0 && self.routeController.route == nil && self.routeController.state == RouteControllerIsIdle) {
-    [routeController downloadRouteFromNaviCtrl];
+    [self.routeController downloadRouteFromNaviCtrl];
   }
 
   //-----------------------------------------------------------------------
@@ -226,14 +226,14 @@
 
   if ([overlay isKindOfClass:[MKPolyline class]]) {
 
-    MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
+    MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:(MKPolyline *)overlay] autorelease];
     polylineView.strokeColor = [UIColor blueColor];
     polylineView.lineWidth = 1.5;
     return polylineView;
   }
   else if ([overlay isKindOfClass:[HeadingOverlay class]]) {
 
-    HeadingOverlayView *circleView = [[[HeadingOverlayView alloc] initWithHeadingOverlay:overlay] autorelease];
+    HeadingOverlayView *circleView = [[[HeadingOverlayView alloc] initWithHeadingOverlay:(HeadingOverlay *)overlay] autorelease];
     circleView.strokeColor = [UIColor yellowColor];
 
     circleView.fillColor = [circleView.strokeColor colorWithAlphaComponent:0.4];
@@ -241,7 +241,7 @@
     return circleView;
   }
   else if ([overlay isKindOfClass:[MKCircle class]]) {
-    MKCircleView *circleView = [[[MKCircleView alloc] initWithCircle:overlay] autorelease];
+    MKCircleView *circleView = [[[MKCircleView alloc] initWithCircle:(MKCircle *)overlay] autorelease];
     if ([((MKCircle *) overlay).title length] > 0) {
       circleView.strokeColor = [UIColor redColor];
     }

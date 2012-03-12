@@ -329,8 +329,9 @@
 }
 
 - (void)dealloc {
-  [super dealloc];
+  self.customActivityText=nil;
   self.bt=nil;
+  [super dealloc];
 }
 
 

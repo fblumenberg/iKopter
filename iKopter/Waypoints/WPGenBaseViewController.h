@@ -48,28 +48,28 @@ IK_DECLARE_KEY(WPstartangle);
 
 @interface WPGenBaseViewController : UIViewController
 
-- (id)initWithShapeView:(UIView *)shapeView forMapView:(MKMapView*)mapView;
+- (id)initWithShapeView:(UIView *)shapeView forMapView:(MKMapView *)mapView;
 
-@property(nonatomic, readonly) NSMutableDictionary *wpData;
-@property(nonatomic, assign) id<WPGenBaseViewControllerDelegate> delegate;
-@property(nonatomic, retain) MKMapView* mapView;
+@property(nonatomic, retain) NSMutableDictionary *wpData;
+@property(nonatomic, assign) id <WPGenBaseViewControllerDelegate> delegate;
+@property(nonatomic, retain) MKMapView *mapView;
 
-@property(retain, nonatomic) IBOutlet UIView *shapeView;
-@property(retain) WPGenBaseDataSource* dataSource;
+@property(nonatomic, retain) IBOutlet UIView *shapeView;
+@property(nonatomic, retain) WPGenBaseDataSource *dataSource;
 
-- (NSArray*) generatePointsList;
+- (NSArray *)generatePointsList;
 
 - (IBAction)closeView:(id)sender;
 
 - (IBAction)generatePoints:(id)sender;
 - (IBAction)showConfig:(id)sender;
-- (IKPoint*) pointOfType:(NSInteger)type forCoordinate:(CLLocationCoordinate2D)coordinate;
+- (IKPoint *)pointOfType:(NSInteger)type forCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end
 
 @protocol WPGenBaseViewControllerDelegate
 
-- (void) controllerWillClose:(WPGenBaseViewController*)controller; 
-- (void) controller:(WPGenBaseViewController*)controller generatedPoints:(NSArray*)points clearList:(BOOL)clear;
+- (void)controllerWillClose:(WPGenBaseViewController *)controller;
+- (void)controller:(WPGenBaseViewController *)controller generatedPoints:(NSArray *)points clearList:(BOOL)clear;
 
 @end

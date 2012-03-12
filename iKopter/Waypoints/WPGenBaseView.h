@@ -28,9 +28,9 @@
 @interface WPGenBaseView : UIView
 
 @property(nonatomic, retain) NSMutableArray *points;
-@property(nonatomic, retain) UIFont* wpTextFont;
+@property(nonatomic, retain) UIFont *wpTextFont;
 @property(nonatomic, retain) UIColor *wpColor;
 
-- (void) drawWaypointAt: (CGPoint) p index: (NSUInteger) idx withContext: (CGContextRef) context ;
+- (void)drawWaypointAt:(CGPoint)p index:(NSUInteger)idx withContext:(CGContextRef)context;
 
 @end

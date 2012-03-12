@@ -24,9 +24,9 @@
 
 
 #import <MapKit/MapKit.h>
+
 #import "RouteMapViewController.h"
 #import "IKPoint.h"
-#import "MapLocation.h"
 #import "WaypointViewController.h"
 #import "HeadingOverlayView.h"
 #import "HeadingOverlay.h"
@@ -35,7 +35,8 @@
 #import "WPGenAreaViewController.h"
 #import "WPGenCircleViewController.h"
 #import "WPGenPanoViewController.h"
-@interface RouteMapViewController ()<WPGenBaseViewControllerDelegate>
+
+@interface RouteMapViewController () <WPGenBaseViewControllerDelegate>
 
 - (void)updateRouteOverlay;
 - (void)routeChangedNotification:(NSNotification *)aNotification;
@@ -47,7 +48,7 @@
 - (void)configWayPoints:(id)sender;
 - (void)updateWpToolbar;
 
-@property(nonatomic,retain)WPGenBaseViewController *wpgenController;
+@property(nonatomic, retain) WPGenBaseViewController *wpgenController;
 @property(retain) IBOutlet UISegmentedControl *wpGeneratorSelection;
 @property(retain) IBOutlet UIBarButtonItem *wpGenerateItem;
 @property(retain) IBOutlet UIBarButtonItem *wpGenerateConfigItem;
@@ -59,7 +60,7 @@
 
 @synthesize route;
 @synthesize scaleLabel;
-@synthesize mapView;
+@synthesize mapView = _mapView;
 @synthesize curlBarItem;
 @synthesize segmentedControl;
 @synthesize surrogateParent;
@@ -85,9 +86,9 @@
   self.segmentedControl = nil;
   self.scaleLabel = nil;
   self.wpgenController = nil;
-  self.wpGenerateItem=nil;
-  self.wpGeneratorSelection=nil;
-  self.wpGenerateConfigItem=nil;
+  self.wpGenerateItem = nil;
+  self.wpGeneratorSelection = nil;
+  self.wpGenerateConfigItem = nil;
   [super dealloc];
 }
 
@@ -118,7 +119,7 @@
 
   [self.mapView addGestureRecognizer:longTap];
   [longTap release];
-  
+
   if (self.isPad) {
     self.navigationItem.hidesBackButton = YES;
     UIBarButtonItem *curlBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
@@ -126,44 +127,43 @@
                                                                                         action:@selector(touched)] autorelease];
 
     UIBarButtonItem *spacer = [[[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                    target:nil action:nil] autorelease];
+            initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                 target:nil action:nil] autorelease];
 
 
-    self.wpGenerateItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Generate", @"Gernerate WP")  
-                                                                           style:UIBarButtonItemStyleBordered 
-                                                                          target:self action:@selector(generateWayPoints)] autorelease];
+    self.wpGenerateItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Generate", @"Gernerate WP") style:UIBarButtonItemStyleBordered
+                                                           target:self action:@selector(generateWayPoints)] autorelease];
 
 
-    self.wpGenerateConfigItem  = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-settings3.png"]
-                                                            style:UIBarButtonItemStyleBordered 
-                                                                  target:self action:@selector(configWayPoints:)] autorelease];
+    self.wpGenerateConfigItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-settings3.png"]
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self action:@selector(configWayPoints:)] autorelease];
 
     NSArray *segmentItems = [NSArray arrayWithObjects:@"AREA", @"CIRCLE", @"PANO", nil];
-    
+
     self.wpGeneratorSelection = [[[UISegmentedControl alloc] initWithItems:segmentItems] autorelease];
     self.wpGeneratorSelection.segmentedControlStyle = UISegmentedControlStyleBar;
 
     [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-area.png"] forSegmentAtIndex:0];
     [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-circle.png"] forSegmentAtIndex:1];
     [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-pano.png"] forSegmentAtIndex:2];
-    
+
 //    [self.segment setImage:[UIImage imageNamed:@"list-mode.png"] forSegmentAtIndex:0];
 //    [self.segment setWidth:50.0 forSegmentAtIndex:0];
 //    [self.segment setWidth:50.0 forSegmentAtIndex:1];
 //    [self.segment setImage:[UIImage imageNamed:@"map-mode.png"] forSegmentAtIndex:1];
 
     self.wpGeneratorSelection.momentary = YES;
-    
+
     [self.wpGeneratorSelection addTarget:self
                                   action:@selector(showWpGen:)
-           forControlEvents:UIControlEventValueChanged];
-    
+                        forControlEvents:UIControlEventValueChanged];
+
     UIBarButtonItem *segmentButton;
     segmentButton = [[[UIBarButtonItem alloc]
-                      initWithCustomView:self.wpGeneratorSelection] autorelease];
+            initWithCustomView:self.wpGeneratorSelection] autorelease];
 
-    [self setToolbarItems:[NSArray arrayWithObjects:curlBarButtonItem, spacer, self.wpGenerateConfigItem, self.wpGenerateItem, segmentButton, nil] 
+    [self setToolbarItems:[NSArray arrayWithObjects:curlBarButtonItem, spacer, self.wpGenerateConfigItem, self.wpGenerateItem, segmentButton, nil]
                  animated:YES];
 
     self.navigationController.toolbarHidden = NO;
@@ -177,10 +177,10 @@
   self.mapView = nil;
   self.segmentedControl = nil;
   self.scaleLabel = nil;
-  self.wpGenerateItem=nil;
-  self.wpGeneratorSelection=nil;
-  self.wpgenController=nil;
-  self.wpGenerateConfigItem=nil;
+  self.wpGenerateItem = nil;
+  self.wpGeneratorSelection = nil;
+  self.wpgenController = nil;
+  self.wpGenerateConfigItem = nil;
   [super viewDidUnload];
 }
 
@@ -217,7 +217,7 @@
 
     MKMapRect flyTo = MKMapRectNull;
 
-    for (id <MKOverlay> overlay in mapView.overlays) {
+    for (id <MKOverlay> overlay in self.mapView.overlays) {
       if (MKMapRectIsNull(flyTo)) {
         flyTo = [overlay boundingMapRect];
       } else {
@@ -225,7 +225,7 @@
       }
     }
 
-    for (id <MKAnnotation> annotation in mapView.annotations) {
+    for (id <MKAnnotation> annotation in self.mapView.annotations) {
       MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
       MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
 
@@ -236,20 +236,20 @@
       }
     }
 
-    flyTo = [mapView mapRectThatFits:flyTo];
+    flyTo = [self.mapView mapRectThatFits:flyTo];
 
     // Position the map so that all overlays and annotations are visible on screen.
-    [mapView setVisibleMapRect:flyTo animated:YES];
+    [self.mapView setVisibleMapRect:flyTo animated:YES];
   }
   else if ([route.points count] == 1) {
     IKPoint *pt = [route.points objectAtIndex:0];
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pt.coordinate, 2000, 2000);
-    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion animated:YES];
   }
   else {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([Route defaultCoordinate], 2000, 2000);
-    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion animated:YES];
   }
 }
@@ -259,7 +259,7 @@
   NSIndexPath *editingPoint = [self.route addPointAtCenter];
 
   IKPoint *point = [self.route pointAtIndexPath:editingPoint];
-  [mapView addAnnotation:point];
+  [self.mapView addAnnotation:point];
   [self updateRouteOverlay];
 }
 
@@ -268,20 +268,20 @@
   NSIndexPath *editingPoint = [self.route addPointAtCoordinate:location.coordinate];
 
   IKPoint *point = [self.route pointAtIndexPath:editingPoint];
-  [mapView addAnnotation:point];
+  [self.mapView addAnnotation:point];
   [self updateRouteOverlay];
 }
 
-- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer{
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
   CGPoint p = [gestureRecognizer locationInView:self.mapView];
-  NSLog(@"Long press %@ %d",NSStringFromCGPoint(p),gestureRecognizer.state);
-  
-  if(gestureRecognizer.state == UIGestureRecognizerStateBegan){
-    CLLocationCoordinate2D coordinate=[self.mapView convertPoint:p toCoordinateFromView:self.mapView];
+  NSLog(@"Long press %@ %d", NSStringFromCGPoint(p), gestureRecognizer.state);
+
+  if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+    CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.mapView];
     NSIndexPath *editingPoint = [self.route addPointAtCoordinate:coordinate];
-    
+
     IKPoint *point = [self.route pointAtIndexPath:editingPoint];
-    [mapView addAnnotation:point];
+    [self.mapView addAnnotation:point];
     [self updateRouteOverlay];
     [Route sendChangedNotification:self];
   }
@@ -290,7 +290,7 @@
 #pragma mark - Page Curl stuff
 
 - (void)changeMapViewType {
-  [self.mapView setMapType:self.segmentedControl.selectedSegmentIndex];
+  [self.mapView setMapType:(MKMapType)self.segmentedControl.selectedSegmentIndex];
   [self.curlBarItem curlViewDown];
   [[NSUserDefaults standardUserDefaults] setInteger:self.segmentedControl.selectedSegmentIndex forKey:@"RouteMapViewType"];
 }
@@ -313,7 +313,7 @@
     ((MKPinAnnotationView *) annotationView).animatesDrop = NO;
     ((MKPinAnnotationView *) annotationView).pinColor = ((IKPoint *) annotation).type == POINT_TYPE_WP ? MKPinAnnotationColorGreen : MKPinAnnotationColorPurple;
 
-    UIButton* closeButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeButton.frame = CGRectMake(0, 0, 29, 29);
     [closeButton setImage:[UIImage imageNamed:@"CloseButton.png"] forState:UIControlStateNormal];
     [closeButton setImage:[UIImage imageNamed:@"CloseButtonPressed.png"] forState:UIControlStateHighlighted];
@@ -339,23 +339,23 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-  
+
   if ([view.annotation isKindOfClass:[IKPoint class]]) {
     IKPoint *point = (IKPoint *) view.annotation;
-    
-    if( view.rightCalloutAccessoryView==control){
+
+    if (view.rightCalloutAccessoryView == control) {
       WaypointViewController *hostView = [[[WaypointViewController alloc] initWithPoint:point] autorelease];
-      
+
       if (self.isPad) {
         UIPopoverController *popOverController = [[UIPopoverController alloc] initWithContentViewController:hostView];
         popOverController.delegate = self;
         popOverController.popoverContentSize = CGSizeMake(320, 500);
-        
-        
-        CGRect rect = CGRectMake(CGRectGetMidX(view.bounds)+view.calloutOffset.x-3, 0, 3, 1);
+
+
+        CGRect rect = CGRectMake(CGRectGetMidX(view.bounds) + view.calloutOffset.x - 3, 0, 3, 1);
         [popOverController presentPopoverFromRect:rect inView:view
                          permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        
+
         [self.mapView deselectAnnotation:[view annotation] animated:NO];
       }
       else {
@@ -363,7 +363,7 @@
       }
     }
     else {
-      [self.route deletePointAtIndexPath:[NSIndexPath indexPathForRow:(point.index-1) inSection:0]];
+      [self.route deletePointAtIndexPath:[NSIndexPath indexPathForRow:(point.index - 1) inSection:0]];
     }
   }
 }
@@ -377,14 +377,14 @@
 
   if ([overlay isKindOfClass:[MKPolyline class]]) {
 
-    MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
+    MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:(MKPolyline *)overlay] autorelease];
     polylineView.strokeColor = [UIColor blueColor];
     polylineView.lineWidth = 1.5;
     return polylineView;
   }
   else if ([overlay isKindOfClass:[HeadingOverlay class]]) {
 
-    HeadingOverlayView *circleView = [[[HeadingOverlayView alloc] initWithHeadingOverlay:overlay] autorelease];
+    HeadingOverlayView *circleView = [[[HeadingOverlayView alloc] initWithHeadingOverlay:(HeadingOverlay *)overlay] autorelease];
     circleView.strokeColor = [UIColor yellowColor];
 
     circleView.fillColor = [circleView.strokeColor colorWithAlphaComponent:0.4];
@@ -392,7 +392,7 @@
     return circleView;
   }
   else if ([overlay isKindOfClass:[MKCircle class]]) {
-    MKCircleView *circleView = [[[MKCircleView alloc] initWithCircle:overlay] autorelease];
+    MKCircleView *circleView = [[[MKCircleView alloc] initWithCircle:(MKCircle *)overlay] autorelease];
     if ([((MKCircle *) overlay).title length] > 0) {
       circleView.strokeColor = [UIColor redColor];
     }
@@ -418,51 +418,51 @@ didChangeDragState:(MKAnnotationViewDragState)newState
   }
 }
 
--(void) mapView:(MKMapView *)theMapView regionDidChangeAnimated:(BOOL)animated{
-  CGRect frame=scaleLabel.frame;
-  
-  CGFloat maxLabelWidth=150;
-  CGPoint p1=CGPointMake(0, CGRectGetMinY(frame));
-  CGPoint p2=CGPointMake(maxLabelWidth, CGRectGetMinY(frame));
-  
-  CLLocationCoordinate2D lc1=[theMapView convertPoint:p1 toCoordinateFromView:self.mapView];
-  CLLocationCoordinate2D lc2=[theMapView convertPoint:p2 toCoordinateFromView:self.mapView];
-  CLLocation *l1 = [[[CLLocation alloc] initWithLatitude:lc1.latitude longitude:lc1.longitude]autorelease];
-  CLLocation *l2 = [[[CLLocation alloc] initWithLatitude:lc2.latitude longitude:lc2.longitude]autorelease];
+- (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated:(BOOL)animated {
+  CGRect frame = scaleLabel.frame;
+
+  CGFloat maxLabelWidth = 150;
+  CGPoint p1 = CGPointMake(0, CGRectGetMinY(frame));
+  CGPoint p2 = CGPointMake(maxLabelWidth, CGRectGetMinY(frame));
+
+  CLLocationCoordinate2D lc1 = [theMapView convertPoint:p1 toCoordinateFromView:self.mapView];
+  CLLocationCoordinate2D lc2 = [theMapView convertPoint:p2 toCoordinateFromView:self.mapView];
+  CLLocation *l1 = [[[CLLocation alloc] initWithLatitude:lc1.latitude longitude:lc1.longitude] autorelease];
+  CLLocation *l2 = [[[CLLocation alloc] initWithLatitude:lc2.latitude longitude:lc2.longitude] autorelease];
   CLLocationDistance dist = [l1 distanceFromLocation:l2];
-  
-  CGFloat labelWidth=maxLabelWidth;
-  
+
+  CGFloat labelWidth = maxLabelWidth;
+
   NSInteger widthFactor;
-  CGFloat   mul;
-  for(widthFactor=6;widthFactor>0;widthFactor--){
-    mul = pow(10, widthFactor);
-    
-    labelWidth = (mul*maxLabelWidth)/dist;
-    if(labelWidth < maxLabelWidth)
+  CGFloat mul;
+  for (widthFactor = 6; widthFactor > 0; widthFactor--) {
+    mul = powf(10, widthFactor);
+
+    labelWidth = (mul * maxLabelWidth) / dist;
+    if (labelWidth < maxLabelWidth)
       break;
   }
-  
 
-  if(labelWidth<(maxLabelWidth/5)){
-    labelWidth*=5;
-    mul*=5;
+
+  if (labelWidth < (maxLabelWidth / 5)) {
+    labelWidth *= 5;
+    mul *= 5;
   }
-  else if(labelWidth<(maxLabelWidth/2)){
-    labelWidth*=2;
-    mul*=2;
+  else if (labelWidth < (maxLabelWidth / 2)) {
+    labelWidth *= 2;
+    mul *= 2;
   }
-  
-  
-  if (widthFactor>2) {
-    scaleLabel.text = [NSString stringWithFormat:@"%d km",(int)(mul/1000)];
+
+
+  if (widthFactor > 2) {
+    scaleLabel.text = [NSString stringWithFormat:@"%d km", (int) (mul / 1000)];
   }
-  else{
-    scaleLabel.text = [NSString stringWithFormat:@"%d m",(int)(mul)];
+  else {
+    scaleLabel.text = [NSString stringWithFormat:@"%d m", (int) (mul)];
   }
-  
-  CGFloat rightX=CGRectGetMaxX(frame);
-  scaleLabel.frame = CGRectMake(rightX-labelWidth, frame.origin.y, labelWidth, frame.size.height);
+
+  CGFloat rightX = CGRectGetMaxX(frame);
+  scaleLabel.frame = CGRectMake(rightX - labelWidth, frame.origin.y, labelWidth, frame.size.height);
 }
 
 
@@ -535,26 +535,26 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 
 #pragma mark - Waypoint Generator
 
-- (void)updateWpToolbar{
-  BOOL wpgen = self.wpgenController!=nil;
+- (void)updateWpToolbar {
+  BOOL wpgen = self.wpgenController != nil;
   self.wpGenerateItem.enabled = wpgen;
   self.wpGenerateConfigItem.enabled = wpgen;
   self.wpGeneratorSelection.enabled = !wpgen;
 }
 
-- (void)showWpGen:(id)sender{
+- (void)showWpGen:(id)sender {
 
   switch (self.wpGeneratorSelection.selectedSegmentIndex) {
     case 0:
-      self.wpgenController = [[[WPGenAreaViewController alloc] initForMapView:self.mapView]autorelease];
+      self.wpgenController = [[[WPGenAreaViewController alloc] initForMapView:self.mapView] autorelease];
       break;
-      
+
     case 1:
-      self.wpgenController = [[[WPGenCircleViewController alloc] initForMapView:self.mapView]autorelease];
+      self.wpgenController = [[[WPGenCircleViewController alloc] initForMapView:self.mapView] autorelease];
       break;
 
     case 2:
-      self.wpgenController = [[[WPGenPanoViewController alloc] initForMapView:self.mapView]autorelease];
+      self.wpgenController = [[[WPGenPanoViewController alloc] initForMapView:self.mapView] autorelease];
       break;
 
     default:
@@ -562,34 +562,34 @@ didChangeDragState:(MKAnnotationViewDragState)newState
       break;
   }
   self.wpgenController.delegate = self;
-  
+
   [self updateWpToolbar];
-  [self.mapView addSubview: self.wpgenController.view];
-  
+  [self.mapView addSubview:self.wpgenController.view];
+
 }
 
-- (void) generateWayPoints {
+- (void)generateWayPoints {
   [self.wpgenController generatePoints:self];
 }
 
-- (void)configWayPoints:(id)sender{
+- (void)configWayPoints:(id)sender {
   [self.wpgenController showConfig:sender];
 }
 
 #pragma mark - Waypoint Generator Delegate
 
-- (void) controllerWillClose:(WPGenBaseViewController*)controller{
-  self.wpgenController=nil;
+- (void)controllerWillClose:(WPGenBaseViewController *)controller {
+  self.wpgenController = nil;
   [self updateWpToolbar];
 }
 
-- (void) controller:(WPGenBaseViewController*)controller generatedPoints:(NSArray*)points clearList:(BOOL)clear {
-  
-  if(clear)
+- (void)controller:(WPGenBaseViewController *)controller generatedPoints:(NSArray *)points clearList:(BOOL)clear {
+
+  if (clear)
     [self.route removeAllPoints];
-  
+
   [self.route addPoints:points];
-  
+
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView addAnnotations:route.points];
   [self updateRouteOverlay];

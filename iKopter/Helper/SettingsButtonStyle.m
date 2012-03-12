@@ -23,9 +23,6 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "SettingsButtonStyle.h"
-#import <IBAForms/IBAFormFieldStyle.h>
-#import <IBAForms/IBAFormConstants.h>
-
 
 @implementation SettingsButtonStyle
 

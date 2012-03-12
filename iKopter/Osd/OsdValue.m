@@ -33,7 +33,6 @@
 #import "NCLogRecord.h"
 #import "IKDebugData.h"
 #import "IKPoint.h"
-#import "IKNaviData.h"
 
 static const NSString *errorMsg[30] = {
         @"No Error",
@@ -275,7 +274,6 @@ static const NSString *errorMsg[30] = {
       _logActive = [[NSUserDefaults standardUserDefaults] boolForKey:kIKNCLoggingActive];
     }
 
-    testValue = nil;
     testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kIKNCLoggingInterval];
     if (testValue) {
       _logInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:kIKNCLoggingInterval];
@@ -341,6 +339,9 @@ static const NSString *errorMsg[30] = {
   self.lm = nil;
 
   self.data = nil;
+
+  self.managedObjectContext = nil;
+  self.ncLogSession = nil;
   [super dealloc];
 }
 

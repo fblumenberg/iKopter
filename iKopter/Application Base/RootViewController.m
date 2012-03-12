@@ -28,17 +28,13 @@
 
 #import "MKHosts.h"
 #import "MKHost.h"
-#import "MKHostViewController.h"
 #import "MKConnectionController.h"
 #import "IASKPSTitleValueSpecifierViewCell.h"
 #import "NCLogViewController.h"
 #import "MKHostsViewController.h"
 #import "RoutesViewController.h"
-#import "DropboxSDK.h"
 
 #import "UIViewController+SplitView.h"
-
-#define kDropBoxAction @"DropBoxAction"
 
 
 @interface RootViewController ()
@@ -374,10 +370,13 @@
 - (void)viewDidUnload {
   [hosts release];
   hosts = nil;
+  self.appSettingsViewController = nil;
 }
 
 - (void)dealloc {
   [hosts release];
+  self.appSettingsViewController = nil;
+
   [super dealloc];
 }
 

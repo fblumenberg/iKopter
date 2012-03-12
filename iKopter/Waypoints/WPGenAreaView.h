@@ -29,9 +29,9 @@
 
 @interface WPGenAreaView : WPGenBaseView
 
-@property(assign) NSInteger noPointsX;
-@property(assign) NSInteger noPointsY;
+@property(assign) NSUInteger noPointsX;
+@property(assign) NSUInteger noPointsY;
 
--(void) updatePoints;
+- (void)updatePoints;
 
 @end

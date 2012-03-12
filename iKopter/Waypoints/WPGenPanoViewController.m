@@ -23,20 +23,18 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 
-#import <QuartzCore/QuartzCore.h>
 #import <MapKit/MapKit.h>
 
 #import "WPGenPanoViewController.h"
 #import "WPGenPanoDataSource.h"
-#import "WPGenConfigViewController.h"
 #import "WPGenPanoView.h"
 
 #import "IKPoint.h"
 
-@interface WPGenPanoViewController () <UIPopoverControllerDelegate,WPGenBaseDataSourceDelegate,UIGestureRecognizerDelegate> {
+@interface WPGenPanoViewController () <UIPopoverControllerDelegate, WPGenBaseDataSourceDelegate, UIGestureRecognizerDelegate> {
 }
 
-@property(retain) WPGenPanoDataSource* dataSource;
+@property(retain) WPGenPanoDataSource *dataSource;
 
 @end
 
@@ -44,17 +42,17 @@
 
 @synthesize dataSource;
 
-- (id)initForMapView:(MKMapView*)mapView {
+- (id)initForMapView:(MKMapView *)mapView {
 
-  WPGenPanoView* shapeView = [[[WPGenPanoView alloc] initWithFrame:CGRectZero] autorelease];
-  
+  WPGenPanoView *shapeView = [[[WPGenPanoView alloc] initWithFrame:CGRectZero] autorelease];
+
   self = [super initWithShapeView:shapeView forMapView:mapView];
   if (self) {
 
     [self.wpData setValue:[NSNumber numberWithInteger:shapeView.noPoints] forKey:WPnoPoints];
     [self.wpData setValue:[NSNumber numberWithBool:NO] forKey:WPclockwise];
 
-    self.dataSource = [[[WPGenPanoDataSource alloc] initWithModel:self.wpData]autorelease];
+    self.dataSource = [[[WPGenPanoDataSource alloc] initWithModel:self.wpData] autorelease];
     self.dataSource.delegate = self;
   }
   return self;
@@ -69,11 +67,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-	[tapRecognizer setNumberOfTapsRequired:1];
-	[self.shapeView addGestureRecognizer:tapRecognizer];
+  UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+  [tapRecognizer setNumberOfTapsRequired:1];
+  [self.shapeView addGestureRecognizer:tapRecognizer];
   [tapRecognizer release];
-} 
+}
 
 - (void)viewDidUnload {
   [super viewDidUnload];
@@ -83,56 +81,56 @@
   return YES;
 }
 
--(void)tapped:(UITapGestureRecognizer*)gestureRecognizer {
-  
+- (void)tapped:(UITapGestureRecognizer *)gestureRecognizer {
+
   [self showConfig:self.shapeView];
 }
 
 
--(void) dataSource:(WPGenBaseDataSource *)changed {
-  
-  WPGenPanoView* v=(WPGenPanoView*)self.shapeView;
-  
+- (void)dataSource:(WPGenBaseDataSource *)changed {
+
+  WPGenPanoView *v = (WPGenPanoView *) self.shapeView;
+
   v.noPoints = [[self.wpData objectForKey:WPnoPoints] integerValue];
-  v.clockwise= [[self.wpData objectForKey:WPclockwise] boolValue];
+  v.clockwise = [[self.wpData objectForKey:WPclockwise] boolValue];
   [v updatePoints];
   [v setNeedsDisplay];
 }
 
 
--(NSArray*) generatePointsList{
-  
-  WPGenPanoView* v = (WPGenPanoView*)self.shapeView;
+- (NSArray *)generatePointsList {
+
+  WPGenPanoView *v = (WPGenPanoView *) self.shapeView;
 
   CGPoint p1 = CGPointMake(CGRectGetMidX(v.bounds), 0);
   CGPoint p2 = CGPointMake(CGRectGetMidX(v.bounds), CGRectGetMidY(v.bounds));
- 
+
   p1 = [self.mapView convertPoint:p1 fromView:v];
   p2 = [self.mapView convertPoint:p2 fromView:v];
-  
-  CGFloat radiants = acos((p2.y-p1.y)/(CGRectGetHeight(v.bounds)/2));
 
-  CGFloat startAngle = (radiants*180)/M_PI;
+  CGFloat radiants = acosf((p2.y - p1.y) / (CGRectGetHeight(v.bounds) / 2));
 
-  NSLog(@"startAngle = %f",startAngle);
+  CGFloat startAngle = (radiants * 180) / M_PI;
+
+  NSLog(@"startAngle = %f", startAngle);
 
   CGFloat ddeg = 360.0 / [v.points count];
-  if(v.clockwise)
-    ddeg*=-1;
+  if (v.clockwise)
+    ddeg *= -1;
 
-  NSMutableArray* points=[NSMutableArray arrayWithCapacity:[v.points count]];
-  
-  [v.points enumerateObjectsUsingBlock:^(NSValue* obj, NSUInteger idx, BOOL *stop){
-    
+  NSMutableArray *points = [NSMutableArray arrayWithCapacity:[v.points count]];
+
+  [v.points enumerateObjectsUsingBlock:^(NSValue *obj, NSUInteger idx, BOOL *stop) {
+
     CGPoint p = [obj CGPointValue];
     CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
-    NSLog(@"%d lat:%f long:%f",idx,coordinate.latitude,coordinate.longitude);
-    
+    NSLog(@"%d lat:%f long:%f", idx, coordinate.latitude, coordinate.longitude);
+
     IKPoint *newPoint = [self pointOfType:POINT_TYPE_WP forCoordinate:coordinate];
-    newPoint.heading = (int)(idx*ddeg);
-    if(newPoint.heading<=0)
+    newPoint.heading = (int) (idx * ddeg);
+    if (newPoint.heading <= 0)
       newPoint.heading += 360;
-    
+
     [points addObject:newPoint];
   }];
 

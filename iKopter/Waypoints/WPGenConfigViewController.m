@@ -30,24 +30,23 @@
 
 @implementation WPGenConfigViewController
 
-- (id)initWithFormDataSource:(IBAFormDataSource *)formDataSource
-{
+- (id)initWithFormDataSource:(IBAFormDataSource *)formDataSource {
   if ((self = [super initWithNibName:nil bundle:nil formDataSource:formDataSource])) {
     self.title = NSLocalizedString(@"Waypoint", @"Waypoint view title");
   }
   return self;
 }
 
-- (void)loadView{
+- (void)loadView {
   [super loadView];
-  
+
   UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-  
+
   UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
   [formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
   [self setTableView:formTableView];
-  
+
   [view addSubview:formTableView];
   [self setView:view];
 }

@@ -37,8 +37,8 @@
 - (id)initWithModel:(id)aModel {
   if ((self = [super initWithModel:aModel])) {
 
-    IBAStepperFormField* stepperField;
-    
+    IBAStepperFormField *stepperField;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     configSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
@@ -48,14 +48,12 @@
     stepperField.maximumValue = 100;
     stepperField.minimumValue = 0;
     stepperField.minimumValue = 2;
-    
-    [configSection addSwitchFieldForKeyPath:WPclockwise 
-                                      title:NSLocalizedString(@"Clockwise", @"WPclockwise")
-                                      style:[SettingsFieldStyleSwitch style]];
 
-    [configSection addSwitchFieldForKeyPath:WPclosed 
-                                      title:NSLocalizedString(@"Add Point To close", @"WPclosed")
-                                      style:[SettingsFieldStyleSwitch style]];
+    [configSection addSwitchFieldForKeyPath:WPclockwise
+                                      title:NSLocalizedString(@"Clockwise", @"WPclockwise") style:[SettingsFieldStyleSwitch style]];
+
+    [configSection addSwitchFieldForKeyPath:WPclosed
+                                      title:NSLocalizedString(@"Add Point To close", @"WPclosed") style:[SettingsFieldStyleSwitch style]];
 
     [self addAttributeSection];
   }

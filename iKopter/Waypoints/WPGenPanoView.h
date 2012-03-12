@@ -32,7 +32,7 @@
 @property(assign) NSInteger noPoints;
 @property(assign) BOOL clockwise;
 
--(void) updatePoints;
--(CGPoint)poi;
+- (void)updatePoints;
+- (CGPoint)poi;
 
 @end

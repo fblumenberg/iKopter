@@ -24,12 +24,6 @@
 
 #import "WPGenAreaView.h"
 
-@interface WPGenAreaView () {
-
-}
-
-@end
-
 @implementation WPGenAreaView
 
 @synthesize noPointsX, noPointsY;
@@ -45,8 +39,8 @@
   return self;
 }
 
--(void) updatePoints{
-  
+- (void)updatePoints {
+
   self.points = [NSMutableArray arrayWithCapacity:noPointsY];
   for (int y = 0; y < noPointsY; y++) {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:noPointsX];
@@ -56,7 +50,7 @@
     }
     [self.points addObject:array];
   }
-  
+
   [self setNeedsLayout];
 }
 
@@ -67,9 +61,9 @@
   CGFloat dx = noPointsX == 1 ? CGRectGetWidth(rect) : CGRectGetWidth(rect) / (noPointsX - 1);
   CGFloat dy = noPointsY == 1 ? CGRectGetHeight(rect) : CGRectGetHeight(rect) / (noPointsY - 1);
 
-  for (int y = 0; y < noPointsY; y++) {
+  for (NSUInteger y = 0; y < noPointsY; y++) {
     NSMutableArray *array = [self.points objectAtIndex:y];
-    for (int x = 0; x < noPointsX; x++) {
+    for (NSUInteger x = 0; x < noPointsX; x++) {
       NSValue *v = [NSValue valueWithCGPoint:CGPointMake(rect.origin.x + x * dx, rect.origin.y + y * dy)];
       [array replaceObjectAtIndex:x withObject:v];
     }
@@ -84,8 +78,8 @@
 
   CGContextRef context = UIGraphicsGetCurrentContext();
 
-  NSMutableArray *points = [NSMutableArray arrayWithCapacity:self.noPointsX*self.noPointsY];
-  
+  NSMutableArray *points = [NSMutableArray arrayWithCapacity:self.noPointsX * self.noPointsY];
+
   [[UIColor whiteColor] set];
 
   [self.points enumerateObjectsUsingBlock:^(id obj, NSUInteger idxY, BOOL *stop) {
@@ -97,7 +91,7 @@
     [x enumerateObjectsUsingBlock:^(id objx, NSUInteger idxX, BOOL *stopx) {
 
       [points addObject:objx];
-      
+
       CGPoint p = [[x objectAtIndex:idxX] CGPointValue];
 
       if (idxY == 0 && idxX == 0)

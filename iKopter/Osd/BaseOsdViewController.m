@@ -28,7 +28,6 @@
 #import "OsdValue.h"
 #import "InnerShadowView.h"
 #import "CustomBadge.h"
-#import "IKNaviData.h"
 
 
 @implementation BaseOsdViewController

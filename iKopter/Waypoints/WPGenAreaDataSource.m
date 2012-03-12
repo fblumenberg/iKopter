@@ -37,8 +37,8 @@
 
 - (id)initWithModel:(id)aModel {
   if ((self = [super initWithModel:aModel])) {
-    
-    IBAStepperFormField* stepperField;
+
+    IBAStepperFormField *stepperField;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
@@ -48,11 +48,11 @@
     stepperField = [configSection addStepperFieldForKeyPath:WPnoPointsX title:NSLocalizedString(@"#WP-X", @"WP Numbers")];
     stepperField.maximumValue = 100;
     stepperField.minimumValue = 0;
-    
+
     stepperField = [configSection addStepperFieldForKeyPath:WPnoPointsY title:NSLocalizedString(@"#WP-Y", @"WP Numbers")];
     stepperField.maximumValue = 100;
     stepperField.minimumValue = 0;
-    
+
     [self addAttributeSection];
   }
   return self;

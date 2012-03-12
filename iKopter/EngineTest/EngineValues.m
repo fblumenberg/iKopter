@@ -27,7 +27,6 @@
 
 #import "MKConnectionController.h"
 #import "NSData+MKCommandEncode.h"
-#import "MKDataConstants.h"
 
 @interface EngineValues ()
 

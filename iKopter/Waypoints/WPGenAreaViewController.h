@@ -29,7 +29,7 @@
 
 @interface WPGenAreaViewController : WPGenBaseViewController
 
-- (id)initForMapView:(MKMapView*)mapView;
+- (id)initForMapView:(MKMapView *)mapView;
 
 
 @end

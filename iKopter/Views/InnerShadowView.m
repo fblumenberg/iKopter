@@ -22,7 +22,6 @@
 //
 // ///////////////////////////////////////////////////////////////////////////////
 
-#import <QuartzCore/QuartzCore.h>
 #import "InnerShadowView.h"
 #import "Common.h"
 #import "InnerShadowDrawing.h"

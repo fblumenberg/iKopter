@@ -23,7 +23,6 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 #import "WPGenPanoView.h"
-#import "Common.h"
 
 @interface WPGenPanoView () {
 
@@ -36,7 +35,7 @@
 
 @synthesize noPoints, clockwise;
 
--(CGPoint)poi{
+- (CGPoint)poi {
   return CGPointMake(CGRectGetMidX(circleRect), CGRectGetMidY(circleRect));
 }
 
@@ -57,53 +56,53 @@
   [super dealloc];
 }
 
--(void) updatePoints{
-  
+- (void)updatePoints {
+
   self.points = [NSMutableArray arrayWithCapacity:noPoints];
   for (int x = 0; x < noPoints; x++) {
     NSValue *v = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
     [self.points addObject:v];
   }
-  
+
   [self setNeedsLayout];
 }
 
 - (void)layoutSubviews {
 
   CGRect parentRect = self.bounds;
-  
+
   CGFloat newSize = MIN(CGRectGetHeight(parentRect), CGRectGetWidth(parentRect));
-  CGRect rect = CGRectMake((int)((CGRectGetWidth(parentRect) - newSize) / 2), 
-                           (int)((CGRectGetHeight(parentRect) - newSize) / 2), newSize, newSize);
-  
+  CGRect rect = CGRectMake((int) ((CGRectGetWidth(parentRect) - newSize) / 2),
+          (int) ((CGRectGetHeight(parentRect) - newSize) / 2), newSize, newSize);
+
   circleRect = CGRectInset(rect, 10, 10);
-  
-    for (int n = 0; n < noPoints; n++) {
-      NSValue *v = [NSValue valueWithCGPoint:self.poi];
-      [self.points replaceObjectAtIndex:n withObject:v];
-    }
+
+  for (int n = 0; n < noPoints; n++) {
+    NSValue *v = [NSValue valueWithCGPoint:self.poi];
+    [self.points replaceObjectAtIndex:n withObject:v];
+  }
 }
 
 
-- (void)drawBackgroundWithContext:(CGContextRef) context{
+- (void)drawBackgroundWithContext:(CGContextRef)context {
 
   CGContextSaveGState(context);
 
   [[UIColor whiteColor] set];
   CGContextStrokeEllipseInRect(context, circleRect);
-  
+
   CGContextRestoreGState(context);
 }
 
 
-- (void)drawPOIAt:(CGPoint)p withContext:(CGContextRef) context{
-  
+- (void)drawPOIAt:(CGPoint)p withContext:(CGContextRef)context {
+
   CGContextSaveGState(context);
-  
+
   CGRect pointRect = CGRectMake(p.x - 7, p.y - 7, 14, 14);
   [self.wpColor set];
   CGContextFillEllipseInRect(context, pointRect);
-  
+
   [[UIColor whiteColor] set];
   CGContextAddEllipseInRect(context, pointRect);
   CGContextStrokePath(context);
@@ -116,36 +115,36 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
   NSLog(@"DrawRect %@", NSStringFromCGRect(rect));
-  
+
   CGContextRef context = UIGraphicsGetCurrentContext();
-  
+
   [self drawBackgroundWithContext:context];
-  
+
   //-------------------------------------------------------------
 
-  if( noPoints>=1 ){
-    
-    
+  if (noPoints >= 1) {
+
+
     CGFloat ddeg = 360.0 / noPoints;
-    if(clockwise)
-      ddeg*=-1;
-    
-    CGFloat radius = CGRectGetWidth(circleRect)/2-40;
-    
+    if (clockwise)
+      ddeg *= -1;
+
+    CGFloat radius = CGRectGetWidth(circleRect) / 2 - 40;
+
     for (int n = 0; n < noPoints; n++) {
-      CGFloat angle = ((n * ddeg+180)*M_PI)/180;
+      CGFloat angle = ((n * ddeg + 180) * M_PI) / 180;
 
       CGContextSaveGState(context);
       CGContextTranslateCTM(context, CGRectGetMidX(circleRect), CGRectGetMidY(circleRect));
       CGContextRotateCTM(context, angle);
-      
-      if(n==0)
+
+      if (n == 0)
         [[UIColor redColor] set];
       else
         [[UIColor whiteColor] set];
-      
+
       CGPoint endPoint = CGPointMake(0.0, radius);
-      
+
       CGContextSetLineWidth(context, 1.0);
       CGContextMoveToPoint(context, 0, 0);
       CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
@@ -159,7 +158,7 @@
 
   CGPoint center = CGPointMake(CGRectGetMidX(circleRect), CGRectGetMidY(circleRect));
   [self drawPOIAt:center withContext:context];
-  
+
   [[UIColor whiteColor] set];
 //  [@"" drawAtPoint:center withFont:self.wpTextFont];
   CGContextStrokePath(context);

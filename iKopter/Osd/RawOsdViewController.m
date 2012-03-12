@@ -28,7 +28,7 @@
 @implementation RawOsdViewController
 
 @synthesize osdText;
-  
+
 - (void)dealloc {
   self.osdText = nil;
   [super dealloc];

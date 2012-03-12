@@ -32,13 +32,13 @@
 
 - (void)addAttributeSection;
 
-@property(nonatomic,assign) id<WPGenBaseDataSourceDelegate> delegate;
+@property(nonatomic, assign) id <WPGenBaseDataSourceDelegate> delegate;
 
 @end
 
 @protocol WPGenBaseDataSourceDelegate
 
-- (void) dataSource:(WPGenBaseDataSource*) changed;
+- (void)dataSource:(WPGenBaseDataSource *)changed;
 
 
 @end

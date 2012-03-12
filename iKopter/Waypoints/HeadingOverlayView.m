@@ -40,6 +40,12 @@
   return self;
 }
 
+- (void)dealloc
+{
+  [overlay release];
+  [super dealloc];
+}
+
 - (void)createPath {
 
   CGMutablePathRef path = CGPathCreateMutable();

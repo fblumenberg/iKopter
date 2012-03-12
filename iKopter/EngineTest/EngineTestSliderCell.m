@@ -59,7 +59,7 @@
     valueSliderFrame.origin.x = 85;
     valueSliderFrame.size.width = InAppSettingsScreenWidth - (InAppSettingsTotalTablePadding+ InAppSettingsCellPadding + 85);
     self.valueSlider.frame = valueSliderFrame;
-
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.valueSlider];
 

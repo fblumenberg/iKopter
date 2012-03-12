@@ -23,8 +23,8 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 
-#import "MKRedparkSerialConnection.h"
 #import "RscMgr.h"
+#import "MKRedparkSerialConnection.h"
 
 static NSString *const MKSerialConnectionException = @"MKSerialConnectionException";
 

@@ -50,6 +50,7 @@
 - (void)dealloc {
   self.hosts = nil;
   self.editingHost = nil;
+  self.addButton = nil;
   [super dealloc];
 }
 
@@ -80,6 +81,7 @@
 - (void)viewDidUnload {
   [super viewDidUnload];
   self.hosts = nil;
+  self.addButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

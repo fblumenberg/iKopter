@@ -64,8 +64,8 @@
   [self setToolbarItems:[NSArray arrayWithObjects:spacer, segmentButton, spacer, nil]];
 
   segment.selectedSegmentIndex = 0;
-}
 
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 

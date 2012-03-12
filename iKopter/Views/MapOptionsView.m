@@ -42,13 +42,14 @@
 }
 
 - (void)dealloc {
-  [super dealloc];
   self.mapView = nil;
+  self.segmentedControl = nil;
+  [super dealloc];
 }
 
 - (IBAction)changeMapViewType {
 
-  [self.mapView setMapType:self.segmentedControl.selectedSegmentIndex];
+  [self.mapView setMapType:(MKMapType) self.segmentedControl.selectedSegmentIndex];
   if ([self.delegate respondsToSelector:@selector(curlMapOptionsViewDidCaptureTouchOnPaddingRegion:)]) {
     [self.delegate curlMapOptionsViewDidCaptureTouchOnPaddingRegion:self];
   }

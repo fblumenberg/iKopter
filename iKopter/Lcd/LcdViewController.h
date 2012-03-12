@@ -30,9 +30,6 @@
 
   NSTimer *requestTimer;
 
-  UIFont *portraitFont;
-  UIFont *landscapeFont;
-
   UISegmentedControl *segment;
 }
 

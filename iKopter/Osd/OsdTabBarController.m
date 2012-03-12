@@ -97,6 +97,14 @@
   return self;
 }
 
+- (void)dealloc {
+  self.screenLockButton = nil;
+  self.osdValue = nil;
+  self.followMeViewController = nil;
+
+  [super dealloc];
+}
+
 - (void)didReceiveMemoryWarning {
   // Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
@@ -213,7 +221,7 @@
     [self.selectedViewController.view addGestureRecognizer:singleTap];
   }
   [singleTap release];
-  
+
   [self newValue:self.osdValue];
 }
 

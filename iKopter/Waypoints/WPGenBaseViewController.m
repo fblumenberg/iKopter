@@ -38,6 +38,12 @@ IK_DEFINE_KEY_WITH_VALUE(WPaltitudeRate, @"altitudeRate");
 IK_DEFINE_KEY_WITH_VALUE(WPspeed, @"speed");
 IK_DEFINE_KEY_WITH_VALUE(WPwpEventChannelValue, @"wpEventChannelValue");
 IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
+IK_DEFINE_KEY_WITH_VALUE(WPnoPointsX, @"noPointsX");
+IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
+IK_DEFINE_KEY_WITH_VALUE(WPnoPoints, @"noPoints");
+IK_DEFINE_KEY_WITH_VALUE(WPstartangle, @"startangle");
+IK_DEFINE_KEY_WITH_VALUE(WPclockwise, @"clockwise");
+IK_DEFINE_KEY_WITH_VALUE(WPclosed, @"closed");
 
 
 @interface WPGenBaseViewController () <UIGestureRecognizerDelegate, UIPopoverControllerDelegate> {
@@ -47,8 +53,6 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   CGFloat restX;
   CGFloat restY;
 }
-
-@property(nonatomic, readwrite) NSMutableDictionary *wpData;
 
 @property(retain, nonatomic) IBOutlet UIView *resizeHandle;
 
@@ -64,6 +68,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 @end
 
 @implementation WPGenBaseViewController
+
 @synthesize resizeHandle = _resizeHandle;
 @synthesize shapeView = _shapeView;
 @synthesize mapView = _mapView;
@@ -77,7 +82,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   if (self) {
     self.mapView = mapView;
     self.shapeView = shapeView;
-    self.wpData = [[[NSMutableDictionary alloc] initWithCapacity:8]autorelease];
+    self.wpData = [[[NSMutableDictionary alloc] initWithCapacity:8] autorelease];
 
     NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
     [self.wpData setValue:[NSNumber numberWithInteger:0] forKey:WPheading];
@@ -98,6 +103,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   self.wpData = nil;
   self.resizeHandle = nil;
   self.mapView = nil;
+  self.shapeView = nil;
   self.popOverController = nil;
 
   [super dealloc];
@@ -106,9 +112,9 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.shapeView.frame = CGRectInset(self.view.bounds,20,0);
+  self.shapeView.frame = CGRectInset(self.view.bounds, 20, 0);
   self.shapeView.frame = CGRectOffset(self.shapeView.frame, -self.shapeView.frame.origin.x, 0);
-  
+
   self.shapeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self.view insertSubview:self.shapeView belowSubview:self.resizeHandle];
 
@@ -135,11 +141,11 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   [rotationRecognizer setDelegate:self];
   [self.view addGestureRecognizer:rotationRecognizer];
   [rotationRecognizer release];
-  
+
   UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dummyTapped:)];
-	[tapRecognizer setNumberOfTapsRequired:1];
+  [tapRecognizer setNumberOfTapsRequired:1];
   [tapRecognizer setNumberOfTouchesRequired:2];
-	[self.view addGestureRecognizer:tapRecognizer];
+  [self.view addGestureRecognizer:tapRecognizer];
   [tapRecognizer release];
 
   [self performSelector:@selector(myViewDidLoad) withObject:nil afterDelay:0.0];
@@ -147,8 +153,8 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 
 - (void)myViewDidLoad {
   CGSize size = self.view.superview.frame.size;
-  [self.view setCenter:CGPointMake(size.width/2, size.height/2)];
-} 
+  [self.view setCenter:CGPointMake(size.width / 2, size.height / 2)];
+}
 
 - (void)viewDidUnload {
   self.resizeHandle = nil;
@@ -162,20 +168,20 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   return YES;
 }
 
--(IKPoint*) pointOfType:(NSInteger)type forCoordinate:(CLLocationCoordinate2D)coordinate{
+- (IKPoint *)pointOfType:(NSInteger)type forCoordinate:(CLLocationCoordinate2D)coordinate {
   IKPoint *newPoint = [[[IKPoint alloc] initWithCoordinate:coordinate] autorelease];
-  
-  newPoint.heading=[[self.wpData objectForKey:WPheading] integerValue];
-  newPoint.toleranceRadius=[[self.wpData objectForKey:WPtoleranceRadius] integerValue];    
-  newPoint.holdTime=[[self.wpData objectForKey:WPholdTime] integerValue];
-  newPoint.eventFlag=0;
-  newPoint.index=255;
-  newPoint.type=type;
-  newPoint.wpEventChannelValue=[[self.wpData objectForKey:WPaltitude] integerValue];
-  newPoint.altitudeRate=[[self.wpData objectForKey:WPaltitudeRate] integerValue];
-  newPoint.speed=[[self.wpData objectForKey:WPspeed] integerValue];
-  newPoint.camAngle=[[self.wpData objectForKey:WPcamAngle] integerValue];
-  
+
+  newPoint.heading = [[self.wpData objectForKey:WPheading] integerValue];
+  newPoint.toleranceRadius = [[self.wpData objectForKey:WPtoleranceRadius] integerValue];
+  newPoint.holdTime = [[self.wpData objectForKey:WPholdTime] integerValue];
+  newPoint.eventFlag = 0;
+  newPoint.index = 255;
+  newPoint.type = type;
+  newPoint.wpEventChannelValue = [[self.wpData objectForKey:WPaltitude] integerValue];
+  newPoint.altitudeRate = [[self.wpData objectForKey:WPaltitudeRate] integerValue];
+  newPoint.speed = [[self.wpData objectForKey:WPspeed] integerValue];
+  newPoint.camAngle = [[self.wpData objectForKey:WPcamAngle] integerValue];
+
   return newPoint;
 }
 
@@ -183,12 +189,12 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 
 - (void)resize:(UIPanGestureRecognizer *)gestureRecognizer {
 
-  [self.view bringSubviewToFront:[(UIPanGestureRecognizer *) gestureRecognizer view]];
+  [self.view bringSubviewToFront:[gestureRecognizer view]];
   CGPoint locationInView = [gestureRecognizer locationInView:self.view];
 
   CGRect bounds = self.view.bounds;
 
-  if ([(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+  if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
 
     restX = CGRectGetWidth(bounds) - locationInView.x;
     restY = CGRectGetHeight(bounds) - locationInView.y;
@@ -201,8 +207,8 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   CGFloat newHeight = MAX(100, (dy + restY) * 2);
 
   self.view.bounds = CGRectMake(0, 0, newWidth, newHeight);
-  if ([(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateEnded ||
-          [(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateCancelled) {
+  if ([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
+          [gestureRecognizer state] == UIGestureRecognizerStateCancelled) {
     [self.shapeView setNeedsLayout];
     [self.shapeView setNeedsDisplay];
   }
@@ -210,10 +216,10 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 
 - (void)move:(UIPanGestureRecognizer *)gestureRecognizer {
 
-  [self.view bringSubviewToFront:[(UIPanGestureRecognizer *) gestureRecognizer view]];
-  CGPoint translatedPoint = [(UIPanGestureRecognizer *) gestureRecognizer translationInView:self.view.superview];
+  [self.view bringSubviewToFront:[gestureRecognizer view]];
+  CGPoint translatedPoint = [gestureRecognizer translationInView:self.view.superview];
 
-  if ([(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+  if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
     firstX = self.view.center.x;
     firstY = self.view.center.y;
   }
@@ -241,8 +247,8 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
     self.view.transform = CGAffineTransformRotate(self.view.transform, [gestureRecognizer rotation]);
     [gestureRecognizer setRotation:0];
   }
-  if ([(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateEnded ||
-          [(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateCancelled) {
+  if ([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
+          [gestureRecognizer state] == UIGestureRecognizerStateCancelled) {
     [self.shapeView setNeedsLayout];
     [self.shapeView setNeedsDisplay];
   }
@@ -261,8 +267,8 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
 
     [gestureRecognizer setScale:1];
   }
-  if ([(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateEnded ||
-          [(UIPanGestureRecognizer *) gestureRecognizer state] == UIGestureRecognizerStateCancelled) {
+  if ([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
+          [gestureRecognizer state] == UIGestureRecognizerStateCancelled) {
     [self.shapeView setNeedsLayout];
     [self.shapeView setNeedsDisplay];
   }
@@ -281,44 +287,44 @@ IK_DEFINE_KEY_WITH_VALUE(WPclearWpList, @"clearWpList");
   [self.delegate controllerWillClose:self];
 }
 
-- (NSArray*) generatePointsList{
+- (NSArray *)generatePointsList {
   return [NSArray array];
 }
 
-- (IBAction)generatePoints:(id)sender{
+- (IBAction)generatePoints:(id)sender {
 
-  NSArray* points = [self generatePointsList];
+  NSArray *points = [self generatePointsList];
   BOOL clearList = [[self.wpData objectForKey:WPclearWpList] boolValue];
   [self.delegate controller:self generatedPoints:points clearList:clearList];
 }
 
-- (IBAction)showConfig:(id)sender{
-  
-  if(self.popOverController){
+- (IBAction)showConfig:(id)sender {
+
+  if (self.popOverController) {
     [self.popOverController dismissPopoverAnimated:YES];
     self.popOverController = nil;
     return;
   }
-  
-  WPGenConfigViewController* controller = [[[WPGenConfigViewController alloc] initWithFormDataSource:self.dataSource]autorelease];
-  
+
+  WPGenConfigViewController *controller = [[[WPGenConfigViewController alloc] initWithFormDataSource:self.dataSource] autorelease];
+
 
   self.popOverController = [[[UIPopoverController alloc] initWithContentViewController:controller] autorelease];
   self.popOverController.delegate = self;
   self.popOverController.popoverContentSize = CGSizeMake(320, 500);
 
-  if( [sender isKindOfClass:[UIBarButtonItem class]] ){
+  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     [self.popOverController presentPopoverFromBarButtonItem:sender
-                     permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    
+                                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
   }
   else if ([sender isKindOfClass:[UIView class]]) {
-    [self.popOverController presentPopoverFromRect:((UIView*)sender).frame inView:(UIView*)sender
-                     permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-  }     
+    [self.popOverController presentPopoverFromRect:((UIView *) sender).frame inView:(UIView *) sender
+                          permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+  }
   else {
     [self.popOverController presentPopoverFromRect:self.shapeView.frame inView:self.shapeView
-                     permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                          permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
   }
 }
 

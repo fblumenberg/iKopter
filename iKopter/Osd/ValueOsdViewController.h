@@ -38,7 +38,6 @@
 
 }
 
-
 @property(nonatomic, retain) IBOutlet UILabel *infoView;
 @property(nonatomic, retain) IBOutlet UILabel *noData;
 

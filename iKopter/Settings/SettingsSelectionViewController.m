@@ -107,8 +107,8 @@ static NSUInteger kNumberOfSettings = 5;
 
 
 - (void)dealloc {
-  [super dealloc];
   [_settings release];
+  [super dealloc];
 }
 
 // ////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,17 +123,6 @@ static NSUInteger kNumberOfSettings = 5;
   [super viewDidAppear:animated];
   [self cancelEditActiveSetting:self];
   [self reloadAllSettings];
-
-//  UIBarButtonItem* actionButton;
-//  
-//  actionButton =  [[[UIBarButtonItem alloc]
-//                    initWithTitle:NSLocalizedString(@"Change Active",@"")
-//                            style:UIBarButtonItemStyleBordered|UIBarButtonItemStyleDone
-//                            target:self
-//                            action:@selector(saveActiveSetting:)] autorelease];
-//  
-//  
-//	[self setToolbarItems:[NSArray arrayWithObject:actionButton] animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

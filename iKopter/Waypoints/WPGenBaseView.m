@@ -25,7 +25,7 @@
 
 #import "WPGenBaseView.h"
 
-@interface WPGenBaseView()
+@interface WPGenBaseView ()
 
 @end
 
@@ -45,8 +45,7 @@
   return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   self.wpColor = nil;
   self.wpTextFont = nil;
   self.points = nil;
@@ -54,28 +53,28 @@
   [super dealloc];
 }
 
-- (void)drawWaypointAt:(CGPoint)p index:(NSUInteger)idx withContext:(CGContextRef) context{
-  
+- (void)drawWaypointAt:(CGPoint)p index:(NSUInteger)idx withContext:(CGContextRef)context {
+
   CGContextSaveGState(context);
-  
+
   CGRect pointRect = CGRectMake(p.x - 7, p.y - 7, 14, 14);
-  if(idx==0)
+  if (idx == 0)
     [[UIColor redColor] set];
   else
     [self.wpColor set];
-  
+
   CGContextFillEllipseInRect(context, pointRect);
 
   [[UIColor whiteColor] set];
   CGContextAddEllipseInRect(context, pointRect);
   CGContextStrokePath(context);
-  NSString* text = [NSString stringWithFormat:@"%d",idx+1];
+  NSString *text = [NSString stringWithFormat:@"%d", idx + 1];
 
   CGSize textSize = [text sizeWithFont:self.wpTextFont];
-  CGRect textRect  = CGRectMake(p.x, p.y, textSize.width, textSize.height);
-  
-  textRect  = CGRectOffset(textRect, -textSize.width / 2, -textSize.height / 2);
-  
+  CGRect textRect = CGRectMake(p.x, p.y, textSize.width, textSize.height);
+
+  textRect = CGRectOffset(textRect, -textSize.width / 2, -textSize.height / 2);
+
   [text drawAtPoint:textRect.origin withFont:self.wpTextFont];
 
   CGContextRestoreGState(context);

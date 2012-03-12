@@ -23,23 +23,19 @@
 // ///////////////////////////////////////////////////////////////////////////////
 
 
-#import <QuartzCore/QuartzCore.h>
 #import <MapKit/MapKit.h>
 
 #import "WPGenAreaViewController.h"
 #import "WPGenAreaDataSource.h"
-#import "WPGenConfigViewController.h"
 #import "WPGenAreaView.h"
 
 #import "IKPoint.h"
 
-IK_DEFINE_KEY_WITH_VALUE(WPnoPointsX, @"noPointsX");
-IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
 
-@interface WPGenAreaViewController () <UIPopoverControllerDelegate,WPGenBaseDataSourceDelegate,UIGestureRecognizerDelegate> {
+@interface WPGenAreaViewController () <UIPopoverControllerDelegate, WPGenBaseDataSourceDelegate, UIGestureRecognizerDelegate> {
 }
 
-@property(retain) WPGenAreaDataSource* dataSource;
+@property(retain) WPGenAreaDataSource *dataSource;
 
 @end
 
@@ -47,17 +43,17 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
 
 @synthesize dataSource;
 
-- (id)initForMapView:(MKMapView*)mapView {
+- (id)initForMapView:(MKMapView *)mapView {
 
-  WPGenAreaView* shapeView = [[[WPGenAreaView alloc] initWithFrame:CGRectZero] autorelease];
-  
+  WPGenAreaView *shapeView = [[[WPGenAreaView alloc] initWithFrame:CGRectZero] autorelease];
+
   self = [super initWithShapeView:shapeView forMapView:mapView];
   if (self) {
 
     [self.wpData setValue:[NSNumber numberWithInteger:2] forKey:WPnoPointsX];
     [self.wpData setValue:[NSNumber numberWithInteger:2] forKey:WPnoPointsY];
 
-    self.dataSource = [[[WPGenAreaDataSource alloc] initWithModel:self.wpData]autorelease];
+    self.dataSource = [[[WPGenAreaDataSource alloc] initWithModel:self.wpData] autorelease];
     self.dataSource.delegate = self;
   }
   return self;
@@ -71,11 +67,11 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-	[tapRecognizer setNumberOfTapsRequired:1];
-	[self.shapeView addGestureRecognizer:tapRecognizer];
+  UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+  [tapRecognizer setNumberOfTapsRequired:1];
+  [self.shapeView addGestureRecognizer:tapRecognizer];
   [tapRecognizer release];
-} 
+}
 
 - (void)viewDidUnload {
   [super viewDidUnload];
@@ -85,52 +81,52 @@ IK_DEFINE_KEY_WITH_VALUE(WPnoPointsY, @"noPointsY");
   return YES;
 }
 
--(void)tapped:(UITapGestureRecognizer*)gestureRecognizer {
+- (void)tapped:(UITapGestureRecognizer *)gestureRecognizer {
   [self showConfig:self.shapeView];
 }
 
 
--(void) dataSource:(WPGenBaseDataSource *)changed {
-  
-  WPGenAreaView* v=(WPGenAreaView*)self.shapeView;
-  
-  v.noPointsX = [[self.wpData objectForKey:WPnoPointsX] integerValue];
-  v.noPointsY = [[self.wpData objectForKey:WPnoPointsY] integerValue];
+- (void)dataSource:(WPGenBaseDataSource *)changed {
+
+  WPGenAreaView *v = (WPGenAreaView *) self.shapeView;
+
+  v.noPointsX = [[self.wpData objectForKey:WPnoPointsX] unsignedIntegerValue];
+  v.noPointsY = [[self.wpData objectForKey:WPnoPointsY] unsignedIntegerValue];
   [v updatePoints];
   [v setNeedsDisplay];
 }
 
--(NSArray*) generatePointsList{
-  
-  WPGenAreaView* v = (WPGenAreaView*)self.shapeView;
-  
-  NSMutableArray* points=[NSMutableArray arrayWithCapacity:[v.points count]];
-  
-  [v.points enumerateObjectsUsingBlock:^(id obj, NSUInteger idxY, BOOL *stop){
+- (NSArray *)generatePointsList {
 
-    NSArray* x=obj;    
-    if(idxY % 2)
-      x = [[x reverseObjectEnumerator]allObjects];
-    
-    [x enumerateObjectsUsingBlock:^(id obj, NSUInteger idxX, BOOL *stop){
+  WPGenAreaView *v = (WPGenAreaView *) self.shapeView;
+
+  NSMutableArray *points = [NSMutableArray arrayWithCapacity:[v.points count]];
+
+  [v.points enumerateObjectsUsingBlock:^(id obj, NSUInteger idxY, BOOL *stop) {
+
+    NSArray *x = obj;
+    if (idxY % 2)
+      x = [[x reverseObjectEnumerator] allObjects];
+
+    [x enumerateObjectsUsingBlock:^(id obj, NSUInteger idxX, BOOL *stop) {
       CGPoint p = [[x objectAtIndex:idxX] CGPointValue];
-      
+
       CLLocationCoordinate2D coordinate = [self.mapView convertPoint:p toCoordinateFromView:self.shapeView];
-      
-      NSLog(@"%d,%d lat:%f long:%f",idxX,idxY,coordinate.latitude,coordinate.longitude);
-      
+
+      NSLog(@"%d,%d lat:%f long:%f", idxX, idxY, coordinate.latitude, coordinate.longitude);
+
       IKPoint *newPoint = [[IKPoint alloc] initWithCoordinate:coordinate];
 
-      newPoint.heading=[[self.wpData objectForKey:WPheading] integerValue];
-      newPoint.toleranceRadius=[[self.wpData objectForKey:WPtoleranceRadius] integerValue];    
-      newPoint.holdTime=[[self.wpData objectForKey:WPholdTime] integerValue];
-      newPoint.eventFlag=0;
-      newPoint.index=255;
-      newPoint.type=POINT_TYPE_WP;
-      newPoint.wpEventChannelValue=[[self.wpData objectForKey:WPaltitude] integerValue];
-      newPoint.altitudeRate=[[self.wpData objectForKey:WPaltitudeRate] integerValue];
-      newPoint.speed=[[self.wpData objectForKey:WPspeed] integerValue];
-      newPoint.camAngle=[[self.wpData objectForKey:WPcamAngle] integerValue];
+      newPoint.heading = [[self.wpData objectForKey:WPheading] integerValue];
+      newPoint.toleranceRadius = [[self.wpData objectForKey:WPtoleranceRadius] integerValue];
+      newPoint.holdTime = [[self.wpData objectForKey:WPholdTime] integerValue];
+      newPoint.eventFlag = 0;
+      newPoint.index = 255;
+      newPoint.type = POINT_TYPE_WP;
+      newPoint.wpEventChannelValue = [[self.wpData objectForKey:WPaltitude] integerValue];
+      newPoint.altitudeRate = [[self.wpData objectForKey:WPaltitudeRate] integerValue];
+      newPoint.speed = [[self.wpData objectForKey:WPspeed] integerValue];
+      newPoint.camAngle = [[self.wpData objectForKey:WPcamAngle] integerValue];
 
       [points addObject:newPoint];
 

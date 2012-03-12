@@ -33,25 +33,6 @@
   return NSLocalizedString(@"You are Here!", @"You are Here!");
 }
 
-//- (NSString *)subtitle {
-//    
-//    NSMutableString *ret = [NSMutableString string];
-//    if (streetAddress)
-//        [ret appendString:streetAddress]; 
-//    if (streetAddress && (city || state || zip)) 
-//        [ret appendString:@" • "];
-//    if (city)
-//        [ret appendString:city];
-//    if (city && state)
-//        [ret appendString:@", "];
-//    if (state)
-//        [ret appendString:state];
-//    if (zip)
-//        [ret appendFormat:@", %@", zip];
-//    
-//    return ret;
-//}
-
 #pragma mark -
 - (void)dealloc {
   [super dealloc];
@@ -64,7 +45,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
   if ((self = [super init])) {
-    self.type = [[decoder decodeObjectForKey:@"type"] intValue];
+    self.type = (IKMapLocationType)[[decoder decodeObjectForKey:@"type"] intValue];
   }
   return self;
 }

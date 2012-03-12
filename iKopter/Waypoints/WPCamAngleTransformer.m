@@ -23,10 +23,10 @@
 }
 
 - (NSString *)transformedValue:(NSNumber *)value {
-  
-  if( [value integerValue]<0 )
+
+  if ([value integerValue] < 0)
     return NSLocalizedString(@"AUTO", @"WP CamAngle auto mode");
-  
+
   return [value stringValue];
 }
 

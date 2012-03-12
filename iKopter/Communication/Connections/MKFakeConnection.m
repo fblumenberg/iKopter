@@ -265,7 +265,8 @@ static NSString *const MKDummyConnectionException = @"MKDummyConnectionException
 }
 
 - (id)initWithDelegate:(id)theDelegate; {
-  if (self = [super init]) {
+  self = [super init];
+  if (self) {
     self.delegate = theDelegate;
 
     settings = [[NSMutableArray array] retain];
@@ -620,7 +621,7 @@ void fillIKMkGPSPosFromString(NSString *data, IKMkGPSPos *pos) {
 }
 
 - (void)updateNaviDataFromRow:(NSInteger)row {
-  NSArray *columns = [self.osdData objectAtIndex:row];
+  NSArray *columns = [self.osdData objectAtIndex:(NSUInteger) row];
 
   naviData.Version = NAVIDATA_VERSION;
 
@@ -631,30 +632,30 @@ void fillIKMkGPSPosFromString(NSString *data, IKMkGPSPos *pos) {
   fillIKMkGPSPosDevFromString([columns objectAtIndex:CSV_homePositionDeviation], &(naviData.HomePositionDeviation));
   fillIKMkGPSPosDevFromString([columns objectAtIndex:CSV_targetPositionDeviation], &(naviData.TargetPositionDeviation));
 
-  naviData.WaypointIndex = [[columns objectAtIndex:CSV_waypointIndex] intValue];        // index of current waypoints running from 0 to WaypointNumber-1
-  naviData.WaypointNumber = [[columns objectAtIndex:CSV_waypointNumber] intValue];       // number of stored waypoints
-  naviData.SatsInUse = [[columns objectAtIndex:CSV_satsInUse] intValue];          // number of satellites used for position solution
-  naviData.Altimeter = [[columns objectAtIndex:CSV_altimeter] intValue];          // hight according to air pressure
-  naviData.Variometer = [[columns objectAtIndex:CSV_variometer] intValue];         // climb(+) and sink(-) rate
-  naviData.FlyingTime = [[columns objectAtIndex:CSV_flyingTime] intValue];         // in seconds
-  naviData.UBat = [[columns objectAtIndex:CSV_uBat] intValue];           // Battery Voltage in 0.1 Volts
-  naviData.GroundSpeed = [[columns objectAtIndex:CSV_groundSpeed] intValue];        // speed over ground in cm/s (2D)
-  naviData.Heading = [[columns objectAtIndex:CSV_heading] intValue];          // current flight direction in � as angle to north
-  naviData.CompassHeading = [[columns objectAtIndex:CSV_compassHeading] intValue];       // current compass value in �
-  naviData.AngleNick = [[columns objectAtIndex:CSV_angleNick] intValue];          // current Nick angle in 1�
-  naviData.AngleRoll = [[columns objectAtIndex:CSV_angleRoll] intValue];          // current Rick angle in 1�
-  naviData.RC_Quality = [[columns objectAtIndex:CSV_rcQuality] intValue];         // RC_Quality
-  naviData.FCStatusFlags = [[columns objectAtIndex:CSV_fcStatusFlags] intValue];        // Flags from FC
-  naviData.NCFlags = [[columns objectAtIndex:CSV_ncFlags] intValue];          // Flags from NC
-  naviData.Errorcode = [[columns objectAtIndex:CSV_errorCode] intValue];          // 0 --> okay
-  naviData.OperatingRadius = [[columns objectAtIndex:CSV_operatingRadius] intValue];      // current operation radius around the Home Position in m
-  naviData.TopSpeed = [[columns objectAtIndex:CSV_topSpeed] intValue];         // velocity in vertical direction in cm/s
-  naviData.TargetHoldTime = [[columns objectAtIndex:CSV_targetHoldTime] intValue];       // time in s to stay at the given target, counts down to 0 if target has been reached
-  naviData.FCStatusFlags2 = [[columns objectAtIndex:CSV_fcStatusFlags2] intValue];        // StatusFlags2 (since version 5 added)
-  naviData.SetpointAltitude = [[columns objectAtIndex:CSV_setpointAltitude] intValue];     // setpoint for altitude
-  naviData.Gas = [[columns objectAtIndex:CSV_gas] intValue];            // for future use
-  naviData.Current = [[columns objectAtIndex:CSV_current] intValue];          // actual current in 0.1A steps
-  naviData.UsedCapacity = [[columns objectAtIndex:CSV_usedCapacity] intValue];       // used capacity in mAh
+  naviData.WaypointIndex = (u_int8_t)[[columns objectAtIndex:CSV_waypointIndex] intValue];        // index of current waypoints running from 0 to WaypointNumber-1
+  naviData.WaypointNumber = (u_int8_t)[[columns objectAtIndex:CSV_waypointNumber] intValue];       // number of stored waypoints
+  naviData.SatsInUse = (u_int8_t)[[columns objectAtIndex:CSV_satsInUse] intValue];          // number of satellites used for position solution
+  naviData.Altimeter = (u_int8_t)[[columns objectAtIndex:CSV_altimeter] intValue];          // hight according to air pressure
+  naviData.Variometer = (int16_t) [[columns objectAtIndex:CSV_variometer] intValue];         // climb(+) and sink(-) rate
+  naviData.FlyingTime = (uint16_t) [[columns objectAtIndex:CSV_flyingTime] intValue];         // in seconds
+  naviData.UBat = (uint8_t) [[columns objectAtIndex:CSV_uBat] intValue];           // Battery Voltage in 0.1 Volts
+  naviData.GroundSpeed = (uint16_t) [[columns objectAtIndex:CSV_groundSpeed] intValue];        // speed over ground in cm/s (2D)
+  naviData.Heading = (int16_t) [[columns objectAtIndex:CSV_heading] intValue];          // current flight direction in � as angle to north
+  naviData.CompassHeading = (int16_t) [[columns objectAtIndex:CSV_compassHeading] intValue];       // current compass value in �
+  naviData.AngleNick = (int8_t) [[columns objectAtIndex:CSV_angleNick] intValue];          // current Nick angle in 1�
+  naviData.AngleRoll = (int8_t) [[columns objectAtIndex:CSV_angleRoll] intValue];          // current Rick angle in 1�
+  naviData.RC_Quality = (uint8_t) [[columns objectAtIndex:CSV_rcQuality] intValue];         // RC_Quality
+  naviData.FCStatusFlags = (uint8_t) [[columns objectAtIndex:CSV_fcStatusFlags] intValue];        // Flags from FC
+  naviData.NCFlags = (uint8_t) [[columns objectAtIndex:CSV_ncFlags] intValue];          // Flags from NC
+  naviData.Errorcode = (uint8_t) [[columns objectAtIndex:CSV_errorCode] intValue];          // 0 --> okay
+  naviData.OperatingRadius = (uint8_t) [[columns objectAtIndex:CSV_operatingRadius] intValue];      // current operation radius around the Home Position in m
+  naviData.TopSpeed = (int16_t) [[columns objectAtIndex:CSV_topSpeed] intValue];         // velocity in vertical direction in cm/s
+  naviData.TargetHoldTime = (uint8_t) [[columns objectAtIndex:CSV_targetHoldTime] intValue];       // time in s to stay at the given target, counts down to 0 if target has been reached
+  naviData.FCStatusFlags2 = (uint8_t) [[columns objectAtIndex:CSV_fcStatusFlags2] intValue];        // StatusFlags2 (since version 5 added)
+  naviData.SetpointAltitude = (int16_t) [[columns objectAtIndex:CSV_setpointAltitude] intValue];     // setpoint for altitude
+  naviData.Gas = (uint8_t) [[columns objectAtIndex:CSV_gas] intValue];            // for future use
+  naviData.Current = (uint16_t) [[columns objectAtIndex:CSV_current] intValue];          // actual current in 0.1A steps
+  naviData.UsedCapacity = (uint16_t) [[columns objectAtIndex:CSV_usedCapacity] intValue];       // used capacity in mAh
 }
 
 
