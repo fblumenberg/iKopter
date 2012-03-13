@@ -71,9 +71,11 @@
 
     [paramSection addNumberFieldForKeyPath:@"ServoNickRefresh" title:NSLocalizedString(@"Servo refresh rate", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"ServoManualControlSpeed" title:NSLocalizedString(@"Manual control speed", @"MKParam Camera")];
-    [paramSection addNumberFieldForKeyPath:@"Servo3" title:NSLocalizedString(@"Servo 3", @"MKParam Camera")];
-    [paramSection addNumberFieldForKeyPath:@"Servo4" title:NSLocalizedString(@"Servo 4", @"MKParam Camera")];
+    [paramSection addPotiFieldWithOutForKeyPath:@"Servo3" title:NSLocalizedString(@"Servo 3", @"MKParam Camera")];
+    [paramSection addPotiFieldWithOutForKeyPath:@"Servo4" title:NSLocalizedString(@"Servo 4", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"Servo5" title:NSLocalizedString(@"Servo 5", @"MKParam Camera")];
+    [paramSection addNumberFieldForKeyPath:@"CamOrientation" title:NSLocalizedString(@"CamOrientation", @"MKParam Camera")];
+    
   }
 
   return self;

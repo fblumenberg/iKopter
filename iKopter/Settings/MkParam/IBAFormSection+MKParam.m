@@ -24,7 +24,7 @@
 }
 
 
-- (void)addNumberFieldForKeyPath:(NSString *)keyPath title:(NSString *)title {
+- (IBATextFormField*)addNumberFieldForKeyPath:(NSString *)keyPath title:(NSString *)title {
 
   IBATextFormField *numberField;
   numberField = [[IBATextFormField alloc] initWithKeyPath:keyPath
@@ -32,6 +32,7 @@
                                          valueTransformer:[StringToNumberTransformer instance]];
   [self addFormField:[numberField autorelease]];
   numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+  return numberField;
 }
 
 - (void)addSwitchFieldForKeyPath:(NSString *)keyPath title:(NSString *)title {
@@ -49,6 +50,18 @@
 - (void)addTextFieldForKeyPath:(NSString *)keyPath title:(NSString *)title {
 
   [self addFormField:[[[IBATextFormField alloc] initWithKeyPath:keyPath title:title] autorelease]];
+}
+
+- (void)addPotiFieldWithOutForKeyPath:(NSString *)keyPath title:(NSString *)title {
+  
+  MKParamPotiValueTransformer *potiTransformer = nil;
+  potiTransformer = [MKParamPotiValueTransformer transformerWithOut];
+  [self addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:keyPath
+                                                              title:title
+                                                   valueTransformer:potiTransformer
+                                                      selectionMode:IBAPickListSelectionModeSingle
+                                                            options:potiTransformer.pickListOptions] autorelease]];
+  
 }
 
 - (void)addPotiFieldForKeyPath:(NSString *)keyPath title:(NSString *)title {

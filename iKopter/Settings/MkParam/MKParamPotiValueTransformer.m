@@ -28,6 +28,8 @@
 
 @interface MKParamPotiValueTransformer ()
 
+- (id)initWithOut:(BOOL)withOut;
+
 @property(nonatomic, readwrite, retain) NSArray *pickListOptions;
 
 @end
@@ -37,16 +39,24 @@
 @synthesize pickListOptions = pickListOptions_;
 
 + (MKParamPotiValueTransformer *)transformer {
-  return [[MKParamPotiValueTransformer new] autorelease];
+  return [[[MKParamPotiValueTransformer alloc]initWithOut:NO] autorelease];
+}
++ (MKParamPotiValueTransformer *)transformerWithOut {
+  return [[[MKParamPotiValueTransformer alloc]initWithOut:YES] autorelease];
 }
 
 
-- (id)init {
+- (id)initWithOut:(BOOL)withOut {
   self = [super init];
   if (self) {
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:256];
     for (int i = 0; i < 248; i++) {
-      [values addObject:[NSString stringWithFormat:@"%d", i]];
+      if (withOut && i>=246) {
+        [values addObject:[NSString stringWithFormat:@"->Out%d", 248-i]];
+      }
+      else {
+        [values addObject:[NSString stringWithFormat:@"%d", i]];
+      }
     }
 
     for (int i = 248; i < 256; i++) {

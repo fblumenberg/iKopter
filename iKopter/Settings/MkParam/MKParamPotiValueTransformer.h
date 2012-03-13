@@ -30,5 +30,6 @@
 @property(nonatomic, readonly, retain) NSArray *pickListOptions;
 
 + (MKParamPotiValueTransformer *)transformer;
++ (MKParamPotiValueTransformer *)transformerWithOut;
 
 @end

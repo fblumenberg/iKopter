@@ -33,7 +33,15 @@
 #import "SettingsFieldStyle.h"
 #import "SettingsButtonStyle.h"
 
+@interface MKParamMiscDataSource ()
+
+@property(nonatomic,retain) IBATextFormField* fieldNotGas;
+- (void)updateFieldNotGas;
+@end
+
 @implementation MKParamMiscDataSource
+
+@synthesize fieldNotGas;
 
 - (id)initWithModel:(id)aModel andBehavior:(int)behavior {
   self = [super initWithModel:aModel];
@@ -75,8 +83,9 @@
     paramSection.formFieldStyle.behavior = behavior;
 
     [paramSection addNumberFieldForKeyPath:@"NotGasZeit" title:NSLocalizedString(@"Emergency time (0.1s)", @"MKParam Misc")];
-    [paramSection addNumberFieldForKeyPath:@"NotGas" title:NSLocalizedString(@"Emergency-Gas", @"MKParam Misc")];
-
+    self.fieldNotGas = [paramSection addNumberFieldForKeyPath:@"NotGas" title:NSLocalizedString(@"Emergency-Gas", @"MKParam Misc")];
+    [self updateFieldNotGas];
+    
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Failsafe", @"MKParam Misc") footerTitle:nil];
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
@@ -118,11 +127,31 @@
   return self;
 }
 
+- (void)dealloc{
+  self.fieldNotGas=nil;
+  [super dealloc];
+}
+
+
+- (void)updateFieldNotGas{
+  if( [[self.model GlobalConfig3_CFG3_VARIO_FAILSAFE] boolValue] ){
+    self.fieldNotGas.title = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"Emergency-Gas", @"MKParam Misc"),@" [%]"];
+  }
+  else {
+    self.fieldNotGas.title = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"Emergency-Gas", @"MKParam Misc"),@""];
+  }
+
+  [self.fieldNotGas updateCellContents];
+}
 
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
   [super setModelValue:value forKeyPath:keyPath];
 
-  NSLog(@"%@", [self.model description]);
+  if([keyPath isEqualToString:@"GlobalConfig3_CFG3_VARIO_FAILSAFE"]){
+    [self updateFieldNotGas];
+    NSLog(@"%@",value);
+  }
+    
 }
 
 @end
