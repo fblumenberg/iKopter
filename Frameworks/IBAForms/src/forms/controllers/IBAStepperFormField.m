@@ -72,7 +72,7 @@
     _stepValue = 1;
     _autorepeat = YES;
     _wraps = NO;
-    _continuous = NO;
+    _continuous = YES;
   }
 
   return self;

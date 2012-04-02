@@ -31,13 +31,20 @@
 #import "Route.h"
 
 @interface WaypointViewDataSource ()
+
+@property(retain) NSArray* refreshProperties;
+
 @end
 
 @implementation WaypointViewDataSource
 
+@synthesize refreshProperties;
+
 - (id)initWithModel:(id)aModel {
   if ((self = [super initWithModel:aModel])) {
 
+    self.refreshProperties = [NSArray arrayWithObjects:@"posLatitude", @"posLongitude", @"type", @"heading", @"toleranceRadius", nil];
+    
     IBATextFormField *numberField;
     IBAStepperFormField *stepperField;
 
@@ -142,11 +149,28 @@
   return self;
 }
 
+- (void)dealloc
+{
+  self.refreshProperties = nil;
+  [super dealloc];
+}
+
+-(void)sendChange{
+  [Route sendChangedNotification:self];
+}
+
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
   [super setModelValue:value forKeyPath:keyPath];
 
   NSLog(@"%@", [self.model description]);
-  [Route sendChangedNotification:self];
+  
+  if([self.refreshProperties containsObject:keyPath]){
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(sendChange) withObject:self afterDelay:0.6];
+  }
+//    [Route sendChangedNotification:self];
 }
+
+
 
 @end
