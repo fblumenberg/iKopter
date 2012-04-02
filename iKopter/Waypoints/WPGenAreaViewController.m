@@ -123,7 +123,8 @@
       newPoint.eventFlag = 0;
       newPoint.index = 255;
       newPoint.type = POINT_TYPE_WP;
-      newPoint.wpEventChannelValue = [[self.wpData objectForKey:WPaltitude] integerValue];
+      newPoint.altitude = [[self.wpData objectForKey:WPaltitude] integerValue];
+      newPoint.wpEventChannelValue = [[self.wpData objectForKey:WPwpEventChannelValue] integerValue];
       newPoint.altitudeRate = [[self.wpData objectForKey:WPaltitudeRate] integerValue];
       newPoint.speed = [[self.wpData objectForKey:WPspeed] integerValue];
       newPoint.camAngle = [[self.wpData objectForKey:WPcamAngle] integerValue];
