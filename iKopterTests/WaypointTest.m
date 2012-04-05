@@ -12,6 +12,49 @@
 
 @implementation WaypointTest
 
+- (void)testWaypointNSData
+{
+  CLLocationCoordinate2D coordinate=CLLocationCoordinate2DMake(49.860348,8.686227);
+  IKPoint* p = [[IKPoint alloc] initWithCoordinate:coordinate];
+  p.heading=101;
+  p.toleranceRadius=102;
+  p.holdTime=103;
+  p.eventFlag=104;
+  p.index=105;
+  p.type=106;
+  p.wpEventChannelValue=107;
+  p.altitudeRate=108;
+  p.speed=109;
+  p.camAngle=111;
+  p.cameraNickControl=YES;
+  p.name = @"P105";
+  
+  STAssertEquals(p.coordinate, coordinate, @"Coordinate is not correct");
+  
+  NSData* data = [p data];
+  
+  NSMutableData* mkData=[NSMutableData dataWithBytes:"XX" length:2];
+  
+  [mkData appendData:data];
+  
+  IKPoint* p2 = [IKPoint pointWithData:mkData];
+  
+  STAssertEquals(p.coordinate, p2.coordinate, @"unarchived is not equal");
+  STAssertEquals(p.heading, p2.heading, @"unarchived is not equal");
+  STAssertEquals(p.toleranceRadius, p2.toleranceRadius, @"unarchived is not equal");
+  STAssertEquals(p.holdTime, p2.holdTime, @"unarchived is not equal");
+  STAssertEquals(p.eventFlag, p2.eventFlag, @"unarchived is not equal");
+  STAssertEquals(p.index, p2.index, @"unarchived is not equal");
+  STAssertEquals(p.type, p2.type, @"unarchived is not equal");
+  STAssertEquals(p.wpEventChannelValue, p2.wpEventChannelValue, @"unarchived is not equal");
+  STAssertEquals(p.altitudeRate, p2.altitudeRate, @"unarchived is not equal");
+  STAssertEquals(p.speed, p2.speed, @"unarchived is not equal");
+  STAssertEquals(p.camAngle, p2.camAngle, @"unarchived is not equal");
+  STAssertEquals(p.cameraNickControl, p2.cameraNickControl, @"unarchived is not equal");
+  STAssertTrue([p.name isEqualToString:p2.name], @"unarchived is not equal");
+  
+}
+
 // All code under test is in the iOS Application
 - (void)testWaypointNSCoding
 {
@@ -28,6 +71,7 @@
   p.speed=109;
   p.camAngle=111;
   p.cameraNickControl=YES;
+  p.name = @"P105";
 
   STAssertEquals(p.coordinate, coordinate, @"Coordinate is not correct");
   
@@ -58,6 +102,7 @@
   STAssertEquals(p.speed, p2.speed, @"unarchived is not equal");
   STAssertEquals(p.camAngle, p2.camAngle, @"unarchived is not equal");
   STAssertEquals(p.cameraNickControl, p2.cameraNickControl, @"unarchived is not equal");
+  STAssertTrue([p.name isEqualToString:p2.name], @"unarchived is not equal");
   
 }
 

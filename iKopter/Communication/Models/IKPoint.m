@@ -41,6 +41,7 @@
 @synthesize altitudeRate;         // rate to change the setpoint
 @synthesize speed;
 @synthesize camAngle;
+@synthesize name;
 
 -(NSInteger) altitude{
   return [super altitude];
@@ -133,6 +134,8 @@
     self.altitudeRate = _point.AltitudeRate;  
     self.speed = _point.Speed;  
     self.camAngle = _point.CamAngle;  
+    
+    self.name = [NSString stringWithCString:(const char *)_point.Name encoding:NSASCIIStringEncoding];
 
     if(self.type==POINT_TYPE_POI)
       self.altitude/=100;
@@ -145,6 +148,8 @@
 
 - (NSData*) data{
   IKMkPoint _point;
+  memset(&_point, 0, sizeof(IKMkPoint));
+  
   unsigned char payloadData[sizeof(_point)];
   
   _point.Heading = self.heading;             
@@ -156,9 +161,19 @@
   _point.WP_EventChannelValue = self.wpEventChannelValue;
   _point.AltitudeRate = self.altitudeRate;    
   _point.Speed = self.speed;    
-  _point.CamAngle = self.camAngle;    
-
-  memset(_point.reserve, 0, 6);
+  _point.CamAngle = self.camAngle;   
+  
+  memset(_point.Name, 0, 4);
+  
+  [self.name getBytes:(void*)_point.Name 
+       maxLength:4 
+      usedLength:NULL 
+        encoding:NSASCIIStringEncoding 
+         options:0 
+           range:NSMakeRange(0,[self.name length]) 
+  remainingRange:NULL];
+  
+  memset(_point.reserve, 0, 2);
   
   _point.Position.Altitude = self.type==POINT_TYPE_POI?self.altitude*100:self.altitude*10;
   _point.Position.Longitude = self.longitude;
@@ -198,6 +213,11 @@
   return [self initWithCoordinate:location.coordinate];
 }
 
+- (void)dealloc
+{
+  self.name = nil;
+  [super dealloc];
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma - mark NSCoding
@@ -216,6 +236,7 @@
   [aCoder encodeInteger:self.altitudeRate forKey:@"altitudeRate"];
   [aCoder encodeInteger:self.speed forKey:@"speed"];
   [aCoder encodeInteger:self.camAngle forKey:@"camAngle"];
+  [aCoder encodeObject:self.name forKey:@"name"];
   
 }
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -231,6 +252,7 @@
     self.altitudeRate = [aDecoder decodeIntegerForKey:@"altitudeRate"];
     self.speed = [aDecoder decodeIntegerForKey:@"speed"];
     self.camAngle = [aDecoder decodeIntegerForKey:@"camAngle"];
+    self.name = [aDecoder decodeObjectForKey:@"name"];
   }
   return self;
 }

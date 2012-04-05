@@ -693,7 +693,8 @@ typedef struct
 	uint8_t     AltitudeRate;     // rate to change the setpoint
 	uint8_t     Speed;            // rate to change the Position
 	uint8_t     CamAngle;		      // Camera servo angle
-	uint8_t     reserve[6];		    // reserve
+	uint8_t     Name[4];		      // Name of that point (ASCII)
+	uint8_t     reserve[2];		    // reserve
 } __attribute__((packed)) IKMkPoint;
 
 // FC STATUS FLAGS2
