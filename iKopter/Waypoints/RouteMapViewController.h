@@ -40,6 +40,7 @@
 @property(retain) FDCurlViewControl *curlBarItem;
 @property(retain) IBOutlet UISegmentedControl *segmentedControl;
 @property(retain) IBOutlet UILabel *scaleLabel;
+@property(assign) BOOL forWpGenModal;
 
 - (id)initWithRoute:(Route *)theRoute;
 - (IBAction)changeMapViewType;

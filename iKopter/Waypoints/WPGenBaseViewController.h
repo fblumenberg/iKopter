@@ -56,6 +56,7 @@ IK_DECLARE_KEY(WPstartangle);
 
 @property(nonatomic, retain) IBOutlet UIView *shapeView;
 @property(nonatomic, retain) WPGenBaseDataSource *dataSource;
+@property(nonatomic, assign) UIViewController* parentController;
 
 - (NSArray *)generatePointsList;
 

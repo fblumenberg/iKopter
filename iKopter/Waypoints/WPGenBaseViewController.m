@@ -28,6 +28,7 @@
 #import "IKPoint.h"
 #import "WPGenBaseViewController.h"
 #import "WPGenConfigViewController.h"
+#import "UIViewController+SplitView.h"
 
 IK_DEFINE_KEY_WITH_VALUE(WPaltitude, @"altitude");
 IK_DEFINE_KEY_WITH_VALUE(WPtoleranceRadius, @"toleranceRadius");
@@ -76,6 +77,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclosed, @"closed");
 @synthesize delegate;
 @synthesize dataSource = _dataSource;
 @synthesize popOverController;
+@synthesize parentController;
 
 - (id)initWithShapeView:(UIView *)shapeView forMapView:(MKMapView *)mapView {
   self = [super initWithNibName:@"WPGenBaseViewController" bundle:nil];
@@ -300,32 +302,38 @@ IK_DEFINE_KEY_WITH_VALUE(WPclosed, @"closed");
 }
 
 - (IBAction)showConfig:(id)sender {
-
-  if (self.popOverController) {
-    [self.popOverController dismissPopoverAnimated:YES];
-    self.popOverController = nil;
-    return;
-  }
-
+  
   WPGenConfigViewController *controller = [[[WPGenConfigViewController alloc] initWithFormDataSource:self.dataSource] autorelease];
-
-
-  self.popOverController = [[[UIPopoverController alloc] initWithContentViewController:controller] autorelease];
-  self.popOverController.delegate = self;
-  self.popOverController.popoverContentSize = CGSizeMake(320, 500);
-
-  if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-    [self.popOverController presentPopoverFromBarButtonItem:sender
-                                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-
-  }
-  else if ([sender isKindOfClass:[UIView class]]) {
-    [self.popOverController presentPopoverFromRect:((UIView *) sender).frame inView:(UIView *) sender
-                          permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+  
+  if(self.isPad){
+    
+    if (self.popOverController) {
+      [self.popOverController dismissPopoverAnimated:YES];
+      self.popOverController = nil;
+      return;
+    }
+    
+    self.popOverController = [[[UIPopoverController alloc] initWithContentViewController:controller] autorelease];
+    self.popOverController.delegate = self;
+    self.popOverController.popoverContentSize = CGSizeMake(320, 500);
+    
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+      [self.popOverController presentPopoverFromBarButtonItem:sender
+                                     permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+      
+    }
+    else if ([sender isKindOfClass:[UIView class]]) {
+      [self.popOverController presentPopoverFromRect:((UIView *) sender).frame inView:(UIView *) sender
+                            permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else {
+      [self.popOverController presentPopoverFromRect:self.shapeView.frame inView:self.shapeView
+                            permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
   }
   else {
-    [self.popOverController presentPopoverFromRect:self.shapeView.frame inView:self.shapeView
-                          permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    UIViewController* c=self.parentController;
+    [c.navigationController pushViewController:controller animated:YES];
   }
 }
 

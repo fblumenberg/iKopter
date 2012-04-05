@@ -47,6 +47,7 @@
 - (void)generateWayPoints;
 - (void)configWayPoints:(id)sender;
 - (void)updateWpToolbar;
+- (void)dismiss;
 
 @property(nonatomic, retain) WPGenBaseViewController *wpgenController;
 @property(retain) IBOutlet UISegmentedControl *wpGeneratorSelection;
@@ -69,6 +70,8 @@
 @synthesize wpGenerateItem;
 @synthesize wpGeneratorSelection;
 @synthesize wpGenerateConfigItem;
+
+@synthesize forWpGenModal;
 
 - (id)initWithRoute:(Route *)theRoute {
   self = [super initWithNibName:@"RouteMapViewController" bundle:nil];
@@ -120,7 +123,7 @@
   [self.mapView addGestureRecognizer:longTap];
   [longTap release];
 
-  if (self.isPad) {
+  if (self.isPad || self.forWpGenModal) {
     self.navigationItem.hidesBackButton = YES;
     UIBarButtonItem *curlBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
                                                                                         target:self.curlBarItem
@@ -148,11 +151,6 @@
     [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-circle.png"] forSegmentAtIndex:1];
     [self.wpGeneratorSelection setImage:[UIImage imageNamed:@"wpgen-pano.png"] forSegmentAtIndex:2];
 
-//    [self.segment setImage:[UIImage imageNamed:@"list-mode.png"] forSegmentAtIndex:0];
-//    [self.segment setWidth:50.0 forSegmentAtIndex:0];
-//    [self.segment setWidth:50.0 forSegmentAtIndex:1];
-//    [self.segment setImage:[UIImage imageNamed:@"map-mode.png"] forSegmentAtIndex:1];
-
     self.wpGeneratorSelection.momentary = YES;
 
     [self.wpGeneratorSelection addTarget:self
@@ -170,6 +168,16 @@
     [self updateWpToolbar];
 
   }
+  
+  if(self.forWpGenModal) {
+    self.navigationItem.hidesBackButton = YES;
+    UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                        target:self
+                                                                                        action:@selector(dismiss)] autorelease];
+        
+    self.navigationItem.leftBarButtonItem = doneButton;
+  }
+
 }
 
 - (void)viewDidUnload {
@@ -186,6 +194,10 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
+}
+
+- (void)dismiss{
+  [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -562,6 +574,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
       break;
   }
   self.wpgenController.delegate = self;
+  self.wpgenController.parentController = self;
 
   [self updateWpToolbar];
   [self.mapView addSubview:self.wpgenController.view];

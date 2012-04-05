@@ -43,6 +43,7 @@
 @property(retain) UIBarButtonItem *addWithGpsButton;
 @property(retain) UIBarButtonItem *ulButton;
 @property(retain) UIBarButtonItem *dlButton;
+@property(retain) UIBarButtonItem *wpGenButton;
 @property(retain) CLLocationManager *lm;
 @property(retain) RouteController *routeController;
 
@@ -52,6 +53,7 @@
 - (void)uploadRoute;
 - (void)downloadRoute;
 - (void)addPointWithGps;
+- (void)showWpGenerator;
 
 
 @end
@@ -68,6 +70,7 @@
 @synthesize spacer;
 @synthesize ulButton;
 @synthesize dlButton;
+@synthesize wpGenButton;
 @synthesize lm;
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +93,7 @@
   self.spacer = nil;
   self.dlButton = nil;
   self.ulButton = nil;
+  self.wpGenButton = nil;
   self.routeController = nil;
   self.segment = nil;
 
@@ -147,6 +151,9 @@
           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil action:nil] autorelease];
 
+  self.wpGenButton = [[[UIBarButtonItem alloc] initWithTitle:@"WP" 
+                                                      style:UIBarButtonItemStyleBordered 
+                                                      target:self action:@selector(showWpGenerator)]autorelease];
 
   self.addButton = [[[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -245,47 +252,33 @@
           CGRectGetHeight(self.view.bounds));
 
   self.addButton.target = self.selectedViewController;
-
-  if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]) {
-    if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
-      [self                 setToolbarItems:[NSArray arrayWithObjects:
-              self.selectedViewController.editButtonItem,
-              self.spacer,
-              self.ulButton,
-                                                    //self.dlButton,
-              self.spacer,
-              self.addWithGpsButton,
-              self.addButton, nil] animated:YES];
-    }
-    else {
-      [self                 setToolbarItems:[NSArray arrayWithObjects:
-              self.selectedViewController.editButtonItem,
-              self.spacer, self.addWithGpsButton,
-              self.addButton, nil] animated:YES];
-    }
-  } else {
+  
+  NSMutableArray *tbArray = [NSMutableArray array];
+  
+  if ([self.selectedViewController isKindOfClass:[RouteListViewController class]]) 
+    [tbArray addObject:self.selectedViewController.editButtonItem];
+  else {
     UIBarButtonItem *curlBarItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl
                                                                                   target:((RouteMapViewController *) self.selectedViewController).curlBarItem
                                                                                   action:@selector(touched)] autorelease];
-
-    if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
-      [self                 setToolbarItems:[NSArray arrayWithObjects:
-              curlBarItem,
-              self.spacer,
-              self.ulButton,
-                                                    //self.dlButton,
-              self.spacer,
-              self.addWithGpsButton,
-              self.addButton, nil] animated:YES];
-    }
-    else {
-      [self                 setToolbarItems:[NSArray arrayWithObjects:
-              curlBarItem,
-              self.spacer,
-              self.addWithGpsButton,
-              self.addButton, nil] animated:YES];
-    }
+    [tbArray addObject:curlBarItem];
   }
+  
+  if(!self.isPad){
+    [tbArray addObject:self.wpGenButton];
+  }
+
+  
+  if ([[MKConnectionController sharedMKConnectionController] isRunning]) {
+    [tbArray addObject:spacer];
+    [tbArray addObject:self.ulButton];
+  }
+
+  [tbArray addObject:spacer];
+  [tbArray addObject:self.addWithGpsButton];
+  [tbArray addObject:self.addButton];
+  
+  [self setToolbarItems:tbArray animated:YES];
 }
 
 
@@ -336,6 +329,28 @@
   [hud hide:YES afterDelay:0.7];
 }
 
+
+#pragma mark - WPGenerator
+
+- (void)showWpGenerator{
+  if(!self.isPad){
+   
+    RouteMapViewController* controller = [[RouteMapViewController alloc] initWithRoute:self.route];
+    
+    controller.forWpGenModal = YES;
+    
+    UINavigationController *modalNavController = [[UINavigationController alloc]
+                                                  initWithRootViewController:controller];
+    
+    [self.navigationController presentModalViewController:modalNavController
+                                                 animated:YES];
+    
+    [controller release];
+    [modalNavController release];
+  }
+}
+
+
 #pragma mark - CLLocationManagerDelegate Methods
 
 - (void)addPointWithGps {
@@ -382,4 +397,3 @@
 }
 
 @end
-
