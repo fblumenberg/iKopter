@@ -37,7 +37,7 @@
 
   if ((self = [super initWithNibName:nil bundle:nil formDataSource:dataSource])) {
     self.hidesBottomBarWhenPushed = NO;
-    self.title = NSLocalizedString(@"Waypoint", @"Waypoint view title");
+    self.title = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"Waypoint", @"Waypoint view title"),theWayPoint.name];
   }
   return self;
 }

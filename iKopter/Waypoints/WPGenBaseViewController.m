@@ -31,6 +31,7 @@
 #import "UIViewController+SplitView.h"
 
 IK_DEFINE_KEY_WITH_VALUE(WPaltitude, @"altitude");
+IK_DEFINE_KEY_WITH_VALUE(WPprefix, @"prefix");
 IK_DEFINE_KEY_WITH_VALUE(WPtoleranceRadius, @"toleranceRadius");
 IK_DEFINE_KEY_WITH_VALUE(WPholdTime, @"holdTime");
 IK_DEFINE_KEY_WITH_VALUE(WPcamAngle, @"camAngle");
@@ -90,7 +91,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclosed, @"closed");
     [self.wpData setValue:[NSNumber numberWithInteger:0] forKey:WPheading];
     [self.wpData setValue:[NSNumber numberWithInteger:[d integerForKey:@"WpDefaultAltitude"]] forKey:WPaltitude];
     [self.wpData setValue:[NSNumber numberWithInteger:[d integerForKey:@"WpDefaultAltitudeRate"]] forKey:WPaltitudeRate];
-    [self.wpData setValue:[NSNumber numberWithInteger:0] forKey:WPcamAngle];
+    [self.wpData setValue:[NSNumber numberWithInteger:[d integerForKey:@"WpDefaultCamAngle"]] forKey:WPcamAngle];
     [self.wpData setValue:[NSNumber numberWithInteger:[d integerForKey:@"WpDefaultSpeed"]] forKey:WPspeed];
     [self.wpData setValue:[NSNumber numberWithInteger:[d integerForKey:@"WpDefaultToleranceRadius"]] forKey:WPtoleranceRadius];
     [self.wpData setValue:[NSNumber numberWithInteger:[d integerForKey:@"WpDefaultHoldTime"]] forKey:WPholdTime];
@@ -177,6 +178,7 @@ IK_DEFINE_KEY_WITH_VALUE(WPclosed, @"closed");
   newPoint.toleranceRadius = [[self.wpData objectForKey:WPtoleranceRadius] integerValue];
   newPoint.holdTime = [[self.wpData objectForKey:WPholdTime] integerValue];
   newPoint.eventFlag = 0;
+  newPoint.prefix = [self.wpData objectForKey:WPprefix];
   newPoint.index = 255;
   newPoint.type = type;
   newPoint.altitude = [[self.wpData objectForKey:WPaltitude] integerValue];

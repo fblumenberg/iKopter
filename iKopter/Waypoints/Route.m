@@ -171,6 +171,9 @@ NSString *const MKRouteChangedNotification = @"MKRouteChangedNotification";
 
 - (void)deletePointAtIndexPath:(NSIndexPath *)indexPath {
 
+  if(indexPath.row<0 || indexPath.row> [points count]-1)
+    return;
+
   int oldIndex = ((IKPoint *) [points objectAtIndex:[indexPath row]]).index;
   [points removeObjectAtIndex:[indexPath row]];
 

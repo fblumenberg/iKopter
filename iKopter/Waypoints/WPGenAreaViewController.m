@@ -121,6 +121,7 @@
       newPoint.toleranceRadius = [[self.wpData objectForKey:WPtoleranceRadius] integerValue];
       newPoint.holdTime = [[self.wpData objectForKey:WPholdTime] integerValue];
       newPoint.eventFlag = 0;
+      newPoint.prefix = [self.wpData objectForKey:WPprefix];
       newPoint.index = 255;
       newPoint.type = POINT_TYPE_WP;
       newPoint.altitude = [[self.wpData objectForKey:WPaltitude] integerValue];

@@ -28,6 +28,7 @@
 #import "WPGenBaseDataSource.h"
 
 IK_DECLARE_KEY(WPaltitude);
+IK_DECLARE_KEY(WPprefix);
 IK_DECLARE_KEY(WPtoleranceRadius);
 IK_DECLARE_KEY(WPholdTime);
 IK_DECLARE_KEY(WPcamAngle);

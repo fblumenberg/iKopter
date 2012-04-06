@@ -44,6 +44,7 @@
     IBAFormSection *configSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     configSection.formFieldStyle = [[[SettingsFieldStyleStepper alloc] init] autorelease];
     //------------------------------------------------------------------------------------------------------------------------
+    [configSection addTextFieldForKeyPath:WPprefix title:NSLocalizedString(@"Prefix", @"WP Prefix")];
 
     stepperField = [configSection addStepperFieldForKeyPath:WPnoPointsX title:NSLocalizedString(@"#WP-X", @"WP Numbers")];
     stepperField.maximumValue = 100;

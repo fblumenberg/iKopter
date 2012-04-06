@@ -14,10 +14,14 @@
 	<integer>5</integer>
 	<key>WpDefaultAltitudeRate</key>
 	<integer>20</integer>
+	<key>WpDefaultPrefix</key>
+	<string>P</string>
 	<key>WpDefaultSpeed</key>
-	<string>30</string>
+	<integer>30</integer>
 	<key>FollowMeHeigth</key>
 	<integer>1</integer>
+	<key>WpDefaultCamOrientation</key>
+	<integer>0</integer>
 	<key>FollowMeCameraNick</key>
 	<true/>
 	<key>FollowMeAccuracyBestForNavigation</key>

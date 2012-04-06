@@ -1,4 +1,12 @@
-﻿"SettingWaypointsGrouptTitle" = "Default Coordinate";
+"SettingWaypointsGrouptTitle" = "Default Coordinate";
 "SettingWaypointsDescription" = "The coordinate for the first waypoint in a route.";
 "SettingsWaypointLat" = "Lat.";
 "SettingsWaypointLong" = "Long.";
+
+"SettingsWaypointAltitude" = "Altitude [m]";
+"SettingsWaypointHoldTime" = "Delay Time [s]";
+"SettingsWaypointToleranceRadius" = "Radius [m]";
+"SettingsWaypointAltitudeRate" = "Climb rate [0.1 m/s]";
+"SettingsWaypointSpeed" = "Speed [0.1 m/s]";
+"SettingsWaypointPrefix" = "Prefix";
+"SettingsCamOrientation" = "Cam-Nick [°]";

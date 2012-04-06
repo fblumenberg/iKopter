@@ -45,7 +45,8 @@
 @property(assign) NSInteger speed;            // rate to change the Position
 @property(assign) NSInteger camAngle;         // Camera servo angle
 @property(assign) BOOL cameraNickControl;
-@property(assign) NSString*  name;
+@property(retain) NSString*  name;
+@property(retain) NSString*  prefix;
 
 @property(assign) CLLocationDegrees posLatitude;
 @property(assign) CLLocationDegrees posLongitude;
@@ -56,6 +57,7 @@
 - (id)initWithData:(NSData*)data;
 - (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate;
 
+- (void)updateName;
 - (NSData*) data;
 
 @end

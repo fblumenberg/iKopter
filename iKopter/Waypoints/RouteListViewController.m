@@ -96,15 +96,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 
   if (self.editingPoint) {
-
-    NSArray *indexPaths = [NSArray arrayWithObject:self.editingPoint];
-
-    NSLog(@"appear reload %@", indexPaths);
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:indexPaths
-                          withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
-
+    [self.tableView reloadData];
     self.editingPoint = nil;
   }
 }
@@ -203,8 +195,8 @@
     cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d - POI", @"POI cell"), point.index];
   }
 
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m - %d s - %.0f m/s - %@", 
-                               point.altitude, point.holdTime, 
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %d m - %d s - %.0f m/s - %@", 
+                               point.name,point.altitude, point.holdTime, 
                                (point.speed*0.1),[point formatHeading]];
 
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

@@ -39,7 +39,7 @@
 
 - (id)initWithModel:(id)aModel {
   if ((self = [super initWithModel:aModel])) {
-
+    [super setModelValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultPrefix"] forKeyPath:@"prefix"];
   }
   return self;
 }

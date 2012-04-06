@@ -42,6 +42,7 @@
 @synthesize speed;
 @synthesize camAngle;
 @synthesize name;
+@synthesize prefix;
 
 -(NSInteger) altitude{
   return [super altitude];
@@ -106,6 +107,10 @@
     self.eventFlag &= ~WP_EVFLAG_CAMERA_NICK_CONTROL;
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+  [self updateName];
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,6 +129,9 @@
   self = [super initWithMkPos:&(_point.Position)];
   if (self != nil) {
     
+    [self addObserver:self forKeyPath:@"index" options:0 context:0];
+    [self addObserver:self forKeyPath:@"prefix" options:0 context:0];
+    
     self.heading = _point.Heading;             
     self.toleranceRadius = _point.ToleranceRadius;     
     self.holdTime = _point.HoldTime;            
@@ -136,6 +144,7 @@
     self.camAngle = _point.CamAngle;  
     
     self.name = [NSString stringWithCString:(const char *)_point.Name encoding:NSASCIIStringEncoding];
+    self.prefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultPrefix"];
 
     if(self.type==POINT_TYPE_POI)
       self.altitude/=100;
@@ -188,6 +197,10 @@
 - (id)initWithCoordinate:(CLLocationCoordinate2D)theCoordinate{
   self = [super init];
   if (self != nil) {
+    
+    [self addObserver:self forKeyPath:@"index" options:0 context:0];
+    [self addObserver:self forKeyPath:@"prefix" options:0 context:0];
+
     self.heading = 0;            
     self.altitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultAltitude"] integerValue];
     self.toleranceRadius = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultToleranceRadius"] integerValue];
@@ -198,8 +211,9 @@
     self.wpEventChannelValue = 0;
     self.altitudeRate = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultAltitudeRate"] integerValue];
     self.speed = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultSpeed"] integerValue];
-    self.camAngle = 0;
+    self.camAngle = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultCamAngle"] integerValue];;
     self.eventFlag = 0;          
+    self.prefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultPrefix"];
     self.index = 0;               
     
     self.coordinate=theCoordinate;
@@ -215,7 +229,11 @@
 
 - (void)dealloc
 {
+  [self removeObserver:self forKeyPath:@"index"];
+  [self removeObserver:self forKeyPath:@"prefix"];
+  
   self.name = nil;
+  self.prefix = nil;
   [super dealloc];
 }
 
@@ -237,15 +255,21 @@
   [aCoder encodeInteger:self.speed forKey:@"speed"];
   [aCoder encodeInteger:self.camAngle forKey:@"camAngle"];
   [aCoder encodeObject:self.name forKey:@"name"];
+  [aCoder encodeObject:self.prefix forKey:@"prefix"];
   
 }
 - (id)initWithCoder:(NSCoder *)aDecoder{
   if ((self = [super initWithCoder:aDecoder])) {
+    
+    [self addObserver:self forKeyPath:@"index" options:0 context:0];
+    [self addObserver:self forKeyPath:@"prefix" options:0 context:0];
+
     self.heading = [aDecoder decodeIntegerForKey:@"heading"];
     self.toleranceRadius = [aDecoder decodeIntegerForKey:@"toleranceRadius"];
     self.holdTime = [aDecoder decodeIntegerForKey:@"holdTime"];
     self.heading = [aDecoder decodeIntegerForKey:@"heading"];
     self.eventFlag = [aDecoder decodeIntegerForKey:@"eventFlag"];
+    self.prefix = [aDecoder decodeObjectForKey:@"prefix"];
     self.index = [aDecoder decodeIntegerForKey:@"index"];
     self.type = [aDecoder decodeIntegerForKey:@"type"];
     self.wpEventChannelValue = [aDecoder decodeIntegerForKey:@"wpEventChannelValue"];
@@ -253,17 +277,27 @@
     self.speed = [aDecoder decodeIntegerForKey:@"speed"];
     self.camAngle = [aDecoder decodeIntegerForKey:@"camAngle"];
     self.name = [aDecoder decodeObjectForKey:@"name"];
+    
+    [self updateName];
   }
   return self;
 }
 
 -(NSString*) description{
-  return [NSString stringWithFormat:@"%d:%d:%d:(%d):%d",self.latitude,self.longitude,self.altitude,self.index,self.heading];
+  return [NSString stringWithFormat:@"%@-%d:%d:%d:(%d):%d",self.name,self.latitude,self.longitude,self.altitude,self.index,self.heading];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)updateName{
+
+  if(self.prefix==nil)
+    self.prefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultPrefix"];
+
+  self.name = [NSString stringWithFormat:@"%@%d",self.prefix,self.index];
+}
 
 - (NSString *)title {
   if (self.type==POINT_TYPE_WP) {
