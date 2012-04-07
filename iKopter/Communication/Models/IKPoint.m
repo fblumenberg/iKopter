@@ -119,6 +119,16 @@
   return [[[IKPoint alloc] initWithData:data]autorelease];
 }
 
+- (id)init
+{
+  self = [super init];
+  if (self) {
+    [self addObserver:self forKeyPath:@"index" options:0 context:0];
+    [self addObserver:self forKeyPath:@"prefix" options:0 context:0];
+  }
+  return self;
+}
+
 - (id)initWithData:(NSData*)data {
   const char* b=[data bytes];
   b++;
