@@ -1,0 +1,10 @@
+Package: de.fblumenberg.iKopter3G
+Name: iKopter3G
+Version: 0.7.2.190
+Architecture: iphoneos-arm
+Description: A control App for the Mikrokopter. Use this one if you have a iPhone 3G 
+Homepage: http://www.mikrokopter.de/ucwiki/iKopter
+Maintainer: Frank <ikopter@frankblumenberg.de>
+Section: Utility
+Depends: ch.ringwald.btstack (>= 0.4-1572)
+Icon: file:///Applications/iKopter3G.app/Icon.png

@@ -1,9 +1,10 @@
 Package: de.frankblumenberg.ikopter
 Name: iKopter
-Version: 0.7.0.117
+Version: 0.7.2.190
 Architecture: iphoneos-arm
 Description: A control App for the Mikrokopter.
 Homepage: http://www.mikrokopter.de/ucwiki/iKopter
 Maintainer: Frank <ikopter@frankblumenberg.de>
 Section: Utility
-Depends: ch.ringwald.btstack (>= 0.3-1170)
+Depends: ch.ringwald.btstack (>= 0.4-1572), firmware(>= 4.3)
+Icon: file:///Applications/iKopter.app/Icon.png
