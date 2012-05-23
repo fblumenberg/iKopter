@@ -7,8 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		761C1DA7156CBFC80093C9E7 /* RouteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DA6156CBFC80093C9E7 /* RouteTest.m */; };
+		761C1DA8156CC17B0093C9E7 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0D13B0ED1A00AE0958 /* Route.m */; };
+		761C1DA9156CC17B0093C9E7 /* Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = BA585C0F13B0ED1A00AE0958 /* Routes.m */; };
+		761C1DAE156CCC480093C9E7 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0D4764137C72DD001415C3 /* TTGlobalCorePaths.m */; };
+		761C1DB1156CCDE00093C9E7 /* Route+WPL.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB0156CCDE00093C9E7 /* Route+WPL.m */; };
+		761C1DB2156CCDE00093C9E7 /* Route+WPL.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB0156CCDE00093C9E7 /* Route+WPL.m */; };
+		761C1DB5156CD3520093C9E7 /* Route+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB4156CD3520093C9E7 /* Route+Test.m */; };
+		761C1DB7156CD5A40093C9E7 /* Route+Test-Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB6156CD5A40093C9E7 /* Route+Test-Test.m */; };
+		761C1DB9156CD6EA0093C9E7 /* RouteWplTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB8156CD6EA0093C9E7 /* RouteWplTest.m */; };
 		764E8A4C14601B7200579FA4 /* OsdTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764E8A4B14601B7100579FA4 /* OsdTabBarController.m */; };
 		765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F71420DCEB00BB027D /* IKOutputSetting.m */; };
+		76892C5F156BCF78001D2F9D /* INIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5C156BCF78001D2F9D /* INIParser.m */; };
+		76892C60156BCF78001D2F9D /* INIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5C156BCF78001D2F9D /* INIParser.m */; };
+		76892C61156BCF78001D2F9D /* INIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5C156BCF78001D2F9D /* INIParser.m */; };
+		76892C62156BCF78001D2F9D /* INISection.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5E156BCF78001D2F9D /* INISection.m */; };
+		76892C63156BCF78001D2F9D /* INISection.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5E156BCF78001D2F9D /* INISection.m */; };
+		76892C64156BCF78001D2F9D /* INISection.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5E156BCF78001D2F9D /* INISection.m */; };
+		76892C67156BCFAC001D2F9D /* InnerBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C66156BCFAC001D2F9D /* InnerBand.m */; };
+		76892C68156BCFAC001D2F9D /* InnerBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C66156BCFAC001D2F9D /* InnerBand.m */; };
+		76892C69156BCFAC001D2F9D /* InnerBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C66156BCFAC001D2F9D /* InnerBand.m */; };
+		76892C75156BD515001D2F9D /* INIParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C74156BD515001D2F9D /* INIParserTest.m */; };
+		76892C76156BD7DE001D2F9D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4673137C5127001415C3 /* CoreGraphics.framework */; };
+		76892C77156BD7E7001D2F9D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA4E6EA137EB8FF0068E38E /* CoreText.framework */; };
+		76892C78156BD7FC001D2F9D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
+		76892C91156BD960001D2F9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D466F137C5127001415C3 /* UIKit.framework */; };
+		76892C92156BD960001D2F9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4671137C5127001415C3 /* Foundation.framework */; };
+		76892C93156BD960001D2F9D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0D4673137C5127001415C3 /* CoreGraphics.framework */; };
+		76892C99156BD960001D2F9D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 76892C97156BD960001D2F9D /* InfoPlist.strings */; };
+		76892C9B156BD960001D2F9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C9A156BD960001D2F9D /* main.m */; };
+		76892CB9156BDDC9001D2F9D /* libGHUnitIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76892CB8156BDDC9001D2F9D /* libGHUnitIOS.a */; };
+		76892CBD156BDEB0001D2F9D /* INIParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892CBC156BDEB0001D2F9D /* INIParserTest.m */; };
+		76892CBE156BDED2001D2F9D /* InnerBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C66156BCFAC001D2F9D /* InnerBand.m */; };
+		76892CBF156BDEDA001D2F9D /* INIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5C156BCF78001D2F9D /* INIParser.m */; };
+		76892CC0156BDEDA001D2F9D /* INISection.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5E156BCF78001D2F9D /* INISection.m */; };
+		76892CC1156BDF08001D2F9D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEEFBB2139D3B680003860E /* CoreData.framework */; };
+		76892CC2156BDF08001D2F9D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA4E6EA137EB8FF0068E38E /* CoreText.framework */; };
+		76892CC3156BDF12001D2F9D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE3B01713A4D2C7007E0F2F /* CoreLocation.framework */; };
+		76892CC7156BDF79001D2F9D /* Test.wpl in Resources */ = {isa = PBXBuildFile; fileRef = 76892CC5156BDF79001D2F9D /* Test.wpl */; };
+		76892CC8156BDF79001D2F9D /* TestInvalid.wpl in Resources */ = {isa = PBXBuildFile; fileRef = 76892CC6156BDF79001D2F9D /* TestInvalid.wpl */; };
+		76892CCC156BE074001D2F9D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892CCB156BE074001D2F9D /* NSData+Base64.m */; };
+		76892CCF156BE0A6001D2F9D /* WaypointTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892CCE156BE0A6001D2F9D /* WaypointTest.m */; };
+		76892CD0156BE0FE001D2F9D /* IKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE3B09C13ACE978007E0F2F /* IKPoint.m */; };
+		76892CD1156BE116001D2F9D /* IKNaviData.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E670137EB5BA0068E38E /* IKNaviData.m */; };
 		76C591F7142744600043F026 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F2142744600043F026 /* MGSplitCornersView.m */; };
 		76C591F8142744600043F026 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F4142744600043F026 /* MGSplitDividerView.m */; };
 		76C591F9142744600043F026 /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C591F6142744600043F026 /* MGSplitViewController.m */; };
@@ -724,10 +765,67 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		761C1DA6156CBFC80093C9E7 /* RouteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTest.m; sourceTree = "<group>"; };
+		761C1DAF156CCDE00093C9E7 /* Route+WPL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Route+WPL.h"; sourceTree = "<group>"; };
+		761C1DB0156CCDE00093C9E7 /* Route+WPL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Route+WPL.m"; sourceTree = "<group>"; };
+		761C1DB3156CD3520093C9E7 /* Route+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Route+Test.h"; path = "iKopterGHTest/Testcases/Route+Test.h"; sourceTree = SOURCE_ROOT; };
+		761C1DB4156CD3520093C9E7 /* Route+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Route+Test.m"; path = "iKopterGHTest/Testcases/Route+Test.m"; sourceTree = SOURCE_ROOT; };
+		761C1DB6156CD5A40093C9E7 /* Route+Test-Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Route+Test-Test.m"; sourceTree = "<group>"; };
+		761C1DB8156CD6EA0093C9E7 /* RouteWplTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteWplTest.m; sourceTree = "<group>"; };
 		764E8A4A14601B7100579FA4 /* OsdTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdTabBarController.h; sourceTree = "<group>"; };
 		764E8A4B14601B7100579FA4 /* OsdTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdTabBarController.m; sourceTree = "<group>"; };
 		765E63F61420DCEA00BB027D /* IKOutputSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSetting.h; sourceTree = "<group>"; };
 		765E63F71420DCEB00BB027D /* IKOutputSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IKOutputSetting.m; sourceTree = "<group>"; };
+		76892C5B156BCF78001D2F9D /* INIParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INIParser.h; sourceTree = "<group>"; };
+		76892C5C156BCF78001D2F9D /* INIParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INIParser.m; sourceTree = "<group>"; };
+		76892C5D156BCF78001D2F9D /* INISection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INISection.h; sourceTree = "<group>"; };
+		76892C5E156BCF78001D2F9D /* INISection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INISection.m; sourceTree = "<group>"; };
+		76892C65156BCFAC001D2F9D /* InnerBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerBand.h; sourceTree = "<group>"; };
+		76892C66156BCFAC001D2F9D /* InnerBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerBand.m; sourceTree = "<group>"; };
+		76892C74156BD515001D2F9D /* INIParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INIParserTest.m; sourceTree = "<group>"; };
+		76892C7A156BD938001D2F9D /* GHAsyncTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHAsyncTestCase.h; sourceTree = "<group>"; };
+		76892C7B156BD938001D2F9D /* GHTest+JUnitXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GHTest+JUnitXML.h"; sourceTree = "<group>"; };
+		76892C7C156BD938001D2F9D /* GHTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTest.h; sourceTree = "<group>"; };
+		76892C7D156BD938001D2F9D /* GHTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTestCase.h; sourceTree = "<group>"; };
+		76892C7E156BD938001D2F9D /* GHTestGroup+JUnitXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GHTestGroup+JUnitXML.h"; sourceTree = "<group>"; };
+		76892C7F156BD938001D2F9D /* GHTestGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTestGroup.h; sourceTree = "<group>"; };
+		76892C80156BD938001D2F9D /* GHTesting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTesting.h; sourceTree = "<group>"; };
+		76892C81156BD938001D2F9D /* GHTestMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTestMacros.h; sourceTree = "<group>"; };
+		76892C82156BD938001D2F9D /* GHTestOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTestOperation.h; sourceTree = "<group>"; };
+		76892C83156BD938001D2F9D /* GHTestRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTestRunner.h; sourceTree = "<group>"; };
+		76892C84156BD938001D2F9D /* GHTestSuite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTestSuite.h; sourceTree = "<group>"; };
+		76892C85156BD938001D2F9D /* GHUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHUnit.h; sourceTree = "<group>"; };
+		76892C86156BD938001D2F9D /* GHUnitIPhoneAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHUnitIPhoneAppDelegate.h; sourceTree = "<group>"; };
+		76892C88156BD938001D2F9D /* libGHUnitIOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGHUnitIOS.a; sourceTree = "<group>"; };
+		76892C89156BD938001D2F9D /* NSException+GHTestFailureExceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSException+GHTestFailureExceptions.h"; sourceTree = "<group>"; };
+		76892C8A156BD938001D2F9D /* NSValue+GHValueFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSValue+GHValueFormatter.h"; sourceTree = "<group>"; };
+		76892C8F156BD960001D2F9D /* iKopterGHTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iKopterGHTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76892C96156BD960001D2F9D /* iKopterGHTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iKopterGHTest-Info.plist"; sourceTree = "<group>"; };
+		76892C98156BD960001D2F9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		76892C9A156BD960001D2F9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		76892C9C156BD960001D2F9D /* iKopterGHTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iKopterGHTest-Prefix.pch"; sourceTree = "<group>"; };
+		76892CA5156BD9FC001D2F9D /* GHAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAsyncTestCase.h; sourceTree = "<group>"; };
+		76892CA6156BD9FC001D2F9D /* GHTest+JUnitXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHTest+JUnitXML.h"; sourceTree = "<group>"; };
+		76892CA7156BD9FC001D2F9D /* GHTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTest.h; sourceTree = "<group>"; };
+		76892CA8156BD9FC001D2F9D /* GHTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTestCase.h; sourceTree = "<group>"; };
+		76892CA9156BD9FC001D2F9D /* GHTestGroup+JUnitXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHTestGroup+JUnitXML.h"; sourceTree = "<group>"; };
+		76892CAA156BD9FC001D2F9D /* GHTestGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTestGroup.h; sourceTree = "<group>"; };
+		76892CAB156BD9FC001D2F9D /* GHTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTesting.h; sourceTree = "<group>"; };
+		76892CAC156BD9FC001D2F9D /* GHTestMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTestMacros.h; sourceTree = "<group>"; };
+		76892CAD156BD9FC001D2F9D /* GHTestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTestOperation.h; sourceTree = "<group>"; };
+		76892CAE156BD9FC001D2F9D /* GHTestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTestRunner.h; sourceTree = "<group>"; };
+		76892CAF156BD9FC001D2F9D /* GHTestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTestSuite.h; sourceTree = "<group>"; };
+		76892CB0156BD9FC001D2F9D /* GHUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHUnit.h; sourceTree = "<group>"; };
+		76892CB1156BD9FC001D2F9D /* GHUnitIPhoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHUnitIPhoneAppDelegate.h; sourceTree = "<group>"; };
+		76892CB4156BD9FC001D2F9D /* NSException+GHTestFailureExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSException+GHTestFailureExceptions.h"; sourceTree = "<group>"; };
+		76892CB5156BD9FC001D2F9D /* NSValue+GHValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+GHValueFormatter.h"; sourceTree = "<group>"; };
+		76892CB8156BDDC9001D2F9D /* libGHUnitIOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGHUnitIOS.a; sourceTree = "<group>"; };
+		76892CBC156BDEB0001D2F9D /* INIParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INIParserTest.m; sourceTree = "<group>"; };
+		76892CC5156BDF79001D2F9D /* Test.wpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test.wpl; sourceTree = "<group>"; };
+		76892CC6156BDF79001D2F9D /* TestInvalid.wpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestInvalid.wpl; sourceTree = "<group>"; };
+		76892CCA156BE074001D2F9D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		76892CCB156BE074001D2F9D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		76892CCE156BE0A6001D2F9D /* WaypointTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointTest.m; sourceTree = "<group>"; };
 		76C591F1142744600043F026 /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitCornersView.h; sourceTree = "<group>"; };
 		76C591F2142744600043F026 /* MGSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSplitCornersView.m; sourceTree = "<group>"; };
 		76C591F3142744600043F026 /* MGSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSplitDividerView.h; sourceTree = "<group>"; };
@@ -1269,6 +1367,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		76892C8C156BD960001D2F9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76892CC3156BDF12001D2F9D /* CoreLocation.framework in Frameworks */,
+				76892CC1156BDF08001D2F9D /* CoreData.framework in Frameworks */,
+				76892CC2156BDF08001D2F9D /* CoreText.framework in Frameworks */,
+				76892C91156BD960001D2F9D /* UIKit.framework in Frameworks */,
+				76892C92156BD960001D2F9D /* Foundation.framework in Frameworks */,
+				76892C93156BD960001D2F9D /* CoreGraphics.framework in Frameworks */,
+				76892CB9156BDDC9001D2F9D /* libGHUnitIOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA0D4668137C5127001415C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1323,8 +1435,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAA07D4A14ED638C00FCE08F /* Security.framework in Frameworks */,
+				76892C78156BD7FC001D2F9D /* CoreData.framework in Frameworks */,
+				76892C77156BD7E7001D2F9D /* CoreText.framework in Frameworks */,
+				76892C76156BD7DE001D2F9D /* CoreGraphics.framework in Frameworks */,
 				BAE66E5E14ED52490009D43D /* CoreLocation.framework in Frameworks */,
+				BAA07D4A14ED638C00FCE08F /* Security.framework in Frameworks */,
 				BAE66E0E14EC355A0009D43D /* SenTestingKit.framework in Frameworks */,
 				BAE66E0F14EC355A0009D43D /* UIKit.framework in Frameworks */,
 				BAE66E1014EC355A0009D43D /* Foundation.framework in Frameworks */,
@@ -1334,6 +1449,136 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76892C5A156BCF54001D2F9D /* WPL */ = {
+			isa = PBXGroup;
+			children = (
+				761C1DAF156CCDE00093C9E7 /* Route+WPL.h */,
+				761C1DB0156CCDE00093C9E7 /* Route+WPL.m */,
+				76892C5B156BCF78001D2F9D /* INIParser.h */,
+				76892C5C156BCF78001D2F9D /* INIParser.m */,
+				76892C5D156BCF78001D2F9D /* INISection.h */,
+				76892C5E156BCF78001D2F9D /* INISection.m */,
+			);
+			name = WPL;
+			sourceTree = "<group>";
+		};
+		76892C79156BD938001D2F9D /* libGHUnitIPhone */ = {
+			isa = PBXGroup;
+			children = (
+				76892C7A156BD938001D2F9D /* GHAsyncTestCase.h */,
+				76892C7B156BD938001D2F9D /* GHTest+JUnitXML.h */,
+				76892C7C156BD938001D2F9D /* GHTest.h */,
+				76892C7D156BD938001D2F9D /* GHTestCase.h */,
+				76892C7E156BD938001D2F9D /* GHTestGroup+JUnitXML.h */,
+				76892C7F156BD938001D2F9D /* GHTestGroup.h */,
+				76892C80156BD938001D2F9D /* GHTesting.h */,
+				76892C81156BD938001D2F9D /* GHTestMacros.h */,
+				76892C82156BD938001D2F9D /* GHTestOperation.h */,
+				76892C83156BD938001D2F9D /* GHTestRunner.h */,
+				76892C84156BD938001D2F9D /* GHTestSuite.h */,
+				76892C85156BD938001D2F9D /* GHUnit.h */,
+				76892C86156BD938001D2F9D /* GHUnitIPhoneAppDelegate.h */,
+				76892C88156BD938001D2F9D /* libGHUnitIOS.a */,
+				76892C89156BD938001D2F9D /* NSException+GHTestFailureExceptions.h */,
+				76892C8A156BD938001D2F9D /* NSValue+GHValueFormatter.h */,
+			);
+			path = libGHUnitIPhone;
+			sourceTree = "<group>";
+		};
+		76892C94156BD960001D2F9D /* iKopterGHTest */ = {
+			isa = PBXGroup;
+			children = (
+				76892CC9156BE074001D2F9D /* OtherSources */,
+				76892CC4156BDF79001D2F9D /* Resources */,
+				76892CBA156BDEB0001D2F9D /* Testcases */,
+				76892CA4156BD9FC001D2F9D /* libGHUnitIPhone */,
+				76892C95156BD960001D2F9D /* Supporting Files */,
+			);
+			path = iKopterGHTest;
+			sourceTree = "<group>";
+		};
+		76892C95156BD960001D2F9D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				76892C96156BD960001D2F9D /* iKopterGHTest-Info.plist */,
+				76892C97156BD960001D2F9D /* InfoPlist.strings */,
+				76892C9A156BD960001D2F9D /* main.m */,
+				76892C9C156BD960001D2F9D /* iKopterGHTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		76892CA4156BD9FC001D2F9D /* libGHUnitIPhone */ = {
+			isa = PBXGroup;
+			children = (
+				76892CA5156BD9FC001D2F9D /* GHAsyncTestCase.h */,
+				76892CA6156BD9FC001D2F9D /* GHTest+JUnitXML.h */,
+				76892CA7156BD9FC001D2F9D /* GHTest.h */,
+				76892CA8156BD9FC001D2F9D /* GHTestCase.h */,
+				76892CA9156BD9FC001D2F9D /* GHTestGroup+JUnitXML.h */,
+				76892CB8156BDDC9001D2F9D /* libGHUnitIOS.a */,
+				76892CAA156BD9FC001D2F9D /* GHTestGroup.h */,
+				76892CAB156BD9FC001D2F9D /* GHTesting.h */,
+				76892CAC156BD9FC001D2F9D /* GHTestMacros.h */,
+				76892CAD156BD9FC001D2F9D /* GHTestOperation.h */,
+				76892CAE156BD9FC001D2F9D /* GHTestRunner.h */,
+				76892CAF156BD9FC001D2F9D /* GHTestSuite.h */,
+				76892CB0156BD9FC001D2F9D /* GHUnit.h */,
+				76892CB1156BD9FC001D2F9D /* GHUnitIPhoneAppDelegate.h */,
+				76892CB4156BD9FC001D2F9D /* NSException+GHTestFailureExceptions.h */,
+				76892CB5156BD9FC001D2F9D /* NSValue+GHValueFormatter.h */,
+			);
+			path = libGHUnitIPhone;
+			sourceTree = SOURCE_ROOT;
+		};
+		76892CBA156BDEB0001D2F9D /* Testcases */ = {
+			isa = PBXGroup;
+			children = (
+				76892CCD156BE0A6001D2F9D /* Waypoints */,
+				76892CBB156BDEB0001D2F9D /* INI */,
+			);
+			path = Testcases;
+			sourceTree = "<group>";
+		};
+		76892CBB156BDEB0001D2F9D /* INI */ = {
+			isa = PBXGroup;
+			children = (
+				76892CBC156BDEB0001D2F9D /* INIParserTest.m */,
+			);
+			path = INI;
+			sourceTree = "<group>";
+		};
+		76892CC4156BDF79001D2F9D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76892CC5156BDF79001D2F9D /* Test.wpl */,
+				76892CC6156BDF79001D2F9D /* TestInvalid.wpl */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		76892CC9156BE074001D2F9D /* OtherSources */ = {
+			isa = PBXGroup;
+			children = (
+				761C1DB3156CD3520093C9E7 /* Route+Test.h */,
+				761C1DB4156CD3520093C9E7 /* Route+Test.m */,
+				76892CCA156BE074001D2F9D /* NSData+Base64.h */,
+				76892CCB156BE074001D2F9D /* NSData+Base64.m */,
+			);
+			path = OtherSources;
+			sourceTree = "<group>";
+		};
+		76892CCD156BE0A6001D2F9D /* Waypoints */ = {
+			isa = PBXGroup;
+			children = (
+				761C1DB8156CD6EA0093C9E7 /* RouteWplTest.m */,
+				761C1DB6156CD5A40093C9E7 /* Route+Test-Test.m */,
+				761C1DA6156CBFC80093C9E7 /* RouteTest.m */,
+				76892CCE156BE0A6001D2F9D /* WaypointTest.m */,
+			);
+			path = Waypoints;
+			sourceTree = "<group>";
+		};
 		76C591F01427443F0043F026 /* MGSplitView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1365,6 +1610,7 @@
 			children = (
 				BA0D4675137C5127001415C3 /* iKopter */,
 				BAE66E1114EC355A0009D43D /* iKopterTests */,
+				76892C94156BD960001D2F9D /* iKopterGHTest */,
 				BA0D466E137C5127001415C3 /* Frameworks */,
 				BA0D466C137C5127001415C3 /* Products */,
 				BA2F9283153B0D050076D23E /* iKopter3G-Info.plist */,
@@ -1380,6 +1626,7 @@
 				BA0D466B137C5127001415C3 /* iKopter.app */,
 				BAE66E0C14EC355A0009D43D /* iKopterTests.octest */,
 				BA2F9281153B0D040076D23E /* iKopter3G.app */,
+				76892C8F156BD960001D2F9D /* iKopterGHTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1387,6 +1634,7 @@
 		BA0D466E137C5127001415C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76892C79156BD938001D2F9D /* libGHUnitIPhone */,
 				BA1AAECD14EE7DE300F8773E /* DropboxSDK.framework */,
 				BA998D87144C91D900370360 /* AVFoundation.framework */,
 				BA1B8D8B1444B2410034B3D8 /* ExternalAccessory.framework */,
@@ -1598,6 +1846,8 @@
 		BA0D4762137C72DD001415C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				76892C65156BCFAC001D2F9D /* InnerBand.h */,
+				76892C66156BCFAC001D2F9D /* InnerBand.m */,
 				BA545663145C20AA006BD0CD /* TPMultiLayoutViewController.h */,
 				BA545664145C20AA006BD0CD /* TPMultiLayoutViewController.m */,
 				BA1B8CE6144068710034B3D8 /* MBProgressHUD+RFhelpers.h */,
@@ -2229,6 +2479,7 @@
 		BAE3B0A913AFD503007E0F2F /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
+				76892C5A156BCF54001D2F9D /* WPL */,
 				BA069E931503CA430017DBD6 /* Generator */,
 				BAC8A16813C1CEF500CA4936 /* HeadingOverlay.m */,
 				BAC8A16913C1CEF600CA4936 /* HeadingOverlay.h */,
@@ -2263,6 +2514,7 @@
 		BAE66E1114EC355A0009D43D /* iKopterTests */ = {
 			isa = PBXGroup;
 			children = (
+				76892C74156BD515001D2F9D /* INIParserTest.m */,
 				BAA07D3B14ED630E00FCE08F /* NSData+Base64.h */,
 				BAA07D3C14ED630E00FCE08F /* NSData+Base64.m */,
 				BAE66E1714EC355A0009D43D /* iKopterTests.h */,
@@ -2324,6 +2576,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		76892C8E156BD960001D2F9D /* iKopterGHTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76892CA0156BD960001D2F9D /* Build configuration list for PBXNativeTarget "iKopterGHTest" */;
+			buildPhases = (
+				76892C8B156BD960001D2F9D /* Sources */,
+				76892C8C156BD960001D2F9D /* Frameworks */,
+				76892C8D156BD960001D2F9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iKopterGHTest;
+			productName = iKopterGHTest;
+			productReference = 76892C8F156BD960001D2F9D /* iKopterGHTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 		BA0D466A137C5127001415C3 /* iKopter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA0D468C137C5127001415C3 /* Build configuration list for PBXNativeTarget "iKopter" */;
@@ -2412,6 +2681,7 @@
 				BA0D466A137C5127001415C3 /* iKopter */,
 				BAE66E0B14EC355A0009D43D /* iKopterTests */,
 				BA2F9122153B0D040076D23E /* iKopter3G */,
+				76892C8E156BD960001D2F9D /* iKopterGHTest */,
 			);
 		};
 /* End PBXProject section */
@@ -2427,6 +2697,16 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		76892C8D156BD960001D2F9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76892C99156BD960001D2F9D /* InfoPlist.strings in Resources */,
+				76892CC7156BDF79001D2F9D /* Test.wpl in Resources */,
+				76892CC8156BDF79001D2F9D /* TestInvalid.wpl in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA0D4669137C5127001415C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2830,6 +3110,30 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		76892C8B156BD960001D2F9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76892C9B156BD960001D2F9D /* main.m in Sources */,
+				76892CBD156BDEB0001D2F9D /* INIParserTest.m in Sources */,
+				76892CBE156BDED2001D2F9D /* InnerBand.m in Sources */,
+				76892CBF156BDEDA001D2F9D /* INIParser.m in Sources */,
+				76892CC0156BDEDA001D2F9D /* INISection.m in Sources */,
+				76892CCC156BE074001D2F9D /* NSData+Base64.m in Sources */,
+				76892CCF156BE0A6001D2F9D /* WaypointTest.m in Sources */,
+				76892CD0156BE0FE001D2F9D /* IKPoint.m in Sources */,
+				76892CD1156BE116001D2F9D /* IKNaviData.m in Sources */,
+				761C1DA7156CBFC80093C9E7 /* RouteTest.m in Sources */,
+				761C1DA8156CC17B0093C9E7 /* Route.m in Sources */,
+				761C1DA9156CC17B0093C9E7 /* Routes.m in Sources */,
+				761C1DAE156CCC480093C9E7 /* TTGlobalCorePaths.m in Sources */,
+				761C1DB2156CCDE00093C9E7 /* Route+WPL.m in Sources */,
+				761C1DB5156CD3520093C9E7 /* Route+Test.m in Sources */,
+				761C1DB7156CD5A40093C9E7 /* Route+Test-Test.m in Sources */,
+				761C1DB9156CD6EA0093C9E7 /* RouteWplTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA0D4667137C5127001415C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3000,6 +3304,10 @@
 				BAFC2A07150D538D0014B70D /* WPGenPanoDataSource.m in Sources */,
 				BAFC2A08150D538D0014B70D /* WPGenPanoView.m in Sources */,
 				BAFC2A0B150D53E50014B70D /* WPGenPanoViewController.m in Sources */,
+				76892C5F156BCF78001D2F9D /* INIParser.m in Sources */,
+				76892C62156BCF78001D2F9D /* INISection.m in Sources */,
+				76892C67156BCFAC001D2F9D /* InnerBand.m in Sources */,
+				761C1DB1156CCDE00093C9E7 /* Route+WPL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3173,6 +3481,9 @@
 				BA2F91CA153B0D040076D23E /* WPGenPanoDataSource.m in Sources */,
 				BA2F91CB153B0D040076D23E /* WPGenPanoView.m in Sources */,
 				BA2F91CC153B0D040076D23E /* WPGenPanoViewController.m in Sources */,
+				76892C61156BCF78001D2F9D /* INIParser.m in Sources */,
+				76892C64156BCF78001D2F9D /* INISection.m in Sources */,
+				76892C69156BCFAC001D2F9D /* InnerBand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3186,6 +3497,10 @@
 				BAE66E2814EC41D40009D43D /* IKParamSet.m in Sources */,
 				BAE66E5A14ED51650009D43D /* WaypointTest.m in Sources */,
 				BAA07D3F14ED631500FCE08F /* NSData+Base64.m in Sources */,
+				76892C60156BCF78001D2F9D /* INIParser.m in Sources */,
+				76892C63156BCF78001D2F9D /* INISection.m in Sources */,
+				76892C68156BCFAC001D2F9D /* InnerBand.m in Sources */,
+				76892C75156BD515001D2F9D /* INIParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3205,6 +3520,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		76892C97156BD960001D2F9D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76892C98156BD960001D2F9D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		BA0D46DC137C60EB001415C3 /* MainWindow-iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3261,6 +3584,73 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		76892CA1156BD960001D2F9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterGHTest/iKopterGHTest-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "iKopterGHTest/iKopterGHTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/libGHUnitIPhone\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		76892CA2156BD960001D2F9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterGHTest/iKopterGHTest-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "iKopterGHTest/iKopterGHTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/libGHUnitIPhone\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		76892CA3156BD960001D2F9D /* Release Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterGHTest/iKopterGHTest-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "iKopterGHTest/iKopterGHTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/libGHUnitIPhone\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Release Distribution";
+		};
 		BA0D468A137C5127001415C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3274,7 +3664,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3290,7 +3683,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -3551,7 +3947,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = "Release Distribution";
@@ -3671,6 +4070,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		76892CA0156BD960001D2F9D /* Build configuration list for PBXNativeTarget "iKopterGHTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76892CA1156BD960001D2F9D /* Debug */,
+				76892CA2156BD960001D2F9D /* Release */,
+				76892CA3156BD960001D2F9D /* Release Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BA0D4665137C5127001415C3 /* Build configuration list for PBXProject "iKopter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

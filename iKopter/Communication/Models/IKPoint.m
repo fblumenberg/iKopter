@@ -146,7 +146,7 @@
     self.toleranceRadius = _point.ToleranceRadius;     
     self.holdTime = _point.HoldTime;            
     self.eventFlag = _point.Event_Flag;          
-    self.index = _point.Index;               
+    self.index = _point.Index;   
     self.type = _point.Type;                
     self.wpEventChannelValue = _point.WP_EventChannelValue;
     self.altitudeRate = _point.AltitudeRate;  
@@ -154,7 +154,7 @@
     self.camAngle = _point.CamAngle;  
     
     self.name = [NSString stringWithCString:(const char *)_point.Name encoding:NSASCIIStringEncoding];
-    self.prefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultPrefix"];
+    self.prefix = [self.name substringToIndex:1];
 
     if(self.type==POINT_TYPE_POI)
       self.altitude/=100;
@@ -215,7 +215,8 @@
     self.altitude = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultAltitude"] integerValue];
     self.toleranceRadius = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultToleranceRadius"] integerValue];
     self.holdTime = [[[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultHoldTime"] integerValue];
-    self.eventFlag = 0;          
+    self.eventFlag = 0;     
+    self.prefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultPrefix"];
     self.index = 0;               
     self.type = POINT_TYPE_WP;                
     self.wpEventChannelValue = 0;
@@ -302,10 +303,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)updateName{
-
-  if(self.prefix==nil)
-    self.prefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"WpDefaultPrefix"];
-
   self.name = [NSString stringWithFormat:@"%@%d",self.prefix,self.index];
 }
 

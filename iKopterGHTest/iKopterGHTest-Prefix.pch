@@ -1,0 +1,19 @@
+//
+// Prefix header for all source files of the 'iKopterGHTest' target in the 'iKopterGHTest' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "GHUnit.h"
+
+#define _LCL_NO_LOGGING
+#import "lcl.h"
+
+#endif

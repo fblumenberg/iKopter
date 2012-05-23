@@ -1,5 +1,5 @@
-// ///////////////////////////////////////////////////////////////////////////////
-// Copyright (C) 2010, Frank Blumenberg
+/////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) 2012, Frank Blumenberg
 //
 // See License.txt for complete licensing and attribution information.
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,42 +20,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-// ///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import <UIKit/UIKit.h>
 
-extern NSString *const MKRouteChangedNotification;
+#import "GHUnitIPhoneAppDelegate.h"
 
-@class IKPoint;
-@class Routes;
-
-@interface Route : NSObject <NSCoding> {
-
+int main(int argc, char *argv[])
+{
+  @autoreleasepool {
+    return UIApplicationMain(argc, argv, nil, NSStringFromClass([GHUnitIPhoneAppDelegate class]));
+  }
 }
-
-@property(retain) NSString *name;
-@property(retain) NSMutableArray *points;
-@property(assign) Routes *routes;
-@property(retain) NSString*  filename;
-@property(retain) NSString*  revision;
-
-+ (void)sendChangedNotification:(id)sender;
-
-+ (CLLocationCoordinate2D)defaultCoordinate;
-
-- (NSUInteger)count;
-
-- (IKPoint *)pointAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSIndexPath *)addPointAtDefault;
-- (NSIndexPath *)addPointAtCenter;
-- (NSIndexPath *)addPointAtCoordinate:(CLLocationCoordinate2D)coordinate;
-
-- (void) removeAllPoints;
-- (void) addPoints:(NSArray*)newPoints;
-
-- (void)movePointAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
-- (void)deletePointAtIndexPath:(NSIndexPath *)indexPath;
-
-@end

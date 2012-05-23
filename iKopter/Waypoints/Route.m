@@ -31,6 +31,8 @@ NSString *const MKRouteChangedNotification = @"MKRouteChangedNotification";
 @implementation Route
 
 @synthesize name;
+@synthesize filename;
+@synthesize revision;
 @synthesize points;
 @synthesize routes;
 
@@ -67,12 +69,16 @@ NSString *const MKRouteChangedNotification = @"MKRouteChangedNotification";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [aCoder encodeObject:self.name forKey:@"name"];
   [aCoder encodeObject:self.points forKey:@"points"];
+  [aCoder encodeObject:self.filename forKey:@"filename"];
+  [aCoder encodeObject:self.revision forKey:@"revision"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   if ((self = [super init])) {
     self.name = [aDecoder decodeObjectForKey:@"name"];
     self.points = [aDecoder decodeObjectForKey:@"points"];
+    self.filename = [aDecoder decodeObjectForKey:@"filename"];
+    self.revision = [aDecoder decodeObjectForKey:@"revision"];
   }
   return self;
 }
