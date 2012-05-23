@@ -1576,8 +1576,8 @@
 			isa = PBXGroup;
 			children = (
 				761C1DBA156CEA020093C9E7 /* RoutesTest.m */,
-				761C1DBC156CF0790093C9E7 /* RoutesWplTest.m */,
 				761C1DB8156CD6EA0093C9E7 /* RouteWplTest.m */,
+				761C1DBC156CF0790093C9E7 /* RoutesWplTest.m */,
 				761C1DB6156CD5A40093C9E7 /* Route+Test-Test.m */,
 				761C1DA6156CBFC80093C9E7 /* RouteTest.m */,
 				76892CCE156BE0A6001D2F9D /* WaypointTest.m */,

@@ -25,6 +25,7 @@
 #import "RoutesViewController.h"
 #import "RouteViewController.h"
 #import "Route.h"
+#import "Route+WPL.h"
 
 #import "IKDropboxController.h"
 #import "NSString+Dropbox.h"
@@ -33,13 +34,20 @@
 #import "MBProgressHUD+RFhelpers.h"
 
 
-@interface RoutesViewController () <IKDropboxControllerDelegate>
-//- (void)setWorking:(BOOL)working;
+@interface RoutesViewController () <IKDropboxControllerDelegate> {
+  
+  BOOL isSynActive;
+  BOOL isLoadMKTool;
+}
+
 
 
 @property(nonatomic, retain) UIActionSheet *backupRestoreSheet;
+@property(nonatomic, retain) NSMutableArray* mkToolFiles;
 
 - (void)hideActionSheet;
+- (void)loadNextMKToolFile;
+
 
 @end;
 
@@ -50,6 +58,8 @@
 @synthesize syncButton;
 @synthesize backupRestoreSheet;
 @synthesize editingRoute;
+@synthesize mkToolFiles;
+
 
 - (id)init {
   if ((self = [super initWithStyle:UITableViewStylePlain])) {
@@ -65,7 +75,8 @@
   self.syncButton = nil;
   self.backupRestoreSheet = nil;
   self.editingRoute = nil;
-
+  self.mkToolFiles=nil;
+  
   [super dealloc];
 }
 
@@ -295,11 +306,17 @@
   IKDropboxController *dbCtrl = [IKDropboxController sharedIKDropboxController];
   dbCtrl.delegate = self;
   [dbCtrl connectAndPrepareMetadata];
+  
+  [MBProgressHUD sharedProgressHUD].mode = MBProgressHUDModeIndeterminate;
+  [MBProgressHUD sharedProgressHUD].labelText = nil;
+  [[MBProgressHUD sharedProgressHUD] show:YES];
 }
 
 #pragma mark - IKDropboxControllerDelegate
 
 - (void)dropboxReady:(IKDropboxController *)controller {
+
+  [[MBProgressHUD sharedProgressHUD] hide:YES];
 
   NSString *routesFileName = [self.routes.routesFile lastPathComponent];
   BOOL hasRoutesFile = [controller metadataContainsPath:routesFileName];
@@ -307,13 +324,9 @@
   self.backupRestoreSheet = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") 
                                                          delegate:self
                                                 cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel Button") 
-                                           destructiveButtonTitle:hasRoutesFile ? NSLocalizedString(@"Restore", @"Restore Button") : nil otherButtonTitles:NSLocalizedString(@"Backup", @"Backup Button"), nil] autorelease];
+                                           destructiveButtonTitle:hasRoutesFile ? NSLocalizedString(@"Restore", @"Restore Button") : nil 
+                                                otherButtonTitles:NSLocalizedString(@"Backup", @"Backup Button"), (controller.metaDataMKTool.contents.count>0)?NSLocalizedString(@"Load MK Tool Routes", @"MK Tool Button"):nil,nil] autorelease];
   
-  NSArray* c=controller.metaData.contents;
-  
-  NSUInteger idx=[controller.metaData.contents indexOfObjectPassingTest:^(DBMetadata* child, NSUInteger idx, BOOL *stop){
-    return NO;
-  }];
   
   self.backupRestoreSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
   [self.backupRestoreSheet showFromToolbar:self.navigationController.toolbar];
@@ -336,6 +349,11 @@
   else if (buttonIndex == actionSheet.firstOtherButtonIndex) {
     [dbCtrl.restClient uploadFile:routesFileName toPath:dbCtrl.dataPath fromPath:self.routes.routesFile];
   }
+  else if(buttonIndex == actionSheet.firstOtherButtonIndex+1) {
+    isLoadMKTool=YES;
+    self.mkToolFiles = [dbCtrl.metaDataMKTool.contents mutableCopy];
+    [self loadNextMKToolFile];
+  }
 
   self.backupRestoreSheet = nil;
 
@@ -343,18 +361,56 @@
   [[MBProgressHUD sharedProgressHUD] show:YES];
 }
 
+- (void)loadNextMKToolFile{
+  if(mkToolFiles.count==0){
+    [[MBProgressHUD sharedProgressHUD] hide:YES];
+  
+    isLoadMKTool=NO;
+    
+    [self.routes load];
+    [self.tableView reloadData];
+  }
+  else {
+    DBMetadata* md = mkToolFiles.lastObject;
+    [mkToolFiles removeLastObject];
+    
+    NSString* tmpDirectory = NSTemporaryDirectory();
+    NSString* tmpFile = [tmpDirectory stringByAppendingPathComponent:@"tempRoute.txt"];
+
+    IKDropboxController *dbCtrl = [IKDropboxController sharedIKDropboxController];
+    [dbCtrl.restClient loadFile:md.path intoPath:tmpFile];
+  }
+  
+}
+
 #pragma mark - DBRestClientDelegate
 
-- (void)restClient:(DBRestClient *)client loadedFile:(NSString *)destPath {
-  [[MBProgressHUD sharedProgressHUD] hide:YES];
-
-  [self.routes load];
-  [self.tableView reloadData];
+- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
+  if(isLoadMKTool){
+    
+    Route* r = [[[Route alloc] init] autorelease];
+    [r loadRouteFromWplFile:destPath];
+    r.filename = [metadata.path lastPathComponent];
+    r.revision = metadata.rev;
+    [self.routes addOrReplaceRoute:r];
+    
+    NSError* error=nil;
+    [[NSFileManager defaultManager] removeItemAtPath:destPath error:&error];
+    
+    [self loadNextMKToolFile]; 
+  }
+  else {
+    [[MBProgressHUD sharedProgressHUD] hide:YES];
+    
+    [self.routes load];
+    [self.tableView reloadData];
+  }
 }
 
 - (void)restClient:(DBRestClient *)client loadFileFailedWithError:(NSError *)error {
   [[MBProgressHUD sharedProgressHUD] hide:YES];
   [self.routes save];
+  isLoadMKTool=NO;
 
   [IKDropboxController showError:error withTitle:NSLocalizedString(@"Restore failed", @"Routes Restore Error Title")];
 }
