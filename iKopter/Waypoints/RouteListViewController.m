@@ -299,6 +299,26 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+- (void) addedPoint:(NSIndexPath*)indexPath{
+  
+  BOOL indexPathVisible=NO;
+  
+  for (NSIndexPath* i in [self.tableView indexPathsForVisibleRows] ) {
+    if( [i isEqual:indexPath] ){
+      indexPathVisible=YES;
+      break;
+    }
+  }
+  
+  if(indexPathVisible){
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+  }
+  else {
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+  }
+}
+
 - (void)addPoint {
 
   self.editingPoint = [self.list addPointAtCenter];
@@ -310,9 +330,8 @@
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
 
-  IKPoint *point = [self.list pointAtIndexPath:self.editingPoint];
-  [self showViewControllerForPoint:point];
-
+  [self addedPoint:self.editingPoint];
+  
   [Route sendChangedNotification:self];
 }
 
@@ -327,11 +346,19 @@
                         withRowAnimation:UITableViewRowAnimationFade];
   [self.tableView endUpdates];
 
-  IKPoint *point = [self.list pointAtIndexPath:self.editingPoint];
-  [self showViewControllerForPoint:point];
+  [self addedPoint:self.editingPoint];
 
   [Route sendChangedNotification:self];
 }
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+  
+  NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+  if(indexPath){
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+  }
+}
+
 
 - (void)routeChangedNotification:(NSNotification *)aNotification {
   if (![aNotification.object isEqual:self] && ![aNotification.object isEqual:self.list])
