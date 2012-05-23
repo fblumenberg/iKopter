@@ -304,8 +304,17 @@
   NSString *routesFileName = [self.routes.routesFile lastPathComponent];
   BOOL hasRoutesFile = [controller metadataContainsPath:routesFileName];
 
-  self.backupRestoreSheet = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") delegate:self
-                                                cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel Button") destructiveButtonTitle:hasRoutesFile ? NSLocalizedString(@"Restore", @"Restore Button") : nil otherButtonTitles:NSLocalizedString(@"Backup", @"Backup Button"), nil] autorelease];
+  self.backupRestoreSheet = [[[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Routes Syncronisation", @"Routes Sync Title") 
+                                                         delegate:self
+                                                cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel Button") 
+                                           destructiveButtonTitle:hasRoutesFile ? NSLocalizedString(@"Restore", @"Restore Button") : nil otherButtonTitles:NSLocalizedString(@"Backup", @"Backup Button"), nil] autorelease];
+  
+  NSArray* c=controller.metaData.contents;
+  
+  NSUInteger idx=[controller.metaData.contents indexOfObjectPassingTest:^(DBMetadata* child, NSUInteger idx, BOOL *stop){
+    return NO;
+  }];
+  
   self.backupRestoreSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
   [self.backupRestoreSheet showFromToolbar:self.navigationController.toolbar];
 }

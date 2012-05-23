@@ -16,6 +16,8 @@
 		761C1DB5156CD3520093C9E7 /* Route+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB4156CD3520093C9E7 /* Route+Test.m */; };
 		761C1DB7156CD5A40093C9E7 /* Route+Test-Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB6156CD5A40093C9E7 /* Route+Test-Test.m */; };
 		761C1DB9156CD6EA0093C9E7 /* RouteWplTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DB8156CD6EA0093C9E7 /* RouteWplTest.m */; };
+		761C1DBB156CEA020093C9E7 /* RoutesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DBA156CEA020093C9E7 /* RoutesTest.m */; };
+		761C1DBD156CF0790093C9E7 /* RoutesWplTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 761C1DBC156CF0790093C9E7 /* RoutesWplTest.m */; };
 		764E8A4C14601B7200579FA4 /* OsdTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764E8A4B14601B7100579FA4 /* OsdTabBarController.m */; };
 		765E63FB1420DCEE00BB027D /* IKOutputSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E63F71420DCEB00BB027D /* IKOutputSetting.m */; };
 		76892C5F156BCF78001D2F9D /* INIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 76892C5C156BCF78001D2F9D /* INIParser.m */; };
@@ -772,6 +774,8 @@
 		761C1DB4156CD3520093C9E7 /* Route+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Route+Test.m"; path = "iKopterGHTest/Testcases/Route+Test.m"; sourceTree = SOURCE_ROOT; };
 		761C1DB6156CD5A40093C9E7 /* Route+Test-Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Route+Test-Test.m"; sourceTree = "<group>"; };
 		761C1DB8156CD6EA0093C9E7 /* RouteWplTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteWplTest.m; sourceTree = "<group>"; };
+		761C1DBA156CEA020093C9E7 /* RoutesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesTest.m; sourceTree = "<group>"; };
+		761C1DBC156CF0790093C9E7 /* RoutesWplTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesWplTest.m; sourceTree = "<group>"; };
 		764E8A4A14601B7100579FA4 /* OsdTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsdTabBarController.h; sourceTree = "<group>"; };
 		764E8A4B14601B7100579FA4 /* OsdTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OsdTabBarController.m; sourceTree = "<group>"; };
 		765E63F61420DCEA00BB027D /* IKOutputSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IKOutputSetting.h; sourceTree = "<group>"; };
@@ -1571,6 +1575,8 @@
 		76892CCD156BE0A6001D2F9D /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
+				761C1DBA156CEA020093C9E7 /* RoutesTest.m */,
+				761C1DBC156CF0790093C9E7 /* RoutesWplTest.m */,
 				761C1DB8156CD6EA0093C9E7 /* RouteWplTest.m */,
 				761C1DB6156CD5A40093C9E7 /* Route+Test-Test.m */,
 				761C1DA6156CBFC80093C9E7 /* RouteTest.m */,
@@ -2479,34 +2485,34 @@
 		BAE3B0A913AFD503007E0F2F /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
-				76892C5A156BCF54001D2F9D /* WPL */,
 				BA069E931503CA430017DBD6 /* Generator */,
-				BAC8A16813C1CEF500CA4936 /* HeadingOverlay.m */,
 				BAC8A16913C1CEF600CA4936 /* HeadingOverlay.h */,
+				BAC8A16813C1CEF500CA4936 /* HeadingOverlay.m */,
+				BAC8A16513C1C55200CA4936 /* HeadingOverlayView.h */,
+				BAC8A16613C1C55300CA4936 /* HeadingOverlayView.m */,
 				BA585C0C13B0ED1A00AE0958 /* Route.h */,
 				BA585C0D13B0ED1A00AE0958 /* Route.m */,
+				BA98EAD313C8F5B9005CF2FA /* RouteController.h */,
+				BA98EAD413C8F5BB005CF2FA /* RouteController.m */,
+				BA585C1213B0ED1A00AE0958 /* RouteListViewController.h */,
+				BA585C1313B0ED1A00AE0958 /* RouteListViewController.m */,
+				BA585C3D13B124BC00AE0958 /* RouteMapViewController.h */,
+				BA585C3E13B124BC00AE0958 /* RouteMapViewController.m */,
+				BA585C3F13B124BC00AE0958 /* RouteMapViewController.xib */,
 				BA585C0E13B0ED1A00AE0958 /* Routes.h */,
 				BA585C0F13B0ED1A00AE0958 /* Routes.m */,
 				BA585C1013B0ED1A00AE0958 /* RoutesViewController.h */,
 				BA585C1113B0ED1A00AE0958 /* RoutesViewController.m */,
+				BA585C3813B120EF00AE0958 /* RouteViewController.h */,
+				BA585C3913B120EF00AE0958 /* RouteViewController.m */,
+				BA585C3A13B120EF00AE0958 /* RouteViewController.xib */,
 				BAE3B11E13AFEA50007E0F2F /* WaypointViewController.h */,
 				BAE3B11F13AFEA50007E0F2F /* WaypointViewController.m */,
 				BA98EA9E13C65444005CF2FA /* WaypointViewDataSource.h */,
 				BA98EA9F13C65444005CF2FA /* WaypointViewDataSource.m */,
-				BA585C3813B120EF00AE0958 /* RouteViewController.h */,
-				BA585C3913B120EF00AE0958 /* RouteViewController.m */,
-				BA585C1213B0ED1A00AE0958 /* RouteListViewController.h */,
-				BA585C1313B0ED1A00AE0958 /* RouteListViewController.m */,
-				BA585C3A13B120EF00AE0958 /* RouteViewController.xib */,
-				BA585C3D13B124BC00AE0958 /* RouteMapViewController.h */,
-				BA585C3E13B124BC00AE0958 /* RouteMapViewController.m */,
-				BA585C3F13B124BC00AE0958 /* RouteMapViewController.xib */,
-				BAC8A16513C1C55200CA4936 /* HeadingOverlayView.h */,
-				BAC8A16613C1C55300CA4936 /* HeadingOverlayView.m */,
-				BA98EAD313C8F5B9005CF2FA /* RouteController.h */,
-				BA98EAD413C8F5BB005CF2FA /* RouteController.m */,
 				BA86B993150BBF2100234271 /* WPCamAngleTransformer.h */,
 				BA86B994150BBF2200234271 /* WPCamAngleTransformer.m */,
+				76892C5A156BCF54001D2F9D /* WPL */,
 			);
 			path = Waypoints;
 			sourceTree = "<group>";
@@ -3131,6 +3137,8 @@
 				761C1DB5156CD3520093C9E7 /* Route+Test.m in Sources */,
 				761C1DB7156CD5A40093C9E7 /* Route+Test-Test.m in Sources */,
 				761C1DB9156CD6EA0093C9E7 /* RouteWplTest.m in Sources */,
+				761C1DBB156CEA020093C9E7 /* RoutesTest.m in Sources */,
+				761C1DBD156CF0790093C9E7 /* RoutesWplTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3694,7 +3702,7 @@
 		BA0D468D137C5127001415C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3731,6 +3739,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3738,7 +3747,7 @@
 		BA0D468E137C5127001415C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3780,6 +3789,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3958,7 +3968,7 @@
 		BAD69591137EA8DE006C129D /* Release Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
@@ -3998,6 +4008,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

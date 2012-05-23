@@ -39,8 +39,10 @@
 
 - (Route *)routeAtIndexPath:(NSIndexPath *)indexPath;
 
+- (NSIndexPath *)addOrReplaceRoute:(Route*)route;
 - (NSIndexPath *)addRoute;
 - (void)moveRouteAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
 - (void)deleteRouteAtIndexPath:(NSIndexPath *)indexPath;
 
+- (void)deleteAllRoutes;
 @end

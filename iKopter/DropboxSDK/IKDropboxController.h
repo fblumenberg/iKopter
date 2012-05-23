@@ -27,8 +27,8 @@
 
 #import "DropboxSDK/DropboxSDK.h"
 
-@class DBRestClient;
-@class DBMetadata;
+//@class DBRestClient;
+//@class DBMetadata;
 
 @protocol IKDropboxControllerDelegate;
 
@@ -42,7 +42,10 @@
 - (void)connectAndPrepareMetadata;
 
 @property(nonatomic, readonly) DBRestClient *restClient;
-@property(nonatomic, readonly) DBMetadata *metaData;
+@property(nonatomic, retain) DBMetadata *metaData;
+@property(nonatomic, retain) DBMetadata *metaDataRoot;
+@property(nonatomic, retain) DBMetadata *metaDataMKTool;
+
 @property(nonatomic, assign) id <IKDropboxControllerDelegate> delegate;
 @property(nonatomic, readonly) NSString *dataPath;
 

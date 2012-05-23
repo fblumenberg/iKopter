@@ -161,5 +161,26 @@
   [self save];
 }
 
+- (void)deleteAllRoutes{
+  [routes removeAllObjects];
+  [self save];
+}
+
+- (NSIndexPath *)addOrReplaceRoute:(Route*)route{
+
+  NSUInteger idx=[routes indexOfObjectPassingTest:^(Route* r, NSUInteger idx, BOOL *stop){
+    return [r.filename isEqualToString:route.filename];
+  }];
+  
+  if(idx==NSNotFound){
+    [routes addObject:route];
+    [self save];
+    return [NSIndexPath indexPathForRow:[routes count] - 1 inSection:0];
+  }
+
+  [routes replaceObjectAtIndex:idx withObject:route];
+  return [NSIndexPath indexPathForRow:idx inSection:0];
+}
+
 @end
 

@@ -29,7 +29,6 @@
 
 @interface IKDropboxController () <DBRestClientDelegate>
 
-
 @end
 
 @implementation IKDropboxController
@@ -49,6 +48,9 @@
 
 @synthesize delegate;
 @synthesize metaData;
+@synthesize metaDataMKTool;
+@synthesize metaDataRoot;
+
 @synthesize dataPath;
 
 - (id)init {
@@ -73,7 +75,7 @@
     [[DBSession sharedSession] link];
   }
   else {
-    [self.restClient loadMetadata:kIKDropboxPath withHash:[self.metaData hash]];
+    [self.restClient loadMetadata:@"/" withHash:[self.metaData hash]];
   }
 }
 
@@ -131,10 +133,56 @@
   [IKDropboxController showError:error withTitle:NSLocalizedString(@"Creating iKopter data folder failed", @"Create Data Folder Error Title")];
 }
 
+- (void)setIKDropboxPathMetaData{
+  
+  self.metaData=nil;
+  
+  for (DBMetadata *child in self.metaDataRoot.contents) {
+    qltrace(@"Check path %@", child.path);
+    if ([kIKDropboxPath isEqualToDropboxPath:child.path]){
+      self.metaData=child;
+      return;
+    }
+  }
+}
+
+
+- (void)setMKToolMetaData{
+
+  
+  self.metaDataMKTool = nil;
+  DBMetadata *apps = nil;
+  
+  for (DBMetadata *child in self.metaDataRoot.contents) {
+    qltrace(@"Check path %@", child.path);
+    if ([@"/Apps" isEqualToDropboxPath:child.path]){
+      apps=child;
+      break;
+    }
+  }
+  
+
+  for (DBMetadata *child in apps.contents) {
+    qltrace(@"Check path %@", child.path);
+    if ([@"/MK Tool" isEqualToDropboxPath:child.path]){
+      self.metaDataMKTool=child;
+      return;
+    }
+  }
+}
+
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)newMetadata {
-  if ([newMetadata.path isEqualToDropboxPath:kIKDropboxPath]) {
-    [metaData release];
-    metaData = [newMetadata retain];
+  
+  self.metaDataRoot = newMetadata;
+  
+  [self setIKDropboxPathMetaData];
+  [self setMKToolMetaData];
+  
+  if(self.metaData==nil){
+    qlinfo(@"The Dropbox path for iKopter is not there, create one");
+    [self.restClient createFolder:kIKDropboxPath];
+  }
+  else {
     qlinfo(@"Loaded the meta data for the Dropbox folder %@ call delegate %@", newMetadata.path, self.delegate);
     restClient.delegate = self.delegate;
     [self.delegate dropboxReady:self];
@@ -142,8 +190,18 @@
 }
 
 - (void)restClient:(DBRestClient *)client metadataUnchangedAtPath:(NSString *)path {
-  restClient.delegate = self.delegate;
-  [self.delegate dropboxReady:self];
+  [self setIKDropboxPathMetaData];
+  [self setMKToolMetaData];
+  
+  if(self.metaData==nil){
+    qlinfo(@"The Dropbox path for iKopter is not there, create one");
+    [self.restClient createFolder:kIKDropboxPath];
+  }
+  else {
+    qlinfo(@"Loaded the meta data for the Dropbox folder %@ call delegate %@", self.metaDataRoot.path, self.delegate);
+    restClient.delegate = self.delegate;
+    [self.delegate dropboxReady:self];
+  }
 }
 
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error {
