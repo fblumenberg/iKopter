@@ -179,6 +179,8 @@
 @property(assign) NSNumber* GlobalConfig3_CFG3_NO_SDCARD_NO_START;
 @property(assign) NSNumber* GlobalConfig3_CFG3_DPH_MAX_RADIUS;
 @property(assign) NSNumber* GlobalConfig3_CFG3_VARIO_FAILSAFE;
+@property(assign) NSNumber* GlobalConfig3_CFG3_MOTOR_SWITCH_MODE;
+@property(assign) NSNumber* GlobalConfig3_CFG3_NO_GPSFIX_NO_START;
 
 @property(assign) NSString*  Name;
 

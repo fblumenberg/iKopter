@@ -46,7 +46,7 @@
     _parameter90.Index=bytes[0];
     _parameter90.Revision=bytes[1];
     
-    if(revision==90){
+    if(revision==90 || revision==91){
       memcpy(&_parameter90,[data bytes],sizeof(_parameter90));
     }
     else if(revision==88){
@@ -81,7 +81,7 @@
 - (NSData*) data{
   
   NSData* d=nil;
-  if( _parameter90.Revision==90 ){
+  if( _parameter90.Revision==90 || _parameter90.Revision==90 ){
     unsigned char payloadData[sizeof(_parameter90)];
     
     memcpy((unsigned char *)(payloadData),(unsigned char *)&_parameter90,sizeof(_parameter90));
@@ -118,7 +118,7 @@
 }
 
 - (BOOL) isValid{
-  return _parameter90.Revision==90 || _parameter90.Revision==88 || _parameter90.Revision==85;
+  return _parameter90.Revision==90 || _parameter90.Revision==91 || _parameter90.Revision==88 || _parameter90.Revision==85;
 }
 
 //---------------------------------------------------
@@ -1100,6 +1100,28 @@
     _parameter90.GlobalConfig3 |= CFG3_VARIO_FAILSAFE;
   else
     _parameter90.GlobalConfig3 &= ~CFG3_VARIO_FAILSAFE;
+}
+- (NSNumber*) GlobalConfig3_CFG3_MOTOR_SWITCH_MODE{
+  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
+  return [NSNumber numberWithBool:((_parameter90.GlobalConfig3&CFG3_MOTOR_SWITCH_MODE)==CFG3_MOTOR_SWITCH_MODE)];
+}
+- (void) setGlobalConfig3_CFG3_MOTOR_SWITCH_MODE:(NSNumber*) value {
+  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
+  if([value boolValue])
+    _parameter90.GlobalConfig3 |= CFG3_MOTOR_SWITCH_MODE;
+  else
+    _parameter90.GlobalConfig3 &= ~CFG3_MOTOR_SWITCH_MODE;
+}
+- (NSNumber*) GlobalConfig3_CFG3_NO_GPSFIX_NO_START{
+  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
+  return [NSNumber numberWithBool:((_parameter90.GlobalConfig3&CFG3_NO_GPSFIX_NO_START)==CFG3_NO_GPSFIX_NO_START)];
+}
+- (void) setGlobalConfig3_CFG3_NO_GPSFIX_NO_START:(NSNumber*) value {
+  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
+  if([value boolValue])
+    _parameter90.GlobalConfig3 |= CFG3_NO_GPSFIX_NO_START;
+  else
+    _parameter90.GlobalConfig3 &= ~CFG3_NO_GPSFIX_NO_START;
 }
 //---------------------------------------------------
 #pragma mark -

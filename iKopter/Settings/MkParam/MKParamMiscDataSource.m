@@ -115,6 +115,10 @@
       [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_NO_SDCARD_NO_START" title:NSLocalizedString(@"No start without SD card", @"MKParam Misc") style:switchStyle];
     }
 
+    if (((IKParamSet *)aModel).Revision.integerValue >= 91){
+      [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_MOTOR_SWITCH_MODE" title:NSLocalizedString(@"No start without GPS fix", @"MKParam Misc") style:switchStyle];
+    }
+
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];

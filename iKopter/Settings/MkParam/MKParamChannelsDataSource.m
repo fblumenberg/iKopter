@@ -76,6 +76,11 @@
     [paramSection addFormField:button];
     [paramSection addChannelsForKeyPath:@"MotorSafetySwitch" title:NSLocalizedString(@"Motor safety swich", @"MKParam Channels")];
 
+    if (((IKParamSet *)aModel).Revision.integerValue >= 91){
+      [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_MOTOR_SWITCH_MODE"
+                                       title:NSLocalizedString(@"Motor start/stop -> gas 0 && motor switch on/off", @"MKParam Channels")];
+    }
+
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
     paramSection.formFieldStyle = [[[SettingsFieldStyle alloc] init] autorelease];
