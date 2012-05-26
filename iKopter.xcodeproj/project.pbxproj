@@ -3072,7 +3072,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Prepare Package\"\necho $CONFIGURATION\necho $TARGET_BUILD_DIR/$EXECUTABLE_PATH\nif [[ \"${CONFIGURATION}\" = \"Release Distribution\" ]] \nthen\necho \"do ldid\"\n/usr/bin/ldid -S \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\nls \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\nrm -R \"$PROJECT_DIR/Cydia/iKopter/Applications/$EXECUTABLE_FOLDER_PATH\"\ncp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\necho cp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\nrm -R \"$PROJECT_DIR/build/\"\n\necho cp -R cp -R \"$TARGET_BUILD_DIR/\" \"$PROJECT_DIR/build/\"\ncp -Rv \"$TARGET_BUILD_DIR/\" \"$PROJECT_DIR/build/\"\nfi";
+			shellScript = "echo \"Prepare Package\"\necho $CONFIGURATION\necho $TARGET_BUILD_DIR/$EXECUTABLE_PATH\nif [[ \"${CONFIGURATION}\" = \"Release Distribution\" ]] \nthen\necho \"do ldid\"\n/usr/bin/ldid -S \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\nls \"$PROJECT_DIR/Cydia/iKopter/Applications/\"\nrm -R \"$PROJECT_DIR/Cydia/iKopter/Applications/$EXECUTABLE_FOLDER_PATH\"\ncp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter3G/Applications/\"\necho cp -R \"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH\" \"$PROJECT_DIR/Cydia/iKopter3G/Applications/\"\nrm -R \"$PROJECT_DIR/build/\"\n\necho cp -R cp -R \"$TARGET_BUILD_DIR/\" \"$PROJECT_DIR/build/\"\ncp -Rv \"$TARGET_BUILD_DIR/\" \"$PROJECT_DIR/build/\"\nfi";
 		};
 		BAA4E61F137EAE1B0068E38E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
