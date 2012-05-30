@@ -81,7 +81,7 @@
 - (NSData*) data{
   
   NSData* d=nil;
-  if( _parameter90.Revision==90 || _parameter90.Revision==90 ){
+  if( _parameter90.Revision==90 || _parameter90.Revision==91 ){
     unsigned char payloadData[sizeof(_parameter90)];
     
     memcpy((unsigned char *)(payloadData),(unsigned char *)&_parameter90,sizeof(_parameter90));

@@ -50,7 +50,9 @@
     [paramSection addSwitchFieldForKeyPath:@"ServoCompInvert_NICK" title:NSLocalizedString(@"Invert direction", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"ServoNickMin" title:NSLocalizedString(@"Min", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"ServoNickMax" title:NSLocalizedString(@"Max", @"MKParam Camera")];
-    [paramSection addNumberFieldForKeyPath:@"ServoFilterNick" title:NSLocalizedString(@"Filter", @"MKParam Camera")];
+    
+    if (((IKParamSet *)aModel).Revision.integerValue >= 90)
+      [paramSection addNumberFieldForKeyPath:@"ServoFilterNick" title:NSLocalizedString(@"Filter", @"MKParam Camera")];
 
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:NSLocalizedString(@"Roll", @"MKParam Camera") footerTitle:nil];
@@ -62,7 +64,8 @@
     [paramSection addSwitchFieldForKeyPath:@"ServoCompInvert_ROLL" title:NSLocalizedString(@"Invert direction", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"ServoRollMin" title:NSLocalizedString(@"Min", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"ServoRollMax" title:NSLocalizedString(@"Max", @"MKParam Camera")];
-    [paramSection addNumberFieldForKeyPath:@"ServoFilterRoll" title:NSLocalizedString(@"Filter", @"MKParam Camera")];
+    if (((IKParamSet *)aModel).Revision.integerValue >= 90)
+      [paramSection addNumberFieldForKeyPath:@"ServoFilterRoll" title:NSLocalizedString(@"Filter", @"MKParam Camera")];
 
     //------------------------------------------------------------------------------------------------------------------------
     paramSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
