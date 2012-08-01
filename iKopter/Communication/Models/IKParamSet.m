@@ -46,7 +46,7 @@
     _parameter90.Index=bytes[0];
     _parameter90.Revision=bytes[1];
     
-    if(revision==90){
+    if(revision==90 || revision==91){
       memcpy(&_parameter90,[data bytes],sizeof(_parameter90));
     }
     else if(revision==88){
@@ -81,7 +81,7 @@
 - (NSData*) data{
   
   NSData* d=nil;
-  if( _parameter90.Revision==90 ){
+  if( _parameter90.Revision==90 || _parameter90.Revision==91 ){
     unsigned char payloadData[sizeof(_parameter90)];
     
     memcpy((unsigned char *)(payloadData),(unsigned char *)&_parameter90,sizeof(_parameter90));
@@ -101,7 +101,7 @@
     
     d = [NSData dataWithBytes:payloadData length:sizeof(payloadData)];  
   }
-  else {
+  else if(_parameter90.Revision==85 ){
     unsigned char payloadData[sizeof(_parameter85)];
     
     memcpy(&_parameter85,&_parameter90,sizeof(_parameter85));
@@ -114,11 +114,14 @@
     
     d = [NSData dataWithBytes:payloadData length:sizeof(payloadData)];  
   }
+  else{
+    NSAssert(NO, @"Unsupported revision");
+  }
   return d;
 }
 
 - (BOOL) isValid{
-  return _parameter90.Revision==90 || _parameter90.Revision==88 || _parameter90.Revision==85;
+  return _parameter90.Revision==91 || _parameter90.Revision==90 || _parameter90.Revision==88 || _parameter90.Revision==85;
 }
 
 //---------------------------------------------------
