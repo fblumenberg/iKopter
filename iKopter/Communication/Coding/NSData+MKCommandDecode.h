@@ -34,5 +34,6 @@
 - (MKCommandId)command;
 
 - (NSData *)payload;
+- (NSData*)extractMkDataFrame;
 
 @end

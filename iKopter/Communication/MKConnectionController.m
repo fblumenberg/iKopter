@@ -403,29 +403,20 @@ NSString *const MKMotorDataNotification = @"MKMotorDataNotification";
 
 - (void)didReadMkData:(NSData *)data {
 
-  NSData *strData = [data subdataWithRange:NSMakeRange(0, [data length] - 1)];
-  qltrace(@">>%@<<", [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease]);
+  NSData *strData = [data extractMkDataFrame];
 
-  if ([strData isCrcOk]) {
-    //    qltrace(@"Data length %d",[strData length]);
-
+  if (strData && [strData isCrcOk]) {
     NSData *payload = [strData payload];
     IKMkAddress address = [strData address];
-//    if (address!=currentDevice) {
-//      currentDevice=address;
-//      qltrace(@"Device changed to %d, send notification",currentDevice);
-//      [[NSNotificationCenter defaultCenter] postNotificationName:MKDeviceChangedNotification 
-//                                                          object:self 
-//                                                        userInfo:nil];
-//    }
 
-    if (connectionState == kConnectionDeviceChecked)
-      [self handleMkResponse:[data command] withPayload:payload forAddress:address];
-    else
-      [self handleMkResponseForDeviceCheck:[data command] withPayload:payload forAddress:address];
+    if (connectionState == kConnectionDeviceChecked) {
+      [self handleMkResponse:[strData command] withPayload:payload forAddress:address];
+    } else {
+      [self handleMkResponseForDeviceCheck:[strData command] withPayload:payload forAddress:address];
+    }
 
   } else {
-    qltrace(@"%@", [[[NSString alloc] initWithData:strData encoding:NSASCIIStringEncoding] autorelease]);
+    qltrace(@"%@", [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease]);
   }
 }
 
@@ -449,6 +440,7 @@ NSString *const MKMotorDataNotification = @"MKMotorDataNotification";
 - (void)setVersion:(IKDeviceVersion *)v {
 
   if (v.address > kIKMkAddressAll || v.address <= kIKMkAddressMK3MAg) {
+    NSAssert(versions[v.address - 1] != v, @"version equal");
     [versions[v.address - 1] release];
     versions[v.address - 1] = [v retain];
   }
