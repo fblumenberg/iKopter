@@ -2663,7 +2663,7 @@
 		BA0D4662137C5127001415C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = BA0D4665137C5127001415C3 /* Build configuration list for PBXProject "iKopter" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3718,7 +3718,7 @@
 					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3762,7 +3762,7 @@
 					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3811,6 +3811,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/Frameworks/BTStack/include",
 					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
@@ -3857,6 +3858,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/Frameworks/BTStack/include",
 					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
@@ -3912,6 +3914,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = FOR_CYDIA;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/Frameworks/BTStack/include",
 					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
@@ -3985,7 +3988,7 @@
 					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
