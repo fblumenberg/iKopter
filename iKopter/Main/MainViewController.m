@@ -351,7 +351,7 @@
   UIAlertView *alert = [[UIAlertView alloc]
           initWithTitle:NSLocalizedString(@"Server error", @"Server error") message:[err localizedDescription]
                delegate:self
-      cancelButtonTitle:@"Ok"
+      cancelButtonTitle:@"OK"
       otherButtonTitles:nil];
   [alert show];
   [alert release];
