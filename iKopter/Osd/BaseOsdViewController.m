@@ -219,7 +219,7 @@
   [self.out1 setNeedsDisplay];
 
   self.out2.badgeInsetColor = value.isOut2On ? self.functionOnColor : self.functionOffColor;
-  self.out2.badgeText = @"Out1";
+  self.out2.badgeText = @"Out2";
   [self.out2 setNeedsDisplay];
 
 
