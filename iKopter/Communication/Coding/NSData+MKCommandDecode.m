@@ -79,12 +79,17 @@ static NSData *decode64(const char *inBuffer, int length) {
   const char *frameBytes = [self bytes];
 
   if (frameLength < 5) {
-    NSLog(@"The frame length is to short %d. Frame is invalid", frameLength);
+    NSLog(@"The frame length is too short: %d. Frame is invalid", frameLength);
     return NO;
   }
 
   if (frameBytes[0] != '#') {
-    NSLog(@"The frame is no MK frame");
+    char d[1000];
+    int n = self.length;
+    if (n >= sizeof(d)) n--;
+    [self getBytes:d length:n];
+    d[n] = 0;
+    NSLog(@"The frame is no MK frame: %s", d);
     return NO;
   }
 
@@ -142,6 +147,25 @@ static NSData *decode64(const char *inBuffer, int length) {
   int frameDataLength = frameLength - startIndex - 2;
 
   return decode64(frameBytes + startIndex, frameDataLength);
+}
+
+
+- (NSData*)extractMkDataFrame {
+  static NSData *hashChar = NULL;
+  if (!hashChar) {
+    hashChar = [[NSData alloc] initWithBytes:"#" length:1];
+  }
+
+  NSRange r = NSMakeRange(0, self.length - 1);
+  r = [self rangeOfData:hashChar options:0 range:r];
+  if (r.length == 0) {
+    return NULL;
+  }
+
+  r.length = self.length - 1 - r.location;
+  NSData *d = [self subdataWithRange:r];
+  
+  return d;
 }
 
 
