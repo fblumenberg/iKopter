@@ -145,6 +145,8 @@ typedef struct
 #define CFG3_NO_SDCARD_NO_START  0x01
 #define CFG3_DPH_MAX_RADIUS      0x02
 #define CFG3_VARIO_FAILSAFE      0x04
+#define CFG3_MOTOR_SWITCH_MODE   0x08
+#define CFG3_NO_GPSFIX_NO_START  0x10
 
 #define CFG_HOEHENREGELUNG       0x01
 #define CFG_HOEHEN_SCHALTER      0x02

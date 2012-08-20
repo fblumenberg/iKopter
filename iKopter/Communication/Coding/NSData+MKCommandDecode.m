@@ -84,12 +84,7 @@ static NSData *decode64(const char *inBuffer, int length) {
   }
 
   if (frameBytes[0] != '#') {
-    char d[1000];
-    int n = self.length;
-    if (n >= sizeof(d)) n--;
-    [self getBytes:d length:n];
-    d[n] = 0;
-    NSLog(@"The frame is no MK frame: %s", d);
+    NSLog(@"The frame is no MK frame: %@", self);
     return NO;
   }
 
