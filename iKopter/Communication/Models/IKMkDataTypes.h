@@ -179,7 +179,7 @@ typedef struct
 
 #define CFG_SERVOCOMPINVERT_NICK 0x01
 #define CFG_SERVOCOMPINVERT_ROLL 0x02
-
+#define CFG_SERVOCOMPINVERT_RELATIVE 0x04
 
 // bit mask for ParamSet.Config0
 #define CFG0_AIRPRESS_SENSOR        0x01

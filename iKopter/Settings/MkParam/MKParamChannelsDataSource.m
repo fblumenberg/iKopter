@@ -69,6 +69,12 @@
                                      title:NSLocalizedString(@"Sensitive receiver signal validation", @"MKParam Channels")];
 
 
+    if (((IKParamSet *)aModel).Revision.integerValue >= 92){
+      [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_SPEAK_ALL"
+                                       title:NSLocalizedString(@"Telemetry: Speak all events", @"MKParam Channels")];
+    }
+    
+    
     ChannelsViewController *channelsTest = [[[ChannelsViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
 
     IBAButtonFormField *button = [[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Channels test", @"MKParam Channels button") icon:nil detailViewController:channelsTest] autorelease];

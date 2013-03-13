@@ -784,6 +784,13 @@
 - (void) setWARN_J17_Bitmask:(NSNumber*) value {
   _parameterLatest.WARN_J17_Bitmask = [value unsignedCharValue];
 }
+- (NSNumber*) NaviOut1Parameter{
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviOut1Parameter];
+}
+- (void) setNaviOut1Parameter:(NSNumber*) value {
+  _parameterLatest.NaviOut1Parameter = [value unsignedCharValue];
+}
+
 - (NSNumber*) NaviGpsModeControl{
   return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsModeControl];
 }
@@ -1038,6 +1045,7 @@
   else
      _parameterLatest.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_NICK;
 }
+
 - (NSNumber*) ServoCompInvert_ROLL{
   return [NSNumber numberWithBool:((_parameterLatest.ServoCompInvert&CFG_SERVOCOMPINVERT_ROLL)==CFG_SERVOCOMPINVERT_ROLL)];
 }
@@ -1047,6 +1055,17 @@
   else
      _parameterLatest.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_ROLL;
 }
+
+- (NSNumber*) ServoCompInvert_RELATIVE{
+  return [NSNumber numberWithBool:((_parameterLatest.ServoCompInvert&CFG_SERVOCOMPINVERT_RELATIVE)==CFG_SERVOCOMPINVERT_RELATIVE)];
+}
+- (void) setServoCompInvert_RELATIVE:(NSNumber*) value {
+  if([value boolValue])
+    _parameterLatest.ServoCompInvert |= CFG_SERVOCOMPINVERT_RELATIVE;
+  else
+    _parameterLatest.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_RELATIVE;
+}
+
 
 //---------------------------------------------------
 #pragma mark -

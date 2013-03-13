@@ -2097,12 +2097,9 @@
 		BA59C041142BB05500D40529 /* MkParam */ = {
 			isa = PBXGroup;
 			children = (
-				BA59C084142BBABE00D40529 /* MKParamViewController.h */,
-				BA59C085142BBABE00D40529 /* MKParamViewController.m */,
 				BA59C042142BB05500D40529 /* IBAFormSection+MKParam.h */,
 				BA59C043142BB05500D40529 /* IBAFormSection+MKParam.m */,
 				BA59C046142BB05500D40529 /* MKParamAltitudeDataSource.h */,
-				BA59C058142BB05500D40529 /* MKParamMiscDataSource.h */,
 				BA59C047142BB05500D40529 /* MKParamAltitudeDataSource.m */,
 				BA59C048142BB05500D40529 /* MKParamCameraDataSource.h */,
 				BA59C049142BB05500D40529 /* MKParamCameraDataSource.m */,
@@ -2120,6 +2117,7 @@
 				BA59C055142BB05500D40529 /* MKParamMainController.m */,
 				BA59C056142BB05500D40529 /* MKParamMainDataSource.h */,
 				BA59C057142BB05500D40529 /* MKParamMainDataSource.m */,
+				BA59C058142BB05500D40529 /* MKParamMiscDataSource.h */,
 				BA59C059142BB05500D40529 /* MKParamMiscDataSource.m */,
 				BA59C05A142BB05500D40529 /* MKParamNaviControlDataSource.h */,
 				BA59C05B142BB05500D40529 /* MKParamNaviControlDataSource.m */,
@@ -2131,6 +2129,8 @@
 				BA59C061142BB05500D40529 /* MKParamStickDataSource.m */,
 				BA59C062142BB05500D40529 /* MKParamUserDataSource.h */,
 				BA59C063142BB05500D40529 /* MKParamUserDataSource.m */,
+				BA59C084142BBABE00D40529 /* MKParamViewController.h */,
+				BA59C085142BBABE00D40529 /* MKParamViewController.m */,
 			);
 			path = MkParam;
 			sourceTree = "<group>";

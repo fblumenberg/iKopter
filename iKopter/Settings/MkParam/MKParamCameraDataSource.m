@@ -48,6 +48,10 @@
     [paramSection addPotiFieldForKeyPath:@"ServoNickControl" title:NSLocalizedString(@"Servo control", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"ServoNickComp" title:NSLocalizedString(@"Compensation", @"MKParam Camera")];
     [paramSection addSwitchFieldForKeyPath:@"ServoCompInvert_NICK" title:NSLocalizedString(@"Invert direction", @"MKParam Camera")];
+    
+    if (((IKParamSet *)aModel).Revision.integerValue >= 92)
+      [paramSection addSwitchFieldForKeyPath:@"ServoCompInvert_RELATIVE" title:NSLocalizedString(@"Servo relative", @"MKParam Camera")];
+    
     [paramSection addNumberFieldForKeyPath:@"ServoNickMin" title:NSLocalizedString(@"Min", @"MKParam Camera")];
     [paramSection addNumberFieldForKeyPath:@"ServoNickMax" title:NSLocalizedString(@"Max", @"MKParam Camera")];
     

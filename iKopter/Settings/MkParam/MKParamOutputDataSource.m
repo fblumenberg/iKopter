@@ -52,6 +52,12 @@
     [paramSection addSwitchFieldForKeyPath:@"BitConfig_MOTOR_BLINK1" title:NSLocalizedString(@"Active after Motor start", @"MKParam Output")];
     [paramSection addPotiFieldForKeyPath:@"J16Timing" title:NSLocalizedString(@"Timing", @"MKParam Output")];
 
+    if (((IKParamSet *)aModel).Revision.integerValue >= 92){
+      [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_USE_NC_FOR_OUT1" title:NSLocalizedString(@"Combine with WP-Event", @"MKParam Output")];
+      [paramSection addPotiFieldForKeyPath:@"NaviOut1Parameter" title:NSLocalizedString(@"AutoTrigger every (m)", @"MKParam Output")];
+    }
+    
+
     [paramSection addFormField:[[[IKOutputFormField alloc] initWithKeyPath:@"WARN_J16_Bitmask"
                                                                      title:NSLocalizedString(@"Untervoltage warn. Bitmask", @"MKParam Output")] autorelease]];
 
