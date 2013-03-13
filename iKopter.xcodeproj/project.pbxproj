@@ -547,6 +547,26 @@
 		BA7613411391338500C86318 /* screenlock-locked.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133E1391338400C86318 /* screenlock-locked.png */; };
 		BA7613421391338500C86318 /* screenlock-locked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA76133F1391338400C86318 /* screenlock-locked@2x.png */; };
 		BA7613431391338500C86318 /* screenlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7613401391338500C86318 /* screenlock@2x.png */; };
+		BA83617216F0F4C3000EBE83 /* MKCommandChannelsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA83616B16F0F4C3000EBE83 /* MKCommandChannelsTest.m */; };
+		BA83617316F0F4C3000EBE83 /* MKCommandDebugDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA83616C16F0F4C3000EBE83 /* MKCommandDebugDataTest.m */; };
+		BA83617416F0F4C3000EBE83 /* MKCommandLcdDisplayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA83616D16F0F4C3000EBE83 /* MKCommandLcdDisplayTest.m */; };
+		BA83617516F0F4C3000EBE83 /* MKCommandNaviDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA83616E16F0F4C3000EBE83 /* MKCommandNaviDataTest.m */; };
+		BA83617616F0F4C3000EBE83 /* MKCommandTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA83616F16F0F4C3000EBE83 /* MKCommandTest.m */; };
+		BA83617716F0F4C3000EBE83 /* MKCommandVersionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA83617016F0F4C3000EBE83 /* MKCommandVersionTest.m */; };
+		BA83617816F0F4C3000EBE83 /* ParamSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA83617116F0F4C3000EBE83 /* ParamSetTest.m */; };
+		BA83617916F0F50D000EBE83 /* IKData3D.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E663137EB5BA0068E38E /* IKData3D.m */; };
+		BA83617A16F0F50D000EBE83 /* IKDebugData.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E665137EB5BA0068E38E /* IKDebugData.m */; };
+		BA83617B16F0F50D000EBE83 /* IKDebugLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E667137EB5BA0068E38E /* IKDebugLabel.m */; };
+		BA83617C16F0F50D000EBE83 /* IKDeviceVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E669137EB5BA0068E38E /* IKDeviceVersion.m */; };
+		BA83617D16F0F50D000EBE83 /* IKLcdDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E66B137EB5BA0068E38E /* IKLcdDisplay.m */; };
+		BA83617E16F0F50D000EBE83 /* IKLcdMenuPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E66D137EB5BA0068E38E /* IKLcdMenuPage.m */; };
+		BA83617F16F0F50D000EBE83 /* IKParamSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E672137EB5BA0068E38E /* IKParamSet.m */; };
+		BA83618016F0F583000EBE83 /* NSData+MKCommandDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E64C137EB5BA0068E38E /* NSData+MKCommandDecode.m */; };
+		BA83618116F0F583000EBE83 /* NSData+MKCommandEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E64E137EB5BA0068E38E /* NSData+MKCommandEncode.m */; };
+		BA83618216F0F583000EBE83 /* NSData+MKPayloadDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E650137EB5BA0068E38E /* NSData+MKPayloadDecode.m */; };
+		BA83618316F0F583000EBE83 /* NSData+MKPayloadDecodeSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E651137EB5BA0068E38E /* NSData+MKPayloadDecodeSetting.m */; };
+		BA83618416F0F583000EBE83 /* NSData+MKPayloadEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA4E653137EB5BA0068E38E /* NSData+MKPayloadEncode.m */; };
+		BA83618516F0F5EB000EBE83 /* NSString+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA9E1521408F5E70054F123 /* NSString+Parsing.m */; };
 		BA86B992150BB03600234271 /* WPGenBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA86B991150BB03600234271 /* WPGenBaseView.m */; };
 		BA86B995150BBF2300234271 /* WPCamAngleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA86B994150BBF2200234271 /* WPCamAngleTransformer.m */; };
 		BA86B99C150BD8C000234271 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86B99A150BD8C000234271 /* CloseButton.png */; };
@@ -1075,6 +1095,13 @@
 		BA76133E1391338400C86318 /* screenlock-locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked.png"; sourceTree = "<group>"; };
 		BA76133F1391338400C86318 /* screenlock-locked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock-locked@2x.png"; sourceTree = "<group>"; };
 		BA7613401391338500C86318 /* screenlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenlock@2x.png"; sourceTree = "<group>"; };
+		BA83616B16F0F4C3000EBE83 /* MKCommandChannelsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommandChannelsTest.m; sourceTree = "<group>"; };
+		BA83616C16F0F4C3000EBE83 /* MKCommandDebugDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommandDebugDataTest.m; sourceTree = "<group>"; };
+		BA83616D16F0F4C3000EBE83 /* MKCommandLcdDisplayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommandLcdDisplayTest.m; sourceTree = "<group>"; };
+		BA83616E16F0F4C3000EBE83 /* MKCommandNaviDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommandNaviDataTest.m; sourceTree = "<group>"; };
+		BA83616F16F0F4C3000EBE83 /* MKCommandTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommandTest.m; sourceTree = "<group>"; };
+		BA83617016F0F4C3000EBE83 /* MKCommandVersionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCommandVersionTest.m; sourceTree = "<group>"; };
+		BA83617116F0F4C3000EBE83 /* ParamSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamSetTest.m; sourceTree = "<group>"; };
 		BA86B990150BB03600234271 /* WPGenBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = WPGenBaseView.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 0; };
 		BA86B991150BB03600234271 /* WPGenBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = WPGenBaseView.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 0; };
 		BA86B993150BBF2100234271 /* WPCamAngleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCamAngleTransformer.h; sourceTree = "<group>"; };
@@ -1538,6 +1565,7 @@
 		76892CBA156BDEB0001D2F9D /* Testcases */ = {
 			isa = PBXGroup;
 			children = (
+				BA83616A16F0F4C3000EBE83 /* Communication */,
 				76892CCD156BE0A6001D2F9D /* Waypoints */,
 				76892CBB156BDEB0001D2F9D /* INI */,
 			);
@@ -2137,6 +2165,20 @@
 				BA61017813F868BA00275CB6 /* battery30@2x.png */,
 			);
 			name = OSD;
+			sourceTree = "<group>";
+		};
+		BA83616A16F0F4C3000EBE83 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				BA83616B16F0F4C3000EBE83 /* MKCommandChannelsTest.m */,
+				BA83616C16F0F4C3000EBE83 /* MKCommandDebugDataTest.m */,
+				BA83616D16F0F4C3000EBE83 /* MKCommandLcdDisplayTest.m */,
+				BA83616E16F0F4C3000EBE83 /* MKCommandNaviDataTest.m */,
+				BA83616F16F0F4C3000EBE83 /* MKCommandTest.m */,
+				BA83617016F0F4C3000EBE83 /* MKCommandVersionTest.m */,
+				BA83617116F0F4C3000EBE83 /* ParamSetTest.m */,
+			);
+			path = Communication;
 			sourceTree = "<group>";
 		};
 		BA86B9A2150CD46300234271 /* Base */ = {
@@ -3139,6 +3181,26 @@
 				761C1DB9156CD6EA0093C9E7 /* RouteWplTest.m in Sources */,
 				761C1DBB156CEA020093C9E7 /* RoutesTest.m in Sources */,
 				761C1DBD156CF0790093C9E7 /* RoutesWplTest.m in Sources */,
+				BA83617216F0F4C3000EBE83 /* MKCommandChannelsTest.m in Sources */,
+				BA83617316F0F4C3000EBE83 /* MKCommandDebugDataTest.m in Sources */,
+				BA83617416F0F4C3000EBE83 /* MKCommandLcdDisplayTest.m in Sources */,
+				BA83617516F0F4C3000EBE83 /* MKCommandNaviDataTest.m in Sources */,
+				BA83617616F0F4C3000EBE83 /* MKCommandTest.m in Sources */,
+				BA83617716F0F4C3000EBE83 /* MKCommandVersionTest.m in Sources */,
+				BA83617816F0F4C3000EBE83 /* ParamSetTest.m in Sources */,
+				BA83617916F0F50D000EBE83 /* IKData3D.m in Sources */,
+				BA83617A16F0F50D000EBE83 /* IKDebugData.m in Sources */,
+				BA83617B16F0F50D000EBE83 /* IKDebugLabel.m in Sources */,
+				BA83617C16F0F50D000EBE83 /* IKDeviceVersion.m in Sources */,
+				BA83617D16F0F50D000EBE83 /* IKLcdDisplay.m in Sources */,
+				BA83617E16F0F50D000EBE83 /* IKLcdMenuPage.m in Sources */,
+				BA83617F16F0F50D000EBE83 /* IKParamSet.m in Sources */,
+				BA83618016F0F583000EBE83 /* NSData+MKCommandDecode.m in Sources */,
+				BA83618116F0F583000EBE83 /* NSData+MKCommandEncode.m in Sources */,
+				BA83618216F0F583000EBE83 /* NSData+MKPayloadDecode.m in Sources */,
+				BA83618316F0F583000EBE83 /* NSData+MKPayloadDecodeSetting.m in Sources */,
+				BA83618416F0F583000EBE83 /* NSData+MKPayloadEncode.m in Sources */,
+				BA83618516F0F5EB000EBE83 /* NSString+Parsing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

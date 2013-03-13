@@ -43,33 +43,71 @@
     int revision=bytes[1];
     
     //these values are needed for the validation test
-    _parameter90.Index=bytes[0];
-    _parameter90.Revision=bytes[1];
+    _parameterLatest.Index=bytes[0];
+    _parameterLatest.Revision=bytes[1];
     
-    if(revision==90 || revision==91){
+    if(revision==92){
+      memcpy(&_parameterLatest,[data bytes],sizeof(_parameterLatest));
+    }
+    else if(revision==90 || revision==91){
       memcpy(&_parameter90,[data bytes],sizeof(_parameter90));
+      memcpy(&_parameterLatest,[data bytes],sizeof(_parameter90));
+      
+     	_parameterLatest.NaviGpsModeControl = _parameter90.NaviGpsModeControl;
+      _parameterLatest.NaviGpsGain = _parameter90.NaviGpsGain;
+      _parameterLatest.NaviGpsP = _parameter90.NaviGpsP;
+      _parameterLatest.NaviGpsI = _parameter90.NaviGpsI;
+      _parameterLatest.NaviGpsD = _parameter90.NaviGpsD;
+      _parameterLatest.NaviGpsPLimit = _parameter90.NaviGpsPLimit;
+      _parameterLatest.NaviGpsILimit = _parameter90.NaviGpsILimit;
+      _parameterLatest.NaviGpsDLimit = _parameter90.NaviGpsDLimit;
+      _parameterLatest.NaviGpsACC = _parameter90.NaviGpsACC;
+      _parameterLatest.NaviGpsMinSat = _parameter90.NaviGpsMinSat;
+      _parameterLatest.NaviStickThreshold = _parameter90.NaviStickThreshold;
+      _parameterLatest.NaviWindCorrection = _parameter90.NaviWindCorrection;
+      _parameterLatest.NaviAccCompensation = _parameter90.NaviAccCompensation;
+      _parameterLatest.NaviOperatingRadius = _parameter90.NaviOperatingRadius;
+      _parameterLatest.NaviAngleLimitation = _parameter90.NaviAngleLimitation;
+      _parameterLatest.NaviPH_LoginTime = _parameter90.NaviPH_LoginTime;
+      _parameterLatest.ExternalControl = _parameter90.ExternalControl;
+      _parameterLatest.OrientationAngle = _parameter90.OrientationAngle;
+      _parameterLatest.CareFreeModeControl = _parameter90.CareFreeModeControl;
+      _parameterLatest.MotorSafetySwitch = _parameter90.MotorSafetySwitch;
+      _parameterLatest.MotorSmooth = _parameter90.MotorSmooth;
+      _parameterLatest.ComingHomeAltitude = _parameter90.ComingHomeAltitude;
+      _parameterLatest.FailSafeTime = _parameter90.FailSafeTime;
+      _parameterLatest.MaxAltitude = _parameter90.MaxAltitude;
+      _parameterLatest.FailsafeChannel = _parameter90.FailsafeChannel;
+      _parameterLatest.ServoFilterNick = _parameter90.ServoFilterNick;
+      _parameterLatest.ServoFilterRoll = _parameter90.ServoFilterRoll;
+      _parameterLatest.BitConfig = _parameter90.BitConfig;
+      _parameterLatest.ServoCompInvert = _parameter90.ServoCompInvert;
+      _parameterLatest.ExtraConfig = _parameter90.ExtraConfig;
+      _parameterLatest.GlobalConfig3 = _parameter90.GlobalConfig3;
+      memcpy(_parameterLatest.Name,_parameter90.Name,12);
+ 
     }
     else if(revision==88){
       memcpy(&_parameter88,[data bytes],sizeof(_parameter88));
       
-      memcpy(&_parameter90,[data bytes],sizeof(_parameter88));
+      memcpy(&_parameterLatest,[data bytes],sizeof(_parameter88));
       
-      _parameter90.BitConfig=_parameter88.BitConfig;
-      _parameter90.ServoCompInvert=_parameter88.ServoCompInvert;
-      _parameter90.ExtraConfig=_parameter88.ExtraConfig;
+      _parameterLatest.BitConfig=_parameter88.BitConfig;
+      _parameterLatest.ServoCompInvert=_parameter88.ServoCompInvert;
+      _parameterLatest.ExtraConfig=_parameter88.ExtraConfig;
       
-      memcpy(_parameter90.Name,_parameter88.Name,12);
+      memcpy(_parameterLatest.Name,_parameter88.Name,12);
     }
     else if(revision==85){
         memcpy(&_parameter85,[data bytes],sizeof(_parameter85));
         
-        memcpy(&_parameter90,[data bytes],sizeof(_parameter85));
+        memcpy(&_parameterLatest,[data bytes],sizeof(_parameter85));
       
-        _parameter90.BitConfig=_parameter85.BitConfig;
-        _parameter90.ServoCompInvert=_parameter85.ServoCompInvert;
-        _parameter90.ExtraConfig=_parameter85.ExtraConfig;
+        _parameterLatest.BitConfig=_parameter85.BitConfig;
+        _parameterLatest.ServoCompInvert=_parameter85.ServoCompInvert;
+        _parameterLatest.ExtraConfig=_parameter85.ExtraConfig;
         
-        memcpy(_parameter90.Name,_parameter85.Name,12);
+        memcpy(_parameterLatest.Name,_parameter85.Name,12);
     }
     else{
       NSAssert(NO, @"Unsupported revision");
@@ -81,21 +119,63 @@
 - (NSData*) data{
   
   NSData* d=nil;
-  if( _parameter90.Revision==90 || _parameter90.Revision==91 ){
+  if( _parameterLatest.Revision==92 ){
+    unsigned char payloadData[sizeof(_parameterLatest)];
+    
+    memcpy((unsigned char *)(payloadData),(unsigned char *)&_parameterLatest,sizeof(_parameterLatest));
+    
+    d = [NSData dataWithBytes:payloadData length:sizeof(payloadData)];
+  }
+  else if( _parameterLatest.Revision==90 || _parameterLatest.Revision==91 ){
     unsigned char payloadData[sizeof(_parameter90)];
+    
+    memcpy(&_parameter90,&_parameterLatest,sizeof(_parameter90));
+
+    _parameter90.NaviGpsModeControl = _parameterLatest.NaviGpsModeControl;
+    _parameter90.NaviGpsGain = _parameterLatest.NaviGpsGain;
+    _parameter90.NaviGpsP = _parameterLatest.NaviGpsP;
+    _parameter90.NaviGpsI = _parameterLatest.NaviGpsI;
+    _parameter90.NaviGpsD = _parameterLatest.NaviGpsD;
+    _parameter90.NaviGpsPLimit = _parameterLatest.NaviGpsPLimit;
+    _parameter90.NaviGpsILimit = _parameterLatest.NaviGpsILimit;
+    _parameter90.NaviGpsDLimit = _parameterLatest.NaviGpsDLimit;
+    _parameter90.NaviGpsACC = _parameterLatest.NaviGpsACC;
+    _parameter90.NaviGpsMinSat = _parameterLatest.NaviGpsMinSat;
+    _parameter90.NaviStickThreshold = _parameterLatest.NaviStickThreshold;
+    _parameter90.NaviWindCorrection = _parameterLatest.NaviWindCorrection;
+    _parameter90.NaviAccCompensation = _parameterLatest.NaviAccCompensation;
+    _parameter90.NaviOperatingRadius = _parameterLatest.NaviOperatingRadius;
+    _parameter90.NaviAngleLimitation = _parameterLatest.NaviAngleLimitation;
+    _parameter90.NaviPH_LoginTime = _parameterLatest.NaviPH_LoginTime;
+    _parameter90.ExternalControl = _parameterLatest.ExternalControl;
+    _parameter90.OrientationAngle = _parameterLatest.OrientationAngle;
+    _parameter90.CareFreeModeControl = _parameterLatest.CareFreeModeControl;
+    _parameter90.MotorSafetySwitch = _parameterLatest.MotorSafetySwitch;
+    _parameter90.MotorSmooth = _parameterLatest.MotorSmooth;
+    _parameter90.ComingHomeAltitude = _parameterLatest.ComingHomeAltitude;
+    _parameter90.FailSafeTime = _parameterLatest.FailSafeTime;
+    _parameter90.MaxAltitude = _parameterLatest.MaxAltitude;
+    _parameter90.FailsafeChannel = _parameterLatest.FailsafeChannel;
+    _parameter90.ServoFilterNick = _parameterLatest.ServoFilterNick;
+    _parameter90.ServoFilterRoll = _parameterLatest.ServoFilterRoll;
+    _parameter90.BitConfig = _parameterLatest.BitConfig;
+    _parameter90.ServoCompInvert = _parameterLatest.ServoCompInvert;
+    _parameter90.ExtraConfig = _parameterLatest.ExtraConfig;
+    _parameter90.GlobalConfig3 = _parameterLatest.GlobalConfig3;
+    memcpy(_parameter90.Name,_parameterLatest.Name,12);
     
     memcpy((unsigned char *)(payloadData),(unsigned char *)&_parameter90,sizeof(_parameter90));
     
-    d = [NSData dataWithBytes:payloadData length:sizeof(payloadData)];  
+    d = [NSData dataWithBytes:payloadData length:sizeof(payloadData)];
   }
-  else if(_parameter90.Revision==88 ){
+  else if(_parameterLatest.Revision==88 ){
     unsigned char payloadData[sizeof(_parameter88)];
     
-    memcpy(&_parameter88,&_parameter90,sizeof(_parameter88));
-    _parameter88.BitConfig=_parameter90.BitConfig;
-    _parameter88.ServoCompInvert=_parameter90.ServoCompInvert;
-    _parameter88.ExtraConfig=_parameter90.ExtraConfig;
-    memcpy(_parameter88.Name,_parameter90.Name,12);
+    memcpy(&_parameter88,&_parameterLatest,sizeof(_parameter88));
+    _parameter88.BitConfig=_parameterLatest.BitConfig;
+    _parameter88.ServoCompInvert=_parameterLatest.ServoCompInvert;
+    _parameter88.ExtraConfig=_parameterLatest.ExtraConfig;
+    memcpy(_parameter88.Name,_parameterLatest.Name,12);
     
     memcpy((unsigned char *)(payloadData),(unsigned char *)&_parameter88,sizeof(_parameter88));
     
@@ -104,11 +184,11 @@
   else {
     unsigned char payloadData[sizeof(_parameter85)];
     
-    memcpy(&_parameter85,&_parameter90,sizeof(_parameter85));
-    _parameter85.BitConfig=_parameter90.BitConfig;
-    _parameter85.ServoCompInvert=_parameter90.ServoCompInvert;
-    _parameter85.ExtraConfig=_parameter90.ExtraConfig;
-    memcpy(_parameter85.Name,_parameter90.Name,12);
+    memcpy(&_parameter85,&_parameterLatest,sizeof(_parameter85));
+    _parameter85.BitConfig=_parameterLatest.BitConfig;
+    _parameter85.ServoCompInvert=_parameterLatest.ServoCompInvert;
+    _parameter85.ExtraConfig=_parameterLatest.ExtraConfig;
+    memcpy(_parameter85.Name,_parameterLatest.Name,12);
     
     memcpy((unsigned char *)(payloadData),(unsigned char *)&_parameter85,sizeof(_parameter85));
     
@@ -118,7 +198,7 @@
 }
 
 - (BOOL) isValid{
-  return _parameter90.Revision==90 || _parameter90.Revision==91 || _parameter90.Revision==88 || _parameter90.Revision==85;
+  return _parameterLatest.Revision==92 || _parameterLatest.Revision==90 || _parameterLatest.Revision==91 || _parameterLatest.Revision==88 || _parameterLatest.Revision==85;
 }
 
 //---------------------------------------------------
@@ -132,729 +212,729 @@
 
 - (NSNumber*) Index{
   
-  return [NSNumber numberWithUnsignedChar:_parameter90.Index];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Index];
 }
 - (void) setIndex:(NSNumber*) value {
   
-  _parameter90.Index = [value unsignedCharValue];
+  _parameterLatest.Index = [value unsignedCharValue];
 }
 
 - (NSNumber*) Revision{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Revision];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Revision];
 }
 - (void) setRevision:(NSNumber*) value {
-  _parameter90.Revision = [value unsignedCharValue];
+  _parameterLatest.Revision = [value unsignedCharValue];
 }
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) Kanalbelegung_00{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[0]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[0]];
 }
 - (void) setKanalbelegung_00:(NSNumber*) value {
-  _parameter90.Kanalbelegung[0] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[0] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_01{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[1]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[1]];
 }
 - (void) setKanalbelegung_01:(NSNumber*) value {
-  _parameter90.Kanalbelegung[1] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[1] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_02{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[2]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[2]];
 }
 - (void) setKanalbelegung_02:(NSNumber*) value {
-  _parameter90.Kanalbelegung[2] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[2] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_03{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[3]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[3]];
 }
 - (void) setKanalbelegung_03:(NSNumber*) value {
-  _parameter90.Kanalbelegung[3] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[3] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_04{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[4]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[4]];
 }
 - (void) setKanalbelegung_04:(NSNumber*) value {
-  _parameter90.Kanalbelegung[4] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[4] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_05{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[5]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[5]];
 }
 - (void) setKanalbelegung_05:(NSNumber*) value {
-  _parameter90.Kanalbelegung[5] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[5] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_06{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[6]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[6]];
 }
 - (void) setKanalbelegung_06:(NSNumber*) value {
-  _parameter90.Kanalbelegung[6] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[6] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_07{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[7]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[7]];
 }
 - (void) setKanalbelegung_07:(NSNumber*) value {
-  _parameter90.Kanalbelegung[7] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[7] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_08{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[8]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[8]];
 }
 - (void) setKanalbelegung_08:(NSNumber*) value {
-  _parameter90.Kanalbelegung[8] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[8] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_09{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[9]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[9]];
 }
 - (void) setKanalbelegung_09:(NSNumber*) value {
-  _parameter90.Kanalbelegung[9] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[9] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_10{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[10]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[10]];
 }
 - (void) setKanalbelegung_10:(NSNumber*) value {
-  _parameter90.Kanalbelegung[10] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[10] = [value unsignedCharValue];
 }
 - (NSNumber*) Kanalbelegung_11{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Kanalbelegung[11]];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Kanalbelegung[11]];
 }
 - (void) setKanalbelegung_11:(NSNumber*) value {
-  _parameter90.Kanalbelegung[11] = [value unsignedCharValue];
+  _parameterLatest.Kanalbelegung[11] = [value unsignedCharValue];
 }
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) GlobalConfig{
-  return [NSNumber numberWithUnsignedChar:_parameter90.GlobalConfig];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.GlobalConfig];
 }
 - (void) setGlobalConfig:(NSNumber*) value {
-  _parameter90.GlobalConfig = [value unsignedCharValue];
+  _parameterLatest.GlobalConfig = [value unsignedCharValue];
 }
 - (NSNumber*) GlobalConfig_HOEHENREGELUNG{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_HOEHENREGELUNG)==CFG_HOEHENREGELUNG)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_HOEHENREGELUNG)==CFG_HOEHENREGELUNG)];
 }
 - (void) setGlobalConfig_HOEHENREGELUNG:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_HOEHENREGELUNG;
+     _parameterLatest.GlobalConfig |= CFG_HOEHENREGELUNG;
   else
-     _parameter90.GlobalConfig &= ~CFG_HOEHENREGELUNG;
+     _parameterLatest.GlobalConfig &= ~CFG_HOEHENREGELUNG;
 }
 - (NSNumber*) GlobalConfig_HOEHEN_SCHALTER{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_HOEHEN_SCHALTER)==CFG_HOEHEN_SCHALTER)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_HOEHEN_SCHALTER)==CFG_HOEHEN_SCHALTER)];
 }
 - (void) setGlobalConfig_HOEHEN_SCHALTER:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_HOEHEN_SCHALTER;
+     _parameterLatest.GlobalConfig |= CFG_HOEHEN_SCHALTER;
   else
-     _parameter90.GlobalConfig &= ~CFG_HOEHEN_SCHALTER;
+     _parameterLatest.GlobalConfig &= ~CFG_HOEHEN_SCHALTER;
 }
 - (NSNumber*) GlobalConfig_HEADING_HOLD{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_HEADING_HOLD)==CFG_HEADING_HOLD)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_HEADING_HOLD)==CFG_HEADING_HOLD)];
 }
 - (void) setGlobalConfig_HEADING_HOLD:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_HEADING_HOLD;
+     _parameterLatest.GlobalConfig |= CFG_HEADING_HOLD;
   else
-     _parameter90.GlobalConfig &= ~CFG_HEADING_HOLD;
+     _parameterLatest.GlobalConfig &= ~CFG_HEADING_HOLD;
 }
 - (NSNumber*) GlobalConfig_KOMPASS_AKTIV{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_KOMPASS_AKTIV)==CFG_KOMPASS_AKTIV)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_KOMPASS_AKTIV)==CFG_KOMPASS_AKTIV)];
 }
 - (void) setGlobalConfig_KOMPASS_AKTIV:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_KOMPASS_AKTIV;
+     _parameterLatest.GlobalConfig |= CFG_KOMPASS_AKTIV;
   else
-     _parameter90.GlobalConfig &= ~CFG_KOMPASS_AKTIV;
+     _parameterLatest.GlobalConfig &= ~CFG_KOMPASS_AKTIV;
 }
 - (NSNumber*) GlobalConfig_KOMPASS_FIX{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_KOMPASS_FIX)==CFG_KOMPASS_FIX)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_KOMPASS_FIX)==CFG_KOMPASS_FIX)];
 }
 - (void) setGlobalConfig_KOMPASS_FIX:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_KOMPASS_FIX;
+     _parameterLatest.GlobalConfig |= CFG_KOMPASS_FIX;
   else
-     _parameter90.GlobalConfig &= ~CFG_KOMPASS_FIX;
+     _parameterLatest.GlobalConfig &= ~CFG_KOMPASS_FIX;
 }
 - (NSNumber*) GlobalConfig_GPS_AKTIV{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_GPS_AKTIV)==CFG_GPS_AKTIV)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_GPS_AKTIV)==CFG_GPS_AKTIV)];
 }
 - (void) setGlobalConfig_GPS_AKTIV:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_GPS_AKTIV;
+     _parameterLatest.GlobalConfig |= CFG_GPS_AKTIV;
   else
-     _parameter90.GlobalConfig &= ~CFG_GPS_AKTIV;
+     _parameterLatest.GlobalConfig &= ~CFG_GPS_AKTIV;
 }
 - (NSNumber*) GlobalConfig_ACHSENKOPPLUNG_AKTIV{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_ACHSENKOPPLUNG_AKTIV)==CFG_ACHSENKOPPLUNG_AKTIV)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_ACHSENKOPPLUNG_AKTIV)==CFG_ACHSENKOPPLUNG_AKTIV)];
 }
 - (void) setGlobalConfig_ACHSENKOPPLUNG_AKTIV:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_ACHSENKOPPLUNG_AKTIV;
+     _parameterLatest.GlobalConfig |= CFG_ACHSENKOPPLUNG_AKTIV;
   else
-     _parameter90.GlobalConfig &= ~CFG_ACHSENKOPPLUNG_AKTIV;
+     _parameterLatest.GlobalConfig &= ~CFG_ACHSENKOPPLUNG_AKTIV;
 }
 - (NSNumber*) GlobalConfig_DREHRATEN_BEGRENZER{
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig&CFG_DREHRATEN_BEGRENZER)==CFG_DREHRATEN_BEGRENZER)];
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig&CFG_DREHRATEN_BEGRENZER)==CFG_DREHRATEN_BEGRENZER)];
 }
 - (void) setGlobalConfig_DREHRATEN_BEGRENZER:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.GlobalConfig |= CFG_DREHRATEN_BEGRENZER;
+     _parameterLatest.GlobalConfig |= CFG_DREHRATEN_BEGRENZER;
   else
-     _parameter90.GlobalConfig &= ~CFG_DREHRATEN_BEGRENZER;
+     _parameterLatest.GlobalConfig &= ~CFG_DREHRATEN_BEGRENZER;
 }
 
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) Hoehe_MinGas{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Hoehe_MinGas];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Hoehe_MinGas];
 }
 - (void) setHoehe_MinGas:(NSNumber*) value {
-  _parameter90.Hoehe_MinGas = [value unsignedCharValue];
+  _parameterLatest.Hoehe_MinGas = [value unsignedCharValue];
 }
 - (NSNumber*) Luftdruck_D{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Luftdruck_D];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Luftdruck_D];
 }
 - (void) setLuftdruck_D:(NSNumber*) value {
-  _parameter90.Luftdruck_D = [value unsignedCharValue];
+  _parameterLatest.Luftdruck_D = [value unsignedCharValue];
 }
 - (NSNumber*) MaxHoehe{
-  return [NSNumber numberWithUnsignedChar:_parameter90.MaxHoehe];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.MaxHoehe];
 }
 - (void) setMaxHoehe:(NSNumber*) value {
-  _parameter90.MaxHoehe = [value unsignedCharValue];
+  _parameterLatest.MaxHoehe = [value unsignedCharValue];
 }
 - (NSNumber*) Hoehe_P{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Hoehe_P];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Hoehe_P];
 }
 - (void) setHoehe_P:(NSNumber*) value {
-  _parameter90.Hoehe_P = [value unsignedCharValue];
+  _parameterLatest.Hoehe_P = [value unsignedCharValue];
 }
 - (NSNumber*) Hoehe_Verstaerkung{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Hoehe_Verstaerkung];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Hoehe_Verstaerkung];
 }
 - (void) setHoehe_Verstaerkung:(NSNumber*) value {
-  _parameter90.Hoehe_Verstaerkung = [value unsignedCharValue];
+  _parameterLatest.Hoehe_Verstaerkung = [value unsignedCharValue];
 }
 - (NSNumber*) Hoehe_ACC_Wirkung{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Hoehe_ACC_Wirkung];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Hoehe_ACC_Wirkung];
 }
 - (void) setHoehe_ACC_Wirkung:(NSNumber*) value {
-  _parameter90.Hoehe_ACC_Wirkung = [value unsignedCharValue];
+  _parameterLatest.Hoehe_ACC_Wirkung = [value unsignedCharValue];
 }
 - (NSNumber*) Hoehe_HoverBand{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Hoehe_HoverBand];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Hoehe_HoverBand];
 }
 - (void) setHoehe_HoverBand:(NSNumber*) value {
-  _parameter90.Hoehe_HoverBand = [value unsignedCharValue];
+  _parameterLatest.Hoehe_HoverBand = [value unsignedCharValue];
 }
 - (NSNumber*) Hoehe_GPS_Z{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Hoehe_GPS_Z];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Hoehe_GPS_Z];
 }
 - (void) setHoehe_GPS_Z:(NSNumber*) value {
-  _parameter90.Hoehe_GPS_Z = [value unsignedCharValue];
+  _parameterLatest.Hoehe_GPS_Z = [value unsignedCharValue];
 }
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) Hoehe_StickNeutralPoint{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Hoehe_StickNeutralPoint];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Hoehe_StickNeutralPoint];
 }
 - (void) setHoehe_StickNeutralPoint:(NSNumber*) value {
-  _parameter90.Hoehe_StickNeutralPoint = [value unsignedCharValue];
+  _parameterLatest.Hoehe_StickNeutralPoint = [value unsignedCharValue];
 }
 - (NSNumber*) Stick_P{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Stick_P];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Stick_P];
 }
 - (void) setStick_P:(NSNumber*) value {
-  _parameter90.Stick_P = [value unsignedCharValue];
+  _parameterLatest.Stick_P = [value unsignedCharValue];
 }
 - (NSNumber*) Stick_D{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Stick_D];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Stick_D];
 }
 - (void) setStick_D:(NSNumber*) value {
-  _parameter90.Stick_D = [value unsignedCharValue];
+  _parameterLatest.Stick_D = [value unsignedCharValue];
 }
 - (NSNumber*) StickGier_P{
-  return [NSNumber numberWithUnsignedChar:_parameter90.StickGier_P];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.StickGier_P];
 }
 - (void) setStickGier_P:(NSNumber*) value {
-  _parameter90.StickGier_P = [value unsignedCharValue];
+  _parameterLatest.StickGier_P = [value unsignedCharValue];
 }
 - (NSNumber*) Gas_Min{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gas_Min];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gas_Min];
 }
 - (void) setGas_Min:(NSNumber*) value {
-  _parameter90.Gas_Min = [value unsignedCharValue];
+  _parameterLatest.Gas_Min = [value unsignedCharValue];
 }
 - (NSNumber*) Gas_Max{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gas_Max];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gas_Max];
 }
 - (void) setGas_Max:(NSNumber*) value {
-  _parameter90.Gas_Max = [value unsignedCharValue];
+  _parameterLatest.Gas_Max = [value unsignedCharValue];
 }
 - (NSNumber*) GyroAccFaktor{
-  return [NSNumber numberWithUnsignedChar:_parameter90.GyroAccFaktor];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.GyroAccFaktor];
 }
 - (void) setGyroAccFaktor:(NSNumber*) value {
-  _parameter90.GyroAccFaktor = [value unsignedCharValue];
+  _parameterLatest.GyroAccFaktor = [value unsignedCharValue];
 }
 - (NSNumber*) KompassWirkung{
-  return [NSNumber numberWithUnsignedChar:_parameter90.KompassWirkung];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.KompassWirkung];
 }
 - (void) setKompassWirkung:(NSNumber*) value {
-  _parameter90.KompassWirkung = [value unsignedCharValue];
+  _parameterLatest.KompassWirkung = [value unsignedCharValue];
 }
 - (NSNumber*) Gyro_P{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gyro_P];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gyro_P];
 }
 - (void) setGyro_P:(NSNumber*) value {
-  _parameter90.Gyro_P = [value unsignedCharValue];
+  _parameterLatest.Gyro_P = [value unsignedCharValue];
 }
 - (NSNumber*) Gyro_I{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gyro_I];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gyro_I];
 }
 - (void) setGyro_I:(NSNumber*) value {
-  _parameter90.Gyro_I = [value unsignedCharValue];
+  _parameterLatest.Gyro_I = [value unsignedCharValue];
 }
 - (NSNumber*) Gyro_D{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gyro_D];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gyro_D];
 }
 - (void) setGyro_D:(NSNumber*) value {
-  _parameter90.Gyro_D = [value unsignedCharValue];
+  _parameterLatest.Gyro_D = [value unsignedCharValue];
 }
 - (NSNumber*) Gyro_Gier_P{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gyro_Gier_P];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gyro_Gier_P];
 }
 - (void) setGyro_Gier_P:(NSNumber*) value {
-  _parameter90.Gyro_Gier_P = [value unsignedCharValue];
+  _parameterLatest.Gyro_Gier_P = [value unsignedCharValue];
 }
 - (NSNumber*) Gyro_Gier_I{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gyro_Gier_I];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gyro_Gier_I];
 }
 - (void) setGyro_Gier_I:(NSNumber*) value {
-  _parameter90.Gyro_Gier_I = [value unsignedCharValue];
+  _parameterLatest.Gyro_Gier_I = [value unsignedCharValue];
 }
 - (NSNumber*) Gyro_Stability{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Gyro_Stability];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Gyro_Stability];
 }
 - (void) setGyro_Stability:(NSNumber*) value {
-  _parameter90.Gyro_Stability = [value unsignedCharValue];
+  _parameterLatest.Gyro_Stability = [value unsignedCharValue];
 }
 - (NSNumber*) UnterspannungsWarnung{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UnterspannungsWarnung];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UnterspannungsWarnung];
 }
 - (void) setUnterspannungsWarnung:(NSNumber*) value {
-  _parameter90.UnterspannungsWarnung = [value unsignedCharValue];
+  _parameterLatest.UnterspannungsWarnung = [value unsignedCharValue];
 }
 - (NSNumber*) NotGas{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NotGas];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NotGas];
 }
 - (void) setNotGas:(NSNumber*) value {
-  _parameter90.NotGas = [value unsignedCharValue];
+  _parameterLatest.NotGas = [value unsignedCharValue];
 }
 - (NSNumber*) NotGasZeit{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NotGasZeit];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NotGasZeit];
 }
 - (void) setNotGasZeit:(NSNumber*) value {
-  _parameter90.NotGasZeit = [value unsignedCharValue];
+  _parameterLatest.NotGasZeit = [value unsignedCharValue];
 }
 - (NSNumber*) Receiver{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Receiver];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Receiver];
 }
 - (void) setReceiver:(NSNumber*) value {
-  _parameter90.Receiver = [value unsignedCharValue];
+  _parameterLatest.Receiver = [value unsignedCharValue];
 }
 - (NSNumber*) I_Faktor{
-  return [NSNumber numberWithUnsignedChar:_parameter90.I_Faktor];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.I_Faktor];
 }
 - (void) setI_Faktor:(NSNumber*) value {
-  _parameter90.I_Faktor = [value unsignedCharValue];
+  _parameterLatest.I_Faktor = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam1{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam1];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam1];
 }
 - (void) setUserParam1:(NSNumber*) value {
-  _parameter90.UserParam1 = [value unsignedCharValue];
+  _parameterLatest.UserParam1 = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam2{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam2];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam2];
 }
 - (void) setUserParam2:(NSNumber*) value {
-  _parameter90.UserParam2 = [value unsignedCharValue];
+  _parameterLatest.UserParam2 = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam3{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam3];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam3];
 }
 - (void) setUserParam3:(NSNumber*) value {
-  _parameter90.UserParam3 = [value unsignedCharValue];
+  _parameterLatest.UserParam3 = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam4{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam4];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam4];
 }
 - (void) setUserParam4:(NSNumber*) value {
-  _parameter90.UserParam4 = [value unsignedCharValue];
+  _parameterLatest.UserParam4 = [value unsignedCharValue];
 }
 - (NSNumber*) ServoNickControl{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoNickControl];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoNickControl];
 }
 - (void) setServoNickControl:(NSNumber*) value {
-  _parameter90.ServoNickControl = [value unsignedCharValue];
+  _parameterLatest.ServoNickControl = [value unsignedCharValue];
 }
 - (NSNumber*) ServoNickComp{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoNickComp];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoNickComp];
 }
 - (void) setServoNickComp:(NSNumber*) value {
-  _parameter90.ServoNickComp = [value unsignedCharValue];
+  _parameterLatest.ServoNickComp = [value unsignedCharValue];
 }
 - (NSNumber*) ServoNickMin{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoNickMin];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoNickMin];
 }
 - (void) setServoNickMin:(NSNumber*) value {
-  _parameter90.ServoNickMin = [value unsignedCharValue];
+  _parameterLatest.ServoNickMin = [value unsignedCharValue];
 }
 - (NSNumber*) ServoNickMax{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoNickMax];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoNickMax];
 }
 - (void) setServoNickMax:(NSNumber*) value {
-  _parameter90.ServoNickMax = [value unsignedCharValue];
+  _parameterLatest.ServoNickMax = [value unsignedCharValue];
 }
 - (NSNumber*) ServoRollControl{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoRollControl];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoRollControl];
 }
 - (void) setServoRollControl:(NSNumber*) value {
-  _parameter90.ServoRollControl = [value unsignedCharValue];
+  _parameterLatest.ServoRollControl = [value unsignedCharValue];
 }
 - (NSNumber*) ServoRollComp{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoRollComp];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoRollComp];
 }
 - (void) setServoRollComp:(NSNumber*) value {
-  _parameter90.ServoRollComp = [value unsignedCharValue];
+  _parameterLatest.ServoRollComp = [value unsignedCharValue];
 }
 - (NSNumber*) ServoRollMin{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoRollMin];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoRollMin];
 }
 - (void) setServoRollMin:(NSNumber*) value {
-  _parameter90.ServoRollMin = [value unsignedCharValue];
+  _parameterLatest.ServoRollMin = [value unsignedCharValue];
 }
 - (NSNumber*) ServoRollMax{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoRollMax];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoRollMax];
 }
 - (void) setServoRollMax:(NSNumber*) value {
-  _parameter90.ServoRollMax = [value unsignedCharValue];
+  _parameterLatest.ServoRollMax = [value unsignedCharValue];
 }
 - (NSNumber*) ServoNickRefresh{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoNickRefresh];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoNickRefresh];
 }
 - (void) setServoNickRefresh:(NSNumber*) value {
-  _parameter90.ServoNickRefresh = [value unsignedCharValue];
+  _parameterLatest.ServoNickRefresh = [value unsignedCharValue];
 }
 - (NSNumber*) ServoManualControlSpeed{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoManualControlSpeed];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoManualControlSpeed];
 }
 - (void) setServoManualControlSpeed:(NSNumber*) value {
-  _parameter90.ServoManualControlSpeed = [value unsignedCharValue];
+  _parameterLatest.ServoManualControlSpeed = [value unsignedCharValue];
 }
 - (NSNumber*) CamOrientation{
-  return [NSNumber numberWithUnsignedChar:_parameter90.CamOrientation];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.CamOrientation];
 }
 - (void) setCamOrientation:(NSNumber*) value {
-  _parameter90.CamOrientation = [value unsignedCharValue];
+  _parameterLatest.CamOrientation = [value unsignedCharValue];
 }
 - (NSNumber*) Servo3{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Servo3];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Servo3];
 }
 - (void) setServo3:(NSNumber*) value {
-  _parameter90.Servo3 = [value unsignedCharValue];
+  _parameterLatest.Servo3 = [value unsignedCharValue];
 }
 - (NSNumber*) Servo4{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Servo4];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Servo4];
 }
 - (void) setServo4:(NSNumber*) value {
-  _parameter90.Servo4 = [value unsignedCharValue];
+  _parameterLatest.Servo4 = [value unsignedCharValue];
 }
 - (NSNumber*) Servo5{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Servo5];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Servo5];
 }
 - (void) setServo5:(NSNumber*) value {
-  _parameter90.Servo5 = [value unsignedCharValue];
+  _parameterLatest.Servo5 = [value unsignedCharValue];
 }
 - (NSNumber*) LoopGasLimit{
-  return [NSNumber numberWithUnsignedChar:_parameter90.LoopGasLimit];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.LoopGasLimit];
 }
 - (void) setLoopGasLimit:(NSNumber*) value {
-  _parameter90.LoopGasLimit = [value unsignedCharValue];
+  _parameterLatest.LoopGasLimit = [value unsignedCharValue];
 }
 - (NSNumber*) LoopThreshold{
-  return [NSNumber numberWithUnsignedChar:_parameter90.LoopThreshold];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.LoopThreshold];
 }
 - (void) setLoopThreshold:(NSNumber*) value {
-  _parameter90.LoopThreshold = [value unsignedCharValue];
+  _parameterLatest.LoopThreshold = [value unsignedCharValue];
 }
 - (NSNumber*) LoopHysterese{
-  return [NSNumber numberWithUnsignedChar:_parameter90.LoopHysterese];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.LoopHysterese];
 }
 - (void) setLoopHysterese:(NSNumber*) value {
-  _parameter90.LoopHysterese = [value unsignedCharValue];
+  _parameterLatest.LoopHysterese = [value unsignedCharValue];
 }
 - (NSNumber*) AchsKopplung1{
-  return [NSNumber numberWithUnsignedChar:_parameter90.AchsKopplung1];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.AchsKopplung1];
 }
 - (void) setAchsKopplung1:(NSNumber*) value {
-  _parameter90.AchsKopplung1 = [value unsignedCharValue];
+  _parameterLatest.AchsKopplung1 = [value unsignedCharValue];
 }
 - (NSNumber*) AchsKopplung2{
-  return [NSNumber numberWithUnsignedChar:_parameter90.AchsKopplung2];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.AchsKopplung2];
 }
 - (void) setAchsKopplung2:(NSNumber*) value {
-  _parameter90.AchsKopplung2 = [value unsignedCharValue];
+  _parameterLatest.AchsKopplung2 = [value unsignedCharValue];
 }
 - (NSNumber*) CouplingYawCorrection{
-  return [NSNumber numberWithUnsignedChar:_parameter90.CouplingYawCorrection];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.CouplingYawCorrection];
 }
 - (void) setCouplingYawCorrection:(NSNumber*) value {
-  _parameter90.CouplingYawCorrection = [value unsignedCharValue];
+  _parameterLatest.CouplingYawCorrection = [value unsignedCharValue];
 }
 - (NSNumber*) WinkelUmschlagNick{
-  return [NSNumber numberWithUnsignedChar:_parameter90.WinkelUmschlagNick];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.WinkelUmschlagNick];
 }
 - (void) setWinkelUmschlagNick:(NSNumber*) value {
-  _parameter90.WinkelUmschlagNick = [value unsignedCharValue];
+  _parameterLatest.WinkelUmschlagNick = [value unsignedCharValue];
 }
 - (NSNumber*) WinkelUmschlagRoll{
-  return [NSNumber numberWithUnsignedChar:_parameter90.WinkelUmschlagRoll];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.WinkelUmschlagRoll];
 }
 - (void) setWinkelUmschlagRoll:(NSNumber*) value {
-  _parameter90.WinkelUmschlagRoll = [value unsignedCharValue];
+  _parameterLatest.WinkelUmschlagRoll = [value unsignedCharValue];
 }
 - (NSNumber*) GyroAccAbgleich{
-  return [NSNumber numberWithUnsignedChar:_parameter90.GyroAccAbgleich];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.GyroAccAbgleich];
 }
 - (void) setGyroAccAbgleich:(NSNumber*) value {
-  _parameter90.GyroAccAbgleich = [value unsignedCharValue];
+  _parameterLatest.GyroAccAbgleich = [value unsignedCharValue];
 }
 - (NSNumber*) Driftkomp{
-  return [NSNumber numberWithUnsignedChar:_parameter90.Driftkomp];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.Driftkomp];
 }
 - (void) setDriftkomp:(NSNumber*) value {
-  _parameter90.Driftkomp = [value unsignedCharValue];
+  _parameterLatest.Driftkomp = [value unsignedCharValue];
 }
 - (NSNumber*) DynamicStability{
-  return [NSNumber numberWithUnsignedChar:_parameter90.DynamicStability];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.DynamicStability];
 }
 - (void) setDynamicStability:(NSNumber*) value {
-  _parameter90.DynamicStability = [value unsignedCharValue];
+  _parameterLatest.DynamicStability = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam5{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam5];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam5];
 }
 - (void) setUserParam5:(NSNumber*) value {
-  _parameter90.UserParam5 = [value unsignedCharValue];
+  _parameterLatest.UserParam5 = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam6{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam6];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam6];
 }
 - (void) setUserParam6:(NSNumber*) value {
-  _parameter90.UserParam6 = [value unsignedCharValue];
+  _parameterLatest.UserParam6 = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam7{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam7];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam7];
 }
 - (void) setUserParam7:(NSNumber*) value {
-  _parameter90.UserParam7 = [value unsignedCharValue];
+  _parameterLatest.UserParam7 = [value unsignedCharValue];
 }
 - (NSNumber*) UserParam8{
-  return [NSNumber numberWithUnsignedChar:_parameter90.UserParam8];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.UserParam8];
 }
 - (void) setUserParam8:(NSNumber*) value {
-  _parameter90.UserParam8 = [value unsignedCharValue];
+  _parameterLatest.UserParam8 = [value unsignedCharValue];
 }
 - (NSNumber*) J16Bitmask{
-  return [NSNumber numberWithUnsignedChar:_parameter90.J16Bitmask];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.J16Bitmask];
 }
 - (void) setJ16Bitmask:(NSNumber*) value {
-  _parameter90.J16Bitmask = [value unsignedCharValue];
+  _parameterLatest.J16Bitmask = [value unsignedCharValue];
 }
 - (NSNumber*) J16Timing{
-  return [NSNumber numberWithUnsignedChar:_parameter90.J16Timing];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.J16Timing];
 }
 - (void) setJ16Timing:(NSNumber*) value {
-  _parameter90.J16Timing = [value unsignedCharValue];
+  _parameterLatest.J16Timing = [value unsignedCharValue];
 }
 - (NSNumber*) J17Bitmask{
-  return [NSNumber numberWithUnsignedChar:_parameter90.J17Bitmask];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.J17Bitmask];
 }
 - (void) setJ17Bitmask:(NSNumber*) value {
-  _parameter90.J17Bitmask = [value unsignedCharValue];
+  _parameterLatest.J17Bitmask = [value unsignedCharValue];
 }
 - (NSNumber*) J17Timing{
-  return [NSNumber numberWithUnsignedChar:_parameter90.J17Timing];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.J17Timing];
 }
 - (void) setJ17Timing:(NSNumber*) value {
-  _parameter90.J17Timing = [value unsignedCharValue];
+  _parameterLatest.J17Timing = [value unsignedCharValue];
 }
 - (NSNumber*) WARN_J16_Bitmask{
-  return [NSNumber numberWithUnsignedChar:_parameter90.WARN_J16_Bitmask];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.WARN_J16_Bitmask];
 }
 - (void) setWARN_J16_Bitmask:(NSNumber*) value {
-  _parameter90.WARN_J16_Bitmask = [value unsignedCharValue];
+  _parameterLatest.WARN_J16_Bitmask = [value unsignedCharValue];
 }
 - (NSNumber*) WARN_J17_Bitmask{
-  return [NSNumber numberWithUnsignedChar:_parameter90.WARN_J17_Bitmask];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.WARN_J17_Bitmask];
 }
 - (void) setWARN_J17_Bitmask:(NSNumber*) value {
-  _parameter90.WARN_J17_Bitmask = [value unsignedCharValue];
+  _parameterLatest.WARN_J17_Bitmask = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsModeControl{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsModeControl];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsModeControl];
 }
 - (void) setNaviGpsModeControl:(NSNumber*) value {
-  _parameter90.NaviGpsModeControl = [value unsignedCharValue];
+  _parameterLatest.NaviGpsModeControl = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsGain{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsGain];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsGain];
 }
 - (void) setNaviGpsGain:(NSNumber*) value {
-  _parameter90.NaviGpsGain = [value unsignedCharValue];
+  _parameterLatest.NaviGpsGain = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsP{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsP];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsP];
 }
 - (void) setNaviGpsP:(NSNumber*) value {
-  _parameter90.NaviGpsP = [value unsignedCharValue];
+  _parameterLatest.NaviGpsP = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsI{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsI];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsI];
 }
 - (void) setNaviGpsI:(NSNumber*) value {
-  _parameter90.NaviGpsI = [value unsignedCharValue];
+  _parameterLatest.NaviGpsI = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsD{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsD];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsD];
 }
 - (void) setNaviGpsD:(NSNumber*) value {
-  _parameter90.NaviGpsD = [value unsignedCharValue];
+  _parameterLatest.NaviGpsD = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsPLimit{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsPLimit];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsPLimit];
 }
 - (void) setNaviGpsPLimit:(NSNumber*) value {
-  _parameter90.NaviGpsPLimit = [value unsignedCharValue];
+  _parameterLatest.NaviGpsPLimit = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsILimit{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsILimit];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsILimit];
 }
 - (void) setNaviGpsILimit:(NSNumber*) value {
-  _parameter90.NaviGpsILimit = [value unsignedCharValue];
+  _parameterLatest.NaviGpsILimit = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsDLimit{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsDLimit];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsDLimit];
 }
 - (void) setNaviGpsDLimit:(NSNumber*) value {
-  _parameter90.NaviGpsDLimit = [value unsignedCharValue];
+  _parameterLatest.NaviGpsDLimit = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsACC{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsACC];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsACC];
 }
 - (void) setNaviGpsACC:(NSNumber*) value {
-  _parameter90.NaviGpsACC = [value unsignedCharValue];
+  _parameterLatest.NaviGpsACC = [value unsignedCharValue];
 }
 - (NSNumber*) NaviGpsMinSat{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviGpsMinSat];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviGpsMinSat];
 }
 - (void) setNaviGpsMinSat:(NSNumber*) value {
-  _parameter90.NaviGpsMinSat = [value unsignedCharValue];
+  _parameterLatest.NaviGpsMinSat = [value unsignedCharValue];
 }
 - (NSNumber*) NaviStickThreshold{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviStickThreshold];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviStickThreshold];
 }
 - (void) setNaviStickThreshold:(NSNumber*) value {
-  _parameter90.NaviStickThreshold = [value unsignedCharValue];
+  _parameterLatest.NaviStickThreshold = [value unsignedCharValue];
 }
 - (NSNumber*) NaviWindCorrection{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviWindCorrection];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviWindCorrection];
 }
 - (void) setNaviWindCorrection:(NSNumber*) value {
-  _parameter90.NaviWindCorrection = [value unsignedCharValue];
+  _parameterLatest.NaviWindCorrection = [value unsignedCharValue];
 }
 - (NSNumber*) NaviAccCompensation{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviAccCompensation];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviAccCompensation];
 }
 - (void) setNaviAccCompensation:(NSNumber*) value {
-  _parameter90.NaviAccCompensation = [value unsignedCharValue];
+  _parameterLatest.NaviAccCompensation = [value unsignedCharValue];
 }
 - (NSNumber*) NaviOperatingRadius{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviOperatingRadius];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviOperatingRadius];
 }
 - (void) setNaviOperatingRadius:(NSNumber*) value {
-  _parameter90.NaviOperatingRadius = [value unsignedCharValue];
+  _parameterLatest.NaviOperatingRadius = [value unsignedCharValue];
 }
 - (NSNumber*) NaviAngleLimitation{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviAngleLimitation];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviAngleLimitation];
 }
 - (void) setNaviAngleLimitation:(NSNumber*) value {
-  _parameter90.NaviAngleLimitation = [value unsignedCharValue];
+  _parameterLatest.NaviAngleLimitation = [value unsignedCharValue];
 }
 - (NSNumber*) NaviPH_LoginTime{
-  return [NSNumber numberWithUnsignedChar:_parameter90.NaviPH_LoginTime];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.NaviPH_LoginTime];
 }
 - (void) setNaviPH_LoginTime:(NSNumber*) value {
-  _parameter90.NaviPH_LoginTime = [value unsignedCharValue];
+  _parameterLatest.NaviPH_LoginTime = [value unsignedCharValue];
 }
 - (NSNumber*) ExternalControl{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ExternalControl];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ExternalControl];
 }
 - (void) setExternalControl:(NSNumber*) value {
-  _parameter90.ExternalControl = [value unsignedCharValue];
+  _parameterLatest.ExternalControl = [value unsignedCharValue];
 }
 - (NSNumber*) OrientationAngle{
-  return [NSNumber numberWithUnsignedChar:_parameter90.OrientationAngle];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.OrientationAngle];
 }
 - (void) setOrientationAngle:(NSNumber*) value {
-  _parameter90.OrientationAngle = [value unsignedCharValue];
+  _parameterLatest.OrientationAngle = [value unsignedCharValue];
 }
 - (NSNumber*) CareFreeModeControl{
-  return [NSNumber numberWithUnsignedChar:_parameter90.CareFreeModeControl];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.CareFreeModeControl];
 }
 - (void) setCareFreeModeControl:(NSNumber*) value {
-  _parameter90.CareFreeModeControl = [value unsignedCharValue];
+  _parameterLatest.CareFreeModeControl = [value unsignedCharValue];
 }
 - (NSNumber*) MotorSafetySwitch{
-  return [NSNumber numberWithUnsignedChar:_parameter90.MotorSafetySwitch];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.MotorSafetySwitch];
 }
 - (void) setMotorSafetySwitch:(NSNumber*) value {
-  _parameter90.MotorSafetySwitch = [value unsignedCharValue];
+  _parameterLatest.MotorSafetySwitch = [value unsignedCharValue];
 }
 - (NSNumber*) MotorSmooth{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.MotorSmooth];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.MotorSmooth];
 }
 - (void) setMotorSmooth:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.MotorSmooth = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.MotorSmooth = [value unsignedCharValue];
 }
 - (NSNumber*) ComingHomeAltitude{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.ComingHomeAltitude];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ComingHomeAltitude];
 }
 - (void) setComingHomeAltitude:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.ComingHomeAltitude = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.ComingHomeAltitude = [value unsignedCharValue];
 }
 - (NSNumber*) FailSafeTime{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.FailSafeTime];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.FailSafeTime];
 }
 - (void) setFailSafeTime:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.FailSafeTime = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.FailSafeTime = [value unsignedCharValue];
 }
 - (NSNumber*) MaxAltitude{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.MaxAltitude];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.MaxAltitude];
 }
 - (void) setMaxAltitude:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.MaxAltitude = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.MaxAltitude = [value unsignedCharValue];
 }
 
 
@@ -862,306 +942,330 @@
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) BitConfig{
-  return [NSNumber numberWithUnsignedChar:_parameter90.BitConfig];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.BitConfig];
 }
 - (void) setBitConfig:(NSNumber*) value {
-  _parameter90.BitConfig = [value unsignedCharValue];
+  _parameterLatest.BitConfig = [value unsignedCharValue];
 }
 - (NSNumber*) BitConfig_LOOP_OBEN{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_LOOP_OBEN)==CFG_LOOP_OBEN)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_LOOP_OBEN)==CFG_LOOP_OBEN)];
 }
 - (void) setBitConfig_LOOP_OBEN:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.BitConfig |= CFG_LOOP_OBEN;
+     _parameterLatest.BitConfig |= CFG_LOOP_OBEN;
   else
-     _parameter90.BitConfig &= ~CFG_LOOP_OBEN;
+     _parameterLatest.BitConfig &= ~CFG_LOOP_OBEN;
 }
 - (NSNumber*) BitConfig_LOOP_UNTEN{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_LOOP_UNTEN)==CFG_LOOP_UNTEN)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_LOOP_UNTEN)==CFG_LOOP_UNTEN)];
   
 }
 - (void) setBitConfig_LOOP_UNTEN:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.BitConfig |= CFG_LOOP_UNTEN;
+     _parameterLatest.BitConfig |= CFG_LOOP_UNTEN;
   else
-     _parameter90.BitConfig &= ~CFG_LOOP_UNTEN;
+     _parameterLatest.BitConfig &= ~CFG_LOOP_UNTEN;
 }
 - (NSNumber*) BitConfig_LOOP_LINKS{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_LOOP_LINKS)==CFG_LOOP_LINKS)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_LOOP_LINKS)==CFG_LOOP_LINKS)];
 }
 - (void) setBitConfig_LOOP_LINKS:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.BitConfig |= CFG_LOOP_LINKS;
+     _parameterLatest.BitConfig |= CFG_LOOP_LINKS;
   else
-     _parameter90.BitConfig &= ~CFG_LOOP_LINKS;
+     _parameterLatest.BitConfig &= ~CFG_LOOP_LINKS;
 }
 - (NSNumber*) BitConfig_LOOP_RECHTS{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_LOOP_RECHTS)==CFG_LOOP_RECHTS)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_LOOP_RECHTS)==CFG_LOOP_RECHTS)];
 }
 - (void) setBitConfig_LOOP_RECHTS:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.BitConfig |= CFG_LOOP_RECHTS;
+     _parameterLatest.BitConfig |= CFG_LOOP_RECHTS;
   else
-     _parameter90.BitConfig &= ~CFG_LOOP_RECHTS;
+     _parameterLatest.BitConfig &= ~CFG_LOOP_RECHTS;
 }
 - (NSNumber*) BitConfig_MOTOR_BLINK1{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_MOTOR_BLINK1)==CFG_MOTOR_BLINK1)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_MOTOR_BLINK1)==CFG_MOTOR_BLINK1)];
 }
 - (void) setBitConfig_MOTOR_BLINK1:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.BitConfig |= CFG_MOTOR_BLINK1;
+     _parameterLatest.BitConfig |= CFG_MOTOR_BLINK1;
   else
-     _parameter90.BitConfig &= ~CFG_MOTOR_BLINK1;
+     _parameterLatest.BitConfig &= ~CFG_MOTOR_BLINK1;
 }
 - (NSNumber*) BitConfig_MOTOR_BLINK2{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_MOTOR_BLINK2)==CFG_MOTOR_BLINK2)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_MOTOR_BLINK2)==CFG_MOTOR_BLINK2)];
 }
 - (void) setBitConfig_MOTOR_BLINK2:(NSNumber*) value {
   if([value boolValue])
-    _parameter90.BitConfig |= CFG_MOTOR_BLINK2;
+    _parameterLatest.BitConfig |= CFG_MOTOR_BLINK2;
   else
-    _parameter90.BitConfig &= ~CFG_MOTOR_BLINK2;
+    _parameterLatest.BitConfig &= ~CFG_MOTOR_BLINK2;
 }
 - (NSNumber*) BitConfig_MOTOR_OFF_LED1{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_MOTOR_OFF_LED1)==CFG_MOTOR_OFF_LED1)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_MOTOR_OFF_LED1)==CFG_MOTOR_OFF_LED1)];
 }
 - (void) setBitConfig_MOTOR_OFF_LED1:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.BitConfig |= CFG_MOTOR_OFF_LED1;
+     _parameterLatest.BitConfig |= CFG_MOTOR_OFF_LED1;
   else
-     _parameter90.BitConfig &= ~CFG_MOTOR_OFF_LED1;
+     _parameterLatest.BitConfig &= ~CFG_MOTOR_OFF_LED1;
 }
 - (NSNumber*) BitConfig_MOTOR_OFF_LED2{
-  return [NSNumber numberWithBool:((_parameter90.BitConfig&CFG_MOTOR_OFF_LED2)==CFG_MOTOR_OFF_LED2)];
+  return [NSNumber numberWithBool:((_parameterLatest.BitConfig&CFG_MOTOR_OFF_LED2)==CFG_MOTOR_OFF_LED2)];
 }
 - (void) setBitConfig_MOTOR_OFF_LED2:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.BitConfig |= CFG_MOTOR_OFF_LED2;
+     _parameterLatest.BitConfig |= CFG_MOTOR_OFF_LED2;
   else
-     _parameter90.BitConfig &= ~CFG_MOTOR_OFF_LED2;
+     _parameterLatest.BitConfig &= ~CFG_MOTOR_OFF_LED2;
 }
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) ServoCompInvert{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoCompInvert];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoCompInvert];
 }
 - (void) setServoCompInvert:(NSNumber*) value {
-  _parameter90.ServoCompInvert = [value unsignedCharValue];
+  _parameterLatest.ServoCompInvert = [value unsignedCharValue];
 }
 - (NSNumber*) ServoCompInvert_NICK{
-  return [NSNumber numberWithBool:((_parameter90.ServoCompInvert&CFG_SERVOCOMPINVERT_NICK)==CFG_SERVOCOMPINVERT_NICK)];
+  return [NSNumber numberWithBool:((_parameterLatest.ServoCompInvert&CFG_SERVOCOMPINVERT_NICK)==CFG_SERVOCOMPINVERT_NICK)];
 }
 - (void) setServoCompInvert_NICK:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.ServoCompInvert |= CFG_SERVOCOMPINVERT_NICK;
+     _parameterLatest.ServoCompInvert |= CFG_SERVOCOMPINVERT_NICK;
   else
-     _parameter90.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_NICK;
+     _parameterLatest.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_NICK;
 }
 - (NSNumber*) ServoCompInvert_ROLL{
-  return [NSNumber numberWithBool:((_parameter90.ServoCompInvert&CFG_SERVOCOMPINVERT_ROLL)==CFG_SERVOCOMPINVERT_ROLL)];
+  return [NSNumber numberWithBool:((_parameterLatest.ServoCompInvert&CFG_SERVOCOMPINVERT_ROLL)==CFG_SERVOCOMPINVERT_ROLL)];
 }
 - (void) setServoCompInvert_ROLL:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.ServoCompInvert |= CFG_SERVOCOMPINVERT_ROLL;
+     _parameterLatest.ServoCompInvert |= CFG_SERVOCOMPINVERT_ROLL;
   else
-     _parameter90.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_ROLL;
+     _parameterLatest.ServoCompInvert &= ~CFG_SERVOCOMPINVERT_ROLL;
 }
 
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) ExtraConfig{
-  return [NSNumber numberWithUnsignedChar:_parameter90.ExtraConfig];
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ExtraConfig];
 }
 - (void) setExtraConfig:(NSNumber*) value {
-  _parameter90.ExtraConfig = [value unsignedCharValue];
+  _parameterLatest.ExtraConfig = [value unsignedCharValue];
 }
 - (NSNumber*) ExtraConfig_HEIGHT_LIMIT{
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG2_HEIGHT_LIMIT)==CFG2_HEIGHT_LIMIT)];
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG2_HEIGHT_LIMIT)==CFG2_HEIGHT_LIMIT)];
 }
 - (void) setExtraConfig_HEIGHT_LIMIT:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.ExtraConfig |= CFG2_HEIGHT_LIMIT;
+     _parameterLatest.ExtraConfig |= CFG2_HEIGHT_LIMIT;
   else
-     _parameter90.ExtraConfig &= ~CFG2_HEIGHT_LIMIT;
+     _parameterLatest.ExtraConfig &= ~CFG2_HEIGHT_LIMIT;
 }
 - (NSNumber*) ExtraConfig_VARIO_BEEP{
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG2_VARIO_BEEP)==CFG2_VARIO_BEEP)];
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG2_VARIO_BEEP)==CFG2_VARIO_BEEP)];
 }
 - (void) setExtraConfig_VARIO_BEEP:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.ExtraConfig |= CFG2_VARIO_BEEP;
+     _parameterLatest.ExtraConfig |= CFG2_VARIO_BEEP;
   else
-     _parameter90.ExtraConfig &= ~CFG2_VARIO_BEEP;
+     _parameterLatest.ExtraConfig &= ~CFG2_VARIO_BEEP;
 }
 - (NSNumber*) ExtraConfig_SENSITIVE_RC{
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG_SENSITIVE_RC)==CFG_SENSITIVE_RC)];
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG_SENSITIVE_RC)==CFG_SENSITIVE_RC)];
 }
 - (void) setExtraConfig_SENSITIVE_RC:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.ExtraConfig |= CFG_SENSITIVE_RC;
+     _parameterLatest.ExtraConfig |= CFG_SENSITIVE_RC;
   else
-     _parameter90.ExtraConfig &= ~CFG_SENSITIVE_RC;
+     _parameterLatest.ExtraConfig &= ~CFG_SENSITIVE_RC;
 }
 - (NSNumber*) ExtraConfig_3_3V_REFERENCE{
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG_3_3V_REFERENCE)==CFG_3_3V_REFERENCE)];
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG_3_3V_REFERENCE)==CFG_3_3V_REFERENCE)];
 }
 - (void) setExtraConfig_3_3V_REFERENCE:(NSNumber*) value {
   if([value boolValue])
-     _parameter90.ExtraConfig |= CFG_3_3V_REFERENCE;
+     _parameterLatest.ExtraConfig |= CFG_3_3V_REFERENCE;
   else
-     _parameter90.ExtraConfig &= ~CFG_3_3V_REFERENCE;
+     _parameterLatest.ExtraConfig &= ~CFG_3_3V_REFERENCE;
 }
 - (NSNumber*) ExtraConfig_NO_RCOFF_BEEPING{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG_NO_RCOFF_BEEPING)==CFG_NO_RCOFF_BEEPING)];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG_NO_RCOFF_BEEPING)==CFG_NO_RCOFF_BEEPING)];
 }
 - (void) setExtraConfig_NO_RCOFF_BEEPING:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.ExtraConfig |= CFG_NO_RCOFF_BEEPING;
+    _parameterLatest.ExtraConfig |= CFG_NO_RCOFF_BEEPING;
   else
-    _parameter90.ExtraConfig &= ~CFG_NO_RCOFF_BEEPING;
+    _parameterLatest.ExtraConfig &= ~CFG_NO_RCOFF_BEEPING;
 }
 - (NSNumber*) ExtraConfig_GPS_AID{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG_GPS_AID)==CFG_GPS_AID)];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG_GPS_AID)==CFG_GPS_AID)];
 }
 - (void) setExtraConfig_GPS_AID:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.ExtraConfig |= CFG_GPS_AID;
+    _parameterLatest.ExtraConfig |= CFG_GPS_AID;
   else
-    _parameter90.ExtraConfig &= ~CFG_GPS_AID;
+    _parameterLatest.ExtraConfig &= ~CFG_GPS_AID;
 }
 - (NSNumber*) ExtraConfig_LEARNABLE_CAREFREE{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG_LEARNABLE_CAREFREE)==CFG_LEARNABLE_CAREFREE)];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG_LEARNABLE_CAREFREE)==CFG_LEARNABLE_CAREFREE)];
 }
 - (void) setExtraConfig_LEARNABLE_CAREFREE:(NSNumber *) value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.ExtraConfig |= CFG_LEARNABLE_CAREFREE;
+    _parameterLatest.ExtraConfig |= CFG_LEARNABLE_CAREFREE;
   else
-    _parameter90.ExtraConfig &= ~CFG_LEARNABLE_CAREFREE;
+    _parameterLatest.ExtraConfig &= ~CFG_LEARNABLE_CAREFREE;
 }
 - (NSNumber*) ExtraConfig_IGNORE_MAG_ERR_AT_STARTUP{
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.ExtraConfig&CFG_IGNORE_MAG_ERR_AT_STARTUP)==CFG_IGNORE_MAG_ERR_AT_STARTUP)];
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.ExtraConfig&CFG_IGNORE_MAG_ERR_AT_STARTUP)==CFG_IGNORE_MAG_ERR_AT_STARTUP)];
 }
 - (void) setExtraConfig_IGNORE_MAG_ERR_AT_STARTUP:(NSNumber *)value {
-  NSAssert(_parameter90.Revision>=88, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=88, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.ExtraConfig |= CFG_IGNORE_MAG_ERR_AT_STARTUP;
+    _parameterLatest.ExtraConfig |= CFG_IGNORE_MAG_ERR_AT_STARTUP;
   else
-    _parameter90.ExtraConfig &= ~CFG_IGNORE_MAG_ERR_AT_STARTUP;
+    _parameterLatest.ExtraConfig &= ~CFG_IGNORE_MAG_ERR_AT_STARTUP;
 }
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) GlobalConfig3{
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.GlobalConfig3];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.GlobalConfig3];
 }
 - (void) setGlobalConfig3:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.GlobalConfig3 = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.GlobalConfig3 = [value unsignedCharValue];
 }
 - (NSNumber*) GlobalConfig3_CFG3_NO_SDCARD_NO_START{
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig3&CFG3_NO_SDCARD_NO_START)==CFG3_NO_SDCARD_NO_START)];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig3&CFG3_NO_SDCARD_NO_START)==CFG3_NO_SDCARD_NO_START)];
 }
 - (void) setGlobalConfig3_CFG3_NO_SDCARD_NO_START:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.GlobalConfig3 |= CFG3_NO_SDCARD_NO_START;
+    _parameterLatest.GlobalConfig3 |= CFG3_NO_SDCARD_NO_START;
   else
-    _parameter90.GlobalConfig3 &= ~CFG3_NO_SDCARD_NO_START;
+    _parameterLatest.GlobalConfig3 &= ~CFG3_NO_SDCARD_NO_START;
 }
 - (NSNumber*) GlobalConfig3_CFG3_DPH_MAX_RADIUS{
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig3&CFG3_DPH_MAX_RADIUS)==CFG3_DPH_MAX_RADIUS)];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig3&CFG3_DPH_MAX_RADIUS)==CFG3_DPH_MAX_RADIUS)];
 }
 - (void) setGlobalConfig3_CFG3_DPH_MAX_RADIUS:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.GlobalConfig3 |= CFG3_DPH_MAX_RADIUS;
+    _parameterLatest.GlobalConfig3 |= CFG3_DPH_MAX_RADIUS;
   else
-    _parameter90.GlobalConfig3 &= ~CFG3_DPH_MAX_RADIUS;
+    _parameterLatest.GlobalConfig3 &= ~CFG3_DPH_MAX_RADIUS;
 }
 - (NSNumber*) GlobalConfig3_CFG3_VARIO_FAILSAFE{
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig3&CFG3_VARIO_FAILSAFE)==CFG3_VARIO_FAILSAFE)];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig3&CFG3_VARIO_FAILSAFE)==CFG3_VARIO_FAILSAFE)];
 }
 - (void) setGlobalConfig3_CFG3_VARIO_FAILSAFE:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.GlobalConfig3 |= CFG3_VARIO_FAILSAFE;
+    _parameterLatest.GlobalConfig3 |= CFG3_VARIO_FAILSAFE;
   else
-    _parameter90.GlobalConfig3 &= ~CFG3_VARIO_FAILSAFE;
+    _parameterLatest.GlobalConfig3 &= ~CFG3_VARIO_FAILSAFE;
 }
 - (NSNumber*) GlobalConfig3_CFG3_MOTOR_SWITCH_MODE{
-  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig3&CFG3_MOTOR_SWITCH_MODE)==CFG3_MOTOR_SWITCH_MODE)];
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig3&CFG3_MOTOR_SWITCH_MODE)==CFG3_MOTOR_SWITCH_MODE)];
 }
 - (void) setGlobalConfig3_CFG3_MOTOR_SWITCH_MODE:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.GlobalConfig3 |= CFG3_MOTOR_SWITCH_MODE;
+    _parameterLatest.GlobalConfig3 |= CFG3_MOTOR_SWITCH_MODE;
   else
-    _parameter90.GlobalConfig3 &= ~CFG3_MOTOR_SWITCH_MODE;
+    _parameterLatest.GlobalConfig3 &= ~CFG3_MOTOR_SWITCH_MODE;
 }
 - (NSNumber*) GlobalConfig3_CFG3_NO_GPSFIX_NO_START{
-  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithBool:((_parameter90.GlobalConfig3&CFG3_NO_GPSFIX_NO_START)==CFG3_NO_GPSFIX_NO_START)];
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig3&CFG3_NO_GPSFIX_NO_START)==CFG3_NO_GPSFIX_NO_START)];
 }
 - (void) setGlobalConfig3_CFG3_NO_GPSFIX_NO_START:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=91, @"Wrong parameter revision %d", _parameter90.Revision);
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
   if([value boolValue])
-    _parameter90.GlobalConfig3 |= CFG3_NO_GPSFIX_NO_START;
+    _parameterLatest.GlobalConfig3 |= CFG3_NO_GPSFIX_NO_START;
   else
-    _parameter90.GlobalConfig3 &= ~CFG3_NO_GPSFIX_NO_START;
+    _parameterLatest.GlobalConfig3 &= ~CFG3_NO_GPSFIX_NO_START;
 }
+- (NSNumber*) GlobalConfig3_CFG3_USE_NC_FOR_OUT1{
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig3&CFG3_USE_NC_FOR_OUT1)==CFG3_USE_NC_FOR_OUT1)];
+}
+- (void) setGlobalConfig3_CFG3_USE_NC_FOR_OUT1:(NSNumber*) value {
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  if([value boolValue])
+    _parameterLatest.GlobalConfig3 |= CFG3_USE_NC_FOR_OUT1;
+  else
+    _parameterLatest.GlobalConfig3 &= ~CFG3_USE_NC_FOR_OUT1;
+}
+- (NSNumber*) GlobalConfig3_CFG3_SPEAK_ALL{
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithBool:((_parameterLatest.GlobalConfig3&CFG3_SPEAK_ALL)==CFG3_SPEAK_ALL)];
+}
+- (void) setGlobalConfig3_CFG3_SPEAK_ALL:(NSNumber*) value {
+  NSAssert(_parameterLatest.Revision>=91, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  if([value boolValue])
+    _parameterLatest.GlobalConfig3 |= CFG3_SPEAK_ALL;
+  else
+    _parameterLatest.GlobalConfig3 &= ~CFG3_SPEAK_ALL;
+}
+
+
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSNumber*) ServoFilterNick{
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoFilterNick];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoFilterNick];
 }
 - (void) setServoFilterNick:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.ServoFilterNick = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.ServoFilterNick = [value unsignedCharValue];
 }
 - (NSNumber*) FailsafeChannel{
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.FailsafeChannel];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.FailsafeChannel];
 }
 - (void) setFailsafeChannel:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.FailsafeChannel = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.FailsafeChannel = [value unsignedCharValue];
 }
 - (NSNumber*) ServoFilterRoll{
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  return [NSNumber numberWithUnsignedChar:_parameter90.ServoFilterRoll];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  return [NSNumber numberWithUnsignedChar:_parameterLatest.ServoFilterRoll];
 }
 - (void) setServoFilterRoll:(NSNumber*) value {
-  NSAssert(_parameter90.Revision>=90, @"Wrong parameter revision %d", _parameter90.Revision);
-  _parameter90.ServoFilterRoll = [value unsignedCharValue];
+  NSAssert(_parameterLatest.Revision>=90, @"Wrong parameter revision %d", _parameterLatest.Revision);
+  _parameterLatest.ServoFilterRoll = [value unsignedCharValue];
 }
 
 //---------------------------------------------------
 #pragma mark -
 //---------------------------------------------------
 - (NSString*) Name {
-  return [NSString stringWithCString:_parameter90.Name encoding:NSASCIIStringEncoding];
+  return [NSString stringWithCString:_parameterLatest.Name encoding:NSASCIIStringEncoding];
 }
 - (void) setName:(NSString*)name {
 
-  memset(_parameter90.Name, 0, 12);
+  memset(_parameterLatest.Name, 0, 12);
   
-  [name getBytes:(void*)_parameter90.Name 
+  [name getBytes:(void*)_parameterLatest.Name 
        maxLength:12 
       usedLength:NULL 
         encoding:NSASCIIStringEncoding 

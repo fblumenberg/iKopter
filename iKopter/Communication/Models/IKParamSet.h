@@ -28,6 +28,7 @@
 
 @interface IKParamSet: NSObject {
 
+  IKMkParamset92 _parameterLatest;
   IKMkParamset90 _parameter90;
   IKMkParamset88 _parameter88;
   IKMkParamset85 _parameter85;
@@ -181,6 +182,8 @@
 @property(assign) NSNumber* GlobalConfig3_CFG3_VARIO_FAILSAFE;
 @property(assign) NSNumber* GlobalConfig3_CFG3_MOTOR_SWITCH_MODE;
 @property(assign) NSNumber* GlobalConfig3_CFG3_NO_GPSFIX_NO_START;
+@property(assign) NSNumber* GlobalConfig3_CFG3_USE_NC_FOR_OUT1;
+@property(assign) NSNumber* GlobalConfig3_CFG3_SPEAK_ALL;
 
 @property(assign) NSString*  Name;
 

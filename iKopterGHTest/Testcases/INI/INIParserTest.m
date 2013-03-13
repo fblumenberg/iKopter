@@ -43,7 +43,7 @@
   NSString *someFile = [bundlePath stringByAppendingPathComponent:@"Test.wpl"];
   NSLog(@"File in Bundle: %@", someFile);
   
-  NSError* error;
+  NSError* error = nil;
   INIParser *p = [[INIParser alloc] initWithContentsOfFile:someFile encoding:NSASCIIStringEncoding error:&error];
   
   GHAssertNil(error, nil);
