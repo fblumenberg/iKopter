@@ -123,9 +123,7 @@ static NSString *const MKIpConnectionException = @"MKIpConnectionException";
   if ([delegate respondsToSelector:@selector(didReadMkData:)]) {
     [delegate didReadMkData:data];
   }
-//  qltrace(@"Did read data %@",data);
-//
-//  qltrace(@"Start reading the next data frame");
+
   [sock readDataToData:[AsyncSocket CRData] withTimeout:-1 tag:0];
 }
 

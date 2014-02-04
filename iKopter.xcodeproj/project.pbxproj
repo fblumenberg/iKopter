@@ -2705,7 +2705,7 @@
 		BA0D4662137C5127001415C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = BA0D4665137C5127001415C3 /* Build configuration list for PBXProject "iKopter" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3721,6 +3721,173 @@
 			};
 			name = "Release Distribution";
 		};
+		A43E6F9015D50B9B0040894F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = AdHoc;
+		};
+		A43E6F9115D50B9B0040894F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thomas Tempelmann";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"/**",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/Frameworks/BTStack/include",
+					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
+					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
+				);
+				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iKopter\"",
+					"\"$(SRCROOT)/Frameworks/RedparkSDK\"",
+				);
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"OTHER_CFLAGS[arch=armv6]" = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-mno-thumb",
+				);
+				"OTHER_CFLAGS[arch=armv7]" = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93A635B4-30FB-4358-BA79-D6DBA14F197E";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AdHoc;
+		};
+		A43E6F9215D50B9B0040894F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterTests/iKopterTests-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "iKopterTests/iKopterTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = AdHoc;
+		};
+		A43E6F9315D50B9B0040894F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"/**",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}/Frameworks/BTStack/include",
+					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
+					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
+				);
+				INFOPLIST_FILE = "iKopter3G-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/iKopter\"",
+					"\"$(SRCROOT)/Frameworks/RedparkSDK\"",
+				);
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"OTHER_CFLAGS[arch=armv6]" = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-mno-thumb",
+				);
+				"OTHER_CFLAGS[arch=armv7]" = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = iKopter3G;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AdHoc;
+		};
+		A43E6F9415D50B9B0040894F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iKopterGHTest/iKopterGHTest-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "iKopterGHTest/iKopterGHTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/libGHUnitIPhone\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AdHoc;
+		};
 		BA0D468A137C5127001415C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3780,7 +3947,7 @@
 					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3824,7 +3991,7 @@
 					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3873,6 +4040,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/Frameworks/BTStack/include",
 					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
@@ -3919,6 +4087,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/Frameworks/BTStack/include",
 					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
@@ -3974,6 +4143,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iKopter/Supporting Files/iKopter-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = FOR_CYDIA;
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}/Frameworks/BTStack/include",
 					"${SOURCE_ROOT}/Frameworks/IBAForms/headers",
@@ -4032,7 +4202,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4047,7 +4216,7 @@
 					"${SOURCE_ROOT}/Frameworks/DropboxSDK.framework/Headers/",
 				);
 				INFOPLIST_FILE = "iKopter/iKopter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -4148,6 +4317,7 @@
 			buildConfigurations = (
 				76892CA1156BD960001D2F9D /* Debug */,
 				76892CA2156BD960001D2F9D /* Release */,
+				A43E6F9415D50B9B0040894F /* AdHoc */,
 				76892CA3156BD960001D2F9D /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4158,6 +4328,7 @@
 			buildConfigurations = (
 				BA0D468A137C5127001415C3 /* Debug */,
 				BA0D468B137C5127001415C3 /* Release */,
+				A43E6F9015D50B9B0040894F /* AdHoc */,
 				BAD69590137EA8DE006C129D /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4168,6 +4339,7 @@
 			buildConfigurations = (
 				BA0D468D137C5127001415C3 /* Debug */,
 				BA0D468E137C5127001415C3 /* Release */,
+				A43E6F9115D50B9B0040894F /* AdHoc */,
 				BAD69591137EA8DE006C129D /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4178,6 +4350,7 @@
 			buildConfigurations = (
 				BA2F927E153B0D040076D23E /* Debug */,
 				BA2F927F153B0D040076D23E /* Release */,
+				A43E6F9315D50B9B0040894F /* AdHoc */,
 				BA2F9280153B0D040076D23E /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4188,6 +4361,7 @@
 			buildConfigurations = (
 				BAE66E1C14EC355A0009D43D /* Debug */,
 				BAE66E1D14EC355A0009D43D /* Release */,
+				A43E6F9215D50B9B0040894F /* AdHoc */,
 				BAE66E1E14EC355A0009D43D /* Release Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;

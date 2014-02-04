@@ -92,7 +92,7 @@
     paramSection.formFieldStyle.behavior = behavior;
 
     if (((IKParamSet *)aModel).Revision.integerValue >= 88)
-    [paramSection addNumberFieldForKeyPath:@"FailSafeTime" title:NSLocalizedString(@"Comming Home time (s)", @"MKParam Misc")];
+    [paramSection addNumberFieldForKeyPath:@"FailSafeTime" title:NSLocalizedString(@"Coming Home time (s)", @"MKParam Misc")];
 
     if (((IKParamSet *)aModel).Revision.integerValue >= 90){
       [paramSection addSwitchFieldForKeyPath:@"GlobalConfig3_CFG3_VARIO_FAILSAFE" title:NSLocalizedString(@"Use vario for altitude", @"MKParam Misc") style:switchStyle];

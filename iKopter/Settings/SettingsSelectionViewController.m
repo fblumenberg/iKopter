@@ -167,7 +167,7 @@ static NSUInteger kNumberOfSettings = 5;
     if (![paramSet isValid]) {
 
       UIAlertView *alert = [[UIAlertView alloc]
-              initWithTitle:NSLocalizedString(@"Flight-Ctrl wrong Version", @"Setting read error") message:NSLocalizedString(@"Flight-Ctrl is NOT compatible to this App!\nPlease update to the lastest App AND firmware versions.", @"Setting read error msg") delegate:nil cancelButtonTitle:@"Ok"
+              initWithTitle:NSLocalizedString(@"Flight-Ctrl wrong Version", @"Setting read error") message:NSLocalizedString(@"Flight-Ctrl is NOT compatible to this App!\nPlease update to the lastest App AND firmware versions.", @"Setting read error msg") delegate:nil cancelButtonTitle:@"OK"
           otherButtonTitles:nil];
       [alert show];
       [alert release];

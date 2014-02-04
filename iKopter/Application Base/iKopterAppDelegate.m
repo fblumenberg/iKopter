@@ -27,7 +27,7 @@
 #import "DropboxSDK/DropboxSDK.h"
 
 // Here we import the Dropbox credentials. You have to get your own to compile.
-#import "ExternalData.h"
+//#import "ExternalData.h"
 
 #ifndef kDROPBOX_CONSUMER_KEY
 #define kDROPBOX_CONSUMER_KEY @"<YOUR CONSUMER KEY>"

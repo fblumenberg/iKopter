@@ -61,7 +61,7 @@
 #ifdef DEBUG
       h = [[MKHost alloc] init];
       h.name = @"Quadkopter WLAN";
-      h.address = @"192.168.0.74:23";
+      h.address = @"169.254.1.1:2000";
       h.connectionClass = @"MKIpConnection";
       [hosts addObject:h];
       [h release];
